@@ -1,0 +1,1 @@
+class_name UnitAnimationsHandle extends AnimatedSprite2D

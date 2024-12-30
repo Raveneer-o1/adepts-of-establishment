@@ -1,0 +1,112 @@
+[gd_scene load_steps=17 format=3 uid="uid://coatn3gvfj7o4"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_jylln"]
+[ext_resource type="Texture2D" uid="uid://b74twvxyqvliw" path="res://Arts/Empire units/knight attack.png" id="2_mlhji"]
+[ext_resource type="Texture2D" uid="uid://dotrymeobcf7f" path="res://Arts/Empire units/knight idle .png" id="3_3s2l8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2ym8"]
+atlas = ExtResource("2_mlhji")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tudi1"]
+atlas = ExtResource("2_mlhji")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prnwp"]
+atlas = ExtResource("2_mlhji")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2bx7b"]
+atlas = ExtResource("2_mlhji")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvjwk"]
+atlas = ExtResource("2_mlhji")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wfpxg"]
+atlas = ExtResource("2_mlhji")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gu8ys"]
+atlas = ExtResource("3_3s2l8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qiugb"]
+atlas = ExtResource("3_3s2l8")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wsyqh"]
+atlas = ExtResource("3_3s2l8")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qbm13"]
+atlas = ExtResource("3_3s2l8")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdb6s"]
+atlas = ExtResource("3_3s2l8")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pon4h"]
+atlas = ExtResource("3_3s2l8")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kyfeq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2ym8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tudi1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_prnwp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2bx7b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvjwk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wfpxg")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gu8ys")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qiugb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wsyqh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qbm13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fdb6s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pon4h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Unit" instance=ExtResource("1_jylln")]
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_kyfeq")
+animation = &"attack"
+autoplay = "default"
+
+[node name="Camera2D" type="Camera2D" parent="." index="3"]
+zoom = Vector2(3, 3)

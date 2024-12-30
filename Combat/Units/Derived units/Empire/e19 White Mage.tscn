@@ -1,0 +1,145 @@
+[gd_scene load_steps=22 format=3 uid="uid://bkgd75ppe6uv0"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_mbqb6"]
+[ext_resource type="Texture2D" uid="uid://b026o3cq7jv31" path="res://Arts/Empire units/white Mage attack .png" id="2_xltu8"]
+[ext_resource type="Texture2D" uid="uid://5gp5yh56dovu" path="res://Arts/Empire units/white Mage idle .png" id="3_ogifj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tl5s0"]
+atlas = ExtResource("2_xltu8")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqhfi"]
+atlas = ExtResource("2_xltu8")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7fh8d"]
+atlas = ExtResource("2_xltu8")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvd20"]
+atlas = ExtResource("2_xltu8")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swbba"]
+atlas = ExtResource("2_xltu8")
+region = Rect2(0, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hbso"]
+atlas = ExtResource("2_xltu8")
+region = Rect2(0, 240, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lk6q2"]
+atlas = ExtResource("2_xltu8")
+region = Rect2(0, 288, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23ee7"]
+atlas = ExtResource("2_xltu8")
+region = Rect2(0, 336, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xp82l"]
+atlas = ExtResource("2_xltu8")
+region = Rect2(0, 384, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gt6a3"]
+atlas = ExtResource("2_xltu8")
+region = Rect2(0, 432, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdga4"]
+atlas = ExtResource("2_xltu8")
+region = Rect2(0, 480, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ablqw"]
+atlas = ExtResource("2_xltu8")
+region = Rect2(0, 528, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35h5l"]
+atlas = ExtResource("3_ogifj")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s57dw"]
+atlas = ExtResource("3_ogifj")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j8vx8"]
+atlas = ExtResource("3_ogifj")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mlk8t"]
+atlas = ExtResource("3_ogifj")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xicpn"]
+atlas = ExtResource("3_ogifj")
+region = Rect2(0, 192, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1nr5l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tl5s0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eqhfi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7fh8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uvd20")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swbba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4hbso")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lk6q2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23ee7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xp82l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gt6a3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdga4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ablqw")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35h5l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s57dw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j8vx8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mlk8t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xicpn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Unit" instance=ExtResource("1_mbqb6")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_1nr5l")
+animation = &"attack"
+autoplay = "default"
+offset = Vector2(0, -8)
