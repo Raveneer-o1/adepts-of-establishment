@@ -7,33 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://dnao7cqp8wxhw" path="res://Arts/Combat effects/white circle .png" id="3_rxfld"]
 [ext_resource type="Resource" uid="uid://dfd81a0k5k4xy" path="res://Combat/Units/UnitParameters.tres" id="4_c214f"]
 
-[sub_resource type="Animation" id="Animation_yce8f"]
-resource_name = "unit_standart_damage_animation"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.09, 0.275413, 0.501667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(-2, 0), Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.07, 0.238898, 0.303857, 0.500826),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_t5xf5"]
 length = 0.001
 tracks/0/type = "value"
@@ -59,6 +32,33 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_yce8f"]
+resource_name = "unit_standart_damage_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.09, 0.275413, 0.501667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-2, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.07, 0.238898, 0.303857, 0.500826),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vl4j0"]
@@ -136,18 +136,26 @@ animations = [{
 [node name="Unit" type="Node2D"]
 script = ExtResource("1_gk31f")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimationHandle" type="AnimatedSprite2D" parent="."]
 script = ExtResource("2_gjndx")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationHandle"]
 libraries = {
 "": SubResource("AnimationLibrary_vl4j0")
 }
-autoplay = "unit_standart_damage_animation"
 
-[node name="UnitParameters" type="Node" parent="."]
+[node name="UnitParameters" type="Node2D" parent="."]
 script = ExtResource("2_mnflt")
 database_parameters = ExtResource("4_c214f")
+
+[node name="VisualBar" type="ProgressBar" parent="UnitParameters"]
+offset_left = -15.0
+offset_top = 16.0
+offset_right = 15.0
+offset_bottom = 22.0
+step = 1.0
+value = 100.0
+show_percentage = false
 
 [node name="Area2D" type="Area2D" parent="."]
 script = ExtResource("2_scfh0")
@@ -161,5 +169,7 @@ visible = false
 sprite_frames = SubResource("SpriteFrames_by27i")
 autoplay = "default"
 
+[connection signal="animation_finished" from="AnimationHandle" to="AnimationHandle" method="_on_animation_finished"]
+[connection signal="input_event" from="Area2D" to="Area2D" method="_on_input_event"]
 [connection signal="mouse_entered" from="Area2D" to="Area2D" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="Area2D" method="_on_mouse_exited"]

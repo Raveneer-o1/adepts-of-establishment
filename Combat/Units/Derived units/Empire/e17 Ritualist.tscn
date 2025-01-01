@@ -4,59 +4,59 @@
 [ext_resource type="Texture2D" uid="uid://cx6ym5ybatk16" path="res://Arts/Empire units/ritualist idle .png" id="2_ejkvf"]
 [ext_resource type="Texture2D" uid="uid://cnvltm0yvyyt2" path="res://Arts/Empire units/ritualist idle  (1).png" id="3_r8476"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hpbax"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_41kl6"]
 atlas = ExtResource("2_ejkvf")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yvxh7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ja40"]
 atlas = ExtResource("2_ejkvf")
 region = Rect2(0, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_13rut"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdg6d"]
 atlas = ExtResource("2_ejkvf")
 region = Rect2(0, 64, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8nf7t"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_sbee0"]
 atlas = ExtResource("2_ejkvf")
 region = Rect2(0, 96, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_x66xo"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2hv5"]
 atlas = ExtResource("2_ejkvf")
 region = Rect2(0, 128, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7gxlw"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4qnh"]
 atlas = ExtResource("3_r8476")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1el86"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2r0dp"]
 atlas = ExtResource("3_r8476")
 region = Rect2(0, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_l7fi6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7k3g5"]
 atlas = ExtResource("3_r8476")
 region = Rect2(0, 64, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2t0c5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0gb8"]
 atlas = ExtResource("3_r8476")
 region = Rect2(0, 96, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_a5ehs"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_onolp"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hpbax")
+"texture": SubResource("AtlasTexture_41kl6")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yvxh7")
+"texture": SubResource("AtlasTexture_3ja40")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_13rut")
+"texture": SubResource("AtlasTexture_mdg6d")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8nf7t")
+"texture": SubResource("AtlasTexture_sbee0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_x66xo")
+"texture": SubResource("AtlasTexture_g2hv5")
 }],
 "loop": false,
 "name": &"attack",
@@ -64,16 +64,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7gxlw")
+"texture": SubResource("AtlasTexture_p4qnh")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1el86")
+"texture": SubResource("AtlasTexture_2r0dp")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_l7fi6")
+"texture": SubResource("AtlasTexture_7k3g5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2t0c5")
+"texture": SubResource("AtlasTexture_f0gb8")
 }],
 "loop": true,
 "name": &"default",
@@ -82,7 +82,7 @@ animations = [{
 
 [node name="Unit" instance=ExtResource("1_nifrr")]
 
-[node name="AnimatedSprite2D" parent="." index="0"]
-sprite_frames = SubResource("SpriteFrames_a5ehs")
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_onolp")
 animation = &"attack"
 autoplay = "default"

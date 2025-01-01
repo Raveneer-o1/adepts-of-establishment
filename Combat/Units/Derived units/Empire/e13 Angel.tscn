@@ -1,108 +1,115 @@
-[gd_scene load_steps=21 format=3 uid="uid://dfb8a8lhxhbxv"]
+[gd_scene load_steps=22 format=3 uid="uid://dfb8a8lhxhbxv"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_ghq34"]
 [ext_resource type="Texture2D" uid="uid://du3k0h3s7hxoa" path="res://Arts/Empire units/angel  attack .png" id="2_j3ymb"]
 [ext_resource type="Texture2D" uid="uid://idex7y6u10f3" path="res://Arts/Empire units/angel idle .png" id="3_kot7h"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ke2xs"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_d74xw"]
 atlas = ExtResource("2_j3ymb")
 region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3muvx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3pdf"]
 atlas = ExtResource("2_j3ymb")
 region = Rect2(0, 64, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_c0yug"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_yab2u"]
+atlas = ExtResource("2_j3ymb")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yldvp"]
 atlas = ExtResource("2_j3ymb")
 region = Rect2(0, 192, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fsffr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5e3qk"]
 atlas = ExtResource("2_j3ymb")
 region = Rect2(0, 256, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wt76m"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2wh3m"]
 atlas = ExtResource("2_j3ymb")
 region = Rect2(0, 320, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fwk8v"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qf50y"]
 atlas = ExtResource("2_j3ymb")
 region = Rect2(0, 384, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bnn7b"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2qrg"]
 atlas = ExtResource("2_j3ymb")
 region = Rect2(0, 448, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s4mlq"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1b8n"]
 atlas = ExtResource("2_j3ymb")
 region = Rect2(0, 512, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_foyva"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5b6cp"]
 atlas = ExtResource("2_j3ymb")
 region = Rect2(0, 576, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ovhrm"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1his"]
 atlas = ExtResource("2_j3ymb")
 region = Rect2(0, 640, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yng1s"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0n3d"]
 atlas = ExtResource("2_j3ymb")
 region = Rect2(0, 704, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8sn1u"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fm350"]
 atlas = ExtResource("3_kot7h")
 region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_o0e4w"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7lhm"]
 atlas = ExtResource("3_kot7h")
 region = Rect2(0, 64, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_c46qj"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfcbo"]
 atlas = ExtResource("3_kot7h")
 region = Rect2(0, 128, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_clm0x"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6x8jd"]
 atlas = ExtResource("3_kot7h")
 region = Rect2(0, 192, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_74exf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2gfgd"]
 atlas = ExtResource("3_kot7h")
 region = Rect2(0, 256, 64, 64)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_5e67d"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_o6ioq"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ke2xs")
+"texture": SubResource("AtlasTexture_d74xw")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3muvx")
+"texture": SubResource("AtlasTexture_g3pdf")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_c0yug")
+"texture": SubResource("AtlasTexture_yab2u")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fsffr")
+"texture": SubResource("AtlasTexture_yldvp")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wt76m")
+"texture": SubResource("AtlasTexture_5e3qk")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fwk8v")
+"texture": SubResource("AtlasTexture_2wh3m")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bnn7b")
+"texture": SubResource("AtlasTexture_qf50y")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_s4mlq")
+"texture": SubResource("AtlasTexture_l2qrg")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_foyva")
+"texture": SubResource("AtlasTexture_e1b8n")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ovhrm")
+"texture": SubResource("AtlasTexture_5b6cp")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yng1s")
+"texture": SubResource("AtlasTexture_l1his")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0n3d")
 }],
 "loop": false,
 "name": &"attack",
@@ -110,19 +117,19 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8sn1u")
+"texture": SubResource("AtlasTexture_fm350")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_o0e4w")
+"texture": SubResource("AtlasTexture_f7lhm")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_c46qj")
+"texture": SubResource("AtlasTexture_vfcbo")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_clm0x")
+"texture": SubResource("AtlasTexture_6x8jd")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_74exf")
+"texture": SubResource("AtlasTexture_2gfgd")
 }],
 "loop": true,
 "name": &"default",
@@ -131,8 +138,8 @@ animations = [{
 
 [node name="Unit" instance=ExtResource("1_ghq34")]
 
-[node name="AnimatedSprite2D" parent="." index="0"]
-sprite_frames = SubResource("SpriteFrames_5e67d")
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_o6ioq")
 animation = &"attack"
 autoplay = "default"
 offset = Vector2(0, -16)

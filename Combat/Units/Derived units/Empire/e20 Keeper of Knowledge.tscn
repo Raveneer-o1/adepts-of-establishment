@@ -4,116 +4,116 @@
 [ext_resource type="Texture2D" uid="uid://bm2q607tou6qs" path="res://Arts/Empire units/lorekeeper attack .png" id="2_5ekka"]
 [ext_resource type="Texture2D" uid="uid://dkmby0vtan02c" path="res://Arts/Empire units/lorekeeper idle .png" id="3_a8snf"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6cwtx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6lyh5"]
 atlas = ExtResource("2_5ekka")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tmntr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_v30li"]
 atlas = ExtResource("2_5ekka")
 region = Rect2(0, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_swvw0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3hnh"]
 atlas = ExtResource("2_5ekka")
 region = Rect2(0, 64, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mwhmd"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rnbxm"]
 atlas = ExtResource("2_5ekka")
 region = Rect2(0, 96, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_efxgv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8wf0"]
 atlas = ExtResource("2_5ekka")
 region = Rect2(0, 128, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_b5lu8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7o6h"]
 atlas = ExtResource("2_5ekka")
 region = Rect2(0, 160, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nav4l"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5sab5"]
 atlas = ExtResource("2_5ekka")
 region = Rect2(0, 192, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_myvlq"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_37ywn"]
 atlas = ExtResource("2_5ekka")
 region = Rect2(0, 224, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_h45tk"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_essaw"]
 atlas = ExtResource("2_5ekka")
 region = Rect2(0, 256, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cjmnd"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhbg1"]
 atlas = ExtResource("2_5ekka")
 region = Rect2(0, 288, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fnac8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8nwbs"]
 atlas = ExtResource("2_5ekka")
 region = Rect2(0, 320, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4aa0v"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6q1f"]
 atlas = ExtResource("2_5ekka")
 region = Rect2(0, 352, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4k2c1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6dsq"]
 atlas = ExtResource("3_a8snf")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_j0k4h"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_yldmd"]
 atlas = ExtResource("3_a8snf")
 region = Rect2(0, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7dd0p"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ivsbw"]
 atlas = ExtResource("3_a8snf")
 region = Rect2(0, 64, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k73mb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1nuk"]
 atlas = ExtResource("3_a8snf")
 region = Rect2(0, 96, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_meqe1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3dwp"]
 atlas = ExtResource("3_a8snf")
 region = Rect2(0, 128, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6hmyq"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ytsd4"]
 atlas = ExtResource("3_a8snf")
 region = Rect2(0, 160, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_nwppl"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_srdpg"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6cwtx")
+"texture": SubResource("AtlasTexture_6lyh5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tmntr")
+"texture": SubResource("AtlasTexture_v30li")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_swvw0")
+"texture": SubResource("AtlasTexture_k3hnh")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mwhmd")
+"texture": SubResource("AtlasTexture_rnbxm")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_efxgv")
+"texture": SubResource("AtlasTexture_g8wf0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_b5lu8")
+"texture": SubResource("AtlasTexture_l7o6h")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nav4l")
+"texture": SubResource("AtlasTexture_5sab5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_myvlq")
+"texture": SubResource("AtlasTexture_37ywn")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_h45tk")
+"texture": SubResource("AtlasTexture_essaw")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cjmnd")
+"texture": SubResource("AtlasTexture_vhbg1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fnac8")
+"texture": SubResource("AtlasTexture_8nwbs")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4aa0v")
+"texture": SubResource("AtlasTexture_q6q1f")
 }],
 "loop": false,
 "name": &"attack",
@@ -121,22 +121,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4k2c1")
+"texture": SubResource("AtlasTexture_q6dsq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_j0k4h")
+"texture": SubResource("AtlasTexture_yldmd")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7dd0p")
+"texture": SubResource("AtlasTexture_ivsbw")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_k73mb")
+"texture": SubResource("AtlasTexture_s1nuk")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_meqe1")
+"texture": SubResource("AtlasTexture_n3dwp")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6hmyq")
+"texture": SubResource("AtlasTexture_ytsd4")
 }],
 "loop": true,
 "name": &"default",
@@ -145,7 +145,7 @@ animations = [{
 
 [node name="Unit" instance=ExtResource("1_l0il6")]
 
-[node name="AnimatedSprite2D" parent="." index="0"]
-sprite_frames = SubResource("SpriteFrames_nwppl")
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_srdpg")
 animation = &"attack"
 autoplay = "default"
