@@ -1,0 +1,72 @@
+[gd_scene load_steps=12 format=3 uid="uid://n106oxapxy1v"]
+
+[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/abstract_effect.tscn" id="1_mx2s5"]
+[ext_resource type="Texture2D" uid="uid://b8tv1bpsba7od" path="res://Arts/Empire units/elementalist attack effect .png" id="2_f448h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdabl"]
+atlas = ExtResource("2_f448h")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yraqw"]
+atlas = ExtResource("2_f448h")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgwcp"]
+atlas = ExtResource("2_f448h")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jddhe"]
+atlas = ExtResource("2_f448h")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_77u61"]
+atlas = ExtResource("2_f448h")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m8qbo"]
+atlas = ExtResource("2_f448h")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgca7"]
+atlas = ExtResource("2_f448h")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6rok"]
+atlas = ExtResource("2_f448h")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5e1bd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdabl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yraqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgwcp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jddhe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_77u61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m8qbo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dgca7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6rok")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Effect" instance=ExtResource("1_mx2s5")]
+sprite_frames = SubResource("SpriteFrames_5e1bd")
+autoplay = "default"

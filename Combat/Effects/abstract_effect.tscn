@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://3t6073robhji"]
+
+[ext_resource type="Script" path="res://Combat/Effects/TemporaryEffect.gd" id="1_0xmri"]
+
+[node name="Effect" type="AnimatedSprite2D"]
+script = ExtResource("1_0xmri")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

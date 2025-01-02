@@ -72,16 +72,17 @@ func start_attacking() -> void:
 		
 		var dmg: int
 		if u_attack.damage_override:
-			dmg = u_attack.damage_multiplier
+			@warning_ignore("narrowing_conversion") dmg = u_attack.damage_multiplier
 		else:
-			dmg = u_attack.damage_multiplier * parameters.base_damage
+			@warning_ignore("narrowing_conversion") dmg = u_attack.damage_multiplier * parameters.base_damage
 		
 		var attack : Attack = Attack.new(
 				self, # attacker
 				chosen_targets[i], #target
 				dmg, #damage
 				u_attack.type, #attack type
-				randf() > u_attack.accuracy # if attack is missed
+				randf() > u_attack.accuracy, # if attack is missed
+				parameters.attack_effect
 				)
 		
 		system.combat_logic.book_damage(attack)
@@ -100,4 +101,5 @@ func click() -> void:
 
 func die() -> void:
 	EventBus.unit_died.emit(self)
-	queue_free()
+	# TODO: animate death
+	anim_handle.pause()

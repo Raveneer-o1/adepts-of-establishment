@@ -1,0 +1,87 @@
+[gd_scene load_steps=14 format=3 uid="uid://7xdms7uje677"]
+
+[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/abstract_effect.tscn" id="1_b1fdr"]
+[ext_resource type="Texture2D" uid="uid://bn7o15o8hda3o" path="res://Arts/Empire units/Arcanist attack effect .png" id="2_a7i04"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfc4h"]
+atlas = ExtResource("2_a7i04")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0v6b"]
+atlas = ExtResource("2_a7i04")
+region = Rect2(0, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehn7m"]
+atlas = ExtResource("2_a7i04")
+region = Rect2(0, 96, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qysh4"]
+atlas = ExtResource("2_a7i04")
+region = Rect2(0, 144, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0pfch"]
+atlas = ExtResource("2_a7i04")
+region = Rect2(0, 192, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sy6xk"]
+atlas = ExtResource("2_a7i04")
+region = Rect2(0, 240, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vveoy"]
+atlas = ExtResource("2_a7i04")
+region = Rect2(0, 288, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4saso"]
+atlas = ExtResource("2_a7i04")
+region = Rect2(0, 336, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_merjw"]
+atlas = ExtResource("2_a7i04")
+region = Rect2(0, 384, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fjb3"]
+atlas = ExtResource("2_a7i04")
+region = Rect2(0, 432, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w6jn3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfc4h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0v6b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehn7m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qysh4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0pfch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sy6xk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vveoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4saso")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_merjw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3fjb3")
+}],
+"loop": false,
+"name": &"default",
+"speed": 7.0
+}]
+
+[node name="Effect" instance=ExtResource("1_b1fdr")]
+sprite_frames = SubResource("SpriteFrames_w6jn3")
+autoplay = "default"
+offset = Vector2(0, -8)

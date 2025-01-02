@@ -1,0 +1,128 @@
+[gd_scene load_steps=20 format=3 uid="uid://c7bbto2q5jen7"]
+
+[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/abstract_effect.tscn" id="1_8cibi"]
+[ext_resource type="Texture2D" uid="uid://d0tngq8odjn5i" path="res://Arts/Empire units/ritualist attack effect .png" id="2_5jfho"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1qfs"]
+atlas = ExtResource("2_5jfho")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3c4p"]
+atlas = ExtResource("2_5jfho")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_turtn"]
+atlas = ExtResource("2_5jfho")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ayqrt"]
+atlas = ExtResource("2_5jfho")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nwuti"]
+atlas = ExtResource("2_5jfho")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76gcx"]
+atlas = ExtResource("2_5jfho")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1rvp8"]
+atlas = ExtResource("2_5jfho")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j80dl"]
+atlas = ExtResource("2_5jfho")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gh3ou"]
+atlas = ExtResource("2_5jfho")
+region = Rect2(0, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2v46"]
+atlas = ExtResource("2_5jfho")
+region = Rect2(0, 288, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tc5a5"]
+atlas = ExtResource("2_5jfho")
+region = Rect2(0, 320, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfxco"]
+atlas = ExtResource("2_5jfho")
+region = Rect2(0, 352, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_boeog"]
+atlas = ExtResource("2_5jfho")
+region = Rect2(0, 384, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dysg1"]
+atlas = ExtResource("2_5jfho")
+region = Rect2(0, 416, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3gp23"]
+atlas = ExtResource("2_5jfho")
+region = Rect2(0, 448, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rkgi"]
+atlas = ExtResource("2_5jfho")
+region = Rect2(0, 480, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y7w1x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1qfs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3c4p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_turtn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ayqrt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwuti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76gcx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1rvp8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j80dl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gh3ou")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p2v46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tc5a5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mfxco")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_boeog")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dysg1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3gp23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7rkgi")
+}],
+"loop": false,
+"name": &"default",
+"speed": 6.0
+}]
+
+[node name="Effect" instance=ExtResource("1_8cibi")]
+sprite_frames = SubResource("SpriteFrames_y7w1x")
+autoplay = "default"

@@ -1,0 +1,114 @@
+[gd_scene load_steps=18 format=3 uid="uid://cl66orf67rhdo"]
+
+[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/abstract_effect.tscn" id="1_xnhw7"]
+[ext_resource type="Texture2D" uid="uid://b4u1m7e7u75bh" path="res://Arts/Heroes/hero04 High Mage Elren effect 2.png" id="2_x8xy3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkbiu"]
+atlas = ExtResource("2_x8xy3")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qy1p"]
+atlas = ExtResource("2_x8xy3")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0syi"]
+atlas = ExtResource("2_x8xy3")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_06l63"]
+atlas = ExtResource("2_x8xy3")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxi7k"]
+atlas = ExtResource("2_x8xy3")
+region = Rect2(0, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yut3"]
+atlas = ExtResource("2_x8xy3")
+region = Rect2(0, 240, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3cu61"]
+atlas = ExtResource("2_x8xy3")
+region = Rect2(0, 288, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bk74n"]
+atlas = ExtResource("2_x8xy3")
+region = Rect2(0, 336, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vaugj"]
+atlas = ExtResource("2_x8xy3")
+region = Rect2(0, 384, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w5dj1"]
+atlas = ExtResource("2_x8xy3")
+region = Rect2(0, 432, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bo4c"]
+atlas = ExtResource("2_x8xy3")
+region = Rect2(0, 480, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n53h7"]
+atlas = ExtResource("2_x8xy3")
+region = Rect2(0, 528, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0oqj"]
+atlas = ExtResource("2_x8xy3")
+region = Rect2(0, 576, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lljc3"]
+atlas = ExtResource("2_x8xy3")
+region = Rect2(0, 624, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4rruy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkbiu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qy1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b0syi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_06l63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxi7k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5yut3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3cu61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bk74n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vaugj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w5dj1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bo4c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n53h7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0oqj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lljc3")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Effect" instance=ExtResource("1_xnhw7")]
+sprite_frames = SubResource("SpriteFrames_4rruy")
+autoplay = "default"

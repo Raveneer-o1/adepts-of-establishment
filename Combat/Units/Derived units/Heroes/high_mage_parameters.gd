@@ -6,7 +6,8 @@ func _set_attacks() -> void:
 			false, # damage_override
 			false, # validation override
 			Callable(), # empty validation
-			EventBus.AttackType.Physical,
+			EventBus.AttackType.Elemental,
 			0.8 # accuracy
 			)
 	attacks.append(attack)
+	check_target_validity = standart_archer_validity

@@ -1,0 +1,65 @@
+[gd_scene load_steps=11 format=3 uid="uid://cdicif6h0d041"]
+
+[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/abstract_effect.tscn" id="1_loeor"]
+[ext_resource type="Texture2D" uid="uid://buf04lbll6njs" path="res://Arts/Empire units/priest attack effect .png" id="2_q7csu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbdqk"]
+atlas = ExtResource("2_q7csu")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rtk2"]
+atlas = ExtResource("2_q7csu")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kx4sg"]
+atlas = ExtResource("2_q7csu")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ryl5l"]
+atlas = ExtResource("2_q7csu")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkt0q"]
+atlas = ExtResource("2_q7csu")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqehv"]
+atlas = ExtResource("2_q7csu")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5hbyy"]
+atlas = ExtResource("2_q7csu")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ir4lv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbdqk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3rtk2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kx4sg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ryl5l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nkt0q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqehv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5hbyy")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Effect" instance=ExtResource("1_loeor")]
+sprite_frames = SubResource("SpriteFrames_ir4lv")
+autoplay = "default"

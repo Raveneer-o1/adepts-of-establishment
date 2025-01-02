@@ -1,0 +1,100 @@
+[gd_scene load_steps=16 format=3 uid="uid://cnlyt2k5jjchq"]
+
+[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/abstract_effect.tscn" id="1_ojoka"]
+[ext_resource type="Texture2D" uid="uid://uyh6q8ovh6e2" path="res://Arts/Empire units/Scout target effect .png" id="2_riso6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_we873"]
+atlas = ExtResource("2_riso6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ab7iq"]
+atlas = ExtResource("2_riso6")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxpkf"]
+atlas = ExtResource("2_riso6")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xa2qd"]
+atlas = ExtResource("2_riso6")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lds2j"]
+atlas = ExtResource("2_riso6")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynvgc"]
+atlas = ExtResource("2_riso6")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jt52"]
+atlas = ExtResource("2_riso6")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eiy1x"]
+atlas = ExtResource("2_riso6")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uo38d"]
+atlas = ExtResource("2_riso6")
+region = Rect2(0, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfe66"]
+atlas = ExtResource("2_riso6")
+region = Rect2(0, 288, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbph1"]
+atlas = ExtResource("2_riso6")
+region = Rect2(0, 320, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kr81g"]
+atlas = ExtResource("2_riso6")
+region = Rect2(0, 352, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vlyoy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_we873")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ab7iq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxpkf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xa2qd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lds2j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ynvgc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jt52")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eiy1x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uo38d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfe66")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bbph1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kr81g")
+}],
+"loop": false,
+"name": &"default",
+"speed": 7.0
+}]
+
+[node name="Effect" instance=ExtResource("1_ojoka")]
+sprite_frames = SubResource("SpriteFrames_vlyoy")
+autoplay = "default"

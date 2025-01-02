@@ -19,8 +19,9 @@ func play_damage_animation() -> void:
 
 func _on_animation_finished() -> void:
 	play("default")
-	parent_unit.finish_attacking()
-	now_attacking = false
+	if now_attacking:
+		parent_unit.finish_attacking()
+		now_attacking = false
 
 func _on_frame_changed() -> void:
 	if not now_attacking:

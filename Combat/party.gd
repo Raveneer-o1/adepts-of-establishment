@@ -17,6 +17,8 @@ var main_system: CombatSystem
 ## Front line are units with even positions, back line - with odd positions.
 ## Because of hexagonal positioning, units in the front line have two units behind them
 ## and units in the back - two units in front of them
+## Large units take one space plus two adjacent places in another line (thus taking 3 spaces)
+## in code this represents as three positions in a row
 var units: Array[Unit] = []
 
 
@@ -94,6 +96,7 @@ func place_units(list: Array[String]) -> void:
 		else:
 			units[i].position = get_unit_position(i)
 
+
 func get_large_unit_position(pos: int) -> Vector2:
 	var x: float = X_START_POSITION + X_OFFSET / 2
 	var y: float = Y_START_POSITION + Y_OFFSET * pos
@@ -107,15 +110,5 @@ func get_unit_position(pos: int) -> Vector2:
 func initialize_variables() -> void:	
 	for i in range(MAX_UNITS_NUMBER):
 		units.append(null)
-		#unit_positions.append(null)
-	
-	#for i in range(MAX_UNITS_NUMBER):
-		#unit_positions[i] = get_node("UnitPosition" + str(i)) as Node2D
-		#if unit_positions[i] == null:
-			#print_debug("UnitPosition" + str(i) + " not found!")
-	
 
 var unit_positions: Array[Node2D] = []
-
-#func _ready() -> void:
-	#initialize_variables()

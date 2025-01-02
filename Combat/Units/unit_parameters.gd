@@ -2,10 +2,14 @@ class_name UnitParameters extends Node
 
 ## This class represents inner logic of a unit: its health, damage and abilities
 ## 
+## Specific values are determined in derived classes
 
 @export var unit_name: String
 
 @export var large_unit: bool = false
+
+@export var attack_effect: Resource
+@export var other_effects: Array[Resource]
 
 @export_group("Base parameters")
 ## Base parameters that determine "native" to this type of units values
@@ -66,18 +70,39 @@ func initialize_variables() -> void:
 
 func die() -> void:
 	dead = true
+	parent_unit.die()
 
 func _set_attacks() -> void:
 	pass
 
 var check_target_validity: Callable = Callable(self, "standart_melee_validity")
 
+
+func standart_healer_validity(unit: Unit) -> bool:
+	if unit.parameters.dead:
+		return false
+	
+	# only attack if units are in the same party
+	if parent_unit.party.units.has(unit):
+		return true
+	return false
+
+
 func standart_archer_validity(unit: Unit) -> bool:
+	if unit.parameters.dead:
+		return false
+		
+	# if units are in the same party, we don't attack
 	if parent_unit.party.units.has(unit):
 		return false
 	return true
 
+
 func standart_melee_validity(unit) -> bool:
+	if unit.parameters.dead:
+		return false
+		
+	# if units are in the same party, we don't attack
 	if parent_unit.party.units.has(unit):
 		return false
 	
@@ -160,6 +185,8 @@ func standart_melee_validity(unit) -> bool:
 		# if get_units_at_positions() returned 2 nulls, we're completely out of bouns
 		if targets.size() == 2:
 			in_bounds = false
+		
+		step += 2
 	
 	return false
 

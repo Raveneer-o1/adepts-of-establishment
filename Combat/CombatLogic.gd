@@ -79,6 +79,10 @@ func end_battle() -> void:
 func book_damage(attack: Attack) -> void:
 	booked_attacks.append(attack)
 	EventBus.attack_booked.emit(attack)
+	if attack.effect == null:
+		return
+	var effect_object := attack.effect.instantiate() as TemporaryEffect
+	attack.target.add_child(effect_object)
 
 func resolve_attack(attack: Attack) -> void:
 	

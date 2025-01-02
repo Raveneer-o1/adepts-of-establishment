@@ -1,0 +1,72 @@
+[gd_scene load_steps=12 format=3 uid="uid://b3gssbgpd05vu"]
+
+[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/abstract_effect.tscn" id="1_2qnk1"]
+[ext_resource type="Texture2D" uid="uid://b361glyda7lxp" path="res://Arts/Empire units/assassin attack effect .png" id="2_co3in"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kscp5"]
+atlas = ExtResource("2_co3in")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eu4de"]
+atlas = ExtResource("2_co3in")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ubrqg"]
+atlas = ExtResource("2_co3in")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vc57x"]
+atlas = ExtResource("2_co3in")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hu6om"]
+atlas = ExtResource("2_co3in")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_welhw"]
+atlas = ExtResource("2_co3in")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0g3p"]
+atlas = ExtResource("2_co3in")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n18if"]
+atlas = ExtResource("2_co3in")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tjo2l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kscp5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eu4de")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ubrqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vc57x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hu6om")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_welhw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e0g3p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n18if")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Effect" instance=ExtResource("1_2qnk1")]
+sprite_frames = SubResource("SpriteFrames_tjo2l")
+autoplay = "default"

@@ -43,7 +43,8 @@ func finish_attack() -> void:
 	combat_logic.resolve_all_attacks()
 	combat_logic.next_stage()
 	for u in highlighted_units:
-		u.reset_highlight()
+		if u != null:
+			u.reset_highlight()
 	highlighted_units.clear()
 
 func check_finished_animation(unit: Unit) -> void:

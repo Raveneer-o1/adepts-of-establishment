@@ -1,0 +1,73 @@
+[gd_scene load_steps=12 format=3 uid="uid://n73yhf0gkhm6"]
+
+[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/abstract_effect.tscn" id="1_276wb"]
+[ext_resource type="Texture2D" uid="uid://bya42tfpkp71b" path="res://Arts/Empire units/prophetess attack effect .png" id="2_o364i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3gvmn"]
+atlas = ExtResource("2_o364i")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nst5n"]
+atlas = ExtResource("2_o364i")
+region = Rect2(0, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldxhc"]
+atlas = ExtResource("2_o364i")
+region = Rect2(0, 96, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qgcf7"]
+atlas = ExtResource("2_o364i")
+region = Rect2(0, 144, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gp0al"]
+atlas = ExtResource("2_o364i")
+region = Rect2(0, 192, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_52ut5"]
+atlas = ExtResource("2_o364i")
+region = Rect2(0, 240, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_utld7"]
+atlas = ExtResource("2_o364i")
+region = Rect2(0, 288, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xed78"]
+atlas = ExtResource("2_o364i")
+region = Rect2(0, 336, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sy2dy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3gvmn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nst5n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ldxhc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qgcf7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gp0al")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_52ut5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_utld7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xed78")
+}],
+"loop": false,
+"name": &"default",
+"speed": 7.0
+}]
+
+[node name="Effect" instance=ExtResource("1_276wb")]
+sprite_frames = SubResource("SpriteFrames_sy2dy")
+autoplay = "default"
+offset = Vector2(0, -8)

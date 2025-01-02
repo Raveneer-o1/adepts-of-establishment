@@ -1,0 +1,86 @@
+[gd_scene load_steps=14 format=3 uid="uid://bevoiaohyqxv2"]
+
+[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/abstract_effect.tscn" id="1_ywxnm"]
+[ext_resource type="Texture2D" uid="uid://b35u3xraq5bc6" path="res://Arts/Empire units/Hierophant special effect.png" id="2_boeea"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pea24"]
+atlas = ExtResource("2_boeea")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8r4ow"]
+atlas = ExtResource("2_boeea")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmajn"]
+atlas = ExtResource("2_boeea")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3aefa"]
+atlas = ExtResource("2_boeea")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1mg80"]
+atlas = ExtResource("2_boeea")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swuc3"]
+atlas = ExtResource("2_boeea")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qbbhh"]
+atlas = ExtResource("2_boeea")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4s01"]
+atlas = ExtResource("2_boeea")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0k121"]
+atlas = ExtResource("2_boeea")
+region = Rect2(0, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rn007"]
+atlas = ExtResource("2_boeea")
+region = Rect2(0, 288, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6v0j8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pea24")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8r4ow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmajn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3aefa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1mg80")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swuc3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qbbhh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4s01")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0k121")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rn007")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Effect" instance=ExtResource("1_ywxnm")]
+sprite_frames = SubResource("SpriteFrames_6v0j8")
+autoplay = "default"
