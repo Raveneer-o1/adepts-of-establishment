@@ -1,15 +1,25 @@
 class_name UnitParameters extends Node
 
-## Resource that will be used to determine base parameters
-@export var database_parameters: Resource
+## This class represents inner logic of a unit: its health, damage and abilities
+## 
+
+@export var unit_name: String
+
+@export_group("Base parameters")
+## Base parameters that determine "native" to this type of units values
+@export var max_hp := 100
+## Base parameters that determine "native" to this type of units values
+@export var base_damage := 25
+## Base parameters that determine "native" to this type of units values
+@export var initiative := 50
 
 @export_group("Override parameters")
-## Setting these parameters will override parameters from database completely
-@export var max_hp: int = -1
-## Setting these parameters will override parameters from database completely
-@export var base_damage: int = -1
-## Setting these parameters will override parameters from database completely
-@export var initiative: int = -1
+## Setting these parameters will override base parameters (use if you want to experiment but don't want to change the intended behaviour)
+@export var max_hp_override: int = -1
+## Setting these parameters will override base parameters (use if you want to experiment but don't want to change the intended behaviour)
+@export var base_damage_override: int = -1
+## Setting these parameters will override base parameters (use if you want to experiment but don't want to change the intended behaviour)
+@export var initiative_override: int = -1
 
 var attacks: Array[UnitAttack] = []
 # TODO: replace int with Array[int] for multiple actions per round
@@ -40,38 +50,106 @@ func get_last_validation(n: int) -> Callable:
 func initialize_variables() -> void:
 	parent_unit = get_parent()
 	
-	if database_parameters == null:
-		print_debug("Resourse not attached!")
-		return
-	if max_hp <= 0:
-		max_hp = database_parameters.max_hp
-	if base_damage < 0:
-		base_damage = database_parameters.base_damage
-	if initiative < 0:
-		initiative = database_parameters.initiative
+	if max_hp_override > 0:
+		max_hp = max_hp_override
+	if base_damage_override >= 0:
+		base_damage = base_damage_override
+	if initiative_override >= 0:
+		initiative = initiative_override
 	
 	visual_bar.max_value = max_hp
 	hp = max_hp
-	set_attacks()
-
-func _ready() -> void:
-	initialize_variables()
+	_set_attacks()
+	targets_need = attacks.size()
 
 func die() -> void:
 	dead = true
 
-func set_attacks() -> void:
-	attacks = database_parameters.get_attacks()
-	var array: Array[int] = database_parameters.need_targets
-	if array.size() > 0:
-		targets_need = array[0]
-	else:
-		targets_need = 1
+func _set_attacks() -> void:
+	pass
 
 var check_target_validity: Callable = Callable(self, "standart_melee_validity")
 
-func standart_melee_validity(unit) -> bool:
-	return true
+func standart_melee_validity(unit) -> bool:	
+	var pos := parent_unit.party_position
+	var targets : Array[Unit]
+	# step of 2 indicates adjacent units *see Party class documentation*
+	var step: int = 2
+	
+	# even position indicates front line
+	if pos % 2 == 0:
+		# check position in front and adjacent positions
+		targets = parent_unit.party.other_party.get_units_at_positions([pos - step, pos, pos + step])
+		if targets.has(unit):
+			return true
+		
+		# if at least one value returned is not null, target is blocked by that unit
+		for u in targets:
+			if u != null:
+				return false
+	
+	# odd position indicates back line
+	else:
+		if not parent_unit.party.front_line_is_empty():
+			return false
+		# set new pos to check front line first
+		step = -1
+	
+	
+	# assuming we can't get out of bounds on the first check
+	var in_bounds: bool = true
+	while in_bounds:
+		step += 2
+		
+		targets = parent_unit.party.other_party.get_units_at_positions([pos - step, pos + step])
+		if targets.has(unit):
+			return true
+		
+		# if at least one value returned is not null, target is blocked by that unit
+		for u in targets:
+			if u != null:
+				return false
+		
+		# if get_units_at_positions() returned 2 nulls, we're completely out of bouns
+		if targets.size() == 2:
+			in_bounds = false
+	
+	# === Checking back line ===
+	
+	# even position indicates front line
+	if pos % 2 == 0:
+		step = 1
+	
+	# odd position indicates back line
+	else:
+		step = 2
+		targets = parent_unit.party.other_party.get_units_at_positions([pos - step, pos, pos + step])
+		if targets.has(unit):
+			return true
+		
+		# if at least one value returned is not null, target is blocked by that unit
+		for u in targets:
+			if u != null:
+				return false
+		
+	
+	
+	in_bounds = true
+	while in_bounds:
+		targets = parent_unit.party.other_party.get_units_at_positions([pos - step, pos + step])
+		if targets.has(unit):
+			return true
+		
+		# if at least one value returned is not null, target is blocked by that unit
+		for u in targets:
+			if u != null:
+				return false
+		
+		# if get_units_at_positions() returned 2 nulls, we're completely out of bouns
+		if targets.size() == 2:
+			in_bounds = false
+	
+	return false
 
 @onready var visual_bar := get_node("VisualBar") as ProgressBar
 

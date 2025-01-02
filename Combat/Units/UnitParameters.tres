@@ -1,8 +1,9 @@
 [gd_resource type="Resource" load_steps=2 format=3 uid="uid://dfd81a0k5k4xy"]
 
 [sub_resource type="GDScript" id="GDScript_ki7jw"]
-script/source = "@export var max_hp := 100
-@export var current_hp := 100
+script/source = "@export var unit_name: String
+@export var max_hp := 100
+#@export var current_hp := 100
 @export var base_damage := 25
 @export var initiative := 50
 
@@ -49,8 +50,8 @@ func get_attacks() -> Array[UnitAttack]:
 
 [resource]
 script = SubResource("GDScript_ki7jw")
+unit_name = ""
 max_hp = 100
-current_hp = 100
 base_damage = 25
 initiative = 50
 need_targets = Array[int]([1])

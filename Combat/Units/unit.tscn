@@ -1,11 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://bjlsohg1p6wgl"]
+[gd_scene load_steps=29 format=3 uid="uid://bjlsohg1p6wgl"]
 
 [ext_resource type="Script" path="res://Combat/Units/unit.gd" id="1_gk31f"]
 [ext_resource type="Script" path="res://Combat/Units/UnitAnimationsHandle.gd" id="2_gjndx"]
 [ext_resource type="Script" path="res://Combat/Units/unit_parameters.gd" id="2_mnflt"]
 [ext_resource type="Script" path="res://Combat/Units/unit_area_2d_node.gd" id="2_scfh0"]
 [ext_resource type="Texture2D" uid="uid://dnao7cqp8wxhw" path="res://Arts/Combat effects/white circle .png" id="3_rxfld"]
-[ext_resource type="Resource" uid="uid://dfd81a0k5k4xy" path="res://Combat/Units/UnitParameters.tres" id="4_c214f"]
+[ext_resource type="Texture2D" uid="uid://jdc0m3idvya3" path="res://Arts/Combat effects/yellow circle .png" id="6_xet54"]
 
 [sub_resource type="Animation" id="Animation_t5xf5"]
 length = 0.001
@@ -133,6 +133,70 @@ animations = [{
 "speed": 15.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_etbdi"]
+atlas = ExtResource("6_xet54")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6w8l"]
+atlas = ExtResource("6_xet54")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47r6a"]
+atlas = ExtResource("6_xet54")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3t1ni"]
+atlas = ExtResource("6_xet54")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4anux"]
+atlas = ExtResource("6_xet54")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjusf"]
+atlas = ExtResource("6_xet54")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbb84"]
+atlas = ExtResource("6_xet54")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6j18o"]
+atlas = ExtResource("6_xet54")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2vckf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_etbdi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n6w8l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_47r6a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t1ni")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4anux")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjusf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbb84")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6j18o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
 [node name="Unit" type="Node2D"]
 script = ExtResource("1_gk31f")
 
@@ -146,7 +210,6 @@ libraries = {
 
 [node name="UnitParameters" type="Node2D" parent="."]
 script = ExtResource("2_mnflt")
-database_parameters = ExtResource("4_c214f")
 
 [node name="VisualBar" type="ProgressBar" parent="UnitParameters"]
 offset_left = -15.0
@@ -169,7 +232,13 @@ visible = false
 sprite_frames = SubResource("SpriteFrames_by27i")
 autoplay = "default"
 
+[node name="ExternalHighlight" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_2vckf")
+autoplay = "default"
+
 [connection signal="animation_finished" from="AnimationHandle" to="AnimationHandle" method="_on_animation_finished"]
+[connection signal="frame_changed" from="AnimationHandle" to="AnimationHandle" method="_on_frame_changed"]
 [connection signal="input_event" from="Area2D" to="Area2D" method="_on_input_event"]
 [connection signal="mouse_entered" from="Area2D" to="Area2D" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="Area2D" method="_on_mouse_exited"]

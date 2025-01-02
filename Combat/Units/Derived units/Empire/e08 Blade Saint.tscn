@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_v0wje"]
 [ext_resource type="Texture2D" uid="uid://cnpacvfpqiwqt" path="res://Arts/Empire units/sword saint attack.png" id="2_gvero"]
-[ext_resource type="Resource" uid="uid://draiy2ags7ne8" path="res://Combat/Units/e08_Blade Saint.tres" id="2_wt1sh"]
 [ext_resource type="Texture2D" uid="uid://bo0r7ymf2uybw" path="res://Arts/Empire units/sword saint idle .png" id="3_dcb7y"]
+[ext_resource type="Script" path="res://Combat/Units/Derived units/Empire/blade_saint_parameters.gd" id="4_ak840"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wy2xa"]
 atlas = ExtResource("2_gvero")
@@ -207,6 +207,9 @@ sprite_frames = SubResource("SpriteFrames_oreww")
 animation = &"attack"
 autoplay = "default"
 offset = Vector2(8, -8)
+frames_to_emit = Array[int]([4, 7])
 
 [node name="UnitParameters" parent="." index="1"]
-database_parameters = ExtResource("2_wt1sh")
+script = ExtResource("4_ak840")
+max_hp = 500
+base_damage = 70

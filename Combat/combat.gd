@@ -1,10 +1,18 @@
-class_name CombatSystem extends Node2D
+class_name CombatSystem
+extends Node2D
+
+## The CombatSystem class hanles high-level interactions between internal nodes and external systems
+## and utility functions such as player input
+
+
 
 @onready var left_party: Party = get_node("LeftParty")
 @onready var right_party: Party = get_node("RightParty")
 
 @export var left_party_units: Array[String]
 @export var right_party_units: Array[String]
+
+@onready var combat_logic: CombatLogic = get_node("CombatLogic")
 
 const TEMP_LABEL = preload("res://Combat/TempLabel.tscn")
 const DISTANCE_TO_LABEL = 15.0
@@ -26,39 +34,29 @@ var current_unit: Unit:
 				active_unit_marker.position = value.global_position
 				active_unit_marker.visible = true
 
-var units_queue: Array[Unit]
 
 @onready var active_unit_marker := get_node("ActiveUnitMarker") as AnimatedSprite2D
 
-var booked_attacks: Array[Attack] = []
+var highlighted_units: Array[Unit] = []
 
 func finish_attack() -> void:
-	resolve_all_attacks()
-	next_stage()
+	combat_logic.resolve_all_attacks()
+	combat_logic.next_stage()
+	for u in highlighted_units:
+		u.reset_highlight()
+	highlighted_units.clear()
 
 func check_finished_animation(unit: Unit) -> void:
 	if unit == current_unit:
 		finish_attack()
 
-func book_damage(attack: Attack) -> void:
-	booked_attacks.append(attack)
-	EventBus.attack_booked.emit(attack)
-
-func resolve_attack(attack: Attack) -> void:
-	if not booked_attacks.has(attack):
-		return
-	booked_attacks.erase(attack)
-	attack.target.resolve_attack(attack)
-
-func resolve_all_attacks() -> void:
-	for a in booked_attacks:
-		a.target.resolve_attack(a)
-	booked_attacks.clear()
-
 func clicked_unit(unit: Unit) -> void:
 	var target_added = current_unit.give_target(unit)
 	if not target_added:
 		print("Unable to attack this target")
+		return
+	unit.highlight_externally()
+	highlighted_units.append(unit)
 
 func display_text_near_unit(unit: Unit, text: String) -> void:
 	var pos = Vector2(randf() - 0.5, randf() - 0.5).normalized() * DISTANCE_TO_LABEL
@@ -69,53 +67,23 @@ func display_text_near_unit(unit: Unit, text: String) -> void:
 	lbl.position = unit.global_position + pos
 	#print(lbl.position)
 
-func sorting_by_initiative(a: Unit, b: Unit) -> bool:
-	return b.parameters.initiative > a.parameters.initiative
-
-func filter_nulls(a: Unit) -> bool:
-	return a != null
-
-func set_queue() -> void:
-	units_queue = left_party.units.duplicate().filter(filter_nulls) + right_party.units.duplicate().filter(filter_nulls)
-	units_queue.shuffle()
-	units_queue.sort_custom(sorting_by_initiative)
-
-func start_round() -> void:
-	set_queue()
-	EventBus.round_started.emit()
-
-func start_turn() -> void:
-	EventBus.turn_ended.emit(current_unit)
-	if units_queue.size() > 0:
-		current_unit = units_queue.pop_at(0)
-		EventBus.turn_started.emit(current_unit)
-
-func next_stage() -> void:
-	if units_queue.size() > 0:
-		start_turn()
-	else:
-		start_round()
-		start_turn()
-
 #region Initialization
 
+func load_unit_list(list: Array[String]) -> void:
+	for s in list:
+		if loaded_units.has(s):
+			continue
+		if s.is_empty():
+			continue
+		var l := load(s)
+		if l == null:
+			print_debug("Not found: " + s)
+		else:
+			loaded_units[s] = l
+
 func load_units() -> void:
-	for s in left_party_units:
-		if loaded_units.has(s):
-			continue
-		var l := load(s)
-		if l == null:
-			print_debug("Not found: " + s)
-		else:
-			loaded_units[s] = l
-	for s in right_party_units:
-		if loaded_units.has(s):
-			continue
-		var l := load(s)
-		if l == null:
-			print_debug("Not found: " + s)
-		else:
-			loaded_units[s] = l
+	load_unit_list(left_party_units)
+	load_unit_list(right_party_units)
 
 func initialize_variables() -> void:
 	left_party.main_system = self
@@ -138,5 +106,5 @@ func _ready() -> void:
 	initialize_variables()
 	load_units()
 	place_units()
-	next_stage()
+	combat_logic.next_stage()
 #endregion
