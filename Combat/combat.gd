@@ -106,5 +106,5 @@ func _ready() -> void:
 	initialize_variables()
 	load_units()
 	place_units()
-	combat_logic.next_stage()
+	combat_logic.start_battle()
 #endregion

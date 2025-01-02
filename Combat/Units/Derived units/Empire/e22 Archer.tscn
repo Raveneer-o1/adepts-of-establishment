@@ -1,8 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://mi3iybiptekr"]
+[gd_scene load_steps=22 format=3 uid="uid://mi3iybiptekr"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_rj356"]
 [ext_resource type="Texture2D" uid="uid://3gn1g2kxv12" path="res://Arts/Empire units/archer attack .png" id="2_5paof"]
 [ext_resource type="Texture2D" uid="uid://l2w3f2hxp5aj" path="res://Arts/Empire units/archer idle .png" id="3_c26eu"]
+[ext_resource type="Script" path="res://Combat/Units/Derived units/Empire/archer_parameters.gd" id="4_di0t0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xcvpq"]
 atlas = ExtResource("2_5paof")
@@ -135,3 +136,6 @@ animations = [{
 sprite_frames = SubResource("SpriteFrames_7tod5")
 animation = &"attack"
 autoplay = "default"
+
+[node name="UnitParameters" parent="." index="1"]
+script = ExtResource("4_di0t0")

@@ -4,24 +4,3 @@
 
 [node name="Party" type="Node2D"]
 script = ExtResource("1_37euc")
-
-[node name="UnitPosition0" type="Node2D" parent="."]
-position = Vector2(90, 50)
-
-[node name="UnitPosition1" type="Node2D" parent="."]
-position = Vector2(50, 75)
-
-[node name="UnitPosition2" type="Node2D" parent="."]
-position = Vector2(90, 100)
-
-[node name="UnitPosition3" type="Node2D" parent="."]
-position = Vector2(50, 125)
-
-[node name="UnitPosition4" type="Node2D" parent="."]
-position = Vector2(90, 150)
-
-[node name="UnitPosition5" type="Node2D" parent="."]
-position = Vector2(50, 175)
-
-[node name="UnitPosition6" type="Node2D" parent="."]
-position = Vector2(90, 200)

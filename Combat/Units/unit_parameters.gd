@@ -5,6 +5,8 @@ class_name UnitParameters extends Node
 
 @export var unit_name: String
 
+@export var large_unit: bool = false
+
 @export_group("Base parameters")
 ## Base parameters that determine "native" to this type of units values
 @export var max_hp := 100
@@ -70,11 +72,21 @@ func _set_attacks() -> void:
 
 var check_target_validity: Callable = Callable(self, "standart_melee_validity")
 
-func standart_melee_validity(unit) -> bool:	
+func standart_archer_validity(unit: Unit) -> bool:
+	if parent_unit.party.units.has(unit):
+		return false
+	return true
+
+func standart_melee_validity(unit) -> bool:
+	if parent_unit.party.units.has(unit):
+		return false
+	
 	var pos := parent_unit.party_position
 	var targets : Array[Unit]
 	# step of 2 indicates adjacent units *see Party class documentation*
 	var step: int = 2
+	
+	# === Checking front line ===
 	
 	# even position indicates front line
 	if pos % 2 == 0:

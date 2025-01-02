@@ -1,9 +1,16 @@
 class_name Party extends Node2D
 
+## Constants are tuned to fit 7 units on screen but the entire logic is built around the scalability.
+## If you want to increase size of battle, the only thing to change in these constants
 const MAX_UNITS_NUMBER = 7
+const X_START_POSITION = 50.0
+const Y_START_POSITION = 50.0
+const X_OFFSET = 40.0
+const Y_OFFSET = 25.0
 
 var other_party: Party
 var main_system: CombatSystem
+
 
 ## Units are stored as one-dimentional array.
 ## Gameplay-wise units ate placed on a hexagonal grid and positions are counted top to bottom.
@@ -11,6 +18,7 @@ var main_system: CombatSystem
 ## Because of hexagonal positioning, units in the front line have two units behind them
 ## and units in the back - two units in front of them
 var units: Array[Unit] = []
+
 
 ## Returns references to Units at specified positions.
 ## Empty spaces and dead units are skipped. Positions out of bounds are returned as null
@@ -54,20 +62,57 @@ func place_units(list: Array[String]) -> void:
 			print_debug(s + " is not loaded!")
 			continue
 		var loaded_unit: Resource = main_system.loaded_units[s]
+		if units[i] != null:
+			print_debug("Unable to assign unit to position " + str(i))
+			continue
+		
 		units[i] = loaded_unit.instantiate()
-		unit_positions[i].add_child(units[i])
+		add_child(units[i])
 		units[i].initialize_variables()
 		units[i].party_position = i
+		
+		if units[i].parameters.large_unit:
+			if i == 0:
+				print_debug("The first unit can't be large!")
+				units[i].free()
+				units[i] = null
+				continue
+			if i == MAX_UNITS_NUMBER - 1:
+				print_debug("The last unit can't be large!")
+				units[i].free()
+				units[i] = null
+				continue
+			if units[i-1] != null:
+				print_debug("Not enough space for large unit!")
+				units[i].free()
+				units[i] = null
+				continue
+			
+			units[i + 1] = units[i]
+			units[i - 1] = units[i]
+			units[i].position = get_large_unit_position(i)
+		else:
+			units[i].position = get_unit_position(i)
 
-func initialize_variables() -> void:
+func get_large_unit_position(pos: int) -> Vector2:
+	var x: float = X_START_POSITION + X_OFFSET / 2
+	var y: float = Y_START_POSITION + Y_OFFSET * pos
+	return Vector2(x, y)
+
+func get_unit_position(pos: int) -> Vector2:
+	var x: float = X_START_POSITION if pos % 2 != 0 else X_START_POSITION + X_OFFSET
+	var y: float = Y_START_POSITION + Y_OFFSET * pos
+	return Vector2(x, y)
+
+func initialize_variables() -> void:	
 	for i in range(MAX_UNITS_NUMBER):
 		units.append(null)
-		unit_positions.append(null)
+		#unit_positions.append(null)
 	
-	for i in range(MAX_UNITS_NUMBER):
-		unit_positions[i] = get_node("UnitPosition" + str(i)) as Node2D
-		if unit_positions[i] == null:
-			print_debug("UnitPosition" + str(i) + " not found!")
+	#for i in range(MAX_UNITS_NUMBER):
+		#unit_positions[i] = get_node("UnitPosition" + str(i)) as Node2D
+		#if unit_positions[i] == null:
+			#print_debug("UnitPosition" + str(i) + " not found!")
 	
 
 var unit_positions: Array[Node2D] = []

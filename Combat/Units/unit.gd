@@ -88,7 +88,7 @@ func start_attacking() -> void:
 
 func initialize_variables() -> void:
 	parameters = get_node("UnitParameters")
-	party = get_parent().get_parent() as Party
+	party = get_parent() as Party
 	system = party.main_system
 	if party == null:
 		print_debug("Unable to find Party node!")
