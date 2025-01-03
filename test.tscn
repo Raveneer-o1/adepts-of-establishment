@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://6lq6f06hma7"]
+[gd_scene load_steps=3 format=3 uid="uid://6lq6f06hma7"]
 
 [ext_resource type="PackedScene" uid="uid://cku7rhe8jn3tx" path="res://Combat/combat.tscn" id="1_7nbev"]
+[ext_resource type="PackedScene" uid="uid://d12hr40jjb8s8" path="res://Combat/UnitInfoPanel.tscn" id="1_roecy"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node"]
 
 [node name="Combat" parent="." instance=ExtResource("1_7nbev")]
-position = Vector2(20, 30)
+
+[node name="UnitInfoPanel" parent="." instance=ExtResource("1_roecy")]
+visible = false

@@ -34,6 +34,7 @@ var current_unit: Unit:
 				active_unit_marker.position = value.global_position
 				active_unit_marker.visible = true
 
+#@onready var unit_info_panel: UnitInfoPanel = get_node("UnitInfoPanel")
 
 @onready var active_unit_marker := get_node("ActiveUnitMarker") as AnimatedSprite2D
 
@@ -65,7 +66,8 @@ func display_text_near_unit(unit: Unit, text: String) -> void:
 	var lbl: Label = TEMP_LABEL.instantiate()
 	unit.add_child(lbl)
 	lbl.text = text
-	lbl.position = unit.global_position + pos
+	lbl.set_begin(unit.global_position + pos)
+	#lbl.position = unit.position + pos
 	#print(lbl.position)
 
 #region Initialization

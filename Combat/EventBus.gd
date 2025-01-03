@@ -8,6 +8,7 @@ extends Node
 @warning_ignore("unused_signal") signal attack_reached(unit: Unit)
 @warning_ignore("unused_signal") signal attack_animation_finished(unit: Unit)
 @warning_ignore("unused_signal") signal unit_died(unit: Unit)
+@warning_ignore("unused_signal") signal unit_description_requested(unit: Unit)
 
 enum AttackType {
 	Physical,

@@ -221,6 +221,8 @@ value = 100.0
 show_percentage = false
 
 [node name="Area2D" type="Area2D" parent="."]
+monitoring = false
+monitorable = false
 script = ExtResource("2_scfh0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
