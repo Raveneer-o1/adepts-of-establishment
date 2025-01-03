@@ -7,6 +7,9 @@ var attacker: Unit
 var target: Unit
 var effect: Resource
 
+func resolve() -> void:
+	target.resolve_attack(self)
+
 func _init(_attacker: Unit, _target: Unit, dmg: int, ty: EventBus.AttackType, wh: bool, eff: Resource = null) -> void:
 	type = ty
 	attacker = _attacker

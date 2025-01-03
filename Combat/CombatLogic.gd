@@ -76,13 +76,24 @@ func end_battle() -> void:
 ## Booked damage is dealt when resolve_attack(), resolve_closest_attack() or resolve_all_attacks()
 ## is called. before that other effects can impact the specific values of an attack.
 ## NOTE: attack here already comes with determined value "whiff" that represents whether it's missed of not
-func book_damage(attack: Attack) -> void:
+func book_damage(attack: Attack, emit: bool = true) -> void:
 	booked_attacks.append(attack)
-	EventBus.attack_booked.emit(attack)
+	if emit:
+		EventBus.attack_booked.emit(attack)
+	
 	if attack.effect == null:
 		return
 	var effect_object := attack.effect.instantiate() as TemporaryEffect
 	attack.target.add_child(effect_object)
+
+## Books an array of attacks and emits only one signal
+func book_damages(attacks: Array[Attack]) -> void:
+	if attacks.size() == 0:
+		return
+	EventBus.attack_booked.emit(attacks[0])
+	for a in attacks:
+		book_damage(a, false)
+	
 
 func resolve_attack(attack: Attack) -> void:
 	

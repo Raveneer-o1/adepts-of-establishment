@@ -208,6 +208,7 @@ animation = &"attack"
 autoplay = "default"
 offset = Vector2(8, -8)
 frames_to_emit = Array[int]([4, 7])
+last_frame = 10
 
 [node name="UnitParameters" parent="." index="1"]
 script = ExtResource("4_ak840")

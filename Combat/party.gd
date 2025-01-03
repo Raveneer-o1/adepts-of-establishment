@@ -48,7 +48,9 @@ func get_units_custom(filter_func: Callable) -> Array[Unit]:
 	var result: Array[Unit] = []
 	for u in units:
 		if filter_func.call(u):
-			result.append(u)
+			if not result.has(u):
+				result.append(u)
+	
 	return result
 
 func place_units(list: Array[String]) -> void:

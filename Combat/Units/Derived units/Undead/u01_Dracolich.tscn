@@ -144,6 +144,7 @@ sprite_frames = SubResource("SpriteFrames_mwnha")
 animation = &"attack"
 autoplay = "default"
 offset = Vector2(10, -9)
+frames_to_emit = Array[int]([9])
 
 [node name="UnitParameters" parent="." index="1"]
 script = ExtResource("2_6ea8i")

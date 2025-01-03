@@ -50,7 +50,7 @@ func give_target(unit: Unit) -> bool:
 	chosen_targets.append(unit)
 	
 	if chosen_targets.size() == parameters.targets_need:
-		start_attacking()
+		_start_attacking()
 	return true
 
 func finish_attacking() -> void:
@@ -58,12 +58,12 @@ func finish_attacking() -> void:
 	EventBus.attack_animation_finished.emit(self)
 
 ## Specifies parameters of an attack that's booked. That includes determining if an attack is missed
-func start_attacking() -> void:
+func _start_attacking() -> void:
 	anim_handle.play_attack_animation()
 	
 	for i in range(chosen_targets.size()):
 		
-		# If there's not enough attacks if the array, use the last one
+		# If there's not enough attacks in the array, use the last one
 		var u_attack : UnitAttack
 		if parameters.attacks.size() > i:
 			u_attack = parameters.attacks[i]
