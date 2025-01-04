@@ -29,7 +29,7 @@ class_name UnitParameters extends Node
 
 var attacks: Array[UnitAttack] = []
 # TODO: replace int with Array[int] for multiple actions per round
-var targets_need: int
+#var targets_need: int
 
 var _hp: int
 var hp: int:
@@ -45,13 +45,13 @@ var dead: bool = false
 
 var parent_unit: Unit
 
-func get_last_validation(n: int) -> Callable:
-	var size := attacks.size()
-	if size < n and attacks[n].target_validation_override:
-		return attacks[n].target_validation
-	if attacks[size - 1].target_validation_override:
-		return attacks[size - 1].target_validation
-	return check_target_validity
+#func get_last_validation(n: int) -> Callable:
+	#var size := attacks.size()
+	#if size < n and attacks[n].target_validation_override:
+		#return attacks[n].target_validation
+	#if attacks[size - 1].target_validation_override:
+		#return attacks[size - 1].target_validation
+	#return check_target_validity
 
 func initialize_variables() -> void:
 	parent_unit = get_parent()
@@ -66,7 +66,6 @@ func initialize_variables() -> void:
 	visual_bar.max_value = max_hp
 	hp = max_hp
 	_set_attacks()
-	targets_need = attacks.size()
 
 func die() -> void:
 	dead = true
@@ -75,7 +74,7 @@ func die() -> void:
 func _set_attacks() -> void:
 	pass
 
-var check_target_validity: Callable = Callable(self, "standart_melee_validity")
+#var check_target_validity: Callable = Callable(self, "standart_melee_validity")
 
 
 func standart_healer_validity(unit: Unit) -> bool:

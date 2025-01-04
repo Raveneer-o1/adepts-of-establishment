@@ -1,6 +1,13 @@
 extends UnitParameters
 
 func _set_attacks() -> void:
-	var attack: UnitAttack = UnitAttack.new(1, false, false, Callable(), EventBus.AttackType.Physical, 0.8)
-	attacks.append(attack)
-	check_target_validity = standart_archer_validity
+	attacks.append(UnitAttack.new(
+			parent_unit, # unit reference
+			1.0, # damage multiplier
+			false, # damage override
+			standart_archer_validity, # validation function
+			EventBus.AttackType.Physical, # damage type
+			0.85, # accuracy
+			1, # number of targets
+			50 # initiative
+	))

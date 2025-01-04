@@ -277,4 +277,4 @@ script = ExtResource("6_l70wi")
 attack_effect = ExtResource("7_paagi")
 max_hp = 150
 base_damage = 60
-initiative = 60
+initiative = 70

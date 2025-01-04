@@ -21,6 +21,7 @@ func play_damage_animation() -> void:
 		(get_child(0) as AnimationPlayer).play("unit_standart_damage_animation")
 
 func finish_attack() -> void:
+	#EventBus.attack_reached.emit(parent_unit)
 	parent_unit.finish_attacking()
 	now_attacking = false
 

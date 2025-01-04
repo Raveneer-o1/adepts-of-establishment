@@ -19,14 +19,14 @@ class_name CombatLogic extends Node
 @onready var main_system := get_parent() as CombatSystem
 
 # The queue of units ready to act, sorted by their initiative.
-var units_queue: Array[Unit]
+var attacks_queue: Array[UnitAttack]
 
 # A list of attacks that have been booked but not yet resolved.
 var booked_attacks: Array[Attack] = []
 
 # Sorts units by their initiative, highest first.
-func sorting_by_initiative(a: Unit, b: Unit) -> bool:
-	return b.parameters.initiative < a.parameters.initiative
+func sorting_by_initiative(a: UnitAttack, b: UnitAttack) -> bool:
+	return b.initiative < a.initiative
 
 # Filters out null and dead units from a list.
 func filter_nulls(a: Unit) -> bool:
@@ -40,15 +40,24 @@ func filter_duplicates(arr: Array[Unit]) -> Array[Unit]:
 			result.append(u)
 	return result
 
-## Sets up the unit queue for the current round.
+## Sets up the attack queue for the current round and resets atacks for each unit.
 func set_queue() -> void:
-	##  Combine units from both parties, filter out nulls and dead units, then remove duplicates.
-	units_queue = main_system.left_party.units.duplicate().filter(filter_nulls) + (
-		main_system.right_party.units.duplicate().filter(filter_nulls))
-	units_queue = filter_duplicates(units_queue)
-	##  Shuffle and sort the queue by initiative.
-	units_queue.shuffle()
-	units_queue.sort_custom(sorting_by_initiative)
+	# Combine units from both parties, filter out nulls and dead units, then remove duplicates.
+	var units: Array[Unit] = main_system.left_party.units.duplicate().filter(filter_nulls) + \
+		(main_system.right_party.units.duplicate().filter(filter_nulls))
+	units = filter_duplicates(units)
+	
+	attacks_queue = []
+	for unit in units:
+		unit.arrange_attacks()
+		attacks_queue = attacks_queue + unit.attacks_for_this_round
+		#print(unit.attacks_for_this_round)
+	
+	# Shuffle attacks to randomize attacks with same initiative
+	attacks_queue.shuffle()
+	attacks_queue.sort_custom(sorting_by_initiative)
+
+var current_attack: UnitAttack
 
 ## Tracks the current round of combat.
 var current_round := 0
@@ -67,11 +76,12 @@ func start_turn() -> void:
 		main_system.current_unit = null
 		EventBus.turn_ended.emit(curr)
 	
-	while units_queue.size() > 0:
-		var unit: Unit = units_queue.pop_at(0)
-		if unit == null or unit.parameters.dead:
+	while attacks_queue.size() > 0:
+		var attack: UnitAttack = attacks_queue.pop_front()
+		if attack == null or attack.unit == null or attack.unit.parameters.dead:
 			continue
-		main_system.current_unit = unit
+		main_system.current_unit = attack.unit
+		#attack.unit.set_next_attack()
 		EventBus.turn_started.emit(main_system.current_unit)
 		return
 
@@ -79,9 +89,11 @@ func start_turn() -> void:
 ##  Starts a new turn or round, or ends the battle if no units are left to act.
 func next_stage() -> void:
 	start_turn()
+	# if start_turn didn't set current_unit, there's no units left in queue
 	if main_system.current_unit == null:
 		start_round()
 		start_turn()
+		# if start_turn didn't set current_unit after queue has been reset, there's no units left
 		if main_system.current_unit == null:
 			end_battle()
 
@@ -104,8 +116,9 @@ func book_damage(attack: Attack, emit: bool = true) -> void:
 	##  If the attack has an associated effect, instantiate it and apply it to the target.
 	if attack.effect == null:
 		return
-	var effect_object := attack.effect.instantiate() as TemporaryEffect
-	attack.target.add_child(effect_object)
+	for target in attack.targets:
+		var effect_object := attack.effect.instantiate() as TemporaryEffect
+		target.add_child(effect_object)
 
 ##  Books an array of attacks, emitting a signal only for the first one.
 func book_damages(attacks: Array[Attack]) -> void:
@@ -121,12 +134,13 @@ func resolve_attack(attack: Attack) -> void:
 	if not booked_attacks.has(attack):
 		return
 	booked_attacks.erase(attack)
-	attack.target.resolve_attack(attack)
+	attack.resolve()
 
 ##  Resolves all booked attacks, clearing the booked list afterward.
-func resolve_all_attacks() -> void:
-	for a in booked_attacks:
-		a.target.resolve_attack(a)
+func resolve_and_finalize_all_attacks() -> void:
+	for attack in booked_attacks:
+		const FINALIZE_ATTACK := true
+		attack.resolve(FINALIZE_ATTACK)
 	booked_attacks.clear()
 
 ##  Resolves the first booked attack made by a specific unit.
@@ -137,7 +151,7 @@ func resolve_closest_attack(unit: Unit) -> void:
 			attack = a
 			break
 	if attack == null:
-		print_debug(unit.unit_name + " doesn't have booked attacks!")
+		#print_debug(unit.unit_name + " doesn't have booked attacks!")
 		return
 	resolve_attack(attack)
 

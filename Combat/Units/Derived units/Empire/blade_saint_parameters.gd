@@ -1,5 +1,13 @@
 extends UnitParameters
 
 func _set_attacks() -> void:
-	attacks.append(UnitAttack.new(1.0, false, false, Callable(), EventBus.AttackType.Physical, 0.85))
-	attacks.append(UnitAttack.new(1.2, false, false, Callable(), EventBus.AttackType.Physical, 0.95))
+	attacks.append(UnitAttack.new(
+			parent_unit, # unit reference
+			1.0, # damage multiplier
+			false, # damage override
+			standart_melee_validity, # validation function
+			EventBus.AttackType.Physical, # damage type
+			0.85, # accuracy
+			2, # number of targets
+			50 # initiative
+	))

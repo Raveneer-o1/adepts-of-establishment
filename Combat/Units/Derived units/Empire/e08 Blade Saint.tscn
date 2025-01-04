@@ -201,6 +201,7 @@ animations = [{
 }]
 
 [node name="Unit" instance=ExtResource("1_v0wje")]
+unit_name = "Blade saint"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_oreww")

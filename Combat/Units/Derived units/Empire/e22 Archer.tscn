@@ -139,3 +139,4 @@ autoplay = "default"
 
 [node name="UnitParameters" parent="." index="1"]
 script = ExtResource("4_di0t0")
+initiative = 80

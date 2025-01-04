@@ -37,7 +37,7 @@ var current_unit: Unit:
 
 ## Handles the resolution of all attacks and prepares for the next combat stage
 func finish_attack() -> void:
-	combat_logic.resolve_all_attacks()
+	combat_logic.resolve_and_finalize_all_attacks()
 	for unit in highlighted_units:
 		if unit != null:
 			unit.reset_highlight()
