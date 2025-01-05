@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://1rl6dm844fpl"]
+[gd_scene load_steps=19 format=3 uid="uid://1rl6dm844fpl"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_ve23n"]
 [ext_resource type="Texture2D" uid="uid://dcivfna17wpqj" path="res://Arts/Empire units/wizard  attack .png" id="2_xmxyf"]
 [ext_resource type="Texture2D" uid="uid://b25cbv61jhf25" path="res://Arts/Empire units/wizard idle .png" id="3_bsups"]
+[ext_resource type="PackedScene" uid="uid://djw732rkcoqi0" path="res://Combat/Effects/mid_lightning.tscn" id="4_1dpwb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_12f2u"]
 atlas = ExtResource("2_xmxyf")
@@ -109,8 +110,12 @@ animations = [{
 }]
 
 [node name="Unit" instance=ExtResource("1_ve23n")]
+unit_name = "Wizard"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_oavhr")
 animation = &"attack"
 autoplay = "default"
+
+[node name="UnitParameters" parent="." index="1"]
+attack_effect = ExtResource("4_1dpwb")

@@ -1,8 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://b517nmnvt04wo"]
+[gd_scene load_steps=22 format=3 uid="uid://b517nmnvt04wo"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_7jpg4"]
+[ext_resource type="Script" path="res://Combat/Units/unit.gd" id="2_axphb"]
 [ext_resource type="Texture2D" uid="uid://clgh6r1cqhmd2" path="res://Arts/Empire units/Hierophant attack .png" id="2_drmbb"]
 [ext_resource type="Texture2D" uid="uid://cjr5n0iyypwhj" path="res://Arts/Empire units/Hierophant idle.png" id="3_anao4"]
+[ext_resource type="PackedScene" uid="uid://cvtcjsl55tqgq" path="res://Combat/Effects/strong_heal.tscn" id="4_e1vxq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b7k7j"]
 atlas = ExtResource("2_drmbb")
@@ -123,8 +125,13 @@ animations = [{
 }]
 
 [node name="Unit" instance=ExtResource("1_7jpg4")]
+script = ExtResource("2_axphb")
+unit_name = "Hierophant"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_665ew")
 animation = &"attack"
 autoplay = "default"
+
+[node name="UnitParameters" parent="." index="1"]
+attack_effect = ExtResource("4_e1vxq")

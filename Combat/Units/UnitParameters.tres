@@ -1,63 +1,6 @@
 [gd_resource type="Resource" load_steps=2 format=3 uid="uid://dfd81a0k5k4xy"]
 
-[sub_resource type="GDScript" id="GDScript_ki7jw"]
-script/source = "@export var unit_name: String
-@export var max_hp := 100
-#@export var current_hp := 100
-@export var base_damage := 25
-@export var initiative := 50
-
-@export_group(\"Attacks\")
-## Each value in this array is a turn. Values represent how many individuzl targets player needs to choose. Note: if there's more than one element here, distribution of attacks must be handled in the unit class
-@export var need_targets: Array[int]
-## Multipliert to unit's \"base_damage\" parameter for an attack. Note that size of all arrays must be the same.
-@export var damage_multipliers: Array[float]
-## If true, instead of multiplication, value of multiplier will be used as flat damage. Note that size of all arrays must be the same.
-@export var damage_override: Array[bool]
-## If true, target validation will be overriden with corresponting value of \"target_validations\". Note that size of all arrays must be the same.
-@export var target_validation_override: Array[bool]
-## Note that size of all arrays must be the same.
-@export var target_validations: Array[Callable]
-## Note that size of all arrays must be the same.
-@export var types: Array[EventBus.AttackType]
-## Note that size of all arrays must be the same.
-@export var accuracies: Array[float]
-
-func get_attacks() -> Array[UnitAttack]:
-	var result: Array[UnitAttack] = []
-	var size : int = damage_multipliers.size()
-	if not (
-			damage_override.size() == size and 
-			target_validation_override.size() == size and
-			target_validations.size() == size and
-			types.size() == size and 
-			accuracies.size() == size
-			):
-		print_debug(\"Size of all arrays must be the same!\")
-		return []
-	for i in range(size):
-		var attack := UnitAttack.new(
-				damage_multipliers[i],
-				damage_override[i],
-				target_validation_override[i],
-				target_validations[i],
-				types[i],
-				accuracies[i]
-				)
-		result.append(attack)
-	return result
-"
+[ext_resource type="Script" path="res://Combat/UnitParametesDatabase.gd" id="1_wa6dj"]
 
 [resource]
-script = SubResource("GDScript_ki7jw")
-unit_name = ""
-max_hp = 100
-base_damage = 25
-initiative = 50
-need_targets = Array[int]([1])
-damage_multipliers = Array[float]([1.0])
-damage_override = Array[bool]([false])
-target_validation_override = Array[bool]([false])
-target_validations = Array[Callable]([Callable()])
-types = Array[int]([0])
-accuracies = Array[float]([0.85])
+script = ExtResource("1_wa6dj")

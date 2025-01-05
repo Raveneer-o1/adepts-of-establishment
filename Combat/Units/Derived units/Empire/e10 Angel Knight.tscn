@@ -179,9 +179,12 @@ animations = [{
 }]
 
 [node name="Unit" instance=ExtResource("1_ktuuv")]
+unit_name = "Angel Knight"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_5s1jm")
 animation = &"attack"
 autoplay = "default"
 offset = Vector2(0, -8)
+frames_to_emit = Array[int]([11])
+last_frame = 13

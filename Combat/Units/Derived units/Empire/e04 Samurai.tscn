@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_34hwq"]
 [ext_resource type="Texture2D" uid="uid://bv8vhh3n6l5iq" path="res://Arts/Empire units/samurai attack .png" id="2_i31ko"]
+[ext_resource type="Script" path="res://Combat/Units/unit.gd" id="2_qewc3"]
 [ext_resource type="Texture2D" uid="uid://dqqvtoxohap4k" path="res://Arts/Empire units/samurai idle .png" id="3_26pc1"]
-[ext_resource type="Script" path="res://Combat/Units/Derived units/Empire/samurai_parameters.gd" id="4_psqo2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1eqkd"]
 atlas = ExtResource("2_i31ko")
@@ -138,6 +138,8 @@ animations = [{
 }]
 
 [node name="Unit" instance=ExtResource("1_34hwq")]
+script = ExtResource("2_qewc3")
+unit_name = "Samurai"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_qfxv1")
@@ -146,7 +148,5 @@ autoplay = "default"
 frames_to_emit = Array[int]([6, 7])
 
 [node name="UnitParameters" parent="." index="1"]
-script = ExtResource("4_psqo2")
 max_hp = 350
 base_damage = 55
-initiative = 55

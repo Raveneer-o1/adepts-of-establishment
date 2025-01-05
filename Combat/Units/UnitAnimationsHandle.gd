@@ -20,6 +20,13 @@ func play_damage_animation() -> void:
 	else :
 		(get_child(0) as AnimationPlayer).play("unit_standart_damage_animation")
 
+func play_heal_animation() -> void:
+	var anim_name = "heal"
+	if sprite_frames.has_animation(anim_name):
+		play(anim_name)
+	else :
+		(get_child(0) as AnimationPlayer).play("unit_standart_heal_animation")
+
 func finish_attack() -> void:
 	#EventBus.attack_reached.emit(parent_unit)
 	parent_unit.finish_attacking()

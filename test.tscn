@@ -1,11 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://6lq6f06hma7"]
+[gd_scene load_steps=4 format=3 uid="uid://6lq6f06hma7"]
 
 [ext_resource type="PackedScene" uid="uid://cku7rhe8jn3tx" path="res://Combat/combat.tscn" id="1_7nbev"]
 [ext_resource type="PackedScene" uid="uid://d12hr40jjb8s8" path="res://Combat/UnitInfoPanel.tscn" id="1_roecy"]
+[ext_resource type="Resource" uid="uid://dfd81a0k5k4xy" path="res://Combat/Units/UnitParameters.tres" id="2_tfqd7"]
 
 [node name="Node2D" type="Node"]
 
 [node name="Combat" parent="." instance=ExtResource("1_7nbev")]
+left_party_units = Array[String](["res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn", "res://Combat/Units/Derived units/Empire/e16 Mage.tscn", "res://Combat/Units/Derived units/Empire/e09 Grand Inquisitor.tscn", "res://Combat/Units/Derived units/Empire/e16 Mage.tscn", "res://Combat/Units/Derived units/Empire/e12 Paladin.tscn", "res://Combat/Units/Derived units/Empire/e19 White Mage.tscn", ""])
+right_party_units = Array[String](["res://Combat/Units/Derived units/Empire/e04 Samurai.tscn", "res://Combat/Units/Derived units/Empire/e21 Arcanist.tscn", "res://Combat/Units/Derived units/Empire/e04 Samurai.tscn", "res://Combat/Units/Derived units/Empire/e32 Prophetess.tscn", "res://Combat/Units/Derived units/Empire/e08 Blade Saint.tscn", "res://Combat/Units/Derived units/Empire/e21 Arcanist.tscn", "res://Combat/Units/Derived units/Empire/e08 Blade Saint.tscn"])
+unit_parameters_database = ExtResource("2_tfqd7")
 
 [node name="UnitInfoPanel" parent="." instance=ExtResource("1_roecy")]
 visible = false

@@ -144,9 +144,11 @@ animations = [{
 }]
 
 [node name="Unit" instance=ExtResource("1_v252y")]
+unit_name = "Paladin"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_2d011")
 animation = &"attack"
 autoplay = "default"
 offset = Vector2(8, 0)
+frames_to_emit = Array[int]([5])

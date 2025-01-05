@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://jlqcu2psmrph"]
+[gd_scene load_steps=17 format=3 uid="uid://jlqcu2psmrph"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_eiqlo"]
 [ext_resource type="Texture2D" uid="uid://bopt04sefliqu" path="res://Arts/Empire units/Matriarch attack .png" id="2_cwyp3"]
 [ext_resource type="Texture2D" uid="uid://b0jsp0mbn5teq" path="res://Arts/Empire units/Matriarch idle .png" id="3_x4djd"]
+[ext_resource type="PackedScene" uid="uid://d1uk2tsyu7ay0" path="res://Combat/Effects/medium_heal.tscn" id="4_leg74"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b6u8f"]
 atlas = ExtResource("2_cwyp3")
@@ -95,9 +96,13 @@ animations = [{
 }]
 
 [node name="Unit" instance=ExtResource("1_eiqlo")]
+unit_name = "Matriarch"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_83q42")
 animation = &"attack"
 autoplay = "default"
 offset = Vector2(0, -8)
+
+[node name="UnitParameters" parent="." index="1"]
+attack_effect = ExtResource("4_leg74")

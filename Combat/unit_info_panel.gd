@@ -25,6 +25,8 @@ func populate_panel_with_info(unit: Unit) -> void:
 		full_info.text += (" " + str(dmg))
 	full_info.text += (")\n")
 	
+	full_info.text += "Armor: %d\n" % unit.parameters.armor
+	
 	print(full_info.text)
 	visible = true
 

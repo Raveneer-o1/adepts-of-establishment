@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://doesn3y6b2saa"]
+[gd_scene load_steps=18 format=3 uid="uid://doesn3y6b2saa"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_wbk4r"]
 [ext_resource type="Texture2D" uid="uid://be7aihy37xvhe" path="res://Arts/Empire units/priest attack .png" id="2_uodg6"]
 [ext_resource type="Texture2D" uid="uid://dd01432fre505" path="res://Arts/Empire units/priest idle .png" id="3_wgbfc"]
+[ext_resource type="PackedScene" uid="uid://cdicif6h0d041" path="res://Combat/Effects/weak_heal.tscn" id="4_hx3ji"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_37ad5"]
 atlas = ExtResource("2_uodg6")
@@ -102,8 +103,12 @@ animations = [{
 }]
 
 [node name="Unit" instance=ExtResource("1_wbk4r")]
+unit_name = "Priest"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_rl2as")
 animation = &"attack"
 autoplay = "default"
+
+[node name="UnitParameters" parent="." index="1"]
+attack_effect = ExtResource("4_hx3ji")

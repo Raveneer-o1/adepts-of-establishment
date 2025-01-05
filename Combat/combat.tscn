@@ -71,8 +71,6 @@ animations = [{
 
 [node name="Combat" type="Node2D"]
 script = ExtResource("1_y8ty4")
-left_party_units = Array[String](["res://Combat/Units/Derived units/Empire/e08 Blade Saint.tscn", "res://Combat/Units/Derived units/Empire/e22 Archer.tscn", "", "res://Combat/Units/Derived units/Undead/u01_Dracolich.tscn", "", "res://Combat/Units/Derived units/Empire/e22 Archer.tscn", "res://Combat/Units/Derived units/Empire/e08 Blade Saint.tscn"])
-right_party_units = Array[String](["res://Combat/Units/Derived units/Empire/e04 Samurai.tscn", "res://Combat/Units/Derived units/Heroes/h01 High mage.tscn", "res://Combat/Units/Derived units/Empire/e04 Samurai.tscn", "res://Combat/Units/Derived units/Empire/e22 Archer.tscn", "res://Combat/Units/Derived units/Empire/e04 Samurai.tscn", "res://Combat/Units/Derived units/Empire/e22 Archer.tscn", "res://Combat/Units/Derived units/Empire/e04 Samurai.tscn"])
 
 [node name="LeftParty" parent="." instance=ExtResource("1_g80uy")]
 position = Vector2(150, 0)

@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://b28vra3v386au"]
+[gd_scene load_steps=18 format=3 uid="uid://b28vra3v386au"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_p4gqo"]
 [ext_resource type="Texture2D" uid="uid://plf57i8jdgge" path="res://Arts/Empire units/prophetess attack .png" id="2_hth4n"]
 [ext_resource type="Texture2D" uid="uid://c4bt0on8knanb" path="res://Arts/Empire units/prophetess idle .png" id="3_tad3d"]
+[ext_resource type="PackedScene" uid="uid://cvtcjsl55tqgq" path="res://Combat/Effects/strong_heal.tscn" id="4_y4o6y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_unlus"]
 atlas = ExtResource("2_hth4n")
@@ -102,9 +103,13 @@ animations = [{
 }]
 
 [node name="Unit" instance=ExtResource("1_p4gqo")]
+unit_name = "Prophetess"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_sob25")
 animation = &"attack"
 autoplay = "default"
 offset = Vector2(0, -8)
+
+[node name="UnitParameters" parent="." index="1"]
+attack_effect = ExtResource("4_y4o6y")

@@ -144,9 +144,11 @@ animations = [{
 }]
 
 [node name="Unit" instance=ExtResource("1_pd60s")]
+unit_name = "Grand Inquisitor"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_qvodb")
 animation = &"attack"
 autoplay = "default"
 offset = Vector2(8, -8)
+frames_to_emit = Array[int]([6])

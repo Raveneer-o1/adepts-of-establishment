@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://b43q5ajr0udev"]
+[gd_scene load_steps=17 format=3 uid="uid://b43q5ajr0udev"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_wepdu"]
 [ext_resource type="Texture2D" uid="uid://bshfdwhdeo47r" path="res://Arts/Empire units/elementalist attack .png" id="2_qdt4o"]
 [ext_resource type="Texture2D" uid="uid://c32l5klltf2ga" path="res://Arts/Empire units/elementalist idle .png" id="3_tmf5a"]
+[ext_resource type="PackedScene" uid="uid://n106oxapxy1v" path="res://Combat/Effects/medium_wind.tscn" id="4_jm0nb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q7yx6"]
 atlas = ExtResource("2_qdt4o")
@@ -95,8 +96,12 @@ animations = [{
 }]
 
 [node name="Unit" instance=ExtResource("1_wepdu")]
+unit_name = "Elementalist"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_kkvas")
 animation = &"attack"
 autoplay = "default"
+
+[node name="UnitParameters" parent="." index="1"]
+attack_effect = ExtResource("4_jm0nb")

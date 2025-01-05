@@ -137,9 +137,11 @@ animations = [{
 }]
 
 [node name="Unit" instance=ExtResource("1_ghq34")]
+unit_name = "Angel"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_o6ioq")
 animation = &"attack"
 autoplay = "default"
 offset = Vector2(0, -16)
+frames_to_emit = Array[int]([8])

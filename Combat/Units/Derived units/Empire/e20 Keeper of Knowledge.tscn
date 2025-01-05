@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://iivctuuj3ka0"]
+[gd_scene load_steps=24 format=3 uid="uid://iivctuuj3ka0"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_l0il6"]
 [ext_resource type="Texture2D" uid="uid://bm2q607tou6qs" path="res://Arts/Empire units/lorekeeper attack .png" id="2_5ekka"]
 [ext_resource type="Texture2D" uid="uid://dkmby0vtan02c" path="res://Arts/Empire units/lorekeeper idle .png" id="3_a8snf"]
+[ext_resource type="PackedScene" uid="uid://c7bbto2q5jen7" path="res://Combat/Effects/ritual_attack.tscn" id="5_da6yy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6lyh5"]
 atlas = ExtResource("2_5ekka")
@@ -144,8 +145,12 @@ animations = [{
 }]
 
 [node name="Unit" instance=ExtResource("1_l0il6")]
+unit_name = "Keeper of Knowledge"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_srdpg")
 animation = &"attack"
 autoplay = "default"
+
+[node name="UnitParameters" parent="." index="1"]
+attack_effect = ExtResource("5_da6yy")

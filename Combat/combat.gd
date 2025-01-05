@@ -14,6 +14,8 @@ extends Node2D
 @export var left_party_units: Array[String]
 @export var right_party_units: Array[String]
 
+@export var unit_parameters_database: Resource
+
 ## Temporary label scene for displaying text near units
 const TEMP_LABEL = preload("res://Combat/TempLabel.tscn")
 const DISTANCE_TO_LABEL = 15.0

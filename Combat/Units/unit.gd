@@ -44,7 +44,7 @@ func arrange_attacks() -> void:
 var taking_damage_attacks: Array[Attack] = []
 var taking_damage_delays: Array[int] = []
 
-func finalize_all_attacks() -> void:
+func finalize_all_attacks(unit: Unit) -> void:
 	while taking_damage_attacks.size() > 0:
 		finalize_attack()
 	taking_damage_delays.clear()
@@ -85,8 +85,32 @@ func check_taking_damage(unit: Unit) -> void:
 		taking_damage_delays.remove_at(0)
 		finalize_attack()
 
+func heal(value: int) -> void:
+	parameters.heal(value)
+	anim_handle.play_heal_animation()
+	system.display_text_near_unit(self, "+" + str(value))
+
+## Max damage deviation. Note: actual deviation is maximum between
+## STANDART_DAMAGE_DEVIATION and STANDART_FRACTIONAL_DAMAGE_DEVIATION * damage
+const STANDART_DAMAGE_DEVIATION = 5
+## Fraction of base damage that is used as max deviation. Note: actual deviation is maximum between
+## STANDART_DAMAGE_DEVIATION and STANDART_FRACTIONAL_DAMAGE_DEVIATION * damage
+const STANDART_FRACTIONAL_DAMAGE_DEVIATION = 0.1
+
 ## Applies damage to the unit and triggers associated animations.
 func take_damage(dmg: int) -> void:
+	if dmg < 0:
+		heal(-dmg)
+		return
+	if dmg == 0:
+		return
+	
+	#var original_damage = dmg
+	var random_deviation: int = max(dmg * STANDART_FRACTIONAL_DAMAGE_DEVIATION, STANDART_DAMAGE_DEVIATION)
+	dmg *= parameters.armor_multiplier
+	dmg += randi_range(-random_deviation, random_deviation)
+	#print_debug("(%d +- %d) * %f" %[original_damage, random_deviation, parameters.armor_multiplier])
+	
 	parameters.take_damage(dmg)
 	anim_handle.play_damage_animation()
 	system.display_text_near_unit(self, "-" + str(dmg))
@@ -99,7 +123,7 @@ func give_target(unit: Unit) -> bool:
 			return false
 	if chosen_targets.size() >= current_attack.targets_needed:
 		return false
-	var is_target_valid: bool = current_attack.target_validation.call(unit)
+	var is_target_valid: bool = current_attack.target_validation.call(self, unit)
 	if not is_target_valid:
 		return false
 	chosen_targets.append(unit)
@@ -126,10 +150,19 @@ func _start_attacking() -> void:
 	anim_handle.play_attack_animation()
 	var dmg: int = current_attack.damage_multiplier if current_attack.damage_override else \
 			current_attack.damage_multiplier * parameters.base_damage
+	
+	var targets := chosen_targets.duplicate()
+	if current_attack.find_additional_targets:
+		targets = targets + current_attack.find_additional_targets.call(self, targets)
+	#print_debug(targets.size())
+	
 	var attack: Attack = Attack.new(
-		self, chosen_targets, dmg, current_attack.type, 
+		self, targets, dmg, current_attack.type, 
 		current_attack.accuracy, parameters.attack_effect
 	)
+	if current_attack.damage_policy:
+		attack.damage_policy = current_attack.damage_policy
+		
 	system.combat_logic.book_damage(attack)
 
 ## Initializes unit variables and connects signals.
@@ -143,6 +176,7 @@ func initialize_variables() -> void:
 	EventBus.turn_ended.connect(Callable(self, "reset_chosen_targets"))
 	EventBus.round_started.connect(arrange_attacks)
 	EventBus.attack_reached.connect(check_taking_damage)
+	EventBus.attack_animation_finished.connect(finalize_all_attacks)
 
 ## Handles the unit being clicked on.
 func click() -> void:

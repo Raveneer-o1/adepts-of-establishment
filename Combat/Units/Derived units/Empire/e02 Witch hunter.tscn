@@ -102,8 +102,10 @@ animations = [{
 }]
 
 [node name="Unit" instance=ExtResource("1_f4fct")]
+unit_name = "Witch hunter"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_l285r")
 animation = &"attack"
 autoplay = "default"
+frames_to_emit = Array[int]([5])

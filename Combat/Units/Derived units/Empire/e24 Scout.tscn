@@ -1,8 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://dq7l1aj4psenm"]
+[gd_scene load_steps=30 format=3 uid="uid://dq7l1aj4psenm"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_65je8"]
 [ext_resource type="Texture2D" uid="uid://csmxkvxbnbnm" path="res://Arts/Empire units/Scout attack .png" id="2_dtgb5"]
 [ext_resource type="Texture2D" uid="uid://ctwhljqp3ejqy" path="res://Arts/Empire units/Scout idle .png" id="3_o6itt"]
+[ext_resource type="PackedScene" uid="uid://cnlyt2k5jjchq" path="res://Combat/Effects/target_throw.tscn" id="4_vlh87"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e8vgm"]
 atlas = ExtResource("2_dtgb5")
@@ -186,8 +187,13 @@ animations = [{
 }]
 
 [node name="Unit" instance=ExtResource("1_65je8")]
+unit_name = "Scout"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_p7ee3")
 animation = &"attack"
 autoplay = "default"
+frames_to_emit = Array[int]([8])
+
+[node name="UnitParameters" parent="." index="1"]
+attack_effect = ExtResource("4_vlh87")

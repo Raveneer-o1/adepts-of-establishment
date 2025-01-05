@@ -106,7 +106,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ivv86")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 5.0
 }, {
@@ -144,9 +144,11 @@ animations = [{
 }]
 
 [node name="Unit" instance=ExtResource("1_f361o")]
+unit_name = "Knight Master"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_28c0c")
 animation = &"attack"
 autoplay = "default"
 offset = Vector2(8, 0)
+frames_to_emit = Array[int]([5])

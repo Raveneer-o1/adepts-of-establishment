@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_d0om5"]
 [ext_resource type="Texture2D" uid="uid://cf3jwjwwl4d8o" path="res://Arts/Empire units/Squire attack .png" id="2_h8sfl"]
+[ext_resource type="Script" path="res://Combat/Units/unit.gd" id="2_ohsxn"]
 [ext_resource type="Texture2D" uid="uid://3s27rxmjuof0" path="res://Arts/Empire units/Squire idle.png" id="3_16486"]
-[ext_resource type="Script" path="res://Combat/Units/Derived units/Empire/squire_parameters.gd" id="4_vp6pu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pa4oh"]
 atlas = ExtResource("2_h8sfl")
@@ -103,12 +103,11 @@ animations = [{
 }]
 
 [node name="Unit" instance=ExtResource("1_d0om5")]
+script = ExtResource("2_ohsxn")
+unit_name = "Squire"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_u5kou")
 animation = &"attack"
 autoplay = "default"
 frames_to_emit = Array[int]([4])
-
-[node name="UnitParameters" parent="." index="1"]
-script = ExtResource("4_vp6pu")

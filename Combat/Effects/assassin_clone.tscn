@@ -70,3 +70,4 @@ animations = [{
 [node name="Effect" instance=ExtResource("1_2qnk1")]
 sprite_frames = SubResource("SpriteFrames_tjo2l")
 autoplay = "default"
+offset = Vector2(16, 0)

@@ -158,8 +158,10 @@ animations = [{
 }]
 
 [node name="Unit" instance=ExtResource("1_w7nds")]
+unit_name = "Horseman"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_ddpld")
 animation = &"attack"
 autoplay = "default"
+frames_to_emit = Array[int]([4])

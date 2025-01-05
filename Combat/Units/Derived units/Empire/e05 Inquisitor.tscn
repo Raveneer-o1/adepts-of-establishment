@@ -130,8 +130,10 @@ animations = [{
 }]
 
 [node name="Unit" instance=ExtResource("1_iyxx7")]
+unit_name = "Inquisitor"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_luotl")
 animation = &"attack"
 autoplay = "default"
+frames_to_emit = Array[int]([7])

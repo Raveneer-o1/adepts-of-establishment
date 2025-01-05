@@ -123,6 +123,7 @@ animations = [{
 }]
 
 [node name="Unit" instance=ExtResource("1_7qop2")]
+unit_name = "Marksman"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_3n45d")

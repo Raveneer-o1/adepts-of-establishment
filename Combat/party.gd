@@ -24,15 +24,25 @@ var units: Array[Unit] = []
 ## Returns references to units at specified positions.
 ## - Empty spaces and dead units are skipped.
 ## - Out-of-bounds positions return null.
-func get_units_at_positions(positions: Array[int]) -> Array[Unit]:
+func get_units_at_positions(positions: Array[int], include_nulls: bool = true) -> Array[Unit]:
 	var result: Array[Unit] = []
 	for i in positions:
 		if i >= 0 and i < units.size():
 			if units[i] != null and not units[i].parameters.dead:
 				result.append(units[i])
 		else:
-			result.append(null)
+			if include_nulls:
+				result.append(null)
 	return result
+
+func get_adjacent_units(position: int) -> Array[Unit]:
+	return get_units_at_positions([
+		position + 1,
+		position - 1,
+		position + 2,
+		position - 2,
+	], false)
+
 
 ## Checks if the frontline is empty.
 func front_line_is_empty() -> bool:
@@ -98,3 +108,9 @@ func get_unit_position(pos: int) -> Vector2:
 func initialize_variables() -> void:
 	for i in range(MAX_UNITS_NUMBER):
 		units.append(null)
+
+static func get_distance(pos1: int, pos2: int) -> int:
+	#var diff: float = abs(pos1 - pos2) / 2.0
+	#var result: int = ceili(diff)
+	#print_debug("[%f]: %d" % [diff, result])
+	return ceili(abs(pos1 - pos2) / 2.0)

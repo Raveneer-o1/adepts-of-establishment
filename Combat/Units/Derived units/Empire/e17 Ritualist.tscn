@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://b64oti2gqhf2d"]
+[gd_scene load_steps=15 format=3 uid="uid://b64oti2gqhf2d"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_nifrr"]
 [ext_resource type="Texture2D" uid="uid://cx6ym5ybatk16" path="res://Arts/Empire units/ritualist idle .png" id="2_ejkvf"]
 [ext_resource type="Texture2D" uid="uid://cnvltm0yvyyt2" path="res://Arts/Empire units/ritualist idle  (1).png" id="3_r8476"]
+[ext_resource type="PackedScene" uid="uid://c7bbto2q5jen7" path="res://Combat/Effects/ritual_attack.tscn" id="4_v7wvv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_41kl6"]
 atlas = ExtResource("2_ejkvf")
@@ -81,8 +82,12 @@ animations = [{
 }]
 
 [node name="Unit" instance=ExtResource("1_nifrr")]
+unit_name = "Ritualist"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_onolp")
 animation = &"attack"
 autoplay = "default"
+
+[node name="UnitParameters" parent="." index="1"]
+attack_effect = ExtResource("4_v7wvv")

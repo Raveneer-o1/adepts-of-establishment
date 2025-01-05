@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://b2cco7yp1owg6"]
+[gd_scene load_steps=16 format=3 uid="uid://b2cco7yp1owg6"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_qktib"]
 [ext_resource type="Texture2D" uid="uid://cx5k4mtn6gdnv" path="res://Arts/Empire units/Mage attack .png" id="2_rubtw"]
 [ext_resource type="Texture2D" uid="uid://dclyb8idcj5qm" path="res://Arts/Empire units/Mage idle .png" id="3_hnq6f"]
+[ext_resource type="PackedScene" uid="uid://b64c30642jdl6" path="res://Combat/Effects/weak_lightning.tscn" id="5_meurg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3hnj4"]
 atlas = ExtResource("2_rubtw")
@@ -88,8 +89,12 @@ animations = [{
 }]
 
 [node name="Unit" instance=ExtResource("1_qktib")]
+unit_name = "Mage"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_ovbu2")
 animation = &"attack"
 autoplay = "default"
+
+[node name="UnitParameters" parent="." index="1"]
+attack_effect = ExtResource("5_meurg")

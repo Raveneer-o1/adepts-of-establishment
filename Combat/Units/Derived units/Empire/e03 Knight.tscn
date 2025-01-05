@@ -102,11 +102,13 @@ animations = [{
 }]
 
 [node name="Unit" instance=ExtResource("1_jylln")]
+unit_name = "Knight"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_fk8df")
 animation = &"attack"
 autoplay = "default"
+frames_to_emit = Array[int]([4])
 
 [node name="Camera2D" type="Camera2D" parent="." index="3"]
 zoom = Vector2(3, 3)

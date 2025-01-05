@@ -3,6 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/abstract_effect.tscn" id="1_ojoka"]
 [ext_resource type="Texture2D" uid="uid://uyh6q8ovh6e2" path="res://Arts/Empire units/Scout target effect .png" id="2_riso6"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_kr81g"]
+atlas = ExtResource("2_riso6")
+region = Rect2(0, 352, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_we873"]
 atlas = ExtResource("2_riso6")
 region = Rect2(0, 0, 32, 32)
@@ -47,13 +51,15 @@ region = Rect2(0, 288, 32, 32)
 atlas = ExtResource("2_riso6")
 region = Rect2(0, 320, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kr81g"]
-atlas = ExtResource("2_riso6")
-region = Rect2(0, 352, 32, 32)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_vlyoy"]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kr81g")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_kr81g")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_we873")
 }, {
@@ -86,9 +92,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bbph1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kr81g")
 }],
 "loop": false,
 "name": &"default",
