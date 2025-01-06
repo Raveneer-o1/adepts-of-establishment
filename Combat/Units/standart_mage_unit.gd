@@ -13,7 +13,7 @@ func _start_attacking() -> void:
 	if parameters.attacks.size() == 0:
 		return
 	
-	anim_handle.play_attack_animation()
+	#anim_handle.play_attack_animation()
 	#var u_attack: UnitAttack = parameters.attacks[0]
 	#var attacks_to_book: Array[Attack] = []
 

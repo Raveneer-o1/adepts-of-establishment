@@ -40,12 +40,12 @@ func get_units_at_positions(positions: Array[int], include_nulls: bool = true) -
 				result.append(null)
 	return result
 
-func get_adjacent_units(position: int) -> Array[Unit]:
+func get_adjacent_units(pos: int) -> Array[Unit]:
 	return get_units_at_positions([
-		position + 1,
-		position - 1,
-		position + 2,
-		position - 2,
+		pos + 1,
+		pos - 1,
+		pos + 2,
+		pos - 2,
 	], false)
 
 

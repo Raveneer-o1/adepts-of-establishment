@@ -7,7 +7,7 @@
 [node name="Node2D" type="Node"]
 
 [node name="Combat" parent="." instance=ExtResource("1_7nbev")]
-left_party_units = Array[String](["res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn", "res://Combat/Units/Derived units/Empire/e16 Mage.tscn", "res://Combat/Units/Derived units/Empire/e09 Grand Inquisitor.tscn", "res://Combat/Units/Derived units/Empire/e16 Mage.tscn", "res://Combat/Units/Derived units/Empire/e12 Paladin.tscn", "res://Combat/Units/Derived units/Empire/e19 White Mage.tscn", ""])
+left_party_units = Array[String](["res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn", "res://Combat/Units/Derived units/Empire/e16 Mage.tscn", "res://Combat/Units/Derived units/Empire/e09 Grand Inquisitor.tscn", "res://Combat/Units/Derived units/Empire/e16 Mage.tscn", "res://Combat/Units/Derived units/Empire/e12 Paladin.tscn", "res://Combat/Units/Derived units/Empire/e19 White Mage.tscn", "res://Combat/Units/Derived units/Empire/e25 Assassin.tscn"])
 right_party_units = Array[String](["res://Combat/Units/Derived units/Empire/e04 Samurai.tscn", "res://Combat/Units/Derived units/Empire/e21 Arcanist.tscn", "res://Combat/Units/Derived units/Empire/e04 Samurai.tscn", "res://Combat/Units/Derived units/Empire/e32 Prophetess.tscn", "res://Combat/Units/Derived units/Empire/e08 Blade Saint.tscn", "res://Combat/Units/Derived units/Empire/e21 Arcanist.tscn", "res://Combat/Units/Derived units/Empire/e08 Blade Saint.tscn"])
 unit_parameters_database = ExtResource("2_tfqd7")
 

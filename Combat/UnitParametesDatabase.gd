@@ -171,12 +171,12 @@ func standart_decay_policy(attack: Attack, index: int, finalize: bool) -> void:
 	var first_position: int = attack.targets[0].party_position
 	var decay_rate := 0.5
 	var target := attack.targets[index]
-	var distance:int = Party.get_distance(attack.attacker.party_position, target.party_position)
-	attack.damage *= pow(decay_rate, distance)
+	var distance:int = Party.get_distance(first_position, target.party_position)
+	@warning_ignore("narrowing_conversion") attack.damage *= pow(decay_rate, distance)
 	target.resolve_attack(attack, index + 1, finalize)
 
 
-func standart_immediate_decay_policy(attack: Attack, index: int, finalize: bool) -> void:
+func standart_immediate_decay_policy(attack: Attack, index: int, _finalize: bool) -> void:
 	if attack.targets.is_empty():
 		return
 	if index < 0 or index >= attack.targets.size():
@@ -184,9 +184,9 @@ func standart_immediate_decay_policy(attack: Attack, index: int, finalize: bool)
 	var first_position: int = attack.targets[0].party_position
 	var decay_rate := 0.5
 	var target := attack.targets[index]
-	var distance:int = Party.get_distance(attack.attacker.party_position, target.party_position)
+	var distance:int = Party.get_distance(first_position, target.party_position)
 	#print(distance)
-	attack.damage *= pow(decay_rate, distance)
+	@warning_ignore("narrowing_conversion") attack.damage *= pow(decay_rate, distance)
 	target.resolve_attack(attack, index + 1, true)
 
 
@@ -219,6 +219,7 @@ var DATABASE := {
 				Validation = standart_melee_validity, # Callable (attacker: Unit, target: Unit) -> bool
 				FindAdditionalTargets = standart_mass_healer_additional_targets, # Callable (attacker: Unit, chosen_targets: Array[Unit]) -> Array[Unit]
 				DamagePolicy = standart_decay_policy, # Callable (attack: Attack, index: int) -> void
+				Effects = ["poison"], # Array[String]
 			},
 		]
 	},
@@ -379,7 +380,7 @@ var DATABASE := {
 				Type = EventBus.AttackType.None,
 				Accuracy = 0.8,
 				TargetsNeeded = 1,
-				Initiative = 80,
+				Initiative = 40,
 				Validation = standart_melee_validity,
 				FindAdditionalTargets = standart_splash_additional_targets,
 				DamagePolicy = standart_immediate_decay_policy,
@@ -683,6 +684,7 @@ var DATABASE := {
 				TargetsNeeded = 1,
 				Initiative = 70,
 				Validation = standart_archer_validity,
+				Effects = ["poison"], # Array[String]
 			},
 			{
 				DamageMultiplier = 1.0,
@@ -692,6 +694,7 @@ var DATABASE := {
 				TargetsNeeded = 1,
 				Initiative = 40,
 				Validation = standart_archer_validity,
+				Effects = ["poison"], # Array[String]
 			},
 			{
 				DamageMultiplier = 1.0,
@@ -701,6 +704,7 @@ var DATABASE := {
 				TargetsNeeded = 1,
 				Initiative = 20,
 				Validation = standart_archer_validity,
+				Effects = ["poison"], # Array[String]
 			},
 		]
 	},

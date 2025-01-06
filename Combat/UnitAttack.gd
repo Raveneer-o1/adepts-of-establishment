@@ -29,7 +29,9 @@ var find_additional_targets: Callable
 ## If present, overrides [method Attack.resolve] and applies to all targets using their indexes
 var damage_policy: Callable
 
-func  _init(_unit: Unit, dmg_mult: float, dmg_ov: bool,
+var applying_effects := []
+
+func _init(_unit: Unit, dmg_mult: float, dmg_ov: bool,
 		valid: Callable, ty: EventBus.AttackType, acc: float,
 		targets: int, _initiative: int) -> void:
 	unit = _unit

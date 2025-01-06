@@ -20,14 +20,14 @@ func populate_panel_with_info(unit: Unit) -> void:
 	# TODO: replace add_text with appent_text
 	full_info.text += (DAMAGE_LINE % unit.parameters.base_damage)
 	for a in unit.parameters.attacks:
-		var dmg: int = a.damage_multiplier if a.damage_override \
+		@warning_ignore("narrowing_conversion") var dmg: int = a.damage_multiplier if a.damage_override \
 				else a.damage_multiplier * unit.parameters.base_damage
 		full_info.text += (" " + str(dmg))
 	full_info.text += (")\n")
 	
 	full_info.text += "Armor: %d\n" % unit.parameters.armor
 	
-	print(full_info.text)
+	#print(full_info.text)
 	visible = true
 
 

@@ -116,8 +116,15 @@ func next_stage() -> void:
 
 ##  Initiates the battle by starting the first round and advancing the stage.
 func start_battle() -> void:
+	initialize_effects()
 	start_round()
 	next_stage()
+
+
+func initialize_effects() -> void:
+	for unit in main_system.left_party.units + main_system.right_party.units:
+		if unit != null:
+			unit.parameters.initialize_effects()
 
 
 ##  Ends the battle and cleans up resources.

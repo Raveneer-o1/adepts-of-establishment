@@ -6,6 +6,14 @@ class_name UnitParameters extends Node
 ## armor is capped at this value
 const ARMOR_CAP = 900
 
+## Max damage deviation. Note: actual deviation is maximum between
+## [code]STANDART_DAMAGE_DEVIATION[/code] and [code]STANDART_FRACTIONAL_DAMAGE_DEVIATION * damage[/code]
+const STANDART_DAMAGE_DEVIATION = 5
+## Fraction of base damage that is used as max deviation. Note: actual deviation is maximum between
+## [code]STANDART_DAMAGE_DEVIATION[/code] and [code]STANDART_FRACTIONAL_DAMAGE_DEVIATION * damage[/code]
+const STANDART_FRACTIONAL_DAMAGE_DEVIATION = 0.1
+
+
 @export var large_unit: bool = false
 
 @export var attack_effect: Resource
@@ -32,31 +40,89 @@ var armor_multiplier: float:
 			return 0.1
 		return 100.0 / (armor + 100) if armor > 0 else 100.0 / (armor - 100) + 2.0
 
-var max_hp := 100
-var base_damage := 25
-var armor := 0
+#region Underlying values
 
-var attacks: Array[UnitAttack] = []
+var underlying_HP: int
 
-var _hp: int
+var underlying_max_HP: int
+
+var underlying_base_damage: int
+
+var underlying_armor: int
+
+
+#endregion
+
+#region Data broker
+
+var max_hp: int:
+	get:
+		const stat_name = "max_HP"
+		var underlying_value := underlying_max_HP
+		if stats_modifiers.has(stat_name):
+			return (stats_modifiers[stat_name] as ModifierStack).get_effective_value(underlying_value)
+		return underlying_value
+
+var base_damage: int:
+	get:
+		const stat_name = "base_damage"
+		var underlying_value := underlying_base_damage
+		if stats_modifiers.has(stat_name):
+			return (stats_modifiers[stat_name] as ModifierStack).get_effective_value(underlying_value)
+		return underlying_value
+
+var armor: int:
+	get:
+		const stat_name = "armor"
+		var underlying_value := underlying_armor
+		if stats_modifiers.has(stat_name):
+			return (stats_modifiers[stat_name] as ModifierStack).get_effective_value(underlying_value)
+		return underlying_value
+
+var _hp: int:
+	get:
+		if stats_modifiers.has("max_HP"):
+			var ratio: float = float(underlying_HP) / float(underlying_max_HP)
+			@warning_ignore("narrowing_conversion")
+			return max_hp * ratio
+		return underlying_HP
+	set(value):
+		if stats_modifiers.has("max_HP"):
+			var ratio: float = float(value) / float(max_hp)
+			underlying_HP = roundi(ratio * underlying_max_HP)
+		else:
+			underlying_HP = value
+
 var hp: int:
 	get:
 		return _hp
 	set(value):
 		if value > max_hp:
-			_hp = max_hp
-		else:
-			_hp = value
+			value = max_hp
+		_hp = value
 		visual_bar.value = _hp
-		if _hp <= 0:
+		if value <= 0:
 			die()
+#endregion
+
+var attacks: Array[UnitAttack] = []
 
 var dead: bool = false
 
 var parent_unit: Unit
 
+var stats_modifiers: Dictionary = {}
+
 @onready var visual_bar := get_node("VisualBar") as ProgressBar
 
+
+## Adds new modifier to the stack with name [code]stat[/code].[br]
+## First addition of a stat creates new stack for it.
+func add_modifier(stat: StringName, effect: AppliedEffect, influence: Callable) -> void:
+	if not stats_modifiers.has(stat):
+		stats_modifiers[stat] = ModifierStack.new()
+	
+	(stats_modifiers[stat] as ModifierStack).add_modifier(effect, influence)
 
 func initialize_variables() -> void:
 	parent_unit = get_parent()
@@ -70,32 +136,54 @@ func initialize_variables() -> void:
 	if armor_override >= 0:
 		armor = armor_override
 	
-	visual_bar.max_value = max_hp
 	hp = max_hp
+	update_visuals()
+	#initialize_effects()
+
+func update_effects() -> void:
+	for stack in stats_modifiers:
+		stats_modifiers[stack].clear()
+	update_visuals()
+
+func update_visuals() -> void:
+	visual_bar.max_value = max_hp
+	visual_bar.value = hp
+
+func initialize_effects() -> void:
+	for child in get_children():
+		if child is AppliedEffect:
+			child.initialize()
+	update_visuals()
+	EventBus.turn_started.connect(turn_start_reaction)
 
 func die() -> void:
 	dead = true
 	parent_unit.die()
+	
+	for child in get_children():
+		if child is AppliedEffect:
+			child.queue_free()
 
 func set_parameters() -> void:
 	if not parent_unit.system.unit_parameters_database:
 		print_debug("Database not attached!")
 		return
-	var databse = parent_unit.system.unit_parameters_database.DATABASE
-	if not databse:
+	var database = parent_unit.system.unit_parameters_database.DATABASE
+	if not database:
 		print_debug("Database not found!")
 		return
-	if not databse.has(parent_unit.unit_name):
+	if not database.has(parent_unit.unit_name):
 		print_debug("Unit '%s' not found in database!" % parent_unit.unit_name)
 		return
 	
-	var params: Dictionary = databse[parent_unit.unit_name]
+	var params: Dictionary = database[parent_unit.unit_name]
 	if params.has("Damage"):
-		base_damage = params["Damage"]
+		underlying_base_damage = params["Damage"]
 	if params.has("HP"):
-		max_hp = params["HP"]
+		underlying_max_HP = params["HP"]
 	if params.has("Armor"):
-		armor = params["Armor"]
+		underlying_armor = params["Armor"]
+	
 	if params.has("Attacks"):
 		var database_attacks: Array = params["Attacks"]
 		for attack in database_attacks:
@@ -136,17 +224,44 @@ func set_parameters() -> void:
 			if attack.has("DamagePolicy"):
 				new_attack.damage_policy = attack["DamagePolicy"]
 				#print(parent_unit.unit_name)
+			if attack.has("Effects"):
+				new_attack.applying_effects = attack["Effects"].duplicate()
 			
 			attacks.append(new_attack)
 
+func apply_effect(effect_name: String):
+	var res : Resource = load("res://Combat/Effects/AppliedEffects/%s.tscn" % effect_name)
+	var child = res.instantiate()
+	add_child(child)
+	(child as AppliedEffect).initialize()
+
+func turn_start_reaction(_unit: Unit) -> void:
+	update_effects()
 
 ## Override this function in derived classes to set unique parameters and/or effects
 func _override_parameters() -> void:
 	pass
 
-
-func take_damage(dmg: int) -> void:
+func take_direct_damage(dmg: int, randomize_damage: bool = false) -> int:
+	if randomize_damage:
+		var random_deviation: int = max(dmg * STANDART_FRACTIONAL_DAMAGE_DEVIATION, STANDART_DAMAGE_DEVIATION)
+		dmg += randi_range(-random_deviation, random_deviation)
+	
+	var original_hp := hp
 	hp -= dmg
+	return original_hp - hp
+	
+
+func take_damage(dmg: int, randomize_damage: bool = true) -> int:
+	@warning_ignore("narrowing_conversion")
+	dmg *= armor_multiplier
+	if randomize_damage:
+		var random_deviation: int = max(dmg * STANDART_FRACTIONAL_DAMAGE_DEVIATION, STANDART_DAMAGE_DEVIATION)
+		dmg += randi_range(-random_deviation, random_deviation)
+	
+	var original_hp := hp
+	hp -= dmg
+	return original_hp - hp
 
 func heal(value: int) -> void:
 	hp += value

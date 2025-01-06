@@ -13,7 +13,15 @@ func play_attack_animation() -> void:
 	play("attack")
 	now_attacking = true
 
-func play_damage_animation() -> void:
+func play_damage_animation(message: String = "") -> void:
+	if message != "":
+		if sprite_frames.has_animation(message):
+			play(message)
+			return
+		if (get_child(0) as AnimationPlayer).has_animation(message):
+			(get_child(0) as AnimationPlayer).play(message)
+			return
+	
 	var anim_name = "damage"
 	if sprite_frames.has_animation(anim_name):
 		play(anim_name)

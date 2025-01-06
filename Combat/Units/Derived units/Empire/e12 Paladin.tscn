@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://chwmireeop57v"]
+[gd_scene load_steps=24 format=3 uid="uid://chwmireeop57v"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_v252y"]
 [ext_resource type="Texture2D" uid="uid://dpdy65vv3ckb6" path="res://Arts/Empire units/Defender of Faith attack .png" id="2_m0rao"]
 [ext_resource type="Texture2D" uid="uid://bmex6wa78gk6k" path="res://Arts/Empire units/Defender of Faith idle .png" id="3_v31eh"]
+[ext_resource type="PackedScene" uid="uid://chpw2oyl5kpky" path="res://Combat/Effects/AppliedEffects/armor_buff_aura.tscn" id="4_sgewg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xphl8"]
 atlas = ExtResource("2_m0rao")
@@ -152,3 +153,6 @@ animation = &"attack"
 autoplay = "default"
 offset = Vector2(8, 0)
 frames_to_emit = Array[int]([5])
+
+[node name="AppliedEffect" parent="UnitParameters" index="1" instance=ExtResource("4_sgewg")]
+armor_increase = 10

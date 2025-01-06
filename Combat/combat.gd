@@ -6,7 +6,7 @@ extends Node2D
 
 # Temporary label scene for displaying text near units
 const TEMP_LABEL = preload("res://Combat/TempLabel.tscn")
-const DISTANCE_TO_LABEL = 15.0
+const DISTANCE_TO_LABEL = 35.0
 
 # Configuration variables for parties
 @export var left_party_units: Array[String]

@@ -13,12 +13,6 @@ extends Node2D
 ## subclassing and composition, allowing specialized mechanics without significant code duplication. 
 
 
-## Max damage deviation. Note: actual deviation is maximum between
-## [code]STANDART_DAMAGE_DEVIATION[/code] and [code]STANDART_FRACTIONAL_DAMAGE_DEVIATION * damage[/code]
-const STANDART_DAMAGE_DEVIATION = 5
-## Fraction of base damage that is used as max deviation. Note: actual deviation is maximum between
-## [code]STANDART_DAMAGE_DEVIATION[/code] and [code]STANDART_FRACTIONAL_DAMAGE_DEVIATION * damage[/code]
-const STANDART_FRACTIONAL_DAMAGE_DEVIATION = 0.1
 
 
 @export var unit_name: String
@@ -77,7 +71,7 @@ func arrange_attacks() -> void:
 
 
 ## Applies damages from all taking_damage_attacks
-func finalize_all_attacks(unit: Unit) -> void:
+func finalize_all_attacks(_unit: Unit) -> void:
 	while taking_damage_attacks.size() > 0:
 		finalize_attack()
 	taking_damage_delays.clear()
@@ -98,6 +92,9 @@ func finalize_attack() -> void:
 ## Resolves an attack directed at this unit.
 func resolve_attack(attack: Attack, delay: int = 0, finalize: bool = false) -> void:
 	taking_damage_attacks.append(attack)
+	if not attack.applying_effects.is_empty():
+		for effect_name in attack.applying_effects:
+			parameters.apply_effect(effect_name)
 	if finalize:
 		finalize_attack()
 		return
@@ -133,24 +130,30 @@ func heal(value: int) -> void:
 	animation_handle.play_heal_animation()
 	system.display_text_near_unit(self, "+" + str(value))
 
+func take_direct_damage(dmg: int, message: String = "") -> void:
+	if dmg <= 0:
+		return
+	
+	var damage_taken = parameters.take_direct_damage(dmg)
+	animation_handle.play_damage_animation(message)
+	if message != "":
+		message += ": "
+	system.display_text_near_unit(self, message + "-" + str(damage_taken))
 
 ## Applies damage to the unit and triggers associated animations.
-func take_damage(dmg: int) -> void:
+func take_damage(dmg: int, message: String = "") -> void:
 	if dmg == 0:
 		return
 	if dmg < 0:
 		heal(-dmg)
 		return
 	
-	#var original_damage = dmg
-	var random_deviation: int = max(dmg * STANDART_FRACTIONAL_DAMAGE_DEVIATION, STANDART_DAMAGE_DEVIATION)
-	dmg *= parameters.armor_multiplier
-	dmg += randi_range(-random_deviation, random_deviation)
-	#print_debug("(%d +- %d) * %f" %[original_damage, random_deviation, parameters.armor_multiplier])
 	
-	parameters.take_damage(dmg)
-	animation_handle.play_damage_animation()
-	system.display_text_near_unit(self, "-" + str(dmg))
+	var damage_taken = parameters.take_damage(dmg)
+	animation_handle.play_damage_animation(message)
+	if message != "":
+		message += ": "
+	system.display_text_near_unit(self, message + "-" + str(damage_taken))
 
 
 ## Attempts to register a target for attack. Returns success or failure.
@@ -189,6 +192,7 @@ func set_next_attack() -> void:
 ## Initiates an attack based on the chosen targets.
 func start_attacking() -> void:
 	animation_handle.play_attack_animation()
+	@warning_ignore("narrowing_conversion")
 	var dmg: int = current_attack.damage_multiplier if current_attack.damage_override else \
 			current_attack.damage_multiplier * parameters.base_damage
 	
@@ -203,7 +207,8 @@ func start_attacking() -> void:
 	)
 	if current_attack.damage_policy:
 		attack.damage_policy = current_attack.damage_policy
-		
+	if not current_attack.applying_effects.is_empty():
+		attack.applying_effects = current_attack.applying_effects
 	system.combat_logic.book_damage(attack)
 
 ## Initializes unit variables and connects signals.
