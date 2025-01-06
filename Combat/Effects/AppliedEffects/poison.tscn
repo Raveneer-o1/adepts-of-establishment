@@ -5,5 +5,5 @@
 
 [node name="Poison" instance=ExtResource("1_s83w6")]
 script = ExtResource("2_n80ca")
-damage_pet_turn = null
+damage_pet_turn = 30
 negative_effect = true

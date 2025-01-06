@@ -47,6 +47,8 @@ var taking_damage_attacks: Array[Attack] = []
 ## If the first element is 0, finalizes closest attack from [code]taking_damage_attacks[/code]
 var taking_damage_delays: Array[int] = []
 
+## Indicates if unit is in a defense stance
+var defence_stance: bool = false
 
 ## Highlights the unit externally.
 func highlight_externally() -> void:
@@ -94,7 +96,7 @@ func resolve_attack(attack: Attack, delay: int = 0, finalize: bool = false) -> v
 	taking_damage_attacks.append(attack)
 	if not attack.applying_effects.is_empty():
 		for effect_name in attack.applying_effects:
-			parameters.apply_effect(effect_name)
+			parameters.apply_effect(effect_name, attack.applying_effects[effect_name])
 	if finalize:
 		finalize_attack()
 		return
@@ -148,6 +150,8 @@ func take_damage(dmg: int, message: String = "") -> void:
 		heal(-dmg)
 		return
 	
+	if defence_stance:
+		dmg /= 2
 	
 	var damage_taken = parameters.take_damage(dmg)
 	animation_handle.play_damage_animation(message)
@@ -191,6 +195,7 @@ func set_next_attack() -> void:
 
 ## Initiates an attack based on the chosen targets.
 func start_attacking() -> void:
+	defence_stance = false
 	animation_handle.play_attack_animation()
 	@warning_ignore("narrowing_conversion")
 	var dmg: int = current_attack.damage_multiplier if current_attack.damage_override else \
@@ -229,6 +234,29 @@ func initialize_variables() -> void:
 func click() -> void:
 	system.clicked_unit(self)
 
+func now_attacking() -> bool:
+	if not chosen_targets.is_empty():
+		return true
+	if animation_handle.now_attacking:
+		return true
+	return false
+
+func try_take_defense_stance() -> bool:
+	if now_attacking():
+		return false
+	defence_stance = true
+	system.display_text_near_unit(self, "Defending")
+	return true
+
+func try_waiting() -> bool:
+	if now_attacking():
+		return false
+		
+	attacks_for_this_round.append(current_attack)
+	set_next_attack()
+	
+	system.display_text_near_unit(self, "Waiting...")
+	return true
 
 ## Processes the unit's death (animation pending).
 func die() -> void:

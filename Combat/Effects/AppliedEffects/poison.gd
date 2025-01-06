@@ -7,5 +7,9 @@ func deal_damage(unit: Unit) -> void:
 		target_unit.take_direct_damage(damage_pet_turn, "poison")
 
 ## Called when the effect is applied to a unit.
-func _apply_effect() -> void:
+func _apply_effect(params: Variant) -> void:
+	if params is int:
+		damage_pet_turn = params
+	else:
+		print_debug("Invalid parameter for a poison effect. Expected int, found %s!" % type_string(typeof(params)))
 	EventBus.turn_started.connect(deal_damage)

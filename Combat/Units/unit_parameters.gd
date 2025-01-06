@@ -225,15 +225,15 @@ func set_parameters() -> void:
 				new_attack.damage_policy = attack["DamagePolicy"]
 				#print(parent_unit.unit_name)
 			if attack.has("Effects"):
-				new_attack.applying_effects = attack["Effects"].duplicate()
+				new_attack.applying_effects = (attack["Effects"] as Dictionary)
 			
 			attacks.append(new_attack)
 
-func apply_effect(effect_name: String):
+func apply_effect(effect_name: String, params: Variant):
 	var res : Resource = load("res://Combat/Effects/AppliedEffects/%s.tscn" % effect_name)
 	var child = res.instantiate()
 	add_child(child)
-	(child as AppliedEffect).initialize()
+	(child as AppliedEffect).initialize(params)
 
 func turn_start_reaction(_unit: Unit) -> void:
 	update_effects()
@@ -250,7 +250,7 @@ func take_direct_damage(dmg: int, randomize_damage: bool = false) -> int:
 	var original_hp := hp
 	hp -= dmg
 	return original_hp - hp
-	
+
 
 func take_damage(dmg: int, randomize_damage: bool = true) -> int:
 	@warning_ignore("narrowing_conversion")
@@ -263,9 +263,9 @@ func take_damage(dmg: int, randomize_damage: bool = true) -> int:
 	hp -= dmg
 	return original_hp - hp
 
+
 func heal(value: int) -> void:
 	hp += value
-
 
 
 func standart_melee_validity(attacker: Unit, target: Unit) -> bool:

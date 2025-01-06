@@ -29,7 +29,7 @@ var find_additional_targets: Callable
 ## If present, overrides [method Attack.resolve] and applies to all targets using their indexes
 var damage_policy: Callable
 
-var applying_effects := []
+var applying_effects : Dictionary
 
 func _init(_unit: Unit, dmg_mult: float, dmg_ov: bool,
 		valid: Callable, ty: EventBus.AttackType, acc: float,

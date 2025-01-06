@@ -8,7 +8,7 @@ var attacker: Unit
 var targets: Array[Unit]
 var effect: Resource
 
-var applying_effects: Array
+var applying_effects: Dictionary
 
 ## Function with a signature [codeblock](attacker: Unit, target: Unit, index: int, finalize: bool) -> void[/codeblock]
 ## Overrides [method Attack.resolve] and applies to all targets using their indexes

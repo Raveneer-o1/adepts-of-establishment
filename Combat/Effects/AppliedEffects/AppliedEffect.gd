@@ -11,7 +11,7 @@ class_name AppliedEffect
 var target_unit: Unit
 
 ## Called when the effect is applied to a unit.
-func _apply_effect() -> void:
+func _apply_effect(params: Variant) -> void:
 	# Override this method in derived classes to define the effect's behavior when applied.
 	pass
 
@@ -30,10 +30,10 @@ func _remove_effect() -> void:
 	pass
 
 # Called when this node is added to a unit. Automatically applies the effect.
-func initialize() -> void:
+func initialize(params: Variant = null) -> void:
 	target_unit = (get_parent() as UnitParameters).parent_unit
 	if target_unit == null:
 		print_debug("Effect is missing a target unit!")
 		queue_free()
 		return
-	_apply_effect()
+	_apply_effect(params)

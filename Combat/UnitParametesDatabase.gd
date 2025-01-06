@@ -1,7 +1,7 @@
 
-## IMPORTANT NOTE:
-## When the game parses data from this file, it doesn't perform any verification.
-## So, invalid structure of data (namely, incompatible data types) here may cause crashes.
+# IMPORTANT NOTE:
+# When the game parses data from this file, it doesn't perform any verification.
+# So, invalid structure of data (namely, incompatible data types) here may cause crashes.
 
 func standart_healer_validity(attacker: Unit, target: Unit) -> bool:
 	if attacker == null or target == null:
@@ -219,7 +219,7 @@ var DATABASE := {
 				Validation = standart_melee_validity, # Callable (attacker: Unit, target: Unit) -> bool
 				FindAdditionalTargets = standart_mass_healer_additional_targets, # Callable (attacker: Unit, chosen_targets: Array[Unit]) -> Array[Unit]
 				DamagePolicy = standart_decay_policy, # Callable (attack: Attack, index: int) -> void
-				Effects = ["poison"], # Array[String]
+				Effects = {"poison" = 35}, # Array[String]
 			},
 		]
 	},
@@ -684,7 +684,7 @@ var DATABASE := {
 				TargetsNeeded = 1,
 				Initiative = 70,
 				Validation = standart_archer_validity,
-				Effects = ["poison"], # Array[String]
+				Effects = {"poison" = 45}, # Array[String]
 			},
 			{
 				DamageMultiplier = 1.0,
@@ -694,7 +694,7 @@ var DATABASE := {
 				TargetsNeeded = 1,
 				Initiative = 40,
 				Validation = standart_archer_validity,
-				Effects = ["poison"], # Array[String]
+				Effects = {"poison" = 55}, # Array[String]
 			},
 			{
 				DamageMultiplier = 1.0,
@@ -704,7 +704,7 @@ var DATABASE := {
 				TargetsNeeded = 1,
 				Initiative = 20,
 				Validation = standart_archer_validity,
-				Effects = ["poison"], # Array[String]
+				Effects = {"poison" = 65}, # Array[String]
 			},
 		]
 	},

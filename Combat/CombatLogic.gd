@@ -1,8 +1,8 @@
 class_name CombatLogic extends Node
 
-##  CombatLogic class handles the flow of combat, manages turn order, resolves attacks,
-##  and communicates events through signals. [br]It acts as the primary controller for combat actions,
-##  ensuring synchronization between animations and gameplay logic.
+## CombatLogic class handles the flow of combat, manages turn order, resolves attacks,
+## and communicates events through signals. [br]It acts as the primary controller for combat actions,
+## ensuring synchronization between animations and gameplay logic.
 ##
 ## This script stores and manages the resolution of units' attacks in combat.[br]
 ## When a unit attacks, the effect of its attack is "booked" (see [method CombatLogic.book_damage]) for later resolution.[br]
@@ -24,6 +24,8 @@ var attacks_queue: Array[UnitAttack]
 # A list of attacks that have been booked but not yet resolved.
 var booked_attacks: Array[Attack] = []
 
+## A list of all attacks that were shifted via "Wait" option
+var waited_attacks: Array[UnitAttack] = []
 
 var current_attack: UnitAttack
 
@@ -33,6 +35,7 @@ var current_round := 0
 
 func _ready() -> void:
 	EventBus.attack_reached.connect(resolve_closest_attack)
+	EventBus.unit_died.connect(check_dead_unit)
 
 #region Utilities
 
@@ -76,8 +79,24 @@ func set_queue() -> void:
 	attacks_queue.sort_custom(sorting_by_initiative)
 
 
+func check_dead_unit(unit: Unit) -> void:
+	#print_debug([unit.unit_name, current_attack.unit])
+	if unit == main_system.current_unit:
+		next_stage()
+
+
+## Attempts waiting. I succsesfull, shifts current attack of a current unit to the end of a queue
+func try_wait() -> void:
+	if waited_attacks.has(current_attack):
+		return
+	if main_system.current_unit.try_waiting():
+		attacks_queue.append(current_attack)
+		next_stage()
+
+
 ## Begins a new combat round, resets the queue, and emits a round-started signal.
 func start_round() -> void:
+	waited_attacks.clear()
 	current_round += 1
 	print("Round " + str(current_round))
 	set_queue()
@@ -87,16 +106,17 @@ func start_round() -> void:
 ##  Starts a turn for the next unit in the queue.
 func start_turn() -> void:
 	var curr := main_system.current_unit
+	current_attack = null
 	if curr != null:
 		main_system.current_unit = null
 		EventBus.turn_ended.emit(curr)
 	
 	while attacks_queue.size() > 0:
-		var attack: UnitAttack = attacks_queue.pop_front()
-		if attack == null or attack.unit == null or attack.unit.parameters.dead:
+		current_attack = attacks_queue.pop_front()
+		if current_attack == null or current_attack.unit == null or current_attack.unit.parameters.dead:
 			continue
-		main_system.current_unit = attack.unit
-		#attack.unit.set_next_attack()
+		main_system.current_unit = current_attack.unit
+		#current_attack.unit.set_next_attack()
 		EventBus.turn_started.emit(main_system.current_unit)
 		return
 

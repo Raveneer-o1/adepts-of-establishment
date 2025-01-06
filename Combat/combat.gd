@@ -6,7 +6,7 @@ extends Node2D
 
 # Temporary label scene for displaying text near units
 const TEMP_LABEL = preload("res://Combat/TempLabel.tscn")
-const DISTANCE_TO_LABEL = 35.0
+const DISTANCE_TO_LABEL = 55.0
 
 # Configuration variables for parties
 @export var left_party_units: Array[String]
@@ -63,7 +63,10 @@ func clicked_unit(unit: Unit) -> void:
 
 ## Displays text near a unit
 func display_text_near_unit(unit: Unit, text: String) -> void:
-	var offset = Vector2(randf() - 0.5, randf() - 0.5).normalized() * DISTANCE_TO_LABEL
+	var x_offset := randf() - 0.5
+	var y_offset := randf_range(-abs(x_offset), 0.0)
+	var offset = Vector2(x_offset, y_offset).normalized() * DISTANCE_TO_LABEL
+	#print_debug(offset)
 	var lbl: Label = TEMP_LABEL.instantiate()
 	unit.add_child(lbl)
 	lbl.text = text
@@ -103,3 +106,14 @@ func _ready() -> void:
 	place_units()
 	combat_logic.start_battle()
 #endregion
+
+
+func _on_button_defense_pressed() -> void:
+	if current_unit.try_take_defense_stance():
+		combat_logic.next_stage()
+
+
+
+
+func _on_button_wait_pressed() -> void:
+	combat_logic.try_wait()
