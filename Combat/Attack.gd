@@ -8,10 +8,11 @@ var attacker: Unit
 var targets: Array[Unit]
 var effect: Resource
 
-## function with a signature (attacker: Unit, target: Unit, index: int, finalize: bool) -> void
-## overrides resolve_attack and applies to all targets using their indexes
+## Function with a signature [codeblock](attacker: Unit, target: Unit, index: int, finalize: bool) -> void[/codeblock]
+## Overrides [method Attack.resolve] and applies to all targets using their indexes
 var damage_policy: Callable
 
+## Calles [method Unit.resolve_attack] on each of its targets
 func resolve(finalize: bool = false) -> void:
 	# if standart attack resolution if overridden
 	if damage_policy:
@@ -25,6 +26,8 @@ func resolve(finalize: bool = false) -> void:
 		target.resolve_attack(self, i, finalize)
 		i += 1
 
+## Returnes a shallow copy of the object. All nested Array, Dictionary and Object elements are shared 
+## with the original. Modifying them in one object will also affect them in the other.
 func duplicate() -> Attack:
 	var result := Attack.new(
 		attacker,

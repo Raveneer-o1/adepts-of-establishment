@@ -1,24 +1,29 @@
 class_name Party
 extends Node2D
 
-## Constants to define the battle grid and unit placement.
-## These constants are optimized for 7 units on the screen. 
-## To scale the battle size, adjust these constants as necessary.
+## Main party node, serves as a container for all [Unit] nodes
+##
+## Units are stored as a one-dimensional array. ([member Party.units])[br]
+## Units are placed on a hexagonal grid, and positions are counted from top to bottom.[br]
+## - Frontline: Units with even positions.[br]
+## - Backline: Units with odd positions.[br]
+## Large units occupy three spaces (one on the current line and two adjacent spaces in another line).
+
+# Constants to define the battle grid and unit placement.
+# These constants are optimized for 7 units on the screen. 
+# To scale the battle size, adjust these constants as necessary.
 const MAX_UNITS_NUMBER = 7
 const X_START_POSITION = 50.0
 const Y_START_POSITION = 50.0
 const X_OFFSET = 40.0
 const Y_OFFSET = 25.0
 
-## References to other components in the system
+# References to other components in the system
 var other_party: Party
 var main_system: CombatSystem
 
-## Units are stored as a one-dimensional array.
-## Units are placed on a hexagonal grid, and positions are counted from top to bottom.
-## - Frontline: Units with even positions.
-## - Backline: Units with odd positions.
-## Large units occupy three spaces (one on the current line and two adjacent spaces in another line).
+## Stores all units[br]
+## NOTE: this should be a read-only member, however it's planned to have an option to move units during combat. For this reason this array stays modifiable
 var units: Array[Unit] = []
 
 ## Returns references to units at specified positions.
@@ -92,13 +97,13 @@ func place_units(list: Array[String]) -> void:
 		else:
 			units[i].position = get_unit_position(i)
 
-## Returns the coordinates for a large unit.
+## Returns the coordinates tp place a large unit.
 func get_large_unit_position(pos: int) -> Vector2:
 	var x: float = X_START_POSITION + X_OFFSET / 2
 	var y: float = Y_START_POSITION + Y_OFFSET * pos
 	return Vector2(x, y)
 
-## Returns the coordinates for a regular unit.
+## Returns the coordinates tp place a regular unit.
 func get_unit_position(pos: int) -> Vector2:
 	var x: float = X_START_POSITION if pos % 2 != 0 else X_START_POSITION + X_OFFSET
 	var y: float = Y_START_POSITION + Y_OFFSET * pos
@@ -109,8 +114,6 @@ func initialize_variables() -> void:
 	for i in range(MAX_UNITS_NUMBER):
 		units.append(null)
 
+## Returns number of hexes between two positions
 static func get_distance(pos1: int, pos2: int) -> int:
-	#var diff: float = abs(pos1 - pos2) / 2.0
-	#var result: int = ceili(diff)
-	#print_debug("[%f]: %d" % [diff, result])
 	return ceili(abs(pos1 - pos2) / 2.0)

@@ -1,19 +1,19 @@
 class_name CombatLogic extends Node
 
 ##  CombatLogic class handles the flow of combat, manages turn order, resolves attacks,
-##  and communicates events through signals. It acts as the primary controller for combat actions,
+##  and communicates events through signals. [br]It acts as the primary controller for combat actions,
 ##  ensuring synchronization between animations and gameplay logic.
-
-## This script stores and manages the resolution of units' attacks in combat.
-## When a unit attacks, the effect of its attack is "booked" (see the `book_damage()` function) for later resolution.
-## This process serves two primary purposes:
-## 1. Emitting Signals for Pre-Resolution Effects:
-##    - Whenever an attack is booked, a signal is emitted to notify the system of the event.
-##    - This allows other game systems or mechanics (e.g., buffs, debuffs, or triggered abilities) to react to the attack.
-##    - These reactions can modify the attack's properties, such as damage, critical chance, or effects, before the attack is finalized and resolved.
-## 2. Synchronizing Attack Resolution with Animations:
-##    - By delaying the execution of the attack until it is resolved, the system ensures that the gameplay logic is in sync with the visual animations.
-##    - This approach creates a cohesive player experience where damage or effects are applied at the precise moment they are visually communicated (e.g., when a sword strikes an enemy or a spell animation finishes).
+##
+## This script stores and manages the resolution of units' attacks in combat.[br]
+## When a unit attacks, the effect of its attack is "booked" (see [method CombatLogic.book_damage]) for later resolution.[br]
+## This process serves two primary purposes:[br]
+## 1. Emitting Signals for Pre-Resolution Effects:[br]
+##  - - Whenever an attack is booked, a signal is emitted to notify the system of the event.[br]
+##  - - This allows other game systems or mechanics (e.g., buffs, debuffs, or triggered abilities) to react to the attack.[br]
+##  - - These reactions can modify the attack's properties, such as damage, critical chance, or effects, before the attack is finalized and resolved.[br]
+## 2. Synchronizing Attack Resolution with Animations:[br]
+##  - - By delaying the execution of the attack until it is resolved, the system ensures that the gameplay logic is in sync with the visual animations.[br]
+##  - - This approach creates a cohesive player experience where damage or effects are applied at the precise moment they are visually communicated (e.g., when a sword strikes an enemy or a spell animation finishes).[br]
 
 
 @onready var main_system := get_parent() as CombatSystem
@@ -24,13 +24,27 @@ var attacks_queue: Array[UnitAttack]
 # A list of attacks that have been booked but not yet resolved.
 var booked_attacks: Array[Attack] = []
 
+
+var current_attack: UnitAttack
+
+## Tracks the current round of combat.
+var current_round := 0
+
+
+func _ready() -> void:
+	EventBus.attack_reached.connect(resolve_closest_attack)
+
+#region Utilities
+
 # Sorts units by their initiative, highest first.
 func sorting_by_initiative(a: UnitAttack, b: UnitAttack) -> bool:
 	return b.initiative < a.initiative
 
+
 # Filters out null and dead units from a list.
 func filter_nulls(a: Unit) -> bool:
 	return a != null and not a.parameters.dead
+
 
 ## Removes duplicate units from an array, maintaining the first occurrence.
 func filter_duplicates(arr: Array[Unit]) -> Array[Unit]:
@@ -39,6 +53,10 @@ func filter_duplicates(arr: Array[Unit]) -> Array[Unit]:
 		if not result.has(u):
 			result.append(u)
 	return result
+
+#endregion
+
+#region Combat managment
 
 ## Sets up the attack queue for the current round and resets atacks for each unit.
 func set_queue() -> void:
@@ -57,10 +75,6 @@ func set_queue() -> void:
 	attacks_queue.shuffle()
 	attacks_queue.sort_custom(sorting_by_initiative)
 
-var current_attack: UnitAttack
-
-## Tracks the current round of combat.
-var current_round := 0
 
 ## Begins a new combat round, resets the queue, and emits a round-started signal.
 func start_round() -> void:
@@ -68,6 +82,7 @@ func start_round() -> void:
 	print("Round " + str(current_round))
 	set_queue()
 	EventBus.round_started.emit()
+
 
 ##  Starts a turn for the next unit in the queue.
 func start_turn() -> void:
@@ -85,6 +100,7 @@ func start_turn() -> void:
 		EventBus.turn_started.emit(main_system.current_unit)
 		return
 
+
 ##  Advances the combat flow to the next stage.
 ##  Starts a new turn or round, or ends the battle if no units are left to act.
 func next_stage() -> void:
@@ -97,14 +113,19 @@ func next_stage() -> void:
 		if main_system.current_unit == null:
 			end_battle()
 
+
 ##  Initiates the battle by starting the first round and advancing the stage.
 func start_battle() -> void:
 	start_round()
 	next_stage()
 
+
 ##  Ends the battle and cleans up resources.
 func end_battle() -> void:
 	print("The battle is over!")
+#endregion
+
+#region Attack resolution and booking
 
 ##  Books an attack for later resolution. This allows effects to modify the attack before it resolves.
 ##  Emits a signal when an attack is booked, triggering any relevant effects.
@@ -120,6 +141,7 @@ func book_damage(attack: Attack, emit: bool = true) -> void:
 		var effect_object := attack.effect.instantiate() as TemporaryEffect
 		target.add_child(effect_object)
 
+
 ##  Books an array of attacks, emitting a signal only for the first one.
 func book_damages(attacks: Array[Attack]) -> void:
 	if attacks.size() == 0:
@@ -127,6 +149,7 @@ func book_damages(attacks: Array[Attack]) -> void:
 	EventBus.attack_booked.emit(attacks[0])
 	for a in attacks:
 		book_damage(a, false)
+
 
 ##  Resolves a specific booked attack and applies its effects to the target.
 func resolve_attack(attack: Attack) -> void:
@@ -136,12 +159,14 @@ func resolve_attack(attack: Attack) -> void:
 	booked_attacks.erase(attack)
 	attack.resolve()
 
+
 ##  Resolves all booked attacks, clearing the booked list afterward.
 func resolve_and_finalize_all_attacks() -> void:
 	for attack in booked_attacks:
 		const FINALIZE_ATTACK := true
 		attack.resolve(FINALIZE_ATTACK)
 	booked_attacks.clear()
+
 
 ##  Resolves the first booked attack made by a specific unit.
 func resolve_closest_attack(unit: Unit) -> void:
@@ -154,7 +179,4 @@ func resolve_closest_attack(unit: Unit) -> void:
 		#print_debug(unit.unit_name + " doesn't have booked attacks!")
 		return
 	resolve_attack(attack)
-
-##  Sets up event connections when the node is ready.
-func _ready() -> void:
-	EventBus.attack_reached.connect(resolve_closest_attack)
+#endregion

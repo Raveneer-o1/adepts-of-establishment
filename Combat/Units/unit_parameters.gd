@@ -1,25 +1,15 @@
 class_name UnitParameters extends Node
 
 ## This class represents inner logic of a unit: its health, damage and abilities
-## 
-## Specific values are determined in derived classes
+
+## Armor = 900 is the equivalent of .1 multiplier. In order for the damage to not be cut more than 10 times
+## armor is capped at this value
+const ARMOR_CAP = 900
 
 @export var large_unit: bool = false
 
 @export var attack_effect: Resource
 @export var other_effects: Array[Resource]
-
-@export_group("Base parameters")
-## Base parameters that determine "native" to this type of units values
-@export var max_hp := 100
-## Base parameters that determine "native" to this type of units values
-@export var base_damage := 25
-## Base parameters that determine "native" to this type of units values
-@export var armor := 0
-
-var armor_multiplier: float:
-	get:
-		return 100.0 / (armor + 100) if armor > 0 else 100.0 / (armor - 100) + 2.0
 
 @export_group("Override parameters")
 ## Setting these parameters will override base parameters (use if you want to experiment but don't want to change the intended behaviour)
@@ -29,9 +19,24 @@ var armor_multiplier: float:
 ## Setting these parameters will override base parameters (use if you want to experiment but don't want to change the intended behaviour)
 @export var armor_override := -1
 
+
+## Recalculates human-readable armor parameter into actual multiplier.
+## The idea is that player can increase
+## armor stat indefinitely but will see deminishing returns.
+## Thus, it's possible to let players increase the stat as
+## much as they want rather than cap it at a specific value.[br]
+## NOTE: armor is still capped at [member UnitParameters.ARMOR_CAP] but that value is much harder to acheve
+var armor_multiplier: float:
+	get:
+		if armor >= ARMOR_CAP:
+			return 0.1
+		return 100.0 / (armor + 100) if armor > 0 else 100.0 / (armor - 100) + 2.0
+
+var max_hp := 100
+var base_damage := 25
+var armor := 0
+
 var attacks: Array[UnitAttack] = []
-# TODO: replace int with Array[int] for multiple actions per round
-#var targets_need: int
 
 var _hp: int
 var hp: int:
@@ -49,6 +54,9 @@ var hp: int:
 var dead: bool = false
 
 var parent_unit: Unit
+
+@onready var visual_bar := get_node("VisualBar") as ProgressBar
+
 
 func initialize_variables() -> void:
 	parent_unit = get_parent()
@@ -80,6 +88,7 @@ func set_parameters() -> void:
 	if not databse.has(parent_unit.unit_name):
 		print_debug("Unit '%s' not found in database!" % parent_unit.unit_name)
 		return
+	
 	var params: Dictionary = databse[parent_unit.unit_name]
 	if params.has("Damage"):
 		base_damage = params["Damage"]
@@ -130,34 +139,18 @@ func set_parameters() -> void:
 			
 			attacks.append(new_attack)
 
-#var check_target_validity: Callable = Callable(self, "standart_melee_validity")
 
 ## Override this function in derived classes to set unique parameters and/or effects
 func _override_parameters() -> void:
 	pass
 
-func standart_healer_validity(attacker: Unit, target: Unit) -> bool:
-	if attacker == null or target == null:
-		return false
-	if target.parameters.dead:
-		return false
-	
-	# only attack if units are in the same party
-	if attacker.party.units.has(target):
-		return true
-	return false
 
+func take_damage(dmg: int) -> void:
+	hp -= dmg
 
-func standart_archer_validity(attacker: Unit, target: Unit) -> bool:
-	if attacker == null or target == null:
-		return false
-	if target.parameters.dead:
-		return false
-		
-	# if units are in the same party, we don't attack
-	if attacker.party.units.has(target):
-		return false
-	return true
+func heal(value: int) -> void:
+	hp += value
+
 
 
 func standart_melee_validity(attacker: Unit, target: Unit) -> bool:
@@ -253,13 +246,3 @@ func standart_melee_validity(attacker: Unit, target: Unit) -> bool:
 		step += 2
 	
 	return false
-
-
-@onready var visual_bar := get_node("VisualBar") as ProgressBar
-
-
-func take_damage(dmg: int) -> void:
-	hp -= dmg
-
-func heal(value: int) -> void:
-	hp += value

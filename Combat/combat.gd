@@ -2,23 +2,17 @@ class_name CombatSystem
 extends Node2D
 
 ## Handles high-level interactions between combat system nodes, external systems, 
-## and utility functions such as player input
+## and utility functions such as player input.
 
-## References to child nodes for managing parties and combat logic
-@onready var left_party: Party = get_node("LeftParty")
-@onready var right_party: Party = get_node("RightParty")
-@onready var combat_logic: CombatLogic = get_node("CombatLogic")
-@onready var active_unit_marker := get_node("ActiveUnitMarker") as AnimatedSprite2D
+# Temporary label scene for displaying text near units
+const TEMP_LABEL = preload("res://Combat/TempLabel.tscn")
+const DISTANCE_TO_LABEL = 15.0
 
-## Configuration variables for parties
+# Configuration variables for parties
 @export var left_party_units: Array[String]
 @export var right_party_units: Array[String]
 
 @export var unit_parameters_database: Resource
-
-## Temporary label scene for displaying text near units
-const TEMP_LABEL = preload("res://Combat/TempLabel.tscn")
-const DISTANCE_TO_LABEL = 15.0
 
 ## Loaded unit resources and highlighted units
 var loaded_units: Dictionary = {}
@@ -36,6 +30,12 @@ var current_unit: Unit:
 		else:
 			active_unit_marker.position = value.global_position
 			active_unit_marker.visible = true
+
+# References to child nodes for managing parties and combat logic
+@onready var left_party: Party = get_node("LeftParty")
+@onready var right_party: Party = get_node("RightParty")
+@onready var combat_logic: CombatLogic = get_node("CombatLogic")
+@onready var active_unit_marker := get_node("ActiveUnitMarker") as AnimatedSprite2D
 
 ## Handles the resolution of all attacks and prepares for the next combat stage
 func finish_attack() -> void:
