@@ -1,9 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://bjlsohg1p6wgl"]
+[gd_scene load_steps=9 format=3 uid="uid://bjlsohg1p6wgl"]
 
 [ext_resource type="Script" path="res://Combat/Units/unit.gd" id="1_gk31f"]
 [ext_resource type="Script" path="res://Combat/Units/UnitAnimationsHandle.gd" id="2_gjndx"]
 [ext_resource type="Script" path="res://Combat/Units/unit_parameters.gd" id="2_mnflt"]
-[ext_resource type="Texture2D" uid="uid://jdc0m3idvya3" path="res://Arts/Combat effects/yellow circle .png" id="6_xet54"]
 
 [sub_resource type="Animation" id="Animation_t5xf5"]
 length = 0.001
@@ -74,76 +73,42 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(0.2695, 0.77, 0.352917, 1), Color(0.154, 0.77, 0.256667, 1), Color(0.308, 0.77, 0.385, 1), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_lqbyk"]
+resource_name = "unit_standart_death_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.07, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.633333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"finish_death_animation"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vl4j0"]
 _data = {
 "RESET": SubResource("Animation_t5xf5"),
 "unit_standart_damage_animation": SubResource("Animation_yce8f"),
+"unit_standart_death_animation": SubResource("Animation_lqbyk"),
 "unit_standart_heal_animation": SubResource("Animation_e0237")
 }
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_etbdi"]
-atlas = ExtResource("6_xet54")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n6w8l"]
-atlas = ExtResource("6_xet54")
-region = Rect2(0, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_47r6a"]
-atlas = ExtResource("6_xet54")
-region = Rect2(0, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3t1ni"]
-atlas = ExtResource("6_xet54")
-region = Rect2(0, 96, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4anux"]
-atlas = ExtResource("6_xet54")
-region = Rect2(0, 128, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kjusf"]
-atlas = ExtResource("6_xet54")
-region = Rect2(0, 160, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pbb84"]
-atlas = ExtResource("6_xet54")
-region = Rect2(0, 192, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6j18o"]
-atlas = ExtResource("6_xet54")
-region = Rect2(0, 224, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_2vckf"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_etbdi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n6w8l")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_47r6a")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3t1ni")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4anux")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kjusf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pbb84")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6j18o")
-}],
-"loop": true,
-"name": &"default",
-"speed": 15.0
-}]
 
 [node name="Unit" type="Node2D"]
 script = ExtResource("1_gk31f")
@@ -168,10 +133,6 @@ step = 1.0
 value = 100.0
 show_percentage = false
 
-[node name="ExternalHighlight" type="AnimatedSprite2D" parent="."]
-visible = false
-sprite_frames = SubResource("SpriteFrames_2vckf")
-autoplay = "default"
-
 [connection signal="animation_finished" from="AnimationHandle" to="AnimationHandle" method="_on_animation_finished"]
 [connection signal="frame_changed" from="AnimationHandle" to="AnimationHandle" method="_on_frame_changed"]
+[connection signal="animation_finished" from="AnimationHandle/AnimationPlayer" to="AnimationHandle" method="_on_animation_player_animation_finished"]

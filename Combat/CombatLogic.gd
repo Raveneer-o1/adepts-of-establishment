@@ -118,7 +118,9 @@ func start_turn() -> void:
 		main_system.current_unit = current_attack.unit
 		#current_attack.unit.set_next_attack()
 		EventBus.turn_started.emit(main_system.current_unit)
+		main_system.display_hints()
 		return
+
 
 
 ##  Advances the combat flow to the next stage.

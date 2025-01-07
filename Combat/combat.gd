@@ -9,15 +9,24 @@ const TEMP_LABEL = preload("res://Combat/TempLabel.tscn")
 const DISTANCE_TO_LABEL = 55.0
 const UNIT_SPOT = preload("res://Combat/unit_spot.tscn")
 
+const SHOW_HINTS_NEVER = 0
+const SHOW_HINTS_ALWAYS = 1
+const SHOW_HINTS_ON_HOVER = 2
+## Number of states show_hitns_mode can have
+const SHOW_HINTS_MAX = 3
+
+
 # Configuration variables for parties
 @export var left_party_units: Array[String]
 @export var right_party_units: Array[String]
 
 @export var unit_parameters_database: Resource
 
+@export var unit_marker: Resource
+
 ## Loaded unit resources and highlighted units
 var loaded_units: Dictionary = {}
-var highlighted_units: Array[Unit] = []
+var highlighted_units: Array[UnitSpot] = []
 
 ## Reference to the current active unit in combat
 var _current_unit: Unit
@@ -32,6 +41,8 @@ var current_unit: Unit:
 			active_unit_marker.position = value.global_position
 			active_unit_marker.visible = true
 
+var show_hitns_mode: int = SHOW_HINTS_NEVER
+
 # References to child nodes for managing parties and combat logic
 @onready var left_party: Party = get_node("LeftParty")
 @onready var right_party: Party = get_node("RightParty")
@@ -41,9 +52,9 @@ var current_unit: Unit:
 ## Handles the resolution of all attacks and prepares for the next combat stage
 func finish_attack() -> void:
 	combat_logic.resolve_and_finalize_all_attacks()
-	for unit in highlighted_units:
-		if unit != null:
-			unit.reset_highlight()
+	for spot in highlighted_units:
+		if spot != null:
+			spot.reset_highlight()
 	highlighted_units.clear()
 	combat_logic.next_stage()
 
@@ -59,11 +70,41 @@ func clicked_unit(spot: UnitSpot) -> void:
 	if not target_added:
 		print("Unable to attack this target")
 		return
-	var unit := spot.unit
-	if unit != null:
-		unit.highlight_externally()
-		highlighted_units.append(unit)
-	
+	if spot != null:
+		spot.highlight_externally()
+		highlighted_units.append(spot)
+
+var displayed_hints : Array[AnimatedSprite2D] = []
+
+func remove_hints() -> void:
+	for hint in displayed_hints:
+		hint.queue_free()
+	displayed_hints.clear()
+	for unit in left_party.units + right_party.units:
+		if unit == null or unit.parameters.dead:
+			continue
+		unit.spot.get_node("Area2D/HighlightAnimation").modulate = Color.WHITE
+
+func display_hints() -> void:
+	remove_hints()
+	match show_hitns_mode:
+		SHOW_HINTS_ALWAYS:
+			for unit in left_party.units + right_party.units:
+				if unit == null or unit.parameters.dead:
+					continue
+				if combat_logic.current_attack.target_validation.call(current_unit, unit.spot):
+					var marker: AnimatedSprite2D = unit_marker.instantiate()
+					displayed_hints.append(marker)
+					unit.add_child(marker)
+					marker.modulate = Color.FOREST_GREEN
+		SHOW_HINTS_ON_HOVER:
+			for unit in left_party.units + right_party.units:
+				if unit == null or unit.parameters.dead:
+					continue
+				var color: Color = Color.FIREBRICK
+				if combat_logic.current_attack.target_validation.call(current_unit, unit.spot):
+					color = Color.FOREST_GREEN
+				unit.spot.area_2d.get_node("HighlightAnimation").modulate = color
 
 ## Displays text near a unit
 func display_text_near_unit(unit: Unit, text: String) -> void:
@@ -121,3 +162,17 @@ func _on_button_defense_pressed() -> void:
 
 func _on_button_wait_pressed() -> void:
 	combat_logic.try_wait()
+
+
+func _on_target_hunts_button_pressed() -> void:
+	show_hitns_mode = (show_hitns_mode + 1) % SHOW_HINTS_MAX
+	var new_text: String
+	match show_hitns_mode:
+		SHOW_HINTS_NEVER:
+			new_text = "Never"
+		SHOW_HINTS_ALWAYS:
+			new_text = "Always"
+		SHOW_HINTS_ON_HOVER:
+			new_text = "Auto"
+	$"../UI/ParentContainer/PanelContainer/HBoxContainer/TargetHintsContainer/TargetHuntsButton".text = new_text
+	display_hints()

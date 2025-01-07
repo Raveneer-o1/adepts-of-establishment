@@ -1,0 +1,72 @@
+[gd_scene load_steps=11 format=3 uid="uid://baracsktpldx5"]
+
+[ext_resource type="Texture2D" uid="uid://dnao7cqp8wxhw" path="res://Arts/Combat effects/white circle .png" id="1_ahefj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ga1s"]
+atlas = ExtResource("1_ahefj")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hj5br"]
+atlas = ExtResource("1_ahefj")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0pgh"]
+atlas = ExtResource("1_ahefj")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_534i6"]
+atlas = ExtResource("1_ahefj")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01tlp"]
+atlas = ExtResource("1_ahefj")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qb06c"]
+atlas = ExtResource("1_ahefj")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mea8u"]
+atlas = ExtResource("1_ahefj")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oaft1"]
+atlas = ExtResource("1_ahefj")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mjob3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ga1s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hj5br")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0pgh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_534i6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01tlp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qb06c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mea8u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oaft1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="Marker" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_mjob3")
+autoplay = "default"
+frame_progress = 0.746991

@@ -1,15 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://6lq6f06hma7"]
+[gd_scene load_steps=5 format=3 uid="uid://6lq6f06hma7"]
 
 [ext_resource type="PackedScene" uid="uid://cku7rhe8jn3tx" path="res://Combat/combat.tscn" id="1_7nbev"]
 [ext_resource type="PackedScene" uid="uid://d12hr40jjb8s8" path="res://Combat/UnitInfoPanel.tscn" id="1_roecy"]
 [ext_resource type="Resource" uid="uid://dfd81a0k5k4xy" path="res://Combat/Units/UnitParameters.tres" id="2_tfqd7"]
+[ext_resource type="PackedScene" uid="uid://baracsktpldx5" path="res://Combat/UnitMarker.tscn" id="3_l8glo"]
 
 [node name="Node2D" type="Node"]
 
 [node name="Combat" parent="." instance=ExtResource("1_7nbev")]
-left_party_units = Array[String](["", "res://Combat/Units/Derived units/Empire/e15 Elementalist.tscn", "", "res://Combat/Units/Derived units/Empire/e17 Ritualist.tscn", "", "", ""])
-right_party_units = Array[String](["", "res://Combat/Units/Derived units/Undead/u01_Dracolich.tscn", "", "res://Combat/Units/Derived units/Empire/e32 Prophetess.tscn", "", "res://Combat/Units/Derived units/Empire/e14 Apprentice.tscn", "res://Combat/Units/Derived units/Empire/e01 Squire.tscn"])
+left_party_units = Array[String](["res://Combat/Units/Derived units/Empire/e08 Blade Saint.tscn", "res://Combat/Units/Derived units/Empire/e33 Hierophant.tscn", "res://Combat/Units/Derived units/Empire/e09 Grand Inquisitor.tscn", "res://Combat/Units/Derived units/Empire/e26 Imperial Ranger.tscn", "res://Combat/Units/Derived units/Empire/e05 Inquisitor.tscn", "res://Combat/Units/Derived units/Empire/e17 Ritualist.tscn", "res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn"])
+right_party_units = Array[String](["res://Combat/Units/Derived units/Empire/e10 Angel Knight.tscn", "res://Combat/Units/Derived units/Empire/e18 Wizard.tscn", "res://Combat/Units/Derived units/Empire/e12 Paladin.tscn", "res://Combat/Units/Derived units/Empire/e30 Matriarch.tscn", "res://Combat/Units/Derived units/Empire/e13 Angel.tscn", "res://Combat/Units/Derived units/Empire/e14 Apprentice.tscn", "res://Combat/Units/Derived units/Empire/e01 Squire.tscn"])
 unit_parameters_database = ExtResource("2_tfqd7")
+unit_marker = ExtResource("3_l8glo")
 
 [node name="UnitInfoPanel" parent="." instance=ExtResource("1_roecy")]
 visible = false
@@ -54,5 +56,20 @@ layout_mode = 2
 size_flags_vertical = 4
 text = "Wait"
 
+[node name="TargetHintsContainer" type="VBoxContainer" parent="UI/ParentContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/ParentContainer/PanelContainer/HBoxContainer/TargetHintsContainer"]
+layout_mode = 2
+text = "Show hints "
+
+[node name="TargetHuntsButton" type="Button" parent="UI/ParentContainer/PanelContainer/HBoxContainer/TargetHintsContainer"]
+custom_minimum_size = Vector2(75, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Never"
+
 [connection signal="pressed" from="UI/ParentContainer/PanelContainer/HBoxContainer/ButtonDefense" to="Combat" method="_on_button_defense_pressed"]
 [connection signal="pressed" from="UI/ParentContainer/PanelContainer/HBoxContainer/ButtonWait" to="Combat" method="_on_button_wait_pressed"]
+[connection signal="pressed" from="UI/ParentContainer/PanelContainer/HBoxContainer/TargetHintsContainer/TargetHuntsButton" to="Combat" method="_on_target_hunts_button_pressed"]

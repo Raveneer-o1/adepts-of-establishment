@@ -160,8 +160,8 @@ func standart_mage_additional_targets(attacker: Unit, chosen_targets: Array[Unit
 	var all_units := attacker.party.other_party.get_units_custom(all_units_filter)
 	var result: Array[UnitSpot]
 	for u in all_units:
-		if not chosen_targets.has(u.get_parent()):
-			result.append(u.get_parent())
+		if u.get_parent():
+			result.append(u.spot)
 	return result
 
 
@@ -171,7 +171,7 @@ func standart_splash_additional_targets(attacker: Unit, chosen_targets: Array[Un
 	var result_units := attacker.party.other_party.get_adjacent_units(attacker.chosen_targets[0].party_position)
 	var result: Array[UnitSpot]
 	for unit in result_units:
-		result.append(unit.get_parent())
+		result.append(unit.spot)
 	return result
 
 

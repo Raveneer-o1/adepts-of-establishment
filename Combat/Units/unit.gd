@@ -19,12 +19,13 @@ extends Node2D
 
 
 @onready var animation_handle: UnitAnimationsHandle = get_node("AnimationHandle")
-@onready var external_highlight: AnimatedSprite2D = get_node("ExternalHighlight")
+@onready var spot: UnitSpot = get_parent()
 
 # Associated components and metadata
 var parameters: UnitParameters
 var party: Party
 var system: CombatSystem
+
 
 ## Position in the party. Even numbers represent fron line, odd numbers - back line.
 ## Position is also index of this unit in the [member Party.units]
@@ -34,9 +35,9 @@ var party_position: int
 var chosen_targets: Array[Unit]:
 	get:
 		var result: Array[Unit] = []
-		for spot in chosen_spots:
-			if spot.unit != null:
-				result.append(spot.unit)
+		for chosen_spot in chosen_spots:
+			if chosen_spot.unit != null:
+				result.append(chosen_spot.unit)
 		return result
 var chosen_spots: Array[UnitSpot] = []
 
@@ -57,15 +58,8 @@ var taking_damage_delays: Array[int] = []
 ## Indicates if unit is in a defense stance
 var defence_stance: bool = false
 
-## Highlights the unit externally.
-func highlight_externally() -> void:
-	external_highlight.visible = true
-
-
-## Hides external highlight.
-func reset_highlight() -> void:
-	external_highlight.visible = false
-
+## If [code]true[/code], unit doesn't leave corpse after death. The object is comletely deleted
+var summoned_unit: bool = false
 
 ## Clears chosen targets for the unit if it matches the provided unit.
 ## The argument here serves only to filter signal emits that could be triggered by other units
@@ -267,8 +261,18 @@ func try_waiting() -> bool:
 	system.display_text_near_unit(self, "Waiting...")
 	return true
 
+func visualize_death() -> void:
+	if summoned_unit:
+		queue_free()
+		return
+	
+	visible = false
+
 ## Processes the unit's death (animation pending).
 func die() -> void:
 	EventBus.unit_died.emit(self)
 	## TODO: Add death animation
-	animation_handle.pause()
+	animation_handle.play_death_animation()
+	
+	party.units[party_position] = null
+	spot.move_unit_to_graveyard()

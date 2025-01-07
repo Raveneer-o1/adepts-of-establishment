@@ -1,6 +1,15 @@
 extends Node2D
 class_name UnitSpot
 
+var active: bool:
+	get:
+		return process_mode == PROCESS_MODE_DISABLED
+	set(value):
+		if not value:
+			process_mode = PROCESS_MODE_DISABLED
+		else:
+			process_mode = PROCESS_MODE_INHERIT
+
 var _unit: Unit
 var unit: Unit:
 	get:
@@ -9,13 +18,33 @@ var unit: Unit:
 		return null
 	set(value):
 		_unit = value
-		#(get_child(0) as UnitArea).area_active = value != null
 
 var system: CombatSystem
 
 var party_position: int
 
 var party: Party
+
+
+@onready var external_highlight: AnimatedSprite2D = get_node("ExternalHighlight")
+@onready var area_2d: UnitArea = get_node("Area2D")
+
+@onready var corpse_container: Node = $Corpses
+
+func move_unit_to_graveyard() -> void:
+	remove_child(unit)
+	corpse_container.add_child(unit)
+	unit = null
+
+## Highlights the unit externally.
+func highlight_externally() -> void:
+	external_highlight.visible = true
+
+
+## Hides external highlight.
+func reset_highlight() -> void:
+	external_highlight.visible = false
+
 
 func add_unit(loaded_unit: Resource) -> void:
 	if unit != null:

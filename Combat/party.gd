@@ -43,6 +43,16 @@ func get_units_at_positions(positions: Array[int], include_nulls: bool = true) -
 	return result
 
 func get_adjacent_units(pos: int) -> Array[Unit]:
+	if pos < 0 or pos > MAX_UNITS_NUMBER:
+		return []
+	if units[pos] != null and units[pos].parameters.large_unit:
+		pos = units[pos].party_position
+		return get_units_at_positions([
+			pos + 3,
+			pos - 3,
+			pos + 2,
+			pos - 2,
+		], false)
 	return get_units_at_positions([
 		pos + 1,
 		pos - 1,
@@ -107,6 +117,8 @@ func place_units(list: Array[String]) -> void:
 			units[i + 1] = units[i]
 			units[i - 1] = units[i]
 			unit_spots[i].position = get_large_unit_position(i)
+			unit_spots[i - 1].active = false
+			unit_spots[i + 1].active = false
 
 ## Returns the coordinates tp place a large unit.
 func get_large_unit_position(pos: int) -> Vector2:
