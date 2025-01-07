@@ -149,7 +149,12 @@ func update_visuals() -> void:
 	visual_bar.max_value = max_hp
 	visual_bar.value = hp
 
+var initialized: bool = false
+
 func initialize_effects() -> void:
+	if initialized:
+		return
+	initialized = true
 	for child in get_children():
 		if child is AppliedEffect:
 			child.initialize()

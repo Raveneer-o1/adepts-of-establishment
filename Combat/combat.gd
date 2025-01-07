@@ -7,6 +7,7 @@ extends Node2D
 # Temporary label scene for displaying text near units
 const TEMP_LABEL = preload("res://Combat/TempLabel.tscn")
 const DISTANCE_TO_LABEL = 55.0
+const UNIT_SPOT = preload("res://Combat/unit_spot.tscn")
 
 # Configuration variables for parties
 @export var left_party_units: Array[String]
@@ -53,13 +54,16 @@ func check_finished_animation(unit: Unit) -> void:
 		finish_attack()
 
 ## Processes a click event on a unit
-func clicked_unit(unit: Unit) -> void:
-	var target_added = current_unit.give_target(unit)
+func clicked_unit(spot: UnitSpot) -> void:
+	var target_added = current_unit.give_target(spot)
 	if not target_added:
 		print("Unable to attack this target")
 		return
-	unit.highlight_externally()
-	highlighted_units.append(unit)
+	var unit := spot.unit
+	if unit != null:
+		unit.highlight_externally()
+		highlighted_units.append(unit)
+	
 
 ## Displays text near a unit
 func display_text_near_unit(unit: Unit, text: String) -> void:

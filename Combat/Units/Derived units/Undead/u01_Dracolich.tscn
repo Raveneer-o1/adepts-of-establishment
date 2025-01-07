@@ -137,6 +137,7 @@ animations = [{
 }]
 
 [node name="Unit" instance=ExtResource("1_uc5s6")]
+unit_name = "Dracolich"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_mwnha")
@@ -147,8 +148,6 @@ frames_to_emit = Array[int]([9])
 
 [node name="UnitParameters" parent="." index="1"]
 large_unit = true
-max_hp = 300
-base_damage = 85
 
 [node name="VisualBar" parent="UnitParameters" index="0"]
 offset_left = -31.0
@@ -156,11 +155,5 @@ offset_top = 17.0
 offset_right = 29.0
 offset_bottom = 24.0
 
-[node name="CollisionShape2D" parent="Area2D" index="0"]
-scale = Vector2(3, 1.5)
-
-[node name="HighlightAnimation" parent="Area2D" index="1"]
-scale = Vector2(1.5, 1.5)
-
-[node name="ExternalHighlight" parent="." index="3"]
+[node name="ExternalHighlight" parent="." index="2"]
 scale = Vector2(1.5, 1.5)

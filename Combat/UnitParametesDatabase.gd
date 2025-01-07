@@ -2,42 +2,47 @@
 # IMPORTANT NOTE:
 # When the game parses data from this file, it doesn't perform any verification.
 # So, invalid structure of data (namely, incompatible data types) here may cause crashes.
+#region Validation
 
-func standart_healer_validity(attacker: Unit, target: Unit) -> bool:
-	if attacker == null or target == null:
+func standart_healer_validity(attacker: Unit, target: UnitSpot) -> bool:
+	if attacker == null or target == null or target.unit == null:
 		return false
-	if target.parameters.dead:
+	if target.unit.parameters.dead:
 		return false
 	
 	# only attack if units are in the same party
-	if attacker.party.units.has(target):
+	if attacker.party.units.has(target.unit):
 		return true
 	return false
 
 
-func standart_archer_validity(attacker: Unit, target: Unit) -> bool:
-	if attacker == null or target == null:
+func standart_archer_validity(attacker: Unit, target: UnitSpot) -> bool:
+	if attacker == null or target == null or target.unit == null:
 		return false
-	if target.parameters.dead:
+	if target.unit.parameters.dead:
 		return false
 		
 	# if units are in the same party, we don't attack
-	if attacker.party.units.has(target):
+	if attacker.party.units.has(target.unit):
 		return false
 	return true
 
 
-func standart_melee_validity(attacker: Unit, target: Unit) -> bool:
-	if attacker == null or target == null:
+func standart_melee_validity(attacker: Unit, target_spot: UnitSpot) -> bool:
+	if attacker == null or target_spot == null or target_spot.unit == null:
 		return false
-	if target.parameters.dead:
+	if target_spot.unit.parameters.dead:
 		return false
 		
 	# if units are in the same party, we don't attack
-	if attacker.party.units.has(target):
+	if attacker.party.units.has(target_spot.unit):
 		return false
 	
-	var pos := attacker.party_position
+	var target := target_spot.unit
+	# TODO: make another algothithm for large units
+	var pos := attacker.party_position if \
+			not attacker.parameters.large_unit else \
+			attacker.party_position + 1
 	var targets : Array[Unit]
 	# step of 2 indicates adjacent units *see Party class documentation*
 	var step: int = 2
@@ -122,7 +127,8 @@ func standart_melee_validity(attacker: Unit, target: Unit) -> bool:
 	return false
 
 
-func standart_mage_validity(attacker: Unit, target: Unit) -> bool:
+func standart_mage_validity(attacker: Unit, target_spot: UnitSpot) -> bool:
+	var target := target_spot.unit
 	if attacker == null or target == null:
 		return false
 	if target.parameters.dead:
@@ -134,34 +140,51 @@ func standart_mage_validity(attacker: Unit, target: Unit) -> bool:
 	
 	return not attacker.chosen_targets.has(target)
 
+func standart_summoner_validity(attacker: Unit, target_spot: UnitSpot) -> bool:
+	if attacker == null:
+		return false
+	if target_spot.unit != null:
+		return false
+	if target_spot.party != attacker.party:
+		return false
+	
+	return true
 
-func standart_mage_additional_targets(attacker: Unit, chosen_targets: Array[Unit]) -> Array[Unit]:
+#endregion
+
+#region Additional targets
+
+func standart_mage_additional_targets(attacker: Unit, chosen_targets: Array[UnitSpot]) -> Array[UnitSpot]:
 	#if chosen_targets.is_empty():
 		#return []
 	var all_units := attacker.party.other_party.get_units_custom(all_units_filter)
-	var result: Array[Unit]
+	var result: Array[UnitSpot]
 	for u in all_units:
-		if not chosen_targets.has(u):
-			result.append(u)
+		if not chosen_targets.has(u.get_parent()):
+			result.append(u.get_parent())
 	return result
 
 
-func standart_splash_additional_targets(attacker: Unit, chosen_targets: Array[Unit]) -> Array[Unit]:
+func standart_splash_additional_targets(attacker: Unit, chosen_targets: Array[UnitSpot]) -> Array[UnitSpot]:
 	if chosen_targets.is_empty():
 		return []
-	var result := attacker.party.other_party.get_adjacent_units(attacker.chosen_targets[0].party_position)
-	#print(result)
+	var result_units := attacker.party.other_party.get_adjacent_units(attacker.chosen_targets[0].party_position)
+	var result: Array[UnitSpot]
+	for unit in result_units:
+		result.append(unit.get_parent())
 	return result
 
 
-func standart_mass_healer_additional_targets(attacker: Unit, chosen_targets: Array[Unit]) -> Array[Unit]:
+func standart_mass_healer_additional_targets(attacker: Unit, chosen_targets: Array[UnitSpot]) -> Array[UnitSpot]:
 	var all_units := attacker.party.get_units_custom(all_units_filter)
-	var result: Array[Unit]
+	var result: Array[UnitSpot]
 	for u in all_units:
-		if not chosen_targets.has(u):
-			result.append(u)
+		if not chosen_targets.has(u.get_parent()):
+			result.append(u.get_parent())
 	return result
+#endregion
 
+#region Policies
 
 func standart_decay_policy(attack: Attack, index: int, finalize: bool) -> void:
 	if attack.targets.is_empty():
@@ -196,6 +219,30 @@ func standart_immediate_resolution_policy(attack: Attack, index: int, finalize: 
 	if index < 0 or index >= attack.targets.size():
 		return
 	attack.targets[index].resolve_attack(attack, finalize)
+
+
+func elemantalist_policy(attack: Attack, index: int, finalize: bool) -> void:
+	if attack.target_spots.is_empty():
+		return
+	if index < 0 or index >= attack.target_spots.size():
+		return
+	var spot := attack.target_spots[index]
+	if spot == null:
+		return
+	var attacker := attack.attacker
+	if spot.party == attack.attacker.party:
+		if attacker.parameters.other_effects.is_empty():
+			print_debug("No Elemental prefab found!")
+			return
+		spot.add_unit(attacker.parameters.other_effects[0])
+		return
+	
+	if spot.unit == null:
+		return
+	
+	spot.unit.resolve_attack(attack, index, finalize)
+
+#endregion
 
 
 var DATABASE := {
@@ -505,8 +552,11 @@ var DATABASE := {
 				Accuracy = 0.9,
 				TargetsNeeded = 1,
 				Initiative = 60,
-				Validation = standart_archer_validity,
-				FindAdditionalTargets = standart_mage_additional_targets,
+				Validation = func (attacker: Unit, target_spot: UnitSpot):
+					return standart_mage_validity(attacker, target_spot) or \
+							standart_summoner_validity(attacker, target_spot),
+				#FindAdditionalTargets = standart_mage_additional_targets,
+				DamagePolicy = elemantalist_policy,
 			},
 		],
 	},
@@ -542,7 +592,11 @@ var DATABASE := {
 				Accuracy = 0.85,
 				TargetsNeeded = 2,
 				Initiative = 60,
-				Validation = standart_mage_validity,
+				Validation = func (attacker: Unit, target_spot: UnitSpot):
+					return standart_mage_validity(attacker, target_spot) or \
+							standart_summoner_validity(attacker, target_spot),
+				#FindAdditionalTargets = standart_mage_additional_targets,
+				DamagePolicy = elemantalist_policy,
 			},
 		]
 	},
@@ -844,6 +898,45 @@ var DATABASE := {
 				TargetsNeeded = 1,
 				Initiative = 20,
 				Validation = standart_healer_validity,
+			},
+		]
+	},
+	
+	"Elemental" = {
+		Level = 1,
+		Damage = 50,
+		HP = 100,
+		Armor = 0,
+		Immunities = [
+			EventBus.AttackType.Elemental
+		],
+		Attacks = [
+			{
+				DamageMultiplier = 1.0,
+				DamageOverride = false,
+				Type = EventBus.AttackType.Elemental,
+				Accuracy = 1.0,
+				TargetsNeeded = 1,
+				Initiative = 60,
+				Validation = standart_archer_validity,
+			},
+		]
+	},
+	
+	"Dracolich" = {
+		Level = 5,
+		Damage = 100,
+		HP = 500,
+		Armor = 10,
+		Attacks = [
+			{
+				DamageMultiplier = 1.0,
+				DamageOverride = false,
+				Type = EventBus.AttackType.Physical,
+				Accuracy = 1.0,
+				TargetsNeeded = 1,
+				Initiative = 60,
+				Validation = standart_melee_validity,
 			},
 		]
 	},

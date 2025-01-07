@@ -31,7 +31,14 @@ var system: CombatSystem
 var party_position: int
 
 # List of chosen targets for the unit.
-var chosen_targets: Array[Unit] = []
+var chosen_targets: Array[Unit]:
+	get:
+		var result: Array[Unit] = []
+		for spot in chosen_spots:
+			if spot.unit != null:
+				result.append(spot.unit)
+		return result
+var chosen_spots: Array[UnitSpot] = []
 
 ## Attack that will be performed next
 var current_attack: UnitAttack
@@ -65,6 +72,7 @@ func reset_highlight() -> void:
 func reset_chosen_targets(_unit: Unit) -> void:
 	if _unit == self:
 		chosen_targets = []
+		chosen_spots.clear()
 
 
 ## Sets attacks_for_this_round to its default value. Primarily used at the start of a new round.
@@ -160,19 +168,20 @@ func take_damage(dmg: int, message: String = "") -> void:
 	system.display_text_near_unit(self, message + "-" + str(damage_taken))
 
 
+
 ## Attempts to register a target for attack. Returns success or failure.
-func give_target(unit: Unit) -> bool:
+func give_target(spot: UnitSpot) -> bool:
 	if current_attack == null:
 		set_next_attack()
 		if current_attack == null:
 			return false
-	if chosen_targets.size() >= current_attack.targets_needed:
+	if chosen_spots.size() >= current_attack.targets_needed:
 		return false
-	var is_target_valid: bool = current_attack.target_validation.call(self, unit)
+	var is_target_valid: bool = current_attack.target_validation.call(self, spot)
 	if not is_target_valid:
 		return false
-	chosen_targets.append(unit)
-	if chosen_targets.size() == current_attack.targets_needed:
+	chosen_spots.append(spot)
+	if chosen_spots.size() == current_attack.targets_needed:
 		start_attacking()
 	return true
 
@@ -201,7 +210,7 @@ func start_attacking() -> void:
 	var dmg: int = current_attack.damage_multiplier if current_attack.damage_override else \
 			current_attack.damage_multiplier * parameters.base_damage
 	
-	var targets := chosen_targets.duplicate()
+	var targets := chosen_spots.duplicate()
 	if current_attack.find_additional_targets:
 		targets = targets + current_attack.find_additional_targets.call(self, targets)
 	#print_debug(targets.size())
@@ -219,7 +228,7 @@ func start_attacking() -> void:
 ## Initializes unit variables and connects signals.
 func initialize_variables() -> void:
 	parameters = get_node("UnitParameters")
-	party = get_parent() as Party
+	party = get_parent().get_parent() as Party
 	system = party.main_system
 	if party == null:
 		print_debug("Unable to find Party node!")
@@ -230,9 +239,9 @@ func initialize_variables() -> void:
 	EventBus.attack_animation_finished.connect(finalize_all_attacks)
 
 
-## Handles the unit being clicked on.
-func click() -> void:
-	system.clicked_unit(self)
+# Handles the unit being clicked on.
+#func click() -> void:
+	#system.clicked_unit(self)
 
 func now_attacking() -> bool:
 	if not chosen_targets.is_empty():

@@ -26,6 +26,8 @@ var main_system: CombatSystem
 ## NOTE: this should be a read-only member, however it's planned to have an option to move units during combat. For this reason this array stays modifiable
 var units: Array[Unit] = []
 
+var unit_spots: Array[UnitSpot] = []
+
 ## Returns references to units at specified positions.
 ## - Empty spaces and dead units are skipped.
 ## - Out-of-bounds positions return null.
@@ -66,9 +68,19 @@ func get_units_custom(filter_func: Callable) -> Array[Unit]:
 
 ## Places units based on a list of unit names.
 func place_units(list: Array[String]) -> void:
+	unit_spots.clear()
+	for i in range(MAX_UNITS_NUMBER):
+		unit_spots.append(main_system.UNIT_SPOT.instantiate())
+		add_child(unit_spots[i])
+		unit_spots[i].position = get_unit_position(i)
+		unit_spots[i].system = main_system
+		unit_spots[i].party_position = i
+		unit_spots[i].party = self
+	
 	if list.size() > MAX_UNITS_NUMBER:
 		print_debug("Unit list exceeds the maximum allowed number of units!")
 		return
+	
 	var i := -1
 	for s in list:
 		i += 1
@@ -81,10 +93,11 @@ func place_units(list: Array[String]) -> void:
 		if units[i] != null:
 			print_debug("Position " + str(i) + " is already occupied!")
 			continue
-		units[i] = loaded_unit.instantiate()
-		add_child(units[i])
-		units[i].initialize_variables()
-		units[i].party_position = i
+		unit_spots[i].add_unit(loaded_unit)
+		if units[i] == null:
+			print_debug("Unit is not registered!")
+			continue
+		#units[i].party_position = i
 		if units[i].parameters.large_unit:
 			if i == 0 or i == MAX_UNITS_NUMBER - 1 or units[i - 1] != null:
 				print_debug("Not enough space for large unit at position " + str(i) + "!")
@@ -93,9 +106,7 @@ func place_units(list: Array[String]) -> void:
 				continue
 			units[i + 1] = units[i]
 			units[i - 1] = units[i]
-			units[i].position = get_large_unit_position(i)
-		else:
-			units[i].position = get_unit_position(i)
+			unit_spots[i].position = get_large_unit_position(i)
 
 ## Returns the coordinates tp place a large unit.
 func get_large_unit_position(pos: int) -> Vector2:

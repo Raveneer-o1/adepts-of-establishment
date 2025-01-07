@@ -16,7 +16,7 @@ var accuracy: float
 var targets_needed: int
 ## Determines the order of attacks
 var initiative: int
-## Function with signature [codeblock](attacker: Unit, target: Unit) -> bool[/codeblock]
+## Function with signature [codeblock](attacker: Unit, target: UnitSpot) -> bool[/codeblock]
 ## Returns whether [code]target[/code] is a valid targert for the attack
 var target_validation : Callable
 

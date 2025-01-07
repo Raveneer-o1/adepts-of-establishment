@@ -5,7 +5,18 @@ var damage: int
 var accuracy: float
 var type: EventBus.AttackType
 var attacker: Unit
-var targets: Array[Unit]
+var target_spots: Array[UnitSpot]
+var targets: Array[Unit]:
+	set(value):
+		for unit in value:
+			if unit != null:
+				target_spots.append(unit.get_parent())
+	get:
+		var result : Array[Unit] = []
+		for spot in target_spots:
+			if spot.unit != null:
+				result.append(spot.unit)
+		return result
 var effect: Resource
 
 var applying_effects: Dictionary
@@ -18,7 +29,7 @@ var damage_policy: Callable
 func resolve(finalize: bool = false) -> void:
 	# if standart attack resolution if overridden
 	if damage_policy:
-		for i in range(targets.size()):
+		for i in range(target_spots.size()):
 			damage_policy.call(self.duplicate(), i, finalize)
 		return
 	
@@ -33,7 +44,7 @@ func resolve(finalize: bool = false) -> void:
 func duplicate() -> Attack:
 	var result := Attack.new(
 		attacker,
-		targets,
+		target_spots,
 		damage,
 		type,
 		accuracy,
@@ -43,12 +54,12 @@ func duplicate() -> Attack:
 		result.damage_policy = damage_policy
 	return result
 
-func _init(_attacker: Unit, _targets: Array[Unit],
+func _init(_attacker: Unit, _spots: Array[UnitSpot],
 		dmg: int, ty: EventBus.AttackType,
 		_accuracy: float, eff: Resource = null) -> void:
 	type = ty
 	attacker = _attacker
-	targets = _targets
+	target_spots = _spots
 	damage = dmg
 	accuracy = _accuracy
 	effect = eff
