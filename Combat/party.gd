@@ -14,7 +14,7 @@ extends Node2D
 # To scale the battle size, adjust these constants as necessary.
 const MAX_UNITS_NUMBER = 7
 const X_START_POSITION = 50.0
-const Y_START_POSITION = 50.0
+const Y_START_POSITION = 30.0
 const X_OFFSET = 40.0
 const Y_OFFSET = 25.0
 
@@ -23,7 +23,8 @@ var other_party: Party
 var main_system: CombatSystem
 
 ## Stores all units[br]
-## NOTE: this should be a read-only member, however it's planned to have an option to move units during combat. For this reason this array stays modifiable
+## NOTE: this should be a read-only member, however it's planned to have an option
+## to move units during combat. For this reason this array stays modifiable
 var units: Array[Unit] = []
 
 var unit_spots: Array[UnitSpot] = []

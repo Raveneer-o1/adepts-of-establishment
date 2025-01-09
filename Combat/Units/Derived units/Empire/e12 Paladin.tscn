@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_v252y"]
 [ext_resource type="Texture2D" uid="uid://dpdy65vv3ckb6" path="res://Arts/Empire units/Defender of Faith attack .png" id="2_m0rao"]
 [ext_resource type="Texture2D" uid="uid://bmex6wa78gk6k" path="res://Arts/Empire units/Defender of Faith idle .png" id="3_v31eh"]
-[ext_resource type="PackedScene" uid="uid://chpw2oyl5kpky" path="res://Combat/Effects/AppliedEffects/armor_buff_aura.tscn" id="4_sgewg"]
+[ext_resource type="PackedScene" uid="uid://chpw2oyl5kpky" path="res://Combat/Effects/AppliedEffects/Scenes/armor_buff_aura.tscn" id="4_sgewg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xphl8"]
 atlas = ExtResource("2_m0rao")

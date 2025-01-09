@@ -41,7 +41,7 @@ var current_unit: Unit:
 			active_unit_marker.position = value.global_position
 			active_unit_marker.visible = true
 
-var show_hitns_mode: int = SHOW_HINTS_NEVER
+var show_hitns_mode: int = SHOW_HINTS_ON_HOVER
 
 # References to child nodes for managing parties and combat logic
 @onready var left_party: Party = get_node("LeftParty")
@@ -80,10 +80,10 @@ func remove_hints() -> void:
 	for hint in displayed_hints:
 		hint.queue_free()
 	displayed_hints.clear()
-	for unit in left_party.units + right_party.units:
-		if unit == null or unit.parameters.dead:
+	for spot in left_party.unit_spots + right_party.unit_spots:
+		if spot == null:
 			continue
-		unit.spot.get_node("Area2D/HighlightAnimation").modulate = Color.WHITE
+		spot.get_node("Area2D/HighlightAnimation").modulate = Color.WHITE
 
 func display_hints() -> void:
 	remove_hints()
@@ -98,13 +98,13 @@ func display_hints() -> void:
 					unit.add_child(marker)
 					marker.modulate = Color.FOREST_GREEN
 		SHOW_HINTS_ON_HOVER:
-			for unit in left_party.units + right_party.units:
-				if unit == null or unit.parameters.dead:
+			for spot in left_party.unit_spots + right_party.unit_spots:
+				if spot == null or spot.unit == null or spot.unit.parameters.dead:
 					continue
 				var color: Color = Color.FIREBRICK
-				if combat_logic.current_attack.target_validation.call(current_unit, unit.spot):
+				if combat_logic.current_attack.target_validation.call(current_unit, spot):
 					color = Color.FOREST_GREEN
-				unit.spot.area_2d.get_node("HighlightAnimation").modulate = color
+				spot.area_2d.get_node("HighlightAnimation").modulate = color
 
 ## Displays text near a unit
 func display_text_near_unit(unit: Unit, text: String) -> void:
@@ -176,3 +176,7 @@ func _on_target_hunts_button_pressed() -> void:
 			new_text = "Auto"
 	$"../UI/ParentContainer/PanelContainer/HBoxContainer/TargetHintsContainer/TargetHuntsButton".text = new_text
 	display_hints()
+
+
+func _on_button_start_attack_pressed() -> void:
+	current_unit.start_attacking()

@@ -52,6 +52,8 @@ func duplicate() -> Attack:
 	)
 	if damage_policy:
 		result.damage_policy = damage_policy
+	if applying_effects:
+		result.applying_effects = applying_effects
 	return result
 
 func _init(_attacker: Unit, _spots: Array[UnitSpot],

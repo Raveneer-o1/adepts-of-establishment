@@ -230,12 +230,15 @@ func set_parameters() -> void:
 				new_attack.damage_policy = attack["DamagePolicy"]
 				#print(parent_unit.unit_name)
 			if attack.has("Effects"):
+				#print(parent_unit.unit_name)
 				new_attack.applying_effects = (attack["Effects"] as Dictionary)
 			
 			attacks.append(new_attack)
 
 func apply_effect(effect_name: String, params: Variant):
-	var res : Resource = load("res://Combat/Effects/AppliedEffects/%s.tscn" % effect_name)
+	var res : Resource = load("res://Combat/Effects/AppliedEffects/Scenes/%s.tscn" % effect_name)
+	if not res:
+		print_debug(effect_name + " not found as an effect!")
 	var child = res.instantiate()
 	add_child(child)
 	(child as AppliedEffect).initialize(params)

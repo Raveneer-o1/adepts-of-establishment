@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dah7kx0e221uc"]
 
 [ext_resource type="PackedScene" uid="uid://8d3sodh68huv" path="res://Combat/Effects/AppliedEffects/applied_effect.tscn" id="1_s83w6"]
-[ext_resource type="Script" path="res://Combat/Effects/AppliedEffects/poison.gd" id="2_n80ca"]
+[ext_resource type="Script" path="res://Combat/Effects/AppliedEffects/Scripts/poison.gd" id="2_n80ca"]
 
 [node name="Poison" instance=ExtResource("1_s83w6")]
 script = ExtResource("2_n80ca")

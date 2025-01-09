@@ -1,7 +1,4 @@
 
-# IMPORTANT NOTE:
-# When the game parses data from this file, it doesn't perform any verification.
-# So, invalid structure of data (namely, incompatible data types) here may cause crashes.
 #region Validation
 
 func standart_healer_validity(attacker: Unit, target: UnitSpot) -> bool:
@@ -245,6 +242,24 @@ func elemantalist_policy(attack: Attack, index: int, finalize: bool) -> void:
 #endregion
 
 
+# IMPORTANT NOTE:
+# The game does not validate the data structure or types when parsing this file. 
+# Any invalid structure (e.g., incompatible data types) may lead to crashes.
+
+# If a value is missing for a particular field, the game assigns a default value.
+# The exact default values are currently unspecified (see UnitParameters.set_parameters).
+
+# For attack effects, the expected structure is a Dictionary, where each pair is:
+# <name, params> (<String, Variant>).
+# - "name" specifies the name of the effect's scene.
+# - "params" provides any additional parameters required by the effect.
+# The exact type and structure of "params" are determined by the respective effect classes.
+
+# NOTE: This applies only to effects inflicted by attacks on enemy units.
+# To define effects that passively affect the attacking unit (e.g., abilities or passive traits), 
+# add the relevant nodes directly to the unit's scene. Alternatively, use 
+# UnitParameters.apply_effect(), but avoid this method for permanent statuses.
+
 var DATABASE := {
 	"EXAMPLE" = {
 		Level = 999, # int
@@ -272,7 +287,7 @@ var DATABASE := {
 	},
 	"Squire" = {
 		Level = 1, # int
-		Damage = 25, # int
+		Damage = 30, # int
 		HP = 100, # int
 		Armor = 0, # int
 		Attacks = [ # Array[Dictionary]
@@ -289,15 +304,15 @@ var DATABASE := {
 	},
 	"Witch hunter" = {
 		Level = 2,
-		Damage = 50,
+		Damage = 30,
 		HP = 150,
-		Armor = 0,
+		Armor = 10,
 		Attacks = [
 			{
-				DamageMultiplier = 1.0,
+				DamageMultiplier = 1.33,
 				DamageOverride = false,
 				Type = EventBus.AttackType.Physical,
-				Accuracy = 0.85,
+				Accuracy = 0.82,
 				TargetsNeeded = 1,
 				Initiative = 45,
 				Validation = standart_melee_validity,
@@ -308,7 +323,7 @@ var DATABASE := {
 		Level = 2,
 		Damage = 50,
 		HP = 150,
-		Armor = 10,
+		Armor = 15,
 		Attacks = [
 			{
 				DamageMultiplier = 1.0,
@@ -323,32 +338,32 @@ var DATABASE := {
 	},
 	"Samurai" = {
 		Level = 3,
-		Damage = 45,
-		HP = 175,
-		Armor = 5,
+		Damage = 35,
+		HP = 185,
+		Armor = 20,
 		Attacks = [
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
 				Type = EventBus.AttackType.Physical,
-				Accuracy = 0.85,
+				Accuracy = 0.875,
 				TargetsNeeded = 2,
-				Initiative = 55,
+				Initiative = 45,
 				Validation = standart_melee_validity,
 			},
 		]
 	},
 	"Inquisitor" = {
 		Level = 3,
-		Damage = 75,
-		HP = 180,
-		Armor = 0,
+		Damage = 40,
+		HP = 190,
+		Armor = 25,
 		Attacks = [
 			{
-				DamageMultiplier = 1.0,
+				DamageMultiplier = 1.5,
 				DamageOverride = false,
 				Type = EventBus.AttackType.None,
-				Accuracy = 0.8,
+				Accuracy = 0.85,
 				TargetsNeeded = 1,
 				Initiative = 40,
 				Validation = standart_melee_validity,
@@ -357,15 +372,15 @@ var DATABASE := {
 	},
 	"Knight Master" = {
 		Level = 3,
-		Damage = 75,
-		HP = 190,
-		Armor = 15,
+		Damage = 70,
+		HP = 200,
+		Armor = 30,
 		Attacks = [
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
 				Type = EventBus.AttackType.Physical,
-				Accuracy = 0.8,
+				Accuracy = 0.85,
 				TargetsNeeded = 1,
 				Initiative = 40,
 				Validation = standart_melee_validity,
@@ -374,15 +389,15 @@ var DATABASE := {
 	},
 	"Horseman" = {
 		Level = 3,
-		Damage = 65,
+		Damage = 40,
 		HP = 200,
-		Armor = 10,
+		Armor = 20,
 		Attacks = [
 			{
 				DamageMultiplier = 0.6,
 				DamageOverride = false,
 				Type = EventBus.AttackType.Physical,
-				Accuracy = 0.8,
+				Accuracy = 0.9,
 				TargetsNeeded = 1,
 				Initiative = 70,
 				Validation = standart_melee_validity,
@@ -391,7 +406,7 @@ var DATABASE := {
 				DamageMultiplier = 0.9,
 				DamageOverride = false,
 				Type = EventBus.AttackType.Physical,
-				Accuracy = 0.8,
+				Accuracy = 0.85,
 				TargetsNeeded = 1,
 				Initiative = 40,
 				Validation = standart_melee_validity,
@@ -400,15 +415,15 @@ var DATABASE := {
 	},
 	"Blade Saint" = {
 		Level = 4,
-		Damage = 100,
-		HP = 200,
+		Damage = 35,
+		HP = 220,
 		Armor = 0,
 		Attacks = [
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
 				Type = EventBus.AttackType.Physical,
-				Accuracy = 0.85,
+				Accuracy = 0.9,
 				TargetsNeeded = 2,
 				Initiative = 40,
 				Validation = standart_melee_validity,
@@ -417,9 +432,9 @@ var DATABASE := {
 	},
 	"Grand Inquisitor" = {
 		Level = 4,
-		Damage = 100,
-		HP = 220,
-		Armor = 5,
+		Damage = 80,
+		HP = 225,
+		Armor = 40,
 		Attacks = [
 			{
 				DamageMultiplier = 1.0,
@@ -427,24 +442,25 @@ var DATABASE := {
 				Type = EventBus.AttackType.None,
 				Accuracy = 0.8,
 				TargetsNeeded = 1,
-				Initiative = 40,
+				Initiative = 140,
 				Validation = standart_melee_validity,
 				FindAdditionalTargets = standart_splash_additional_targets,
 				DamagePolicy = standart_immediate_decay_policy,
+				Effects = {"stun" = [0.3, 1]}
 			},
 		]
 	},
 	"Angel Knight" = {
 		Level = 4,
-		Damage = 100,
-		HP = 250,
-		Armor = 20,
+		Damage = 90,
+		HP = 230,
+		Armor = 50,
 		Attacks = [
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
 				Type = EventBus.AttackType.Physical,
-				Accuracy = 0.8,
+				Accuracy = 0.85,
 				TargetsNeeded = 1,
 				Initiative = 40,
 				Validation = standart_melee_validity,
@@ -453,15 +469,15 @@ var DATABASE := {
 	},
 	"Royal Cavalier" = {
 		Level = 4,
-		Damage = 90,
-		HP = 200,
-		Armor = 30,
+		Damage = 55,
+		HP = 230,
+		Armor = 40,
 		Attacks = [
 			{
 				DamageMultiplier = 0.6,
 				DamageOverride = false,
 				Type = EventBus.AttackType.Physical,
-				Accuracy = 0.8,
+				Accuracy = 0.9,
 				TargetsNeeded = 1,
 				Initiative = 70,
 				Validation = standart_melee_validity,
@@ -470,7 +486,7 @@ var DATABASE := {
 				DamageMultiplier = 0.9,
 				DamageOverride = false,
 				Type = EventBus.AttackType.Physical,
-				Accuracy = 0.8,
+				Accuracy = 0.85,
 				TargetsNeeded = 1,
 				Initiative = 45,
 				Validation = standart_melee_validity,
@@ -479,15 +495,15 @@ var DATABASE := {
 	},
 	"Paladin" = {
 		Level = 5,
-		Damage = 100,
-		HP = 220,
-		Armor = 30,
+		Damage = 65,
+		HP = 250,
+		Armor = 55,
 		Attacks = [
 			{
 				DamageMultiplier = 0.6,
 				DamageOverride = false,
 				Type = EventBus.AttackType.Physical,
-				Accuracy = 0.8,
+				Accuracy = 0.9,
 				TargetsNeeded = 1,
 				Initiative = 70,
 				Validation = standart_melee_validity,
@@ -496,7 +512,7 @@ var DATABASE := {
 				DamageMultiplier = 0.9,
 				DamageOverride = false,
 				Type = EventBus.AttackType.Physical,
-				Accuracy = 0.8,
+				Accuracy = 0.86,
 				TargetsNeeded = 1,
 				Initiative = 45,
 				Validation = standart_melee_validity,
@@ -505,15 +521,15 @@ var DATABASE := {
 	},
 	"Angel" = {
 		Level = 5,
-		Damage = 120,
+		Damage = 110,
 		HP = 250,
-		Armor = 10,
+		Armor = 30,
 		Attacks = [
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
 				Type = EventBus.AttackType.Elemental,
-				Accuracy = 1.0,
+				Accuracy = 0.9,
 				TargetsNeeded = 1,
 				Initiative = 30,
 				Validation = standart_melee_validity,
@@ -522,7 +538,7 @@ var DATABASE := {
 	},
 	"Apprentice" = {
 		Level = 1,
-		Damage = 25,
+		Damage = 22,
 		HP = 60,
 		Armor = 0,
 		Attacks = [
@@ -541,15 +557,15 @@ var DATABASE := {
 	},
 	"Elementalist" = {
 		Level = 2,
-		Damage = 45,
+		Damage = 50,
 		HP = 110,
-		Armor = 0,
+		Armor = 5,
 		Attacks = [
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
 				Type = EventBus.AttackType.Elemental,
-				Accuracy = 0.9,
+				Accuracy = 0.8,
 				TargetsNeeded = 1,
 				Initiative = 60,
 				Validation = func (attacker: Unit, target_spot: UnitSpot):
@@ -564,7 +580,7 @@ var DATABASE := {
 		Level = 2,
 		Damage = 40,
 		HP = 120,
-		Armor = 0,
+		Armor = 10,
 		Attacks = [
 			{
 				DamageMultiplier = 1.0,
@@ -583,7 +599,7 @@ var DATABASE := {
 		Level = 3,
 		Damage = 80,
 		HP = 150,
-		Armor = 5,
+		Armor = 10,
 		Attacks = [
 			{
 				DamageMultiplier = 1.0,
@@ -604,13 +620,13 @@ var DATABASE := {
 		Level = 3,
 		Damage = 70,
 		HP = 170,
-		Armor = 0,
+		Armor = 10,
 		Attacks = [
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
 				Type = EventBus.AttackType.Elemental,
-				Accuracy = 0.8,
+				Accuracy = 0.81,
 				TargetsNeeded = 1,
 				Initiative = 40,
 				Validation = standart_mage_validity,
@@ -622,13 +638,13 @@ var DATABASE := {
 		Level = 4,
 		Damage = 80,
 		HP = 190,
-		Armor = 0,
+		Armor = 15,
 		Attacks = [
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
 				Type = EventBus.AttackType.Elemental,
-				Accuracy = 0.85,
+				Accuracy = 0.82,
 				TargetsNeeded = 1,
 				Initiative = 40,
 				Validation = standart_mage_validity,
@@ -639,9 +655,9 @@ var DATABASE := {
 	},
 	"Keeper of Knowledge" = {
 		Level = 5,
-		Damage = 95,
+		Damage = 60,
 		HP = 210,
-		Armor = 0,
+		Armor = 15,
 		Attacks = [
 			{
 				DamageMultiplier = 1.0,
@@ -659,17 +675,18 @@ var DATABASE := {
 		Level = 5,
 		Damage = 90,
 		HP = 220,
-		Armor = 15,
+		Armor = 30,
 		Attacks = [
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
 				Type = EventBus.AttackType.Elemental,
-				Accuracy = 0.95,
+				Accuracy = 0.84,
 				TargetsNeeded = 1,
 				Initiative = 30,
 				Validation = standart_mage_validity,
 				FindAdditionalTargets = standart_mage_additional_targets,
+				DamagePolicy = standart_decay_policy,
 			},
 		],
 	},
@@ -694,7 +711,7 @@ var DATABASE := {
 		Level = 2,
 		Damage = 40,
 		HP = 90,
-		Armor = 0,
+		Armor = 5,
 		Attacks = [
 			{
 				DamageMultiplier = 1.0,
@@ -714,7 +731,7 @@ var DATABASE := {
 		Armor = 0,
 		Attacks = [
 			{
-				DamageMultiplier = 1.0,
+				DamageMultiplier = 0.5,
 				DamageOverride = false,
 				Type = EventBus.AttackType.Physical,
 				Accuracy = 0.8,
@@ -722,11 +739,20 @@ var DATABASE := {
 				Initiative = 60,
 				Validation = standart_archer_validity,
 			},
+			{
+				DamageMultiplier = 0.5,
+				DamageOverride = false,
+				Type = EventBus.AttackType.Physical,
+				Accuracy = 0.8,
+				TargetsNeeded = 1,
+				Initiative = 40,
+				Validation = standart_archer_validity,
+			},
 		]
 	},
 	"Assassin" = {
 		Level = 3,
-		Damage = 35,
+		Damage = 15,
 		HP = 150,
 		Armor = 0,
 		Attacks = [
@@ -764,7 +790,7 @@ var DATABASE := {
 	},
 	"Imperial Ranger" = {
 		Level = 4,
-		Damage = 90,
+		Damage = 60,
 		HP = 200,
 		Armor = 0,
 		Attacks = [
@@ -772,9 +798,18 @@ var DATABASE := {
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
 				Type = EventBus.AttackType.Physical,
-				Accuracy = 0.9,
+				Accuracy = 0.8,
 				TargetsNeeded = 1,
 				Initiative = 60,
+				Validation = standart_archer_validity,
+			},
+			{
+				DamageMultiplier = 1.0,
+				DamageOverride = false,
+				Type = EventBus.AttackType.Physical,
+				Accuracy = 0.9,
+				TargetsNeeded = 1,
+				Initiative = 40,
 				Validation = standart_archer_validity,
 			},
 		]
@@ -925,9 +960,9 @@ var DATABASE := {
 	
 	"Dracolich" = {
 		Level = 5,
-		Damage = 100,
+		Damage = 110,
 		HP = 500,
-		Armor = 10,
+		Armor = 50,
 		Attacks = [
 			{
 				DamageMultiplier = 1.0,

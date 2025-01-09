@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_pd60s"]
 [ext_resource type="Texture2D" uid="uid://bpxj1cae61n23" path="res://Arts/Empire units/Grand inquisitor idle  (1).png" id="2_rp3ci"]
 [ext_resource type="Texture2D" uid="uid://iweqr66amh3y" path="res://Arts/Empire units/Grand inquisitor attack.png" id="2_s1fcq"]
-[ext_resource type="PackedScene" uid="uid://cjtnm7lly4yca" path="res://Combat/Effects/AppliedEffects/HP_buff_aura.tscn" id="4_b4oav"]
+[ext_resource type="PackedScene" uid="uid://cjtnm7lly4yca" path="res://Combat/Effects/AppliedEffects/Scenes/HP_buff_aura.tscn" id="4_b4oav"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gbmv1"]
 atlas = ExtResource("2_s1fcq")

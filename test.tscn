@@ -8,7 +8,7 @@
 [node name="Node2D" type="Node"]
 
 [node name="Combat" parent="." instance=ExtResource("1_7nbev")]
-left_party_units = Array[String](["res://Combat/Units/Derived units/Empire/e08 Blade Saint.tscn", "res://Combat/Units/Derived units/Empire/e33 Hierophant.tscn", "res://Combat/Units/Derived units/Empire/e09 Grand Inquisitor.tscn", "res://Combat/Units/Derived units/Empire/e26 Imperial Ranger.tscn", "res://Combat/Units/Derived units/Empire/e05 Inquisitor.tscn", "res://Combat/Units/Derived units/Empire/e17 Ritualist.tscn", "res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn"])
+left_party_units = Array[String](["res://Combat/Units/Derived units/Empire/e08 Blade Saint.tscn", "res://Combat/Units/Derived units/Empire/e33 Hierophant.tscn", "res://Combat/Units/Derived units/Empire/e09 Grand Inquisitor.tscn", "res://Combat/Units/Derived units/Empire/e25 Assassin.tscn", "res://Combat/Units/Derived units/Empire/e05 Inquisitor.tscn", "res://Combat/Units/Derived units/Empire/e17 Ritualist.tscn", "res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn"])
 right_party_units = Array[String](["res://Combat/Units/Derived units/Empire/e10 Angel Knight.tscn", "res://Combat/Units/Derived units/Empire/e18 Wizard.tscn", "res://Combat/Units/Derived units/Empire/e12 Paladin.tscn", "res://Combat/Units/Derived units/Empire/e30 Matriarch.tscn", "res://Combat/Units/Derived units/Empire/e13 Angel.tscn", "res://Combat/Units/Derived units/Empire/e14 Apprentice.tscn", "res://Combat/Units/Derived units/Empire/e01 Squire.tscn"])
 unit_parameters_database = ExtResource("2_tfqd7")
 unit_marker = ExtResource("3_l8glo")
@@ -68,8 +68,15 @@ custom_minimum_size = Vector2(75, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-text = "Never"
+text = "Auto"
+
+[node name="ButtonStartAttack" type="Button" parent="UI/ParentContainer/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Attack"
 
 [connection signal="pressed" from="UI/ParentContainer/PanelContainer/HBoxContainer/ButtonDefense" to="Combat" method="_on_button_defense_pressed"]
 [connection signal="pressed" from="UI/ParentContainer/PanelContainer/HBoxContainer/ButtonWait" to="Combat" method="_on_button_wait_pressed"]
 [connection signal="pressed" from="UI/ParentContainer/PanelContainer/HBoxContainer/TargetHintsContainer/TargetHuntsButton" to="Combat" method="_on_target_hunts_button_pressed"]
+[connection signal="pressed" from="UI/ParentContainer/PanelContainer/HBoxContainer/ButtonStartAttack" to="Combat" method="_on_button_start_attack_pressed"]

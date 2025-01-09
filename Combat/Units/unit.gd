@@ -179,6 +179,12 @@ func give_target(spot: UnitSpot) -> bool:
 		start_attacking()
 	return true
 
+func skip_attack(message: String = "") -> void:
+	reset_chosen_targets(self)
+	set_next_attack()
+	if message != "":
+		system.display_text_near_unit(self, message)
+	system.combat_logic.next_stage()
 
 ## Resets attack targets and emits a signal that the attack has finished.
 func finish_attacking() -> void:
@@ -198,6 +204,8 @@ func set_next_attack() -> void:
 
 ## Initiates an attack based on the chosen targets.
 func start_attacking() -> void:
+	if chosen_targets.is_empty():
+		return
 	defence_stance = false
 	animation_handle.play_attack_animation()
 	@warning_ignore("narrowing_conversion")

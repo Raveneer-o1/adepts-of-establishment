@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://j14go8w5ajjq"]
+
+[ext_resource type="PackedScene" uid="uid://8d3sodh68huv" path="res://Combat/Effects/AppliedEffects/applied_effect.tscn" id="1_bq1qy"]
+[ext_resource type="Script" path="res://Combat/Effects/AppliedEffects/Scripts/damage_buff_aura.gd" id="2_1nx6l"]
+
+[node name="Damage buff Aura" instance=ExtResource("1_bq1qy")]
+script = ExtResource("2_1nx6l")
+damage_increase = 5
