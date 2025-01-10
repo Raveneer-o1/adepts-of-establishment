@@ -125,13 +125,25 @@ libraries = {
 script = ExtResource("2_mnflt")
 
 [node name="VisualBar" type="ProgressBar" parent="UnitParameters"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
 offset_left = -15.0
-offset_top = 16.0
+offset_top = 15.0
 offset_right = 15.0
-offset_bottom = 22.0
+offset_bottom = 21.0
+grow_horizontal = 2
 step = 1.0
 value = 100.0
 show_percentage = false
+
+[node name="EffectIconsContainer" type="HBoxContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = 23.0
+offset_bottom = 23.0
+grow_horizontal = 2
 
 [connection signal="animation_finished" from="AnimationHandle" to="AnimationHandle" method="_on_animation_finished"]
 [connection signal="frame_changed" from="AnimationHandle" to="AnimationHandle" method="_on_frame_changed"]

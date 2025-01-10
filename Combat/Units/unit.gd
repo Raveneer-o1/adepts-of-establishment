@@ -13,19 +13,21 @@ extends Node2D
 ## subclassing and composition, allowing specialized mechanics without significant code duplication. 
 
 
-
+const  EFFECT_ICONS_SCALE = 0.75
 
 @export var unit_name: String
 
 
 @onready var animation_handle: UnitAnimationsHandle = get_node("AnimationHandle")
 @onready var spot: UnitSpot = get_parent()
+@onready var effect_icons_container: HBoxContainer = $EffectIconsContainer
 
 # Associated components and metadata
 var parameters: UnitParameters
 var party: Party
 var system: CombatSystem
 
+var displayed_icons: Dictionary
 
 ## Position in the party. Even numbers represent fron line, odd numbers - back line.
 ## Position is also index of this unit in the [member Party.units]
@@ -162,6 +164,17 @@ func take_damage(dmg: int, message: String = "") -> void:
 	system.display_text_near_unit(self, message + "-" + str(damage_taken))
 
 
+## Cleans applied effects: removes dead references, removes unapplied icons
+func clean_effects(_unit: Unit) -> void:
+	parameters.clean_modifiers()
+	var _displayed_icons := displayed_icons.duplicate()
+	displayed_icons = {}
+	for icon in _displayed_icons:
+		if is_instance_valid(_displayed_icons[icon]):
+			displayed_icons[icon] = _displayed_icons[icon]
+			continue
+		icon.queue_free()
+
 
 ## Attempts to register a target for attack. Returns success or failure.
 func give_target(spot: UnitSpot) -> bool:
@@ -235,7 +248,10 @@ func initialize_variables() -> void:
 	if party == null:
 		print_debug("Unable to find Party node!")
 	parameters.initialize_variables()
-	EventBus.turn_ended.connect(Callable(self, "reset_chosen_targets"))
+	EventBus.turn_ended.connect(reset_chosen_targets)
+	EventBus.turn_ended.connect(clean_effects)
+	EventBus.turn_started.connect(clean_effects)
+	EventBus.unit_died.connect(clean_effects)
 	EventBus.round_started.connect(arrange_attacks)
 	EventBus.attack_reached.connect(check_taking_damage)
 	EventBus.attack_animation_finished.connect(finalize_all_attacks)
@@ -284,3 +300,10 @@ func die() -> void:
 	
 	party.units[party_position] = null
 	spot.move_unit_to_graveyard()
+
+func display_effect_icon(image: Image, effect: AppliedEffect) -> void:
+	var texture_rect: TextureRect = TextureRect.new()
+	effect_icons_container.add_child(texture_rect)
+	texture_rect.texture = ImageTexture.new().create_from_image(image)
+	texture_rect.scale = Vector2(EFFECT_ICONS_SCALE, EFFECT_ICONS_SCALE)
+	displayed_icons[texture_rect] = effect

@@ -6,3 +6,4 @@
 [node name="HP buff (aura)" instance=ExtResource("1_b3ext")]
 script = ExtResource("2_sh1df")
 hp_increase = 50
+icon_index = 8

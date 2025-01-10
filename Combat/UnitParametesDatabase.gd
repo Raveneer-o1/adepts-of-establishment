@@ -442,7 +442,7 @@ var DATABASE := {
 				Type = EventBus.AttackType.None,
 				Accuracy = 0.8,
 				TargetsNeeded = 1,
-				Initiative = 140,
+				Initiative = 40,
 				Validation = standart_melee_validity,
 				FindAdditionalTargets = standart_splash_additional_targets,
 				DamagePolicy = standart_immediate_decay_policy,
@@ -764,7 +764,7 @@ var DATABASE := {
 				TargetsNeeded = 1,
 				Initiative = 70,
 				Validation = standart_archer_validity,
-				Effects = {"poison" = 45}, # Array[String]
+				Effects = {"poison" = [45, 3]}, # Array[String]
 			},
 			{
 				DamageMultiplier = 1.0,
@@ -774,7 +774,7 @@ var DATABASE := {
 				TargetsNeeded = 1,
 				Initiative = 40,
 				Validation = standart_archer_validity,
-				Effects = {"poison" = 55}, # Array[String]
+				Effects = {"poison" = [55, 2]}, # Array[String]
 			},
 			{
 				DamageMultiplier = 1.0,
@@ -784,7 +784,7 @@ var DATABASE := {
 				TargetsNeeded = 1,
 				Initiative = 20,
 				Validation = standart_archer_validity,
-				Effects = {"poison" = 65}, # Array[String]
+				Effects = {"poison" = [65, 1]}, # Array[String]
 			},
 		]
 	},

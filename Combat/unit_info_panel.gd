@@ -81,7 +81,9 @@ func populate_panel_with_info(unit: Unit) -> void:
 	accuracy_text = ACCURACY_LINE % accuracy_text
 	initiative_text = INITIATIVE_LINE % initiative_text
 	type_text = TYPE_LINE % type_text
-	full_info.text = damage_text + accuracy_text + initiative_text + type_text
+	
+	full_info.text = hp_text + damage_text + accuracy_text + initiative_text + type_text
+	info.text = hp_text
 	
 	# Set panel visibility
 	visible = true

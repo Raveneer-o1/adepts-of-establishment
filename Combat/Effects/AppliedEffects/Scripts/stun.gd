@@ -3,15 +3,18 @@ extends AppliedEffect
 @export var turns: int = 1
 
 @export var message_start: String = "Stunned!"
+@export var message_skip: String = "Skip turn!"
 @export var message_end: String = "Stun ended!"
 
 func skip_turn(unit: Unit) -> void:
 	if unit == target_unit:
 		turns -= 1
-		target_unit.skip_attack(message_end)
 		if turns <= 0:
 			target_unit.animation_handle.play()
+			target_unit.skip_attack(message_end)
 			lift_effect()
+		else:
+			target_unit.skip_attack(message_skip)
 
 ## Called when the effect is applied to a unit.
 func _apply_effect(params: Variant) -> void:

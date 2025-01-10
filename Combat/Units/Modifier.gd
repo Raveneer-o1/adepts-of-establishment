@@ -11,7 +11,7 @@ func get_effective_value(value) -> Variant:
 			last_value = modifier.influence.call(last_value)
 	return last_value
 
-func clear() -> void:
+func clean() -> void:
 	var stack_copy := stack
 	stack = []
 	for modifier in stack_copy:

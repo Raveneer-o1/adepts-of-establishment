@@ -3,9 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://8d3sodh68huv" path="res://Combat/Effects/AppliedEffects/applied_effect.tscn" id="1_guf3x"]
 [ext_resource type="Script" path="res://Combat/Effects/AppliedEffects/Scripts/stun.gd" id="2_w2cnx"]
 
-[node name="Poison" instance=ExtResource("1_guf3x")]
+[node name="Stun" instance=ExtResource("1_guf3x")]
 script = ExtResource("2_w2cnx")
 turns = 1
 message_start = "Stunned!"
+message_skip = "Skip turn!"
 message_end = "Stun ended!"
+icon_index = 6
 negative_effect = true

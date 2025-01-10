@@ -6,3 +6,4 @@
 [node name="Armor buff (aura)" instance=ExtResource("1_1mhvx")]
 script = ExtResource("2_8ii31")
 armor_increase = 5
+icon_index = 7

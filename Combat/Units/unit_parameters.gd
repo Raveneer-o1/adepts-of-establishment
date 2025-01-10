@@ -111,10 +111,16 @@ var dead: bool = false
 
 var parent_unit: Unit
 
+## Contains all modifiers applied to a unit.
+## Elements should be pairs <stat_name, stack> (<StringName, ModifierStack>)
 var stats_modifiers: Dictionary = {}
 
 @onready var visual_bar := get_node("VisualBar") as ProgressBar
 
+
+func clean_modifiers() -> void:
+	for modifier in stats_modifiers.values():
+		(modifier as ModifierStack).clean()
 
 ## Adds new modifier to the stack with name [code]stat[/code].[br]
 ## First addition of a stat creates new stack for it.
@@ -142,7 +148,7 @@ func initialize_variables() -> void:
 
 func update_effects() -> void:
 	for stack in stats_modifiers:
-		stats_modifiers[stack].clear()
+		stats_modifiers[stack].clean()
 	update_visuals()
 
 func update_visuals() -> void:

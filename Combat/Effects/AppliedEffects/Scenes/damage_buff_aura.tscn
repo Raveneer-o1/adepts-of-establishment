@@ -6,3 +6,4 @@
 [node name="Damage buff Aura" instance=ExtResource("1_bq1qy")]
 script = ExtResource("2_1nx6l")
 damage_increase = 5
+icon_index = 9
