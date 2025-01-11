@@ -16,6 +16,8 @@ extends Node2D
 const  EFFECT_ICONS_SCALE = 0.75
 
 @export var unit_name: String
+@export_multiline var brief_description: String
+@export_multiline var full_description: String
 
 
 @onready var animation_handle: UnitAnimationsHandle = get_node("AnimationHandle")
@@ -92,15 +94,16 @@ func finalize_attack() -> void:
 	if attack_to_finalize.accuracy < chance:
 		system.display_text_near_unit(self, "Miss!")
 		return
+	
+	if not attack_to_finalize.applying_effects.is_empty():
+		for effect_name in attack_to_finalize.applying_effects:
+			parameters.apply_effect(effect_name, attack_to_finalize.applying_effects[effect_name])
 	take_damage(attack_to_finalize.damage)
 
 
 ## Resolves an attack directed at this unit.
 func resolve_attack(attack: Attack, delay: int = 0, finalize: bool = false) -> void:
 	taking_damage_attacks.append(attack)
-	if not attack.applying_effects.is_empty():
-		for effect_name in attack.applying_effects:
-			parameters.apply_effect(effect_name, attack.applying_effects[effect_name])
 	if finalize:
 		finalize_attack()
 		return
@@ -177,17 +180,17 @@ func clean_effects(_unit: Unit) -> void:
 
 
 ## Attempts to register a target for attack. Returns success or failure.
-func give_target(spot: UnitSpot) -> bool:
+func give_target(_spot: UnitSpot) -> bool:
 	if current_attack == null:
 		set_next_attack()
 		if current_attack == null:
 			return false
 	if chosen_spots.size() >= current_attack.targets_needed:
 		return false
-	var is_target_valid: bool = current_attack.target_validation.call(self, spot)
+	var is_target_valid: bool = current_attack.target_validation.call(self, _spot)
 	if not is_target_valid:
 		return false
-	chosen_spots.append(spot)
+	chosen_spots.append(_spot)
 	if chosen_spots.size() == current_attack.targets_needed:
 		start_attacking()
 	return true
@@ -304,6 +307,6 @@ func die() -> void:
 func display_effect_icon(image: Image, effect: AppliedEffect) -> void:
 	var texture_rect: TextureRect = TextureRect.new()
 	effect_icons_container.add_child(texture_rect)
-	texture_rect.texture = ImageTexture.new().create_from_image(image)
+	texture_rect.texture = ImageTexture.create_from_image(image)
 	texture_rect.scale = Vector2(EFFECT_ICONS_SCALE, EFFECT_ICONS_SCALE)
 	displayed_icons[texture_rect] = effect

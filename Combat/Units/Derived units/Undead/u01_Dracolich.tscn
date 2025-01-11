@@ -136,7 +136,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Unit" instance=ExtResource("1_uc5s6")]
+[node name="Unit2" instance=ExtResource("1_uc5s6")]
 unit_name = "Dracolich"
 
 [node name="AnimationHandle" parent="." index="0"]

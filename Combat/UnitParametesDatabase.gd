@@ -157,9 +157,9 @@ func standart_mage_additional_targets(attacker: Unit, chosen_targets: Array[Unit
 	var all_units := attacker.party.other_party.get_units_custom(all_units_filter)
 	var result: Array[UnitSpot]
 	for u in all_units:
-		if u.get_parent():
+		if u.spot and not chosen_targets.has(u.spot):
 			result.append(u.spot)
-	return result
+	return filter_duplicates(result)
 
 
 func standart_splash_additional_targets(attacker: Unit, chosen_targets: Array[UnitSpot]) -> Array[UnitSpot]:
@@ -183,13 +183,26 @@ func standart_mass_healer_additional_targets(attacker: Unit, chosen_targets: Arr
 
 #region Policies
 
+func standart_weak_decay_policy(attack: Attack, index: int, finalize: bool) -> void:
+	if attack.targets.is_empty():
+		return
+	if index < 0 or index >= attack.targets.size():
+		return
+	var first_position: int = attack.targets[0].party_position
+	const decay_rate := 0.7
+	var target := attack.targets[index]
+	var distance:int = Party.get_distance(first_position, target.party_position)
+	@warning_ignore("narrowing_conversion") attack.damage *= pow(decay_rate, distance)
+	target.resolve_attack(attack, index + 1, finalize)
+
+
 func standart_decay_policy(attack: Attack, index: int, finalize: bool) -> void:
 	if attack.targets.is_empty():
 		return
 	if index < 0 or index >= attack.targets.size():
 		return
 	var first_position: int = attack.targets[0].party_position
-	var decay_rate := 0.5
+	const decay_rate := 0.5
 	var target := attack.targets[index]
 	var distance:int = Party.get_distance(first_position, target.party_position)
 	@warning_ignore("narrowing_conversion") attack.damage *= pow(decay_rate, distance)
@@ -631,6 +644,7 @@ var DATABASE := {
 				Initiative = 40,
 				Validation = standart_mage_validity,
 				FindAdditionalTargets = standart_mage_additional_targets,
+				DamagePolicy = standart_decay_policy,
 			},
 		],
 	},
@@ -649,7 +663,7 @@ var DATABASE := {
 				Initiative = 40,
 				Validation = standart_mage_validity,
 				FindAdditionalTargets = standart_mage_additional_targets,
-				DamagePolicy = standart_decay_policy,
+				DamagePolicy = standart_weak_decay_policy,
 			},
 		],
 	},
@@ -686,7 +700,7 @@ var DATABASE := {
 				Initiative = 30,
 				Validation = standart_mage_validity,
 				FindAdditionalTargets = standart_mage_additional_targets,
-				DamagePolicy = standart_decay_policy,
+				DamagePolicy = standart_weak_decay_policy,
 			},
 		],
 	},
@@ -980,8 +994,8 @@ var DATABASE := {
 #region Utilities
 
 ## Removes duplicate units from an array, maintaining the first occurrence.
-func filter_duplicates(arr: Array[Unit]) -> Array[Unit]:
-	var result: Array[Unit] = []
+func filter_duplicates(arr: Array[UnitSpot]) -> Array[UnitSpot]:
+	var result: Array[UnitSpot] = []
 	for u in arr:
 		if not result.has(u):
 			result.append(u)

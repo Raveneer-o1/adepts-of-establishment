@@ -32,8 +32,9 @@ var party: Party
 @onready var corpse_container: Node = $Corpses
 
 func move_unit_to_graveyard() -> void:
-	remove_child(unit)
-	corpse_container.add_child(unit)
+	var u := unit
+	remove_child(u)
+	corpse_container.add_child(u)
 	unit = null
 
 ## Highlights the unit externally.
@@ -48,7 +49,7 @@ func reset_highlight() -> void:
 
 func add_unit(loaded_unit: Resource) -> void:
 	if unit != null:
-		print_debug("Trying to add unit ot top of already existing one!")
+		print_debug("Trying to add unit on top of already existing one!")
 		return
 	unit = loaded_unit.instantiate()
 	add_child(unit)

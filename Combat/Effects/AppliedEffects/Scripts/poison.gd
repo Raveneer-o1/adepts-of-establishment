@@ -4,6 +4,9 @@ extends AppliedEffect
 
 var turns: int = 1
 
+func _get_description() -> String:
+	return description % [damage_pet_turn, turns]
+
 func deal_damage(unit: Unit) -> void:
 	if unit != target_unit:
 		return

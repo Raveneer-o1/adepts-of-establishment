@@ -9,5 +9,7 @@ turns = 1
 message_start = "Stunned!"
 message_skip = "Skip turn!"
 message_end = "Stun ended!"
+effect_name = "Stun"
 icon_index = 6
 negative_effect = true
+description = "Unit will skip [b]%d[/b] next turbs"

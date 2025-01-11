@@ -12,7 +12,9 @@ const ACCURACY_LINE = "Accuracy: %s\n"
 const INITIATIVE_LINE = "Initiative: %s\n"
 const TYPE_LINE = "Type: %s\n"
 const EFFECT_LINE = "Effects: %s\n"
-const BRACKETS_ENCLOSURE = "(%s)\n"
+const APPLIED_EFFECT_LINE = "\n[b]%s[/b]: %s\n"
+const DESCRIOTION_LINE = "\n\n---\n%s"
+const BRACKETS_ENCLOSURE = "(%s)"
 
 # Converts an attack type enum value into a human-readable string.
 func attack_type_to_str(type: EventBus.AttackType) -> String:
@@ -44,6 +46,7 @@ func populate_panel_with_info(unit: Unit) -> void:
 	var initiative_text: String = ""
 	var accuracy_text: String = ""
 	var effect_text: String = ""
+	var applied_effect_text: String = ""
 	
 	# Process each attack to generate detailed info
 	for a in unit.parameters.attacks:
@@ -67,23 +70,43 @@ func populate_panel_with_info(unit: Unit) -> void:
 		var local_effect_list: String = ""
 		for effect in a.applying_effects:
 			local_effect_list += effect + ", "
-		effect_text += BRACKETS_ENCLOSURE % local_effect_list.trim_suffix(", ") if local_effect_list != "" else "-, "
-		
+		effect_text += BRACKETS_ENCLOSURE % local_effect_list.trim_suffix(", ") \
+				if local_effect_list != "" else "-"
+	
+	for effect in unit.parameters.get_children():
+		if not effect is AppliedEffect:
+			continue
+		applied_effect_text += APPLIED_EFFECT_LINE % [
+			(effect as AppliedEffect).effect_name,
+			(effect as AppliedEffect)._get_description()
+		]
+	
 	# Trim trailing commas from text fields
 	initiative_text = initiative_text.trim_suffix(", ")
 	damage_text = damage_text.trim_suffix(", ")
 	type_text = type_text.trim_suffix(", ")
 	accuracy_text = accuracy_text.trim_suffix(", ")
-	effect_text = effect_text.trim_suffix(", ")
+	#effect_text = effect_text.trim_suffix(", ")
 	
 	# Finalize formatted text for detailed info
 	damage_text = DAMAGE_LINE % [unit.parameters.base_damage, damage_text]
 	accuracy_text = ACCURACY_LINE % accuracy_text
 	initiative_text = INITIATIVE_LINE % initiative_text
 	type_text = TYPE_LINE % type_text
+	effect_text = EFFECT_LINE % effect_text
 	
-	full_info.text = hp_text + damage_text + accuracy_text + initiative_text + type_text
-	info.text = hp_text
+	full_info.append_text(\
+			hp_text + \
+			armor_text + \
+			damage_text + \
+			effect_text + \
+			accuracy_text + \
+			initiative_text + \
+			type_text + \
+			applied_effect_text + \
+			DESCRIOTION_LINE % unit.full_description
+	)
+	info.text = hp_text + unit.brief_description
 	
 	# Set panel visibility
 	visible = true

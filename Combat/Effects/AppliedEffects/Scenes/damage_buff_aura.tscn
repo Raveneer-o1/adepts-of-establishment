@@ -6,4 +6,6 @@
 [node name="Damage buff Aura" instance=ExtResource("1_bq1qy")]
 script = ExtResource("2_1nx6l")
 damage_increase = 5
+effect_name = "Damage buff Aura"
 icon_index = 9
+description = "Increases base damage of adjacent units by %d"

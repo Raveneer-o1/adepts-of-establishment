@@ -6,6 +6,11 @@ extends AppliedEffect
 @export var message_skip: String = "Skip turn!"
 @export var message_end: String = "Stun ended!"
 
+
+func _get_description() -> String:
+	return description % turns
+
+
 func skip_turn(unit: Unit) -> void:
 	if unit == target_unit:
 		turns -= 1

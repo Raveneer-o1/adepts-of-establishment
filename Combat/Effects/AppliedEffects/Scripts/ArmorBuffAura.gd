@@ -4,6 +4,10 @@ extends AppliedEffect
 
 const BUFF_ICON_INDEX = 5
 
+func _get_description() -> String:
+	return description % armor_increase
+
+
 ## Called when the effect is applied to a unit.
 func _apply_effect(params: Variant) -> void:
 	var affected_units := target_unit.party.get_adjacent_units(target_unit.party_position)

@@ -6,5 +6,7 @@
 [node name="Poison" instance=ExtResource("1_s83w6")]
 script = ExtResource("2_n80ca")
 damage_pet_turn = 30
+effect_name = "Poson"
 icon_index = 0
 negative_effect = true
+description = "Deals %d damage every turn for %d turns"

@@ -6,6 +6,8 @@ class_name AppliedEffect
 
 const ICONS = preload("res://Arts/icons.png")
 
+@export var effect_name: String = "Undefined"
+
 ## Index of the effect's icon in the file [code]res://Arts/icons.png[/code].
 ## Shows on a unit that carries this effect, not on units affected by it.
 ## Value -1 disables icon.[br]
@@ -33,6 +35,13 @@ const ICONS = preload("res://Arts/icons.png")
 
 ## If [code]true[/code], this effect will be lifted when unit is cured.
 @export var negative_effect: bool = false
+
+@export_multiline var description: String
+
+
+func _get_description() -> String:
+	return description
+
 ## The unit to which this effect is attached.
 var target_unit: Unit
 
