@@ -140,6 +140,7 @@ func initialize_variables() -> void:
 	left_party.initialize_variables()
 	right_party.initialize_variables()
 	EventBus.connect("attack_animation_finished", Callable(self, "check_finished_animation"))
+	left_party_units = EventBus.left_units
 
 func place_units() -> void:
 	right_party.place_units(right_party_units)

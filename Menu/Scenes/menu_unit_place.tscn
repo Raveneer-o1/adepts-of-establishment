@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bt1s54jsu58q1"]
+
+[ext_resource type="Script" path="res://Menu/menu_unit_place.gd" id="1_7l80g"]
+
+[node name="Unit Place" type="Container"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_7l80g")

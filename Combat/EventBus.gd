@@ -1,5 +1,7 @@
 extends Node
 
+var left_units: Array[String]
+
 @warning_ignore("unused_signal") signal turn_ended(unit: Unit)
 @warning_ignore("unused_signal") signal turn_started(unit: Unit)
 @warning_ignore("unused_signal") signal round_ended()
