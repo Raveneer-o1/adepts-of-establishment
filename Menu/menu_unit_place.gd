@@ -2,16 +2,20 @@ extends Container
 class_name  MenuUnitPlace
 
 const UNIT_PANEL = preload("res://Menu/Scenes/unit_panel.tscn")
-var panel: UnitPanel
+@export var panel: UnitPanel
 
 func add_new_unit(unit_name: String, dir: String) -> void:
 	if panel != null:
 		panel.queue_free()
 		clear_child_info()
+		
 	panel = UNIT_PANEL.instantiate()
-	add_child(panel)
-	panel.label_text = unit_name
+	panel.unit_name = unit_name
 	panel.directory = dir
+	
+	add_child(panel)
+	# set the owner to save the state for reloading after combat
+	panel.owner = owner
 
 func clear_child_info() -> void:
 	if is_instance_valid(panel):

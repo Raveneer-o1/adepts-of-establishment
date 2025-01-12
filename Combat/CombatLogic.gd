@@ -18,10 +18,10 @@ class_name CombatLogic extends Node
 
 @onready var main_system := get_parent() as CombatSystem
 
-# The queue of units ready to act, sorted by their initiative.
+## The queue of units ready to act, sorted by their initiative.
 var attacks_queue: Array[UnitAttack]
 
-# A list of attacks that have been booked but not yet resolved.
+## A list of attacks that have been booked but not yet resolved.
 var booked_attacks: Array[Attack] = []
 
 ## A list of all attacks that were shifted via "Wait" option
@@ -32,6 +32,7 @@ var current_attack: UnitAttack
 ## Tracks the current round of combat.
 var current_round := 0
 
+var battle_in_progress: bool = true
 
 func _ready() -> void:
 	EventBus.attack_reached.connect(resolve_closest_attack)
@@ -152,6 +153,10 @@ func initialize_effects() -> void:
 ##  Ends the battle and cleans up resources.
 func end_battle() -> void:
 	print("The battle is over!")
+	main_system.win_label.visible = true
+	battle_in_progress = false
+
+
 #endregion
 
 #region Attack resolution and booking

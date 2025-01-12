@@ -1,6 +1,9 @@
 extends Node
 
 var left_units: Array[String]
+var right_units: Array[String]
+
+var packed_menu: PackedScene
 
 @warning_ignore("unused_signal") signal turn_ended(unit: Unit)
 @warning_ignore("unused_signal") signal turn_started(unit: Unit)

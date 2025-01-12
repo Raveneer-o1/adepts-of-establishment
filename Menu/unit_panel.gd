@@ -3,16 +3,22 @@ class_name UnitPanel
 
 @onready var label: Label = $Label
 
-var directory: String
+@export var directory: String
 
-var label_text: String:
-	get:
-		return label.text
-	set(value):
-		label.text = value
+@export var unit_name: String
+
+#var label_text: String:
+	#get:
+		#return label.text
+	#set(value):
+		#label.text = value
+
+func _ready() -> void:
+	label.text = unit_name
+	label.owner = owner
 
 func get_preview() -> Control:
-	var drag_obj := DragObject.new(label_text)
+	var drag_obj := DragObject.new(unit_name)
 	return drag_obj
 
 func _get_drag_data(at_position: Vector2) -> Variant:

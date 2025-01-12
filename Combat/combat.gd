@@ -15,6 +15,8 @@ const SHOW_HINTS_ON_HOVER = 2
 ## Number of states show_hitns_mode can have
 const SHOW_HINTS_MAX = 3
 
+const WIN_LABEL_LINE = "[center][color=green]%s[/color][/center]"
+const TIME_TO_END = 2.5
 
 # Configuration variables for parties
 @export var left_party_units: Array[String]
@@ -43,11 +45,39 @@ var current_unit: Unit:
 
 var show_hitns_mode: int = SHOW_HINTS_ON_HOVER
 
+var displayed_hints : Array[AnimatedSprite2D] = []
+
+var timer: SceneTreeTimer
+
 # References to child nodes for managing parties and combat logic
 @onready var left_party: Party = get_node("LeftParty")
 @onready var right_party: Party = get_node("RightParty")
 @onready var combat_logic: CombatLogic = get_node("CombatLogic")
 @onready var active_unit_marker := get_node("ActiveUnitMarker") as AnimatedSprite2D
+@onready var win_label: RichTextLabel = $"Win Label"
+
+
+## Checks if any party is empty and determines a winner
+func check_winner(_unit: Unit) -> void:
+	if timer != null:
+		return
+	var left_empty = left_party.check_if_empty()
+	var right_empty = right_party.check_if_empty()
+	if left_empty and right_empty:
+		win_label.text = WIN_LABEL_LINE % "Tie!"
+		combat_logic.end_battle()
+		start_end_countdown()
+		return
+	if left_empty:
+		win_label.text = WIN_LABEL_LINE % "Right wins!"
+		combat_logic.end_battle()
+		start_end_countdown()
+		return
+	if right_empty:
+		win_label.text = WIN_LABEL_LINE % "Left wins!"
+		combat_logic.end_battle()
+		start_end_countdown()
+		return
 
 ## Handles the resolution of all attacks and prepares for the next combat stage
 func finish_attack() -> void:
@@ -66,6 +96,8 @@ func check_finished_animation(unit: Unit) -> void:
 
 ## Processes a click event on a unit
 func clicked_unit(spot: UnitSpot) -> void:
+	if not combat_logic.battle_in_progress:
+		return
 	var target_added = current_unit.give_target(spot)
 	if not target_added:
 		print("Unable to attack this target")
@@ -74,8 +106,10 @@ func clicked_unit(spot: UnitSpot) -> void:
 		spot.highlight_externally()
 		highlighted_units.append(spot)
 
-var displayed_hints : Array[AnimatedSprite2D] = []
 
+#region UI utilities
+
+## Clears all hints to prepare for the next state
 func remove_hints() -> void:
 	for hint in displayed_hints:
 		hint.queue_free()
@@ -85,6 +119,7 @@ func remove_hints() -> void:
 			continue
 		spot.get_node("Area2D/HighlightAnimation").modulate = Color.WHITE
 
+## Shows hints according to the value of [member CombatSystem.show_hitns_mode]
 func display_hints() -> void:
 	remove_hints()
 	match show_hitns_mode:
@@ -106,7 +141,7 @@ func display_hints() -> void:
 					color = Color.FOREST_GREEN
 				spot.area_2d.get_node("HighlightAnimation").modulate = color
 
-## Displays text near a unit
+## Displays a vanishing message
 func display_text_near_unit(unit: Unit, text: String) -> void:
 	var x_offset := randf() - 0.5
 	var y_offset := randf_range(-abs(x_offset), 0.0)
@@ -116,6 +151,8 @@ func display_text_near_unit(unit: Unit, text: String) -> void:
 	unit.add_child(lbl)
 	lbl.text = text
 	lbl.set_begin(unit.global_position + offset)
+
+#endregion
 
 #region Initialization
 func load_unit_list(list: Array[String]) -> void:
@@ -140,7 +177,11 @@ func initialize_variables() -> void:
 	left_party.initialize_variables()
 	right_party.initialize_variables()
 	EventBus.connect("attack_animation_finished", Callable(self, "check_finished_animation"))
+	EventBus.turn_started.connect(check_winner)
+	EventBus.unit_died.connect(check_winner)
 	left_party_units = EventBus.left_units
+	right_party_units = EventBus.right_units
+	
 
 func place_units() -> void:
 	right_party.place_units(right_party_units)
@@ -153,12 +194,32 @@ func _ready() -> void:
 	combat_logic.start_battle()
 #endregion
 
+#region Unilities
+
+
+## Loads menu scene as current one. If [member EventBus.packed_menu] is empty,
+## loads new scene from [code]"res://Menu/Scenes/menu.tscn"[/code]
+func end_scene() -> void:
+	if EventBus.packed_menu == null:
+		get_tree().change_scene_to_file("res://Menu/Scenes/menu.tscn")
+	else:
+		get_tree().change_scene_to_packed(EventBus.packed_menu)
+
+
+## Starts a timer for [member CombatSystem.TIME_TO_END] seconds.
+## On timeout loads menu scene.
+func start_end_countdown() -> void:
+	if timer != null:
+		return
+	timer = get_tree().create_timer(TIME_TO_END)
+	timer.timeout.connect(end_scene)
+
+#endregion
+
 
 func _on_button_defense_pressed() -> void:
 	if current_unit.try_take_defense_stance():
 		combat_logic.next_stage()
-
-
 
 
 func _on_button_wait_pressed() -> void:

@@ -29,6 +29,12 @@ var units: Array[Unit] = []
 
 var unit_spots: Array[UnitSpot] = []
 
+func check_if_empty() -> bool:
+	for unit in units:
+		if unit != null and not unit.parameters.dead:
+			return false
+	return true
+
 ## Returns references to units at specified positions.
 ## - Empty spaces and dead units are skipped.
 ## - Out-of-bounds positions return null.
