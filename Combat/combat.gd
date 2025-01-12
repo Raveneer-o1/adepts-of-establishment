@@ -5,9 +5,9 @@ extends Node2D
 ## and utility functions such as player input.
 
 # Temporary label scene for displaying text near units
-const TEMP_LABEL = preload("res://Combat/TempLabel.tscn")
+const TEMP_LABEL = preload("res://Combat/Scenes/TempLabel.tscn")
 const DISTANCE_TO_LABEL = 55.0
-const UNIT_SPOT = preload("res://Combat/unit_spot.tscn")
+const UNIT_SPOT = preload("res://Combat/Scenes/unit_spot.tscn")
 
 const SHOW_HINTS_NEVER = 0
 const SHOW_HINTS_ALWAYS = 1
@@ -26,6 +26,9 @@ const TIME_TO_END = 2.5
 
 @export var unit_marker: Resource
 
+@export var left_player: PlayerAPI
+@export var right_player: PlayerAPI
+
 ## Loaded unit resources and highlighted units
 var loaded_units: Dictionary = {}
 var highlighted_units: Array[UnitSpot] = []
@@ -36,12 +39,28 @@ var current_unit: Unit:
 	get:
 		return _current_unit
 	set(value):
+		current_player = null
 		_current_unit = value
 		if value == null or value.parameters.dead:
 			active_unit_marker.visible = false
 		else:
 			active_unit_marker.position = value.global_position
 			active_unit_marker.visible = true
+			current_player = value.party.player
+
+var _current_player: PlayerAPI
+var current_player: PlayerAPI:
+	get:
+		return _current_player
+	set(value):
+		if _current_player != null:
+			_current_player.disabled = true
+		
+		_current_player = value
+		
+		if value != null:
+			value.disabled = false
+
 
 var show_hitns_mode: int = SHOW_HINTS_ON_HOVER
 
@@ -95,9 +114,12 @@ func check_finished_animation(unit: Unit) -> void:
 		finish_attack()
 
 ## Processes a click event on a unit
-func clicked_unit(spot: UnitSpot) -> void:
+func choose_unit(spot: UnitSpot) -> void:
 	if not combat_logic.battle_in_progress:
 		return
+	if current_player == null:
+		return
+	
 	var target_added = current_unit.give_target(spot)
 	if not target_added:
 		print("Unable to attack this target")
@@ -106,6 +128,23 @@ func clicked_unit(spot: UnitSpot) -> void:
 		spot.highlight_externally()
 		highlighted_units.append(spot)
 
+
+func try_waiting() -> bool:
+	if combat_logic.try_wait():
+		combat_logic.next_stage()
+		return true
+	return false
+
+
+func try_taking_defense_stance() -> bool:
+	if current_unit.try_take_defense_stance():
+		combat_logic.next_stage()
+		return true
+	return false
+
+
+func start_attacking_chosen_targets() -> void:
+	current_unit.start_attacking()
 
 #region UI utilities
 
@@ -124,20 +163,22 @@ func display_hints() -> void:
 	remove_hints()
 	match show_hitns_mode:
 		SHOW_HINTS_ALWAYS:
+			var avaliable_targets := find_avaliable_targets()
 			for unit in left_party.units + right_party.units:
 				if unit == null or unit.parameters.dead:
 					continue
-				if combat_logic.current_attack.target_validation.call(current_unit, unit.spot):
+				if avaliable_targets.has(unit.spot):
 					var marker: AnimatedSprite2D = unit_marker.instantiate()
 					displayed_hints.append(marker)
 					unit.add_child(marker)
 					marker.modulate = Color.FOREST_GREEN
 		SHOW_HINTS_ON_HOVER:
+			var avaliable_targets := find_avaliable_targets()
 			for spot in left_party.unit_spots + right_party.unit_spots:
 				if spot == null or spot.unit == null or spot.unit.parameters.dead:
 					continue
 				var color: Color = Color.FIREBRICK
-				if combat_logic.current_attack.target_validation.call(current_unit, spot):
+				if avaliable_targets.has(spot):
 					color = Color.FOREST_GREEN
 				spot.area_2d.get_node("HighlightAnimation").modulate = color
 
@@ -168,20 +209,52 @@ func load_units() -> void:
 	load_unit_list(left_party_units)
 	load_unit_list(right_party_units)
 
+func check_refs_validity() -> bool:
+	var are_refs_valid: bool = true
+	
+	if (not is_instance_valid(left_party)) or left_party == null:
+		print_debug("Left party is not found!")
+		are_refs_valid = false
+	
+	if (not is_instance_valid(right_party)) or right_party == null:
+		print_debug("Right party is not found!")
+		are_refs_valid = false
+	
+	if (not is_instance_valid(left_player)) or left_player == null:
+		print_debug("Left player is not found!")
+		are_refs_valid = false
+	
+	if (not is_instance_valid(right_player)) or right_player == null:
+		print_debug("Right player is not found!")
+		are_refs_valid = false
+	
+	
+	return are_refs_valid
+
 func initialize_variables() -> void:
+	if not check_refs_validity():
+		end_scene()
+		return
+	
 	left_party.main_system = self
-	right_party.main_system = self
 	left_party.other_party = right_party
+	left_party.player = left_player
+	
+	right_party.main_system = self
 	right_party.other_party = left_party
+	right_party.player = right_player
+	
+	left_player.combat_system = self
+	right_player.combat_system = self
 	
 	left_party.initialize_variables()
 	right_party.initialize_variables()
-	EventBus.connect("attack_animation_finished", Callable(self, "check_finished_animation"))
+	EventBus.attack_animation_finished.connect(check_finished_animation)
 	EventBus.turn_started.connect(check_winner)
 	EventBus.unit_died.connect(check_winner)
 	left_party_units = EventBus.left_units
 	right_party_units = EventBus.right_units
-	
+
 
 func place_units() -> void:
 	right_party.place_units(right_party_units)
@@ -196,6 +269,17 @@ func _ready() -> void:
 
 #region Unilities
 
+func find_avaliable_targets() -> Array[UnitSpot]:
+	var result: Array[UnitSpot] = []
+	var all_unit_spots: Array[UnitSpot] = left_party.unit_spots + right_party.unit_spots
+	
+	for spot in all_unit_spots:
+		if spot == null or spot.unit == null or spot.unit.parameters.dead:
+			continue
+		if combat_logic.current_attack.target_validation.call(current_unit, spot):
+			result.append(spot)
+	
+	return result
 
 ## Loads menu scene as current one. If [member EventBus.packed_menu] is empty,
 ## loads new scene from [code]"res://Menu/Scenes/menu.tscn"[/code]
@@ -218,12 +302,11 @@ func start_end_countdown() -> void:
 
 
 func _on_button_defense_pressed() -> void:
-	if current_unit.try_take_defense_stance():
-		combat_logic.next_stage()
+	EventBus.defense_clicked.emit()
 
 
 func _on_button_wait_pressed() -> void:
-	combat_logic.try_wait()
+	EventBus.wait_clicked.emit()
 
 
 func _on_target_hunts_button_pressed() -> void:
@@ -236,9 +319,9 @@ func _on_target_hunts_button_pressed() -> void:
 			new_text = "Always"
 		SHOW_HINTS_ON_HOVER:
 			new_text = "Auto"
-	$"../UI/ParentContainer/PanelContainer/HBoxContainer/TargetHintsContainer/TargetHuntsButton".text = new_text
+	$"../UI/ParentContainer/PanelContainer/HBoxContainer/TargetHintsContainer/TargetHintsButton".text = new_text
 	display_hints()
 
 
 func _on_button_start_attack_pressed() -> void:
-	current_unit.start_attacking()
+	EventBus.start_attack_clicked.emit()

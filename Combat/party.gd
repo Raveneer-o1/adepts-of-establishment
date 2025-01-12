@@ -21,6 +21,7 @@ const Y_OFFSET = 27.0
 # References to other components in the system
 var other_party: Party
 var main_system: CombatSystem
+var player: PlayerAPI
 
 ## Stores all units[br]
 ## NOTE: this should be a read-only member, however it's planned to have an option

@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://6lq6f06hma7"]
 
-[ext_resource type="PackedScene" uid="uid://cku7rhe8jn3tx" path="res://Combat/combat.tscn" id="1_7nbev"]
-[ext_resource type="PackedScene" uid="uid://d12hr40jjb8s8" path="res://Combat/UnitInfoPanel.tscn" id="1_roecy"]
+[ext_resource type="PackedScene" uid="uid://cku7rhe8jn3tx" path="res://Combat/Scenes/combat.tscn" id="1_7nbev"]
+[ext_resource type="PackedScene" uid="uid://d12hr40jjb8s8" path="res://Combat/Scenes/UnitInfoPanel.tscn" id="1_roecy"]
 [ext_resource type="Resource" uid="uid://dfd81a0k5k4xy" path="res://Combat/Units/UnitParameters.tres" id="2_tfqd7"]
-[ext_resource type="PackedScene" uid="uid://baracsktpldx5" path="res://Combat/UnitMarker.tscn" id="3_l8glo"]
+[ext_resource type="PackedScene" uid="uid://baracsktpldx5" path="res://Combat/Scenes/UnitMarker.tscn" id="3_l8glo"]
 
 [node name="Node2D" type="Node"]
 
@@ -63,7 +63,7 @@ layout_mode = 2
 layout_mode = 2
 text = "Show hints "
 
-[node name="TargetHuntsButton" type="Button" parent="UI/ParentContainer/PanelContainer/HBoxContainer/TargetHintsContainer"]
+[node name="TargetHintsButton" type="Button" parent="UI/ParentContainer/PanelContainer/HBoxContainer/TargetHintsContainer"]
 custom_minimum_size = Vector2(75, 60)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -78,5 +78,5 @@ text = "Attack"
 
 [connection signal="pressed" from="UI/ParentContainer/PanelContainer/HBoxContainer/ButtonDefense" to="Combat" method="_on_button_defense_pressed"]
 [connection signal="pressed" from="UI/ParentContainer/PanelContainer/HBoxContainer/ButtonWait" to="Combat" method="_on_button_wait_pressed"]
-[connection signal="pressed" from="UI/ParentContainer/PanelContainer/HBoxContainer/TargetHintsContainer/TargetHuntsButton" to="Combat" method="_on_target_hunts_button_pressed"]
+[connection signal="pressed" from="UI/ParentContainer/PanelContainer/HBoxContainer/TargetHintsContainer/TargetHintsButton" to="Combat" method="_on_target_hunts_button_pressed"]
 [connection signal="pressed" from="UI/ParentContainer/PanelContainer/HBoxContainer/ButtonStartAttack" to="Combat" method="_on_button_start_attack_pressed"]

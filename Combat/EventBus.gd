@@ -1,9 +1,14 @@
 extends Node
 
-var left_units: Array[String]
-var right_units: Array[String]
+var left_units: Array[String] = ["res://Combat/Units/Derived units/Empire/e01 Squire.tscn"]
+var right_units: Array[String] = ["res://Combat/Units/Derived units/Empire/e01 Squire.tscn"]
 
 var packed_menu: PackedScene
+
+@warning_ignore("unused_signal") signal spot_clicked(spot: UnitSpot)
+@warning_ignore("unused_signal") signal wait_clicked()
+@warning_ignore("unused_signal") signal defense_clicked()
+@warning_ignore("unused_signal") signal start_attack_clicked()
 
 @warning_ignore("unused_signal") signal turn_ended(unit: Unit)
 @warning_ignore("unused_signal") signal turn_started(unit: Unit)

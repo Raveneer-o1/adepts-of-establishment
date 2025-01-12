@@ -87,12 +87,14 @@ func check_dead_unit(unit: Unit) -> void:
 
 
 ## Attempts waiting. I succsesfull, shifts current attack of a current unit to the end of a queue
-func try_wait() -> void:
+func try_wait() -> bool:
 	if waited_attacks.has(current_attack):
-		return
+		return false
 	if main_system.current_unit.try_waiting():
+		waited_attacks.append(current_attack)
 		attacks_queue.append(current_attack)
-		next_stage()
+		return true
+	return false
 
 
 ## Begins a new combat round, resets the queue, and emits a round-started signal.
@@ -120,6 +122,7 @@ func start_turn() -> void:
 		#current_attack.unit.set_next_attack()
 		EventBus.turn_started.emit(main_system.current_unit)
 		main_system.display_hints()
+		main_system.current_player.turn_started.emit(main_system.current_unit)
 		return
 
 

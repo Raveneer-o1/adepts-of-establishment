@@ -59,4 +59,4 @@ func add_unit(loaded_unit: Resource) -> void:
 	return
 
 func click() -> void:
-	system.clicked_unit(self)
+	EventBus.spot_clicked.emit(self)

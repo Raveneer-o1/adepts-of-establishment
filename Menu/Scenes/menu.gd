@@ -43,22 +43,49 @@ var left_array : Array[UnitPanel]:
 		(position_6 as MenuUnitPlace).panel,
 ]
 
+
 func _on_start_button_pressed() -> void:
+	# Clear any existing units from both sides before populating them
 	EventBus.left_units.clear()
 	EventBus.right_units.clear()
 	
+	var can_start: bool = false  # Flag to check if the game can start
+	
+	# Process the left unit panels
 	for panel in left_array:
-		if panel == null:
+		# If the panel is invalid or null, mark spot as empty by appending an empty string
+		if not is_instance_valid(panel) or panel == null:
 			EventBus.left_units.append("")
 			continue
+		
 		EventBus.left_units.append((panel as UnitPanel).directory)
+		can_start = true  # At least one valid unit is present, so the game can start
+	
+	# Process the right unit panels
 	for panel in right_array:
-		if panel == null:
+		# If the panel is invalid or null, mark spot as empty by appending an empty string
+		if not is_instance_valid(panel) or panel == null:
 			EventBus.right_units.append("")
 			continue
+		
 		EventBus.right_units.append((panel as UnitPanel).directory)
+		can_start = true  # At least one valid unit is present, so the game can start
 	
+	# If no valid units were added to either side, do not proceed
+	if not can_start:
+		return
+	
+	# Prepare to save the current menu scene as a packed scene
 	EventBus.packed_menu = PackedScene.new()
 	EventBus.packed_menu.pack(self)
 	
+	# Change the current scene to the test scene
 	get_tree().change_scene_to_file("res://test.tscn")
+
+
+func _on_clear_button_pressed() -> void:
+	for panel in left_array + right_array:
+		if not is_instance_valid(panel) or panel == null:
+			continue
+		(panel.get_parent() as MenuUnitPlace).clear_child_info()
+		panel.queue_free()

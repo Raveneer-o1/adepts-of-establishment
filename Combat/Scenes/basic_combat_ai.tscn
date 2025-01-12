@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://clykj0u2jumym"]
+
+[ext_resource type="Script" path="res://Combat/basic_combat_ai.gd" id="1_qybav"]
+
+[node name="Basic Combat AI" type="Node"]
+script = ExtResource("1_qybav")

@@ -24,6 +24,10 @@ func clear_child_info() -> void:
 
 func switch_unit_place(unit: UnitPanel) -> void:
 	var other_place := (unit.get_parent() as MenuUnitPlace)
+	
+	if other_place == self:
+		return
+	
 	var this_unit := panel
 	
 	other_place.clear_child_info()
