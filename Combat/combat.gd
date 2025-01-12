@@ -80,8 +80,8 @@ var timer: SceneTreeTimer
 func check_winner(_unit: Unit) -> void:
 	if timer != null:
 		return
-	var left_empty = left_party.check_if_empty()
-	var right_empty = right_party.check_if_empty()
+	var left_empty := left_party.check_if_empty()
+	var right_empty := right_party.check_if_empty()
 	if left_empty and right_empty:
 		win_label.text = WIN_LABEL_LINE % "Tie!"
 		combat_logic.end_battle()
@@ -120,7 +120,7 @@ func choose_unit(spot: UnitSpot) -> void:
 	if current_player == null:
 		return
 	
-	var target_added = current_unit.give_target(spot)
+	var target_added := current_unit.give_target(spot)
 	if not target_added:
 		print("Unable to attack this target")
 		return
@@ -186,7 +186,7 @@ func display_hints() -> void:
 func display_text_near_unit(unit: Unit, text: String) -> void:
 	var x_offset := randf() - 0.5
 	var y_offset := randf_range(-abs(x_offset), 0.0)
-	var offset = Vector2(x_offset, y_offset).normalized() * DISTANCE_TO_LABEL
+	var offset := Vector2(x_offset, y_offset).normalized() * DISTANCE_TO_LABEL
 	#print_debug(offset)
 	var lbl: Label = TEMP_LABEL.instantiate()
 	unit.add_child(lbl)
@@ -199,7 +199,7 @@ func display_text_near_unit(unit: Unit, text: String) -> void:
 func load_unit_list(list: Array[String]) -> void:
 	for path in list:
 		if not path.is_empty() and not loaded_units.has(path):
-			var resource = load(path)
+			var resource := load(path)
 			if resource != null:
 				loaded_units[path] = resource
 			else:
@@ -245,7 +245,10 @@ func initialize_variables() -> void:
 	right_party.player = right_player
 	
 	left_player.combat_system = self
+	left_player.party = left_party
+	
 	right_player.combat_system = self
+	right_player.party = right_party
 	
 	left_party.initialize_variables()
 	right_party.initialize_variables()
@@ -270,6 +273,9 @@ func _ready() -> void:
 #region Unilities
 
 func find_avaliable_targets() -> Array[UnitSpot]:
+	if combat_logic.current_attack == null:
+		return []
+	
 	var result: Array[UnitSpot] = []
 	var all_unit_spots: Array[UnitSpot] = left_party.unit_spots + right_party.unit_spots
 	

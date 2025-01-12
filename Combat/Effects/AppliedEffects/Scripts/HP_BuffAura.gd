@@ -16,5 +16,5 @@ func _apply_effect(params: Variant) -> void:
 		unit.parameters.add_modifier(
 				"max_HP", 
 				self, 
-				func(hp): return hp + hp_increase
+				func(hp: int) -> int: return hp + hp_increase
 		)

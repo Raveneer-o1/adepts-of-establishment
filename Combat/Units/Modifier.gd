@@ -2,9 +2,11 @@ class_name ModifierStack
 
 var stack: Array[Modifier]
 
+@warning_ignore("untyped_declaration")
 func get_effective_value(value) -> Variant:
 	if stack.is_empty():
 		return value
+	@warning_ignore("untyped_declaration")
 	var last_value = value
 	for modifier in stack:
 		if modifier.active:

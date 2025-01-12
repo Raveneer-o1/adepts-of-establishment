@@ -119,6 +119,7 @@ var stats_modifiers: Dictionary = {}
 
 
 func clean_modifiers() -> void:
+	@warning_ignore("untyped_declaration")
 	for modifier in stats_modifiers.values():
 		(modifier as ModifierStack).clean()
 
@@ -147,8 +148,8 @@ func initialize_variables() -> void:
 	#initialize_effects()
 
 func update_effects() -> void:
-	for stack in stats_modifiers:
-		stats_modifiers[stack].clean()
+	for stack_name: String in stats_modifiers:
+		stats_modifiers[stack_name].clean()
 	update_visuals()
 
 func update_visuals() -> void:
@@ -179,7 +180,7 @@ func set_parameters() -> void:
 	if not parent_unit.system.unit_parameters_database:
 		print_debug("Database not attached!")
 		return
-	var database = parent_unit.system.unit_parameters_database.DATABASE
+	var database : Dictionary = parent_unit.system.unit_parameters_database.DATABASE
 	if not database:
 		print_debug("Database not found!")
 		return
@@ -197,7 +198,7 @@ func set_parameters() -> void:
 	
 	if params.has("Attacks"):
 		var database_attacks: Array = params["Attacks"]
-		for attack in database_attacks:
+		for attack: Dictionary in database_attacks:
 			var damagemultiplier := 1.0
 			var damageoverride := false
 			var type := EventBus.AttackType.Physical
@@ -241,13 +242,13 @@ func set_parameters() -> void:
 			
 			attacks.append(new_attack)
 
-func apply_effect(effect_name: String, params: Variant):
+func apply_effect(effect_name: String, params: Variant) -> void:
 	var res : Resource = load("res://Combat/Effects/AppliedEffects/Scenes/%s.tscn" % effect_name)
 	if not res:
 		print_debug(effect_name + " not found as an effect!")
-	var child = res.instantiate()
+	var child: AppliedEffect = res.instantiate()
 	add_child(child)
-	(child as AppliedEffect).initialize(params)
+	child.initialize(params)
 
 func turn_start_reaction(_unit: Unit) -> void:
 	update_effects()

@@ -9,6 +9,9 @@ signal turn_started(unit: Unit)
 
 var combat_system: CombatSystem
 
+## Party under this player's control
+var party: Party
+
 var disabled: bool = true
 
 func choose_unit(spot: UnitSpot) -> void:

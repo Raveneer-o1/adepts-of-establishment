@@ -1,7 +1,7 @@
 extends Control
 class_name UnitInfoPanel
 
-@onready var info = get_node("Panel/MainContainer/LeftContainer/DesctiprionPanel/DescriptionLabel") as RichTextLabel
+@onready var info := get_node("Panel/MainContainer/LeftContainer/DesctiprionPanel/DescriptionLabel") as RichTextLabel
 @onready var full_info: RichTextLabel = $Panel/MainContainer/RightContainer/FullInfo
 
 # Formatting constants for unit stats to maintain consistency in text presentation.
@@ -40,7 +40,7 @@ func populate_panel_with_info(unit: Unit) -> void:
 	
 	# Format unit attributes for display
 	var hp_text: String = HP_LINE % [unit.parameters.hp, unit.parameters.max_hp]
-	var armor_text = ARMOR_LINE % unit.parameters.armor
+	var armor_text := ARMOR_LINE % unit.parameters.armor
 	var damage_text: String = ""
 	var type_text: String = ""
 	var initiative_text: String = ""
@@ -68,7 +68,7 @@ func populate_panel_with_info(unit: Unit) -> void:
 		
 		# Collect effects applied by the attack
 		var local_effect_list: String = ""
-		for effect in a.applying_effects:
+		for effect: String in a.applying_effects:
 			local_effect_list += effect + ", "
 		effect_text += BRACKETS_ENCLOSURE % local_effect_list.trim_suffix(", ") \
 				if local_effect_list != "" else "-"

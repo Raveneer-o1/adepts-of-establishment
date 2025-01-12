@@ -13,7 +13,7 @@ extends Node2D
 ## subclassing and composition, allowing specialized mechanics without significant code duplication. 
 
 
-const  EFFECT_ICONS_SCALE = 0.75
+const EFFECT_ICONS_SCALE = 0.75
 
 @export var unit_name: String
 @export_multiline var brief_description: String
@@ -29,6 +29,7 @@ var parameters: UnitParameters
 var party: Party
 var system: CombatSystem
 
+## <TextureRect, AppliedEffect>
 var displayed_icons: Dictionary
 
 ## Position in the party. Even numbers represent fron line, odd numbers - back line.
@@ -77,6 +78,10 @@ func reset_chosen_targets(_unit: Unit) -> void:
 func arrange_attacks() -> void:
 	attacks_for_this_round = parameters.attacks.duplicate()
 
+func arrange_attacks_and_set_next() -> void:
+	attacks_for_this_round = parameters.attacks.duplicate()
+	set_next_attack()
+
 
 ## Applies damages from all taking_damage_attacks
 func finalize_all_attacks(_unit: Unit) -> void:
@@ -96,7 +101,7 @@ func finalize_attack() -> void:
 		return
 	
 	if not attack_to_finalize.applying_effects.is_empty():
-		for effect_name in attack_to_finalize.applying_effects:
+		for effect_name: String in attack_to_finalize.applying_effects:
 			parameters.apply_effect(effect_name, attack_to_finalize.applying_effects[effect_name])
 	take_damage(attack_to_finalize.damage)
 
@@ -143,7 +148,7 @@ func take_direct_damage(dmg: int, message: String = "") -> void:
 	if dmg <= 0:
 		return
 	
-	var damage_taken = parameters.take_direct_damage(dmg)
+	var damage_taken := parameters.take_direct_damage(dmg)
 	animation_handle.play_damage_animation(message)
 	if message != "":
 		message += ": "
@@ -160,7 +165,7 @@ func take_damage(dmg: int, message: String = "") -> void:
 	if defence_stance:
 		dmg /= 2
 	
-	var damage_taken = parameters.take_damage(dmg)
+	var damage_taken := parameters.take_damage(dmg)
 	animation_handle.play_damage_animation(message)
 	if message != "":
 		message += ": "
@@ -172,7 +177,7 @@ func clean_effects(_unit: Unit) -> void:
 	parameters.clean_modifiers()
 	var _displayed_icons := displayed_icons.duplicate()
 	displayed_icons = {}
-	for icon in _displayed_icons:
+	for icon: TextureRect in _displayed_icons:
 		if is_instance_valid(_displayed_icons[icon]):
 			displayed_icons[icon] = _displayed_icons[icon]
 			continue
@@ -255,7 +260,7 @@ func initialize_variables() -> void:
 	EventBus.turn_ended.connect(clean_effects)
 	EventBus.turn_started.connect(clean_effects)
 	EventBus.unit_died.connect(clean_effects)
-	EventBus.round_started.connect(arrange_attacks)
+	EventBus.round_started.connect(arrange_attacks_and_set_next)
 	EventBus.attack_reached.connect(check_taking_damage)
 	EventBus.attack_animation_finished.connect(finalize_all_attacks)
 

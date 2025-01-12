@@ -428,7 +428,7 @@ var DATABASE := {
 	},
 	"Blade Saint" = {
 		Level = 4,
-		Damage = 35,
+		Damage = 50,
 		HP = 220,
 		Armor = 0,
 		Attacks = [
@@ -581,7 +581,7 @@ var DATABASE := {
 				Accuracy = 0.8,
 				TargetsNeeded = 1,
 				Initiative = 60,
-				Validation = func (attacker: Unit, target_spot: UnitSpot):
+				Validation = func (attacker: Unit, target_spot: UnitSpot) -> bool:
 					return standart_mage_validity(attacker, target_spot) or \
 							standart_summoner_validity(attacker, target_spot),
 				#FindAdditionalTargets = standart_mage_additional_targets,
@@ -621,7 +621,7 @@ var DATABASE := {
 				Accuracy = 0.85,
 				TargetsNeeded = 2,
 				Initiative = 60,
-				Validation = func (attacker: Unit, target_spot: UnitSpot):
+				Validation = func (attacker: Unit, target_spot: UnitSpot) -> bool:
 					return standart_mage_validity(attacker, target_spot) or \
 							standart_summoner_validity(attacker, target_spot),
 				#FindAdditionalTargets = standart_mage_additional_targets,

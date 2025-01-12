@@ -31,7 +31,7 @@ func play_damage_animation(message: String = "") -> void:
 			(get_child(0) as AnimationPlayer).play(message)
 			return
 	
-	var anim_name = "damage"
+	var anim_name := "damage"
 	if sprite_frames.has_animation(anim_name):
 		play(anim_name)
 	else :
@@ -39,7 +39,7 @@ func play_damage_animation(message: String = "") -> void:
 			(get_child(0) as AnimationPlayer).play("unit_standart_damage_animation")
 
 func play_heal_animation() -> void:
-	var anim_name = "heal"
+	var anim_name := "heal"
 	if sprite_frames.has_animation(anim_name):
 		play(anim_name)
 	else :
