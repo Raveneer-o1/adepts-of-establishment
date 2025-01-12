@@ -96,8 +96,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Unit" instance=ExtResource("1_wepdu")]
+[node name="Unit2" instance=ExtResource("1_wepdu")]
 unit_name = "Elementalist"
+full_description = "Elementalists are specialists who wield the raw forces of nature, calling upon the elements to devastate their enemies. Their mastery of summoning allows them to conjure elemental creatures to fight alongside them, disrupting enemy formations."
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_kkvas")

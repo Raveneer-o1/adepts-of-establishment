@@ -1,7 +1,6 @@
-[gd_scene load_steps=32 format=3 uid="uid://ch3kmc8o8pjub"]
+[gd_scene load_steps=31 format=3 uid="uid://ch3kmc8o8pjub"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_v0wje"]
-[ext_resource type="Script" path="res://Combat/Units/unit.gd" id="2_4r5ra"]
 [ext_resource type="Texture2D" uid="uid://cnpacvfpqiwqt" path="res://Arts/Empire units/sword saint attack.png" id="2_gvero"]
 [ext_resource type="Texture2D" uid="uid://bo0r7ymf2uybw" path="res://Arts/Empire units/sword saint idle .png" id="3_dcb7y"]
 
@@ -201,8 +200,8 @@ animations = [{
 }]
 
 [node name="Unit" instance=ExtResource("1_v0wje")]
-script = ExtResource("2_4r5ra")
 unit_name = "Blade Saint"
+full_description = "Blade Saints are legendary swordsmen whose mastery of the blade borders on the supernatural. Their movements are fluid and precise, cutting through enemies with unmatched grace and speed. Years of discipline and devotion to their craft have made them nearly invincible."
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_oreww")
@@ -211,8 +210,3 @@ autoplay = "default"
 offset = Vector2(8, -8)
 frames_to_emit = Array[int]([4, 7])
 last_frame = 10
-
-[node name="UnitParameters" parent="." index="1"]
-unit_name = "Blade saint"
-max_hp = 500
-base_damage = 70

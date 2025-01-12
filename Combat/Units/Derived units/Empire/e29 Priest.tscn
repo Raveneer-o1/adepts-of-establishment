@@ -102,8 +102,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Unit" instance=ExtResource("1_wbk4r")]
+[node name="Priest" instance=ExtResource("1_wbk4r")]
 unit_name = "Priest"
+full_description = "Priests are experienced healers, capable of invoking potent divine blessings to restore a significant amount of health to a single ally. Their focused prayers can turn the tide of a skirmish by ensuring critical combatants remain in the fight."
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_rl2as")

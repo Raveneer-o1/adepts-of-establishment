@@ -2,11 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_lmg0p"]
 [ext_resource type="Texture2D" uid="uid://b836nulehlavk" path="res://Arts/Heroes/hero04 High Mage Elren attack 1.png" id="2_o7eds"]
-[ext_resource type="Script" path="res://Combat/Units/Derived units/Heroes/hero_high_mage.gd" id="2_qmnfl"]
+[ext_resource type="Script" path="res://Combat/Units/unit.gd" id="2_qmnfl"]
 [ext_resource type="Texture2D" uid="uid://dt3qt0q4lmg54" path="res://Arts/Heroes/hero04 High Mage Elren attack 2.png" id="3_ursxe"]
 [ext_resource type="Texture2D" uid="uid://der885d8lwigi" path="res://Arts/Heroes/hero04 High Mage Elren damage .png" id="4_r6bu8"]
 [ext_resource type="Texture2D" uid="uid://b562lsf0jlsdl" path="res://Arts/Heroes/hero04 High Mage Elren idle .png" id="5_dah8h"]
-[ext_resource type="Script" path="res://Combat/Units/Derived units/Heroes/high_mage_parameters.gd" id="6_l70wi"]
+[ext_resource type="Script" path="res://Combat/Units/unit_parameters.gd" id="6_l70wi"]
 [ext_resource type="PackedScene" uid="uid://cl66orf67rhdo" path="res://Combat/Effects/heros' effects/hero04 High Mage Elren effect 2.tscn" id="7_paagi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_38a4b"]

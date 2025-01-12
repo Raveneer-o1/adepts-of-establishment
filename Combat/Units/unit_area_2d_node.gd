@@ -42,4 +42,7 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 				waiting_for_release = false
 				(get_parent() as UnitSpot).click()
 		if event.button_index == MOUSE_BUTTON_RIGHT:
-			EventBus.unit_description_requested.emit((get_parent() as UnitSpot).unit)
+			var unit := (get_parent() as UnitSpot).unit
+			if unit == null:
+				return
+			EventBus.unit_description_requested.emit(unit)

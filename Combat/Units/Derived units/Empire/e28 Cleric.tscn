@@ -81,8 +81,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Unit" instance=ExtResource("1_woc6m")]
+[node name="Cleric" instance=ExtResource("1_woc6m")]
 unit_name = "Cleric"
+full_description = "Clerics provide balanced healing to the entire party, spreading divine energy to mend multiple allies at once. Though their magic isn’t as potent as focused healers, their ability to stabilize the group makes them indispensable in prolonged battles."
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_i04ec")

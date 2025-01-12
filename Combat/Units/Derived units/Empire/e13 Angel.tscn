@@ -138,6 +138,7 @@ animations = [{
 
 [node name="Unit" instance=ExtResource("1_ghq34")]
 unit_name = "Angel"
+full_description = "Angels are divine warriors, manifestations of the heavens' will on the battlefield. With radiant wings and a sword imbued with holy power, they strike down the wicked with unrelenting precision. Their very presence bolsters the morale of allies, while their aura of purity weakens the resolve of foes. Angels are a testament to the faith and righteousness of those they protect, serving as both guardians and instruments of judgment."
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_o6ioq")

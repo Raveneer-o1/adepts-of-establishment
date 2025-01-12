@@ -90,6 +90,7 @@ animations = [{
 
 [node name="Unit" instance=ExtResource("1_qktib")]
 unit_name = "Mage"
+full_description = "Mages are practitioners of refined arcane knowledge, capable of channeling powerful spells to damage foes. However, their focus on spellcasting leaves them physically vulnerable, relying on careful positioning and team support to maximize their potential."
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_ovbu2")

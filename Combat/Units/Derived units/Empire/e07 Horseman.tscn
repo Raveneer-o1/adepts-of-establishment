@@ -159,6 +159,7 @@ animations = [{
 
 [node name="Unit" instance=ExtResource("1_w7nds")]
 unit_name = "Horseman"
+full_description = "Horsemen are swift and adaptable warriors who rely on speed and maneuverability to outflank enemies and strike with precision. Their mobility makes them invaluable for rapid assaults or defensive countermeasures. A Horseman’s strength lies not only in their combat prowess but in their ability to turn the tide of battle with quick and decisive actions."
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_ddpld")

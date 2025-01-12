@@ -122,8 +122,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Unit" instance=ExtResource("1_7qop2")]
+[node name="Marksman" instance=ExtResource("1_7qop2")]
 unit_name = "Marksman"
+full_description = "Marksmen are archers who have honed their craft, wielding longbows for greater range and accuracy. Their arrows strike with precision, making them ideal for targeting critical threats or weakening heavily armored foes."
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_3n45d")

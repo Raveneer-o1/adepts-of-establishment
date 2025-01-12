@@ -179,8 +179,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Unit" instance=ExtResource("1_ktuuv")]
+[node name="AngelKinght" instance=ExtResource("1_ktuuv")]
 unit_name = "Angel Knight"
+full_description = "Angel Knights are celestial warriors clad in radiant armor, wielding swords blessed with divine power. Their strikes are swift and unerring, cutting through darkness and doubt with righteous precision. With their holy aura, they inspire nearby allies, enhancing their offensive capabilities."
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_5s1jm")

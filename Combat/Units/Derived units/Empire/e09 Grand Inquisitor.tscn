@@ -146,6 +146,7 @@ animations = [{
 
 [node name="Unit" instance=ExtResource("1_pd60s")]
 unit_name = "Grand Inquisitor"
+full_description = "Grand Inquisitors channel divine energy to manifest enormous spectral warhammers, delivering crushing blows that bypass magical defenses. Their presence on the battlefield bolsters the vitality of nearby allies, increasing their resilience against even the fiercest assaults. With unwavering conviction, they serve as both protectors and avengers, ensuring the light triumphs over darkness."
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_qvodb")

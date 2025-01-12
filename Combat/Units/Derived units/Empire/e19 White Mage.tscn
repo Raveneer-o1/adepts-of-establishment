@@ -137,8 +137,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Unit" instance=ExtResource("1_mbqb6")]
+[node name="White mage" instance=ExtResource("1_mbqb6")]
 unit_name = "White Mage"
+full_description = "The most powerful wizards are granted the title of White Mages. The storms they can summon on the battlefield can wipe out entire armies."
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_ybp6r")
