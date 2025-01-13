@@ -12,11 +12,11 @@ func evaluate_targets(ai_unit: Unit, valid_targets: Array[UnitSpot]) -> UnitSpot
 		
 		# Base scoring
 		var evaluation: float = evaluate_health(target.unit, ai_unit.parameters.base_damage)
-		print("%s's health evaluated as %f" % [target.unit.unit_name, evaluation])
+		#print("%s's health evaluated as %f" % [target.unit.unit_name, evaluation])
 		score += evaluation
 		
 		evaluation = evaluate_threat(target.unit)
-		print("%s's threat evaluated as %f" % [target.unit.unit_name, evaluation])
+		#print("%s's threat evaluated as %f" % [target.unit.unit_name, evaluation])
 		score += evaluation
 		
 		# Check if this is the best target so far
@@ -52,6 +52,8 @@ func evaluate_threat(target: Unit) -> float:
 
 
 func choose_action(unit: Unit) -> void:
+	if unit == null:
+		return
 	var avaliable_targets := api.combat_system.find_avaliable_targets()
 	if avaliable_targets.is_empty():
 		api.use_defense_stance()

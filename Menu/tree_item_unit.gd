@@ -4,7 +4,7 @@ class_name TreeItemUnit
 
 @export var unit_name: String
 @export_dir var path: String
-@onready var label: Label = $Label
+@onready var label: Label = $MarginContainer/Label
 
 func get_preview() -> Control:
 	var drag_obj := DragObject.new(unit_name)

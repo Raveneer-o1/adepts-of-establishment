@@ -74,10 +74,13 @@ func reset_chosen_targets(_unit: Unit) -> void:
 		chosen_spots.clear()
 
 
-## Sets attacks_for_this_round to its default value. Primarily used at the start of a new round.
+## Sets [member attacks_for_this_round] to its default value.
+## Used at the start of the game, when assets are being initialized.
 func arrange_attacks() -> void:
 	attacks_for_this_round = parameters.attacks.duplicate()
 
+## Sets [member attacks_for_this_round] to its default value and sets [member current_attack].
+## Used at the start of a new round.
 func arrange_attacks_and_set_next() -> void:
 	attacks_for_this_round = parameters.attacks.duplicate()
 	set_next_attack()

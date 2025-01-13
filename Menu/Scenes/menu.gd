@@ -1,6 +1,6 @@
 extends Control
 
-const COMMUNICATION_PATH = "res://unit_array.gd"
+#const COMMUNICATION_PATH = "res://unit_array.gd"
 
 @onready var position_0: MenuUnitPlace = $"HBoxContainer/VBoxContainer2/VBoxContainer2/Position 0"
 @onready var position_1: MenuUnitPlace = $"HBoxContainer/VBoxContainer2/VBoxContainer/Position 1"
@@ -77,7 +77,7 @@ func _on_start_button_pressed() -> void:
 	
 	# Prepare to save the current menu scene as a packed scene
 	EventBus.packed_menu = PackedScene.new()
-	EventBus.packed_menu.pack(self)
+	await (EventBus.packed_menu.pack(self))
 	
 	# Change the current scene to the test scene
 	get_tree().change_scene_to_file("res://test.tscn")
