@@ -31,6 +31,8 @@ const THREAT_NORMALIZING_FACTOR = 0.7
 
 # Evaluate the target's health to prioritize finishing weak enemies
 func evaluate_health(target: Unit, damage: float) -> float:
+	if target == null:
+		return 0.0
 	if target.parameters.hp < damage:
 		return HP_NORMALIZING_FACTOR
 	var hp_percentage: float = float(target.parameters.hp) / float(target.parameters.max_hp)
@@ -41,6 +43,8 @@ func evaluate_health(target: Unit, damage: float) -> float:
 
 # Evaluate threat level based on the target's role and damage output
 func evaluate_threat(target: Unit) -> float:
+	if target == null:
+		return 0.0
 	var base_dmg: float = target.parameters.base_damage
 	var threat_score: float = 0.0
 	for attack: UnitAttack in target.parameters.attacks:
@@ -54,6 +58,9 @@ func evaluate_threat(target: Unit) -> float:
 func choose_action(unit: Unit) -> void:
 	if unit == null:
 		return
+	if unit.party != api.party:
+		return
+	
 	var avaliable_targets := api.combat_system.find_avaliable_targets()
 	if avaliable_targets.is_empty():
 		api.use_defense_stance()
@@ -62,9 +69,10 @@ func choose_action(unit: Unit) -> void:
 	while targets_need > 0:
 		if avaliable_targets.is_empty():
 			api.start_attack()
+			return
 		var chosen_unit := evaluate_targets(unit, avaliable_targets)
 		api.choose_unit(chosen_unit)
-		avaliable_targets = api.combat_system.find_avaliable_targets()
+		avaliable_targets = api.combat_system.find_avaliable_targets(unit)
 		targets_need -= 1
 
 func _ready() -> void:

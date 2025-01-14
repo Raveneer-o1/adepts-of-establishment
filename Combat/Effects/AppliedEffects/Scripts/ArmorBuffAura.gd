@@ -16,5 +16,5 @@ func _apply_effect(params: Variant) -> void:
 		unit.parameters.add_modifier(
 				"armor", 
 				self, 
-				func(armor): return armor + armor_increase
+				func(armor: int) -> int: return armor + armor_increase
 		)

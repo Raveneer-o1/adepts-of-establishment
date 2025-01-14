@@ -1,7 +1,6 @@
-[gd_resource type="Theme" load_steps=15 format=3 uid="uid://eh5pr46h0ubl"]
+[gd_resource type="Theme" load_steps=14 format=3 uid="uid://eh5pr46h0ubl"]
 
 [ext_resource type="Texture2D" uid="uid://pgi16succufa" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/Button_52x14.png" id="1_3dh1o"]
-[ext_resource type="FontFile" uid="uid://cy2a3xknm673w" path="res://Arts/Fonts/DungeonFont [vrtxrry].ttf" id="1_3r2aj"]
 [ext_resource type="Texture2D" uid="uid://cxstg5i0ffslt" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/RectangleBox_96x96.png" id="3_bu7w8"]
 [ext_resource type="Texture2D" uid="uid://bdl82fyckw74d" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/TitleBox_64x16.png" id="4_vke4p"]
 [ext_resource type="Texture2D" uid="uid://cturd5myqf6pf" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/CharacterBox_56x57.png" id="5_otwwq"]
@@ -35,7 +34,6 @@ texture = ExtResource("4_vke4p")
 texture = ExtResource("5_otwwq")
 
 [resource]
-default_font = ExtResource("1_3r2aj")
 Button/styles/disabled = SubResource("StyleBoxTexture_obf7a")
 Button/styles/hover = SubResource("StyleBoxTexture_1dvar")
 Button/styles/hover_pressed = SubResource("StyleBoxTexture_1dvar")

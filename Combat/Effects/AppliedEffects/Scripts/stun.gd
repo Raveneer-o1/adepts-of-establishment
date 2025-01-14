@@ -25,7 +25,7 @@ func skip_turn(unit: Unit) -> void:
 func _apply_effect(params: Variant) -> void:
 	if params is Array:
 		if params.size() >= 2:
-			var chance = randf()
+			var chance := randf()
 			if chance < params[0]:
 				turns = params[1]
 			else:

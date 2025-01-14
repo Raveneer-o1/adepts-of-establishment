@@ -31,6 +31,11 @@ script = ExtResource("1_b84d5")
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer"]
+custom_minimum_size = Vector2(15, 15)
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 12
 text = "UNIT"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3

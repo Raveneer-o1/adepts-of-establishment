@@ -272,17 +272,19 @@ func _ready() -> void:
 
 #region Unilities
 
-func find_avaliable_targets() -> Array[UnitSpot]:
-	if combat_logic.current_attack == null:
+func find_avaliable_targets(unit: Unit = current_unit) -> Array[UnitSpot]:
+	if unit == null:
+		return []
+	if unit.current_attack == null:
 		return []
 	
 	var result: Array[UnitSpot] = []
 	var all_unit_spots: Array[UnitSpot] = left_party.unit_spots + right_party.unit_spots
 	
 	for spot in all_unit_spots:
-		if spot == null or spot.unit == null or spot.unit.parameters.dead:
+		if spot == null:
 			continue
-		if combat_logic.current_attack.target_validation.call(current_unit, spot):
+		if unit.current_attack.target_validation.call(current_unit, spot):
 			result.append(spot)
 	
 	return result

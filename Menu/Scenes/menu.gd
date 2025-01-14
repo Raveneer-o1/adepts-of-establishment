@@ -77,7 +77,7 @@ func _on_start_button_pressed() -> void:
 	
 	# Prepare to save the current menu scene as a packed scene
 	EventBus.packed_menu = PackedScene.new()
-	await (EventBus.packed_menu.pack(self))
+	EventBus.packed_menu.pack(self)
 	
 	# Change the current scene to the test scene
 	get_tree().change_scene_to_file("res://test.tscn")

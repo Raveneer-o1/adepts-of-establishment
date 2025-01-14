@@ -33,6 +33,8 @@ var party: Party
 
 func move_unit_to_graveyard() -> void:
 	var u := unit
+	if u == null:
+		return
 	remove_child(u)
 	corpse_container.add_child(u)
 	unit = null

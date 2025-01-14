@@ -1,15 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://rhljgisluynr"]
+[gd_scene load_steps=7 format=3 uid="uid://rhljgisluynr"]
 
 [ext_resource type="PackedScene" uid="uid://bt1s54jsu58q1" path="res://Menu/Scenes/menu_unit_place.tscn" id="1_3imto"]
 [ext_resource type="Script" path="res://Menu/Scenes/menu.gd" id="1_h46x8"]
 [ext_resource type="Theme" uid="uid://eh5pr46h0ubl" path="res://Themes/Theme_ETA.tres" id="1_kyvhq"]
 [ext_resource type="Script" path="res://Menu/Scenes/central_part.gd" id="2_guvaa"]
 [ext_resource type="PackedScene" uid="uid://c2moqu8obnwmg" path="res://Menu/Scenes/tree_item_unit.tscn" id="2_r33n7"]
-[ext_resource type="Texture2D" uid="uid://de3uokpmfe7gb" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/BottomPatternPanel_119x17.png" id="6_b357d"]
-[ext_resource type="Texture2D" uid="uid://dcibljbdgebd8" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/TopPatternPanel_01_33x15.png" id="7_6errb"]
+[ext_resource type="PackedScene" uid="uid://cfyuu528t154q" path="res://Menu/Scenes/Base_menu_ui_panel.tscn" id="5_lsi2e"]
 
-[node name="Control" type="Control"]
-layout_mode = 3
+[node name="Control" type="MarginContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -19,12 +17,7 @@ theme = ExtResource("1_kyvhq")
 script = ExtResource("1_h46x8")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 
 [node name="VBoxContainer2" type="HBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -71,201 +64,186 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4"]
+[node name="NinePatchRect" parent="HBoxContainer/VBoxContainer/VBoxContainer4" instance=ExtResource("5_lsi2e")]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect"]
 layout_mode = 2
 
-[node name="Bottom ornament" type="TextureRect" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer"]
-show_behind_parent = true
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-size_flags_vertical = 8
-texture = ExtResource("6_b357d")
-expand_mode = 2
-
-[node name="Top ornament" type="TextureRect" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer"]
-show_behind_parent = true
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-size_flags_vertical = 0
-texture = ExtResource("7_6errb")
-expand_mode = 2
-
-[node name="TabContainer" type="TabContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer"]
+[node name="TabContainer" type="TabContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_vertical = 3
 current_tab = 0
 
-[node name="Humans" type="TabContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer"]
+[node name="Humans" type="TabContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 current_tab = 0
 metadata/_tab_index = 0
 
-[node name="Melee" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans"]
+[node name="Melee" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans"]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="Lvl1" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Melee"]
+[node name="Lvl1" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Squire" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Melee/Lvl1" instance=ExtResource("2_r33n7")]
+[node name="Squire" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee/Lvl1" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Squire"
 path = "res://Combat/Units/Derived units/Empire/e01 Squire.tscn"
 
-[node name="Lvl2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Melee"]
+[node name="Lvl2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 150
 alignment = 1
 
-[node name="Witch hunter" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Melee/Lvl2" instance=ExtResource("2_r33n7")]
+[node name="Witch hunter" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee/Lvl2" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Witch hunter"
 path = "res://Combat/Units/Derived units/Empire/e02 Witch hunter.tscn"
 
-[node name="Knight" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Melee/Lvl2" instance=ExtResource("2_r33n7")]
+[node name="Knight" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee/Lvl2" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Knight"
 path = "res://Combat/Units/Derived units/Empire/e03 Knight.tscn"
 
-[node name="Lvl3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Melee"]
+[node name="Lvl3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 70
 alignment = 1
 
-[node name="Samurai" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Melee/Lvl3" instance=ExtResource("2_r33n7")]
+[node name="Samurai" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee/Lvl3" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Samurai"
 path = "res://Combat/Units/Derived units/Empire/e04 Samurai.tscn"
 
-[node name="Inquisitor" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Melee/Lvl3" instance=ExtResource("2_r33n7")]
+[node name="Inquisitor" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee/Lvl3" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Inquisitor"
 path = "res://Combat/Units/Derived units/Empire/e05 Inquisitor.tscn"
 
-[node name="Horseman" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Melee/Lvl3" instance=ExtResource("2_r33n7")]
+[node name="Horseman" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee/Lvl3" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Horseman"
 path = "res://Combat/Units/Derived units/Empire/e07 Horseman.tscn"
 
-[node name="Knight Master" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Melee/Lvl3" instance=ExtResource("2_r33n7")]
+[node name="Knight Master" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee/Lvl3" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Knight master"
 path = "res://Combat/Units/Derived units/Empire/e06 Knight Master.tscn"
 
-[node name="Lvl4" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Melee"]
+[node name="Lvl4" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 70
 alignment = 1
 
-[node name="Blade saint" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Melee/Lvl4" instance=ExtResource("2_r33n7")]
+[node name="Blade saint" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee/Lvl4" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Blade saint"
 path = "res://Combat/Units/Derived units/Empire/e08 Blade Saint.tscn"
 
-[node name="Grand inquisitor" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Melee/Lvl4" instance=ExtResource("2_r33n7")]
+[node name="Grand inquisitor" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee/Lvl4" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Grand inquisitor"
 path = "res://Combat/Units/Derived units/Empire/e09 Grand Inquisitor.tscn"
 
-[node name="Royal cavalier" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Melee/Lvl4" instance=ExtResource("2_r33n7")]
+[node name="Royal cavalier" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee/Lvl4" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Royal cavalier"
 path = "res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn"
 
-[node name="Angel knight" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Melee/Lvl4" instance=ExtResource("2_r33n7")]
+[node name="Angel knight" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee/Lvl4" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Angel knight"
 path = "res://Combat/Units/Derived units/Empire/e10 Angel Knight.tscn"
 
-[node name="Lvl5" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Melee"]
-custom_minimum_size = Vector2(300, 0)
+[node name="Lvl5" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee"]
+custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 3
 theme_override_constants/separation = 70
 alignment = 1
 
-[node name="Paladin" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Melee/Lvl5" instance=ExtResource("2_r33n7")]
+[node name="Paladin" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee/Lvl5" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Paladin"
 path = "res://Combat/Units/Derived units/Empire/e12 Paladin.tscn"
 
-[node name="Angel" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Melee/Lvl5" instance=ExtResource("2_r33n7")]
+[node name="Angel" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee/Lvl5" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Angel"
 path = "res://Combat/Units/Derived units/Empire/e13 Angel.tscn"
 
-[node name="Mages" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans"]
+[node name="Mages" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans"]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="Lvl1" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Mages"]
+[node name="Lvl1" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Mages"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Apprentice" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Mages/Lvl1" instance=ExtResource("2_r33n7")]
+[node name="Apprentice" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Mages/Lvl1" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Apprentice"
 path = "res://Combat/Units/Derived units/Empire/e14 Apprentice.tscn"
 
-[node name="Lvl2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Mages"]
+[node name="Lvl2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Mages"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 100
 alignment = 1
 
-[node name="Mage" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Mages/Lvl2" instance=ExtResource("2_r33n7")]
+[node name="Mage" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Mages/Lvl2" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Mage"
 path = "res://Combat/Units/Derived units/Empire/e16 Mage.tscn"
 
-[node name="Elementalist" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Mages/Lvl2" instance=ExtResource("2_r33n7")]
+[node name="Elementalist" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Mages/Lvl2" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Elementalist"
 path = "res://Combat/Units/Derived units/Empire/e15 Elementalist.tscn"
 
-[node name="Lvl3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Mages"]
+[node name="Lvl3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Mages"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 100
 alignment = 1
 
-[node name="Wizard" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Mages/Lvl3" instance=ExtResource("2_r33n7")]
+[node name="Wizard" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Mages/Lvl3" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Wizard"
 path = "res://Combat/Units/Derived units/Empire/e18 Wizard.tscn"
 
-[node name="Ritualist" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Mages/Lvl3" instance=ExtResource("2_r33n7")]
+[node name="Ritualist" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Mages/Lvl3" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Ritualist"
 path = "res://Combat/Units/Derived units/Empire/e17 Ritualist.tscn"
 
-[node name="Lvl4" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Mages"]
+[node name="Lvl4" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Mages"]
 custom_minimum_size = Vector2(275, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 3
 alignment = 1
 
-[node name="White mage" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Mages/Lvl4" instance=ExtResource("2_r33n7")]
+[node name="White mage" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Mages/Lvl4" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "White mage"
 path = "res://Combat/Units/Derived units/Empire/e19 White Mage.tscn"
 
-[node name="Lvl5" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Mages"]
+[node name="Lvl5" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Mages"]
 custom_minimum_size = Vector2(275, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -273,268 +251,348 @@ size_flags_vertical = 3
 theme_override_constants/separation = 100
 alignment = 1
 
-[node name="Keeper of knowledge" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Mages/Lvl5" instance=ExtResource("2_r33n7")]
+[node name="Keeper of knowledge" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Mages/Lvl5" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Keeper of knowledge"
 path = "res://Combat/Units/Derived units/Empire/e20 Keeper of Knowledge.tscn"
 
-[node name="Arcanist" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Mages/Lvl5" instance=ExtResource("2_r33n7")]
+[node name="Arcanist" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Mages/Lvl5" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Arcanist"
 path = "res://Combat/Units/Derived units/Empire/e21 Arcanist.tscn"
 
-[node name="Archers" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans"]
+[node name="Archers" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans"]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="Lvl1" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Archers"]
+[node name="Lvl1" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Archers"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Archer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Archers/Lvl1" instance=ExtResource("2_r33n7")]
+[node name="Archer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Archers/Lvl1" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Archer"
 path = "res://Combat/Units/Derived units/Empire/e22 Archer.tscn"
 
-[node name="Lvl2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Archers"]
+[node name="Lvl2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Archers"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Marksman" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Archers/Lvl2" instance=ExtResource("2_r33n7")]
+[node name="Marksman" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Archers/Lvl2" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Marksman"
 path = "res://Combat/Units/Derived units/Empire/e23 Marksman.tscn"
 
-[node name="Lvl3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Archers"]
+[node name="Lvl3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Archers"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 100
 alignment = 1
 
-[node name="Scout" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Archers/Lvl3" instance=ExtResource("2_r33n7")]
+[node name="Scout" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Archers/Lvl3" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Scout"
 path = "res://Combat/Units/Derived units/Empire/e24 Scout.tscn"
 
-[node name="Assassin" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Archers/Lvl3" instance=ExtResource("2_r33n7")]
+[node name="Assassin" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Archers/Lvl3" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Assassin"
 path = "res://Combat/Units/Derived units/Empire/e25 Assassin.tscn"
 
-[node name="Lvl4" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Archers"]
+[node name="Lvl4" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Archers"]
 custom_minimum_size = Vector2(275, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Imperial ranger" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Archers/Lvl4" instance=ExtResource("2_r33n7")]
+[node name="Imperial ranger" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Archers/Lvl4" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Imperial ranger"
 path = "res://Combat/Units/Derived units/Empire/e26 Imperial Ranger.tscn"
 
-[node name="Lvl5" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Archers"]
+[node name="Lvl5" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Archers"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Special" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans"]
+[node name="Special" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans"]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 
-[node name="Lvl1" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Special"]
+[node name="Lvl1" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Special"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Acolyte" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Special/Lvl1" instance=ExtResource("2_r33n7")]
+[node name="Acolyte" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Special/Lvl1" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Acolyte"
 path = "res://Combat/Units/Derived units/Empire/e27 Acolyte.tscn"
 
-[node name="Lvl2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Special"]
+[node name="Lvl2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Special"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 100
 alignment = 1
 
-[node name="Cleric" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Special/Lvl2" instance=ExtResource("2_r33n7")]
+[node name="Cleric" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Special/Lvl2" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Cleric"
 path = "res://Combat/Units/Derived units/Empire/e28 Cleric.tscn"
 
-[node name="Priest" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Special/Lvl2" instance=ExtResource("2_r33n7")]
+[node name="Priest" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Special/Lvl2" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Priest"
 path = "res://Combat/Units/Derived units/Empire/e29 Priest.tscn"
 
-[node name="Lvl3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Special"]
+[node name="Lvl3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Special"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 100
 alignment = 1
 
-[node name="Matriarch" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Special/Lvl3" instance=ExtResource("2_r33n7")]
+[node name="Matriarch" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Special/Lvl3" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Matriarch"
 path = "res://Combat/Units/Derived units/Empire/e30 Matriarch.tscn"
 
-[node name="Clergyman" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Special/Lvl3" instance=ExtResource("2_r33n7")]
+[node name="Clergyman" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Special/Lvl3" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Clergyman"
 path = "res://Combat/Units/Derived units/Empire/e31 Imperial priest.tscn"
 
-[node name="Lvl4" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Special"]
+[node name="Lvl4" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Special"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 100
 alignment = 1
 
-[node name="Prophetess" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Special/Lvl4" instance=ExtResource("2_r33n7")]
+[node name="Prophetess" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Special/Lvl4" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Prophetess"
 path = "res://Combat/Units/Derived units/Empire/e32 Prophetess.tscn"
 
-[node name="Hierophant" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Special/Lvl4" instance=ExtResource("2_r33n7")]
+[node name="Hierophant" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Special/Lvl4" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Hierophant"
 path = "res://Combat/Units/Derived units/Empire/e33 Hierophant.tscn"
 
-[node name="Lvl5" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Humans/Special"]
+[node name="Lvl5" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Special"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 100
 alignment = 1
 
-[node name="Undead" type="TabContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer"]
+[node name="Line2D" type="Line2D" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans"]
+visible = false
+points = PackedVector2Array(301, 112, 429, 147)
+default_color = Color(0.187176, 0.187176, 0.187176, 1)
+
+[node name="Line2D2" type="Line2D" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans"]
+visible = false
+points = PackedVector2Array(301, 112, 182, 149)
+default_color = Color(0.187176, 0.187176, 0.187176, 1)
+
+[node name="Line2D11" type="Line2D" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans"]
+visible = false
+position = Vector2(84, 309)
+points = PackedVector2Array(301, 112, 387, 146)
+default_color = Color(0.187176, 0.187176, 0.187176, 1)
+
+[node name="Line2D12" type="Line2D" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans"]
+visible = false
+position = Vector2(84, 309)
+points = PackedVector2Array(301, 112, 214, 147)
+default_color = Color(0.187176, 0.187176, 0.187176, 1)
+
+[node name="Line2D3" type="Line2D" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans"]
+visible = false
+position = Vector2(-131, 102)
+points = PackedVector2Array(310, 112, 182, 149)
+default_color = Color(0.187176, 0.187176, 0.187176, 1)
+
+[node name="Line2D4" type="Line2D" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans"]
+visible = false
+position = Vector2(-131, 102)
+points = PackedVector2Array(306, 112, 359, 148)
+default_color = Color(0.187176, 0.187176, 0.187176, 1)
+
+[node name="Line2D5" type="Line2D" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans"]
+visible = false
+position = Vector2(119, 104)
+points = PackedVector2Array(310, 112, 266, 143)
+default_color = Color(0.187176, 0.187176, 0.187176, 1)
+
+[node name="Line2D7" type="Line2D" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans"]
+visible = false
+position = Vector2(80, 204)
+points = PackedVector2Array(310, 112, 311, 147)
+default_color = Color(0.187176, 0.187176, 0.187176, 1)
+
+[node name="Line2D8" type="Line2D" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans"]
+visible = false
+position = Vector2(255, 203)
+points = PackedVector2Array(310, 112, 311, 147)
+default_color = Color(0.187176, 0.187176, 0.187176, 1)
+
+[node name="Line2D9" type="Line2D" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans"]
+visible = false
+position = Vector2(-265, 203)
+points = PackedVector2Array(310, 112, 311, 147)
+default_color = Color(0.187176, 0.187176, 0.187176, 1)
+
+[node name="Line2D10" type="Line2D" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans"]
+visible = false
+position = Vector2(-90, 202)
+points = PackedVector2Array(310, 112, 311, 147)
+default_color = Color(0.187176, 0.187176, 0.187176, 1)
+
+[node name="Line2D6" type="Line2D" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans"]
+visible = false
+position = Vector2(119, 104)
+points = PackedVector2Array(306, 112, 441, 145)
+default_color = Color(0.187176, 0.187176, 0.187176, 1)
+
+[node name="Undead" type="TabContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 current_tab = 0
 metadata/_tab_index = 1
 
-[node name="Melee" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Undead"]
+[node name="Melee" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead"]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="Lvl1" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Undead/Melee"]
+[node name="Lvl1" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Melee"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Lvl2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Undead/Melee"]
+[node name="Lvl2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Melee"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Lvl3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Undead/Melee"]
+[node name="Lvl3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Melee"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Lvl4" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Undead/Melee"]
+[node name="Lvl4" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Melee"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Lvl5" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Undead/Melee"]
+[node name="Lvl5" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Melee"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Mages" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Undead"]
+[node name="Mages" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead"]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="Lvl1" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Undead/Mages"]
+[node name="Lvl1" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Mages"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Lvl2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Undead/Mages"]
+[node name="Lvl2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Mages"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Lvl3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Undead/Mages"]
+[node name="Lvl3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Mages"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Lvl4" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Undead/Mages"]
+[node name="Lvl4" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Mages"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Lvl5" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Undead/Mages"]
+[node name="Lvl5" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Mages"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Archers" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Undead"]
+[node name="Archers" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead"]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="Lvl1" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Undead/Archers"]
+[node name="Lvl1" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Archers"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Lvl2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Undead/Archers"]
+[node name="Lvl2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Archers"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Lvl3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Undead/Archers"]
+[node name="Lvl3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Archers"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Lvl4" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Undead/Archers"]
+[node name="Lvl4" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Archers"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Lvl5" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Undead/Archers"]
+[node name="Lvl5" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Archers"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Special" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Undead"]
+[node name="Special" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead"]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 
-[node name="Lvl1" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Undead/Special"]
+[node name="Lvl1" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Special"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Lvl2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Undead/Special"]
+[node name="Lvl2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Special"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Lvl3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Undead/Special"]
+[node name="Lvl3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Special"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Lvl4" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Undead/Special"]
+[node name="Lvl4" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Special"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Lvl5" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/PanelContainer/MarginContainer/TabContainer/Undead/Special"]
+[node name="Lvl5" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Special"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="VBoxContainer5" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2

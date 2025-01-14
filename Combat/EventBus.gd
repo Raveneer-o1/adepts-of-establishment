@@ -1,7 +1,7 @@
 extends Node
 
-var left_units: Array[String] = ["res://Combat/Units/Derived units/Empire/e01 Squire.tscn"]
-var right_units: Array[String] = ["res://Combat/Units/Derived units/Empire/e01 Squire.tscn"]
+var left_units: Array[String] = ["res://Combat/Units/Derived units/Empire/e33 Hierophant.tscn"]
+var right_units: Array[String] = ["res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn"]
 
 var packed_menu: PackedScene
 

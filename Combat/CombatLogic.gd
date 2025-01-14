@@ -99,6 +99,8 @@ func try_wait() -> bool:
 
 ## Begins a new combat round, resets the queue, and emits a round-started signal.
 func start_round() -> void:
+	if not battle_in_progress:
+		return
 	waited_attacks.clear()
 	current_round += 1
 	print("Round " + str(current_round))
@@ -108,6 +110,8 @@ func start_round() -> void:
 
 ##  Starts a turn for the next unit in the queue.
 func start_turn() -> void:
+	if not battle_in_progress:
+		return
 	var curr := main_system.current_unit
 	current_attack = null
 	if curr != null:
@@ -130,6 +134,8 @@ func start_turn() -> void:
 ##  Advances the combat flow to the next stage.
 ##  Starts a new turn or round, or ends the battle if no units are left to act.
 func next_stage() -> void:
+	if not battle_in_progress:
+		return
 	start_turn()
 	# if start_turn didn't set current_unit, there's no units left in queue
 	if main_system.current_unit == null:

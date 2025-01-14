@@ -213,8 +213,8 @@ func skip_attack(message: String = "") -> void:
 ## Resets attack targets and emits a signal that the attack has finished.
 func finish_attacking() -> void:
 	reset_chosen_targets(self)
-	EventBus.attack_animation_finished.emit(self)
 	set_next_attack()
+	EventBus.attack_animation_finished.emit(self)
 
 
 ## Assigns next current_attack if possible

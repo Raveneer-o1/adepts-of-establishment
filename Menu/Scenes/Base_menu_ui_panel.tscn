@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfyuu528t154q"]
+
+[ext_resource type="Texture2D" uid="uid://crcehcwtajbxn" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/MenusBox_34x34.png" id="1_fj47p"]
+[ext_resource type="Texture2D" uid="uid://bkpkqe7nyjhx1" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/PatternMiddleBottomBG_199x48.png" id="2_shlkb"]
+[ext_resource type="Texture2D" uid="uid://drok8rxau41si" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/TopPatternBG_116x67.png" id="3_3a2xa"]
+
+[node name="MarginContainer" type="MarginContainer"]
+offset_right = 137.0
+offset_bottom = 151.0
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_fj47p")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Container" type="MarginContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureRect" type="TextureRect" parent="NinePatchRect/Container"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 8
+texture = ExtResource("2_shlkb")
+expand_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="NinePatchRect/Container"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("3_3a2xa")
+expand_mode = 2
