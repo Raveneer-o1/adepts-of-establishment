@@ -1,9 +1,7 @@
-[gd_resource type="Theme" load_steps=14 format=3 uid="uid://eh5pr46h0ubl"]
+[gd_resource type="Theme" load_steps=18 format=3 uid="uid://eh5pr46h0ubl"]
 
 [ext_resource type="Texture2D" uid="uid://pgi16succufa" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/Button_52x14.png" id="1_3dh1o"]
-[ext_resource type="Texture2D" uid="uid://cxstg5i0ffslt" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/RectangleBox_96x96.png" id="3_bu7w8"]
-[ext_resource type="Texture2D" uid="uid://bdl82fyckw74d" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/TitleBox_64x16.png" id="4_vke4p"]
-[ext_resource type="Texture2D" uid="uid://cturd5myqf6pf" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/CharacterBox_56x57.png" id="5_otwwq"]
+[ext_resource type="Texture2D" uid="uid://0q42we21edp8" path="res://Arts/itch assets/Custom Border and Panels Menu All Part [BDragon1727]/atlas_texture.tres" id="2_u3h3t"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_obf7a"]
 texture = ExtResource("1_3dh1o")
@@ -19,19 +17,48 @@ texture = ExtResource("1_3dh1o")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_agy13"]
 texture = ExtResource("1_3dh1o")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_4yftr"]
+atlas = ExtResource("2_u3h3t")
+region = Rect2(192, 128, 64, 64)
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_17dob"]
-texture = ExtResource("3_bu7w8")
+texture = SubResource("AtlasTexture_4yftr")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_83cxu"]
+load_path = "res://.godot/imported/13.png-e6c697f438cd6af73fa6d6432ad39ef0.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2b0nc"]
+atlas = SubResource("CompressedTexture2D_83cxu")
+region = Rect2(0, 0, 48, 32)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tegov"]
-texture = ExtResource("5_otwwq")
+texture = SubResource("AtlasTexture_2b0nc")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5mics"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3fxhv"]
-texture = ExtResource("4_vke4p")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_afwv6"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bvqnq"]
-texture = ExtResource("5_otwwq")
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhrmx"]
+atlas = SubResource("CompressedTexture2D_83cxu")
+region = Rect2(257, 164, 62, 26)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5qvux"]
+content_margin_left = 25.0
+content_margin_right = 25.0
+texture = SubResource("AtlasTexture_lhrmx")
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2q6b"]
+atlas = SubResource("CompressedTexture2D_83cxu")
+region = Rect2(257, 196, 62, 26)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e5qlt"]
+content_margin_left = 25.0
+content_margin_right = 25.0
+texture = SubResource("AtlasTexture_l2q6b")
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
 
 [resource]
 Button/styles/disabled = SubResource("StyleBoxTexture_obf7a")
@@ -45,7 +72,9 @@ MarginContainer/constants/margin_right = 20
 MarginContainer/constants/margin_top = 20
 Panel/styles/panel = SubResource("StyleBoxTexture_17dob")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_tegov")
+TabContainer/colors/font_unselected_color = Color(0.131055, 0.152233, 0.345837, 1)
 TabContainer/styles/panel = SubResource("StyleBoxTexture_5mics")
-TabContainer/styles/tab_hovered = SubResource("StyleBoxTexture_3fxhv")
-TabContainer/styles/tab_selected = SubResource("StyleBoxTexture_3fxhv")
-TabContainer/styles/tab_unselected = SubResource("StyleBoxTexture_bvqnq")
+TabContainer/styles/tab_focus = SubResource("StyleBoxEmpty_afwv6")
+TabContainer/styles/tab_hovered = SubResource("StyleBoxTexture_5qvux")
+TabContainer/styles/tab_selected = SubResource("StyleBoxTexture_e5qlt")
+TabContainer/styles/tab_unselected = SubResource("StyleBoxTexture_5qvux")
