@@ -100,5 +100,7 @@ full_description = "Once holy warriors, Fallen Inquisitors were corrupted by the
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_0omuv")
+animation = &"attack"
 autoplay = "default"
 offset = Vector2(8, -8)
+frames_to_emit = Array[int]([5])

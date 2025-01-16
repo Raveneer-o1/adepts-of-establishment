@@ -65,6 +65,9 @@ animations = [{
 "duration": 6.0,
 "texture": SubResource("AtlasTexture_n8ipj")
 }, {
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_n8ipj")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cgsyk")
 }, {
@@ -111,3 +114,4 @@ animations = [{
 
 [node name="Effect" instance=ExtResource("1_tdhaa")]
 sprite_frames = SubResource("SpriteFrames_pjcu4")
+autoplay = "default"

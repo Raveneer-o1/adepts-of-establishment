@@ -95,3 +95,4 @@ full_description = "The Destined are individuals who pledge their lives to the K
 sprite_frames = SubResource("SpriteFrames_oo6lg")
 animation = &"attack"
 autoplay = "default"
+frames_to_emit = Array[int]([3])

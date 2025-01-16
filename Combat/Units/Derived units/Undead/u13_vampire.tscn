@@ -114,4 +114,6 @@ full_description = "Vampires are necromancers who dared to perform the blood rit
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_1gf0x")
+animation = &"attack"
 autoplay = "default"
+frames_to_emit = Array[int]([6])

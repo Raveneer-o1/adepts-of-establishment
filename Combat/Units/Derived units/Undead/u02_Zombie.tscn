@@ -95,3 +95,4 @@ full_description = "Zombies are the reanimated corpses of the recently deceased,
 sprite_frames = SubResource("SpriteFrames_x5s0m")
 animation = &"attack"
 autoplay = "default"
+frames_to_emit = Array[int]([2])

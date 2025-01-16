@@ -107,5 +107,7 @@ full_description = "Templars are former knights who willingly embraced undeath t
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_3kbyq")
+animation = &"attack"
 autoplay = "default"
 offset = Vector2(8, 0)
+frames_to_emit = Array[int]([4])

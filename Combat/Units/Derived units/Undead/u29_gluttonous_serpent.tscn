@@ -93,5 +93,11 @@ full_description = "The Gluttonous Serpent is a grotesque creature that has aban
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_e5322")
+animation = &"attack"
 autoplay = "default"
 offset = Vector2(8, 0)
+frames_to_emit = Array[int]([3])
+
+[node name="VisualBar" parent="UnitParameters" index="0"]
+offset_left = -31.0
+offset_right = 29.0

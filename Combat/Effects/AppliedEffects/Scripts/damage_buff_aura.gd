@@ -16,5 +16,5 @@ func _apply_effect(params: Variant) -> void:
 		unit.parameters.add_modifier(
 				"damage", 
 				self, 
-				func(damage): return damage + damage_increase
+				func(damage: int) -> int: return damage + damage_increase
 		)

@@ -131,7 +131,9 @@ func add_modifier(stat: StringName, effect: AppliedEffect, influence: Callable) 
 	
 	(stats_modifiers[stat] as ModifierStack).add_modifier(effect, influence)
 
-func initialize_variables() -> void:
+var initializtion_successful: bool = false
+
+func initialize_variables() -> bool:
 	parent_unit = get_parent()
 	set_parameters()
 	_override_parameters()
@@ -146,6 +148,7 @@ func initialize_variables() -> void:
 	hp = max_hp
 	update_visuals()
 	#initialize_effects()
+	return initializtion_successful
 
 func update_effects() -> void:
 	for stack_name: String in stats_modifiers:
@@ -241,6 +244,8 @@ func set_parameters() -> void:
 				new_attack.applying_effects = (attack["Effects"] as Dictionary)
 			
 			attacks.append(new_attack)
+	
+	initializtion_successful = true
 
 func apply_effect(effect_name: String, params: Variant) -> void:
 	var res : Resource = load("res://Combat/Effects/AppliedEffects/Scenes/%s.tscn" % effect_name)

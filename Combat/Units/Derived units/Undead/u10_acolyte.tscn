@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://c5vikx0bd5g7m"]
+[gd_scene load_steps=17 format=3 uid="uid://c5vikx0bd5g7m"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_jcdtv"]
 [ext_resource type="Texture2D" uid="uid://dsl21nqjf8sos" path="res://Arts/Undead units/u22 acolyte v2 attack .png" id="2_hxb6d"]
 [ext_resource type="Texture2D" uid="uid://df74mv2gn682" path="res://Arts/Undead units/u22 acolyte v2 idle .png" id="3_peot3"]
+[ext_resource type="PackedScene" uid="uid://cnl2vrahoavc6" path="res://Combat/Effects/spiral_attack.tscn" id="4_idhnn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lldai"]
 atlas = ExtResource("2_hxb6d")
@@ -100,4 +101,9 @@ full_description = "Acolytes are novice practitioners of necromancy, drawn to th
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_garf3")
+animation = &"attack"
 autoplay = "default"
+frames_to_emit = Array[int]([5])
+
+[node name="UnitParameters" parent="." index="1"]
+attack_effect = ExtResource("4_idhnn")

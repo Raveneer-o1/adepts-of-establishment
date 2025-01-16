@@ -136,6 +136,7 @@ full_description = "Dark Mages delve into the forbidden arts of destructive magi
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_ita1u")
+animation = &"attack"
 autoplay = "default"
 
 [node name="UnitParameters" parent="." index="1"]

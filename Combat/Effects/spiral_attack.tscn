@@ -83,3 +83,4 @@ animations = [{
 
 [node name="Effect" instance=ExtResource("1_h2ves")]
 sprite_frames = SubResource("SpriteFrames_q4m7h")
+autoplay = "default"

@@ -137,3 +137,10 @@ full_description = "The Dreadwyrm is a terrifying draconic creature cloaked in s
 sprite_frames = SubResource("SpriteFrames_8f6gl")
 autoplay = "default"
 offset = Vector2(0, -8)
+
+[node name="UnitParameters" parent="." index="1"]
+large_unit = true
+
+[node name="VisualBar" parent="UnitParameters" index="0"]
+offset_left = -31.0
+offset_right = 29.0

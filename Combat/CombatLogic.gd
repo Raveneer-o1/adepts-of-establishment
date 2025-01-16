@@ -69,6 +69,8 @@ func set_queue() -> void:
 		(main_system.right_party.units.duplicate().filter(filter_nulls))
 	units = filter_duplicates(units)
 	
+	
+	
 	attacks_queue = []
 	for unit in units:
 		unit.arrange_attacks()

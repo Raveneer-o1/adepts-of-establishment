@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cku7rhe8jn3tx"]
+[gd_scene load_steps=19 format=3 uid="uid://cku7rhe8jn3tx"]
 
 [ext_resource type="PackedScene" uid="uid://dpt3c8srdp3wx" path="res://Combat/Scenes/party.tscn" id="1_g80uy"]
 [ext_resource type="Script" path="res://Combat/combat.gd" id="1_y8ty4"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Combat/CombatLogic.gd" id="4_qfjqk"]
 [ext_resource type="PackedScene" uid="uid://bnurbl8wl4www" path="res://Combat/Scenes/player_api.tscn" id="5_ano00"]
 [ext_resource type="PackedScene" uid="uid://clykj0u2jumym" path="res://Combat/Scenes/basic_combat_ai.tscn" id="7_0jkew"]
+[ext_resource type="PackedScene" uid="uid://0hcak5qcsv8i" path="res://Combat/Scenes/player_controller.tscn" id="8_3ww2e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cqvtd"]
 atlas = ExtResource("3_58fml")
@@ -78,7 +79,7 @@ script = ExtResource("1_y8ty4")
 unit_parameters_database = ExtResource("2_x7h3h")
 unit_marker = ExtResource("3_tn6ox")
 left_player = NodePath("Left Player API")
-right_player = NodePath("Right Player API2")
+right_player = NodePath("Right Player API")
 
 [node name="LeftParty" parent="." instance=ExtResource("1_g80uy")]
 position = Vector2(150, 0)
@@ -120,8 +121,8 @@ text = "[center]wins![/center]"
 
 [node name="Left Player API" parent="." instance=ExtResource("5_ano00")]
 
-[node name="Basic Combat AI" parent="Left Player API" instance=ExtResource("7_0jkew")]
+[node name="Player Controller" parent="Left Player API" instance=ExtResource("8_3ww2e")]
 
-[node name="Right Player API2" parent="." instance=ExtResource("5_ano00")]
+[node name="Right Player API" parent="." instance=ExtResource("5_ano00")]
 
-[node name="Basic Combat AI" parent="Right Player API2" instance=ExtResource("7_0jkew")]
+[node name="Basic Combat AI" parent="Right Player API" instance=ExtResource("7_0jkew")]

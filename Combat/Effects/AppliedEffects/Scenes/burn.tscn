@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c805y6ckq81lq"]
+
+[ext_resource type="PackedScene" uid="uid://8d3sodh68huv" path="res://Combat/Effects/AppliedEffects/applied_effect.tscn" id="1_bk6fe"]
+[ext_resource type="Script" path="res://Combat/Effects/AppliedEffects/Scripts/burn.gd" id="2_lc5cq"]
+
+[node name="burn" instance=ExtResource("1_bk6fe")]
+script = ExtResource("2_lc5cq")
+damage_pet_turn = 30
+effect_name = "Burn"
+icon_index = 10
+description = "Deals %d damage every turn for %d turns"

@@ -102,3 +102,10 @@ full_description = "Wyverns are the earthbound cousins of dragons, stripped of t
 sprite_frames = SubResource("SpriteFrames_0dpmh")
 autoplay = "default"
 offset = Vector2(12, 0)
+
+[node name="UnitParameters" parent="." index="1"]
+large_unit = true
+
+[node name="VisualBar" parent="UnitParameters" index="0"]
+offset_left = -31.0
+offset_right = 29.0

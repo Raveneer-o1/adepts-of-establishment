@@ -179,6 +179,11 @@ func standart_mass_healer_additional_targets(attacker: Unit, chosen_targets: Arr
 		if not chosen_targets.has(u.get_parent()):
 			result.append(u.get_parent())
 	return result
+
+func standart_double_attack(attacker: Unit, chosen_targets: Array[UnitSpot]) -> Array[UnitSpot]:
+	return chosen_targets.duplicate()
+	
+
 #endregion
 
 #region Policies
@@ -1079,7 +1084,7 @@ var DATABASE := {
 				TargetsNeeded = 1, # int
 				Initiative = 40, # int
 				Validation = standart_melee_validity, # Callable (attacker: Unit, target: Unit) -> bool
-				#FindAdditionalTargets = standart_mass_healer_additional_targets,
+				FindAdditionalTargets = standart_double_attack,
 				#DamagePolicy = standart_decay_policy,
 				#Effects = {"poison" = 35},
 			},
@@ -1156,13 +1161,13 @@ var DATABASE := {
 		HP = 120, # int
 		Armor = 30, # int
 		#Immunities = [],
-		Attacks = [ # Array[Dictionary]
+		Attacks = [
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
 				Type = EventBus.AttackType.Physical, # EventBus.AttackType
 				Accuracy = 0.8, # float [0, 1]
-				TargetsNeeded = 1, # int
+				TargetsNeeded = 2, # int
 				Initiative = 40, # int
 				Validation = standart_melee_validity, # Callable (attacker: Unit, target: Unit) -> bool
 				#FindAdditionalTargets = standart_mass_healer_additional_targets,
@@ -1249,13 +1254,13 @@ var DATABASE := {
 				TargetsNeeded = 1, # int
 				Initiative = 40, # int
 				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
-				FindAdditionalTargets = standart_mage_additional_targets,
-				DamagePolicy = standart_decay_policy,
+				#FindAdditionalTargets = standart_mage_additional_targets,
+				#DamagePolicy = standart_decay_policy,
 				#Effects = {"poison" = 35},
 			},
 		]
 	},
-	"Herald od Death" = {
+	"Herald of Death" = {
 		Level = 4, # int
 		Damage = 70, # int
 		HP = 130, # int
@@ -1270,8 +1275,8 @@ var DATABASE := {
 				TargetsNeeded = 1, # int
 				Initiative = 40, # int
 				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
-				FindAdditionalTargets = standart_mage_additional_targets,
-				DamagePolicy = standart_decay_policy,
+				#FindAdditionalTargets = standart_mage_additional_targets,
+				#DamagePolicy = standart_decay_policy,
 				#Effects = {"poison" = 35},
 			},
 		]
@@ -1297,7 +1302,7 @@ var DATABASE := {
 			},
 		]
 	},
-	"Elder Vampire" = {
+	"Elder vampire" = {
 		Level = 4, # int
 		Damage = 70, # int
 		HP = 120, # int
@@ -1357,10 +1362,10 @@ var DATABASE := {
 				DamageOverride = false, # bool
 				Type = EventBus.AttackType.Physical, # EventBus.AttackType
 				Accuracy = 0.9, # float [0, 1]
-				TargetsNeeded = 2, # int
+				TargetsNeeded = 1, # int
 				Initiative = 50, # int
 				Validation = standart_melee_validity, # Callable (attacker: Unit, target: Unit) -> bool
-				#FindAdditionalTargets = standart_splash_additional_targets,
+				FindAdditionalTargets = standart_double_attack,
 				#DamagePolicy = standart_immediate_decay_policy,
 				#Effects = {"poison" = 35},
 			},
@@ -1456,7 +1461,7 @@ var DATABASE := {
 	},
 	"Will-o’-Wisp" = {
 		Level = 3, # int
-		Damage = 10, # int
+		Damage = 50, # int
 		HP = 125, # int
 		Armor = 120, # int
 		Immunities = [
@@ -1464,8 +1469,8 @@ var DATABASE := {
 		],
 		Attacks = [ # Array[Dictionary]
 			{
-				DamageMultiplier = 0.0, # float
-				DamageOverride = true, # bool
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
 				Type = EventBus.AttackType.Mind, # EventBus.AttackType
 				Accuracy = 0.6, # float [0, 1]
 				TargetsNeeded = 1, # int
@@ -1473,7 +1478,7 @@ var DATABASE := {
 				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
 				FindAdditionalTargets = standart_splash_additional_targets,
 				#DamagePolicy = standart_decay_policy,
-				Effects = {"stun" = [1.0, 2]},
+				Effects = {"burn" = [20, 3]},
 			},
 		]
 	},
@@ -1490,19 +1495,19 @@ var DATABASE := {
 				DamageMultiplier = 0.0, # float
 				DamageOverride = true, # bool
 				Type = EventBus.AttackType.Mind, # EventBus.AttackType
-				Accuracy = 0.4, # float [0, 1]
+				Accuracy = 0.5, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 40, # int
 				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
-				FindAdditionalTargets = standart_mage_additional_targets,
+				FindAdditionalTargets = standart_splash_additional_targets,
 				#DamagePolicy = standart_decay_policy,
-				Effects = {"stun" = [1.0, 2]},
+				Effects = {"stun" = [1.0, 1]},
 			},
 		]
 	},
 	"The Eternal" = {
 		Level = 4, # int
-		Damage = 10, # int
+		Damage = 60, # int
 		HP = 140, # int
 		Armor = 140, # int
 		Immunities = [
@@ -1519,7 +1524,7 @@ var DATABASE := {
 				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
 				FindAdditionalTargets = standart_splash_additional_targets,
 				#DamagePolicy = standart_decay_policy,
-				Effects = {"stun" = [1.0, 2]},
+				Effects = {"burn" = [35, 4]},
 			},
 		]
 	},

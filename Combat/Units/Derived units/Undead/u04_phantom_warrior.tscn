@@ -100,5 +100,7 @@ full_description = "Phantom Warriors are spectral remnants of fallen soldiers, b
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_qrsla")
+animation = &"attack"
 autoplay = "default"
 offset = Vector2(8, 0)
+frames_to_emit = Array[int]([5])

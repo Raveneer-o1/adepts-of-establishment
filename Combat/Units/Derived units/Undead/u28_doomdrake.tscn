@@ -102,3 +102,10 @@ full_description = "A wyvern that succumbs to the influence of the Necropolis tr
 sprite_frames = SubResource("SpriteFrames_hdqac")
 autoplay = "default"
 offset = Vector2(8, 0)
+
+[node name="UnitParameters" parent="." index="1"]
+large_unit = true
+
+[node name="VisualBar" parent="UnitParameters" index="0"]
+offset_left = -31.0
+offset_right = 29.0

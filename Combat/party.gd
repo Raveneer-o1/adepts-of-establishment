@@ -84,8 +84,7 @@ func get_units_custom(filter_func: Callable) -> Array[Unit]:
 			result.append(u)
 	return result
 
-## Places units based on a list of unit names.
-func place_units(list: Array[String]) -> void:
+func place_spots() -> void:
 	unit_spots.clear()
 	for i in range(MAX_UNITS_NUMBER):
 		unit_spots.append(main_system.UNIT_SPOT.instantiate())
@@ -94,6 +93,10 @@ func place_units(list: Array[String]) -> void:
 		unit_spots[i].system = main_system
 		unit_spots[i].party_position = i
 		unit_spots[i].party = self
+
+## Places units based on a list of unit names.
+func place_units(list: Array[String]) -> void:
+	place_spots()
 	
 	if list.size() > MAX_UNITS_NUMBER:
 		print_debug("Unit list exceeds the maximum allowed number of units!")

@@ -89,6 +89,7 @@ animations = [{
 }]
 
 [node name="Shadow" instance=ExtResource("1_u1jip")]
+unit_name = "Shadow"
 full_description = "Shadow's very essence a manifestation of fear and despair. They attack by engulfing their targets in a cold, suffocating void, sapping their strength and will. Difficult to detect and harder to fight, Shadows excel at ambushing their prey and disrupting enemy formations."
 
 [node name="AnimationHandle" parent="." index="0"]

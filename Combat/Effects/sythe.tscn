@@ -34,7 +34,10 @@ region = Rect2(0, 192, 32, 32)
 [sub_resource type="SpriteFrames" id="SpriteFrames_6tnhi"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_lxu0k")
+}, {
+"duration": 4.0,
 "texture": SubResource("AtlasTexture_lxu0k")
 }, {
 "duration": 1.0,
@@ -62,3 +65,5 @@ animations = [{
 
 [node name="Effect" instance=ExtResource("1_uvtxy")]
 sprite_frames = SubResource("SpriteFrames_6tnhi")
+autoplay = "default"
+offset = Vector2(-16, 0)

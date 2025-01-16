@@ -124,3 +124,4 @@ sprite_frames = SubResource("SpriteFrames_5p842")
 animation = &"attack"
 autoplay = "default"
 offset = Vector2(8, 0)
+frames_to_emit = Array[int]([4])

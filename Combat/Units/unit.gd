@@ -29,6 +29,8 @@ var parameters: UnitParameters
 var party: Party
 var system: CombatSystem
 
+var initialized: bool = false
+
 ## <TextureRect, AppliedEffect>
 var displayed_icons: Dictionary
 
@@ -252,13 +254,17 @@ func start_attacking() -> void:
 	system.combat_logic.book_damage(attack)
 
 ## Initializes unit variables and connects signals.
-func initialize_variables() -> void:
+func initialize_variables() -> bool:
 	parameters = get_node("UnitParameters")
 	party = get_parent().get_parent() as Party
 	system = party.main_system
 	if party == null:
 		print_debug("Unable to find Party node!")
-	parameters.initialize_variables()
+	
+	if not parameters.initialize_variables():
+		return false
+	
+	initialized = true
 	EventBus.turn_ended.connect(reset_chosen_targets)
 	EventBus.turn_ended.connect(clean_effects)
 	EventBus.turn_started.connect(clean_effects)
@@ -266,6 +272,8 @@ func initialize_variables() -> void:
 	EventBus.round_started.connect(arrange_attacks_and_set_next)
 	EventBus.attack_reached.connect(check_taking_damage)
 	EventBus.attack_animation_finished.connect(finalize_all_attacks)
+	
+	return true
 
 
 # Handles the unit being clicked on.
@@ -305,8 +313,10 @@ func visualize_death() -> void:
 
 ## Processes the unit's death (animation pending).
 func die() -> void:
+	if not initialized:
+		return
+	
 	EventBus.unit_died.emit(self)
-	## TODO: Add death animation
 	animation_handle.play_death_animation()
 	
 	party.units[party_position] = null

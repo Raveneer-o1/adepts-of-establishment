@@ -128,4 +128,6 @@ full_description = "Elite undead warriors, crafted from the bones of legendary f
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_uroni")
+animation = &"attack"
 autoplay = "default"
+frames_to_emit = Array[int]([7])

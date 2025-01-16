@@ -55,7 +55,9 @@ func add_unit(loaded_unit: Resource) -> void:
 		return
 	unit = loaded_unit.instantiate()
 	add_child(unit)
-	unit.initialize_variables()
+	if not unit.initialize_variables():
+		unit.queue_free()
+		return
 	unit.party_position = party_position
 	party.units[party_position] = unit
 	return
