@@ -1,0 +1,97 @@
+[gd_scene load_steps=15 format=3 uid="uid://c8vscof46xqwy"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_lms7p"]
+[ext_resource type="Texture2D" uid="uid://chnfnvxas45jg" path="res://Arts/Undead units/u01 warrior attack .png" id="2_ovvav"]
+[ext_resource type="Texture2D" uid="uid://bgy1ihw85d6pw" path="res://Arts/Undead units/u01 warrior idle .png" id="3_78kv8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3y5sv"]
+atlas = ExtResource("2_ovvav")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grm6k"]
+atlas = ExtResource("2_ovvav")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3u04m"]
+atlas = ExtResource("2_ovvav")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34tuk"]
+atlas = ExtResource("2_ovvav")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6ufu"]
+atlas = ExtResource("2_ovvav")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwpq2"]
+atlas = ExtResource("2_ovvav")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5kmld"]
+atlas = ExtResource("3_78kv8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqfrt"]
+atlas = ExtResource("3_78kv8")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3857"]
+atlas = ExtResource("3_78kv8")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aocxw"]
+atlas = ExtResource("3_78kv8")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oo6lg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3y5sv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grm6k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3u04m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34tuk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6ufu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwpq2")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5kmld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqfrt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a3857")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aocxw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Destined" instance=ExtResource("1_lms7p")]
+unit_name = "Destined"
+full_description = "The Destined are individuals who pledge their lives to the King of Necropolis even before death claims them. This devotion grants them a fragile connection to the forces of death, allowing them to manipulate minor necromantic powers. However, their frail, living bodies struggle to withstand the rigors of combat"
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_oo6lg")
+animation = &"attack"
+autoplay = "default"

@@ -1,0 +1,125 @@
+[gd_scene load_steps=19 format=3 uid="uid://1hu3f7g1ei2k"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_d17v1"]
+[ext_resource type="Texture2D" uid="uid://cqwlaxjk1ffsv" path="res://Arts/Undead units/u33 Undying nighthunter attack .png" id="2_s7d44"]
+[ext_resource type="Texture2D" uid="uid://cdpajkyngqmfu" path="res://Arts/Undead units/u33 Undying nighthunter idle .png" id="3_i4tnq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wkb4w"]
+atlas = ExtResource("2_s7d44")
+region = Rect2(0, 0, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkpwq"]
+atlas = ExtResource("2_s7d44")
+region = Rect2(0, 48, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xl4tm"]
+atlas = ExtResource("2_s7d44")
+region = Rect2(0, 96, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81on0"]
+atlas = ExtResource("2_s7d44")
+region = Rect2(0, 144, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_voqrp"]
+atlas = ExtResource("2_s7d44")
+region = Rect2(0, 192, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmtjg"]
+atlas = ExtResource("2_s7d44")
+region = Rect2(0, 240, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aoo0r"]
+atlas = ExtResource("2_s7d44")
+region = Rect2(0, 288, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uupqt"]
+atlas = ExtResource("2_s7d44")
+region = Rect2(0, 336, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v84w3"]
+atlas = ExtResource("2_s7d44")
+region = Rect2(0, 384, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8ujg"]
+atlas = ExtResource("2_s7d44")
+region = Rect2(0, 432, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvv40"]
+atlas = ExtResource("3_i4tnq")
+region = Rect2(0, 0, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ci5mg"]
+atlas = ExtResource("3_i4tnq")
+region = Rect2(0, 48, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhvxk"]
+atlas = ExtResource("3_i4tnq")
+region = Rect2(0, 96, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66gyk"]
+atlas = ExtResource("3_i4tnq")
+region = Rect2(0, 144, 80, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_52bqx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wkb4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mkpwq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xl4tm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_81on0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_voqrp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fmtjg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aoo0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uupqt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v84w3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y8ujg")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hvv40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ci5mg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lhvxk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66gyk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Undying Nighthunter" instance=ExtResource("1_d17v1")]
+unit_name = "Undying Nighthunter"
+full_description = "The Undying Nighthunter is a dragon that defies the limitations of mortality. Rising from death, it becomes a relentless predator of the night, hunting down its prey with precision and terror. Its ability to vanish into darkness make it a nightmare of living, and no enemy escapes its wrath."
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_52bqx")
+autoplay = "default"
+offset = Vector2(8, -8)

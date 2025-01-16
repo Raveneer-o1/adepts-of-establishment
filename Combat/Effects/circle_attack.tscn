@@ -1,0 +1,64 @@
+[gd_scene load_steps=11 format=3 uid="uid://n7w0136buyjd"]
+
+[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/abstract_effect.tscn" id="1_w2we5"]
+[ext_resource type="Texture2D" uid="uid://dci3deigm47n7" path="res://Arts/Undead units/u23 necromancer effect .png" id="2_xheun"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0m5ml"]
+atlas = ExtResource("2_xheun")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbpkj"]
+atlas = ExtResource("2_xheun")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22gfb"]
+atlas = ExtResource("2_xheun")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6rei"]
+atlas = ExtResource("2_xheun")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6yqn"]
+atlas = ExtResource("2_xheun")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0iq2"]
+atlas = ExtResource("2_xheun")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0r8a"]
+atlas = ExtResource("2_xheun")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8gvll"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0m5ml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbpkj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_22gfb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6rei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6yqn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h0iq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b0r8a")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Effect" instance=ExtResource("1_w2we5")]
+sprite_frames = SubResource("SpriteFrames_8gvll")

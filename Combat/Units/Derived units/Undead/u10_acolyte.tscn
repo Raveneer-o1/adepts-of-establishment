@@ -1,0 +1,103 @@
+[gd_scene load_steps=16 format=3 uid="uid://c5vikx0bd5g7m"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_jcdtv"]
+[ext_resource type="Texture2D" uid="uid://dsl21nqjf8sos" path="res://Arts/Undead units/u22 acolyte v2 attack .png" id="2_hxb6d"]
+[ext_resource type="Texture2D" uid="uid://df74mv2gn682" path="res://Arts/Undead units/u22 acolyte v2 idle .png" id="3_peot3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lldai"]
+atlas = ExtResource("2_hxb6d")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tysbw"]
+atlas = ExtResource("2_hxb6d")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fwu3k"]
+atlas = ExtResource("2_hxb6d")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqcb7"]
+atlas = ExtResource("2_hxb6d")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tkfd"]
+atlas = ExtResource("2_hxb6d")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jfnb4"]
+atlas = ExtResource("2_hxb6d")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ropty"]
+atlas = ExtResource("2_hxb6d")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4u65"]
+atlas = ExtResource("3_peot3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ejwu"]
+atlas = ExtResource("3_peot3")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ix0mw"]
+atlas = ExtResource("3_peot3")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j3skm"]
+atlas = ExtResource("3_peot3")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_garf3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lldai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tysbw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fwu3k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eqcb7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tkfd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jfnb4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ropty")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h4u65")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ejwu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ix0mw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j3skm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Death Acolyte" instance=ExtResource("1_jcdtv")]
+unit_name = "Death Acolyte"
+full_description = "Acolytes are novice practitioners of necromancy, drawn to the allure of death's secrets. Though their abilities are limited, they can channel minor curses to aid their allies. With time and guidance, these fledgling necromancers can evolve into powerful wielders of dark magic."
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_garf3")
+autoplay = "default"

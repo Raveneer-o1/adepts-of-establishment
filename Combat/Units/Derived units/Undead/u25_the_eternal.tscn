@@ -1,0 +1,114 @@
+[gd_scene load_steps=18 format=3 uid="uid://b82ediua8s2v2"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_rnn02"]
+[ext_resource type="Texture2D" uid="uid://bxnp8khaemwj8" path="res://Arts/Undead units/u26 The Eternal attack .png" id="2_47vol"]
+[ext_resource type="Texture2D" uid="uid://d0rmap5kwg2nq" path="res://Arts/Undead units/u26 The Eternal idle .png" id="3_01npa"]
+[ext_resource type="PackedScene" uid="uid://bem6bxlown8bm" path="res://Combat/Effects/The_eternal_effect.tscn" id="4_dn35n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jw05b"]
+atlas = ExtResource("2_47vol")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pssjo"]
+atlas = ExtResource("2_47vol")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkb15"]
+atlas = ExtResource("2_47vol")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6rn4"]
+atlas = ExtResource("2_47vol")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qy1h"]
+atlas = ExtResource("2_47vol")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hfuk"]
+atlas = ExtResource("2_47vol")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ps3xg"]
+atlas = ExtResource("2_47vol")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1sam1"]
+atlas = ExtResource("2_47vol")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_faeqv"]
+atlas = ExtResource("3_01npa")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yo0t2"]
+atlas = ExtResource("3_01npa")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ho0x7"]
+atlas = ExtResource("3_01npa")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5rw8"]
+atlas = ExtResource("3_01npa")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ui7m8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jw05b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pssjo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hkb15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6rn4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qy1h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6hfuk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ps3xg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1sam1")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_faeqv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yo0t2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ho0x7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5rw8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="The Eternal" instance=ExtResource("1_rnn02")]
+unit_name = "The Eternal"
+full_description = "The Eternal is a spirit bound by an ancient, unbreakable curse, its presence a harbinger of inevitable doom. This spectral entity wields overwhelming power, draining life from entire groups of enemies with its devastating attacks. Its unyielding persistence in battle makes it a terrifying force, embodying the unending grasp of death."
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_ui7m8")
+autoplay = "default"
+
+[node name="UnitParameters" parent="." index="1"]
+attack_effect = ExtResource("4_dn35n")

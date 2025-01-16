@@ -1,75 +1,75 @@
 [gd_scene load_steps=22 format=3 uid="uid://dr3gv7u8esdos"]
 
-[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_uc5s6"]
-[ext_resource type="Texture2D" uid="uid://cexhsrrwjxd5p" path="res://Arts/Undead units/u34 dracolich attack .png" id="2_5e21b"]
-[ext_resource type="Texture2D" uid="uid://crvhuvpgegepr" path="res://Arts/Undead units/u34 dracolich idle .png" id="3_a4c1l"]
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_7w0k8"]
+[ext_resource type="Texture2D" uid="uid://cexhsrrwjxd5p" path="res://Arts/Undead units/u34 dracolich attack .png" id="2_l7hsi"]
+[ext_resource type="Texture2D" uid="uid://crvhuvpgegepr" path="res://Arts/Undead units/u34 dracolich idle .png" id="3_eg5ke"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_niwnx"]
-atlas = ExtResource("2_5e21b")
+atlas = ExtResource("2_l7hsi")
 region = Rect2(0, 0, 80, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lwj1u"]
-atlas = ExtResource("2_5e21b")
+atlas = ExtResource("2_l7hsi")
 region = Rect2(0, 48, 80, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t0ecq"]
-atlas = ExtResource("2_5e21b")
+atlas = ExtResource("2_l7hsi")
 region = Rect2(0, 96, 80, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r6vci"]
-atlas = ExtResource("2_5e21b")
+atlas = ExtResource("2_l7hsi")
 region = Rect2(0, 144, 80, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lt2wc"]
-atlas = ExtResource("2_5e21b")
+atlas = ExtResource("2_l7hsi")
 region = Rect2(0, 192, 80, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w4vcw"]
-atlas = ExtResource("2_5e21b")
+atlas = ExtResource("2_l7hsi")
 region = Rect2(0, 240, 80, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rgbnq"]
-atlas = ExtResource("2_5e21b")
+atlas = ExtResource("2_l7hsi")
 region = Rect2(0, 288, 80, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_usj7f"]
-atlas = ExtResource("2_5e21b")
+atlas = ExtResource("2_l7hsi")
 region = Rect2(0, 336, 80, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n2762"]
-atlas = ExtResource("2_5e21b")
+atlas = ExtResource("2_l7hsi")
 region = Rect2(0, 384, 80, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hqgof"]
-atlas = ExtResource("2_5e21b")
+atlas = ExtResource("2_l7hsi")
 region = Rect2(0, 432, 80, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yjn4a"]
-atlas = ExtResource("2_5e21b")
+atlas = ExtResource("2_l7hsi")
 region = Rect2(0, 480, 80, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_snvgj"]
-atlas = ExtResource("2_5e21b")
+atlas = ExtResource("2_l7hsi")
 region = Rect2(0, 528, 80, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c40os"]
-atlas = ExtResource("2_5e21b")
+atlas = ExtResource("2_l7hsi")
 region = Rect2(0, 576, 80, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_toj14"]
-atlas = ExtResource("3_a4c1l")
+atlas = ExtResource("3_eg5ke")
 region = Rect2(0, 0, 80, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_51o51"]
-atlas = ExtResource("3_a4c1l")
+atlas = ExtResource("3_eg5ke")
 region = Rect2(0, 48, 80, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ba2u"]
-atlas = ExtResource("3_a4c1l")
+atlas = ExtResource("3_eg5ke")
 region = Rect2(0, 96, 80, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v7wkf"]
-atlas = ExtResource("3_a4c1l")
+atlas = ExtResource("3_eg5ke")
 region = Rect2(0, 144, 80, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mwnha"]
@@ -136,12 +136,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Unit2" instance=ExtResource("1_uc5s6")]
+[node name="Dracolich" instance=ExtResource("1_7w0k8")]
 unit_name = "Dracolich"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_mwnha")
-animation = &"attack"
 autoplay = "default"
 offset = Vector2(10, -9)
 frames_to_emit = Array[int]([9])
@@ -153,4 +152,3 @@ large_unit = true
 offset_left = -31.0
 offset_top = 17.0
 offset_right = 29.0
-offset_bottom = 24.0

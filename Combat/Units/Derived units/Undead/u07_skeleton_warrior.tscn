@@ -1,0 +1,131 @@
+[gd_scene load_steps=20 format=3 uid="uid://cvmvfp5vmhexe"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_m5le8"]
+[ext_resource type="Texture2D" uid="uid://cm6gduifdftsj" path="res://Arts/Undead units/u08 skeleton warrior attack .png" id="2_k4rwu"]
+[ext_resource type="Texture2D" uid="uid://btkokdumf0jum" path="res://Arts/Undead units/u08 skeleton warrior idle.png" id="3_y50yy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xc6k"]
+atlas = ExtResource("2_k4rwu")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ayd2u"]
+atlas = ExtResource("2_k4rwu")
+region = Rect2(0, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2551x"]
+atlas = ExtResource("2_k4rwu")
+region = Rect2(0, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qapu0"]
+atlas = ExtResource("2_k4rwu")
+region = Rect2(0, 96, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hx3is"]
+atlas = ExtResource("2_k4rwu")
+region = Rect2(0, 128, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3j6ft"]
+atlas = ExtResource("2_k4rwu")
+region = Rect2(0, 160, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgaoy"]
+atlas = ExtResource("2_k4rwu")
+region = Rect2(0, 192, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfri0"]
+atlas = ExtResource("2_k4rwu")
+region = Rect2(0, 224, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cg84k"]
+atlas = ExtResource("2_k4rwu")
+region = Rect2(0, 256, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_unhgi"]
+atlas = ExtResource("2_k4rwu")
+region = Rect2(0, 288, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wdqk7"]
+atlas = ExtResource("2_k4rwu")
+region = Rect2(0, 320, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v67mm"]
+atlas = ExtResource("3_y50yy")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f546t"]
+atlas = ExtResource("3_y50yy")
+region = Rect2(0, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8cjq1"]
+atlas = ExtResource("3_y50yy")
+region = Rect2(0, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7cr3"]
+atlas = ExtResource("3_y50yy")
+region = Rect2(0, 96, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uroni"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xc6k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ayd2u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2551x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qapu0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hx3is")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3j6ft")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgaoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qfri0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cg84k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_unhgi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wdqk7")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v67mm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f546t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8cjq1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l7cr3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Skeleton warrior" instance=ExtResource("1_m5le8")]
+unit_name = "Skeleton warrior"
+full_description = "Elite undead warriors, crafted from the bones of legendary fighters. Their bodies are reinforced with necromantic magic, granting them unparalleled strength and durability. Clad in ancient, rune-inscribed armor, they lead lesser undead into battle with an imposing presence that inspires dread in their enemies."
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_uroni")
+autoplay = "default"

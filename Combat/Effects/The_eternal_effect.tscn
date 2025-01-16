@@ -1,0 +1,106 @@
+[gd_scene load_steps=17 format=3 uid="uid://bem6bxlown8bm"]
+
+[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/abstract_effect.tscn" id="1_c5bqj"]
+[ext_resource type="Texture2D" uid="uid://jcu7ku8ba48r" path="res://Arts/Undead units/u26 The Eternal effect .png" id="2_7ay7q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wsl5v"]
+atlas = ExtResource("2_7ay7q")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pf02w"]
+atlas = ExtResource("2_7ay7q")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggx8k"]
+atlas = ExtResource("2_7ay7q")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wrg5"]
+atlas = ExtResource("2_7ay7q")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpr0m"]
+atlas = ExtResource("2_7ay7q")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1evg2"]
+atlas = ExtResource("2_7ay7q")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_756ew"]
+atlas = ExtResource("2_7ay7q")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2h1xe"]
+atlas = ExtResource("2_7ay7q")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgm01"]
+atlas = ExtResource("2_7ay7q")
+region = Rect2(0, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgk8o"]
+atlas = ExtResource("2_7ay7q")
+region = Rect2(0, 288, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_077cd"]
+atlas = ExtResource("2_7ay7q")
+region = Rect2(0, 320, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1md0e"]
+atlas = ExtResource("2_7ay7q")
+region = Rect2(0, 352, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l50kx"]
+atlas = ExtResource("2_7ay7q")
+region = Rect2(0, 384, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5p5j4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wsl5v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pf02w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggx8k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6wrg5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpr0m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1evg2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_756ew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2h1xe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgm01")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fgk8o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_077cd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1md0e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l50kx")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Effect" instance=ExtResource("1_c5bqj")]
+sprite_frames = SubResource("SpriteFrames_5p5j4")

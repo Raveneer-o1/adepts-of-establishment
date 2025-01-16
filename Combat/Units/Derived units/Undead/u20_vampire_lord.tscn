@@ -1,0 +1,126 @@
+[gd_scene load_steps=19 format=3 uid="uid://c4wmjlxgojxgm"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_7kl12"]
+[ext_resource type="Texture2D" uid="uid://ch0inodjly3mq" path="res://Arts/Undead units/u16 vampire lord attack .png" id="2_fcnea"]
+[ext_resource type="Texture2D" uid="uid://c80y2a67i4k66" path="res://Arts/Undead units/u16 vampire lord idle .png" id="3_7m43w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_arw44"]
+atlas = ExtResource("2_fcnea")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3twpv"]
+atlas = ExtResource("2_fcnea")
+region = Rect2(0, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lx3pi"]
+atlas = ExtResource("2_fcnea")
+region = Rect2(0, 96, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1dhmc"]
+atlas = ExtResource("2_fcnea")
+region = Rect2(0, 144, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4q67"]
+atlas = ExtResource("2_fcnea")
+region = Rect2(0, 192, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1pfin"]
+atlas = ExtResource("2_fcnea")
+region = Rect2(0, 240, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iq65e"]
+atlas = ExtResource("2_fcnea")
+region = Rect2(0, 288, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_naejo"]
+atlas = ExtResource("2_fcnea")
+region = Rect2(0, 336, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywnw8"]
+atlas = ExtResource("2_fcnea")
+region = Rect2(0, 384, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d08y6"]
+atlas = ExtResource("2_fcnea")
+region = Rect2(0, 432, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ip5d"]
+atlas = ExtResource("3_7m43w")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swngl"]
+atlas = ExtResource("3_7m43w")
+region = Rect2(0, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46kqy"]
+atlas = ExtResource("3_7m43w")
+region = Rect2(0, 96, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mc20j"]
+atlas = ExtResource("3_7m43w")
+region = Rect2(0, 144, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qo2wt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_arw44")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3twpv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lx3pi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1dhmc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4q67")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1pfin")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iq65e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_naejo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywnw8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d08y6")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ip5d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swngl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46kqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mc20j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Vampire Lord" instance=ExtResource("1_7kl12")]
+unit_name = "Vampire Lord"
+full_description = "Vampire Lords are the supreme rulers of their kind, commanding legions of undead and wielding unparalleled mastery over blood magic. Their regal presence belies their monstrous strength and cunning intellect, making them both inspiring leaders and fearsome warriors. With centuries of experience and an insatiable hunger for power, Vampire Lords are the ultimate embodiment of the Necropolis's dark ambition."
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_qo2wt")
+animation = &"attack"
+autoplay = "default"
+offset = Vector2(0, -8)

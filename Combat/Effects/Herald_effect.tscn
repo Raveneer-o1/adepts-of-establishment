@@ -1,0 +1,71 @@
+[gd_scene load_steps=12 format=3 uid="uid://cxc4kawwgjahf"]
+
+[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/abstract_effect.tscn" id="1_cv0da"]
+[ext_resource type="Texture2D" uid="uid://cy1w5bf6tu7sv" path="res://Arts/Undead units/u13 wraith effect .png" id="2_3mcec"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bp7h6"]
+atlas = ExtResource("2_3mcec")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3fqg"]
+atlas = ExtResource("2_3mcec")
+region = Rect2(0, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfmam"]
+atlas = ExtResource("2_3mcec")
+region = Rect2(0, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qgv18"]
+atlas = ExtResource("2_3mcec")
+region = Rect2(0, 96, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blwi6"]
+atlas = ExtResource("2_3mcec")
+region = Rect2(0, 128, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1oyyw"]
+atlas = ExtResource("2_3mcec")
+region = Rect2(0, 160, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8v4tj"]
+atlas = ExtResource("2_3mcec")
+region = Rect2(0, 192, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5a6u"]
+atlas = ExtResource("2_3mcec")
+region = Rect2(0, 224, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w0k16"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bp7h6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3fqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfmam")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qgv18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blwi6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1oyyw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8v4tj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n5a6u")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Effect" instance=ExtResource("1_cv0da")]
+sprite_frames = SubResource("SpriteFrames_w0k16")

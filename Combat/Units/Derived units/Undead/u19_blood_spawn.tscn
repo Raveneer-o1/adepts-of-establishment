@@ -1,0 +1,126 @@
+[gd_scene load_steps=19 format=3 uid="uid://qd1eeef07rkl"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_kf05b"]
+[ext_resource type="Texture2D" uid="uid://cv63wso5tovo4" path="res://Arts/Undead units/u25 blood spawn attack .png" id="2_o5ldf"]
+[ext_resource type="Texture2D" uid="uid://ccycxtwu40sx" path="res://Arts/Undead units/u25 blood spawn idle .png" id="3_akp6c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5qx11"]
+atlas = ExtResource("2_o5ldf")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rsodb"]
+atlas = ExtResource("2_o5ldf")
+region = Rect2(0, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xap7e"]
+atlas = ExtResource("2_o5ldf")
+region = Rect2(0, 64, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbxr7"]
+atlas = ExtResource("2_o5ldf")
+region = Rect2(0, 96, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmnoo"]
+atlas = ExtResource("2_o5ldf")
+region = Rect2(0, 128, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dk0s8"]
+atlas = ExtResource("2_o5ldf")
+region = Rect2(0, 160, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p3t2i"]
+atlas = ExtResource("2_o5ldf")
+region = Rect2(0, 192, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wgud0"]
+atlas = ExtResource("2_o5ldf")
+region = Rect2(0, 224, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pi48q"]
+atlas = ExtResource("2_o5ldf")
+region = Rect2(0, 256, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_atvu8"]
+atlas = ExtResource("2_o5ldf")
+region = Rect2(0, 288, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdjdu"]
+atlas = ExtResource("3_akp6c")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6wum"]
+atlas = ExtResource("3_akp6c")
+region = Rect2(0, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtlaq"]
+atlas = ExtResource("3_akp6c")
+region = Rect2(0, 64, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_feu7j"]
+atlas = ExtResource("3_akp6c")
+region = Rect2(0, 96, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p8l5x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5qx11")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rsodb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xap7e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbxr7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmnoo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dk0s8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p3t2i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wgud0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pi48q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_atvu8")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sdjdu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6wum")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dtlaq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_feu7j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Blood spawn" instance=ExtResource("1_kf05b")]
+unit_name = "Blood spawn"
+full_description = "Blood Spawn are the monstrous remnants of vampires who succumbed to their insatiable bloodlust. Mutated beyond recognition, they embody pure rage and hunger, striking terror into the hearts of all who face them. Their brutal attacks and unrelenting ferocity make them devastating forces of destruction, but their mindless nature renders them dangerous to friend and foe alike."
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_p8l5x")
+animation = &"attack"
+autoplay = "default"
+offset = Vector2(10, 0)

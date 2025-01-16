@@ -1,0 +1,126 @@
+[gd_scene load_steps=19 format=3 uid="uid://cyfiyiae3d4a3"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_frigw"]
+[ext_resource type="Texture2D" uid="uid://c1cevuork88ky" path="res://Arts/Undead units/u07 skeleton attack .png" id="2_upqnb"]
+[ext_resource type="Texture2D" uid="uid://b7ysbyome825h" path="res://Arts/Undead units/u07 skeleton idle .png" id="3_qgbpe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_poi57"]
+atlas = ExtResource("2_upqnb")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41gfx"]
+atlas = ExtResource("2_upqnb")
+region = Rect2(0, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uau5m"]
+atlas = ExtResource("2_upqnb")
+region = Rect2(0, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0pjsh"]
+atlas = ExtResource("2_upqnb")
+region = Rect2(0, 96, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmq4u"]
+atlas = ExtResource("2_upqnb")
+region = Rect2(0, 128, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5kun"]
+atlas = ExtResource("2_upqnb")
+region = Rect2(0, 160, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r27nf"]
+atlas = ExtResource("2_upqnb")
+region = Rect2(0, 192, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikc11"]
+atlas = ExtResource("2_upqnb")
+region = Rect2(0, 224, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogfu7"]
+atlas = ExtResource("3_qgbpe")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ik5wt"]
+atlas = ExtResource("3_qgbpe")
+region = Rect2(0, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8dau"]
+atlas = ExtResource("3_qgbpe")
+region = Rect2(0, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmhl6"]
+atlas = ExtResource("3_qgbpe")
+region = Rect2(0, 96, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46jai"]
+atlas = ExtResource("3_qgbpe")
+region = Rect2(0, 128, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7e5om"]
+atlas = ExtResource("3_qgbpe")
+region = Rect2(0, 160, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5p842"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_poi57")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41gfx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uau5m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0pjsh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kmq4u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b5kun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r27nf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ikc11")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ogfu7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ik5wt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8dau")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmhl6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46jai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7e5om")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Skeleton" instance=ExtResource("1_frigw")]
+unit_name = "Skeleton"
+full_description = "Skeletons are the quintessential soldiers of the undead, reassembled from the bones of the dead. While they lack the sophistication of living warriors, their undying loyalty and endless stamina make them reliable infantry. Armed with a variety of weapons, they form the backbone of the Necropolis's armies, marching tirelessly to their master's commands."
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_5p842")
+animation = &"attack"
+autoplay = "default"
+offset = Vector2(8, 0)

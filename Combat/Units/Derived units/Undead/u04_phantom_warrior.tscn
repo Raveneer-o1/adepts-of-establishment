@@ -1,0 +1,104 @@
+[gd_scene load_steps=16 format=3 uid="uid://cqqivpoythkv"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_g7wac"]
+[ext_resource type="Texture2D" uid="uid://dhjoy0sc4slw4" path="res://Arts/Undead units/u06 phantom warrior attack .png" id="2_qmjum"]
+[ext_resource type="Texture2D" uid="uid://cav43qmwfn58b" path="res://Arts/Undead units/u06 phantom warrior idle .png" id="3_hyxca"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajw3c"]
+atlas = ExtResource("2_qmjum")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t28rs"]
+atlas = ExtResource("2_qmjum")
+region = Rect2(0, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0l717"]
+atlas = ExtResource("2_qmjum")
+region = Rect2(0, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gda4w"]
+atlas = ExtResource("2_qmjum")
+region = Rect2(0, 96, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rgel"]
+atlas = ExtResource("2_qmjum")
+region = Rect2(0, 128, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_crvrg"]
+atlas = ExtResource("2_qmjum")
+region = Rect2(0, 160, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hclx"]
+atlas = ExtResource("2_qmjum")
+region = Rect2(0, 192, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewjpe"]
+atlas = ExtResource("3_hyxca")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wrrg3"]
+atlas = ExtResource("3_hyxca")
+region = Rect2(0, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fplta"]
+atlas = ExtResource("3_hyxca")
+region = Rect2(0, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_772n4"]
+atlas = ExtResource("3_hyxca")
+region = Rect2(0, 96, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qrsla"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajw3c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t28rs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0l717")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gda4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0rgel")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_crvrg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7hclx")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ewjpe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wrrg3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fplta")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_772n4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Phantom Warrior" instance=ExtResource("1_g7wac")]
+unit_name = "Phantom Warrior"
+full_description = "Phantom Warriors are spectral remnants of fallen soldiers, bound to the will of the Necropolis. They drift across the battlefield, their incorporeal forms allowing them to evade physical attacks. Armed with ghostly weapons, they deliver chilling strikes that sap the vitality of their foes, leaving them weakened and vulnerable."
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_qrsla")
+autoplay = "default"
+offset = Vector2(8, 0)

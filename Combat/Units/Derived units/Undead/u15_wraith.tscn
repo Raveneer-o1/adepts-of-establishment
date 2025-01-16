@@ -1,0 +1,114 @@
+[gd_scene load_steps=18 format=3 uid="uid://debujdw84uwas"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_lnsio"]
+[ext_resource type="Texture2D" uid="uid://c8ir36lajxom0" path="res://Arts/Undead units/u12 death attack.png" id="2_qbo8e"]
+[ext_resource type="Texture2D" uid="uid://dig3hbcgskcyd" path="res://Arts/Undead units/u12 death idle .png" id="3_e205o"]
+[ext_resource type="PackedScene" uid="uid://bsii5o6erpsok" path="res://Combat/Effects/Wraith_attack.tscn" id="4_l8fql"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwjmg"]
+atlas = ExtResource("2_qbo8e")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yg12s"]
+atlas = ExtResource("2_qbo8e")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7u8ox"]
+atlas = ExtResource("2_qbo8e")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1r3oh"]
+atlas = ExtResource("2_qbo8e")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xdnaf"]
+atlas = ExtResource("2_qbo8e")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4q5o3"]
+atlas = ExtResource("2_qbo8e")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pigs0"]
+atlas = ExtResource("2_qbo8e")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13182"]
+atlas = ExtResource("2_qbo8e")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_es0wr"]
+atlas = ExtResource("3_e205o")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w577m"]
+atlas = ExtResource("3_e205o")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrnfn"]
+atlas = ExtResource("3_e205o")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oyukb"]
+atlas = ExtResource("3_e205o")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iw1cw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwjmg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yg12s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7u8ox")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1r3oh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xdnaf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4q5o3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pigs0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_13182")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_es0wr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w577m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrnfn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oyukb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Wraith" instance=ExtResource("1_lnsio")]
+unit_name = "Wraith"
+full_description = "Wraiths are ethereal beings formed from the tormented souls of the dead. Their ghostly forms make them nearly invulnerable to physical attacks, allowing them to pass through the battlefield with ease. Wielding spectral claws, they sap the vitality of their victims while spreading despair among their enemies."
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_iw1cw")
+autoplay = "default"
+
+[node name="UnitParameters" parent="." index="1"]
+attack_effect = ExtResource("4_l8fql")

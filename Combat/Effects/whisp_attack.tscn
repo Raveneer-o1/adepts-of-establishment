@@ -1,0 +1,64 @@
+[gd_scene load_steps=11 format=3 uid="uid://7vboji3lb2aa"]
+
+[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/abstract_effect.tscn" id="1_rxcxf"]
+[ext_resource type="Texture2D" uid="uid://c5x5u4go0dvme" path="res://Arts/Undead units/u20 will-o-wisp effect .png" id="2_rirmh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aecvq"]
+atlas = ExtResource("2_rirmh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_743kn"]
+atlas = ExtResource("2_rirmh")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iun3w"]
+atlas = ExtResource("2_rirmh")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xg20v"]
+atlas = ExtResource("2_rirmh")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fslfc"]
+atlas = ExtResource("2_rirmh")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fc8l"]
+atlas = ExtResource("2_rirmh")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fklg4"]
+atlas = ExtResource("2_rirmh")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4bv56"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aecvq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_743kn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iun3w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xg20v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fslfc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3fc8l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fklg4")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Effect" instance=ExtResource("1_rxcxf")]
+sprite_frames = SubResource("SpriteFrames_4bv56")

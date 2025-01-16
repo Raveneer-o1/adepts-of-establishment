@@ -1,0 +1,184 @@
+[gd_scene load_steps=28 format=3 uid="uid://cqa7pi3fgdon4"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_8j244"]
+[ext_resource type="Texture2D" uid="uid://baj8bsume4tn5" path="res://Arts/Undead units/u27 Vision of darkness attack .png" id="2_c0ip2"]
+[ext_resource type="Texture2D" uid="uid://b8mxdxvy5c4si" path="res://Arts/Undead units/u27 Vision of darkness idle.png" id="3_kn74n"]
+[ext_resource type="PackedScene" uid="uid://cuqvottp86aof" path="res://Combat/Effects/Vision_of_darkness_effect.tscn" id="4_vagcr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54nk2"]
+atlas = ExtResource("2_c0ip2")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ur6lr"]
+atlas = ExtResource("2_c0ip2")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwvk2"]
+atlas = ExtResource("2_c0ip2")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxw2o"]
+atlas = ExtResource("2_c0ip2")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhu0v"]
+atlas = ExtResource("2_c0ip2")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ken4g"]
+atlas = ExtResource("2_c0ip2")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5goj"]
+atlas = ExtResource("2_c0ip2")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cc65u"]
+atlas = ExtResource("2_c0ip2")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hy2nl"]
+atlas = ExtResource("2_c0ip2")
+region = Rect2(0, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ck0vf"]
+atlas = ExtResource("2_c0ip2")
+region = Rect2(0, 288, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8546"]
+atlas = ExtResource("2_c0ip2")
+region = Rect2(0, 320, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwepw"]
+atlas = ExtResource("2_c0ip2")
+region = Rect2(0, 352, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60i1q"]
+atlas = ExtResource("2_c0ip2")
+region = Rect2(0, 384, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5ytj"]
+atlas = ExtResource("2_c0ip2")
+region = Rect2(0, 416, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6owi"]
+atlas = ExtResource("2_c0ip2")
+region = Rect2(0, 448, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ct4n3"]
+atlas = ExtResource("2_c0ip2")
+region = Rect2(0, 480, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5txj7"]
+atlas = ExtResource("2_c0ip2")
+region = Rect2(0, 512, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0wun"]
+atlas = ExtResource("2_c0ip2")
+region = Rect2(0, 544, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b354w"]
+atlas = ExtResource("3_kn74n")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6bbr"]
+atlas = ExtResource("3_kn74n")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k55hc"]
+atlas = ExtResource("3_kn74n")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxch4"]
+atlas = ExtResource("3_kn74n")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cpb45"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_54nk2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ur6lr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hwvk2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxw2o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhu0v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ken4g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5goj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cc65u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hy2nl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ck0vf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8546")
+}, {
+"duration": 10.0,
+"texture": SubResource("AtlasTexture_uwepw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60i1q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5ytj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6owi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ct4n3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5txj7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0wun")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b354w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6bbr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k55hc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxch4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Vision of Darkness" instance=ExtResource("1_8j244")]
+unit_name = "Vision of Darkness"
+full_description = "The Vision of Darkness is an eldritch apparition that embodies the deepest fears of the living. It projects illusions to disorient and terrify enemies, making them vulnerable to other undead forces. With its commanding aura and mind-twisting abilities, the Vision of Darkness is both a psychological and magical powerhouse on the battlefield."
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_cpb45")
+autoplay = "default"
+
+[node name="UnitParameters" parent="." index="1"]
+attack_effect = ExtResource("4_vagcr")

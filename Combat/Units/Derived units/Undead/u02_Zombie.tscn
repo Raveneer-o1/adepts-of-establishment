@@ -1,0 +1,97 @@
+[gd_scene load_steps=15 format=3 uid="uid://b0eba27hxcu2e"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_4th5g"]
+[ext_resource type="Texture2D" uid="uid://u3usf1wk1pdk" path="res://Arts/Undead units/u05 zombie attack  (1).png" id="2_trhnh"]
+[ext_resource type="Texture2D" uid="uid://cbnc6f74822kc" path="res://Arts/Undead units/u05 zombie idle .png" id="3_3ikqb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_msrv3"]
+atlas = ExtResource("2_trhnh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b8xnl"]
+atlas = ExtResource("2_trhnh")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8ebn"]
+atlas = ExtResource("2_trhnh")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7p76"]
+atlas = ExtResource("2_trhnh")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrwch"]
+atlas = ExtResource("2_trhnh")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_go5p1"]
+atlas = ExtResource("2_trhnh")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnekr"]
+atlas = ExtResource("3_3ikqb")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a44p5"]
+atlas = ExtResource("3_3ikqb")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tcwcf"]
+atlas = ExtResource("3_3ikqb")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7igt"]
+atlas = ExtResource("3_3ikqb")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x5s0m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_msrv3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b8xnl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x8ebn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7p76")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lrwch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_go5p1")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lnekr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a44p5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tcwcf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e7igt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Zombie" instance=ExtResource("1_4th5g")]
+unit_name = "Zombie"
+full_description = "Zombies are the reanimated corpses of the recently deceased, brought back to life through dark magic. Slow and uncoordinated, they rely on their overwhelming resilience to survive attacks that would fell most living warriors. Though lacking in intelligence, their sheer persistence makes them a constant threat on the battlefield."
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_x5s0m")
+animation = &"attack"
+autoplay = "default"

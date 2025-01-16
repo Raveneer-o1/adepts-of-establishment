@@ -1,0 +1,100 @@
+[gd_scene load_steps=16 format=3 uid="uid://dgj6r83d15wkr"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_ufroq"]
+[ext_resource type="Texture2D" uid="uid://bnhwlr01egvif" path="res://Arts/Undead units/u19 lich attack .png" id="2_f8uy4"]
+[ext_resource type="Texture2D" uid="uid://cqoap6ffdylqf" path="res://Arts/Undead units/u19 lich idle .png" id="3_v01q3"]
+[ext_resource type="PackedScene" uid="uid://cnl2vrahoavc6" path="res://Combat/Effects/spiral_attack.tscn" id="4_itp3g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkj31"]
+atlas = ExtResource("2_f8uy4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4x8y"]
+atlas = ExtResource("2_f8uy4")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qj3wr"]
+atlas = ExtResource("2_f8uy4")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2sqn"]
+atlas = ExtResource("2_f8uy4")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xci78"]
+atlas = ExtResource("2_f8uy4")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14nin"]
+atlas = ExtResource("2_f8uy4")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_remgf"]
+atlas = ExtResource("3_v01q3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x0qst"]
+atlas = ExtResource("3_v01q3")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x5d1q"]
+atlas = ExtResource("3_v01q3")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kiuw6"]
+atlas = ExtResource("3_v01q3")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sip5u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hkj31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4x8y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qj3wr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j2sqn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xci78")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14nin")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_remgf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x0qst")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x5d1q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kiuw6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Lich" instance=ExtResource("1_ufroq")]
+unit_name = "Lich"
+full_description = "Liches are necromancers who have transcended mortality by binding their souls to phylacteries. These skeletal sorcerers wield immense magical power, unleashing devastating curses and summoning hordes of undead with ease. Their cold intellect and timeless experience make them formidable adversaries and invaluable strategists."
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_sip5u")
+autoplay = "default"
+
+[node name="UnitParameters" parent="." index="1"]
+attack_effect = ExtResource("4_itp3g")

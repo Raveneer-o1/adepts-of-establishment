@@ -1,0 +1,139 @@
+[gd_scene load_steps=21 format=3 uid="uid://bp1r2pdt68e7t"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_23at2"]
+[ext_resource type="Texture2D" uid="uid://c8fie48u2gsl" path="res://Arts/Undead units/u30 dreadwyrm attack .png" id="2_ai7dd"]
+[ext_resource type="Texture2D" uid="uid://dxj8oto08lqym" path="res://Arts/Undead units/u30 dreadwyrm idle .png" id="3_txq8v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uohc2"]
+atlas = ExtResource("2_ai7dd")
+region = Rect2(0, 0, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sb3s2"]
+atlas = ExtResource("2_ai7dd")
+region = Rect2(0, 48, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ucqe"]
+atlas = ExtResource("2_ai7dd")
+region = Rect2(0, 96, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1k24"]
+atlas = ExtResource("2_ai7dd")
+region = Rect2(0, 144, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_itjfi"]
+atlas = ExtResource("2_ai7dd")
+region = Rect2(0, 192, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kysa8"]
+atlas = ExtResource("2_ai7dd")
+region = Rect2(0, 240, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rsyi"]
+atlas = ExtResource("2_ai7dd")
+region = Rect2(0, 288, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5pst"]
+atlas = ExtResource("2_ai7dd")
+region = Rect2(0, 336, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqnml"]
+atlas = ExtResource("2_ai7dd")
+region = Rect2(0, 384, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xahp"]
+atlas = ExtResource("2_ai7dd")
+region = Rect2(0, 432, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvau3"]
+atlas = ExtResource("2_ai7dd")
+region = Rect2(0, 480, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifbry"]
+atlas = ExtResource("2_ai7dd")
+region = Rect2(0, 528, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2n1e"]
+atlas = ExtResource("3_txq8v")
+region = Rect2(0, 0, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fh5g"]
+atlas = ExtResource("3_txq8v")
+region = Rect2(0, 48, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pp4md"]
+atlas = ExtResource("3_txq8v")
+region = Rect2(0, 96, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7t3x"]
+atlas = ExtResource("3_txq8v")
+region = Rect2(0, 144, 80, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8f6gl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uohc2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sb3s2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ucqe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1k24")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_itjfi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kysa8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5rsyi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5pst")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqnml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xahp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvau3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifbry")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o2n1e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fh5g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pp4md")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o7t3x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Dreadwyrm" instance=ExtResource("1_23at2")]
+unit_name = "Dreadwyrm"
+full_description = "The Dreadwyrm is a terrifying draconic creature cloaked in shadow and necrotic energy. It soars above the battlefield, raining destruction with its corrupted breath. As a manifestation of death's will, it instills fear in all who face it, ensuring the enemy falters before its might."
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_8f6gl")
+autoplay = "default"
+offset = Vector2(0, -8)

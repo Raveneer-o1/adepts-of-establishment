@@ -1,0 +1,142 @@
+[gd_scene load_steps=22 format=3 uid="uid://c42n73wmostxu"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_jlfmv"]
+[ext_resource type="Texture2D" uid="uid://b8w26q446mi24" path="res://Arts/Undead units/u21 archlich attack.png" id="2_d3c0n"]
+[ext_resource type="Texture2D" uid="uid://brgwgs2tc646c" path="res://Arts/Undead units/u21 archlich idle .png" id="3_ppol0"]
+[ext_resource type="PackedScene" uid="uid://jcge4l3lj63w" path="res://Combat/Effects/skull_medium.tscn" id="4_jel7x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1coi"]
+atlas = ExtResource("2_d3c0n")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ck3gs"]
+atlas = ExtResource("2_d3c0n")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0pt5"]
+atlas = ExtResource("2_d3c0n")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0uglx"]
+atlas = ExtResource("2_d3c0n")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vp8n"]
+atlas = ExtResource("2_d3c0n")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dminh"]
+atlas = ExtResource("2_d3c0n")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42due"]
+atlas = ExtResource("2_d3c0n")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1nng"]
+atlas = ExtResource("2_d3c0n")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bp35b"]
+atlas = ExtResource("2_d3c0n")
+region = Rect2(0, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ul5ha"]
+atlas = ExtResource("2_d3c0n")
+region = Rect2(0, 288, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cwcx"]
+atlas = ExtResource("2_d3c0n")
+region = Rect2(0, 320, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxyou"]
+atlas = ExtResource("3_ppol0")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixndt"]
+atlas = ExtResource("3_ppol0")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8iwm"]
+atlas = ExtResource("3_ppol0")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1vl3"]
+atlas = ExtResource("3_ppol0")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wyq3y"]
+atlas = ExtResource("3_ppol0")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e4wxl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1coi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ck3gs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s0pt5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0uglx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vp8n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dminh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_42due")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d1nng")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bp35b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ul5ha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cwcx")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lxyou")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ixndt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c8iwm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1vl3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wyq3y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Archlich" instance=ExtResource("1_jlfmv")]
+unit_name = "Archlich"
+full_description = "Archliches are the pinnacle of necromantic evolution, their phylacteries granting them near-immortality and inexhaustible power. They wield arcane forces capable of obliterating entire battalions or summoning legions of undead. Revered as leaders and feared as conquerors, Archliches are the true masterminds of the Necropolis."
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_e4wxl")
+autoplay = "default"
+
+[node name="UnitParameters" parent="." index="1"]
+attack_effect = ExtResource("4_jel7x")

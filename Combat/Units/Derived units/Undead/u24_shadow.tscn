@@ -1,0 +1,99 @@
+[gd_scene load_steps=16 format=3 uid="uid://talu2uhdeu5q"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_u1jip"]
+[ext_resource type="Texture2D" uid="uid://8osuulyoov3h" path="res://Arts/Undead units/u24 shadow attack  (1).png" id="2_skljb"]
+[ext_resource type="Texture2D" uid="uid://b6wje3dnktet8" path="res://Arts/Undead units/u24 shadow idle .png" id="3_i3ayl"]
+[ext_resource type="PackedScene" uid="uid://cqi6uvygpbulg" path="res://Combat/Effects/Undead_spider_effect.tscn" id="4_2tpcm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_extqq"]
+atlas = ExtResource("2_skljb")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_utfe7"]
+atlas = ExtResource("2_skljb")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pnb4t"]
+atlas = ExtResource("2_skljb")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4265b"]
+atlas = ExtResource("2_skljb")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmb3a"]
+atlas = ExtResource("2_skljb")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0gfn"]
+atlas = ExtResource("2_skljb")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6j7i"]
+atlas = ExtResource("3_i3ayl")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjc8f"]
+atlas = ExtResource("3_i3ayl")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4snu"]
+atlas = ExtResource("3_i3ayl")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xux1j"]
+atlas = ExtResource("3_i3ayl")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c11wf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_extqq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_utfe7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pnb4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4265b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmb3a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0gfn")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6j7i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hjc8f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4snu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xux1j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Shadow" instance=ExtResource("1_u1jip")]
+full_description = "Shadow's very essence a manifestation of fear and despair. They attack by engulfing their targets in a cold, suffocating void, sapping their strength and will. Difficult to detect and harder to fight, Shadows excel at ambushing their prey and disrupting enemy formations."
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_c11wf")
+autoplay = "default"
+
+[node name="UnitParameters" parent="." index="1"]
+attack_effect = ExtResource("4_2tpcm")

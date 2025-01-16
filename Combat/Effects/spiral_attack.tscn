@@ -1,0 +1,85 @@
+[gd_scene load_steps=14 format=3 uid="uid://cnl2vrahoavc6"]
+
+[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/abstract_effect.tscn" id="1_h2ves"]
+[ext_resource type="Texture2D" uid="uid://dt8n4782wl5hu" path="res://Arts/Undead units/spiral effect .png" id="2_a5yur"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vmndi"]
+atlas = ExtResource("2_a5yur")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lasjo"]
+atlas = ExtResource("2_a5yur")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c40kb"]
+atlas = ExtResource("2_a5yur")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1l6t"]
+atlas = ExtResource("2_a5yur")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihk1o"]
+atlas = ExtResource("2_a5yur")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehnq5"]
+atlas = ExtResource("2_a5yur")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_le3cm"]
+atlas = ExtResource("2_a5yur")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w58wt"]
+atlas = ExtResource("2_a5yur")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cc4je"]
+atlas = ExtResource("2_a5yur")
+region = Rect2(0, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8syud"]
+atlas = ExtResource("2_a5yur")
+region = Rect2(0, 288, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q4m7h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vmndi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lasjo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c40kb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1l6t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ihk1o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehnq5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_le3cm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w58wt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cc4je")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8syud")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Effect" instance=ExtResource("1_h2ves")]
+sprite_frames = SubResource("SpriteFrames_q4m7h")

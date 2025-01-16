@@ -1,0 +1,104 @@
+[gd_scene load_steps=16 format=3 uid="uid://dfoepv37rvpcx"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_v36aa"]
+[ext_resource type="Texture2D" uid="uid://1vga11ugptc3" path="res://Arts/Undead units/u17 fallen inquisitor attack .png" id="2_rc34i"]
+[ext_resource type="Texture2D" uid="uid://bpyjaswl38l7p" path="res://Arts/Undead units/u17 fallen inquisitor idle .png" id="3_n64tb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wcb3u"]
+atlas = ExtResource("2_rc34i")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_manvs"]
+atlas = ExtResource("2_rc34i")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oiset"]
+atlas = ExtResource("2_rc34i")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqa4o"]
+atlas = ExtResource("2_rc34i")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jk7ne"]
+atlas = ExtResource("2_rc34i")
+region = Rect2(0, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5g4j"]
+atlas = ExtResource("2_rc34i")
+region = Rect2(0, 240, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_si1y1"]
+atlas = ExtResource("2_rc34i")
+region = Rect2(0, 288, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a15gd"]
+atlas = ExtResource("3_n64tb")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7vxd"]
+atlas = ExtResource("3_n64tb")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2k1qm"]
+atlas = ExtResource("3_n64tb")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yabry"]
+atlas = ExtResource("3_n64tb")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0omuv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wcb3u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_manvs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oiset")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eqa4o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jk7ne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5g4j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_si1y1")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a15gd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7vxd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2k1qm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yabry")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Fallen Inquisitor" instance=ExtResource("1_v36aa")]
+unit_name = "Fallen Inquisitor"
+full_description = "Once holy warriors, Fallen Inquisitors were corrupted by the Necropolis's dark power. Now they wield their former knowledge of divine magic against the living, combining brutal melee combat with devastating unholy spells. Their tragic fall from grace is reflected in their fierce hatred for their former brethren, making them relentless in battle."
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_0omuv")
+autoplay = "default"
+offset = Vector2(8, -8)

@@ -1,0 +1,64 @@
+[gd_scene load_steps=11 format=3 uid="uid://bq5fuvt6gwhs6"]
+
+[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/abstract_effect.tscn" id="1_uvtxy"]
+[ext_resource type="Texture2D" uid="uid://m5b2hvem5alb" path="res://Arts/Undead units/u21 archlich effect .png" id="2_c8dp7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxu0k"]
+atlas = ExtResource("2_c8dp7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3kysc"]
+atlas = ExtResource("2_c8dp7")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvqdv"]
+atlas = ExtResource("2_c8dp7")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqlgb"]
+atlas = ExtResource("2_c8dp7")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_si3v8"]
+atlas = ExtResource("2_c8dp7")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ilp1g"]
+atlas = ExtResource("2_c8dp7")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j276b"]
+atlas = ExtResource("2_c8dp7")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6tnhi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lxu0k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3kysc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvqdv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xqlgb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_si3v8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ilp1g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j276b")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Effect" instance=ExtResource("1_uvtxy")]
+sprite_frames = SubResource("SpriteFrames_6tnhi")

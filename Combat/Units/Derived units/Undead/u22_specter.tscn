@@ -1,0 +1,105 @@
+[gd_scene load_steps=16 format=3 uid="uid://bqv1kfynrm8nu"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_0mhe0"]
+[ext_resource type="Texture2D" uid="uid://ct8wp2r4bscw8" path="res://Arts/Undead units/u18 specter attack .png" id="2_rtce2"]
+[ext_resource type="Texture2D" uid="uid://kjp4rdn6u2uk" path="res://Arts/Undead units/u18 specter idle .png" id="3_j6vld"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hctge"]
+atlas = ExtResource("2_rtce2")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_duufg"]
+atlas = ExtResource("2_rtce2")
+region = Rect2(0, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l16b5"]
+atlas = ExtResource("2_rtce2")
+region = Rect2(0, 96, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvpwd"]
+atlas = ExtResource("2_rtce2")
+region = Rect2(0, 144, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rx3ti"]
+atlas = ExtResource("2_rtce2")
+region = Rect2(0, 192, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uttxu"]
+atlas = ExtResource("2_rtce2")
+region = Rect2(0, 240, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhgps"]
+atlas = ExtResource("2_rtce2")
+region = Rect2(0, 288, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4txwk"]
+atlas = ExtResource("3_j6vld")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6t4ap"]
+atlas = ExtResource("3_j6vld")
+region = Rect2(0, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxvts"]
+atlas = ExtResource("3_j6vld")
+region = Rect2(0, 96, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40lgb"]
+atlas = ExtResource("3_j6vld")
+region = Rect2(0, 144, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pih6i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hctge")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_duufg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l16b5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gvpwd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rx3ti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uttxu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uhgps")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4txwk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6t4ap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nxvts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40lgb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Specter" instance=ExtResource("1_0mhe0")]
+unit_name = "Specter"
+full_description = "Specters are stronger and more malicious spirits, bound by dark magic to serve the Necropolis. Their ethereal nature allows them to phase through obstacles and evade most attacks, striking fear into the hearts of their foes. They emit a spectral wail that unnerves enemies and disrupts their defenses."
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_pih6i")
+animation = &"attack"
+autoplay = "default"
+offset = Vector2(0, -8)

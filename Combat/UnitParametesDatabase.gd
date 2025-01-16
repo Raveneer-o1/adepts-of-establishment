@@ -972,20 +972,732 @@ var DATABASE := {
 		]
 	},
 	
-	"Dracolich" = {
-		Level = 5,
-		Damage = 110,
-		HP = 500,
-		Armor = 50,
-		Attacks = [
+	"Destined" = {
+		Level = 1, # int
+		Damage = 25, # int
+		HP = 85, # int
+		Armor = 0, # int
+		#Immunities = [],
+		Attacks = [ # Array[Dictionary]
 			{
-				DamageMultiplier = 1.0,
-				DamageOverride = false,
-				Type = EventBus.AttackType.Physical,
-				Accuracy = 1.0,
-				TargetsNeeded = 1,
-				Initiative = 60,
-				Validation = standart_melee_validity,
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Accuracy = 0.8, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 40, # int
+				Validation = standart_melee_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				#FindAdditionalTargets = standart_mass_healer_additional_targets,
+				#DamagePolicy = standart_decay_policy,
+				#Effects = {"poison" = 35},
+			},
+		]
+	},
+	"Zombie" = {
+		Level = 2, # int
+		Damage = 40, # int
+		HP = 120, # int
+		Armor = 0, # int
+		Immunities = [
+			EventBus.AttackType.Life
+		],
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Accuracy = 0.8, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 40, # int
+				Validation = standart_melee_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				#FindAdditionalTargets = standart_mass_healer_additional_targets,
+				#DamagePolicy = standart_decay_policy,
+				#Effects = {"poison" = 35},
+			},
+		]
+	},
+	"Skeleton" = {
+		Level = 3, # int
+		Damage = 60, # int
+		HP = 150, # int
+		Armor = 0, # int
+		Immunities = [
+			EventBus.AttackType.Life
+		],
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Accuracy = 0.8, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 40, # int
+				Validation = standart_melee_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				#FindAdditionalTargets = standart_mass_healer_additional_targets,
+				#DamagePolicy = standart_decay_policy,
+				#Effects = {"poison" = 35},
+			},
+		]
+	},
+	"Skeleton warrior" = {
+		Level = 3, # int
+		Damage = 70, # int
+		HP = 165, # int
+		Armor = 0, # int
+		Immunities = [
+			EventBus.AttackType.Life
+		],
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Accuracy = 0.8, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 40, # int
+				Validation = standart_melee_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				#FindAdditionalTargets = standart_mass_healer_additional_targets,
+				#DamagePolicy = standart_decay_policy,
+				#Effects = {"poison" = 35},
+			},
+		]
+	},
+	"Skeleton Hero" = {
+		Level = 5, # int
+		Damage = 80, # int
+		HP = 180, # int
+		Armor = 0, # int
+		Immunities = [
+			EventBus.AttackType.Life
+		],
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Accuracy = 0.85, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 40, # int
+				Validation = standart_melee_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				#FindAdditionalTargets = standart_mass_healer_additional_targets,
+				#DamagePolicy = standart_decay_policy,
+				#Effects = {"poison" = 35},
+			},
+		]
+	},
+	"Phantom Warrior" = {
+		Level = 3, # int
+		Damage = 50, # int
+		HP = 180, # int
+		Armor = 0, # int
+		Immunities = [
+			EventBus.AttackType.Life
+		],
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Accuracy = 0.8, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 40, # int
+				Validation = standart_melee_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				#FindAdditionalTargets = standart_mass_healer_additional_targets,
+				#DamagePolicy = standart_decay_policy,
+				#Effects = {"poison" = 35},
+			},
+		]
+	},
+	"Templar" = {
+		Level = 2, # int
+		Damage = 42, # int
+		HP = 110, # int
+		Armor = 10, # int
+		#Immunities = [],
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Accuracy = 0.8, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 40, # int
+				Validation = standart_melee_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				#FindAdditionalTargets = standart_mass_healer_additional_targets,
+				#DamagePolicy = standart_decay_policy,
+				#Effects = {"poison" = 35},
+			},
+		]
+	},
+	"Fallen Inquisitor" = {
+		Level = 3, # int
+		Damage = 60, # int
+		HP = 115, # int
+		Armor = 20, # int
+		#Immunities = [],
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Accuracy = 0.8, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 40, # int
+				Validation = standart_melee_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				#FindAdditionalTargets = standart_mass_healer_additional_targets,
+				#DamagePolicy = standart_decay_policy,
+				#Effects = {"poison" = 35},
+			},
+		]
+	},
+	"Dark Lord" = {
+		Level = 4, # int
+		Damage = 80, # int
+		HP = 120, # int
+		Armor = 30, # int
+		#Immunities = [],
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Accuracy = 0.8, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 40, # int
+				Validation = standart_melee_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				#FindAdditionalTargets = standart_mass_healer_additional_targets,
+				#DamagePolicy = standart_decay_policy,
+				#Effects = {"poison" = 35},
+			},
+		]
+	},
+	"Death Acolyte" = {
+		Level = 1, # int
+		Damage = 20, # int
+		HP = 70, # int
+		Armor = 0, # int
+		#Immunities = [],
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Elemental, # EventBus.AttackType
+				Accuracy = 0.8, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 40, # int
+				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				FindAdditionalTargets = standart_mage_additional_targets,
+				#DamagePolicy = standart_decay_policy,
+				#Effects = {"poison" = 35},
+			},
+		]
+	},
+	"Necromancer" = {
+		Level = 2, # int
+		Damage = 35, # int
+		HP = 95, # int
+		Armor = 5, # int
+		#Immunities = [],
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Elemental, # EventBus.AttackType
+				Accuracy = 0.8, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 40, # int
+				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				FindAdditionalTargets = standart_mage_additional_targets,
+				#DamagePolicy = standart_decay_policy,
+				#Effects = {"poison" = 35},
+			},
+		]
+	},
+	"Dark Mage" = {
+		Level = 2, # int
+		Damage = 40, # int
+		HP = 95, # int
+		Armor = 10, # int
+		#Immunities = [],
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Elemental, # EventBus.AttackType
+				Accuracy = 0.8, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 40, # int
+				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				FindAdditionalTargets = standart_mage_additional_targets,
+				DamagePolicy = standart_decay_policy,
+				#Effects = {"poison" = 35},
+			},
+		]
+	},
+	"Wraith" = {
+		Level = 3, # int
+		Damage = 60, # int
+		HP = 105, # int
+		Armor = 60, # int
+		#Immunities = [],
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Mind, # EventBus.AttackType
+				Accuracy = 0.8, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 40, # int
+				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				FindAdditionalTargets = standart_mage_additional_targets,
+				DamagePolicy = standart_decay_policy,
+				#Effects = {"poison" = 35},
+			},
+		]
+	},
+	"Herald od Death" = {
+		Level = 4, # int
+		Damage = 70, # int
+		HP = 130, # int
+		Armor = 80, # int
+		#Immunities = [],
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Mind, # EventBus.AttackType
+				Accuracy = 0.8, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 40, # int
+				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				FindAdditionalTargets = standart_mage_additional_targets,
+				DamagePolicy = standart_decay_policy,
+				#Effects = {"poison" = 35},
+			},
+		]
+	},
+	"Vampire" = {
+		Level = 3, # int
+		Damage = 60, # int
+		HP = 110, # int
+		Armor = 10, # int
+		#Immunities = [],
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Elemental, # EventBus.AttackType
+				Accuracy = 0.8, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 50, # int
+				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				#FindAdditionalTargets = standart_mage_additional_targets,
+				#DamagePolicy = standart_decay_policy,
+				#Effects = {"poison" = 35},
+			},
+		]
+	},
+	"Elder Vampire" = {
+		Level = 4, # int
+		Damage = 70, # int
+		HP = 120, # int
+		Armor = 20, # int
+		Immunities = [
+			EventBus.AttackType.Life
+		],
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Life, # EventBus.AttackType
+				Accuracy = 0.8, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 50, # int
+				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				#FindAdditionalTargets = standart_mage_additional_targets,
+				#DamagePolicy = standart_decay_policy,
+				#Effects = {"poison" = 35},
+			},
+		]
+	},
+	"Vampire Lord" = {
+		Level = 5, # int
+		Damage = 80, # int
+		HP = 150, # int
+		Armor = 30, # int
+		Immunities = [
+			EventBus.AttackType.Life
+		],
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Life, # EventBus.AttackType
+				Accuracy = 0.8, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 50, # int
+				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				FindAdditionalTargets = standart_splash_additional_targets,
+				DamagePolicy = standart_immediate_decay_policy,
+				#Effects = {"poison" = 35},
+			},
+		]
+	},
+	"Blood spawn" = {
+		Level = 5, # int
+		Damage = 80, # int
+		HP = 150, # int
+		Armor = 30, # int
+		Immunities = [
+			EventBus.AttackType.Life
+		],
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Accuracy = 0.9, # float [0, 1]
+				TargetsNeeded = 2, # int
+				Initiative = 50, # int
+				Validation = standart_melee_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				#FindAdditionalTargets = standart_splash_additional_targets,
+				#DamagePolicy = standart_immediate_decay_policy,
+				#Effects = {"poison" = 35},
+			},
+		]
+	},
+	"Lich" = {
+		Level = 3, # int
+		Damage = 50, # int
+		HP = 105, # int
+		Armor = 10, # int
+		Immunities = [
+			EventBus.AttackType.Life
+		],
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Elemental, # EventBus.AttackType
+				Accuracy = 0.83, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 40, # int
+				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				FindAdditionalTargets = standart_mage_additional_targets,
+				#DamagePolicy = standart_decay_policy,
+				#Effects = {"poison" = 35},
+			},
+		]
+	},
+	"Archlich" = {
+		Level = 4, # int
+		Damage = 60, # int
+		HP = 125, # int
+		Armor = 15, # int
+		Immunities = [
+			EventBus.AttackType.Life
+		],
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Elemental, # EventBus.AttackType
+				Accuracy = 0.85, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 40, # int
+				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				FindAdditionalTargets = standart_mage_additional_targets,
+				#DamagePolicy = standart_decay_policy,
+				#Effects = {"poison" = 35},
+			},
+		]
+	},
+	"Ghost" = {
+		Level = 1, # int
+		Damage = 10, # int
+		HP = 105, # int
+		Armor = 90, # int
+		#Immunities = [],
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 0.0, # float
+				DamageOverride = true, # bool
+				Type = EventBus.AttackType.Mind, # EventBus.AttackType
+				Accuracy = 0.5, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 40, # int
+				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				#FindAdditionalTargets = standart_archer_additional_targets,
+				DamagePolicy = standart_decay_policy,
+				Effects = {"stun" = [1.0, 1]},
+			},
+		]
+	},
+	"Specter" = {
+		Level = 2, # int
+		Damage = 10, # int
+		HP = 105, # int
+		Armor = 100, # int
+		#Immunities = [],
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 0.0, # float
+				DamageOverride = true, # bool
+				Type = EventBus.AttackType.Mind, # EventBus.AttackType
+				Accuracy = 0.6, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 40, # int
+				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				#FindAdditionalTargets = standart_archer_additional_targets,
+				DamagePolicy = standart_decay_policy,
+				Effects = {"stun" = [1.0, 2]},
+			},
+		]
+	},
+	"Will-o’-Wisp" = {
+		Level = 3, # int
+		Damage = 10, # int
+		HP = 125, # int
+		Armor = 120, # int
+		Immunities = [
+			EventBus.AttackType.Mind
+		],
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 0.0, # float
+				DamageOverride = true, # bool
+				Type = EventBus.AttackType.Mind, # EventBus.AttackType
+				Accuracy = 0.6, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 40, # int
+				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				FindAdditionalTargets = standart_splash_additional_targets,
+				#DamagePolicy = standart_decay_policy,
+				Effects = {"stun" = [1.0, 2]},
+			},
+		]
+	},
+	"Shadow" = {
+		Level = 3, # int
+		Damage = 10, # int
+		HP = 125, # int
+		Armor = 120, # int
+		Immunities = [
+			EventBus.AttackType.Mind
+		],
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 0.0, # float
+				DamageOverride = true, # bool
+				Type = EventBus.AttackType.Mind, # EventBus.AttackType
+				Accuracy = 0.4, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 40, # int
+				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				FindAdditionalTargets = standart_mage_additional_targets,
+				#DamagePolicy = standart_decay_policy,
+				Effects = {"stun" = [1.0, 2]},
+			},
+		]
+	},
+	"The Eternal" = {
+		Level = 4, # int
+		Damage = 10, # int
+		HP = 140, # int
+		Armor = 140, # int
+		Immunities = [
+			EventBus.AttackType.Mind
+		],
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 0.0, # float
+				DamageOverride = true, # bool
+				Type = EventBus.AttackType.Mind, # EventBus.AttackType
+				Accuracy = 0.72, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 40, # int
+				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				FindAdditionalTargets = standart_splash_additional_targets,
+				#DamagePolicy = standart_decay_policy,
+				Effects = {"stun" = [1.0, 2]},
+			},
+		]
+	},
+	"Vision of Darkness" = {
+		Level = 4, # int
+		Damage = 10, # int
+		HP = 155, # int
+		Armor = 150, # int
+		Immunities = [
+			EventBus.AttackType.Mind
+		],
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 0.0, # float
+				DamageOverride = true, # bool
+				Type = EventBus.AttackType.Mind, # EventBus.AttackType
+				Accuracy = 0.55, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 40, # int
+				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				FindAdditionalTargets = standart_mage_additional_targets,
+				#DamagePolicy = standart_decay_policy,
+				Effects = {"stun" = [1.0, 2]},
+			},
+		]
+	},
+	"Wyvern" = {
+		Level = 1, # int
+		Damage = 60, # int
+		HP = 200, # int
+		Armor = 15, # int
+		#Immunities = [
+			#EventBus.AttackType.Mind
+		#],
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Accuracy = 0.8, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 30, # int
+				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				FindAdditionalTargets = standart_mage_additional_targets,
+				DamagePolicy = standart_decay_policy,
+				#Effects = {"stun" = [1.0, 2]},
+			},
+		]
+	},
+	"Doomdrake" = {
+		Level = 2, # int
+		Damage = 85, # int
+		HP = 235, # int
+		Armor = 25, # int
+		#Immunities = [
+			#EventBus.AttackType.Mind
+		#],
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Accuracy = 0.82, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 30, # int
+				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				FindAdditionalTargets = standart_mage_additional_targets,
+				DamagePolicy = standart_decay_policy,
+				#Effects = {"stun" = [1.0, 2]},
+			},
+		]
+	},
+	"Dreadwyrm" = {
+		Level = 3, # int
+		Damage = 95, # int
+		HP = 260, # int
+		Armor = 35, # int
+		#Immunities = [
+			#EventBus.AttackType.Mind
+		#],
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Elemental, # EventBus.AttackType
+				Accuracy = 0.85, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 30, # int
+				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				FindAdditionalTargets = standart_mage_additional_targets,
+				DamagePolicy = standart_decay_policy,
+				#Effects = {"stun" = [1.0, 2]},
+			},
+		]
+	},
+	"Undying Nighthunter" = {
+		Level = 4, # int
+		Damage = 103, # int
+		HP = 280, # int
+		Armor = 45, # int
+		Immunities = [
+			EventBus.AttackType.Life
+		],
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Elemental, # EventBus.AttackType
+				Accuracy = 0.875, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 30, # int
+				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				FindAdditionalTargets = standart_mage_additional_targets,
+				DamagePolicy = standart_decay_policy,
+				#Effects = {"stun" = [1.0, 2]},
+			},
+		]
+	},
+	"Dracolich" = {
+		Level = 5, # int
+		Damage = 115, # int
+		HP = 300, # int
+		Armor = 55, # int
+		Immunities = [
+			EventBus.AttackType.Life
+		],
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Elemental, # EventBus.AttackType
+				Accuracy = 0.9, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 30, # int
+				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				FindAdditionalTargets = standart_mage_additional_targets,
+				DamagePolicy = standart_decay_policy,
+				#Effects = {"stun" = [1.0, 2]},
+			},
+		]
+	},
+	"Gluttonous Serpent" = {
+		Level = 3, # int
+		Damage = 110, # int
+		HP = 250, # int
+		Armor = 40, # int
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Accuracy = 0.85, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 40, # int
+				Validation = standart_melee_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				#FindAdditionalTargets = standart_mage_additional_targets,
+				#DamagePolicy = standart_decay_policy,
+				#Effects = {"stun" = [1.0, 2]},
+			},
+		]
+	},
+	"The Devourer" = {
+		Level = 4, # int
+		Damage = 130, # int
+		HP = 290, # int
+		Armor = 50, # int
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Accuracy = 0.9, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 40, # int
+				Validation = standart_melee_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				#FindAdditionalTargets = standart_mage_additional_targets,
+				#DamagePolicy = standart_decay_policy,
+				#Effects = {"stun" = [1.0, 2]},
 			},
 		]
 	},

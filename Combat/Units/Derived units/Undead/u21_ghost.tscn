@@ -1,0 +1,90 @@
+[gd_scene load_steps=14 format=3 uid="uid://bij67u1mx8c1"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_ste1w"]
+[ext_resource type="Texture2D" uid="uid://b30nutai4e0bu" path="res://Arts/Undead units/u11 ghost attack .png" id="2_mtewv"]
+[ext_resource type="Texture2D" uid="uid://bedw2sa7f2pc4" path="res://Arts/Undead units/u11 ghost idle .png" id="3_ilocx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t74pg"]
+atlas = ExtResource("2_mtewv")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4e2k"]
+atlas = ExtResource("2_mtewv")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uh7we"]
+atlas = ExtResource("2_mtewv")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5mmfr"]
+atlas = ExtResource("2_mtewv")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qroe"]
+atlas = ExtResource("2_mtewv")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_87sq1"]
+atlas = ExtResource("3_ilocx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j8c3k"]
+atlas = ExtResource("3_ilocx")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6oh1"]
+atlas = ExtResource("3_ilocx")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q3r65"]
+atlas = ExtResource("3_ilocx")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2hmas"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t74pg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4e2k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uh7we")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5mmfr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qroe")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_87sq1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j8c3k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6oh1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q3r65")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Ghost" instance=ExtResource("1_ste1w")]
+unit_name = "Ghost"
+full_description = "Ghosts are the lingering spirits of the dead, cursed to wander the mortal realm. Though their spectral forms are fragile, they are immune to physical attacks, making them tricky opponents. Their chilling presence weakens the resolve of their enemies, while their attacks drain the vitality of the living leaving them paralyzed."
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_2hmas")
+animation = &"attack"
+autoplay = "default"

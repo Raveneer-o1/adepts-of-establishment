@@ -1,0 +1,99 @@
+[gd_scene load_steps=16 format=3 uid="uid://cqi6uvygpbulg"]
+
+[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/abstract_effect.tscn" id="1_3cn2y"]
+[ext_resource type="Texture2D" uid="uid://bimxqmlf46pgi" path="res://Arts/Undead units/u24 shadow effect .png" id="2_wxbxj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4010"]
+atlas = ExtResource("2_wxbxj")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8o2h"]
+atlas = ExtResource("2_wxbxj")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3h0xt"]
+atlas = ExtResource("2_wxbxj")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jha1o"]
+atlas = ExtResource("2_wxbxj")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gq2ri"]
+atlas = ExtResource("2_wxbxj")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4unh4"]
+atlas = ExtResource("2_wxbxj")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o8naa"]
+atlas = ExtResource("2_wxbxj")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixk78"]
+atlas = ExtResource("2_wxbxj")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5t2r2"]
+atlas = ExtResource("2_wxbxj")
+region = Rect2(0, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cbxr0"]
+atlas = ExtResource("2_wxbxj")
+region = Rect2(0, 288, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g133y"]
+atlas = ExtResource("2_wxbxj")
+region = Rect2(0, 320, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kq3lm"]
+atlas = ExtResource("2_wxbxj")
+region = Rect2(0, 352, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_irmfg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h4010")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8o2h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3h0xt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jha1o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gq2ri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4unh4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o8naa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ixk78")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5t2r2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cbxr0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g133y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kq3lm")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Effect" instance=ExtResource("1_3cn2y")]
+sprite_frames = SubResource("SpriteFrames_irmfg")

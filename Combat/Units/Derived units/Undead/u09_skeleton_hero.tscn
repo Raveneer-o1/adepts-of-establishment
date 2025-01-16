@@ -1,0 +1,133 @@
+[gd_scene load_steps=20 format=3 uid="uid://vtklf4i1s3e"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_f4ptt"]
+[ext_resource type="Texture2D" uid="uid://nacrjv0loeng" path="res://Arts/Undead units/u10 skeleton hero attack .png" id="2_n2bpl"]
+[ext_resource type="Texture2D" uid="uid://bwwvgiihse2ur" path="res://Arts/Undead units/u10 skeleton hero idle.png" id="3_41opj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82ji2"]
+atlas = ExtResource("2_n2bpl")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anx1g"]
+atlas = ExtResource("2_n2bpl")
+region = Rect2(0, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ufd8l"]
+atlas = ExtResource("2_n2bpl")
+region = Rect2(0, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_017qi"]
+atlas = ExtResource("2_n2bpl")
+region = Rect2(0, 96, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gq0a5"]
+atlas = ExtResource("2_n2bpl")
+region = Rect2(0, 128, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvucg"]
+atlas = ExtResource("2_n2bpl")
+region = Rect2(0, 160, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hn35"]
+atlas = ExtResource("2_n2bpl")
+region = Rect2(0, 192, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a46ds"]
+atlas = ExtResource("2_n2bpl")
+region = Rect2(0, 224, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wfrs8"]
+atlas = ExtResource("2_n2bpl")
+region = Rect2(0, 256, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mp3yl"]
+atlas = ExtResource("2_n2bpl")
+region = Rect2(0, 288, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urgwc"]
+atlas = ExtResource("2_n2bpl")
+region = Rect2(0, 320, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vb24v"]
+atlas = ExtResource("3_41opj")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6w12"]
+atlas = ExtResource("3_41opj")
+region = Rect2(0, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ls42j"]
+atlas = ExtResource("3_41opj")
+region = Rect2(0, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_801kg"]
+atlas = ExtResource("3_41opj")
+region = Rect2(0, 96, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l7w6p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_82ji2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anx1g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ufd8l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_017qi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gq0a5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvucg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7hn35")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a46ds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wfrs8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mp3yl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urgwc")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vb24v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6w12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ls42j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_801kg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Skeleton Hero" instance=ExtResource("1_f4ptt")]
+unit_name = "Skeleton Hero"
+full_description = "Skeleton Heroes are the pinnacle of necromantic reanimation, resurrected from the remains of legendary champions of old. Their undying forms retain the combat expertise they mastered in life, now enhanced by unholy power. Leading the armies of the Necropolis with a mix of tactical brilliance and raw strength, they are a force to be reckoned with, feared by both the living and the dead."
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_l7w6p")
+animation = &"attack"
+autoplay = "default"
+offset = Vector2(8, 0)

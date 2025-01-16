@@ -1,17 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://6lq6f06hma7"]
+[gd_scene load_steps=3 format=3 uid="uid://6lq6f06hma7"]
 
 [ext_resource type="PackedScene" uid="uid://cku7rhe8jn3tx" path="res://Combat/Scenes/combat.tscn" id="1_7nbev"]
 [ext_resource type="PackedScene" uid="uid://d12hr40jjb8s8" path="res://Combat/Scenes/UnitInfoPanel.tscn" id="1_roecy"]
-[ext_resource type="Resource" uid="uid://dfd81a0k5k4xy" path="res://Combat/Units/UnitParameters.tres" id="2_tfqd7"]
-[ext_resource type="PackedScene" uid="uid://baracsktpldx5" path="res://Combat/Scenes/UnitMarker.tscn" id="3_l8glo"]
 
 [node name="Node2D" type="Node"]
 
 [node name="Combat" parent="." instance=ExtResource("1_7nbev")]
 left_party_units = Array[String](["res://Combat/Units/Derived units/Empire/e08 Blade Saint.tscn", "res://Combat/Units/Derived units/Empire/e33 Hierophant.tscn", "res://Combat/Units/Derived units/Empire/e09 Grand Inquisitor.tscn", "res://Combat/Units/Derived units/Empire/e25 Assassin.tscn", "res://Combat/Units/Derived units/Empire/e05 Inquisitor.tscn", "res://Combat/Units/Derived units/Empire/e17 Ritualist.tscn", "res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn"])
 right_party_units = Array[String](["res://Combat/Units/Derived units/Empire/e10 Angel Knight.tscn", "res://Combat/Units/Derived units/Empire/e19 White Mage.tscn", "res://Combat/Units/Derived units/Empire/e12 Paladin.tscn", "res://Combat/Units/Derived units/Empire/e30 Matriarch.tscn", "res://Combat/Units/Derived units/Empire/e13 Angel.tscn", "res://Combat/Units/Derived units/Empire/e14 Apprentice.tscn", "res://Combat/Units/Derived units/Empire/e01 Squire.tscn"])
-unit_parameters_database = ExtResource("2_tfqd7")
-unit_marker = ExtResource("3_l8glo")
 
 [node name="UnitInfoPanel" parent="." instance=ExtResource("1_roecy")]
 visible = false

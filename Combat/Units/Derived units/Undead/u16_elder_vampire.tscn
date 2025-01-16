@@ -1,0 +1,118 @@
+[gd_scene load_steps=18 format=3 uid="uid://dubag27s7x4c3"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_r3u27"]
+[ext_resource type="Texture2D" uid="uid://c035w6ebxi08e" path="res://Arts/Undead units/u15 elder vampire attack .png" id="2_o7r33"]
+[ext_resource type="Texture2D" uid="uid://cynihqq3f0hjr" path="res://Arts/Undead units/u15 elder vampire idle .png" id="3_chw6d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5mt7d"]
+atlas = ExtResource("2_o7r33")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ml53"]
+atlas = ExtResource("2_o7r33")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_whntj"]
+atlas = ExtResource("2_o7r33")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgn2p"]
+atlas = ExtResource("2_o7r33")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdfj7"]
+atlas = ExtResource("2_o7r33")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5d7s"]
+atlas = ExtResource("2_o7r33")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83slw"]
+atlas = ExtResource("2_o7r33")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5hd2"]
+atlas = ExtResource("2_o7r33")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5q3s"]
+atlas = ExtResource("2_o7r33")
+region = Rect2(0, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uq1vo"]
+atlas = ExtResource("3_chw6d")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m20ra"]
+atlas = ExtResource("3_chw6d")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dl6ud"]
+atlas = ExtResource("3_chw6d")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3yit"]
+atlas = ExtResource("3_chw6d")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_le8mf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5mt7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ml53")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_whntj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgn2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdfj7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5d7s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83slw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r5hd2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5q3s")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uq1vo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m20ra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dl6ud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3yit")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Elder vampire" instance=ExtResource("1_r3u27")]
+unit_name = "Elder vampire"
+full_description = "Elder Vampires are ancient beings whose bloodlust excel limits of a mortal mind. They possess extraordinary strength and command blood magic with terrifying precision. Their mere presence inspires awe and dread, as they dominate the battlefield with their unmatched prowess and cunning."
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_le8mf")
+animation = &"attack"
+autoplay = "default"

@@ -1,0 +1,135 @@
+[gd_scene load_steps=21 format=3 uid="uid://d3c7npnpxkrt4"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_27vee"]
+[ext_resource type="Texture2D" uid="uid://cegcrx5oq7gl7" path="res://Arts/Undead units/u20 will-o-wisp attack .png" id="2_1rynm"]
+[ext_resource type="Texture2D" uid="uid://dj7xt0w8xynpi" path="res://Arts/Undead units/u20 will-o-wisp idle .png" id="3_osvqp"]
+[ext_resource type="PackedScene" uid="uid://7vboji3lb2aa" path="res://Combat/Effects/whisp_attack.tscn" id="4_gye3m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ueq40"]
+atlas = ExtResource("2_1rynm")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukoof"]
+atlas = ExtResource("2_1rynm")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oysd8"]
+atlas = ExtResource("2_1rynm")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2kjex"]
+atlas = ExtResource("2_1rynm")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfump"]
+atlas = ExtResource("2_1rynm")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n088p"]
+atlas = ExtResource("2_1rynm")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bi8w6"]
+atlas = ExtResource("2_1rynm")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ydv1p"]
+atlas = ExtResource("2_1rynm")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_verrv"]
+atlas = ExtResource("2_1rynm")
+region = Rect2(0, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61oni"]
+atlas = ExtResource("2_1rynm")
+region = Rect2(0, 288, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r56l2"]
+atlas = ExtResource("2_1rynm")
+region = Rect2(0, 320, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1urq"]
+atlas = ExtResource("3_osvqp")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4njf"]
+atlas = ExtResource("3_osvqp")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xv45"]
+atlas = ExtResource("3_osvqp")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ba80h"]
+atlas = ExtResource("3_osvqp")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wuv4d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ueq40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukoof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oysd8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2kjex")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hfump")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n088p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bi8w6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ydv1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_verrv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_61oni")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r56l2")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y1urq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g4njf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xv45")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ba80h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Will-o’-Wisp" instance=ExtResource("1_27vee")]
+unit_name = "Will-o’-Wisp"
+full_description = "Will-o’-Wisps are flickering lights that guide unsuspecting souls to their doom. These malicious spirits use their hypnotic glow to lure enemies into traps or isolate them from their allies. While not physically strong, their agility and ability to vanish into the shadows make them elusive and dangerous."
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_wuv4d")
+autoplay = "default"
+
+[node name="UnitParameters" parent="." index="1"]
+attack_effect = ExtResource("4_gye3m")

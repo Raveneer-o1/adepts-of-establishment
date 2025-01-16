@@ -1,0 +1,114 @@
+[gd_scene load_steps=18 format=3 uid="uid://1xjofqtit2aj"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_tcv8q"]
+[ext_resource type="Texture2D" uid="uid://c7rdtcece7r2p" path="res://Arts/Undead units/u23 necromancer attack .png" id="2_0chdl"]
+[ext_resource type="Texture2D" uid="uid://du1y3ccvfyyea" path="res://Arts/Undead units/u23 necromancer idle .png" id="3_itfo3"]
+[ext_resource type="PackedScene" uid="uid://n7w0136buyjd" path="res://Combat/Effects/circle_attack.tscn" id="4_npxus"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6puoe"]
+atlas = ExtResource("2_0chdl")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jnc4"]
+atlas = ExtResource("2_0chdl")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8eme"]
+atlas = ExtResource("2_0chdl")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uaj27"]
+atlas = ExtResource("2_0chdl")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eko2s"]
+atlas = ExtResource("2_0chdl")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7snq"]
+atlas = ExtResource("2_0chdl")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbl7f"]
+atlas = ExtResource("3_itfo3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ieyio"]
+atlas = ExtResource("3_itfo3")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxxfu"]
+atlas = ExtResource("3_itfo3")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c82pj"]
+atlas = ExtResource("3_itfo3")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hacmm"]
+atlas = ExtResource("3_itfo3")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xofmy"]
+atlas = ExtResource("3_itfo3")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yumoh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6puoe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jnc4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g8eme")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uaj27")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eko2s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l7snq")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tbl7f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ieyio")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxxfu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c82pj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hacmm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xofmy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Necromancer" instance=ExtResource("1_tcv8q")]
+unit_name = "Necromancer"
+full_description = "Necromancers are skilled manipulators of life and death, capable of raising undead with their spells. They command dark energies to weaken foes and bolster allies. Despite their mortal vulnerability, their mastery of death makes them a cornerstone of the Necropolis's power."
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_yumoh")
+autoplay = "default"
+
+[node name="UnitParameters" parent="." index="1"]
+attack_effect = ExtResource("4_npxus")

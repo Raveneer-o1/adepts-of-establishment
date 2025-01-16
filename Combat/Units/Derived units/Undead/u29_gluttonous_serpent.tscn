@@ -1,0 +1,97 @@
+[gd_scene load_steps=15 format=3 uid="uid://enny5k73ap16"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_nautt"]
+[ext_resource type="Texture2D" uid="uid://ddk5e7ar6yos4" path="res://Arts/Undead units/u32 Gluttonous serpent attack.png" id="2_jb0i1"]
+[ext_resource type="Texture2D" uid="uid://dux6ymkrjppke" path="res://Arts/Undead units/u32 Gluttonous serpent idle .png" id="3_lw716"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k21gp"]
+atlas = ExtResource("2_jb0i1")
+region = Rect2(0, 0, 80, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8tj0"]
+atlas = ExtResource("2_jb0i1")
+region = Rect2(0, 32, 80, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cc5n0"]
+atlas = ExtResource("2_jb0i1")
+region = Rect2(0, 64, 80, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbuhj"]
+atlas = ExtResource("2_jb0i1")
+region = Rect2(0, 96, 80, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3l2r"]
+atlas = ExtResource("2_jb0i1")
+region = Rect2(0, 128, 80, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sh65o"]
+atlas = ExtResource("2_jb0i1")
+region = Rect2(0, 160, 80, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xogci"]
+atlas = ExtResource("3_lw716")
+region = Rect2(0, 0, 80, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nqejn"]
+atlas = ExtResource("3_lw716")
+region = Rect2(0, 32, 80, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lwgj"]
+atlas = ExtResource("3_lw716")
+region = Rect2(0, 64, 80, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fh738"]
+atlas = ExtResource("3_lw716")
+region = Rect2(0, 96, 80, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e5322"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k21gp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f8tj0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cc5n0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbuhj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a3l2r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sh65o")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xogci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqejn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7lwgj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fh738")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Gluttonous Serpent" instance=ExtResource("1_nautt")]
+unit_name = "Gluttonous Serpent"
+full_description = "The Gluttonous Serpent is a grotesque creature that has abandoned all thought for insatiable hunger. With an elongated, serpentine body and jaws capable of consuming multiple foes, it leaves destruction in its wake. Though mindless, its appetite makes it an overwhelming force that overwhelms through sheer persistence."
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_e5322")
+autoplay = "default"
+offset = Vector2(8, 0)
