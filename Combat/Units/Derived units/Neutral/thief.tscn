@@ -1,0 +1,91 @@
+[gd_scene load_steps=14 format=3 uid="uid://0gkab1f2csfn"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_k4b78"]
+[ext_resource type="Texture2D" uid="uid://ci471nyyoa60b" path="res://Arts/Generic/g06 thief attack .png" id="2_xcqht"]
+[ext_resource type="Texture2D" uid="uid://0ctniy0wdeep" path="res://Arts/Generic/g06 thief idle .png" id="3_gvceb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffh1g"]
+atlas = ExtResource("2_xcqht")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xyge"]
+atlas = ExtResource("2_xcqht")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tcqtg"]
+atlas = ExtResource("2_xcqht")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47hfo"]
+atlas = ExtResource("2_xcqht")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jlj0"]
+atlas = ExtResource("2_xcqht")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vkrv3"]
+atlas = ExtResource("3_gvceb")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oe2jq"]
+atlas = ExtResource("3_gvceb")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nob75"]
+atlas = ExtResource("3_gvceb")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldee4"]
+atlas = ExtResource("3_gvceb")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fnpog"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffh1g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xyge")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tcqtg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_47hfo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jlj0")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vkrv3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oe2jq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nob75")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ldee4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Thief" instance=ExtResource("1_k4b78")]
+unit_name = "Thief"
+unit_type = "Warrior"
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_fnpog")
+animation = &"attack"
+autoplay = "default"
+frames_to_emit = Array[int]([3])

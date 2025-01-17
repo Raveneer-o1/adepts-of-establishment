@@ -15,16 +15,22 @@ extends Node2D
 
 const EFFECT_ICONS_SCALE = 0.75
 
+#region Export variables
+
 @export var unit_name: String
 ## Type of a unit is primarily used by AI
 @export_enum("Healer", "Warrior", "Defender", "Buffer", "Debuffer", "Archer", "Mage") var unit_type: String
 @export_multiline var brief_description: String
 @export_multiline var full_description: String
+#endregion
 
 
 @onready var animation_handle: UnitAnimationsHandle = get_node("AnimationHandle")
 @onready var spot: UnitSpot = get_parent()
 @onready var effect_icons_container: HBoxContainer = $EffectIconsContainer
+
+
+#region Other variables
 
 # Associated components and metadata
 var parameters: UnitParameters
@@ -69,25 +75,70 @@ var defence_stance: bool = false
 
 ## If [code]true[/code], unit doesn't leave corpse after death. The object is comletely deleted
 var summoned_unit: bool = false
+#endregion
 
-## Clears chosen targets for the unit if it matches the provided unit.
-## The argument here serves only to filter signal emits that could be triggered by other units
-func reset_chosen_targets(_unit: Unit) -> void:
-	if _unit == self:
-		chosen_targets = []
-		chosen_spots.clear()
+#region API
+
+## Initializes unit variables and connects signals.
+func initialize_variables() -> bool:
+	parameters = get_node("UnitParameters")
+	party = get_parent().get_parent() as Party
+	system = party.main_system
+	if party == null:
+		print_debug("Unable to find Party node!")
+	
+	if not parameters.initialize_variables():
+		return false
+	
+	initialized = true
+	EventBus.turn_ended.connect(reset_chosen_targets)
+	EventBus.turn_ended.connect(clean_effects)
+	EventBus.turn_started.connect(clean_effects)
+	EventBus.unit_died.connect(clean_effects)
+	EventBus.round_started.connect(arrange_attacks_and_set_next)
+	EventBus.attack_reached.connect(check_taking_damage)
+	EventBus.attack_animation_finished.connect(finalize_all_attacks)
+	
+	return true
+
+## Cleans applied effects: removes dead references, removes unapplied icons
+func clean_effects(_unit: Unit) -> void:
+	parameters.clean_modifiers()
+	var _displayed_icons := displayed_icons.duplicate()
+	displayed_icons = {}
+	for icon: TextureRect in _displayed_icons:
+		if is_instance_valid(_displayed_icons[icon]):
+			displayed_icons[icon] = _displayed_icons[icon]
+			continue
+		icon.queue_free()
 
 
-## Sets [member attacks_for_this_round] to its default value.
-## Used at the start of the game, when assets are being initialized.
-func arrange_attacks() -> void:
-	attacks_for_this_round = parameters.attacks.duplicate()
+## Attempts to register a target for attack. Returns success or failure.
+func give_target(_spot: UnitSpot) -> bool:
+	if current_attack == null:
+		set_next_attack()
+		if current_attack == null:
+			return false
+	if chosen_spots.size() >= current_attack.targets_needed:
+		return false
+	var is_target_valid: bool = current_attack.target_validation.call(self, _spot)
+	if not is_target_valid:
+		return false
+	chosen_spots.append(_spot)
+	if chosen_spots.size() == current_attack.targets_needed:
+		start_attacking()
+	return true
 
-## Sets [member attacks_for_this_round] to its default value and sets [member current_attack].
-## Used at the start of a new round.
-func arrange_attacks_and_set_next() -> void:
-	attacks_for_this_round = parameters.attacks.duplicate()
+func skip_attack(message: String = "") -> void:
+	reset_chosen_targets(self)
 	set_next_attack()
+	if message != "":
+		system.display_text_near_unit(self, message)
+	system.combat_logic.next_stage()
+
+#endregion
+
+#region Recieving attacks
 
 
 ## Applies damages from all taking_damage_attacks
@@ -138,6 +189,103 @@ func check_taking_damage(unit: Unit) -> void:
 		taking_damage_delays.remove_at(0)
 		finalize_attack()
 
+#endregion
+
+#region Delivering attacks
+
+
+## Resets attack targets and emits a signal that the attack has finished.
+func finish_attacking() -> void:
+	reset_chosen_targets(self)
+	set_next_attack()
+	EventBus.attack_animation_finished.emit(self)
+
+
+## Assigns next current_attack if possible
+func set_next_attack() -> void:
+	#print("===")
+	current_attack = null
+	if attacks_for_this_round.size() > 0:
+		current_attack = attacks_for_this_round.pop_front()
+		#print(current_attack.damage_multiplier)
+
+
+## Clears chosen targets for the unit if it matches the provided unit.
+## The argument here serves only to filter signal emits that could be triggered by other units
+func reset_chosen_targets(_unit: Unit) -> void:
+	if _unit == self:
+		chosen_targets = []
+		chosen_spots.clear()
+
+
+## Sets [member attacks_for_this_round] to its default value.
+## Used at the start of the game, when assets are being initialized.
+func arrange_attacks() -> void:
+	attacks_for_this_round = parameters.attacks.duplicate()
+
+## Sets [member attacks_for_this_round] to its default value and sets [member current_attack].
+## Used at the start of a new round.
+func arrange_attacks_and_set_next() -> void:
+	attacks_for_this_round = parameters.attacks.duplicate()
+	set_next_attack()
+
+#endregion
+
+
+#region Combat actions
+
+## Initiates an attack based on the chosen targets.
+func start_attacking() -> void:
+	if chosen_targets.is_empty():
+		return
+	defence_stance = false
+	animation_handle.play_attack_animation()
+	@warning_ignore("narrowing_conversion")
+	var dmg: int = current_attack.damage_multiplier if current_attack.damage_override else \
+			current_attack.damage_multiplier * parameters.base_damage
+	
+	var targets := chosen_spots.duplicate()
+	if current_attack.find_additional_targets:
+		targets = targets + current_attack.find_additional_targets.call(self, targets)
+	#print_debug(targets.size())
+	
+	var attack: Attack = Attack.new(
+		self, targets, dmg, current_attack.type, 
+		current_attack.accuracy, parameters.attack_effect
+	)
+	if current_attack.damage_policy:
+		attack.damage_policy = current_attack.damage_policy
+	if not current_attack.applying_effects.is_empty():
+		attack.applying_effects = current_attack.applying_effects
+	system.combat_logic.book_damage(attack)
+
+func now_attacking() -> bool:
+	if not chosen_targets.is_empty():
+		return true
+	if animation_handle.now_attacking:
+		return true
+	return false
+
+func try_take_defense_stance() -> bool:
+	if now_attacking():
+		return false
+	defence_stance = true
+	system.display_text_near_unit(self, "Defending")
+	return true
+
+func try_waiting() -> bool:
+	if now_attacking():
+		return false
+		
+	attacks_for_this_round.append(current_attack)
+	set_next_attack()
+	
+	system.display_text_near_unit(self, "Waiting...")
+	return true
+#endregion
+
+#region Combat interactions
+
 
 ## Restores health to the unit and triggers associated animations.
 func heal(value: int) -> void:
@@ -178,141 +326,6 @@ func take_damage(dmg: int, message: String = "") -> void:
 		message += ": "
 	system.display_text_near_unit(self, message + "-" + str(damage_taken))
 
-
-## Cleans applied effects: removes dead references, removes unapplied icons
-func clean_effects(_unit: Unit) -> void:
-	parameters.clean_modifiers()
-	var _displayed_icons := displayed_icons.duplicate()
-	displayed_icons = {}
-	for icon: TextureRect in _displayed_icons:
-		if is_instance_valid(_displayed_icons[icon]):
-			displayed_icons[icon] = _displayed_icons[icon]
-			continue
-		icon.queue_free()
-
-
-## Attempts to register a target for attack. Returns success or failure.
-func give_target(_spot: UnitSpot) -> bool:
-	if current_attack == null:
-		set_next_attack()
-		if current_attack == null:
-			return false
-	if chosen_spots.size() >= current_attack.targets_needed:
-		return false
-	var is_target_valid: bool = current_attack.target_validation.call(self, _spot)
-	if not is_target_valid:
-		return false
-	chosen_spots.append(_spot)
-	if chosen_spots.size() == current_attack.targets_needed:
-		start_attacking()
-	return true
-
-func skip_attack(message: String = "") -> void:
-	reset_chosen_targets(self)
-	set_next_attack()
-	if message != "":
-		system.display_text_near_unit(self, message)
-	system.combat_logic.next_stage()
-
-## Resets attack targets and emits a signal that the attack has finished.
-func finish_attacking() -> void:
-	reset_chosen_targets(self)
-	set_next_attack()
-	EventBus.attack_animation_finished.emit(self)
-
-
-## Assigns next current_attack if possible
-func set_next_attack() -> void:
-	#print("===")
-	current_attack = null
-	if attacks_for_this_round.size() > 0:
-		current_attack = attacks_for_this_round.pop_front()
-		#print(current_attack.damage_multiplier)
-
-
-## Initiates an attack based on the chosen targets.
-func start_attacking() -> void:
-	if chosen_targets.is_empty():
-		return
-	defence_stance = false
-	animation_handle.play_attack_animation()
-	@warning_ignore("narrowing_conversion")
-	var dmg: int = current_attack.damage_multiplier if current_attack.damage_override else \
-			current_attack.damage_multiplier * parameters.base_damage
-	
-	var targets := chosen_spots.duplicate()
-	if current_attack.find_additional_targets:
-		targets = targets + current_attack.find_additional_targets.call(self, targets)
-	#print_debug(targets.size())
-	
-	var attack: Attack = Attack.new(
-		self, targets, dmg, current_attack.type, 
-		current_attack.accuracy, parameters.attack_effect
-	)
-	if current_attack.damage_policy:
-		attack.damage_policy = current_attack.damage_policy
-	if not current_attack.applying_effects.is_empty():
-		attack.applying_effects = current_attack.applying_effects
-	system.combat_logic.book_damage(attack)
-
-## Initializes unit variables and connects signals.
-func initialize_variables() -> bool:
-	parameters = get_node("UnitParameters")
-	party = get_parent().get_parent() as Party
-	system = party.main_system
-	if party == null:
-		print_debug("Unable to find Party node!")
-	
-	if not parameters.initialize_variables():
-		return false
-	
-	initialized = true
-	EventBus.turn_ended.connect(reset_chosen_targets)
-	EventBus.turn_ended.connect(clean_effects)
-	EventBus.turn_started.connect(clean_effects)
-	EventBus.unit_died.connect(clean_effects)
-	EventBus.round_started.connect(arrange_attacks_and_set_next)
-	EventBus.attack_reached.connect(check_taking_damage)
-	EventBus.attack_animation_finished.connect(finalize_all_attacks)
-	
-	return true
-
-
-# Handles the unit being clicked on.
-#func click() -> void:
-	#system.clicked_unit(self)
-
-func now_attacking() -> bool:
-	if not chosen_targets.is_empty():
-		return true
-	if animation_handle.now_attacking:
-		return true
-	return false
-
-func try_take_defense_stance() -> bool:
-	if now_attacking():
-		return false
-	defence_stance = true
-	system.display_text_near_unit(self, "Defending")
-	return true
-
-func try_waiting() -> bool:
-	if now_attacking():
-		return false
-		
-	attacks_for_this_round.append(current_attack)
-	set_next_attack()
-	
-	system.display_text_near_unit(self, "Waiting...")
-	return true
-
-func visualize_death() -> void:
-	if summoned_unit:
-		queue_free()
-		return
-	
-	visible = false
-
 ## Processes the unit's death (animation pending).
 func die() -> void:
 	if not initialized:
@@ -324,9 +337,24 @@ func die() -> void:
 	party.units[party_position] = null
 	spot.move_unit_to_graveyard()
 
+#endregion
+
+
+#region Utilities
+
 func display_effect_icon(image: Image, effect: AppliedEffect) -> void:
 	var texture_rect: TextureRect = TextureRect.new()
 	effect_icons_container.add_child(texture_rect)
 	texture_rect.texture = ImageTexture.create_from_image(image)
 	texture_rect.scale = Vector2(EFFECT_ICONS_SCALE, EFFECT_ICONS_SCALE)
 	displayed_icons[texture_rect] = effect
+
+
+func visualize_death() -> void:
+	if summoned_unit:
+		queue_free()
+		return
+	
+	visible = false
+
+#endregion

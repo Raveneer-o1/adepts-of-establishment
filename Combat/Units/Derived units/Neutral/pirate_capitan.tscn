@@ -1,0 +1,120 @@
+[gd_scene load_steps=18 format=3 uid="uid://dkjn6j1f7evlx"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_djdtx"]
+[ext_resource type="Texture2D" uid="uid://bybu24n81cuqj" path="res://Arts/Generic/g10 pirate captain attack .png" id="2_fk3iu"]
+[ext_resource type="Texture2D" uid="uid://dqui14ovd82ip" path="res://Arts/Generic/g10 pirate captain idle.png" id="3_87qwq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yc7ot"]
+atlas = ExtResource("2_fk3iu")
+region = Rect2(0, 0, 48, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uw4wb"]
+atlas = ExtResource("2_fk3iu")
+region = Rect2(0, 40, 48, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lyjqh"]
+atlas = ExtResource("2_fk3iu")
+region = Rect2(0, 80, 48, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0njj"]
+atlas = ExtResource("2_fk3iu")
+region = Rect2(0, 120, 48, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yb7su"]
+atlas = ExtResource("2_fk3iu")
+region = Rect2(0, 160, 48, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_graq0"]
+atlas = ExtResource("2_fk3iu")
+region = Rect2(0, 200, 48, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25uai"]
+atlas = ExtResource("2_fk3iu")
+region = Rect2(0, 240, 48, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gu0se"]
+atlas = ExtResource("2_fk3iu")
+region = Rect2(0, 280, 48, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbmuv"]
+atlas = ExtResource("2_fk3iu")
+region = Rect2(0, 320, 48, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjivj"]
+atlas = ExtResource("3_87qwq")
+region = Rect2(0, 0, 48, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yo77w"]
+atlas = ExtResource("3_87qwq")
+region = Rect2(0, 40, 48, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0kqf"]
+atlas = ExtResource("3_87qwq")
+region = Rect2(0, 80, 48, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2dtjw"]
+atlas = ExtResource("3_87qwq")
+region = Rect2(0, 120, 48, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jlfd3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yc7ot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uw4wb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lyjqh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0njj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yb7su")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_graq0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_25uai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gu0se")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nbmuv")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjivj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yo77w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w0kqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2dtjw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Pirate capitan" instance=ExtResource("1_djdtx")]
+unit_name = "Pirate capitan"
+unit_type = "Warrior"
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_jlfd3")
+animation = &"attack"
+autoplay = "default"
+offset = Vector2(8, -4)
+frames_to_emit = Array[int]([4, 7])

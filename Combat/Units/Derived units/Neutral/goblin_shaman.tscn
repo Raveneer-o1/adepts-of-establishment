@@ -1,0 +1,125 @@
+[gd_scene load_steps=19 format=3 uid="uid://b7jgva2bs2d6e"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_fstih"]
+[ext_resource type="Texture2D" uid="uid://cjo8wfgcbr28y" path="res://Arts/Generic/g04 goblin shaman attack .png" id="2_mqek8"]
+[ext_resource type="Texture2D" uid="uid://citgn3mgp1doi" path="res://Arts/Generic/g04 goblin shaman idle .png" id="3_1862s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7c8q6"]
+atlas = ExtResource("2_mqek8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ulrl"]
+atlas = ExtResource("2_mqek8")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4lfix"]
+atlas = ExtResource("2_mqek8")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12d7g"]
+atlas = ExtResource("2_mqek8")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tvgf"]
+atlas = ExtResource("2_mqek8")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_684to"]
+atlas = ExtResource("2_mqek8")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2y7yi"]
+atlas = ExtResource("2_mqek8")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75g5r"]
+atlas = ExtResource("2_mqek8")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nuirr"]
+atlas = ExtResource("2_mqek8")
+region = Rect2(0, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikkmb"]
+atlas = ExtResource("2_mqek8")
+region = Rect2(0, 288, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ufxkg"]
+atlas = ExtResource("3_1862s")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8chd"]
+atlas = ExtResource("3_1862s")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uflsd"]
+atlas = ExtResource("3_1862s")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_undsn"]
+atlas = ExtResource("3_1862s")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vp6b8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7c8q6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ulrl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4lfix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_12d7g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4tvgf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_684to")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2y7yi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_75g5r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nuirr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ikkmb")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ufxkg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8chd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uflsd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_undsn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Goblin shaman" instance=ExtResource("1_fstih")]
+unit_name = "Goblin shaman"
+unit_type = "Mage"
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_vp6b8")
+animation = &"attack"
+autoplay = "default"

@@ -1,0 +1,91 @@
+[gd_scene load_steps=14 format=3 uid="uid://bd1qlt6xdi7ru"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_qtvxl"]
+[ext_resource type="Texture2D" uid="uid://b1xhxllsgqcsf" path="res://Arts/Generic/g07 rogue attack .png" id="2_hlh76"]
+[ext_resource type="Texture2D" uid="uid://bv263bq4aflwu" path="res://Arts/Generic/g07 rogue idle .png" id="3_asnxk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2jr7"]
+atlas = ExtResource("2_hlh76")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxg0j"]
+atlas = ExtResource("2_hlh76")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2s1n"]
+atlas = ExtResource("2_hlh76")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bd2gm"]
+atlas = ExtResource("2_hlh76")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6gk4"]
+atlas = ExtResource("2_hlh76")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_doe1d"]
+atlas = ExtResource("3_asnxk")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8l4nt"]
+atlas = ExtResource("3_asnxk")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hlfa"]
+atlas = ExtResource("3_asnxk")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xrtew"]
+atlas = ExtResource("3_asnxk")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_01jde"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2jr7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxg0j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2s1n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bd2gm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6gk4")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_doe1d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8l4nt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7hlfa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xrtew")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Rogue" instance=ExtResource("1_qtvxl")]
+unit_name = "Rogue"
+unit_type = "Debuffer"
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_01jde")
+animation = &"attack"
+autoplay = "default"
+frames_to_emit = Array[int]([3])

@@ -1,9 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://6lq6f06hma7"]
+[gd_scene load_steps=7 format=3 uid="uid://6lq6f06hma7"]
 
 [ext_resource type="PackedScene" uid="uid://cku7rhe8jn3tx" path="res://Combat/Scenes/combat.tscn" id="1_7nbev"]
+[ext_resource type="PackedScene" uid="uid://dsk1e0o76tdgv" path="res://Combat/Scenes/background.tscn" id="1_q0clm"]
 [ext_resource type="PackedScene" uid="uid://d12hr40jjb8s8" path="res://Combat/Scenes/UnitInfoPanel.tscn" id="1_roecy"]
+[ext_resource type="Texture2D" uid="uid://crcehcwtajbxn" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/MenusBox_34x34.png" id="4_767k7"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_accvu"]
+
+[sub_resource type="Theme" id="Theme_x3kym"]
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_accvu")
 
 [node name="Node2D" type="Node"]
+
+[node name="Control" parent="." instance=ExtResource("1_q0clm")]
 
 [node name="Combat" parent="." instance=ExtResource("1_7nbev")]
 left_party_units = Array[String](["res://Combat/Units/Derived units/Empire/e08 Blade Saint.tscn", "res://Combat/Units/Derived units/Empire/e33 Hierophant.tscn", "res://Combat/Units/Derived units/Empire/e09 Grand Inquisitor.tscn", "res://Combat/Units/Derived units/Empire/e25 Assassin.tscn", "res://Combat/Units/Derived units/Empire/e05 Inquisitor.tscn", "res://Combat/Units/Derived units/Empire/e17 Ritualist.tscn", "res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn"])
@@ -20,19 +29,37 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = SubResource("Theme_x3kym")
 
-[node name="ParentContainer" type="VBoxContainer" parent="UI"]
+[node name="ParentContainer" type="NinePatchRect" parent="UI"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -129.0
 grow_horizontal = 2
 grow_vertical = 0
+texture = ExtResource("4_767k7")
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
 
 [node name="PanelContainer" type="PanelContainer" parent="UI/ParentContainer"]
 custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -800.0
+offset_top = -50.0
+offset_right = 800.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/ParentContainer/PanelContainer"]

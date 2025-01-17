@@ -124,7 +124,7 @@ var parent_unit: Unit
 ## Elements should be pairs <stat_name, stack> (<StringName, ModifierStack>)
 var stats_modifiers: Dictionary = {}
 
-@onready var visual_bar := get_node("VisualBar") as ProgressBar
+@onready var visual_bar := get_node("VisualBar") as TextureProgressBar
 
 
 func clean_modifiers() -> void:

@@ -99,6 +99,7 @@ autoplay = "default"
 script = ExtResource("4_qfjqk")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 anchor_mode = 0
 
 [node name="Win Label" type="RichTextLabel" parent="."]
@@ -121,8 +122,8 @@ text = "[center]wins![/center]"
 
 [node name="Left Player API" parent="." instance=ExtResource("5_ano00")]
 
-[node name="Player Controller" parent="Left Player API" instance=ExtResource("8_3ww2e")]
+[node name="Standart Combat AI" parent="Left Player API" instance=ExtResource("9_8340h")]
 
 [node name="Right Player API" parent="." instance=ExtResource("5_ano00")]
 
-[node name="Standart Combat AI" parent="Right Player API" instance=ExtResource("9_8340h")]
+[node name="Player Controller" parent="Right Player API" instance=ExtResource("8_3ww2e")]

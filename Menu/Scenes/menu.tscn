@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://rhljgisluynr"]
 
 [ext_resource type="PackedScene" uid="uid://bt1s54jsu58q1" path="res://Menu/Scenes/menu_unit_place.tscn" id="1_3imto"]
-[ext_resource type="Script" path="res://Menu/Scenes/menu.gd" id="1_h46x8"]
+[ext_resource type="Script" path="res://Menu/menu.gd" id="1_h46x8"]
 [ext_resource type="Theme" uid="uid://eh5pr46h0ubl" path="res://Themes/Theme_ETA.tres" id="1_kyvhq"]
-[ext_resource type="Script" path="res://Menu/Scenes/central_part.gd" id="2_guvaa"]
+[ext_resource type="Script" path="res://Menu/central_part.gd" id="2_guvaa"]
 [ext_resource type="PackedScene" uid="uid://c2moqu8obnwmg" path="res://Menu/Scenes/tree_item_unit.tscn" id="2_r33n7"]
 [ext_resource type="PackedScene" uid="uid://cfyuu528t154q" path="res://Menu/Scenes/Base_menu_ui_panel.tscn" id="5_lsi2e"]
 
@@ -76,7 +76,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 1
+current_tab = 2
 
 [node name="Humans" type="TabContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer"]
 visible = false
@@ -460,6 +460,7 @@ points = PackedVector2Array(306, 112, 441, 145)
 default_color = Color(0.187176, 0.187176, 0.187176, 1)
 
 [node name="Undead" type="TabContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 current_tab = 3
@@ -748,6 +749,65 @@ alignment = 1
 layout_mode = 2
 unit_name = "Dracolich"
 path = "res://Combat/Units/Derived units/Undead/u33_Dracolich.tscn"
+
+[node name="Neutral" type="TabContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer"]
+layout_mode = 2
+current_tab = 0
+metadata/_tab_index = 2
+
+[node name="Greenskin" type="GridContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Neutral"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Goblin" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Neutral/Greenskin" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Goblin"
+path = "res://Combat/Units/Derived units/Neutral/goblin.tscn"
+
+[node name="Goblin shaman" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Neutral/Greenskin" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Goblin shaman"
+path = "res://Combat/Units/Derived units/Neutral/goblin_shaman.tscn"
+
+[node name="Ogre" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Neutral/Greenskin" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Ogre"
+path = "res://Combat/Units/Derived units/Neutral/ogre.tscn"
+
+[node name="Orc" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Neutral/Greenskin" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Orc"
+path = "res://Combat/Units/Derived units/Neutral/orc.tscn"
+
+[node name="Ocr cheiftain" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Neutral/Greenskin" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Ocr cheiftain"
+path = "res://Combat/Units/Derived units/Neutral/orc_cheiftain.tscn"
+
+[node name="Humans" type="GridContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Neutral"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Pirate" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Neutral/Humans" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Pirate"
+path = "res://Combat/Units/Derived units/Neutral/pirate.tscn"
+
+[node name="Pirate capitan" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Neutral/Humans" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Pirate capitan"
+path = "res://Combat/Units/Derived units/Neutral/pirate_capitan.tscn"
+
+[node name="Thief" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Neutral/Humans" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Thief"
+path = "res://Combat/Units/Derived units/Neutral/thief.tscn"
+
+[node name="Rogue" parent="HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Neutral/Humans" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Rogue"
+path = "res://Combat/Units/Derived units/Neutral/rogue.tscn"
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer4"]
 visible = false

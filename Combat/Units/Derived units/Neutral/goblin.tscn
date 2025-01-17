@@ -1,0 +1,104 @@
+[gd_scene load_steps=16 format=3 uid="uid://bbn7oowueyb2d"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_3oyoe"]
+[ext_resource type="Texture2D" uid="uid://8q0vkd4qw755" path="res://Arts/Generic/g02 goblin attack .png" id="2_d5iwd"]
+[ext_resource type="Texture2D" uid="uid://3434cdveejcg" path="res://Arts/Generic/g02 goblin idle .png" id="3_8wcna"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8s1w"]
+atlas = ExtResource("2_d5iwd")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3wqj5"]
+atlas = ExtResource("2_d5iwd")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tcp2"]
+atlas = ExtResource("2_d5iwd")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmhwf"]
+atlas = ExtResource("2_d5iwd")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rnpiu"]
+atlas = ExtResource("2_d5iwd")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uu6gp"]
+atlas = ExtResource("2_d5iwd")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j54o3"]
+atlas = ExtResource("2_d5iwd")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7t1pu"]
+atlas = ExtResource("3_8wcna")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nenaj"]
+atlas = ExtResource("3_8wcna")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5abu2"]
+atlas = ExtResource("3_8wcna")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yiik0"]
+atlas = ExtResource("3_8wcna")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ofmvw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8s1w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3wqj5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5tcp2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmhwf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rnpiu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uu6gp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j54o3")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7t1pu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nenaj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5abu2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yiik0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Goblin" instance=ExtResource("1_3oyoe")]
+unit_name = "Goblin"
+unit_type = "Archer"
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_ofmvw")
+animation = &"attack"
+autoplay = "default"

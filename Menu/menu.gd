@@ -43,6 +43,19 @@ var left_array : Array[UnitPanel]:
 		(position_6 as MenuUnitPlace).panel,
 ]
 
+const DEFAULT_PATH = "res://Party_composition.tscn"
+
+func load_unit_composition() -> void:
+	if FileAccess.file_exists(DEFAULT_PATH):
+		get_tree().change_scene_to_file(DEFAULT_PATH)
+
+func save_unit_composition() -> void:
+	var packed_scene := PackedScene.new()
+	packed_scene.pack(self)
+	#FileAccess.open(DEFAULT_PATH,FileAccess.WRITE)
+	
+	ResourceSaver.save(packed_scene, DEFAULT_PATH)
+
 
 func _on_start_button_pressed() -> void:
 	# Clear any existing units from both sides before populating them
@@ -77,7 +90,9 @@ func _on_start_button_pressed() -> void:
 	
 	# Prepare to save the current menu scene as a packed scene
 	EventBus.packed_menu = PackedScene.new()
-	EventBus.packed_menu.pack(self)
+	await EventBus.packed_menu.pack(self)
+	
+	save_unit_composition()
 	
 	# Change the current scene to the test scene
 	get_tree().change_scene_to_file("res://test.tscn")
@@ -89,3 +104,6 @@ func _on_clear_button_pressed() -> void:
 			continue
 		(panel.get_parent() as MenuUnitPlace).clear_child_info()
 		panel.queue_free()
+
+#func _ready() -> void:
+	#load_unit_composition()

@@ -1706,6 +1706,188 @@ var DATABASE := {
 			},
 		]
 	},
+	
+	# Neutral
+	"Goblin" = {
+		Level = 1, # int
+		Damage = 18, # int
+		HP = 60, # int
+		Armor = 0, # int
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Accuracy = 0.75, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 30, # int
+				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				#FindAdditionalTargets = standart_mage_additional_targets,
+				#DamagePolicy = standart_decay_policy,
+				#Effects = {"stun" = [1.0, 2]},
+			},
+		]
+	},
+	"Orc" = {
+		Level = 1, # int
+		Damage = 40, # int
+		HP = 160, # int
+		Armor = 10, # int
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Accuracy = 0.8, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 35, # int
+				Validation = standart_melee_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				#FindAdditionalTargets = standart_mage_additional_targets,
+				#DamagePolicy = standart_decay_policy,
+				#Effects = {"stun" = [1.0, 2]},
+			},
+		]
+	},
+	"Orc cheiftain" = {
+		Level = 1, # int
+		Damage = 65, # int
+		HP = 200, # int
+		Armor = 30, # int
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Accuracy = 0.8, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 40, # int
+				Validation = standart_melee_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				#FindAdditionalTargets = standart_mage_additional_targets,
+				#DamagePolicy = standart_decay_policy,
+				#Effects = {"stun" = [1.0, 2]},
+			},
+		]
+	},
+	"Ogre" = {
+		Level = 1, # int
+		Damage = 45, # int
+		HP = 220, # int
+		Armor = 20, # int
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Accuracy = 0.8, # float [0, 1]
+				TargetsNeeded = 2, # int
+				Initiative = 35, # int
+				Validation = standart_melee_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				#FindAdditionalTargets = standart_mage_additional_targets,
+				#DamagePolicy = standart_decay_policy,
+				#Effects = {"stun" = [1.0, 2]},
+			},
+		]
+	},
+	"Goblin shaman" = {
+		Level = 1, # int
+		Damage = 35, # int
+		HP = 110, # int
+		Armor = 0, # int
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Accuracy = 0.85, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 35, # int
+				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				FindAdditionalTargets = standart_mage_additional_targets,
+				#DamagePolicy = standart_decay_policy,
+				#Effects = {"stun" = [1.0, 2]},
+			},
+		]
+	},
+	"Thief" = {
+		Level = 1, # int
+		Damage = 25, # int
+		HP = 100, # int
+		Armor = 0, # int
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Accuracy = 0.88, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 55, # int
+				Validation = standart_melee_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				#FindAdditionalTargets = standart_mage_additional_targets,
+				#DamagePolicy = standart_decay_policy,
+				#Effects = {"stun" = [1.0, 2]},
+			},
+		]
+	},
+	"Rogue" = {
+		Level = 1, # int
+		Damage = 55, # int
+		HP = 100, # int
+		Armor = 0, # int
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Accuracy = 0.88, # float [0, 1]
+				TargetsNeeded = 1, # int
+				Initiative = 55, # int
+				Validation = standart_melee_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				#FindAdditionalTargets = standart_mage_additional_targets,
+				#DamagePolicy = standart_decay_policy,
+				Effects = {"poison" = [20, 2]},
+			},
+		]
+	},
+	"Pirate" = {
+		Level = 1, # int
+		Damage = 50, # int
+		HP = 250, # int
+		Armor = 15, # int
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Accuracy = 0.9, # float [0, 1]
+				TargetsNeeded = 2, # int
+				Initiative = 55, # int
+				Validation = standart_melee_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				#FindAdditionalTargets = standart_mage_additional_targets,
+				#DamagePolicy = standart_decay_policy,
+				#Effects = {"poison" = [20, 2]},
+			},
+		]
+	},
+	"Pirate capitan" = {
+		Level = 1, # int
+		Damage = 65, # int
+		HP = 320, # int
+		Armor = 50, # int
+		Attacks = [ # Array[Dictionary]
+			{
+				DamageMultiplier = 1.0, # float
+				DamageOverride = false, # bool
+				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Accuracy = 0.95, # float [0, 1]
+				TargetsNeeded = 2, # int
+				Initiative = 65, # int
+				Validation = standart_melee_validity, # Callable (attacker: Unit, target: Unit) -> bool
+				#FindAdditionalTargets = standart_mage_additional_targets,
+				#DamagePolicy = standart_decay_policy,
+				#Effects = {"poison" = [20, 2]},
+			},
+		]
+	},
 }
 
 #region Utilities

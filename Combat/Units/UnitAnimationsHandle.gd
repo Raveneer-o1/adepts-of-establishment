@@ -82,7 +82,7 @@ func _on_animation_finished() -> void:
 	if next_animation != "":
 		play_animation_by_name(next_animation)
 		next_animation = ""
-	
+
 
 func _on_frame_changed() -> void:
 	if not now_attacking:

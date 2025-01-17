@@ -1,0 +1,176 @@
+[gd_scene load_steps=26 format=3 uid="uid://due6cek848mty"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_8bqrg"]
+[ext_resource type="Texture2D" uid="uid://br0e5f67du8am" path="res://Arts/Generic/g01 orc chieftain attack .png" id="2_nnypv"]
+[ext_resource type="Texture2D" uid="uid://d2x5accd8nuk1" path="res://Arts/Generic/g01 orc chieftain idle .png" id="3_xhkvy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_canxf"]
+atlas = ExtResource("2_nnypv")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4pvd"]
+atlas = ExtResource("2_nnypv")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2s0h"]
+atlas = ExtResource("2_nnypv")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vohuk"]
+atlas = ExtResource("2_nnypv")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hafa8"]
+atlas = ExtResource("2_nnypv")
+region = Rect2(0, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37pr1"]
+atlas = ExtResource("2_nnypv")
+region = Rect2(0, 240, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xq32i"]
+atlas = ExtResource("2_nnypv")
+region = Rect2(0, 288, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rvcxh"]
+atlas = ExtResource("2_nnypv")
+region = Rect2(0, 336, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cu7is"]
+atlas = ExtResource("2_nnypv")
+region = Rect2(0, 384, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_do7ce"]
+atlas = ExtResource("2_nnypv")
+region = Rect2(0, 432, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33x4j"]
+atlas = ExtResource("2_nnypv")
+region = Rect2(0, 480, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qgtim"]
+atlas = ExtResource("2_nnypv")
+region = Rect2(0, 528, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0l3g"]
+atlas = ExtResource("2_nnypv")
+region = Rect2(0, 576, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4qfpc"]
+atlas = ExtResource("2_nnypv")
+region = Rect2(0, 624, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hleu"]
+atlas = ExtResource("2_nnypv")
+region = Rect2(0, 672, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jewua"]
+atlas = ExtResource("2_nnypv")
+region = Rect2(0, 720, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_450dl"]
+atlas = ExtResource("2_nnypv")
+region = Rect2(0, 768, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qvib"]
+atlas = ExtResource("3_xhkvy")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_260xf"]
+atlas = ExtResource("3_xhkvy")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14not"]
+atlas = ExtResource("3_xhkvy")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_okrxm"]
+atlas = ExtResource("3_xhkvy")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ao4o3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_canxf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4pvd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2s0h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vohuk")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_hafa8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37pr1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xq32i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rvcxh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cu7is")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_do7ce")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33x4j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qgtim")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0l3g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4qfpc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hleu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jewua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_450dl")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6qvib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_260xf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14not")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_okrxm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Orc cheiftain" instance=ExtResource("1_8bqrg")]
+unit_name = "Orc cheiftain"
+unit_type = "Warrior"
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_ao4o3")
+animation = &"attack"
+autoplay = "default"
+offset = Vector2(8, -8)
+frames_to_emit = Array[int]([5])
