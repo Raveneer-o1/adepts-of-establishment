@@ -3,6 +3,12 @@ extends Node
 const RATIO_LOW_THRESHOLD = 2.0
 const RATIO_HIGH_THRESHOLD = 7.0
 
+# If difference is less than this values, they will be treated as the same value.
+# e.g. if two units have ratios 3.2 and 3.3, AI will not
+# prioritize one over the other based on this fact alone
+const RATIO_EPSILON = 1.0
+const DAMAGE_EPSILON = 40
+
 @onready var api: PlayerAPI = get_parent()
 
 var units_ratio := {}
@@ -31,7 +37,8 @@ func calculate_damage_potential() -> void:
 			continue
 		units_damage_potential[unit] = unit.parameters.get_full_damage()
 
-## Calculates maximum damage each enemy unit could take
+## Calculates maximum damage each enemy unit could take and writes it in
+## [member units_damage] Dictionary.
 func calculate_damage() -> void:
 	units_damage.clear()
 	for unit in api.party.units:
@@ -41,49 +48,76 @@ func calculate_damage() -> void:
 		for attack in unit.parameters.attacks:
 			var avaliable_tagrts := api.combat_system.find_targets_for_attack(attack)
 			for target in avaliable_tagrts:
-				if units_damage.has(target):
-					units_damage[target] += unit.parameters.get_actual_damage(attack)
+				if units_damage.has(target.unit):
+					units_damage[target.unit] += unit.parameters.get_actual_damage(attack)
 				else:
-					units_damage[target] = unit.parameters.get_actual_damage(attack)
-	
+					units_damage[target.unit] = unit.parameters.get_actual_damage(attack)
 
+
+
+func sorting_by_ratio(u1: Unit, u2: Unit) -> bool:
+	# if u1 has no possible damage, lower its priority
+	if not (units_damage.has(u1)):
+		return false
+	
+	# if u2 has no possible damage, don't lower the priority of u1
+	if not (units_damage.has(u2)):
+		return true
+	
+	var result_ratio: bool = units_ratio[u1] <= units_ratio[u2]
+	var result_damage: bool = units_damage[u1] > units_damage[u2]
+	
+	if result_ratio and result_damage:
+		return true
+	
+	var ratio_diff : int = abs(units_ratio[u2] - units_ratio[u1])
+	var damage_diff : int = abs(units_damage[u2] - units_damage[u1])
+	
+	if ratio_diff < RATIO_EPSILON and damage_diff > DAMAGE_EPSILON:
+		return result_damage
+	
+	if damage_diff < DAMAGE_EPSILON and ratio_diff > RATIO_EPSILON:
+		return result_ratio
+	
+	return result_ratio
+
+## Calculates [member prioritized_units] as an Array sorted by the priority
 func set_policy() -> void:
 	calculate_ratio()
 	calculate_damage_potential()
 	calculate_damage()
 	
+	prioritized_units.clear()
 	var high_priority_units: Array[Unit] = []
 	var low_priority_units: Array[Unit] = []
 	var units: Array[Unit] = []
 	
+	
 	# STEP 1. Filter units with ratios below/above thresholds
+	# =======
+	
 	for unit: Unit in units_ratio:
 		if units_ratio[unit] <= RATIO_LOW_THRESHOLD:
 			high_priority_units.append(unit)
 			continue
-		if units_ratio[unit] <= RATIO_HIGH_THRESHOLD:
+		if units_ratio[unit] >= RATIO_HIGH_THRESHOLD:
 			low_priority_units.append(unit)
 			continue
 		units.append(unit)
 	
 	# If we found units with high priority, add them to the list
 	if not high_priority_units.is_empty():
-		high_priority_units.sort_custom(
-				func(u1: Unit, u2: Unit) -> bool:
-					return units_ratio[u1] > units_ratio[u2]
-		)
+		high_priority_units.sort_custom(sorting_by_ratio)
 		prioritized_units = high_priority_units
 		high_priority_units = []
 	
 	
-	
-	
 	# STEP 2. Units that can be killed before they attack this turn, should be prioritized
+	# =======
 	
 	var units_left := units
 	units = []
 	for unit: Unit in units_left:
-		
 		if units_damage.has(unit):
 			if units_damage[unit] >= unit.parameters.effective_current_hp:
 				high_priority_units.append(unit)
@@ -95,15 +129,24 @@ func set_policy() -> void:
 	if not high_priority_units.is_empty():
 		high_priority_units.sort_custom(
 				func(u1: Unit, u2: Unit) -> bool:
-					return u1.parameters.base_damage < u2.parameters.base_damage
+					# if u1 has no possible damage, lower its priority
+					if not (units_damage.has(u1)):
+						return false
+					
+					# if u2 has no possible damage, don't lower the priority of u1
+					if not (units_damage.has(u2)):
+						return true
+					
+					return u1.parameters.base_damage > u2.parameters.base_damage
 		)
-		prioritized_units = prioritized_units + high_priority_units
+		prioritized_units.append_array(high_priority_units)
 		high_priority_units = []
 	
 	
 	
 	
 	# STEP 3. Units of certain types (e.g. healers) are more valuable as a target
+	# =======
 	
 	units_left = units
 	units = []
@@ -116,25 +159,36 @@ func set_policy() -> void:
 	
 	
 	
-	# STEP 4. Prioritizing strongets units
+	# STEP 4. Prioritizing units to which we can do most damage
+	# =======
+	
 	units.sort_custom(
 			func (u1: Unit, u2: Unit) -> bool:
-				return units_damage.has(u1) and \
-					units_damage.has(u2) and \
-					units_damage[u1] < units_damage[u2]
+				# if u2 has no possible damage, don't lower the priority of u1
+				if not (units_damage.has(u2)):
+					return false
+				
+				# if u1 has no possible damage, lower its priority
+				if not (units_damage.has(u1)):
+					return true
+				
+				return units_damage[u1] > units_damage[u2]
 	)
-	prioritized_units = prioritized_units + units
+	prioritized_units.append_array(units)
 	
-	# STEP 5. 
-	prioritized_units = prioritized_units + low_priority_units
+	# STEP 5. Adding low priority units to the end of a list
+	prioritized_units.append_array(low_priority_units)
 
 
 func evaluate_targets(ai_unit: Unit, valid_targets: Array[UnitSpot]) -> UnitSpot:
 	if valid_targets.is_empty():
 		return null
 	
+	#print(prioritized_units)
 	for unit in prioritized_units:
 		if valid_targets.has(unit.spot):
+			#print(unit)
+			#print("------")
 			return unit.spot
 	
 	return valid_targets.pick_random()

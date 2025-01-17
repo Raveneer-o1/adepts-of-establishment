@@ -282,7 +282,7 @@ func find_targets_for_attack(attack: UnitAttack) -> Array[UnitSpot]:
 	for spot in all_unit_spots:
 		if spot == null:
 			continue
-		if attack.target_validation.call(current_unit, spot):
+		if attack.target_validation.call(attack.unit, spot):
 			result.append(spot)
 	
 	return result
