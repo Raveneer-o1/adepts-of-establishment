@@ -103,6 +103,7 @@ animations = [{
 
 [node name="Unit" instance=ExtResource("1_d0om5")]
 unit_name = "Squire"
+unit_type = "Warrior"
 full_description = "The squire is an eager trainee, taking their first steps toward knighthood. Though their armor is light and their skills unpolished, they stand bravely on the front lines. Often serving as assistants to knights, squires are willing to risk much to prove their worth."
 
 [node name="AnimationHandle" parent="." index="0"]

@@ -111,6 +111,7 @@ animations = [{
 
 [node name="Clergyman" instance=ExtResource("1_wpfih")]
 unit_name = "Imperial priest"
+unit_type = "Healer"
 full_description = "Clergymen are stalwart defenders of faith and life, wielding potent healing magic to sustain their allies. Their unwavering devotion allows them to keep even gravely wounded warriors in the fray. They are a cornerstone of any formation, ensuring the survival of their party's strongest fighters."
 
 [node name="AnimationHandle" parent="." index="0"]

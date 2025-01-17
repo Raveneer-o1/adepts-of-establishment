@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bb6bf722r80hy"]
 
-[ext_resource type="Script" path="res://Combat/temp_label.gd" id="1_6r1sa"]
+[ext_resource type="Script" path="res://Combat/Scripts/temp_label.gd" id="1_6r1sa"]
 
 [node name="TempLabel" type="Label"]
 top_level = true

@@ -97,6 +97,7 @@ animations = [{
 
 [node name="Arcanist" instance=ExtResource("1_insub")]
 unit_name = "Arcanist"
+unit_type = "Mage"
 full_description = "Arcanists are the pinnacle of arcane mastery, wielding devastating spells that reshape the battlefield. Their magic transcends the ordinary, unraveling enemy formations and wreaking havoc with immense elemental power. While physically fragile, their unparalleled command of destructive forces makes them a cornerstone of any strategy that seeks to overwhelm foes with raw magical might."
 
 [node name="AnimationHandle" parent="." index="0"]

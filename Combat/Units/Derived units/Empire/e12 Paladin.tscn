@@ -146,6 +146,7 @@ animations = [{
 
 [node name="Unit" instance=ExtResource("1_v252y")]
 unit_name = "Paladin"
+unit_type = "Defender"
 full_description = "Paladins are elite horsemen sworn to the king's service, their presence a testament to the kingdom's might. Mounted on powerful steeds clad in ornate armor, they charge into battle with unmatched speed and force, devastating enemy lines. Their discipline and training allow them to perform precision maneuvers, bolstering the effectiveness of allied forces."
 
 [node name="AnimationHandle" parent="." index="0"]

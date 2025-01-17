@@ -272,10 +272,8 @@ func _ready() -> void:
 
 #region Unilities
 
-func find_avaliable_targets(unit: Unit = current_unit) -> Array[UnitSpot]:
-	if unit == null:
-		return []
-	if unit.current_attack == null:
+func find_targets_for_attack(attack: UnitAttack) -> Array[UnitSpot]:
+	if attack == null:
 		return []
 	
 	var result: Array[UnitSpot] = []
@@ -284,10 +282,16 @@ func find_avaliable_targets(unit: Unit = current_unit) -> Array[UnitSpot]:
 	for spot in all_unit_spots:
 		if spot == null:
 			continue
-		if unit.current_attack.target_validation.call(current_unit, spot):
+		if attack.target_validation.call(current_unit, spot):
 			result.append(spot)
 	
 	return result
+
+func find_avaliable_targets(unit: Unit = current_unit) -> Array[UnitSpot]:
+	if unit == null:
+		return []
+	
+	return find_targets_for_attack(unit.current_attack)
 
 ## Loads menu scene as current one. If [member EventBus.packed_menu] is empty,
 ## loads new scene from [code]"res://Menu/Scenes/menu.tscn"[/code]

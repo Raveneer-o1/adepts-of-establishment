@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckpv7iuywcnom"]
+
+[ext_resource type="Script" path="res://Combat/Scripts/standart_combat_ai.gd" id="1_vl5uh"]
+
+[node name="Standart Combat AI" type="Node"]
+script = ExtResource("1_vl5uh")

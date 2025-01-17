@@ -37,9 +37,9 @@ func standart_melee_validity(attacker: Unit, target_spot: UnitSpot) -> bool:
 	
 	var target := target_spot.unit
 	# TODO: make another algothithm for large units
-	var pos := attacker.party_position if \
-			not attacker.parameters.large_unit else \
-			attacker.party_position + 1
+	var pos := attacker.party_position + 1 if \
+			attacker.parameters.large_unit and attacker.party_position % 2 != 0 else \
+			attacker.party_position
 	var targets : Array[Unit]
 	# step of 2 indicates adjacent units *see Party class documentation*
 	var step: int = 2

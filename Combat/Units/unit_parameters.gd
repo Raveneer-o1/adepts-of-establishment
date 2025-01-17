@@ -105,6 +105,15 @@ var hp: int:
 			die()
 #endregion
 
+var effective_current_hp: int:
+	get:
+		return round(float(hp) / armor_multiplier)
+
+var effective_max_hp: int:
+	get:
+		return round(float(max_hp) / armor_multiplier)
+
+
 var attacks: Array[UnitAttack] = []
 
 var dead: bool = false
@@ -130,6 +139,19 @@ func add_modifier(stat: StringName, effect: AppliedEffect, influence: Callable) 
 		stats_modifiers[stat] = ModifierStack.new()
 	
 	(stats_modifiers[stat] as ModifierStack).add_modifier(effect, influence)
+
+
+func get_actual_damage(attack: UnitAttack) -> int:
+	return attack.damage_multiplier if attack.damage_override else \
+			attack.damage_multiplier * base_damage
+
+## Returns full damage potential of a unit on a per turn basis accounting for accuracy.
+## Does not account for multi-targeted attacks
+func get_full_damage() -> int:
+	var result: float = 0.0
+	for attack in attacks:
+		result += get_actual_damage(attack) * attack.accuracy * attack.targets_needed
+	return round(result)
 
 var initializtion_successful: bool = false
 

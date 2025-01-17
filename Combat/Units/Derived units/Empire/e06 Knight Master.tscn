@@ -145,6 +145,7 @@ animations = [{
 
 [node name="Unit" instance=ExtResource("1_f361o")]
 unit_name = "Knight Master"
+unit_type = "Warrior"
 full_description = "Knight Masters are paragons of martial skill, commanding respect on the battlefield with their imposing presence and unwavering discipline. Equipped with masterfully crafted armor and weapons, they excel in both offense and defense, standing as stalwart protectors of their allies. A Knight Master is a symbol of honor and strength, embodying the virtues of their order."
 
 [node name="AnimationHandle" parent="." index="0"]

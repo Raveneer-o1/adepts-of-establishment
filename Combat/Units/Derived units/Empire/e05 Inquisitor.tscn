@@ -131,6 +131,7 @@ animations = [{
 
 [node name="Unit" instance=ExtResource("1_iyxx7")]
 unit_name = "Inquisitor"
+unit_type = "Warrior"
 full_description = "Inquisitors are relentless hunters of heresy, wielding heavy maces to deliver unyielding punishment. Their attacks pierce through magical defenses, making them especially deadly against spellcasters and enchanted foes. Unshakable in their faith, they inspire their allies and bring fear to the corrupted. On the battlefield, an Inquisitor is a resolute force of righteousness, relentless in their pursuit of heretics and the unholy."
 
 [node name="AnimationHandle" parent="." index="0"]

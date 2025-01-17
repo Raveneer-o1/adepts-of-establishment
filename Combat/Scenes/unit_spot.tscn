@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://m32n7akyixp5"]
 
-[ext_resource type="Script" path="res://Combat/unit_spot.gd" id="1_6hkem"]
+[ext_resource type="Script" path="res://Combat/Scripts/unit_spot.gd" id="1_6hkem"]
 [ext_resource type="Script" path="res://Combat/Units/unit_area_2d_node.gd" id="2_7i5yl"]
 [ext_resource type="Texture2D" uid="uid://dnao7cqp8wxhw" path="res://Arts/Combat effects/white circle .png" id="3_jln8r"]
 [ext_resource type="Texture2D" uid="uid://jdc0m3idvya3" path="res://Arts/Combat effects/yellow circle .png" id="4_4j5to"]

@@ -117,6 +117,7 @@ animations = [{
 
 [node name="Imperial ranger" instance=ExtResource("1_eigsw")]
 unit_name = "Imperial Ranger"
+unit_type = "Archer"
 full_description = "The elite among archers, Imperial Rangers are masters of the bow and forest warfare. With unparalleled accuracy and exceptional survival skills, they can track and eliminate enemies from the shadows. Their arrows are often enhanced with specialized tips, capable of piercing even the strongest defenses."
 
 [node name="AnimationHandle" parent="." index="0"]

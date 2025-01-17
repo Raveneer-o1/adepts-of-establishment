@@ -16,6 +16,8 @@ extends Node2D
 const EFFECT_ICONS_SCALE = 0.75
 
 @export var unit_name: String
+## Type of a unit is primarily used by AI
+@export_enum("Healer", "Warrior", "Defender", "Buffer", "Debuffer", "Archer", "Mage") var unit_type: String
 @export_multiline var brief_description: String
 @export_multiline var full_description: String
 

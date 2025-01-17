@@ -97,6 +97,7 @@ animations = [{
 
 [node name="Unit" instance=ExtResource("1_0p7og")]
 unit_name = "Apprentice"
+unit_type = "Mage"
 full_description = "Apprentices are fledgling mages taking their first steps into the arcane arts. Though their spells are simple and lack refinement, they can still unleash bursts of magical energy capable of turning the tide in smaller skirmishes. While fragile and inexperienced, they show great potential, embodying the raw promise of power yet to be mastered."
 
 [node name="AnimationHandle" parent="." index="0"]

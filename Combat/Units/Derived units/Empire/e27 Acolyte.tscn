@@ -90,6 +90,7 @@ animations = [{
 
 [node name="Acolyte" instance=ExtResource("1_88v6m")]
 unit_name = "Acolyte"
+unit_type = "Healer"
 full_description = "Acolytes are the fledgling healers of the faith, channeling divine energy to mend the wounds of their allies. While their healing power is limited, their dedication to protecting their comrades is unwavering."
 
 [node name="AnimationHandle" parent="." index="0"]

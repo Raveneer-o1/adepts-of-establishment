@@ -128,7 +128,7 @@ func start_turn() -> void:
 		#current_attack.unit.set_next_attack()
 		EventBus.turn_started.emit(main_system.current_unit)
 		main_system.display_hints()
-		main_system.current_player.turn_started.emit(main_system.current_unit)
+		main_system.current_player.start_turn()
 		return
 
 

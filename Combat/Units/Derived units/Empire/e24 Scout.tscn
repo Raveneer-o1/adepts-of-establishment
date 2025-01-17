@@ -188,6 +188,7 @@ animations = [{
 
 [node name="Scout" instance=ExtResource("1_65je8")]
 unit_name = "Scout"
+unit_type = "Archer"
 full_description = "Scouts are nimble and resourceful, blending speed with precision. They excel at quick strikes and harassing enemy formations. Their agility allows them to avoid direct confrontation, making them invaluable for reconnaissance and flanking maneuvers in tactical skirmishes."
 
 [node name="AnimationHandle" parent="." index="0"]

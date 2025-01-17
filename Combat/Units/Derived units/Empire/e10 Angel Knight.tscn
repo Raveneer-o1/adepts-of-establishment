@@ -181,6 +181,7 @@ animations = [{
 
 [node name="AngelKinght" instance=ExtResource("1_ktuuv")]
 unit_name = "Angel Knight"
+unit_type = "Warrior"
 full_description = "Angel Knights are celestial warriors clad in radiant armor, wielding swords blessed with divine power. Their strikes are swift and unerring, cutting through darkness and doubt with righteous precision. With their holy aura, they inspire nearby allies, enhancing their offensive capabilities."
 
 [node name="AnimationHandle" parent="." index="0"]

@@ -146,6 +146,7 @@ animations = [{
 
 [node name="Keeper of Knowledge" instance=ExtResource("1_l0il6")]
 unit_name = "Keeper of Knowledge"
+unit_type = "Mage"
 full_description = "The Keeper of Knowledge is both a scholar and a mage, delving into ancient tomes to uncover secrets lost to time. They channel this wisdom into powerful spells that disrupt enemies and empower allies. Masters of manipulation, they can alter the flow of battle with their insight, ensuring their allies have every advantage while their enemies falter under the weight of forgotten truths."
 
 [node name="AnimationHandle" parent="." index="0"]

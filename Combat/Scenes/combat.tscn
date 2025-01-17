@@ -1,14 +1,14 @@
 [gd_scene load_steps=19 format=3 uid="uid://cku7rhe8jn3tx"]
 
 [ext_resource type="PackedScene" uid="uid://dpt3c8srdp3wx" path="res://Combat/Scenes/party.tscn" id="1_g80uy"]
-[ext_resource type="Script" path="res://Combat/combat.gd" id="1_y8ty4"]
+[ext_resource type="Script" path="res://Combat/Scripts/combat.gd" id="1_y8ty4"]
 [ext_resource type="Resource" uid="uid://dfd81a0k5k4xy" path="res://Combat/Units/UnitParameters.tres" id="2_x7h3h"]
 [ext_resource type="Texture2D" uid="uid://c5k2kc0xwrqao" path="res://Arts/Combat effects/blue circle .png" id="3_58fml"]
 [ext_resource type="PackedScene" uid="uid://baracsktpldx5" path="res://Combat/Scenes/UnitMarker.tscn" id="3_tn6ox"]
-[ext_resource type="Script" path="res://Combat/CombatLogic.gd" id="4_qfjqk"]
+[ext_resource type="Script" path="res://Combat/Scripts/CombatLogic.gd" id="4_qfjqk"]
 [ext_resource type="PackedScene" uid="uid://bnurbl8wl4www" path="res://Combat/Scenes/player_api.tscn" id="5_ano00"]
-[ext_resource type="PackedScene" uid="uid://clykj0u2jumym" path="res://Combat/Scenes/basic_combat_ai.tscn" id="7_0jkew"]
 [ext_resource type="PackedScene" uid="uid://0hcak5qcsv8i" path="res://Combat/Scenes/player_controller.tscn" id="8_3ww2e"]
+[ext_resource type="PackedScene" uid="uid://ckpv7iuywcnom" path="res://Combat/Scenes/standart_combat_ai.tscn" id="9_8340h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cqvtd"]
 atlas = ExtResource("3_58fml")
@@ -125,4 +125,4 @@ text = "[center]wins![/center]"
 
 [node name="Right Player API" parent="." instance=ExtResource("5_ano00")]
 
-[node name="Basic Combat AI" parent="Right Player API" instance=ExtResource("7_0jkew")]
+[node name="Standart Combat AI" parent="Right Player API" instance=ExtResource("9_8340h")]

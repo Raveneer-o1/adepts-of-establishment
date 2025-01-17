@@ -97,6 +97,7 @@ animations = [{
 
 [node name="Matriarch" instance=ExtResource("1_eiqlo")]
 unit_name = "Matriarch"
+unit_type = "Healer"
 full_description = "Matriarchs are pillars of divine strength, safeguarding the vitality of their entire party. Their healing magic envelops all allies, keeping them resilient against the relentless tides of war. Their presence fosters unity and endurance among their comrades."
 
 [node name="AnimationHandle" parent="." index="0"]

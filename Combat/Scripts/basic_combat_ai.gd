@@ -76,4 +76,4 @@ func choose_action(unit: Unit) -> void:
 		targets_need -= 1
 
 func _ready() -> void:
-	api.turn_started.connect(choose_action)
+	api._turn_started.connect(choose_action)

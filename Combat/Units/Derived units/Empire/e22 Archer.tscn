@@ -131,6 +131,7 @@ animations = [{
 
 [node name="Archer" instance=ExtResource("1_rj356")]
 unit_name = "Archer"
+unit_type = "Archer"
 full_description = "Archers are the backbone of any ranged offense, skilled in the art of precision and timing. Armed with simple bows, they provide consistent support from the backlines, picking off weaker targets or softening up foes before the main assault."
 
 [node name="AnimationHandle" parent="." index="0"]

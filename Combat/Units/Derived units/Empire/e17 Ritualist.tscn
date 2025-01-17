@@ -84,6 +84,7 @@ animations = [{
 
 [node name="Ritualist" instance=ExtResource("1_nifrr")]
 unit_name = "Ritualist"
+unit_type = "Mage"
 full_description = "Ritualists delve into ancient and forbidden rites, channeling their energy to summon otherworldly beings or cast powerful curses. Their unique strength lies in their ability to turn the tide of battle by conjuring allies from empty spaces on the battlefield."
 
 [node name="AnimationHandle" parent="." index="0"]

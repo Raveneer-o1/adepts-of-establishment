@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://d12hr40jjb8s8"]
 
-[ext_resource type="Script" path="res://Combat/unit_info_panel.gd" id="1_udonc"]
+[ext_resource type="Script" path="res://Combat/Scripts/unit_info_panel.gd" id="1_udonc"]
 [ext_resource type="Texture2D" uid="uid://cakixrycrne80" path="res://Arts/Placeholder portrait.jpg" id="2_ljltd"]
 
 [node name="UnitInfoPanel" type="Control"]
