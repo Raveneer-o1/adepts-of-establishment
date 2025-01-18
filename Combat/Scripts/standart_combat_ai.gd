@@ -194,6 +194,56 @@ func evaluate_targets(ai_unit: Unit, valid_targets: Array[UnitSpot]) -> UnitSpot
 	return valid_targets.pick_random()
 
 
+func find_target_for_healing(valid_targets: Array[UnitSpot]) -> UnitSpot:
+	var result: UnitSpot = null
+	var result_percenage: float = 1.0 # initializing to value 1 so the we won't choose full hp units
+	
+	for target in valid_targets:
+		if target == null or target.unit == null:
+			continue
+		
+		if target.unit.parameters.dead:
+			return target
+		
+		var percentage : float = target.unit.parameters.hp_percentage
+		if percentage < result_percenage:
+			result_percenage = percentage
+			result = target
+	
+	return result
+
+
+func choose_warrior_action(unit: Unit, avaliable_targets: Array[UnitSpot]) -> void:
+	var targets_need := unit.current_attack.targets_needed
+	
+	while targets_need > 0:
+		if avaliable_targets.is_empty():
+			api.start_attack()
+			return
+		
+		var chosen_unit := evaluate_targets(unit, avaliable_targets)
+		api.choose_unit(chosen_unit)
+		avaliable_targets = api.combat_system.find_avaliable_targets(unit)
+		targets_need -= 1
+
+
+
+func choose_healer_action(unit: Unit, avaliable_targets: Array[UnitSpot]) -> void:
+	var targets_need := unit.current_attack.targets_needed
+	while targets_need > 0:
+		if avaliable_targets.is_empty():
+			api.start_attack()
+			return
+		
+		var chosen_unit := find_target_for_healing(avaliable_targets)
+		if chosen_unit == null:
+			api.use_defense_or_attack()
+		
+		api.choose_unit(chosen_unit)
+		avaliable_targets = api.combat_system.find_avaliable_targets(unit)
+		targets_need -= 1
+
+
 func choose_action(unit: Unit) -> void:
 	if unit == null:
 		return
@@ -204,15 +254,12 @@ func choose_action(unit: Unit) -> void:
 	if avaliable_targets.is_empty():
 		api.use_defense_stance()
 	
-	var targets_need := unit.current_attack.targets_needed
-	while targets_need > 0:
-		if avaliable_targets.is_empty():
-			api.start_attack()
-			return
-		var chosen_unit := evaluate_targets(unit, avaliable_targets)
-		api.choose_unit(chosen_unit)
-		avaliable_targets = api.combat_system.find_avaliable_targets(unit)
-		targets_need -= 1
+	if unit.unit_type == "Healer":
+		choose_healer_action(unit, avaliable_targets)
+		return
+	
+	choose_warrior_action(unit, avaliable_targets)
+
 
 func _ready() -> void:
 	api._turn_started.connect(choose_action)

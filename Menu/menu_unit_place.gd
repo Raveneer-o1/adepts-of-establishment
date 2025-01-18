@@ -35,10 +35,12 @@ func switch_unit_place(unit: UnitPanel) -> void:
 	
 	panel = unit
 	add_child(unit)
+	unit.owner = owner
 	
 	if this_unit != null:
 		other_place.panel = this_unit
 		other_place.add_child(this_unit)
+		this_unit.owner = other_place.owner
 
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:

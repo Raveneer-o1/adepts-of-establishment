@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cku7rhe8jn3tx"]
+[gd_scene load_steps=17 format=3 uid="uid://cku7rhe8jn3tx"]
 
 [ext_resource type="PackedScene" uid="uid://dpt3c8srdp3wx" path="res://Combat/Scenes/party.tscn" id="1_g80uy"]
 [ext_resource type="Script" path="res://Combat/Scripts/combat.gd" id="1_y8ty4"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://baracsktpldx5" path="res://Combat/Scenes/UnitMarker.tscn" id="3_tn6ox"]
 [ext_resource type="Script" path="res://Combat/Scripts/CombatLogic.gd" id="4_qfjqk"]
 [ext_resource type="PackedScene" uid="uid://bnurbl8wl4www" path="res://Combat/Scenes/player_api.tscn" id="5_ano00"]
-[ext_resource type="PackedScene" uid="uid://ckpv7iuywcnom" path="res://Combat/Scenes/standart_combat_ai.tscn" id="9_8340h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cqvtd"]
 atlas = ExtResource("3_58fml")
@@ -121,8 +120,4 @@ text = "[center]wins![/center]"
 
 [node name="Left Player API" parent="." instance=ExtResource("5_ano00")]
 
-[node name="Standart Combat AI" parent="Left Player API" instance=ExtResource("9_8340h")]
-
 [node name="Right Player API" parent="." instance=ExtResource("5_ano00")]
-
-[node name="Standart Combat AI2" parent="Right Player API" instance=ExtResource("9_8340h")]

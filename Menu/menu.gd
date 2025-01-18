@@ -18,6 +18,10 @@ extends Control
 @onready var r_position_5: MenuUnitPlace = $"MarginContainer/HBoxContainer/VBoxContainer3/VBoxContainer/Position 5"
 @onready var r_position_6: MenuUnitPlace = $"MarginContainer/HBoxContainer/VBoxContainer3/VBoxContainer2/Position 6"
 
+@onready var item_list_right_controller: ItemList = $MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/ItemList2
+@onready var item_list_left_controller: ItemList = $MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/ItemList
+
+
 
 var right_array : Array[UnitPanel]:
 	get:
@@ -50,11 +54,46 @@ func load_unit_composition() -> void:
 		get_tree().change_scene_to_file(DEFAULT_PATH)
 
 func save_unit_composition() -> void:
-	var packed_scene := PackedScene.new()
-	packed_scene.pack(self)
-	#FileAccess.open(DEFAULT_PATH,FileAccess.WRITE)
+	EventBus.packed_menu = PackedScene.new()
+	EventBus.packed_menu.pack(self)
 	
-	ResourceSaver.save(packed_scene, DEFAULT_PATH)
+	ResourceSaver.save(EventBus.packed_menu, DEFAULT_PATH)
+
+
+const PLAYER_CONTROLLER = 0
+const BASIC_AI_CONTROLLER = 1
+const STANDART_AI_CONTROLLER = 2
+
+func save_left_controller() -> void:
+	var items := item_list_left_controller.get_selected_items()
+	if items.size() == 0:
+		print_debug("No items selected on the left!")
+		return
+	match items[0]:
+		PLAYER_CONTROLLER:
+			EventBus.left_controller = load("res://Combat/Scenes/player_controller.tscn")
+		BASIC_AI_CONTROLLER:
+			EventBus.left_controller = load("res://Combat/Scenes/basic_combat_ai.tscn")
+		STANDART_AI_CONTROLLER:
+			EventBus.left_controller = load("res://Combat/Scenes/standart_combat_ai.tscn")
+
+func save_right_controller() -> void:
+	var items := item_list_right_controller.get_selected_items()
+	if items.size() == 0:
+		print_debug("No items selected on the right!")
+		return
+	match items[0]:
+		PLAYER_CONTROLLER:
+			EventBus.right_controller = load("res://Combat/Scenes/player_controller.tscn")
+		BASIC_AI_CONTROLLER:
+			EventBus.right_controller = load("res://Combat/Scenes/basic_combat_ai.tscn")
+		STANDART_AI_CONTROLLER:
+			EventBus.right_controller = load("res://Combat/Scenes/standart_combat_ai.tscn")
+
+
+func save_controllers() -> void:
+	save_left_controller()
+	save_right_controller()
 
 
 func _on_start_button_pressed() -> void:
@@ -88,9 +127,8 @@ func _on_start_button_pressed() -> void:
 	if not can_start:
 		return
 	
-	# Prepare to save the current menu scene as a packed scene
-	EventBus.packed_menu = PackedScene.new()
-	await EventBus.packed_menu.pack(self)
+	save_controllers()
+	
 	
 	save_unit_composition()
 	
@@ -105,5 +143,6 @@ func _on_clear_button_pressed() -> void:
 		(panel.get_parent() as MenuUnitPlace).clear_child_info()
 		panel.queue_free()
 
-#func _ready() -> void:
-	#load_unit_composition()
+func _ready() -> void:
+	item_list_left_controller.select(STANDART_AI_CONTROLLER)
+	item_list_right_controller.select(PLAYER_CONTROLLER)

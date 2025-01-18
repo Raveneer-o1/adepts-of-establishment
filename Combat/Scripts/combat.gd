@@ -246,9 +246,13 @@ func initialize_variables() -> void:
 	
 	left_player.combat_system = self
 	left_player.party = left_party
+	if EventBus.left_controller != null:
+		left_player.add_child(EventBus.left_controller.instantiate())
 	
 	right_player.combat_system = self
 	right_player.party = right_party
+	if EventBus.right_controller != null:
+		right_player.add_child(EventBus.right_controller.instantiate())
 	
 	left_party.initialize_variables()
 	right_party.initialize_variables()

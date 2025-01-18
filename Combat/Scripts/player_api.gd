@@ -26,6 +26,8 @@ func start_turn() -> void:
 	get_tree().create_timer(ACTION_DELAY).timeout.connect(func() -> void: awaiting_action = true)
 
 
+
+
 func choose_unit(spot: UnitSpot) -> void:
 	if disabled:
 		return
@@ -57,7 +59,19 @@ func start_attack() -> void:
 	awaiting_action = false
 	combat_system.start_attacking_chosen_targets()
 
-func  _process(delta: float) -> void:
+
+## Uses defense action if possible. Otherwise continues attacking
+func use_defense_or_attack() -> void:
+	if disabled:
+		return
+	
+	awaiting_action = false
+	if not combat_system.try_taking_defense_stance():
+		combat_system.start_attacking_chosen_targets()
+	
+
+
+func _process(delta: float) -> void:
 	if not awaiting_action:
 		return
 	_turn_started.emit(combat_system.current_unit)

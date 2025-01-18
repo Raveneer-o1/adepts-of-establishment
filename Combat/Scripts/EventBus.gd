@@ -1,5 +1,8 @@
 extends Node
 
+var left_controller : Resource
+var right_controller : Resource
+
 var left_units: Array[String] = [
 		"res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn",
 		"res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn",

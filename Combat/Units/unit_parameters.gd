@@ -105,6 +105,10 @@ var hp: int:
 			die()
 #endregion
 
+var hp_percentage: float:
+	get:
+		return float(hp) / float(max_hp)
+
 var effective_current_hp: int:
 	get:
 		return round(float(hp) / armor_multiplier)
