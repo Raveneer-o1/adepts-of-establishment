@@ -1,11 +1,11 @@
 extends AppliedEffect
+class_name Stun
 
 @export var turns: int = 1
 
 @export var message_start: String = "Stunned!"
 @export var message_skip: String = "Skip turn!"
 @export var message_end: String = "Stun ended!"
-
 
 func _get_description() -> String:
 	return description % turns
@@ -16,10 +16,10 @@ func skip_turn(unit: Unit) -> void:
 		turns -= 1
 		if turns <= 0:
 			target_unit.animation_handle.play()
-			target_unit.skip_attack(message_end)
 			lift_effect()
+			target_unit.skip_attack(message_end, color_effect)
 		else:
-			target_unit.skip_attack(message_skip)
+			target_unit.skip_attack(message_skip, color_effect)
 
 ## Called when the effect is applied to a unit.
 func _apply_effect(params: Variant) -> void:
@@ -39,5 +39,5 @@ func _apply_effect(params: Variant) -> void:
 		queue_free()
 		return
 	EventBus.turn_started.connect(skip_turn)
-	target_unit.system.display_text_near_unit(target_unit, message_start)
+	target_unit.system.display_text_near_unit(target_unit, message_start, color_start)
 	target_unit.animation_handle.pause()

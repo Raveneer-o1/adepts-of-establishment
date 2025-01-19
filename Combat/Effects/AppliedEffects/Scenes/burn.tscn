@@ -6,6 +6,9 @@
 [node name="burn" instance=ExtResource("1_bk6fe")]
 script = ExtResource("2_lc5cq")
 damage_pet_turn = 30
+color_start = Color(1, 0.541176, 0.0509804, 1)
+color_effect = Color(0.768627, 0.298039, 0.0627451, 1)
 effect_name = "Burn"
 icon_index = 10
+negative_effect = true
 description = "Deals %d damage every turn for %d turns"

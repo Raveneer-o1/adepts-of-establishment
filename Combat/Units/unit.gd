@@ -14,6 +14,9 @@ extends Node2D
 
 
 const EFFECT_ICONS_SCALE = 0.75
+## Delay in seconds between proccesing skip turn and pocceding to the next stage
+const SKIP_DELAY = 0.4
+
 
 #region Export variables
 
@@ -47,7 +50,7 @@ var displayed_icons: Dictionary
 var party_position: int
 
 ## List of targets player or AI have chosen. This list is passed as an argument to a new [Attack]
-## when unit [method start_attacking] is called.
+## when [method start_attacking] is called.
 var chosen_targets: Array[Unit]:
 	get:
 		var result: Array[Unit] = []
@@ -55,6 +58,8 @@ var chosen_targets: Array[Unit]:
 			if chosen_spot.unit != null:
 				result.append(chosen_spot.unit)
 		return result
+
+## List of spots player or AI have chosen.
 var chosen_spots: Array[UnitSpot] = []
 
 ## Attack that will be performed next
@@ -65,7 +70,8 @@ var attacks_for_this_round: Array[UnitAttack]
 
 ## Alredy resolved attacks waiting to apply damage.
 ## Damage is applied when [member EventBus.attack_reached] is emitted.
-## When [member EventBus.attack_finished] is emitted, all attacks in this list are immediately finalized
+## When [member EventBus.attack_finished] is emitted,
+## all attacks in this list are immediately finalized
 var taking_damage_attacks: Array[Attack] = []
 ## Every time [member EventBus.attack_reached] is emitted, all delays in this list areredused by 1.
 ## If the first element is 0, finalizes closest attack from [code]taking_damage_attacks[/code]
@@ -74,7 +80,10 @@ var taking_damage_delays: Array[int] = []
 ## Indicates if unit is in a defense stance
 var defence_stance: bool = false
 
-## If [code]true[/code], unit doesn't leave corpse after death. The object is comletely deleted
+## Indicates if this unit is in the procces of skipping turn
+var skipping_turn: bool = false
+
+## If [code]true[/code], unit doesn't leave corpse after death (the object is comletely deleted).
 var summoned_unit: bool = false
 #endregion
 
@@ -102,8 +111,10 @@ func initialize_variables() -> bool:
 	
 	return true
 
-## Cleans applied effects: removes dead references, removes unapplied icons
-func clean_effects(_unit: Unit) -> void:
+## Cleans applied effects: removes dead references, removes unapplied icons. [br]
+## [param _unit] doesn't do anythig, it's only there to connect this method to
+## [member EventBus.turn_started], [member EventBus.turn_ended], [member EventBus.unit_died]
+func clean_effects(_unit: Unit = null) -> void:
 	parameters.clean_modifiers()
 	var _displayed_icons := displayed_icons.duplicate()
 	displayed_icons = {}
@@ -131,12 +142,20 @@ func give_target(_spot: UnitSpot) -> bool:
 	return true
 
 ## Skips an attack and sets the next one
-func skip_attack(message: String = "") -> void:
+func skip_attack(message: String = "", color: Color = Color.WHITE) -> void:
+	skipping_turn = true
 	reset_chosen_targets(self)
 	set_next_attack()
 	if message != "":
-		system.display_text_near_unit(self, message)
-	system.combat_logic.next_stage()
+		system.display_text_near_unit(self, message, color)
+	
+	var signal_next_stage := get_tree().create_timer(SKIP_DELAY).timeout
+	signal_next_stage.connect(system.combat_logic.next_stage)
+	EventBus.turn_ended.connect(
+		func(_unit: Unit) -> void:
+			skipping_turn = false
+	)
+
 
 #endregion
 
@@ -295,21 +314,48 @@ func heal(value: int) -> void:
 	
 	parameters.heal(value)
 	animation_handle.play_heal_animation()
-	system.display_text_near_unit(self, "+" + str(value))
+	system.display_text_near_unit(self, "+" + str(value), HEAL_COLOR)
+
+
+const MIN_DAMAGE_COLOR = Color.WEB_MAROON
+const MAX_DAMAGE_COLOR = Color.RED
+const HEAL_COLOR = Color.LIME_GREEN
+
+
+## Returnes interpolated color between [member MIN_DAMAGE_COLOR] and [member MAX_DAMAGE_COLOR]
+## with the factor of damage dealt as a percentage of total helth
+func damage_color(dmg: int) -> Color:
+	var damage_percentage: float = float(dmg) / float(parameters.max_hp)
+	damage_percentage = clampf(damage_percentage, 0.0, 1.0)
+	return MIN_DAMAGE_COLOR.lerp(MAX_DAMAGE_COLOR, damage_percentage)
+
 
 ## Applies damage to the unit and triggers associated animations bypassing armor
-func take_direct_damage(dmg: int, message: String = "") -> void:
+func take_direct_damage(dmg: int, message: String = "", text_color: Color = Color.TRANSPARENT) -> void:
 	if dmg <= 0:
 		return
 	
 	var damage_taken := parameters.take_direct_damage(dmg)
 	animation_handle.play_damage_animation(message)
 	if message != "":
-		message += ": "
-	system.display_text_near_unit(self, message + "-" + str(damage_taken))
+		message += ": %d" % dmg
+	
+	var color = text_color if \
+			text_color != Color.TRANSPARENT else \
+			damage_color(damage_taken)
+	
+	system.display_text_near_unit(
+			self,
+			message,
+			color
+	)
 
-## Applies damage to the unit and triggers associated animations.
-func take_damage(dmg: int, message: String = "") -> void:
+## Applies damage to the unit and triggers associated animations.[br]
+## [param dmg] is damage that is to be taken by unit.[br]
+## [param message] is message that will be displayed near the number.[br]
+## [param text_color] is color of the text. If left as Color.TRANSPARENT,
+## color is detemined by calling [method damage_color].[br]
+func take_damage(dmg: int, message: String = "", text_color: Color = Color.TRANSPARENT) -> void:
 	if dmg == 0:
 		return
 	if dmg < 0:
@@ -323,7 +369,17 @@ func take_damage(dmg: int, message: String = "") -> void:
 	animation_handle.play_damage_animation(message)
 	if message != "":
 		message += ": "
-	system.display_text_near_unit(self, message + "-" + str(damage_taken))
+	message += "-" + str(damage_taken)
+	
+	var color = text_color if \
+			text_color != Color.TRANSPARENT else \
+			damage_color(damage_taken)
+	
+	system.display_text_near_unit(
+			self,
+			message,
+			color
+	)
 
 ## Processes the unit's death.
 func die() -> void:
@@ -335,6 +391,95 @@ func die() -> void:
 	
 	party.units[party_position] = null
 	spot.move_unit_to_graveyard()
+
+#endregion
+
+
+#region Display text
+
+
+## Interval for the first text to be displayed after triggering
+const FIRST_TEXT_DISPLAYED_INTERVAL = 0.1
+## Default interval between consecutive text displays
+const TEXT_DISPLAYED_INTERVAL = 0.55
+## Interval after which text display process is aborted
+const TEXT_DISPLAYED_ABORT_INTERVAL = TEXT_DISPLAYED_INTERVAL * 2
+
+## Tracks whether any text was recently displayed
+var text_displayed: bool = false
+## Timer for how long text display has been active or idle
+var text_displayed_time: float = TEXT_DISPLAYED_ABORT_INTERVAL
+
+
+## A class representing text to be displayed near a unit
+class DisplayedText:
+	var unit: Unit
+	var text: String
+	var color: Color = Color.WHITE
+	
+	func _init(u: Unit, t: String, c: Color = Color.WHITE) -> void:
+		unit = u
+		text = t
+		color = c
+
+
+## Queue of texts to be displayed, each associated with a specific unit
+var texts_to_display: Array[DisplayedText] = []
+
+
+## Adds a vanishing message near a unit and starts the display process
+func display_text_near_unit(text: String, color: Color = Color.WHITE) -> void:
+	# Create a new text object and add it to the queue
+	var text_to_display: DisplayedText = DisplayedText.new(self, text, color)
+	texts_to_display.append(text_to_display)
+	
+	# Start the display process if no text is currently being displayed
+	if not text_displayed:
+		text_displayed = true
+		get_tree().create_timer(FIRST_TEXT_DISPLAYED_INTERVAL).\
+				timeout.connect(display_next_text)
+
+
+
+## Displays a text label near the given unit. It's not recommended to use this method,
+## because it's possible to print too much text on the screen at the same time
+func _display_text_near_unit(d_text: DisplayedText) -> void:
+	text_displayed = true  # Mark text as being displayed
+	text_displayed_time = TEXT_DISPLAYED_ABORT_INTERVAL  # Reset abort timer
+	
+	# Define label offset and create a temporary label
+	var offset := system.label_position
+	var lbl: Label = system.TEMP_LABEL.instantiate()
+	d_text.unit.add_child(lbl) # Attach the label as a child to the unit
+	
+	# Set label properties (text, position, color)
+	lbl.text = d_text.text
+	lbl.set_begin(d_text.unit.global_position + offset)
+	lbl.modulate = d_text.color
+	
+	#if not texts_to_display.is_empty():
+		#pass
+
+func display_next_text_out() -> void:
+	display_next_text()
+
+## Displays the next queued text and handles overlap between units
+func display_next_text() -> void:
+	# If no text is queued, reset display flags and timer
+	if texts_to_display.is_empty():
+		text_displayed = false
+		text_displayed_time = TEXT_DISPLAYED_ABORT_INTERVAL
+		return
+	
+	# Display the next text in the queue
+	var next_text: DisplayedText = texts_to_display.pop_front()
+	_display_text_near_unit(next_text)
+	
+	
+	# Schedule the next text display
+	get_tree().create_timer(TEXT_DISPLAYED_INTERVAL). \
+			timeout.connect(display_next_text_out)
+
 
 #endregion
 
@@ -364,3 +509,13 @@ func visualize_death() -> void:
 	visible = false
 
 #endregion
+
+
+func _process(delta: float) -> void:
+	if text_displayed:
+		text_displayed_time -= delta
+		if text_displayed_time <= 0:
+			print_debug("Interval missed on unit %s! Aborting display interval..." % unit_name)
+			text_displayed = false
+			text_displayed_time = TEXT_DISPLAYED_ABORT_INTERVAL
+			texts_to_display.clear()

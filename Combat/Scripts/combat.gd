@@ -6,7 +6,8 @@ extends Node2D
 
 # Temporary label scene for displaying text near units
 const TEMP_LABEL = preload("res://Combat/Scenes/TempLabel.tscn")
-const DISTANCE_TO_LABEL = 55.0
+const _DISTANCE_TO_LABEL = 45.0
+const SQRT_2 = sqrt(2.0)
 const UNIT_SPOT = preload("res://Combat/Scenes/unit_spot.tscn")
 
 const SHOW_HINTS_NEVER = 0
@@ -28,6 +29,28 @@ const TIME_TO_END = 2.5
 
 @export var left_player: PlayerAPI
 @export var right_player: PlayerAPI
+
+## Offsets for a label placement. If you use random positioning, labels are
+## too often very close to each other and become unreadable
+var label_positions : Array[Vector2] = [
+	Vector2(0.0, _DISTANCE_TO_LABEL),
+	Vector2(0.0, -_DISTANCE_TO_LABEL),
+	Vector2(_DISTANCE_TO_LABEL, 0.0),
+	Vector2(-_DISTANCE_TO_LABEL, 0.0),
+	Vector2(_DISTANCE_TO_LABEL / SQRT_2, _DISTANCE_TO_LABEL / SQRT_2),
+	Vector2(_DISTANCE_TO_LABEL / SQRT_2, - _DISTANCE_TO_LABEL / SQRT_2),
+	Vector2(- _DISTANCE_TO_LABEL / SQRT_2, _DISTANCE_TO_LABEL / SQRT_2),
+	Vector2(- _DISTANCE_TO_LABEL / SQRT_2, - _DISTANCE_TO_LABEL / SQRT_2),
+]
+
+var label_positions_length: int = label_positions.size()
+var current_label_position: int = 0
+
+var label_position: Vector2:
+	get:
+		current_label_position += 1
+		current_label_position = current_label_position % label_positions_length
+		return label_positions[current_label_position]
 
 ## Loaded unit resources and highlighted units
 var loaded_units: Dictionary = {}
@@ -182,16 +205,11 @@ func display_hints() -> void:
 					color = Color.FOREST_GREEN
 				spot.area_2d.get_node("HighlightAnimation").modulate = color
 
-## Displays a vanishing message
-func display_text_near_unit(unit: Unit, text: String) -> void:
-	var x_offset := randf() - 0.5
-	var y_offset := randf_range(-abs(x_offset), 0.0)
-	var offset := Vector2(x_offset, y_offset).normalized() * DISTANCE_TO_LABEL
-	#print_debug(offset)
-	var lbl: Label = TEMP_LABEL.instantiate()
-	unit.add_child(lbl)
-	lbl.text = text
-	lbl.set_begin(unit.global_position + offset)
+
+## Adds a vanishing message near a unit and starts the display process
+func display_text_near_unit(unit: Unit, text: String, color: Color = Color.WHITE) -> void:
+	unit.display_text_near_unit(text, color)
+
 
 #endregion
 
@@ -235,6 +253,9 @@ func initialize_variables() -> void:
 	if not check_refs_validity():
 		end_scene()
 		return
+	
+	# randomize positions of temporary labels
+	label_positions.shuffle()
 	
 	left_party.main_system = self
 	left_party.other_party = right_party

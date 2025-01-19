@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bst1cs31rr63r"]
+
+[ext_resource type="Script" path="res://Combat/Effects/AppliedEffects/Scripts/paralysis.gd" id="1_jfd56"]
+
+[node name="Paralysis" type="Node"]
+script = ExtResource("1_jfd56")
+message_start = "Paralysed!"
+message_end = "Paralysis ended!"
+color_start = Color(0.579846, 0.798343, 0.784944, 1)
+color_effect = Color(0.85, 0.85, 0.34, 1)
+icon_index = 16
+negative_effect = true
+description = "Unit will skip [b]%d[/b] next turns"

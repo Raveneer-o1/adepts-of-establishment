@@ -1,6 +1,11 @@
 extends Node
 class_name AppliedEffect
 
+@export var color_start: Color = Color.BURLYWOOD
+@export var color_effect: Color = Color.YELLOW
+@export var color_end: Color = Color.WHITE
+
+
 ## Base class for all unit effects.
 ## Designed to be modular and self-contained, with automatic cleanup once the effect ends.
 
@@ -38,6 +43,8 @@ const ICONS = preload("res://Arts/icons.png")
 
 @export_multiline var description: String
 
+## if [code]true[/code], the effect can be applied multiple times
+var stackable: bool = false
 
 func _get_description() -> String:
 	return description
@@ -59,6 +66,7 @@ func lift_effect() -> void:
 	EventBus.effect_lifted.emit(self)
 	_remove_effect()
 	queue_free()
+	target_unit.clean_effects()
 
 ## Internal cleanup when the effect is removed.
 func _remove_effect() -> void:
@@ -69,6 +77,9 @@ func initialize(params: Variant = null) -> void:
 	target_unit = (get_parent() as UnitParameters).parent_unit
 	if target_unit == null:
 		print_debug("Effect is missing a target unit!")
+		queue_free()
+		return
+	if (not stackable) and target_unit.parameters.have_effect(effect_name, self):
 		queue_free()
 		return
 	_apply_effect(params)

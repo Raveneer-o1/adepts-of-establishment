@@ -6,7 +6,9 @@
 [node name="Poison" instance=ExtResource("1_s83w6")]
 script = ExtResource("2_n80ca")
 damage_pet_turn = 30
-effect_name = "Poson"
+color_start = Color(0.2242, 0.59, 0.26078, 1)
+color_effect = Color(0, 1, 0.0333333, 1)
+effect_name = "Poison"
 icon_index = 0
 negative_effect = true
 description = "Deals %d direct damage every turn for %d turns"

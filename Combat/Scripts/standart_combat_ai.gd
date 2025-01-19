@@ -249,6 +249,8 @@ func choose_action(unit: Unit) -> void:
 		return
 	if unit.party != api.party:
 		return
+	if unit.skipping_turn:
+		return
 	
 	var avaliable_targets := api.combat_system.find_avaliable_targets()
 	if avaliable_targets.is_empty():

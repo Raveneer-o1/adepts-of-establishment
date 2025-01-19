@@ -130,6 +130,16 @@ var stats_modifiers: Dictionary = {}
 
 @onready var visual_bar := get_node("VisualBar") as TextureProgressBar
 
+func have_effect(effect_name: StringName, except: AppliedEffect = null) -> bool:
+	for child in get_children():
+		if not child is AppliedEffect:
+			continue
+		if child == except:
+			continue
+		
+		if (child as AppliedEffect).effect_name == effect_name:
+			return true
+	return false
 
 func clean_modifiers() -> void:
 	@warning_ignore("untyped_declaration")

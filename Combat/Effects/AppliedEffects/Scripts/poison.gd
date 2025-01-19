@@ -10,7 +10,7 @@ func _get_description() -> String:
 func deal_damage(unit: Unit) -> void:
 	if unit != target_unit:
 		return
-	target_unit.take_direct_damage(damage_pet_turn, "poison")
+	target_unit.take_direct_damage(damage_pet_turn, "poison", color_effect)
 	turns -= 1
 	if turns <= 0:
 		lift_effect()

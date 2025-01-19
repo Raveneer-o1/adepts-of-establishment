@@ -1434,7 +1434,7 @@ var DATABASE := {
 				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
 				#FindAdditionalTargets = standart_archer_additional_targets,
 				DamagePolicy = standart_decay_policy,
-				Effects = {"stun" = [1.0, 1]},
+				Effects = {"paralysis" = [1.0, 1]},
 			},
 		]
 	},
@@ -1455,7 +1455,7 @@ var DATABASE := {
 				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
 				#FindAdditionalTargets = standart_archer_additional_targets,
 				DamagePolicy = standart_decay_policy,
-				Effects = {"stun" = [1.0, 2]},
+				Effects = {"paralysis" = [1.0, 2]},
 			},
 		]
 	},
@@ -1501,7 +1501,7 @@ var DATABASE := {
 				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
 				FindAdditionalTargets = standart_splash_additional_targets,
 				#DamagePolicy = standart_decay_policy,
-				Effects = {"stun" = [1.0, 1]},
+				Effects = {"paralysis" = [1.0, 1]},
 			},
 		]
 	},
@@ -1547,7 +1547,7 @@ var DATABASE := {
 				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
 				FindAdditionalTargets = standart_mage_additional_targets,
 				#DamagePolicy = standart_decay_policy,
-				Effects = {"stun" = [1.0, 2]},
+				Effects = {"paralysis" = [1.0, 2]},
 			},
 		]
 	},
