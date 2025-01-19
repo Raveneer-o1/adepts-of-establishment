@@ -97,6 +97,7 @@ animations = [{
 [node name="Goblin" instance=ExtResource("1_3oyoe")]
 unit_name = "Goblin"
 unit_type = "Archer"
+full_description = "Goblin Archers are small but surprisingly deadly, using their agility to stay out of reach while raining arrows on their enemies. Though their aim can be erratic, their sheer numbers often compensate for individual accuracy. They are often deployed as harassers, chipping away at enemy forces from a safe distance."
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_ofmvw")

@@ -178,8 +178,10 @@ full_description = "The Heralds of Death are necromantic priests who serve as em
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_k2tar")
+animation = &"attack"
 autoplay = "default"
 offset = Vector2(8, 0)
+frames_to_emit = Array[int]([9])
 
 [node name="UnitParameters" parent="." index="1"]
 attack_effect = ExtResource("4_uyepk")

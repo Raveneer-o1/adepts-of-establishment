@@ -29,6 +29,15 @@ var find_additional_targets: Callable
 ## If present, overrides [method Attack.resolve] and applies to all targets using their indexes
 var damage_policy: Callable
 
+
+# Dictionary with elements [codeblock] <effect_name: String, params: Variant> [/codeblock]
+# Here [code]effect_name[/code] is the name of a scene that the game looks for in the folder
+# [kbd]res://Combat/Effects/AppliedEffects/Scenes/[/kbd].[br]
+# And [code]params[/code] is parameters that the effect will get.
+# [code]params[/code] is parsed within the effect class.
+
+## Dictionary containing elements in the format: <effect_name: String, params: Variant>[br]
+## This element is passed to the [member Attack.applying_effects]
 var applying_effects : Dictionary
 
 func _init(_unit: Unit, dmg_mult: float, dmg_ov: bool,

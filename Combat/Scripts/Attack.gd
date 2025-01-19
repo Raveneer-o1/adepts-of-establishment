@@ -19,6 +19,11 @@ var targets: Array[Unit]:
 		return result
 var effect: Resource
 
+## Dictionary containing elements in the format: <effect_name: String, params: Variant>[br]
+## [code]effect_name[/code]: The name of a scene located in the folder 
+## [kbd]res://Combat/Effects/AppliedEffects/Scenes/[/kbd]. This is used by the game to dynamically load the effect.[br]
+## [code]params[/code]: A set of parameters passed to the effect. These are parsed and handled
+## within the respective effect class.
 var applying_effects: Dictionary
 
 ## Function with a signature [codeblock](attacker: Unit, target: Unit, index: int, finalize: bool) -> void[/codeblock]

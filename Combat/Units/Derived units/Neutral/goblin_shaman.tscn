@@ -118,6 +118,7 @@ animations = [{
 [node name="Goblin shaman" instance=ExtResource("1_fstih")]
 unit_name = "Goblin shaman"
 unit_type = "Mage"
+full_description = "Goblin Shamans wield primitive but potent magic, channeling the chaotic energy of their tribe’s spirit rituals. They serve as both support and disruptors, casting spells that weaken enemies or bolster their allies."
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_vp6b8")

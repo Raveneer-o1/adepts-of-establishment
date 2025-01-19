@@ -180,6 +180,7 @@ full_description = "The Vision of Darkness is an eldritch apparition that embodi
 sprite_frames = SubResource("SpriteFrames_cpb45")
 animation = &"attack"
 autoplay = "default"
+frames_to_emit = Array[int]([11])
 last_frame = 12
 
 [node name="UnitParameters" parent="." index="1"]

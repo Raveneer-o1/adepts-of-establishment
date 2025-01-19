@@ -118,6 +118,7 @@ animations = [{
 [node name="Ogre" instance=ExtResource("1_878kx")]
 unit_name = "Ogre"
 unit_type = "Warrior"
+full_description = "Ogres are hulking brutes with unparalleled physical power, smashing through enemies and obstacles alike. Though not known for their intelligence, their immense strength and resilience make them formidable foes. These behemoths are often used as shock troops, devastating enemy ranks with crushing blows."
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_ktgvs")

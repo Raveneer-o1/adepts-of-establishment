@@ -146,6 +146,7 @@ func add_modifier(stat: StringName, effect: AppliedEffect, influence: Callable) 
 
 
 func get_actual_damage(attack: UnitAttack) -> int:
+	@warning_ignore("narrowing_conversion")
 	return attack.damage_multiplier if attack.damage_override else \
 			attack.damage_multiplier * base_damage
 

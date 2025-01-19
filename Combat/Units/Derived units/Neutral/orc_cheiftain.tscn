@@ -167,6 +167,7 @@ animations = [{
 [node name="Orc cheiftain" instance=ExtResource("1_8bqrg")]
 unit_name = "Orc cheiftain"
 unit_type = "Warrior"
+full_description = "Orc Chieftains are the leaders of their clans, commanding respect through strength and cunning. They inspire their kin with battle cries and powerful strikes, rallying their forces to victory."
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_ao4o3")
@@ -174,3 +175,4 @@ animation = &"attack"
 autoplay = "default"
 offset = Vector2(8, -8)
 frames_to_emit = Array[int]([5])
+last_frame = 10

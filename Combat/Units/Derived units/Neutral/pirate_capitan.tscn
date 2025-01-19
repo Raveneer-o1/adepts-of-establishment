@@ -111,6 +111,7 @@ animations = [{
 [node name="Pirate capitan" instance=ExtResource("1_djdtx")]
 unit_name = "Pirate capitan"
 unit_type = "Warrior"
+full_description = "Pirate Captains are charismatic and ruthless leaders, commanding their crews with a mix of fear and admiration. Their combat skills are matched by their ability to inspire their followers, turning a ragtag crew into a formidable fighting force."
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_jlfd3")

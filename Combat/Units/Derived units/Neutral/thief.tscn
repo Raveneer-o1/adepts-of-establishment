@@ -83,6 +83,7 @@ animations = [{
 [node name="Thief" instance=ExtResource("1_k4b78")]
 unit_name = "Thief"
 unit_type = "Warrior"
+full_description = "Thieves are nimble and cunning, excelling in stealth and precision strikes. They specialize in exploiting enemy weaknesses, targeting vulnerabilities for devastating effect."
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_fnpog")

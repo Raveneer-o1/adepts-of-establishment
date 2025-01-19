@@ -125,6 +125,7 @@ animations = [{
 [node name="Pirate" instance=ExtResource("1_10x7v")]
 unit_name = "Pirate"
 unit_type = "Warrior"
+full_description = "Pirates are rowdy and fearless, driven by a lust for gold and adventure. Armed with an array of mismatched weapons, they thrive in chaotic battles where their opportunistic nature shines. Their unpredictability and savage fighting style make them a force to be reckoned with."
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_gjc2m")

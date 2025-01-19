@@ -1,7 +1,5 @@
 extends Control
 
-#const COMMUNICATION_PATH = "res://unit_array.gd"
-
 @onready var position_0: MenuUnitPlace = $"MarginContainer/HBoxContainer/VBoxContainer2/VBoxContainer2/Position 0"
 @onready var position_1: MenuUnitPlace = $"MarginContainer/HBoxContainer/VBoxContainer2/VBoxContainer/Position 1"
 @onready var position_2: MenuUnitPlace = $"MarginContainer/HBoxContainer/VBoxContainer2/VBoxContainer2/Position 2"

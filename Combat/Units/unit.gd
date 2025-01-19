@@ -30,7 +30,7 @@ const EFFECT_ICONS_SCALE = 0.75
 @onready var effect_icons_container: HBoxContainer = $EffectIconsContainer
 
 
-#region Other variables
+#region Variables
 
 # Associated components and metadata
 var parameters: UnitParameters
@@ -46,7 +46,8 @@ var displayed_icons: Dictionary
 ## Position is also index of this unit in the [member Party.units]
 var party_position: int
 
-# List of chosen targets for the unit.
+## List of targets player or AI have chosen. This list is passed as an argument to a new [Attack]
+## when unit [method start_attacking] is called.
 var chosen_targets: Array[Unit]:
 	get:
 		var result: Array[Unit] = []
@@ -129,6 +130,7 @@ func give_target(_spot: UnitSpot) -> bool:
 		start_attacking()
 	return true
 
+## Skips an attack and sets the next one
 func skip_attack(message: String = "") -> void:
 	reset_chosen_targets(self)
 	set_next_attack()
@@ -259,13 +261,8 @@ func start_attacking() -> void:
 		attack.applying_effects = current_attack.applying_effects
 	system.combat_logic.book_damage(attack)
 
-func now_attacking() -> bool:
-	if not chosen_targets.is_empty():
-		return true
-	if animation_handle.now_attacking:
-		return true
-	return false
-
+# TODO: standardize spelling to 'defense'
+## Returns if it was possible and thereby the unit has taken defense stance
 func try_take_defense_stance() -> bool:
 	if now_attacking():
 		return false
@@ -273,6 +270,7 @@ func try_take_defense_stance() -> bool:
 	system.display_text_near_unit(self, "Defending")
 	return true
 
+## Returns if it was possible and thereby the unit's attack is moved to the end of queue
 func try_waiting() -> bool:
 	if now_attacking():
 		return false
@@ -299,6 +297,7 @@ func heal(value: int) -> void:
 	animation_handle.play_heal_animation()
 	system.display_text_near_unit(self, "+" + str(value))
 
+## Applies damage to the unit and triggers associated animations bypassing armor
 func take_direct_damage(dmg: int, message: String = "") -> void:
 	if dmg <= 0:
 		return
@@ -326,7 +325,7 @@ func take_damage(dmg: int, message: String = "") -> void:
 		message += ": "
 	system.display_text_near_unit(self, message + "-" + str(damage_taken))
 
-## Processes the unit's death (animation pending).
+## Processes the unit's death.
 func die() -> void:
 	if not initialized:
 		return
@@ -341,6 +340,13 @@ func die() -> void:
 
 
 #region Utilities
+
+func now_attacking() -> bool:
+	if not chosen_targets.is_empty():
+		return true
+	if animation_handle.now_attacking:
+		return true
+	return false
 
 func display_effect_icon(image: Image, effect: AppliedEffect) -> void:
 	var texture_rect: TextureRect = TextureRect.new()

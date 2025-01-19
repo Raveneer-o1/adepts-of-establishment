@@ -90,6 +90,7 @@ animations = [{
 [node name="Orc" instance=ExtResource("1_qx1fk")]
 unit_name = "Orc"
 unit_type = "Warrior"
+full_description = "Orcs are fearsome warriors known for their brute strength and relentless aggression. They thrive in battle, often overpowering their foes with sheer force and determination. While they lack finesse, their loyalty to their clan and ferocity make them a dangerous presence on the battlefield."
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_x3amd")

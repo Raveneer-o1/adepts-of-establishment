@@ -83,6 +83,7 @@ animations = [{
 [node name="Rogue" instance=ExtResource("1_qtvxl")]
 unit_name = "Rogue"
 unit_type = "Debuffer"
+full_description = "Rogues are seasoned fighters who blend agility and combat prowess, striking quickly and decisively. They are masters of deception, often using dirty tricks to gain the upper hand. Though they prefer to avoid direct confrontation, their versatility makes them a dangerous adversary."
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_01jde")
