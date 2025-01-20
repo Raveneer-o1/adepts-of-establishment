@@ -1,0 +1,131 @@
+[gd_scene load_steps=8 format=3 uid="uid://5od606rggoqo"]
+
+[ext_resource type="Script" path="res://Combat/Scripts/unit_in_queue.gd" id="1_bhr41"]
+[ext_resource type="Texture2D" uid="uid://7pynuterl1a0" path="res://Arts/itch assets/Retro Pixel Ribbons, Banners and Frames 2 [BDragon1727]/BorderQueue.tres" id="1_oqw0v"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xijgp"]
+texture = ExtResource("1_oqw0v")
+
+[sub_resource type="LabelSettings" id="LabelSettings_e36st"]
+font_size = 14
+font_color = Color(0.2886, 0.78, 0.68991, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.529412)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="Animation" id="Animation_8v3r7"]
+resource_name = "queue_exit_animation"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:custom_minimum_size:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(65, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:pivot_offset:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -40, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.8)
+}
+
+[sub_resource type="Animation" id="Animation_avasp"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:custom_minimum_size:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(65, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:pivot_offset:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_figen"]
+_data = {
+"RESET": SubResource("Animation_avasp"),
+"queue_exit_animation": SubResource("Animation_8v3r7")
+}
+
+[node name="Control" type="Control"]
+custom_minimum_size = Vector2(65, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 150.0
+offset_bottom = 50.0
+size_flags_horizontal = 0
+
+[node name="Unit in queue" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+offset_right = 100.0
+offset_bottom = 50.0
+rotation = 1.13446
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_xijgp")
+script = ExtResource("1_bhr41")
+
+[node name="Label" type="Label" parent="Unit in queue"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "UNIT"
+label_settings = SubResource("LabelSettings_e36st")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Unit in queue"]
+libraries = {
+"": SubResource("AnimationLibrary_figen")
+}
+
+[connection signal="gui_input" from="Unit in queue" to="Unit in queue" method="_on_gui_input"]
+[connection signal="mouse_entered" from="Unit in queue" to="Unit in queue" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Unit in queue" to="Unit in queue" method="_on_mouse_exited"]
+[connection signal="animation_finished" from="Unit in queue/AnimationPlayer" to="Unit in queue" method="_on_animation_player_animation_finished"]

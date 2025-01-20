@@ -569,6 +569,7 @@ var DATABASE := {
 				Initiative = 30,
 				Validation = standart_mage_validity,
 				FindAdditionalTargets = standart_mage_additional_targets,
+				DamagePolicy = standart_immediate_resolution_policy
 			},
 		],
 		#DamagePolicy = 
@@ -1391,6 +1392,7 @@ var DATABASE := {
 				FindAdditionalTargets = standart_mage_additional_targets,
 				#DamagePolicy = standart_decay_policy,
 				#Effects = {"poison" = 35},
+				DamagePolicy = standart_immediate_resolution_policy
 			},
 		]
 	},
@@ -1414,6 +1416,7 @@ var DATABASE := {
 				FindAdditionalTargets = standart_mage_additional_targets,
 				#DamagePolicy = standart_decay_policy,
 				#Effects = {"poison" = 35},
+				DamagePolicy = standart_immediate_resolution_policy
 			},
 		]
 	},
@@ -1548,6 +1551,7 @@ var DATABASE := {
 				FindAdditionalTargets = standart_mage_additional_targets,
 				#DamagePolicy = standart_decay_policy,
 				Effects = {"paralysis" = [1.0, 2]},
+				DamagePolicy = standart_immediate_resolution_policy
 			},
 		]
 	},

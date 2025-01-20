@@ -10,6 +10,8 @@ const _DISTANCE_TO_LABEL = 45.0
 const SQRT_2 = sqrt(2.0)
 const UNIT_SPOT = preload("res://Combat/Scenes/unit_spot.tscn")
 
+const UNIT_MINIATURE = preload("res://Combat/Scenes/unit_in_queue.tscn")
+
 const SHOW_HINTS_NEVER = 0
 const SHOW_HINTS_ALWAYS = 1
 const SHOW_HINTS_ON_HOVER = 2
@@ -29,6 +31,7 @@ const TIME_TO_END = 2.5
 
 @export var left_player: PlayerAPI
 @export var right_player: PlayerAPI
+
 
 ## Offsets for a label placement. If you use random positioning, labels are
 ## too often very close to each other and become unreadable
@@ -97,6 +100,8 @@ var timer: SceneTreeTimer
 @onready var combat_logic: CombatLogic = get_node("CombatLogic")
 @onready var active_unit_marker := get_node("ActiveUnitMarker") as AnimatedSprite2D
 @onready var win_label: RichTextLabel = $"Win Label"
+@onready var queue_for_unit_miniatures: HBoxContainer = \
+		$"../UI/ParentContainer/PanelContainer/HBoxContainer/Queue"
 
 
 ## Checks if any party is empty and determines a winner
@@ -170,6 +175,19 @@ func start_attacking_chosen_targets() -> void:
 	current_unit.start_attacking()
 
 #region UI utilities
+
+func clear_nearest_miniature() -> void:
+	if queue_for_unit_miniatures.get_child_count() > 0:
+		(queue_for_unit_miniatures.get_child(0).get_child(0) as UnitInQueue).animate_exit()
+
+func fill_miniatures_queue() -> void:
+	for miniature in queue_for_unit_miniatures.get_children():
+		miniature.queue_free()
+	
+	for attack in combat_logic.attacks_queue:
+		var new_miniature := UNIT_MINIATURE.instantiate()
+		new_miniature.get_child(0).unit = attack.unit
+		queue_for_unit_miniatures.add_child(new_miniature)
 
 ## Clears all hints to prepare for the next state
 func remove_hints() -> void:

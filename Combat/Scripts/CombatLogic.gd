@@ -80,6 +80,8 @@ func set_queue() -> void:
 	# Shuffle attacks to randomize attacks with same initiative
 	attacks_queue.shuffle()
 	attacks_queue.sort_custom(sorting_by_initiative)
+	
+	main_system.fill_miniatures_queue()
 
 
 func check_dead_unit(unit: Unit) -> void:
@@ -118,6 +120,7 @@ func start_turn() -> void:
 	current_attack = null
 	if curr != null:
 		main_system.current_unit = null
+		main_system.clear_nearest_miniature()
 		EventBus.turn_ended.emit(curr)
 	
 	while attacks_queue.size() > 0:
@@ -127,6 +130,10 @@ func start_turn() -> void:
 		main_system.current_unit = current_attack.unit
 		#current_attack.unit.set_next_attack()
 		EventBus.turn_started.emit(main_system.current_unit)
+		
+		if main_system.current_unit.skipping_turn:
+			return
+		
 		main_system.display_hints()
 		main_system.current_player.start_turn()
 		return
