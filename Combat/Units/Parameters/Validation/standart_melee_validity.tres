@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c36d4l074sf2q"]
+
+[ext_resource type="Script" path="res://Combat/Units/Parameters/Validation/Scripts/standart_melee_validity.gd" id="1_uxnk7"]
+
+[resource]
+script = ExtResource("1_uxnk7")

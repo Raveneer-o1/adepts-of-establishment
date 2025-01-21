@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BaseParameters" load_steps=2 format=3 uid="uid://dnpnrs2yevm0p"]
+
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="1_rcmmf"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_rcmmf")
+max_HP = 100
+base_damage = 30
+armor = 0

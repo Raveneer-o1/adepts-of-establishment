@@ -133,7 +133,7 @@ func give_target(_spot: UnitSpot) -> bool:
 			return false
 	if chosen_spots.size() >= current_attack.targets_needed:
 		return false
-	var is_target_valid: bool = current_attack.target_validation.call(self, _spot)
+	var is_target_valid: bool = current_attack.target_validation._validate_target(self, _spot)
 	if not is_target_valid:
 		return false
 	chosen_spots.append(_spot)
@@ -247,7 +247,7 @@ func arrange_attacks() -> void:
 ## Sets [member attacks_for_this_round] to its default value and sets [member current_attack].
 ## Used at the start of a new round.
 func arrange_attacks_and_set_next() -> void:
-	attacks_for_this_round = parameters.attacks.duplicate()
+	arrange_attacks()
 	set_next_attack()
 
 #endregion
@@ -266,9 +266,11 @@ func start_attacking() -> void:
 			current_attack.damage_multiplier * parameters.base_damage
 	
 	var targets := chosen_spots.duplicate()
-	if current_attack.find_additional_targets:
-		targets = targets + current_attack.find_additional_targets.call(self, targets)
-	#print_debug(targets.size())
+	if current_attack.additional_targets:
+		targets.append_array(
+			current_attack.additional_targets.\
+				find_additional_targets(self, targets)
+		)
 	
 	var attack: Attack = Attack.new(
 		self, targets, dmg, current_attack.type, 
@@ -340,7 +342,7 @@ func take_direct_damage(dmg: int, message: String = "", text_color: Color = Colo
 	if message != "":
 		message += ": %d" % dmg
 	
-	var color = text_color if \
+	var color := text_color if \
 			text_color != Color.TRANSPARENT else \
 			damage_color(damage_taken)
 	
@@ -371,7 +373,7 @@ func take_damage(dmg: int, message: String = "", text_color: Color = Color.TRANS
 		message += ": "
 	message += "-" + str(damage_taken)
 	
-	var color = text_color if \
+	var color := text_color if \
 			text_color != Color.TRANSPARENT else \
 			damage_color(damage_taken)
 	

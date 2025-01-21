@@ -65,8 +65,9 @@ func filter_duplicates(arr: Array[Unit]) -> Array[Unit]:
 ## Sets up the attack queue for the current round and resets atacks for each unit.
 func set_queue() -> void:
 	# Combine units from both parties, filter out nulls and dead units, then remove duplicates.
-	var units: Array[Unit] = main_system.left_party.units.duplicate().filter(filter_nulls) + \
-		(main_system.right_party.units.duplicate().filter(filter_nulls))
+	var left_units: Array[Unit] = main_system.left_party.units.filter(filter_nulls)
+	var right_units: Array[Unit] = main_system.right_party.units.filter(filter_nulls)
+	var units: Array[Unit] = left_units + right_units
 	units = filter_duplicates(units)
 	
 	
@@ -74,7 +75,7 @@ func set_queue() -> void:
 	attacks_queue = []
 	for unit in units:
 		unit.arrange_attacks()
-		attacks_queue = attacks_queue + unit.attacks_for_this_round
+		attacks_queue.append_array(unit.attacks_for_this_round)
 		#print(unit.attacks_for_this_round)
 	
 	# Shuffle attacks to randomize attacks with same initiative

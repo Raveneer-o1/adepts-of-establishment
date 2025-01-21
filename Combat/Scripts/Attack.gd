@@ -28,14 +28,14 @@ var applying_effects: Dictionary
 
 ## Function with a signature [codeblock](attacker: Unit, target: Unit, index: int, finalize: bool) -> void[/codeblock]
 ## Overrides [method Attack.resolve] and applies to all targets using their indexes
-var damage_policy: Callable
+var damage_policy: BasePolicy
 
 ## Calles [method Unit.resolve_attack] on each of its targets
 func resolve(finalize: bool = false) -> void:
 	# if standart attack resolution if overridden
 	if damage_policy:
 		for i in range(target_spots.size()):
-			damage_policy.call(self.duplicate(), i, finalize)
+			damage_policy.apply_policy(self.duplicate(), i, finalize)
 		return
 	
 	# standart attack resolution
@@ -43,6 +43,10 @@ func resolve(finalize: bool = false) -> void:
 	for target in targets:
 		target.resolve_attack(self, i, finalize)
 		i += 1
+
+func set_parameters(attack: UnitAttack) -> void:
+	damage_policy = attack.damage_policy
+	applying_effects = attack.applying_effects.duplicate()
 
 ## Returnes a shallow copy of the object. All nested Array, Dictionary and Object elements are shared 
 ## with the original. Modifying them in one object will also affect them in the other.

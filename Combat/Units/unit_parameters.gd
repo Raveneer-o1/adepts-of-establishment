@@ -13,6 +13,9 @@ const STANDART_DAMAGE_DEVIATION = 5
 ## [code]STANDART_DAMAGE_DEVIATION[/code] and [code]STANDART_FRACTIONAL_DAMAGE_DEVIATION * damage[/code]
 const STANDART_FRACTIONAL_DAMAGE_DEVIATION = 0.1
 
+@export var base_paramaters: BaseParameters
+
+var attacks: Array[UnitAttack] = []
 
 @export var large_unit: bool = false
 
@@ -42,13 +45,13 @@ var armor_multiplier: float:
 
 #region Underlying values
 
-var underlying_HP: int
-
-var underlying_max_HP: int
-
-var underlying_base_damage: int
-
-var underlying_armor: int
+var underlying_HP: int = 1
+#
+#var underlying_max_HP: int
+#
+#var underlying_base_damage: int
+#
+#var underlying_armor: int
 
 
 #endregion
@@ -58,7 +61,7 @@ var underlying_armor: int
 var max_hp: int:
 	get:
 		const stat_name = "max_HP"
-		var underlying_value := underlying_max_HP
+		var underlying_value := base_paramaters.max_HP
 		if stats_modifiers.has(stat_name):
 			return (stats_modifiers[stat_name] as ModifierStack).get_effective_value(underlying_value)
 		return underlying_value
@@ -66,7 +69,7 @@ var max_hp: int:
 var base_damage: int:
 	get:
 		const stat_name = "base_damage"
-		var underlying_value := underlying_base_damage
+		var underlying_value := base_paramaters.base_damage
 		if stats_modifiers.has(stat_name):
 			return (stats_modifiers[stat_name] as ModifierStack).get_effective_value(underlying_value)
 		return underlying_value
@@ -74,7 +77,7 @@ var base_damage: int:
 var armor: int:
 	get:
 		const stat_name = "armor"
-		var underlying_value := underlying_armor
+		var underlying_value := base_paramaters.armor
 		if stats_modifiers.has(stat_name):
 			return (stats_modifiers[stat_name] as ModifierStack).get_effective_value(underlying_value)
 		return underlying_value
@@ -82,14 +85,14 @@ var armor: int:
 var _hp: int:
 	get:
 		if stats_modifiers.has("max_HP"):
-			var ratio: float = float(underlying_HP) / float(underlying_max_HP)
+			var ratio: float = float(underlying_HP) / float(base_paramaters.max_HP)
 			@warning_ignore("narrowing_conversion")
 			return max_hp * ratio
 		return underlying_HP
 	set(value):
 		if stats_modifiers.has("max_HP"):
 			var ratio: float = float(value) / float(max_hp)
-			underlying_HP = roundi(ratio * underlying_max_HP)
+			underlying_HP = roundi(ratio * base_paramaters.max_HP)
 		else:
 			underlying_HP = value
 
@@ -118,14 +121,13 @@ var effective_max_hp: int:
 		return round(float(max_hp) / armor_multiplier)
 
 
-var attacks: Array[UnitAttack] = []
 
 var dead: bool = false
 
 var parent_unit: Unit
 
 ## Contains all modifiers applied to a unit.
-## Elements should be pairs <stat_name, stack> (<StringName, ModifierStack>)
+## Elements should be pairs <stat_name: StringName, stack:ModifierStack>
 var stats_modifiers: Dictionary = {}
 
 @onready var visual_bar := get_node("VisualBar") as TextureProgressBar
@@ -172,7 +174,8 @@ var initializtion_successful: bool = false
 
 func initialize_variables() -> bool:
 	parent_unit = get_parent()
-	set_parameters()
+	set_references()
+	check_parameters()
 	_override_parameters()
 	
 	if max_hp_override > 0:
@@ -184,7 +187,7 @@ func initialize_variables() -> bool:
 	
 	hp = max_hp
 	update_visuals()
-	#initialize_effects()
+	
 	return initializtion_successful
 
 func update_effects() -> void:
@@ -216,73 +219,85 @@ func die() -> void:
 		if child is AppliedEffect:
 			child.queue_free()
 
-func set_parameters() -> void:
-	if not parent_unit.system.unit_parameters_database:
-		print_debug("Database not attached!")
-		return
-	var database : Dictionary = parent_unit.system.unit_parameters_database.DATABASE
-	if not database:
-		print_debug("Database not found!")
-		return
-	if not database.has(parent_unit.unit_name):
-		print_debug("Unit '%s' not found in database!" % parent_unit.unit_name)
-		return
+func set_references() -> void:
+	for child in get_children():
+		if child is UnitAttack:
+			attacks.append(child)
 	
-	var params: Dictionary = database[parent_unit.unit_name]
-	if params.has("Damage"):
-		underlying_base_damage = params["Damage"]
-	if params.has("HP"):
-		underlying_max_HP = params["HP"]
-	if params.has("Armor"):
-		underlying_armor = params["Armor"]
-	
-	if params.has("Attacks"):
-		var database_attacks: Array = params["Attacks"]
-		for attack: Dictionary in database_attacks:
-			var damagemultiplier := 1.0
-			var damageoverride := false
-			var type := EventBus.AttackType.Physical
-			var accuracy := 0.8
-			var targets_needed := 2
-			var initiative := 40
-			var validation := standart_melee_validity
-			if attack.has("DamageMultiplier"):
-				damagemultiplier = attack["DamageMultiplier"]
-			if attack.has("DamageOverride"):
-				damageoverride = attack["DamageOverride"]
-			if attack.has("Type"):
-				type = attack["Type"]
-			if attack.has("Accuracy"):
-				accuracy = attack["Accuracy"]
-			if attack.has("TargetsNeeded"):
-				targets_needed = attack["TargetsNeeded"]
-			if attack.has("Initiative"):
-				initiative = attack["Initiative"]
-			if attack.has("Validation"):
-				validation = attack["Validation"]
-			var new_attack := UnitAttack.new(
-				parent_unit,
-				damagemultiplier,
-				damageoverride,
-				validation,
-				type,
-				accuracy,
-				targets_needed,
-				initiative
-			)
-			if attack.has("FindAdditionalTargets"):
-				new_attack.find_additional_targets = attack["FindAdditionalTargets"]
-				#print(parent_unit.unit_name)
-			if attack.has("DamagePolicy"):
-				new_attack.damage_policy = attack["DamagePolicy"]
-				#print(parent_unit.unit_name)
-			if attack.has("Effects"):
-				#print(parent_unit.unit_name)
-				new_attack.applying_effects = (attack["Effects"] as Dictionary)
-			
-			attacks.append(new_attack)
-	
+	for attack in attacks:
+		attack.initialize(parent_unit)
+
+func check_parameters() -> void:
+	# TODO: write check_parameters() function
 	initializtion_successful = true
+
+#func set_parameters() -> void:
+	#if not parent_unit.system.unit_parameters_database:
+		#print_debug("Database not attached!")
+		#return
+	#var database : Dictionary = parent_unit.system.unit_parameters_database.DATABASE
+	#if not database:
+		#print_debug("Database not found!")
+		#return
+	#if not database.has(parent_unit.unit_name):
+		#print_debug("Unit '%s' not found in database!" % parent_unit.unit_name)
+		#return
+	#
+	#var params: Dictionary = database[parent_unit.unit_name]
+	#if params.has("Damage"):
+		#underlying_base_damage = params["Damage"]
+	#if params.has("HP"):
+		#underlying_max_HP = params["HP"]
+	#if params.has("Armor"):
+		#underlying_armor = params["Armor"]
+	#
+	#if params.has("Attacks"):
+		#var database_attacks: Array = params["Attacks"]
+		#for attack: Dictionary in database_attacks:
+			#var damagemultiplier := 1.0
+			#var damageoverride := false
+			#var type := EventBus.AttackType.Physical
+			#var accuracy := 0.8
+			#var targets_needed := 2
+			#var initiative := 40
+			#var validation := standart_melee_validity
+			#if attack.has("DamageMultiplier"):
+				#damagemultiplier = attack["DamageMultiplier"]
+			#if attack.has("DamageOverride"):
+				#damageoverride = attack["DamageOverride"]
+			#if attack.has("Type"):
+				#type = attack["Type"]
+			#if attack.has("Accuracy"):
+				#accuracy = attack["Accuracy"]
+			#if attack.has("TargetsNeeded"):
+				#targets_needed = attack["TargetsNeeded"]
+			#if attack.has("Initiative"):
+				#initiative = attack["Initiative"]
+			#if attack.has("Validation"):
+				#validation = attack["Validation"]
+			#var new_attack := UnitAttack.new(
+				#parent_unit,
+				#damagemultiplier,
+				#damageoverride,
+				#validation,
+				#type,
+				#accuracy,
+				#targets_needed,
+				#initiative
+			#)
+			#if attack.has("FindAdditionalTargets"):
+				#new_attack.find_additional_targets = attack["FindAdditionalTargets"]
+				##print(parent_unit.unit_name)
+			#if attack.has("DamagePolicy"):
+				#new_attack.damage_policy = attack["DamagePolicy"]
+				##print(parent_unit.unit_name)
+			#if attack.has("Effects"):
+				##print(parent_unit.unit_name)
+				#new_attack.applying_effects = (attack["Effects"] as Dictionary)
+			#
+			#attacks.append(new_attack)
+	#
+	#initializtion_successful = true
 
 func apply_effect(effect_name: String, params: Variant) -> void:
 	var res : Resource = load("res://Combat/Effects/AppliedEffects/Scenes/%s.tscn" % effect_name)
@@ -323,98 +338,3 @@ func take_damage(dmg: int, randomize_damage: bool = true) -> int:
 
 func heal(value: int) -> void:
 	hp += value
-
-
-func standart_melee_validity(attacker: Unit, target: Unit) -> bool:
-	if attacker == null or target == null:
-		return false
-	if target.parameters.dead:
-		return false
-		
-	# if units are in the same party, we don't attack
-	if attacker.party.units.has(target):
-		return false
-	
-	var pos := attacker.party_position
-	var targets : Array[Unit]
-	# step of 2 indicates adjacent units *see Party class documentation*
-	var step: int = 2
-	
-	# === Checking front line ===
-	
-	# even position indicates front line
-	if pos % 2 == 0:
-		# check position in front and adjacent positions
-		targets = attacker.party.other_party.get_units_at_positions([pos - step, pos, pos + step])
-		if targets.has(target):
-			return true
-		
-		# if at least one value returned is not null, target is blocked by that unit
-		for u in targets:
-			if u != null:
-				return false
-	
-	# odd position indicates back line
-	else:
-		if not attacker.party.front_line_is_empty():
-			return false
-		# set new pos to check front line first
-		step = -1
-	
-	
-	# assuming we can't get out of bounds on the first check
-	var in_bounds: bool = true
-	while in_bounds:
-		step += 2
-		
-		targets = attacker.party.other_party.get_units_at_positions([pos - step, pos + step])
-		if targets.has(target):
-			return true
-		
-		# if at least one value returned is not null, target is blocked by that unit
-		for u in targets:
-			if u != null:
-				return false
-		
-		# if get_units_at_positions() returned 2 nulls, we're completely out of bouns
-		if targets.size() == 2:
-			in_bounds = false
-	
-	# === Checking back line ===
-	
-	# even position indicates front line
-	if pos % 2 == 0:
-		step = 1
-	
-	# odd position indicates back line
-	else:
-		step = 2
-		targets = attacker.party.other_party.get_units_at_positions([pos - step, pos, pos + step])
-		if targets.has(target):
-			return true
-		
-		# if at least one value returned is not null, target is blocked by that unit
-		for u in targets:
-			if u != null:
-				return false
-		
-	
-	
-	in_bounds = true
-	while in_bounds:
-		targets = attacker.party.other_party.get_units_at_positions([pos - step, pos + step])
-		if targets.has(target):
-			return true
-		
-		# if at least one value returned is not null, target is blocked by that unit
-		for u in targets:
-			if u != null:
-				return false
-		
-		# if get_units_at_positions() returned 2 nulls, we're completely out of bouns
-		if targets.size() == 2:
-			in_bounds = false
-		
-		step += 2
-	
-	return false
