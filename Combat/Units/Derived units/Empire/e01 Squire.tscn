@@ -1,10 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://dhivo618gb6gl"]
+[gd_scene load_steps=20 format=3 uid="uid://dhivo618gb6gl"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_d0om5"]
 [ext_resource type="Texture2D" uid="uid://cf3jwjwwl4d8o" path="res://Arts/Empire units/Squire attack .png" id="2_h8sfl"]
 [ext_resource type="Texture2D" uid="uid://3s27rxmjuof0" path="res://Arts/Empire units/Squire idle.png" id="3_16486"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_i2f3m"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="4_kpo1j"]
+[ext_resource type="Resource" uid="uid://dnpnrs2yevm0p" path="res://Combat/Units/Parameters/base_parameters.tres" id="4_sta17"]
 [ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="6_hjtyp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pa4oh"]
@@ -104,13 +104,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Resource" id="Resource_g1bl1"]
-resource_local_to_scene = true
-script = ExtResource("4_i2f3m")
-max_HP = 100
-base_damage = 30
-armor = 0
-
 [node name="Unit" instance=ExtResource("1_d0om5")]
 unit_name = "Squire"
 unit_type = "Warrior"
@@ -123,7 +116,7 @@ autoplay = "default"
 frames_to_emit = Array[int]([4])
 
 [node name="UnitParameters" parent="." index="1"]
-base_paramaters = SubResource("Resource_g1bl1")
+base_paramaters = ExtResource("4_sta17")
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("4_kpo1j")

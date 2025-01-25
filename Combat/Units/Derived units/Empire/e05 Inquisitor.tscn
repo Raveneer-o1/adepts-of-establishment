@@ -1,8 +1,12 @@
-[gd_scene load_steps=21 format=3 uid="uid://ces8ntf3a67x7"]
+[gd_scene load_steps=26 format=3 uid="uid://ces8ntf3a67x7"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_iyxx7"]
 [ext_resource type="Texture2D" uid="uid://14gfl0hqnfjd" path="res://Arts/Empire units/inquisitor attack.png" id="2_ckwba"]
 [ext_resource type="Texture2D" uid="uid://bl2wscwptb6yj" path="res://Arts/Empire units/inquisitor idle.png" id="3_p1p2e"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_j3lff"]
+[ext_resource type="PackedScene" uid="uid://b5btb6pxaufjw" path="res://Combat/Effects/AppliedEffects/Scenes/holy_wrath.tscn" id="5_txbsl"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_dn7kg"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="7_7f3u0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c7qjp"]
 atlas = ExtResource("2_ckwba")
@@ -129,6 +133,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_4tkcb"]
+resource_local_to_scene = true
+script = ExtResource("4_j3lff")
+max_HP = 200
+base_damage = 60
+armor = 25
+
 [node name="Unit" instance=ExtResource("1_iyxx7")]
 unit_name = "Inquisitor"
 unit_type = "Warrior"
@@ -139,3 +150,17 @@ sprite_frames = SubResource("SpriteFrames_luotl")
 animation = &"attack"
 autoplay = "default"
 frames_to_emit = Array[int]([7])
+
+[node name="UnitParameters" parent="." index="1"]
+level = 3
+base_paramaters = SubResource("Resource_4tkcb")
+
+[node name="Holy wrath" parent="UnitParameters" index="1" instance=ExtResource("5_txbsl")]
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+script = ExtResource("6_dn7kg")
+type = 4
+accuracy = 0.82
+targets_needed = 1
+initiative = 45
+target_validation = ExtResource("7_7f3u0")

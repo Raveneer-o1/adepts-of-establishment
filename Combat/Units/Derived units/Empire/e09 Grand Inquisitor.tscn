@@ -1,9 +1,14 @@
-[gd_scene load_steps=24 format=3 uid="uid://dyvbe6w1ymxve"]
+[gd_scene load_steps=30 format=3 uid="uid://dyvbe6w1ymxve"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_pd60s"]
 [ext_resource type="Texture2D" uid="uid://bpxj1cae61n23" path="res://Arts/Empire units/Grand inquisitor idle  (1).png" id="2_rp3ci"]
 [ext_resource type="Texture2D" uid="uid://iweqr66amh3y" path="res://Arts/Empire units/Grand inquisitor attack.png" id="2_s1fcq"]
 [ext_resource type="PackedScene" uid="uid://cjtnm7lly4yca" path="res://Combat/Effects/AppliedEffects/Scenes/HP_buff_aura.tscn" id="4_b4oav"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_t8wm6"]
+[ext_resource type="PackedScene" uid="uid://b5btb6pxaufjw" path="res://Combat/Effects/AppliedEffects/Scenes/holy_wrath.tscn" id="6_m8s5i"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="7_vm3kd"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="8_8fbn8"]
+[ext_resource type="Resource" uid="uid://bhe5cl2bujg8i" path="res://Combat/Units/Parameters/Additional targets/Splash.tres" id="9_juih1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gbmv1"]
 atlas = ExtResource("2_s1fcq")
@@ -144,6 +149,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_xsxvu"]
+resource_local_to_scene = true
+script = ExtResource("4_t8wm6")
+max_HP = 100
+base_damage = 30
+armor = 0
+
 [node name="Unit" instance=ExtResource("1_pd60s")]
 unit_name = "Grand Inquisitor"
 unit_type = "Warrior"
@@ -156,4 +168,17 @@ autoplay = "default"
 offset = Vector2(8, -8)
 frames_to_emit = Array[int]([6])
 
-[node name="AppliedEffect" parent="UnitParameters" index="1" instance=ExtResource("4_b4oav")]
+[node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_xsxvu")
+
+[node name="HP buff (aura)" parent="UnitParameters" index="1" instance=ExtResource("4_b4oav")]
+
+[node name="Holy wrath" parent="UnitParameters" index="2" instance=ExtResource("6_m8s5i")]
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="3"]
+script = ExtResource("7_vm3kd")
+accuracy = 0.85
+targets_needed = 1
+initiative = 40
+target_validation = ExtResource("8_8fbn8")
+additional_targets = ExtResource("9_juih1")

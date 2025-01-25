@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://b2cco7yp1owg6"]
+[gd_scene load_steps=18 format=3 uid="uid://b2cco7yp1owg6"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_qktib"]
 [ext_resource type="Texture2D" uid="uid://cx5k4mtn6gdnv" path="res://Arts/Empire units/Mage attack .png" id="2_rubtw"]
 [ext_resource type="Texture2D" uid="uid://dclyb8idcj5qm" path="res://Arts/Empire units/Mage idle .png" id="3_hnq6f"]
-[ext_resource type="PackedScene" uid="uid://b64c30642jdl6" path="res://Combat/Effects/weak_lightning.tscn" id="5_meurg"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_w74yc"]
+[ext_resource type="PackedScene" uid="uid://b64c30642jdl6" path="res://Combat/Effects/Scenes/weak_lightning.tscn" id="5_meurg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3hnj4"]
 atlas = ExtResource("2_rubtw")
@@ -88,6 +89,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_giw0o"]
+resource_local_to_scene = true
+script = ExtResource("4_w74yc")
+max_HP = 100
+base_damage = 30
+armor = 0
+
 [node name="Unit" instance=ExtResource("1_qktib")]
 unit_name = "Mage"
 unit_type = "Mage"
@@ -99,4 +107,5 @@ animation = &"attack"
 autoplay = "default"
 
 [node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_giw0o")
 attack_effect = ExtResource("5_meurg")

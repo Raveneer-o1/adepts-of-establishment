@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://cym0kgm6smmss"]
+[gd_scene load_steps=18 format=3 uid="uid://cym0kgm6smmss"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_nifrr"]
 [ext_resource type="Texture2D" uid="uid://cx6ym5ybatk16" path="res://Arts/Empire units/ritualist idle .png" id="2_ejkvf"]
 [ext_resource type="Texture2D" uid="uid://cnvltm0yvyyt2" path="res://Arts/Empire units/ritualist idle  (1).png" id="3_r8476"]
-[ext_resource type="PackedScene" uid="uid://c7bbto2q5jen7" path="res://Combat/Effects/ritual_attack.tscn" id="4_v7wvv"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_fdnoa"]
+[ext_resource type="PackedScene" uid="uid://c7bbto2q5jen7" path="res://Combat/Effects/Scenes/ritual_attack.tscn" id="4_v7wvv"]
 [ext_resource type="PackedScene" uid="uid://bit78176xambc" path="res://Combat/Units/Derived units/Elemental.tscn" id="5_aix4f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_41kl6"]
@@ -82,6 +83,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_xbh0f"]
+resource_local_to_scene = true
+script = ExtResource("4_fdnoa")
+max_HP = 100
+base_damage = 30
+armor = 0
+
 [node name="Ritualist" instance=ExtResource("1_nifrr")]
 unit_name = "Ritualist"
 unit_type = "Mage"
@@ -93,5 +101,6 @@ animation = &"attack"
 autoplay = "default"
 
 [node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_xbh0f")
 attack_effect = ExtResource("4_v7wvv")
 other_effects = Array[Resource]([ExtResource("5_aix4f")])

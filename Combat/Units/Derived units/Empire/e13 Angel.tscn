@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://dfb8a8lhxhbxv"]
+[gd_scene load_steps=24 format=3 uid="uid://dfb8a8lhxhbxv"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_ghq34"]
 [ext_resource type="Texture2D" uid="uid://du3k0h3s7hxoa" path="res://Arts/Empire units/angel  attack .png" id="2_j3ymb"]
 [ext_resource type="Texture2D" uid="uid://idex7y6u10f3" path="res://Arts/Empire units/angel idle .png" id="3_kot7h"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_53ols"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d74xw"]
 atlas = ExtResource("2_j3ymb")
@@ -136,6 +137,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_ohcak"]
+resource_local_to_scene = true
+script = ExtResource("4_53ols")
+max_HP = 100
+base_damage = 30
+armor = 0
+
 [node name="Unit" instance=ExtResource("1_ghq34")]
 unit_name = "Angel"
 unit_type = "Warrior"
@@ -147,3 +155,6 @@ animation = &"attack"
 autoplay = "default"
 offset = Vector2(0, -16)
 frames_to_emit = Array[int]([8])
+
+[node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_ohcak")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://bevoiaohyqxv2"]
 
-[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/abstract_effect.tscn" id="1_ywxnm"]
+[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/Scenes/abstract_effect.tscn" id="1_ywxnm"]
 [ext_resource type="Texture2D" uid="uid://b35u3xraq5bc6" path="res://Arts/Empire units/Hierophant special effect.png" id="2_boeea"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pea24"]

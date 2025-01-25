@@ -1,8 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://dexm8kl4f5lry"]
+[gd_scene load_steps=21 format=3 uid="uid://dexm8kl4f5lry"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_f4fct"]
 [ext_resource type="Texture2D" uid="uid://neixpsu60a85" path="res://Arts/Empire units/Witch hunter idle .png" id="2_et3pr"]
 [ext_resource type="Texture2D" uid="uid://bb3a2xlnbn5rl" path="res://Arts/Empire units/Witch hunter attack .png" id="2_l5amp"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_nu5d5"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_40kki"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/Validation/Scripts/standart_melee_validity.gd" id="6_2yro3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gii6h"]
 atlas = ExtResource("2_l5amp")
@@ -101,6 +104,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_krs8q"]
+resource_local_to_scene = true
+script = ExtResource("4_nu5d5")
+max_HP = 150
+base_damage = 45
+armor = 10
+
 [node name="Unit" instance=ExtResource("1_f4fct")]
 unit_name = "Witch hunter"
 unit_type = "Warrior"
@@ -111,3 +121,14 @@ sprite_frames = SubResource("SpriteFrames_l285r")
 animation = &"attack"
 autoplay = "default"
 frames_to_emit = Array[int]([5])
+
+[node name="UnitParameters" parent="." index="1"]
+level = 2
+base_paramaters = SubResource("Resource_krs8q")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("5_40kki")
+accuracy = 0.75
+targets_needed = 1
+initiative = 40
+target_validation = ExtResource("6_2yro3")

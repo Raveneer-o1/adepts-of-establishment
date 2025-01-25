@@ -1,9 +1,12 @@
-[gd_scene load_steps=24 format=3 uid="uid://chwmireeop57v"]
+[gd_scene load_steps=28 format=3 uid="uid://chwmireeop57v"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_v252y"]
 [ext_resource type="Texture2D" uid="uid://dpdy65vv3ckb6" path="res://Arts/Empire units/Defender of Faith attack .png" id="2_m0rao"]
 [ext_resource type="Texture2D" uid="uid://bmex6wa78gk6k" path="res://Arts/Empire units/Defender of Faith idle .png" id="3_v31eh"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_gsene"]
 [ext_resource type="PackedScene" uid="uid://chpw2oyl5kpky" path="res://Combat/Effects/AppliedEffects/Scenes/armor_buff_aura.tscn" id="4_sgewg"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_3s88y"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="7_63rex"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xphl8"]
 atlas = ExtResource("2_m0rao")
@@ -144,6 +147,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_hq0gf"]
+resource_local_to_scene = true
+script = ExtResource("4_gsene")
+max_HP = 100
+base_damage = 30
+armor = 0
+
 [node name="Unit" instance=ExtResource("1_v252y")]
 unit_name = "Paladin"
 unit_type = "Defender"
@@ -156,5 +166,23 @@ autoplay = "default"
 offset = Vector2(8, 0)
 frames_to_emit = Array[int]([5])
 
+[node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_hq0gf")
+
 [node name="AppliedEffect" parent="UnitParameters" index="1" instance=ExtResource("4_sgewg")]
 armor_increase = 10
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+script = ExtResource("6_3s88y")
+damage_multiplier = 0.65
+accuracy = 0.88
+targets_needed = 1
+initiative = 70
+target_validation = ExtResource("7_63rex")
+
+[node name="UnitAttack2" type="Node" parent="UnitParameters" index="3"]
+script = ExtResource("6_3s88y")
+accuracy = 0.9
+targets_needed = 1
+initiative = 40
+target_validation = ExtResource("7_63rex")

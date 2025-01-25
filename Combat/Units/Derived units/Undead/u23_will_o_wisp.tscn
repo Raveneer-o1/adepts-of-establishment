@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_27vee"]
 [ext_resource type="Texture2D" uid="uid://cegcrx5oq7gl7" path="res://Arts/Undead units/u20 will-o-wisp attack .png" id="2_1rynm"]
 [ext_resource type="Texture2D" uid="uid://dj7xt0w8xynpi" path="res://Arts/Undead units/u20 will-o-wisp idle .png" id="3_osvqp"]
-[ext_resource type="PackedScene" uid="uid://7vboji3lb2aa" path="res://Combat/Effects/whisp_attack.tscn" id="4_gye3m"]
+[ext_resource type="PackedScene" uid="uid://7vboji3lb2aa" path="res://Combat/Effects/Scenes/whisp_attack.tscn" id="4_gye3m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ueq40"]
 atlas = ExtResource("2_1rynm")

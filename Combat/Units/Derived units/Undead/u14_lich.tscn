@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_ufroq"]
 [ext_resource type="Texture2D" uid="uid://bnhwlr01egvif" path="res://Arts/Undead units/u19 lich attack .png" id="2_f8uy4"]
 [ext_resource type="Texture2D" uid="uid://cqoap6ffdylqf" path="res://Arts/Undead units/u19 lich idle .png" id="3_v01q3"]
-[ext_resource type="PackedScene" uid="uid://jcge4l3lj63w" path="res://Combat/Effects/skull_medium.tscn" id="4_bbbue"]
+[ext_resource type="PackedScene" uid="uid://jcge4l3lj63w" path="res://Combat/Effects/Scenes/skull_medium.tscn" id="4_bbbue"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hkj31"]
 atlas = ExtResource("2_f8uy4")

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_lnsio"]
 [ext_resource type="Texture2D" uid="uid://c8ir36lajxom0" path="res://Arts/Undead units/u12 death attack.png" id="2_qbo8e"]
 [ext_resource type="Texture2D" uid="uid://dig3hbcgskcyd" path="res://Arts/Undead units/u12 death idle .png" id="3_e205o"]
-[ext_resource type="PackedScene" uid="uid://bsii5o6erpsok" path="res://Combat/Effects/Wraith_attack.tscn" id="4_l8fql"]
+[ext_resource type="PackedScene" uid="uid://bsii5o6erpsok" path="res://Combat/Effects/Scenes/Wraith_attack.tscn" id="4_l8fql"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rwjmg"]
 atlas = ExtResource("2_qbo8e")

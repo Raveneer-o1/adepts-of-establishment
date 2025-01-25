@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://duh7llp4hbfkx"]
+[gd_scene load_steps=19 format=3 uid="uid://duh7llp4hbfkx"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_insub"]
 [ext_resource type="Texture2D" uid="uid://cmrf645nra8gi" path="res://Arts/Empire units/Arcanist attack  (1).png" id="2_plg4p"]
 [ext_resource type="Texture2D" uid="uid://c3pr3mcfkkuja" path="res://Arts/Empire units/Arcanist idle .png" id="3_50umb"]
-[ext_resource type="PackedScene" uid="uid://7xdms7uje677" path="res://Combat/Effects/strong_lightning.tscn" id="5_ugj4y"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_aurst"]
+[ext_resource type="PackedScene" uid="uid://7xdms7uje677" path="res://Combat/Effects/Scenes/strong_lightning.tscn" id="5_ugj4y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ahtw0"]
 atlas = ExtResource("2_plg4p")
@@ -95,6 +96,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_pkonn"]
+resource_local_to_scene = true
+script = ExtResource("4_aurst")
+max_HP = 100
+base_damage = 30
+armor = 0
+
 [node name="Arcanist" instance=ExtResource("1_insub")]
 unit_name = "Arcanist"
 unit_type = "Mage"
@@ -107,4 +115,5 @@ autoplay = "default"
 offset = Vector2(0, -8)
 
 [node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_pkonn")
 attack_effect = ExtResource("5_ugj4y")

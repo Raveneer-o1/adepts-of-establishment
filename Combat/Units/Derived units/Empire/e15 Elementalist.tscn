@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://b43q5ajr0udev"]
+[gd_scene load_steps=20 format=3 uid="uid://b43q5ajr0udev"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_wepdu"]
 [ext_resource type="Texture2D" uid="uid://bshfdwhdeo47r" path="res://Arts/Empire units/elementalist attack .png" id="2_qdt4o"]
 [ext_resource type="Texture2D" uid="uid://c32l5klltf2ga" path="res://Arts/Empire units/elementalist idle .png" id="3_tmf5a"]
-[ext_resource type="PackedScene" uid="uid://n106oxapxy1v" path="res://Combat/Effects/medium_wind.tscn" id="4_jm0nb"]
+[ext_resource type="PackedScene" uid="uid://n106oxapxy1v" path="res://Combat/Effects/Scenes/medium_wind.tscn" id="4_jm0nb"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_rto2v"]
 [ext_resource type="PackedScene" uid="uid://bit78176xambc" path="res://Combat/Units/Derived units/Elemental.tscn" id="5_uw7aa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q7yx6"]
@@ -96,6 +97,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_2tgcp"]
+resource_local_to_scene = true
+script = ExtResource("4_rto2v")
+max_HP = 100
+base_damage = 30
+armor = 0
+
 [node name="Unit2" instance=ExtResource("1_wepdu")]
 unit_name = "Elementalist"
 unit_type = "Buffer"
@@ -107,5 +115,6 @@ animation = &"attack"
 autoplay = "default"
 
 [node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_2tgcp")
 attack_effect = ExtResource("4_jm0nb")
 other_effects = Array[Resource]([ExtResource("5_uw7aa")])

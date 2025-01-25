@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://doesn3y6b2saa"]
+[gd_scene load_steps=20 format=3 uid="uid://doesn3y6b2saa"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_wbk4r"]
 [ext_resource type="Texture2D" uid="uid://be7aihy37xvhe" path="res://Arts/Empire units/priest attack .png" id="2_uodg6"]
 [ext_resource type="Texture2D" uid="uid://dd01432fre505" path="res://Arts/Empire units/priest idle .png" id="3_wgbfc"]
-[ext_resource type="PackedScene" uid="uid://cdicif6h0d041" path="res://Combat/Effects/weak_heal.tscn" id="4_hx3ji"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_auocb"]
+[ext_resource type="PackedScene" uid="uid://cdicif6h0d041" path="res://Combat/Effects/Scenes/weak_heal.tscn" id="4_hx3ji"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_37ad5"]
 atlas = ExtResource("2_uodg6")
@@ -102,6 +103,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_qyi4f"]
+resource_local_to_scene = true
+script = ExtResource("4_auocb")
+max_HP = 100
+base_damage = 30
+armor = 0
+
 [node name="Priest" instance=ExtResource("1_wbk4r")]
 unit_name = "Priest"
 unit_type = "Healer"
@@ -113,4 +121,5 @@ animation = &"attack"
 autoplay = "default"
 
 [node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_qyi4f")
 attack_effect = ExtResource("4_hx3ji")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://d1uk2tsyu7ay0"]
 
-[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/abstract_effect.tscn" id="1_110vb"]
+[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/Scenes/abstract_effect.tscn" id="1_110vb"]
 [ext_resource type="Texture2D" uid="uid://b44dh14txwokq" path="res://Arts/Empire units/Matriarch attack effect .png" id="2_xgd54"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x01q5"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=30 format=3 uid="uid://dq7l1aj4psenm"]
+[gd_scene load_steps=32 format=3 uid="uid://dq7l1aj4psenm"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_65je8"]
 [ext_resource type="Texture2D" uid="uid://csmxkvxbnbnm" path="res://Arts/Empire units/Scout attack .png" id="2_dtgb5"]
 [ext_resource type="Texture2D" uid="uid://ctwhljqp3ejqy" path="res://Arts/Empire units/Scout idle .png" id="3_o6itt"]
-[ext_resource type="PackedScene" uid="uid://cnlyt2k5jjchq" path="res://Combat/Effects/target_throw.tscn" id="4_vlh87"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_ptq6f"]
+[ext_resource type="PackedScene" uid="uid://cnlyt2k5jjchq" path="res://Combat/Effects/Scenes/target_throw.tscn" id="4_vlh87"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e8vgm"]
 atlas = ExtResource("2_dtgb5")
@@ -186,6 +187,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_t45eh"]
+resource_local_to_scene = true
+script = ExtResource("4_ptq6f")
+max_HP = 100
+base_damage = 30
+armor = 0
+
 [node name="Scout" instance=ExtResource("1_65je8")]
 unit_name = "Scout"
 unit_type = "Archer"
@@ -198,4 +206,5 @@ autoplay = "default"
 frames_to_emit = Array[int]([8])
 
 [node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_t45eh")
 attack_effect = ExtResource("4_vlh87")

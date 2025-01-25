@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_rnn02"]
 [ext_resource type="Texture2D" uid="uid://bxnp8khaemwj8" path="res://Arts/Undead units/u26 The Eternal attack .png" id="2_47vol"]
 [ext_resource type="Texture2D" uid="uid://d0rmap5kwg2nq" path="res://Arts/Undead units/u26 The Eternal idle .png" id="3_01npa"]
-[ext_resource type="PackedScene" uid="uid://bem6bxlown8bm" path="res://Combat/Effects/The_eternal_effect.tscn" id="4_dn35n"]
+[ext_resource type="PackedScene" uid="uid://bem6bxlown8bm" path="res://Combat/Effects/Scenes/The_eternal_effect.tscn" id="4_dn35n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jw05b"]
 atlas = ExtResource("2_47vol")

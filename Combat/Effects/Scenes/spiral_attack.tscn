@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://cnl2vrahoavc6"]
 
-[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/abstract_effect.tscn" id="1_h2ves"]
+[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/Scenes/abstract_effect.tscn" id="1_h2ves"]
 [ext_resource type="Texture2D" uid="uid://dt8n4782wl5hu" path="res://Arts/Undead units/spiral effect .png" id="2_a5yur"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vmndi"]

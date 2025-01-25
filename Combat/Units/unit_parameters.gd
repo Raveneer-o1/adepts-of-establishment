@@ -13,6 +13,8 @@ const STANDART_DAMAGE_DEVIATION = 5
 ## [code]STANDART_DAMAGE_DEVIATION[/code] and [code]STANDART_FRACTIONAL_DAMAGE_DEVIATION * damage[/code]
 const STANDART_FRACTIONAL_DAMAGE_DEVIATION = 0.1
 
+@export var level: int = 1
+
 @export var base_paramaters: BaseParameters
 
 var attacks: Array[UnitAttack] = []
@@ -36,7 +38,7 @@ var attacks: Array[UnitAttack] = []
 ## armor stat indefinitely but will see deminishing returns.
 ## Thus, it's possible to let players increase the stat as
 ## much as they want rather than cap it at a specific value.[br]
-## NOTE: armor is still capped at [member UnitParameters.ARMOR_CAP] but that value is much harder to acheve
+## NOTE: armor is still capped at [member UnitParameters.ARMOR_CAP] but that value is much harder to achieve
 var armor_multiplier: float:
 	get:
 		if armor >= ARMOR_CAP:
@@ -46,12 +48,21 @@ var armor_multiplier: float:
 #region Underlying values
 
 var underlying_HP: int = 1
-#
-#var underlying_max_HP: int
-#
-#var underlying_base_damage: int
-#
-#var underlying_armor: int
+
+var underlying_max_HP: int = \
+		max_hp_override if max_hp_override > 0 else \
+		base_paramaters.max_HP if base_paramaters != null else \
+		100
+
+var underlying_base_damage: int = \
+		base_damage_override if base_damage_override > 0 else \
+		base_paramaters.base_damage if base_paramaters != null else \
+		30
+
+var underlying_armor: int = \
+		armor_override if armor_override > 0 else \
+		base_paramaters.armor if base_paramaters != null else \
+		0
 
 
 #endregion
@@ -61,7 +72,7 @@ var underlying_HP: int = 1
 var max_hp: int:
 	get:
 		const stat_name = "max_HP"
-		var underlying_value := base_paramaters.max_HP
+		var underlying_value := underlying_max_HP
 		if stats_modifiers.has(stat_name):
 			return (stats_modifiers[stat_name] as ModifierStack).get_effective_value(underlying_value)
 		return underlying_value
@@ -69,7 +80,7 @@ var max_hp: int:
 var base_damage: int:
 	get:
 		const stat_name = "base_damage"
-		var underlying_value := base_paramaters.base_damage
+		var underlying_value := underlying_base_damage
 		if stats_modifiers.has(stat_name):
 			return (stats_modifiers[stat_name] as ModifierStack).get_effective_value(underlying_value)
 		return underlying_value
@@ -77,7 +88,7 @@ var base_damage: int:
 var armor: int:
 	get:
 		const stat_name = "armor"
-		var underlying_value := base_paramaters.armor
+		var underlying_value := underlying_armor
 		if stats_modifiers.has(stat_name):
 			return (stats_modifiers[stat_name] as ModifierStack).get_effective_value(underlying_value)
 		return underlying_value
@@ -85,14 +96,14 @@ var armor: int:
 var _hp: int:
 	get:
 		if stats_modifiers.has("max_HP"):
-			var ratio: float = float(underlying_HP) / float(base_paramaters.max_HP)
+			var ratio: float = float(underlying_HP) / float(underlying_max_HP)
 			@warning_ignore("narrowing_conversion")
 			return max_hp * ratio
 		return underlying_HP
 	set(value):
 		if stats_modifiers.has("max_HP"):
 			var ratio: float = float(value) / float(max_hp)
-			underlying_HP = roundi(ratio * base_paramaters.max_HP)
+			underlying_HP = roundi(ratio * underlying_max_HP)
 		else:
 			underlying_HP = value
 
@@ -148,8 +159,10 @@ func clean_modifiers() -> void:
 	for modifier in stats_modifiers.values():
 		(modifier as ModifierStack).clean()
 
-## Adds new modifier to the stack with name [code]stat[/code].[br]
-## First addition of a stat creates new stack for it.
+## Adds new modifier to the stack with name [param stat].[br]
+## First addition of a stat creates new stack for it.[br]
+## [param influence] should have signature [code]func(int) -> int[/code]
+## and given previous value of the paramater, it should return a new one
 func add_modifier(stat: StringName, effect: AppliedEffect, influence: Callable) -> void:
 	if not stats_modifiers.has(stat):
 		stats_modifiers[stat] = ModifierStack.new()
@@ -230,74 +243,6 @@ func set_references() -> void:
 func check_parameters() -> void:
 	# TODO: write check_parameters() function
 	initializtion_successful = true
-
-#func set_parameters() -> void:
-	#if not parent_unit.system.unit_parameters_database:
-		#print_debug("Database not attached!")
-		#return
-	#var database : Dictionary = parent_unit.system.unit_parameters_database.DATABASE
-	#if not database:
-		#print_debug("Database not found!")
-		#return
-	#if not database.has(parent_unit.unit_name):
-		#print_debug("Unit '%s' not found in database!" % parent_unit.unit_name)
-		#return
-	#
-	#var params: Dictionary = database[parent_unit.unit_name]
-	#if params.has("Damage"):
-		#underlying_base_damage = params["Damage"]
-	#if params.has("HP"):
-		#underlying_max_HP = params["HP"]
-	#if params.has("Armor"):
-		#underlying_armor = params["Armor"]
-	#
-	#if params.has("Attacks"):
-		#var database_attacks: Array = params["Attacks"]
-		#for attack: Dictionary in database_attacks:
-			#var damagemultiplier := 1.0
-			#var damageoverride := false
-			#var type := EventBus.AttackType.Physical
-			#var accuracy := 0.8
-			#var targets_needed := 2
-			#var initiative := 40
-			#var validation := standart_melee_validity
-			#if attack.has("DamageMultiplier"):
-				#damagemultiplier = attack["DamageMultiplier"]
-			#if attack.has("DamageOverride"):
-				#damageoverride = attack["DamageOverride"]
-			#if attack.has("Type"):
-				#type = attack["Type"]
-			#if attack.has("Accuracy"):
-				#accuracy = attack["Accuracy"]
-			#if attack.has("TargetsNeeded"):
-				#targets_needed = attack["TargetsNeeded"]
-			#if attack.has("Initiative"):
-				#initiative = attack["Initiative"]
-			#if attack.has("Validation"):
-				#validation = attack["Validation"]
-			#var new_attack := UnitAttack.new(
-				#parent_unit,
-				#damagemultiplier,
-				#damageoverride,
-				#validation,
-				#type,
-				#accuracy,
-				#targets_needed,
-				#initiative
-			#)
-			#if attack.has("FindAdditionalTargets"):
-				#new_attack.find_additional_targets = attack["FindAdditionalTargets"]
-				##print(parent_unit.unit_name)
-			#if attack.has("DamagePolicy"):
-				#new_attack.damage_policy = attack["DamagePolicy"]
-				##print(parent_unit.unit_name)
-			#if attack.has("Effects"):
-				##print(parent_unit.unit_name)
-				#new_attack.applying_effects = (attack["Effects"] as Dictionary)
-			#
-			#attacks.append(new_attack)
-	#
-	#initializtion_successful = true
 
 func apply_effect(effect_name: String, params: Variant) -> void:
 	var res : Resource = load("res://Combat/Effects/AppliedEffects/Scenes/%s.tscn" % effect_name)

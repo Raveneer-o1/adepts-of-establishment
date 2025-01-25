@@ -1,8 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://bb7xobbcumx1x"]
+[gd_scene load_steps=25 format=3 uid="uid://bb7xobbcumx1x"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_atu73"]
 [ext_resource type="Texture2D" uid="uid://3pn2i26kegbw" path="res://Arts/Empire units/royal cavalier attack .png" id="2_54rgk"]
 [ext_resource type="Texture2D" uid="uid://cotktevay0l0" path="res://Arts/Empire units/royal cavalier idle .png" id="3_1wlrl"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_kgaai"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_ksxxa"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="6_3ie0m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ltm0u"]
 atlas = ExtResource("2_54rgk")
@@ -129,6 +132,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_plr1t"]
+resource_local_to_scene = true
+script = ExtResource("4_kgaai")
+max_HP = 100
+base_damage = 30
+armor = 0
+
 [node name="Unit" instance=ExtResource("1_atu73")]
 unit_name = "Royal Cavalier"
 unit_type = "Defender"
@@ -140,3 +150,22 @@ animation = &"attack"
 autoplay = "default"
 offset = Vector2(8, 0)
 frames_to_emit = Array[int]([4])
+
+[node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_plr1t")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("5_ksxxa")
+damage_multiplier = 0.6
+accuracy = 0.85
+targets_needed = 1
+initiative = 70
+target_validation = ExtResource("6_3ie0m")
+
+[node name="UnitAttack2" type="Node" parent="UnitParameters" index="2"]
+script = ExtResource("5_ksxxa")
+damage_multiplier = 0.9
+accuracy = 0.88
+targets_needed = 1
+initiative = 40
+target_validation = ExtResource("6_3ie0m")

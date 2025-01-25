@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://n106oxapxy1v"]
 
-[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/abstract_effect.tscn" id="1_mx2s5"]
+[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/Scenes/abstract_effect.tscn" id="1_mx2s5"]
 [ext_resource type="Texture2D" uid="uid://b8tv1bpsba7od" path="res://Arts/Empire units/elementalist attack effect .png" id="2_f448h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tdabl"]

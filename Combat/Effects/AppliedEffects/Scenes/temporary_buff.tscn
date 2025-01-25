@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5wkx4gmg5i40"]
+
+[ext_resource type="PackedScene" uid="uid://8d3sodh68huv" path="res://Combat/Effects/AppliedEffects/applied_effect.tscn" id="1_48nys"]
+[ext_resource type="Script" path="res://Combat/Effects/AppliedEffects/Scripts/temp_buff.gd" id="2_vwa1h"]
+
+[node name="Temporart buff" instance=ExtResource("1_48nys")]
+script = ExtResource("2_vwa1h")
+effect_name = "Temporary"
+icon_index = 5
+description = "Increases %s by %d"

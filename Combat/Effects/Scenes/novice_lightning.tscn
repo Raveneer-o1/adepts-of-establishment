@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://dvfxijlca63a7"]
 
-[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/abstract_effect.tscn" id="1_gxs66"]
+[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/Scenes/abstract_effect.tscn" id="1_gxs66"]
 [ext_resource type="Texture2D" uid="uid://d3hskhayqmgu2" path="res://Arts/Empire units/wizard attack effect .png" id="2_kvodg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q6nq1"]

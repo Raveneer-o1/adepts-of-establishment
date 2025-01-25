@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_tcv8q"]
 [ext_resource type="Texture2D" uid="uid://c7rdtcece7r2p" path="res://Arts/Undead units/u23 necromancer attack .png" id="2_0chdl"]
 [ext_resource type="Texture2D" uid="uid://du1y3ccvfyyea" path="res://Arts/Undead units/u23 necromancer idle .png" id="3_itfo3"]
-[ext_resource type="PackedScene" uid="uid://n7w0136buyjd" path="res://Combat/Effects/circle_attack.tscn" id="4_npxus"]
+[ext_resource type="PackedScene" uid="uid://n7w0136buyjd" path="res://Combat/Effects/Scenes/circle_attack.tscn" id="4_npxus"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6puoe"]
 atlas = ExtResource("2_0chdl")

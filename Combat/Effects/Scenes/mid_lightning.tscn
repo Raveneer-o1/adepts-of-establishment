@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://djw732rkcoqi0"]
 
-[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/abstract_effect.tscn" id="1_m8xg3"]
+[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/Scenes/abstract_effect.tscn" id="1_m8xg3"]
 [ext_resource type="Texture2D" uid="uid://cy5ne4jspdims" path="res://Arts/Empire units/white Mage attack effect .png" id="2_dq6kb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_33en2"]

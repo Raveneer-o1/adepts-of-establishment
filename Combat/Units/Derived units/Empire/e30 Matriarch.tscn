@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://jlqcu2psmrph"]
+[gd_scene load_steps=19 format=3 uid="uid://jlqcu2psmrph"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_eiqlo"]
 [ext_resource type="Texture2D" uid="uid://bopt04sefliqu" path="res://Arts/Empire units/Matriarch attack .png" id="2_cwyp3"]
 [ext_resource type="Texture2D" uid="uid://b0jsp0mbn5teq" path="res://Arts/Empire units/Matriarch idle .png" id="3_x4djd"]
-[ext_resource type="PackedScene" uid="uid://d1uk2tsyu7ay0" path="res://Combat/Effects/medium_heal.tscn" id="4_leg74"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_fpf5w"]
+[ext_resource type="PackedScene" uid="uid://d1uk2tsyu7ay0" path="res://Combat/Effects/Scenes/medium_heal.tscn" id="4_leg74"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b6u8f"]
 atlas = ExtResource("2_cwyp3")
@@ -95,6 +96,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_jvlub"]
+resource_local_to_scene = true
+script = ExtResource("4_fpf5w")
+max_HP = 100
+base_damage = 30
+armor = 0
+
 [node name="Matriarch" instance=ExtResource("1_eiqlo")]
 unit_name = "Matriarch"
 unit_type = "Healer"
@@ -107,4 +115,5 @@ autoplay = "default"
 offset = Vector2(0, -8)
 
 [node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_jvlub")
 attack_effect = ExtResource("4_leg74")

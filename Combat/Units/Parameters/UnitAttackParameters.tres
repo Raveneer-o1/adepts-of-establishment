@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="UnitAttack" load_steps=3 format=3 uid="uid://c81r01ibidcxx"]
+
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="1_i4mcf"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="2_ud3xn"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_i4mcf")
+damage_multiplier = 1.0
+damage_override = false
+type = 0
+accuracy = 0.7
+targets_needed = 1
+initiative = 40
+target_validation_path = "res://Combat/Units/Parameters/Validation/standart_melee_validity.tres"
+additional_targets_path = ""
+damage_policy_path = ""
+target_validation = ExtResource("2_ud3xn")

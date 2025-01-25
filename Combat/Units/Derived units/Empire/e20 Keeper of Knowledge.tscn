@@ -1,9 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://iivctuuj3ka0"]
+[gd_scene load_steps=26 format=3 uid="uid://iivctuuj3ka0"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_l0il6"]
 [ext_resource type="Texture2D" uid="uid://bm2q607tou6qs" path="res://Arts/Empire units/lorekeeper attack .png" id="2_5ekka"]
 [ext_resource type="Texture2D" uid="uid://dkmby0vtan02c" path="res://Arts/Empire units/lorekeeper idle .png" id="3_a8snf"]
-[ext_resource type="PackedScene" uid="uid://c7bbto2q5jen7" path="res://Combat/Effects/ritual_attack.tscn" id="5_da6yy"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_ulrri"]
+[ext_resource type="PackedScene" uid="uid://c7bbto2q5jen7" path="res://Combat/Effects/Scenes/ritual_attack.tscn" id="5_da6yy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6lyh5"]
 atlas = ExtResource("2_5ekka")
@@ -144,6 +145,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_li7cn"]
+resource_local_to_scene = true
+script = ExtResource("4_ulrri")
+max_HP = 100
+base_damage = 30
+armor = 0
+
 [node name="Keeper of Knowledge" instance=ExtResource("1_l0il6")]
 unit_name = "Keeper of Knowledge"
 unit_type = "Mage"
@@ -155,4 +163,5 @@ animation = &"attack"
 autoplay = "default"
 
 [node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_li7cn")
 attack_effect = ExtResource("5_da6yy")

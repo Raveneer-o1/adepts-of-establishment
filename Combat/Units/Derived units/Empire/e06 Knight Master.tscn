@@ -1,8 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://pflh07f22p8k"]
+[gd_scene load_steps=27 format=3 uid="uid://pflh07f22p8k"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_f361o"]
 [ext_resource type="Texture2D" uid="uid://yhv8kclfvxff" path="res://Arts/Empire units/knight master attack .png" id="2_g7vf6"]
 [ext_resource type="Texture2D" uid="uid://b7cwny71v0dg6" path="res://Arts/Empire units/knight master idle .png" id="3_vs23i"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_ks2vf"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_8np7n"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="6_bre02"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gilfk"]
 atlas = ExtResource("2_g7vf6")
@@ -143,6 +146,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_qli5x"]
+resource_local_to_scene = true
+script = ExtResource("4_ks2vf")
+max_HP = 200
+base_damage = 50
+armor = 45
+
 [node name="Unit" instance=ExtResource("1_f361o")]
 unit_name = "Knight Master"
 unit_type = "Warrior"
@@ -154,3 +164,14 @@ animation = &"attack"
 autoplay = "default"
 offset = Vector2(8, 0)
 frames_to_emit = Array[int]([5])
+
+[node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_qli5x")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("5_8np7n")
+damage_multiplier = 1.5
+accuracy = 0.84
+targets_needed = 1
+initiative = 45
+target_validation = ExtResource("6_bre02")

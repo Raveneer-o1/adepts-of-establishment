@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_8bfir"]
 [ext_resource type="Texture2D" uid="uid://cpovl2mar137q" path="res://Arts/Empire units/elemental attack .png" id="2_wfcjt"]
 [ext_resource type="Texture2D" uid="uid://ck7f0sx0d61ey" path="res://Arts/Empire units/elemental idle .png" id="3_dsoog"]
-[ext_resource type="PackedScene" uid="uid://n106oxapxy1v" path="res://Combat/Effects/medium_wind.tscn" id="4_nay0k"]
+[ext_resource type="PackedScene" uid="uid://n106oxapxy1v" path="res://Combat/Effects/Scenes/medium_wind.tscn" id="4_nay0k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_srrfl"]
 atlas = ExtResource("2_wfcjt")

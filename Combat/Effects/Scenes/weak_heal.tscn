@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://cdicif6h0d041"]
 
-[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/abstract_effect.tscn" id="1_loeor"]
+[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/Scenes/abstract_effect.tscn" id="1_loeor"]
 [ext_resource type="Texture2D" uid="uid://buf04lbll6njs" path="res://Arts/Empire units/priest attack effect .png" id="2_q7csu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dbdqk"]

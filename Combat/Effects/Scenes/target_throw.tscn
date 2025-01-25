@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://cnlyt2k5jjchq"]
 
-[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/abstract_effect.tscn" id="1_ojoka"]
+[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/Scenes/abstract_effect.tscn" id="1_ojoka"]
 [ext_resource type="Texture2D" uid="uid://uyh6q8ovh6e2" path="res://Arts/Empire units/Scout target effect .png" id="2_riso6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kr81g"]

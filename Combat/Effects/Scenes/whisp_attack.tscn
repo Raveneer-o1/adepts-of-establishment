@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://7vboji3lb2aa"]
 
-[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/abstract_effect.tscn" id="1_rxcxf"]
+[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/Scenes/abstract_effect.tscn" id="1_rxcxf"]
 [ext_resource type="Texture2D" uid="uid://c5x5u4go0dvme" path="res://Arts/Undead units/u20 will-o-wisp effect .png" id="2_rirmh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aecvq"]

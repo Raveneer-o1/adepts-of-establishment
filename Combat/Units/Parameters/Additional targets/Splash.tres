@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bhe5cl2bujg8i"]
+
+[ext_resource type="Script" path="res://Combat/Units/Parameters/Additional targets/Scripts/Splash.gd" id="1_trcqt"]
+
+[resource]
+script = ExtResource("1_trcqt")
+total_targets = 0.0

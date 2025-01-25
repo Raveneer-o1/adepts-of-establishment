@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://cl66orf67rhdo"]
 
-[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/abstract_effect.tscn" id="1_xnhw7"]
+[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/Scenes/abstract_effect.tscn" id="1_xnhw7"]
 [ext_resource type="Texture2D" uid="uid://b4u1m7e7u75bh" path="res://Arts/Heroes/hero04 High Mage Elren effect 2.png" id="2_x8xy3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fkbiu"]

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5btb6pxaufjw"]
+
+[ext_resource type="PackedScene" uid="uid://8d3sodh68huv" path="res://Combat/Effects/AppliedEffects/applied_effect.tscn" id="1_qim7s"]
+[ext_resource type="Script" path="res://Combat/Effects/AppliedEffects/Scripts/holy_wrath.gd" id="2_6ygie"]
+
+[node name="Holy wrath" instance=ExtResource("1_qim7s")]
+script = ExtResource("2_6ygie")
+effect_name = "Holy wrath"
+icon_index = 15
+description = "Whenever this unit recieves attack with element \"Mind\", its damage increases by 30%"

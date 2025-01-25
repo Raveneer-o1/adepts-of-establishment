@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_jcdtv"]
 [ext_resource type="Texture2D" uid="uid://dsl21nqjf8sos" path="res://Arts/Undead units/u22 acolyte v2 attack .png" id="2_hxb6d"]
 [ext_resource type="Texture2D" uid="uid://df74mv2gn682" path="res://Arts/Undead units/u22 acolyte v2 idle .png" id="3_peot3"]
-[ext_resource type="PackedScene" uid="uid://cnl2vrahoavc6" path="res://Combat/Effects/spiral_attack.tscn" id="4_idhnn"]
+[ext_resource type="PackedScene" uid="uid://cnl2vrahoavc6" path="res://Combat/Effects/Scenes/spiral_attack.tscn" id="4_idhnn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lldai"]
 atlas = ExtResource("2_hxb6d")

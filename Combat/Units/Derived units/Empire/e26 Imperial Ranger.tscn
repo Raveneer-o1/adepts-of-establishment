@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://c4awr0jje6oes"]
+[gd_scene load_steps=21 format=3 uid="uid://c4awr0jje6oes"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_eigsw"]
 [ext_resource type="Texture2D" uid="uid://kjay0mljprno" path="res://Arts/Empire units/imperial Ranger idle .png" id="2_7fncv"]
 [ext_resource type="Texture2D" uid="uid://xdvwxdb8xg0o" path="res://Arts/Empire units/imperial Ranger attack .png" id="2_yf6ig"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_rlipv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lltaf"]
 atlas = ExtResource("2_yf6ig")
@@ -115,6 +116,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_f512a"]
+resource_local_to_scene = true
+script = ExtResource("4_rlipv")
+max_HP = 100
+base_damage = 30
+armor = 0
+
 [node name="Imperial ranger" instance=ExtResource("1_eigsw")]
 unit_name = "Imperial Ranger"
 unit_type = "Archer"
@@ -125,3 +133,6 @@ sprite_frames = SubResource("SpriteFrames_issnm")
 animation = &"attack"
 autoplay = "default"
 offset = Vector2(8, 0)
+
+[node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_f512a")

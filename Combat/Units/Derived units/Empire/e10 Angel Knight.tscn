@@ -1,9 +1,12 @@
-[gd_scene load_steps=29 format=3 uid="uid://bjc7d7g3ses0e"]
+[gd_scene load_steps=33 format=3 uid="uid://bjc7d7g3ses0e"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_ktuuv"]
 [ext_resource type="Texture2D" uid="uid://cw2vjokyfadtn" path="res://Arts/Empire units/angel knight attack .png" id="2_j41lp"]
 [ext_resource type="Texture2D" uid="uid://dti7asgp2tyh8" path="res://Arts/Empire units/angel knight idle .png" id="3_kq1jr"]
 [ext_resource type="PackedScene" uid="uid://j14go8w5ajjq" path="res://Combat/Effects/AppliedEffects/Scenes/damage_buff_aura.tscn" id="4_2ulgk"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_fmxe7"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_86cfn"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="7_0uj1v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5whir"]
 atlas = ExtResource("2_j41lp")
@@ -179,6 +182,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_q2oq7"]
+resource_local_to_scene = true
+script = ExtResource("4_fmxe7")
+max_HP = 100
+base_damage = 30
+armor = 0
+
 [node name="AngelKinght" instance=ExtResource("1_ktuuv")]
 unit_name = "Angel Knight"
 unit_type = "Warrior"
@@ -192,5 +202,15 @@ offset = Vector2(0, -8)
 frames_to_emit = Array[int]([11])
 last_frame = 13
 
+[node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_q2oq7")
+
 [node name="Damage buff Aura" parent="UnitParameters" index="1" instance=ExtResource("4_2ulgk")]
 damage_increase = 7
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+script = ExtResource("6_86cfn")
+accuracy = 0.87
+targets_needed = 1
+initiative = 40
+target_validation = ExtResource("7_0uj1v")
