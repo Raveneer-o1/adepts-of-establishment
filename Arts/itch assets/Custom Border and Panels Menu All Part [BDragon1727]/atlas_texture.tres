@@ -1,0 +1,6 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://0q42we21edp8"]
+
+[ext_resource type="Texture2D" uid="uid://bw1xxsp60wh37" path="res://Arts/itch assets/Custom Border and Panels Menu All Part [BDragon1727]/Border All 1.png" id="1_iog4h"]
+
+[resource]
+atlas = ExtResource("1_iog4h")

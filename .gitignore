@@ -1,5 +1,5 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
-/Arts/
+#/Arts/
 party_composition.tscn
