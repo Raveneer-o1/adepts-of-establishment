@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cejkgjwk05uws"]
+
+[ext_resource type="Script" path="res://Combat/Units/Parameters/Additional targets/Scripts/standart_mage_targets.gd" id="1_u7oav"]
+
+[resource]
+script = ExtResource("1_u7oav")
+total_targets = 0.0

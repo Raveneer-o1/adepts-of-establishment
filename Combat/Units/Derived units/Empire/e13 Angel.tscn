@@ -1,9 +1,12 @@
-[gd_scene load_steps=24 format=3 uid="uid://dfb8a8lhxhbxv"]
+[gd_scene load_steps=27 format=3 uid="uid://dfb8a8lhxhbxv"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_ghq34"]
 [ext_resource type="Texture2D" uid="uid://du3k0h3s7hxoa" path="res://Arts/Empire units/angel  attack .png" id="2_j3ymb"]
 [ext_resource type="Texture2D" uid="uid://idex7y6u10f3" path="res://Arts/Empire units/angel idle .png" id="3_kot7h"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_53ols"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_4cpgb"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="6_frmgx"]
+[ext_resource type="PackedScene" uid="uid://chpw2oyl5kpky" path="res://Combat/Effects/AppliedEffects/Scenes/armor_buff_aura.tscn" id="7_fqy2s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d74xw"]
 atlas = ExtResource("2_j3ymb")
@@ -140,9 +143,9 @@ animations = [{
 [sub_resource type="Resource" id="Resource_ohcak"]
 resource_local_to_scene = true
 script = ExtResource("4_53ols")
-max_HP = 100
-base_damage = 30
-armor = 0
+max_HP = 250
+base_damage = 100
+armor = 20
 
 [node name="Unit" instance=ExtResource("1_ghq34")]
 unit_name = "Angel"
@@ -158,3 +161,13 @@ frames_to_emit = Array[int]([8])
 
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_ohcak")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("5_4cpgb")
+type = 1
+accuracy = 0.85
+initiative = 35
+target_validation = ExtResource("6_frmgx")
+
+[node name="Armor buff (aura)" parent="UnitParameters" index="2" instance=ExtResource("7_fqy2s")]
+armor_increase = 20

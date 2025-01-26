@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cfrijbj5w6tub"]
+
+[ext_resource type="Script" path="res://Combat/Units/Parameters/Validation/Scripts/elementalist_validity.gd" id="1_0bu0h"]
+
+[resource]
+script = ExtResource("1_0bu0h")

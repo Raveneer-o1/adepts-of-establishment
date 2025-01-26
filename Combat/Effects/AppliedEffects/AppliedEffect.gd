@@ -44,7 +44,7 @@ const ICONS = preload("res://Arts/icons.png")
 @export_multiline var description: String
 
 ## if [code]true[/code], the effect can be applied multiple times
-var stackable: bool = false
+@export var stackable: bool = false
 
 func _get_description() -> String:
 	return description

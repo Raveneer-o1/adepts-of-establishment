@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bjlsohg1p6wgl"]
+[gd_scene load_steps=13 format=3 uid="uid://bjlsohg1p6wgl"]
 
 [ext_resource type="Script" path="res://Combat/Units/unit.gd" id="1_gk31f"]
 [ext_resource type="Script" path="res://Combat/Units/UnitAnimationsHandle.gd" id="2_gjndx"]
 [ext_resource type="Script" path="res://Combat/Units/unit_parameters.gd" id="2_mnflt"]
 [ext_resource type="Texture2D" uid="uid://cturd5myqf6pf" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/CharacterBox_56x57.png" id="4_8qmij"]
+[ext_resource type="Resource" uid="uid://dnpnrs2yevm0p" path="res://Combat/Units/Parameters/base_parameters.tres" id="4_hdmy1"]
 [ext_resource type="Texture2D" uid="uid://b02sq163nqb4r" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/ValueBar_128x16.png" id="4_kjqm5"]
 [ext_resource type="Texture2D" uid="uid://kkvavxl4xmfa" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/ValueRed_120x8.png" id="5_xgp68"]
 
@@ -126,6 +127,7 @@ libraries = {
 
 [node name="UnitParameters" type="Node2D" parent="."]
 script = ExtResource("2_mnflt")
+base_paramaters = ExtResource("4_hdmy1")
 
 [node name="VisualBar" type="TextureProgressBar" parent="UnitParameters"]
 anchors_preset = 5

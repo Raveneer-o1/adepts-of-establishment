@@ -1,10 +1,14 @@
-[gd_scene load_steps=25 format=3 uid="uid://bkgd75ppe6uv0"]
+[gd_scene load_steps=30 format=3 uid="uid://bkgd75ppe6uv0"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_mbqb6"]
 [ext_resource type="Texture2D" uid="uid://b026o3cq7jv31" path="res://Arts/Empire units/white Mage attack .png" id="2_xltu8"]
 [ext_resource type="Texture2D" uid="uid://5gp5yh56dovu" path="res://Arts/Empire units/white Mage idle .png" id="3_ogifj"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_q12mp"]
 [ext_resource type="PackedScene" uid="uid://djw732rkcoqi0" path="res://Combat/Effects/Scenes/mid_lightning.tscn" id="5_dy55f"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_1cw50"]
+[ext_resource type="Resource" uid="uid://bkoge3ibwhgcc" path="res://Combat/Units/Parameters/Validation/standart_mage_validity.tres" id="7_hx30w"]
+[ext_resource type="Resource" uid="uid://cejkgjwk05uws" path="res://Combat/Units/Parameters/Additional targets/standart_mage_targets.tres" id="8_00kpc"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/Policy/Scripts/decay_policy.gd" id="9_l6lkl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_atoj6"]
 atlas = ExtResource("2_xltu8")
@@ -141,9 +145,14 @@ animations = [{
 [sub_resource type="Resource" id="Resource_yyujt"]
 resource_local_to_scene = true
 script = ExtResource("4_q12mp")
-max_HP = 100
-base_damage = 30
+max_HP = 200
+base_damage = 70
 armor = 0
+
+[sub_resource type="Resource" id="Resource_ck3w1"]
+resource_local_to_scene = true
+script = ExtResource("9_l6lkl")
+decay_rate = 0.675
 
 [node name="White mage" instance=ExtResource("1_mbqb6")]
 unit_name = "White Mage"
@@ -159,3 +168,14 @@ offset = Vector2(0, -8)
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_yyujt")
 attack_effect = ExtResource("5_dy55f")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("6_1cw50")
+type = 1
+accuracy = 0.85
+target_validation = ExtResource("7_hx30w")
+additional_targets = ExtResource("8_00kpc")
+damage_policy = SubResource("Resource_ck3w1")
+applying_effects = {
+"electified": [2, 10]
+}

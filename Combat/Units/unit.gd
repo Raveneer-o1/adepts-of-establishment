@@ -257,13 +257,13 @@ func arrange_attacks_and_set_next() -> void:
 
 ## Initiates an attack based on the chosen targets.
 func start_attacking() -> void:
-	if chosen_targets.is_empty():
+	if chosen_spots.is_empty():
 		return
 	defence_stance = false
 	animation_handle.play_attack_animation()
+	
 	@warning_ignore("narrowing_conversion")
-	var dmg: int = current_attack.damage_multiplier if current_attack.damage_override else \
-			current_attack.damage_multiplier * parameters.base_damage
+	var dmg: int = parameters.get_actual_damage(current_attack)
 	
 	var targets := chosen_spots.duplicate()
 	if current_attack.additional_targets:

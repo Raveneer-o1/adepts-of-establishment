@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cxvfk7vgegqq2"]
+
+[ext_resource type="Script" path="res://Combat/Units/Parameters/Policy/Scripts/decay_policy.gd" id="1_avwcm"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_avwcm")
+decay_rate = 0.4

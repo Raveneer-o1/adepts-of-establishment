@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dotrymeobcf7f" path="res://Arts/Empire units/knight idle .png" id="3_uphvs"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_f7s68"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_k3q6v"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/Validation/Scripts/standart_melee_validity.gd" id="6_t8isu"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="6_lycjm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qlkrr"]
 atlas = ExtResource("2_y2ul3")
@@ -129,6 +129,5 @@ base_paramaters = SubResource("Resource_m5mxl")
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("5_k3q6v")
 accuracy = 0.75
-targets_needed = 1
 initiative = 35
-target_validation = ExtResource("6_t8isu")
+target_validation = ExtResource("6_lycjm")

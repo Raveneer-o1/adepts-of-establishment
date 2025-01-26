@@ -121,6 +121,8 @@ unit_name = "Elemental"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_qguhu")
+animation = &"attack"
+autoplay = "default"
 
 [node name="UnitParameters" parent="." index="1"]
 attack_effect = ExtResource("4_nay0k")

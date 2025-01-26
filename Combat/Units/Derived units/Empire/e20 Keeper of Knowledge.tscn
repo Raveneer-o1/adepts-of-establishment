@@ -1,10 +1,14 @@
-[gd_scene load_steps=26 format=3 uid="uid://iivctuuj3ka0"]
+[gd_scene load_steps=31 format=3 uid="uid://iivctuuj3ka0"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_l0il6"]
 [ext_resource type="Texture2D" uid="uid://bm2q607tou6qs" path="res://Arts/Empire units/lorekeeper attack .png" id="2_5ekka"]
 [ext_resource type="Texture2D" uid="uid://dkmby0vtan02c" path="res://Arts/Empire units/lorekeeper idle .png" id="3_a8snf"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_ulrri"]
 [ext_resource type="PackedScene" uid="uid://c7bbto2q5jen7" path="res://Combat/Effects/Scenes/ritual_attack.tscn" id="5_da6yy"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_srl5f"]
+[ext_resource type="Resource" uid="uid://bkoge3ibwhgcc" path="res://Combat/Units/Parameters/Validation/standart_mage_validity.tres" id="7_7nc8a"]
+[ext_resource type="Resource" uid="uid://cejkgjwk05uws" path="res://Combat/Units/Parameters/Additional targets/standart_mage_targets.tres" id="8_6yi6d"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/Policy/Scripts/decay_policy.gd" id="9_2hbq1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6lyh5"]
 atlas = ExtResource("2_5ekka")
@@ -148,9 +152,14 @@ animations = [{
 [sub_resource type="Resource" id="Resource_li7cn"]
 resource_local_to_scene = true
 script = ExtResource("4_ulrri")
-max_HP = 100
-base_damage = 30
-armor = 0
+max_HP = 250
+base_damage = 80
+armor = 20
+
+[sub_resource type="Resource" id="Resource_6ey57"]
+resource_local_to_scene = true
+script = ExtResource("9_2hbq1")
+decay_rate = 0.8
 
 [node name="Keeper of Knowledge" instance=ExtResource("1_l0il6")]
 unit_name = "Keeper of Knowledge"
@@ -165,3 +174,13 @@ autoplay = "default"
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_li7cn")
 attack_effect = ExtResource("5_da6yy")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("6_srl5f")
+accuracy = 0.85
+target_validation = ExtResource("7_7nc8a")
+additional_targets = ExtResource("8_6yi6d")
+damage_policy = SubResource("Resource_6ey57")
+applying_effects = {
+"vulnerability": [2, 25]
+}

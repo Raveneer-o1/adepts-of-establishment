@@ -49,17 +49,17 @@ var armor_multiplier: float:
 
 var underlying_HP: int = 1
 
-var underlying_max_HP: int = \
+@onready var underlying_max_HP: int = \
 		max_hp_override if max_hp_override > 0 else \
 		base_paramaters.max_HP if base_paramaters != null else \
 		100
 
-var underlying_base_damage: int = \
+@onready var underlying_base_damage: int = \
 		base_damage_override if base_damage_override > 0 else \
 		base_paramaters.base_damage if base_paramaters != null else \
 		30
 
-var underlying_armor: int = \
+@onready var underlying_armor: int = \
 		armor_override if armor_override > 0 else \
 		base_paramaters.armor if base_paramaters != null else \
 		0
@@ -162,7 +162,12 @@ func clean_modifiers() -> void:
 ## Adds new modifier to the stack with name [param stat].[br]
 ## First addition of a stat creates new stack for it.[br]
 ## [param influence] should have signature [code]func(int) -> int[/code]
-## and given previous value of the paramater, it should return a new one
+## and given previous value of the paramater, it should return a new one[br]
+## Avaliable modifiers:[br]
+## [code]"max_HP"[/code][br]
+## [code]"armor"[/code][br]
+## [code]"base_damage"[/code][br]
+## [br][br]It's possible to add any other name but using it would have to be specified explicitly
 func add_modifier(stat: StringName, effect: AppliedEffect, influence: Callable) -> void:
 	if not stats_modifiers.has(stat):
 		stats_modifiers[stat] = ModifierStack.new()
@@ -174,6 +179,7 @@ func get_actual_damage(attack: UnitAttack) -> int:
 	@warning_ignore("narrowing_conversion")
 	return attack.damage_multiplier if attack.damage_override else \
 			attack.damage_multiplier * base_damage
+
 
 ## Returns full damage potential of a unit on a per turn basis accounting for accuracy.
 ## Does not account for multi-targeted attacks

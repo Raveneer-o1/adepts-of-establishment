@@ -318,6 +318,9 @@ func _ready() -> void:
 func find_targets_for_attack(attack: UnitAttack) -> Array[UnitSpot]:
 	if attack == null:
 		return []
+	if not attack.target_validation:
+		print_debug("Trying to address empty target!")
+		return []
 	
 	var result: Array[UnitSpot] = []
 	var all_unit_spots: Array[UnitSpot] = left_party.unit_spots + right_party.unit_spots

@@ -15,7 +15,7 @@ var unit: Unit
 ## Chance the attack won't be missed
 @export var accuracy: float
 ## Number of units player will need to choose for a unit to perform this attack
-@export var targets_needed: int
+@export var targets_needed: int = 1
 ## Determines the order of attacks
 @export var initiative: int
 
@@ -40,33 +40,10 @@ var unit: Unit
 
 ## Dictionary containing elements in the format: <effect_name: String, params: Variant>[br]
 ## This element is passed to the [member Attack.applying_effects]
-var applying_effects : Dictionary
+@export var applying_effects : Dictionary
 
 func initialize(u: Unit) -> void:
+	if target_validation == null:
+		print_debug("Target validation is empty! Unit: %s" % u.unit_name)
+		u.queue_free()
 	unit = u
-	
-	#var loaded := load(target_validation_path)
-	#target_validation = \
-		#load(target_validation_path) as BaseValidation if FileAccess.file_exists(target_validation_path) \
-		#else null
-	#
-	#additional_targets = \
-		#load(additional_targets_path) if FileAccess.file_exists(additional_targets_path) \
-		#else null
-	#
-	#damage_policy = \
-		#load(damage_policy_path) if FileAccess.file_exists(damage_policy_path) \
-		#else null
-
-#func _init(_unit: Unit, dmg_mult: float, dmg_ov: bool,
-		#valid: Callable, ty: EventBus.AttackType, acc: float,
-		#targets: int, _initiative: int) -> void:
-	#unit = _unit
-	#damage_multiplier = dmg_mult
-	#damage_override = dmg_ov
-	#target_validation_override = valid_ov
-	#target_validation = valid
-	#type = ty
-	#accuracy = acc
-	#targets_needed = targets
-	#initiative = _initiative

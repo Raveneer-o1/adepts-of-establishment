@@ -457,7 +457,7 @@ var DATABASE := {
 				TargetsNeeded = 1,
 				Initiative = 40,
 				Validation = standart_melee_validity,
-				FindAdditionalTargets = standart_splash_additional_targets,
+				#FindAdditionalTargets = standart_splash_additional_targets,
 				DamagePolicy = standart_immediate_decay_policy,
 				Effects = {\"stun\" = [0.3, 1]}
 			},
@@ -1338,7 +1338,7 @@ var DATABASE := {
 				TargetsNeeded = 1, # int
 				Initiative = 50, # int
 				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
-				FindAdditionalTargets = standart_splash_additional_targets,
+				#FindAdditionalTargets = standart_splash_additional_targets,
 				DamagePolicy = standart_immediate_decay_policy,
 				#Effects = {\"poison\" = 35},
 			},
@@ -1474,7 +1474,7 @@ var DATABASE := {
 				TargetsNeeded = 1, # int
 				Initiative = 40, # int
 				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
-				FindAdditionalTargets = standart_splash_additional_targets,
+				#FindAdditionalTargets = standart_splash_additional_targets,
 				#DamagePolicy = standart_decay_policy,
 				Effects = {\"burn\" = [20, 3]},
 			},
@@ -1497,7 +1497,7 @@ var DATABASE := {
 				TargetsNeeded = 1, # int
 				Initiative = 40, # int
 				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
-				FindAdditionalTargets = standart_splash_additional_targets,
+				#FindAdditionalTargets = standart_splash_additional_targets,
 				#DamagePolicy = standart_decay_policy,
 				Effects = {\"paralysis\" = [1.0, 1]},
 			},
@@ -1520,7 +1520,7 @@ var DATABASE := {
 				TargetsNeeded = 1, # int
 				Initiative = 40, # int
 				Validation = standart_archer_validity, # Callable (attacker: Unit, target: Unit) -> bool
-				FindAdditionalTargets = standart_splash_additional_targets,
+				#FindAdditionalTargets = standart_splash_additional_targets,
 				#DamagePolicy = standart_decay_policy,
 				Effects = {\"burn\" = [35, 4]},
 			},

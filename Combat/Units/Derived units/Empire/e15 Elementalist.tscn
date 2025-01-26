@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b43q5ajr0udev"]
+[gd_scene load_steps=23 format=3 uid="uid://b43q5ajr0udev"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_wepdu"]
 [ext_resource type="Texture2D" uid="uid://bshfdwhdeo47r" path="res://Arts/Empire units/elementalist attack .png" id="2_qdt4o"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://n106oxapxy1v" path="res://Combat/Effects/Scenes/medium_wind.tscn" id="4_jm0nb"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_rto2v"]
 [ext_resource type="PackedScene" uid="uid://bit78176xambc" path="res://Combat/Units/Derived units/Elemental.tscn" id="5_uw7aa"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="7_wg8vq"]
+[ext_resource type="Resource" uid="uid://cfrijbj5w6tub" path="res://Combat/Units/Parameters/Validation/elementalist_validity.tres" id="8_g6lhr"]
+[ext_resource type="Resource" uid="uid://bix5hc43n2tpi" path="res://Combat/Units/Parameters/Policy/elementalist_policy.tres" id="9_vgmpc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q7yx6"]
 atlas = ExtResource("2_qdt4o")
@@ -100,11 +103,11 @@ animations = [{
 [sub_resource type="Resource" id="Resource_2tgcp"]
 resource_local_to_scene = true
 script = ExtResource("4_rto2v")
-max_HP = 100
-base_damage = 30
-armor = 0
+max_HP = 120
+base_damage = 55
+armor = 5
 
-[node name="Unit2" instance=ExtResource("1_wepdu")]
+[node name="Elementalist" instance=ExtResource("1_wepdu")]
 unit_name = "Elementalist"
 unit_type = "Buffer"
 full_description = "Elementalists are specialists who wield the raw forces of nature, calling upon the elements to devastate their enemies. Their mastery of summoning allows them to conjure elemental creatures to fight alongside them, disrupting enemy formations."
@@ -118,3 +121,11 @@ autoplay = "default"
 base_paramaters = SubResource("Resource_2tgcp")
 attack_effect = ExtResource("4_jm0nb")
 other_effects = Array[Resource]([ExtResource("5_uw7aa")])
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("7_wg8vq")
+type = 1
+accuracy = 0.715
+initiative = 30
+target_validation = ExtResource("8_g6lhr")
+damage_policy = ExtResource("9_vgmpc")

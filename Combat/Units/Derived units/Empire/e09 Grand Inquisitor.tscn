@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dyvbe6w1ymxve"]
+[gd_scene load_steps=32 format=3 uid="uid://dyvbe6w1ymxve"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_pd60s"]
 [ext_resource type="Texture2D" uid="uid://bpxj1cae61n23" path="res://Arts/Empire units/Grand inquisitor idle  (1).png" id="2_rp3ci"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="7_vm3kd"]
 [ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="8_8fbn8"]
 [ext_resource type="Resource" uid="uid://bhe5cl2bujg8i" path="res://Combat/Units/Parameters/Additional targets/Splash.tres" id="9_juih1"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/Policy/Scripts/decay_policy.gd" id="10_8qrve"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gbmv1"]
 atlas = ExtResource("2_s1fcq")
@@ -152,9 +153,14 @@ animations = [{
 [sub_resource type="Resource" id="Resource_xsxvu"]
 resource_local_to_scene = true
 script = ExtResource("4_t8wm6")
-max_HP = 100
-base_damage = 30
-armor = 0
+max_HP = 200
+base_damage = 70
+armor = 40
+
+[sub_resource type="Resource" id="Resource_6n8jw"]
+resource_local_to_scene = true
+script = ExtResource("10_8qrve")
+decay_rate = 0.3
 
 [node name="Unit" instance=ExtResource("1_pd60s")]
 unit_name = "Grand Inquisitor"
@@ -178,7 +184,7 @@ base_paramaters = SubResource("Resource_xsxvu")
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="3"]
 script = ExtResource("7_vm3kd")
 accuracy = 0.85
-targets_needed = 1
 initiative = 40
 target_validation = ExtResource("8_8fbn8")
 additional_targets = ExtResource("9_juih1")
+damage_policy = SubResource("Resource_6n8jw")

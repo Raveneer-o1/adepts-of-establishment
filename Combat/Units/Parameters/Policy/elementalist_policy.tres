@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bix5hc43n2tpi"]
+
+[ext_resource type="Script" path="res://Combat/Units/Parameters/Policy/Scripts/elementalist_policy.gd" id="1_ien78"]
+
+[resource]
+script = ExtResource("1_ien78")
