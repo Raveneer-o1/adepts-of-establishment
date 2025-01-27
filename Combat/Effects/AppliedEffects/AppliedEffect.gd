@@ -46,11 +46,11 @@ const ICONS = preload("res://Arts/icons.png")
 ## if [code]true[/code], the effect can be applied multiple times
 @export var stackable: bool = false
 
-func _get_description() -> String:
-	return description
-
 ## The unit to which this effect is attached.
 var target_unit: Unit
+
+func _get_description() -> String:
+	return description
 
 ## Called when the effect is applied to a unit.
 func _apply_effect(params: Variant) -> void:

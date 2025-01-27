@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxt0p01rq72n1"]
+
+[ext_resource type="PackedScene" uid="uid://8d3sodh68huv" path="res://Combat/Effects/AppliedEffects/applied_effect.tscn" id="1_gti7b"]
+[ext_resource type="Script" path="res://Combat/Effects/AppliedEffects/Scripts/vampirism.gd" id="2_nf78r"]
+
+[node name="Vampirism" instance=ExtResource("1_gti7b")]
+script = ExtResource("2_nf78r")
+heal = 0.0
+is_percentage = false

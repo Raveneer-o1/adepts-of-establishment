@@ -35,12 +35,15 @@ var unit: Unit
 ## Function with a signature [codeblock](attack: Attack, index: int) -> void [/codeblock]
 ## If present, overrides [method Attack.resolve] and applies to all targets using their indexes
 @export var damage_policy: BasePolicy
-#var damage_policy: Callable
 
 
 ## Dictionary containing elements in the format: <effect_name: String, params: Variant>[br]
 ## This element is passed to the [member Attack.applying_effects]
 @export var applying_effects : Dictionary
+
+## If set, attack will use this effect instead if unit's one
+## @experimental: currently not implemented
+@export var effect_override : Resource
 
 func initialize(u: Unit) -> void:
 	if target_validation == null:

@@ -1,0 +1,206 @@
+[gd_scene load_steps=32 format=3 uid="uid://dvontdt3qn5bj"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_yi6g7"]
+[ext_resource type="Texture2D" uid="uid://cr6r1iucbnk4" path="res://Arts/Heroes/hero06 Dame Seraphine attack 1.png" id="2_vwke8"]
+[ext_resource type="Texture2D" uid="uid://caxos6bj3583s" path="res://Arts/Heroes/hero06 Dame Seraphine attack 2.png" id="3_rr4rt"]
+[ext_resource type="Texture2D" uid="uid://7hfpcesf28fc" path="res://Arts/Heroes/hero06 Dame Seraphine damage .png" id="4_abdk1"]
+[ext_resource type="Texture2D" uid="uid://bo87nycncdbqe" path="res://Arts/Heroes/hero06 Dame Seraphine idle .png" id="5_l622j"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="6_h8vqq"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="7_jf6xl"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="8_u67v8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rdqse"]
+atlas = ExtResource("2_vwke8")
+region = Rect2(0, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdwd2"]
+atlas = ExtResource("2_vwke8")
+region = Rect2(0, 48, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lu430"]
+atlas = ExtResource("2_vwke8")
+region = Rect2(0, 96, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42x8x"]
+atlas = ExtResource("2_vwke8")
+region = Rect2(0, 144, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_avtln"]
+atlas = ExtResource("2_vwke8")
+region = Rect2(0, 192, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5bys"]
+atlas = ExtResource("2_vwke8")
+region = Rect2(0, 240, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kijrd"]
+atlas = ExtResource("3_rr4rt")
+region = Rect2(0, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7fog"]
+atlas = ExtResource("3_rr4rt")
+region = Rect2(0, 48, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yqtfn"]
+atlas = ExtResource("3_rr4rt")
+region = Rect2(0, 96, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8wsn"]
+atlas = ExtResource("3_rr4rt")
+region = Rect2(0, 144, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5qm6u"]
+atlas = ExtResource("3_rr4rt")
+region = Rect2(0, 192, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qg4o1"]
+atlas = ExtResource("3_rr4rt")
+region = Rect2(0, 240, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ruowd"]
+atlas = ExtResource("3_rr4rt")
+region = Rect2(0, 288, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7pwmx"]
+atlas = ExtResource("3_rr4rt")
+region = Rect2(0, 336, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cav7a"]
+atlas = ExtResource("4_abdk1")
+region = Rect2(0, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_neeow"]
+atlas = ExtResource("4_abdk1")
+region = Rect2(0, 48, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hyau7"]
+atlas = ExtResource("4_abdk1")
+region = Rect2(0, 96, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6obv4"]
+atlas = ExtResource("5_l622j")
+region = Rect2(0, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4nvw"]
+atlas = ExtResource("5_l622j")
+region = Rect2(0, 48, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ae1re"]
+atlas = ExtResource("5_l622j")
+region = Rect2(0, 96, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bicml"]
+atlas = ExtResource("5_l622j")
+region = Rect2(0, 144, 64, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k00dn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rdqse")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qdwd2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lu430")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_42x8x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_avtln")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5bys")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kijrd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7fog")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yqtfn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8wsn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5qm6u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qg4o1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ruowd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7pwmx")
+}],
+"loop": false,
+"name": &"attack 2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cav7a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_neeow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hyau7")
+}],
+"loop": false,
+"name": &"damage",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6obv4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4nvw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ae1re")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bicml")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_n8byw"]
+resource_local_to_scene = true
+script = ExtResource("6_h8vqq")
+max_HP = 200
+base_damage = 70
+armor = 20
+
+[node name="Dame Seraphine" instance=ExtResource("1_yi6g7")]
+unit_name = "Dame Seraphine"
+unit_type = "Buffer"
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_k00dn")
+animation = &"attack"
+autoplay = "default"
+offset = Vector2(4, -8)
+frames_to_emit = Array[int]([3])
+
+[node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_n8byw")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("7_jf6xl")
+accuracy = 0.8
+target_validation = ExtResource("8_u67v8")

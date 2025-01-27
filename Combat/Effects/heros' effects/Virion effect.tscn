@@ -1,0 +1,72 @@
+[gd_scene load_steps=12 format=3 uid="uid://bq8uh0qk7hl6c"]
+
+[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/Scenes/abstract_effect.tscn" id="1_iwp7k"]
+[ext_resource type="Texture2D" uid="uid://nnn1uo63wplr" path="res://Arts/Heroes/hero07 Vyrion the Bonebinder effect 2.png" id="2_4faqw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjl86"]
+atlas = ExtResource("2_4faqw")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujdbc"]
+atlas = ExtResource("2_4faqw")
+region = Rect2(0, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_87jpn"]
+atlas = ExtResource("2_4faqw")
+region = Rect2(0, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3tu7"]
+atlas = ExtResource("2_4faqw")
+region = Rect2(0, 96, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8rgt"]
+atlas = ExtResource("2_4faqw")
+region = Rect2(0, 128, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cayus"]
+atlas = ExtResource("2_4faqw")
+region = Rect2(0, 160, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_llxu5"]
+atlas = ExtResource("2_4faqw")
+region = Rect2(0, 192, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rf42"]
+atlas = ExtResource("2_4faqw")
+region = Rect2(0, 224, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2hctp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjl86")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujdbc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_87jpn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a3tu7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d8rgt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cayus")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_llxu5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0rf42")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Effect" instance=ExtResource("1_iwp7k")]
+sprite_frames = SubResource("SpriteFrames_2hctp")
+autoplay = "default"

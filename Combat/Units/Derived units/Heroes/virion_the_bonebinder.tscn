@@ -1,0 +1,233 @@
+[gd_scene load_steps=38 format=3 uid="uid://ctp3i8bj26m10"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_nb6q3"]
+[ext_resource type="Texture2D" uid="uid://bocf8s6wykc5q" path="res://Arts/Heroes/hero07 Vyrion the Bonebinder attack 1.png" id="2_1mpj5"]
+[ext_resource type="Texture2D" uid="uid://kd8pry438clu" path="res://Arts/Heroes/hero07 Vyrion the Bonebinder attack 2.png" id="3_0n66m"]
+[ext_resource type="Texture2D" uid="uid://b2jiipshypbjk" path="res://Arts/Heroes/hero07 Vyrion the Bonebinder damage .png" id="4_afinb"]
+[ext_resource type="Texture2D" uid="uid://ctwwmrflej2gy" path="res://Arts/Heroes/hero07 Vyrion the Bonebinder idle .png" id="5_yxb8a"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="6_koco3"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="7_7rmoy"]
+[ext_resource type="PackedScene" uid="uid://bq8uh0qk7hl6c" path="res://Combat/Effects/heros' effects/Virion effect.tscn" id="7_6870d"]
+[ext_resource type="Resource" uid="uid://bkoge3ibwhgcc" path="res://Combat/Units/Parameters/Validation/standart_mage_validity.tres" id="8_tmdmh"]
+[ext_resource type="Resource" uid="uid://cxvfk7vgegqq2" path="res://Combat/Units/Parameters/Policy/decay_policy.tres" id="9_8kcmf"]
+[ext_resource type="Resource" uid="uid://bhe5cl2bujg8i" path="res://Combat/Units/Parameters/Additional targets/Splash.tres" id="9_xvpum"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yin8g"]
+atlas = ExtResource("2_1mpj5")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2e11o"]
+atlas = ExtResource("2_1mpj5")
+region = Rect2(0, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70j44"]
+atlas = ExtResource("2_1mpj5")
+region = Rect2(0, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmgnr"]
+atlas = ExtResource("2_1mpj5")
+region = Rect2(0, 96, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yrbe3"]
+atlas = ExtResource("2_1mpj5")
+region = Rect2(0, 128, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fp3my"]
+atlas = ExtResource("2_1mpj5")
+region = Rect2(0, 160, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2mgg"]
+atlas = ExtResource("2_1mpj5")
+region = Rect2(0, 192, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4m7vr"]
+atlas = ExtResource("2_1mpj5")
+region = Rect2(0, 224, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xt36"]
+atlas = ExtResource("3_0n66m")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01jms"]
+atlas = ExtResource("3_0n66m")
+region = Rect2(0, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_byn4q"]
+atlas = ExtResource("3_0n66m")
+region = Rect2(0, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fstso"]
+atlas = ExtResource("3_0n66m")
+region = Rect2(0, 96, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ntle"]
+atlas = ExtResource("3_0n66m")
+region = Rect2(0, 128, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8sey"]
+atlas = ExtResource("3_0n66m")
+region = Rect2(0, 160, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_52bo3"]
+atlas = ExtResource("3_0n66m")
+region = Rect2(0, 192, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihb2t"]
+atlas = ExtResource("3_0n66m")
+region = Rect2(0, 224, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3h1ox"]
+atlas = ExtResource("4_afinb")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0mnfv"]
+atlas = ExtResource("4_afinb")
+region = Rect2(0, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmfmv"]
+atlas = ExtResource("4_afinb")
+region = Rect2(0, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3afq1"]
+atlas = ExtResource("4_afinb")
+region = Rect2(0, 96, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1g6m"]
+atlas = ExtResource("5_yxb8a")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oln3n"]
+atlas = ExtResource("5_yxb8a")
+region = Rect2(0, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nsv5"]
+atlas = ExtResource("5_yxb8a")
+region = Rect2(0, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00ut5"]
+atlas = ExtResource("5_yxb8a")
+region = Rect2(0, 96, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3r5h8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yin8g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2e11o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70j44")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmgnr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yrbe3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fp3my")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2mgg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4m7vr")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xt36")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01jms")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_byn4q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fstso")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ntle")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n8sey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_52bo3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ihb2t")
+}],
+"loop": false,
+"name": &"attack 2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3h1ox")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0mnfv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmfmv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3afq1")
+}],
+"loop": false,
+"name": &"damage",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1g6m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oln3n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5nsv5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00ut5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_v77qg"]
+resource_local_to_scene = true
+script = ExtResource("6_koco3")
+max_HP = 170
+base_damage = 50
+armor = 15
+
+[node name="Virion the Bonebinder" instance=ExtResource("1_nb6q3")]
+unit_name = "Virion the Bonebinder"
+unit_type = "Mage"
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_3r5h8")
+animation = &"attack"
+autoplay = "default"
+offset = Vector2(8, 0)
+
+[node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_v77qg")
+attack_effect = ExtResource("7_6870d")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("7_7rmoy")
+type = 3
+accuracy = 0.8
+target_validation = ExtResource("8_tmdmh")
+additional_targets = ExtResource("9_xvpum")
+damage_policy = ExtResource("9_8kcmf")

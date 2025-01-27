@@ -1,0 +1,152 @@
+[gd_scene load_steps=24 format=3 uid="uid://bwjn260vs86xg"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_xhvj6"]
+[ext_resource type="Texture2D" uid="uid://dbecm8j01l7dj" path="res://Arts/Heroes/hero05 Cartographer attack .png" id="2_qo66f"]
+[ext_resource type="Texture2D" uid="uid://de3lbow86bh4u" path="res://Arts/Heroes/hero05 Cartographer damage .png" id="3_f3cfw"]
+[ext_resource type="Texture2D" uid="uid://xweap7fudmkd" path="res://Arts/Heroes/hero05 Cartographer idle .png" id="4_h4dkd"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="5_6hyr2"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_swfn0"]
+[ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standart_archer_validity.tres" id="7_7llxv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfcur"]
+atlas = ExtResource("2_qo66f")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvite"]
+atlas = ExtResource("2_qo66f")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mocf7"]
+atlas = ExtResource("2_qo66f")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5y6dn"]
+atlas = ExtResource("2_qo66f")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vsdxg"]
+atlas = ExtResource("2_qo66f")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tyia"]
+atlas = ExtResource("2_qo66f")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2acw"]
+atlas = ExtResource("3_f3cfw")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2su7o"]
+atlas = ExtResource("3_f3cfw")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enxbj"]
+atlas = ExtResource("3_f3cfw")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v44rs"]
+atlas = ExtResource("3_f3cfw")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0tny"]
+atlas = ExtResource("4_h4dkd")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfe4w"]
+atlas = ExtResource("4_h4dkd")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5uoln"]
+atlas = ExtResource("4_h4dkd")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ur27w"]
+atlas = ExtResource("4_h4dkd")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tb1uy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfcur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvite")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mocf7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5y6dn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vsdxg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tyia")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2acw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2su7o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enxbj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v44rs")
+}],
+"loop": false,
+"name": &"damage",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0tny")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hfe4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5uoln")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ur27w")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_8tokk"]
+resource_local_to_scene = true
+script = ExtResource("5_6hyr2")
+max_HP = 160
+base_damage = 30
+armor = 10
+
+[node name="Cartographer" instance=ExtResource("1_xhvj6")]
+unit_name = "Cartographer"
+unit_type = "Debuffer"
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_tb1uy")
+animation = &"attack"
+autoplay = "default"
+
+[node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_8tokk")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("6_swfn0")
+accuracy = 0.9
+target_validation = ExtResource("7_7llxv")
+applying_effects = {
+"Weakness": [1, 30]
+}

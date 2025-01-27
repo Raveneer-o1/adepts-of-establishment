@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://6lq6f06hma7"]
+[gd_scene load_steps=10 format=3 uid="uid://6lq6f06hma7"]
 
 [ext_resource type="PackedScene" uid="uid://cku7rhe8jn3tx" path="res://Combat/Scenes/combat.tscn" id="1_7nbev"]
 [ext_resource type="PackedScene" uid="uid://dsk1e0o76tdgv" path="res://Combat/Scenes/background.tscn" id="1_q0clm"]
 [ext_resource type="PackedScene" uid="uid://d12hr40jjb8s8" path="res://Combat/Scenes/UnitInfoPanel.tscn" id="1_roecy"]
 [ext_resource type="Texture2D" uid="uid://crcehcwtajbxn" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/MenusBox_34x34.png" id="4_767k7"]
 [ext_resource type="Script" path="res://Combat/Scripts/round_counter.gd" id="5_835jq"]
+[ext_resource type="Script" path="res://Combat/Scripts/miniature_queue_manager.gd" id="5_nndeq"]
 [ext_resource type="PackedScene" uid="uid://5od606rggoqo" path="res://Combat/Scenes/unit_in_queue.tscn" id="5_un8e8"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_accvu"]
@@ -76,6 +77,7 @@ size_flags_stretch_ratio = 0.1
 [node name="Queue" type="HBoxContainer" parent="UI/ParentContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("5_nndeq")
 
 [node name="Unit in queue" parent="UI/ParentContainer/PanelContainer/HBoxContainer/Queue" instance=ExtResource("5_un8e8")]
 layout_mode = 2

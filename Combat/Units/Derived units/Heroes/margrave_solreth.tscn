@@ -1,0 +1,225 @@
+[gd_scene load_steps=36 format=3 uid="uid://cxolsej4vs33v"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_o8yu6"]
+[ext_resource type="Texture2D" uid="uid://dxk5ioi8x8umr" path="res://Arts/Heroes/hero08 Margrave Solreth attack 1.png" id="2_7rq2j"]
+[ext_resource type="Texture2D" uid="uid://cihk1mc3or7kc" path="res://Arts/Heroes/hero08 Margrave Solreth attack 2.png" id="3_3uj6b"]
+[ext_resource type="Texture2D" uid="uid://bp05tg6a70i77" path="res://Arts/Heroes/hero08 Margrave Solreth damage .png" id="4_5iao1"]
+[ext_resource type="Texture2D" uid="uid://c8licg5dq8qfw" path="res://Arts/Heroes/hero08 Margrave Solreth idle.png" id="5_0l5ur"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="6_kkh7t"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="7_xbhph"]
+[ext_resource type="Resource" uid="uid://bkoge3ibwhgcc" path="res://Combat/Units/Parameters/Validation/standart_mage_validity.tres" id="8_rctsb"]
+[ext_resource type="Resource" uid="uid://cejkgjwk05uws" path="res://Combat/Units/Parameters/Additional targets/standart_mage_targets.tres" id="9_7kka3"]
+[ext_resource type="Resource" uid="uid://cxvfk7vgegqq2" path="res://Combat/Units/Parameters/Policy/decay_policy.tres" id="9_jtrqu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ym2s5"]
+atlas = ExtResource("2_7rq2j")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4k0c"]
+atlas = ExtResource("2_7rq2j")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efeqg"]
+atlas = ExtResource("2_7rq2j")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eobeg"]
+atlas = ExtResource("2_7rq2j")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ushy"]
+atlas = ExtResource("2_7rq2j")
+region = Rect2(0, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovfgu"]
+atlas = ExtResource("2_7rq2j")
+region = Rect2(0, 240, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1qag7"]
+atlas = ExtResource("2_7rq2j")
+region = Rect2(0, 288, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usxgx"]
+atlas = ExtResource("3_3uj6b")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_olqfe"]
+atlas = ExtResource("3_3uj6b")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyj34"]
+atlas = ExtResource("3_3uj6b")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blce8"]
+atlas = ExtResource("3_3uj6b")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2k0vq"]
+atlas = ExtResource("3_3uj6b")
+region = Rect2(0, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1uuy"]
+atlas = ExtResource("3_3uj6b")
+region = Rect2(0, 240, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02qfh"]
+atlas = ExtResource("3_3uj6b")
+region = Rect2(0, 288, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x5mg6"]
+atlas = ExtResource("3_3uj6b")
+region = Rect2(0, 336, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nr6e1"]
+atlas = ExtResource("4_5iao1")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxeto"]
+atlas = ExtResource("4_5iao1")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sh08p"]
+atlas = ExtResource("4_5iao1")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dvpjh"]
+atlas = ExtResource("4_5iao1")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_177jl"]
+atlas = ExtResource("5_0l5ur")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_olaln"]
+atlas = ExtResource("5_0l5ur")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8534"]
+atlas = ExtResource("5_0l5ur")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4kfa"]
+atlas = ExtResource("5_0l5ur")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5uwwe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ym2s5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4k0c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efeqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eobeg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ushy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ovfgu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1qag7")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usxgx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_olqfe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dyj34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blce8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2k0vq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1uuy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_02qfh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x5mg6")
+}],
+"loop": false,
+"name": &"attack 2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nr6e1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qxeto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sh08p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dvpjh")
+}],
+"loop": false,
+"name": &"damage",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_177jl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_olaln")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y8534")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4kfa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_l7e88"]
+resource_local_to_scene = true
+script = ExtResource("6_kkh7t")
+max_HP = 180
+base_damage = 40
+armor = 10
+
+[node name="Margrave Solreth" instance=ExtResource("1_o8yu6")]
+unit_name = "Margrave Solreth"
+unit_type = "Mage"
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_5uwwe")
+animation = &"damage"
+autoplay = "default"
+offset = Vector2(8, -8)
+
+[node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_l7e88")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("7_xbhph")
+type = 3
+accuracy = 0.8
+initiative = 30
+target_validation = ExtResource("8_rctsb")
+additional_targets = ExtResource("9_7kka3")
+damage_policy = ExtResource("9_jtrqu")

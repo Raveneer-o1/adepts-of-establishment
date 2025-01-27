@@ -47,9 +47,9 @@ func _get_description() -> String:
 # Reduces the number of remaining turns and removes the effect when expired
 func count_turn(unit: Unit) -> void:
 	if unit == target_unit:
+		turns -= 1
 		if turns <= 0:
 			lift_effect()
-		turns -= 1
 
 # Applies the parameter modifier to the target unit
 func apply_modifier() -> void:

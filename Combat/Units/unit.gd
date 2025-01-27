@@ -173,15 +173,21 @@ func finalize_all_attacks(_unit: Unit) -> void:
 func finalize_attack() -> void:
 	if taking_damage_attacks.size() == 0:
 		return
+	
 	var chance: float = randf()
 	var attack_to_finalize: Attack = taking_damage_attacks.pop_front()
+	
 	if attack_to_finalize.accuracy < chance:
 		system.display_text_near_unit(self, "Miss!")
 		return
 	
 	if not attack_to_finalize.applying_effects.is_empty():
 		for effect_name: String in attack_to_finalize.applying_effects:
-			parameters.apply_effect(effect_name, attack_to_finalize.applying_effects[effect_name])
+			parameters.apply_effect(
+				effect_name.to_lower(),
+				attack_to_finalize.applying_effects[effect_name]
+			)
+	
 	take_damage(attack_to_finalize.damage)
 
 

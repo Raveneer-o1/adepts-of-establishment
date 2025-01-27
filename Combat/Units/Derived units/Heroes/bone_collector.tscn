@@ -1,0 +1,160 @@
+[gd_scene load_steps=25 format=3 uid="uid://c2fjkfqrs2cm6"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_c6arl"]
+[ext_resource type="Texture2D" uid="uid://cceo0jjxc4gm5" path="res://Arts/Heroes/h10 bone collector attack 1.png" id="2_fsc52"]
+[ext_resource type="Texture2D" uid="uid://bwpowb6ptdikn" path="res://Arts/Heroes/h10 bone collector damage .png" id="3_cjjn3"]
+[ext_resource type="Texture2D" uid="uid://dxsrrxta6mpre" path="res://Arts/Heroes/h10 bone collector idle.png" id="4_wxthc"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="5_wie3s"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_pympk"]
+[ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standart_archer_validity.tres" id="7_0mn26"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yggjw"]
+atlas = ExtResource("2_fsc52")
+region = Rect2(0, 0, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nleor"]
+atlas = ExtResource("2_fsc52")
+region = Rect2(0, 40, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f52x8"]
+atlas = ExtResource("2_fsc52")
+region = Rect2(0, 80, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skh16"]
+atlas = ExtResource("2_fsc52")
+region = Rect2(0, 120, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2oo4"]
+atlas = ExtResource("2_fsc52")
+region = Rect2(0, 160, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0agk"]
+atlas = ExtResource("2_fsc52")
+region = Rect2(0, 200, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctpxw"]
+atlas = ExtResource("2_fsc52")
+region = Rect2(0, 240, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_slm8k"]
+atlas = ExtResource("3_cjjn3")
+region = Rect2(0, 0, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cxoy"]
+atlas = ExtResource("3_cjjn3")
+region = Rect2(0, 40, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_guub0"]
+atlas = ExtResource("3_cjjn3")
+region = Rect2(0, 80, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dwtf8"]
+atlas = ExtResource("3_cjjn3")
+region = Rect2(0, 120, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogo5a"]
+atlas = ExtResource("4_wxthc")
+region = Rect2(0, 0, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwyaq"]
+atlas = ExtResource("4_wxthc")
+region = Rect2(0, 40, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34nhw"]
+atlas = ExtResource("4_wxthc")
+region = Rect2(0, 80, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpdpa"]
+atlas = ExtResource("4_wxthc")
+region = Rect2(0, 120, 32, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vr70o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yggjw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nleor")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f52x8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skh16")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j2oo4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b0agk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ctpxw")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_slm8k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cxoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_guub0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dwtf8")
+}],
+"loop": false,
+"name": &"damage",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ogo5a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwyaq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34nhw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dpdpa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_n2wbm"]
+resource_local_to_scene = true
+script = ExtResource("5_wie3s")
+max_HP = 100
+base_damage = 30
+armor = 0
+
+[node name="Bone collector" instance=ExtResource("1_c6arl")]
+unit_name = "Bone collector"
+unit_type = "Defender"
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_vr70o")
+animation = &"attack"
+autoplay = "default"
+
+[node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_n2wbm")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("6_pympk")
+accuracy = 0.83
+target_validation = ExtResource("7_0mn26")
+applying_effects = {
+"vulnerability": [1, 15],
+"weakness": [1, 15]
+}

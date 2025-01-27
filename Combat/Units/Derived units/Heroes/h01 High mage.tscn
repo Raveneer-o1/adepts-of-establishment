@@ -1,13 +1,15 @@
-[gd_scene load_steps=43 format=3 uid="uid://cos1cyc0tyf7o"]
+[gd_scene load_steps=46 format=3 uid="uid://cos1cyc0tyf7o"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_lmg0p"]
 [ext_resource type="Texture2D" uid="uid://b836nulehlavk" path="res://Arts/Heroes/hero04 High Mage Elren attack 1.png" id="2_o7eds"]
-[ext_resource type="Script" path="res://Combat/Units/unit.gd" id="2_qmnfl"]
 [ext_resource type="Texture2D" uid="uid://dt3qt0q4lmg54" path="res://Arts/Heroes/hero04 High Mage Elren attack 2.png" id="3_ursxe"]
 [ext_resource type="Texture2D" uid="uid://der885d8lwigi" path="res://Arts/Heroes/hero04 High Mage Elren damage .png" id="4_r6bu8"]
 [ext_resource type="Texture2D" uid="uid://b562lsf0jlsdl" path="res://Arts/Heroes/hero04 High Mage Elren idle .png" id="5_dah8h"]
-[ext_resource type="Script" path="res://Combat/Units/unit_parameters.gd" id="6_l70wi"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="6_hmegk"]
 [ext_resource type="PackedScene" uid="uid://cl66orf67rhdo" path="res://Combat/Effects/heros' effects/hero04 High Mage Elren effect 2.tscn" id="7_paagi"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="8_4d416"]
+[ext_resource type="Resource" uid="uid://bkoge3ibwhgcc" path="res://Combat/Units/Parameters/Validation/standart_mage_validity.tres" id="9_r2leh"]
+[ext_resource type="Resource" uid="uid://cejkgjwk05uws" path="res://Combat/Units/Parameters/Additional targets/standart_mage_targets.tres" id="10_6udbe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_38a4b"]
 atlas = ExtResource("2_o7eds")
@@ -263,8 +265,14 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_pj4um"]
+resource_local_to_scene = true
+script = ExtResource("6_hmegk")
+max_HP = 150
+base_damage = 30
+armor = 30
+
 [node name="Unit" instance=ExtResource("1_lmg0p")]
-script = ExtResource("2_qmnfl")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_6bfke")
@@ -273,7 +281,10 @@ autoplay = "default"
 offset = Vector2(8, -8)
 
 [node name="UnitParameters" parent="." index="1"]
-script = ExtResource("6_l70wi")
+base_paramaters = SubResource("Resource_pj4um")
 attack_effect = ExtResource("7_paagi")
-max_hp = 150
-base_damage = 60
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("8_4d416")
+target_validation = ExtResource("9_r2leh")
+additional_targets = ExtResource("10_6udbe")

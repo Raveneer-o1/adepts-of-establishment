@@ -1,0 +1,207 @@
+[gd_scene load_steps=32 format=3 uid="uid://bhrcgy3b0vr1s"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_br7ob"]
+[ext_resource type="Texture2D" uid="uid://dxe24e6ocp7vk" path="res://Arts/Heroes/hero 01 knight attack 1.png" id="2_tfchj"]
+[ext_resource type="Texture2D" uid="uid://bhya4kf1jrlmi" path="res://Arts/Heroes/hero 01 knight attack 2.png" id="3_vu454"]
+[ext_resource type="Texture2D" uid="uid://cl2te52p8xso2" path="res://Arts/Heroes/hero 01 knight damage .png" id="4_gjloy"]
+[ext_resource type="Texture2D" uid="uid://ng677gof7760" path="res://Arts/Heroes/hero 01 knight idle .png" id="5_gjlee"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="6_vct83"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="7_k34lf"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="8_m7gsw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gd3l"]
+atlas = ExtResource("2_tfchj")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p503d"]
+atlas = ExtResource("2_tfchj")
+region = Rect2(0, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ettj7"]
+atlas = ExtResource("2_tfchj")
+region = Rect2(0, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ygsks"]
+atlas = ExtResource("2_tfchj")
+region = Rect2(0, 96, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36qo2"]
+atlas = ExtResource("2_tfchj")
+region = Rect2(0, 128, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1rqd"]
+atlas = ExtResource("2_tfchj")
+region = Rect2(0, 160, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnb52"]
+atlas = ExtResource("3_vu454")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iu7pq"]
+atlas = ExtResource("3_vu454")
+region = Rect2(0, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swkka"]
+atlas = ExtResource("3_vu454")
+region = Rect2(0, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2saw"]
+atlas = ExtResource("3_vu454")
+region = Rect2(0, 96, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6m3o"]
+atlas = ExtResource("3_vu454")
+region = Rect2(0, 128, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enri4"]
+atlas = ExtResource("3_vu454")
+region = Rect2(0, 160, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpers"]
+atlas = ExtResource("3_vu454")
+region = Rect2(0, 192, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbe0d"]
+atlas = ExtResource("4_gjloy")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74ka8"]
+atlas = ExtResource("4_gjloy")
+region = Rect2(0, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efc48"]
+atlas = ExtResource("4_gjloy")
+region = Rect2(0, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8kprv"]
+atlas = ExtResource("4_gjloy")
+region = Rect2(0, 96, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_irhwe"]
+atlas = ExtResource("5_gjlee")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wuyfc"]
+atlas = ExtResource("5_gjlee")
+region = Rect2(0, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtk0l"]
+atlas = ExtResource("5_gjlee")
+region = Rect2(0, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8057e"]
+atlas = ExtResource("5_gjlee")
+region = Rect2(0, 96, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6f5fm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gd3l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p503d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ettj7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ygsks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36qo2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1rqd")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnb52")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iu7pq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swkka")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2saw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6m3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enri4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpers")
+}],
+"loop": true,
+"name": &"attack 2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wbe0d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74ka8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efc48")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8kprv")
+}],
+"loop": false,
+"name": &"damage",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_irhwe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wuyfc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wtk0l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8057e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_yemuq"]
+resource_local_to_scene = true
+script = ExtResource("6_vct83")
+max_HP = 200
+base_damage = 70
+armor = 65
+
+[node name="Knight Champion" instance=ExtResource("1_br7ob")]
+unit_name = "Knight Champion"
+unit_type = "Defender"
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_6f5fm")
+animation = &"attack"
+autoplay = "default"
+offset = Vector2(8, 0)
+frames_to_emit = Array[int]([3])
+
+[node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_yemuq")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("7_k34lf")
+accuracy = 0.8
+initiative = 40
+target_validation = ExtResource("8_m7gsw")

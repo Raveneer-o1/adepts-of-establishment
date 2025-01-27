@@ -1,0 +1,234 @@
+[gd_scene load_steps=36 format=3 uid="uid://bqmd4lhcfncsf"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_cdjp6"]
+[ext_resource type="Texture2D" uid="uid://bjr6ekmoqjnny" path="res://Arts/Heroes/hero03 sir Roland attack 1.png" id="2_3r6cw"]
+[ext_resource type="Texture2D" uid="uid://cs58ot66koqba" path="res://Arts/Heroes/hero03 sir Roland attack 2.png" id="3_t1ub2"]
+[ext_resource type="Texture2D" uid="uid://deivs8xkveiop" path="res://Arts/Heroes/hero03 sir Roland damage .png" id="4_2jnrb"]
+[ext_resource type="Texture2D" uid="uid://dyhtqrb5im3j4" path="res://Arts/Heroes/hero03 sir Roland idle .png" id="5_nwgex"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="6_0f6sr"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="7_6a8eq"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="8_oo0s2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lw61y"]
+atlas = ExtResource("2_3r6cw")
+region = Rect2(0, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qcwl5"]
+atlas = ExtResource("2_3r6cw")
+region = Rect2(0, 48, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pcrfg"]
+atlas = ExtResource("2_3r6cw")
+region = Rect2(0, 96, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tuw0l"]
+atlas = ExtResource("2_3r6cw")
+region = Rect2(0, 144, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4uyov"]
+atlas = ExtResource("2_3r6cw")
+region = Rect2(0, 192, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqtv7"]
+atlas = ExtResource("2_3r6cw")
+region = Rect2(0, 240, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7p26"]
+atlas = ExtResource("2_3r6cw")
+region = Rect2(0, 288, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h8mvn"]
+atlas = ExtResource("2_3r6cw")
+region = Rect2(0, 336, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_edr27"]
+atlas = ExtResource("2_3r6cw")
+region = Rect2(0, 384, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujja5"]
+atlas = ExtResource("2_3r6cw")
+region = Rect2(0, 432, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcnsu"]
+atlas = ExtResource("3_t1ub2")
+region = Rect2(0, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etfkc"]
+atlas = ExtResource("3_t1ub2")
+region = Rect2(0, 48, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cskf4"]
+atlas = ExtResource("3_t1ub2")
+region = Rect2(0, 96, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibjr2"]
+atlas = ExtResource("3_t1ub2")
+region = Rect2(0, 144, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17vtv"]
+atlas = ExtResource("3_t1ub2")
+region = Rect2(0, 192, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqx41"]
+atlas = ExtResource("3_t1ub2")
+region = Rect2(0, 240, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3k8g"]
+atlas = ExtResource("3_t1ub2")
+region = Rect2(0, 288, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6oer"]
+atlas = ExtResource("3_t1ub2")
+region = Rect2(0, 336, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmj34"]
+atlas = ExtResource("4_2jnrb")
+region = Rect2(0, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lsorh"]
+atlas = ExtResource("4_2jnrb")
+region = Rect2(0, 48, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epvx8"]
+atlas = ExtResource("4_2jnrb")
+region = Rect2(0, 96, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e11he"]
+atlas = ExtResource("5_nwgex")
+region = Rect2(0, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_synd6"]
+atlas = ExtResource("5_nwgex")
+region = Rect2(0, 48, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6h5ct"]
+atlas = ExtResource("5_nwgex")
+region = Rect2(0, 96, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_edlyb"]
+atlas = ExtResource("5_nwgex")
+region = Rect2(0, 144, 64, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y22yd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lw61y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qcwl5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pcrfg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tuw0l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4uyov")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sqtv7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7p26")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h8mvn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_edr27")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujja5")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fcnsu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_etfkc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cskf4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibjr2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_17vtv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqx41")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3k8g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6oer")
+}],
+"loop": false,
+"name": &"attack 2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmj34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lsorh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epvx8")
+}],
+"loop": false,
+"name": &"damage",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e11he")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_synd6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6h5ct")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_edlyb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_2g4wq"]
+resource_local_to_scene = true
+script = ExtResource("6_0f6sr")
+max_HP = 200
+base_damage = 60
+armor = 40
+
+[node name="Sir Roland" instance=ExtResource("1_cdjp6")]
+unit_name = "Sir Roland"
+unit_type = "Defender"
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_y22yd")
+animation = &"attack"
+autoplay = "default"
+offset = Vector2(16, -8)
+frames_to_emit = Array[int]([3])
+
+[node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_2g4wq")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("7_6a8eq")
+accuracy = 0.8
+target_validation = ExtResource("8_oo0s2")

@@ -370,7 +370,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 2
+current_tab = 3
 
 [node name="Humans" type="TabContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer"]
 visible = false
@@ -1045,6 +1045,7 @@ unit_name = "Dracolich"
 path = "res://Combat/Units/Derived units/Undead/u33_Dracolich.tscn"
 
 [node name="Neutral" type="TabContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer"]
+visible = false
 layout_mode = 2
 current_tab = 0
 metadata/_tab_index = 2
@@ -1102,6 +1103,72 @@ path = "res://Combat/Units/Derived units/Neutral/thief.tscn"
 layout_mode = 2
 unit_name = "Rogue"
 path = "res://Combat/Units/Derived units/Neutral/rogue.tscn"
+
+[node name="Heroes" type="TabContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer"]
+layout_mode = 2
+current_tab = 0
+metadata/_tab_index = 3
+
+[node name="Empire" type="GridContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Heroes"]
+layout_mode = 2
+columns = 2
+metadata/_tab_index = 0
+
+[node name="Thymaël Doux" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Heroes/Empire" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Thymaël Doux"
+path = "res://Combat/Units/Derived units/Heroes/h02 thymaël_doux.tscn"
+
+[node name="High mage" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Heroes/Empire" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "High mage"
+path = "res://Combat/Units/Derived units/Heroes/h01 High mage.tscn"
+
+[node name="cartographer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Heroes/Empire" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Cartographer"
+path = "res://Combat/Units/Derived units/Heroes/cartographer.tscn"
+
+[node name="knight_champion" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Heroes/Empire" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Knight Champion"
+path = "res://Combat/Units/Derived units/Heroes/knight_champion.tscn"
+
+[node name="sir_roland" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Heroes/Empire" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Sir Roland"
+path = "res://Combat/Units/Derived units/Heroes/sir_roland.tscn"
+
+[node name="Undead" type="GridContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Heroes"]
+visible = false
+layout_mode = 2
+columns = 2
+metadata/_tab_index = 1
+
+[node name="bone_collector" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Heroes/Undead" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Bone Collector"
+path = "res://Combat/Units/Derived units/Heroes/bone_collector.tscn"
+
+[node name="dame_seraphine" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Heroes/Undead" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Dame Seraphine"
+path = "res://Combat/Units/Derived units/Heroes/dame_seraphine.tscn"
+
+[node name="grave_whisperer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Heroes/Undead" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Grave Whisperer"
+path = "res://Combat/Units/Derived units/Heroes/grave_whisperer.tscn"
+
+[node name="margrave_solreth" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Heroes/Undead" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Margrave Solreth"
+path = "res://Combat/Units/Derived units/Heroes/margrave_solreth.tscn"
+
+[node name="virion_the_bonebinder" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Heroes/Undead" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Virion The Bonebinder"
+path = "res://Combat/Units/Derived units/Heroes/virion_the_bonebinder.tscn"
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4"]
 visible = false
