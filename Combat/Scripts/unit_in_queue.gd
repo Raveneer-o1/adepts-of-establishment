@@ -1,6 +1,8 @@
 extends PanelContainer
 class_name UnitInQueue
 
+#@onready var player: AnimationPlayer = $AnimationPlayer
+
 var combat_system: CombatSystem
 
 var unit: Unit
@@ -18,13 +20,23 @@ func _ready() -> void:
 		set_text()
 	else :
 		print_debug("Unit is not assigned")
+		get_parent().queue_free()
 
 const LARGE_SCALE = Vector2(1.2, 1.2)
 const NORMAL_SCALE = Vector2(1.0, 1.0)
 const CUSTOM_MINIMUM = Vector2(65, 0)
 
+var queue: MiniatureQueueManager
+
+func pause_animation() -> void:
+	$AnimationPlayer.pause()
+
+func animate_enter() -> void:
+	$AnimationPlayer.active = true
+	$AnimationPlayer.play(&"queue_enter_animation")
+
 func animate_exit() -> void:
-	$AnimationPlayer.play("queue_exit_animation")
+	$AnimationPlayer.play(&"queue_exit_animation")
 
 func _on_mouse_entered() -> void:
 	unit.spot.area_2d._on_mouse_entered()
@@ -39,4 +51,7 @@ func _on_gui_input(event: InputEvent) -> void:
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name != &"queue_exit_animation":
+		return
+	queue.add_new_miniature()
 	get_parent().queue_free()
