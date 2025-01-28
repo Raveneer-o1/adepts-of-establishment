@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3un77vow5alb"]
+
+[ext_resource type="PackedScene" uid="uid://8d3sodh68huv" path="res://Combat/Effects/AppliedEffects/applied_effect.tscn" id="1_tc7lb"]
+[ext_resource type="Script" path="res://Combat/Effects/AppliedEffects/Scripts/buff_on_effect_lift.gd" id="2_acfjl"]
+
+[node name="BuffOnEffectLift" instance=ExtResource("1_tc7lb")]
+script = ExtResource("2_acfjl")
+parameter_to_buff = "Attack"
+buff_strength = 0
+buff_multiplier = 1.1
+buff_turns = 1
+text_to_display = "Rallied!"
+color_start = Color(0, 0.616, 0.88, 1)
+effect_name = "Rally"
+icon_index = 9
+description = "Whenever an effect is lifted from an ally unit, increse that unit's %s"

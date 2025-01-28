@@ -25,6 +25,7 @@ func check_trigger(attack: Attack) -> void:
 		return
 	
 	target_unit.take_direct_damage(damage, message_trigger, color_effect)
+	lift_effect()
 
 ## Called when the effect is applied to a unit.
 func _apply_effect(params: Variant) -> void:

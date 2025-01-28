@@ -1,10 +1,14 @@
-[gd_scene load_steps=19 format=3 uid="uid://duh7llp4hbfkx"]
+[gd_scene load_steps=24 format=3 uid="uid://duh7llp4hbfkx"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_insub"]
 [ext_resource type="Texture2D" uid="uid://cmrf645nra8gi" path="res://Arts/Empire units/Arcanist attack  (1).png" id="2_plg4p"]
 [ext_resource type="Texture2D" uid="uid://c3pr3mcfkkuja" path="res://Arts/Empire units/Arcanist idle .png" id="3_50umb"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_aurst"]
 [ext_resource type="PackedScene" uid="uid://7xdms7uje677" path="res://Combat/Effects/Scenes/strong_lightning.tscn" id="5_ugj4y"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_vhgmw"]
+[ext_resource type="Resource" uid="uid://bkoge3ibwhgcc" path="res://Combat/Units/Parameters/Validation/standart_mage_validity.tres" id="7_vengn"]
+[ext_resource type="Resource" uid="uid://cejkgjwk05uws" path="res://Combat/Units/Parameters/Additional targets/standart_mage_targets.tres" id="8_bdu3l"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/Policy/Scripts/decay_policy.gd" id="9_mfdws"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ahtw0"]
 atlas = ExtResource("2_plg4p")
@@ -99,9 +103,14 @@ animations = [{
 [sub_resource type="Resource" id="Resource_pkonn"]
 resource_local_to_scene = true
 script = ExtResource("4_aurst")
-max_HP = 100
-base_damage = 30
-armor = 0
+max_HP = 220
+base_damage = 80
+armor = 35
+
+[sub_resource type="Resource" id="Resource_qbj8a"]
+resource_local_to_scene = true
+script = ExtResource("9_mfdws")
+decay_rate = 0.55
 
 [node name="Arcanist" instance=ExtResource("1_insub")]
 unit_name = "Arcanist"
@@ -115,5 +124,17 @@ autoplay = "default"
 offset = Vector2(0, -8)
 
 [node name="UnitParameters" parent="." index="1"]
+level = 5
 base_paramaters = SubResource("Resource_pkonn")
 attack_effect = ExtResource("5_ugj4y")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("6_vhgmw")
+type = 1
+accuracy = 0.85
+target_validation = ExtResource("7_vengn")
+additional_targets = ExtResource("8_bdu3l")
+damage_policy = SubResource("Resource_qbj8a")
+applying_effects = {
+"electrified": [3, 18]
+}

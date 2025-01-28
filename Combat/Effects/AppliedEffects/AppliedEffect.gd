@@ -1,13 +1,17 @@
 extends Node
 class_name AppliedEffect
 
+## Abstract class for effects, applied to a unit, such as buffs or abilities.
+## Designed to be modular and self-contained, with automatic cleanup once the effect ends.
+
+## If [code]false[/code], [method lift_effect] doesn't lift the effect.
+## Note that you can still remove the effect with [code]queue_free()[/code]
+@export var liftable: bool = true
+
 @export var color_start: Color = Color.BURLYWOOD
 @export var color_effect: Color = Color.YELLOW
 @export var color_end: Color = Color.WHITE
 
-
-## Base class for all unit effects.
-## Designed to be modular and self-contained, with automatic cleanup once the effect ends.
 
 const ICONS = preload("res://Arts/icons.png")
 
@@ -62,7 +66,9 @@ func _apply_effect(params: Variant) -> void:
 ## If you need to remove effect without emitting the signal (e.g. when a unit dies),
 ## just remove the node with [code]queue_free()[/code].
 func lift_effect() -> void:
-	#print_debug("Effect on %s is being lifted." % target_unit.unit_name)
+	if not liftable:
+		return
+	
 	EventBus.effect_lifted.emit(self)
 	_remove_effect()
 	queue_free()
@@ -72,7 +78,7 @@ func lift_effect() -> void:
 func _remove_effect() -> void:
 	pass
 
-# Called when this node is added to a unit. Automatically applies the effect.
+## Called when this node is added to a unit. Automatically applies the effect.
 func initialize(params: Variant = null) -> void:
 	target_unit = (get_parent() as UnitParameters).parent_unit
 	if target_unit == null:

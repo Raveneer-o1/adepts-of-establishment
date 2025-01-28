@@ -17,6 +17,8 @@ const STANDART_FRACTIONAL_DAMAGE_DEVIATION = 0.1
 
 @export var base_paramaters: BaseParameters
 
+@export var evasion: float = .02
+
 var attacks: Array[UnitAttack] = []
 
 @export var large_unit: bool = false

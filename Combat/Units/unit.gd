@@ -181,6 +181,14 @@ func finalize_attack() -> void:
 		system.display_text_near_unit(self, "Miss!")
 		return
 	
+	# recalculate random number to remove any numerical connection with accuracy
+	chance = randf()
+	
+	if parameters.evasion > chance:
+		EventBus.attack_evaded.emit(self, attack_to_finalize)
+		system.display_text_near_unit(self, "Evaded!")
+		return
+	
 	if not attack_to_finalize.applying_effects.is_empty():
 		for effect_name: String in attack_to_finalize.applying_effects:
 			parameters.apply_effect(

@@ -1,0 +1,100 @@
+[gd_scene load_steps=16 format=3 uid="uid://thxi4t5byubf"]
+
+[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/Scenes/abstract_effect.tscn" id="1_k2cjn"]
+[ext_resource type="Texture2D" uid="uid://bgupyknuy3vci" path="res://Arts/Heroes/h10 bone collector effect .png" id="2_c3ank"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpsnm"]
+atlas = ExtResource("2_c3ank")
+region = Rect2(0, 0, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86o60"]
+atlas = ExtResource("2_c3ank")
+region = Rect2(0, 40, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gud5g"]
+atlas = ExtResource("2_c3ank")
+region = Rect2(0, 80, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ci715"]
+atlas = ExtResource("2_c3ank")
+region = Rect2(0, 120, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hoi1y"]
+atlas = ExtResource("2_c3ank")
+region = Rect2(0, 160, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fa1ap"]
+atlas = ExtResource("2_c3ank")
+region = Rect2(0, 200, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enr1h"]
+atlas = ExtResource("2_c3ank")
+region = Rect2(0, 240, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4f84"]
+atlas = ExtResource("2_c3ank")
+region = Rect2(0, 280, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hm2mq"]
+atlas = ExtResource("2_c3ank")
+region = Rect2(0, 320, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yl5ys"]
+atlas = ExtResource("2_c3ank")
+region = Rect2(0, 360, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3y4i3"]
+atlas = ExtResource("2_c3ank")
+region = Rect2(0, 400, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftng2"]
+atlas = ExtResource("2_c3ank")
+region = Rect2(0, 440, 32, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0wegb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpsnm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_86o60")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gud5g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ci715")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hoi1y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fa1ap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enr1h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4f84")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hm2mq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yl5ys")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3y4i3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ftng2")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Effect" instance=ExtResource("1_k2cjn")]
+sprite_frames = SubResource("SpriteFrames_0wegb")
+autoplay = "default"

@@ -1,10 +1,13 @@
-[gd_scene load_steps=20 format=3 uid="uid://d2d0dy4l6eowh"]
+[gd_scene load_steps=23 format=3 uid="uid://d2d0dy4l6eowh"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_kms13"]
 [ext_resource type="Texture2D" uid="uid://7vo4wp37oy6k" path="res://Arts/Empire units/assassin attack .png" id="2_2bipl"]
 [ext_resource type="Texture2D" uid="uid://bsv5gcue6nrx0" path="res://Arts/Empire units/assassin idle .png" id="3_bgwsp"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_2iua4"]
 [ext_resource type="PackedScene" uid="uid://b3gssbgpd05vu" path="res://Combat/Effects/Scenes/assassin_clone.tscn" id="4_h3kiw"]
+[ext_resource type="PackedScene" uid="uid://drten8s54cfdq" path="res://Combat/Effects/AppliedEffects/Scenes/agility.tscn" id="6_nkknn"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="7_gd61f"]
+[ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standart_archer_validity.tres" id="8_vc7xq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eixpf"]
 atlas = ExtResource("2_2bipl")
@@ -124,3 +127,25 @@ frames_to_emit = Array[int]([4])
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_jc1gh")
 attack_effect = ExtResource("4_h3kiw")
+
+[node name="Agility" parent="UnitParameters" index="1" instance=ExtResource("6_nkknn")]
+buff = 1.1
+description = "When this unit evades an attack, it's damage increases by %d"
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+script = ExtResource("7_gd61f")
+accuracy = 0.85
+initiative = 50
+target_validation = ExtResource("8_vc7xq")
+applying_effects = {
+"Poison": [15, 3]
+}
+
+[node name="UnitAttack2" type="Node" parent="UnitParameters" index="3"]
+script = ExtResource("7_gd61f")
+accuracy = 0.85
+initiative = 50
+target_validation = ExtResource("8_vc7xq")
+applying_effects = {
+"Poison": [20, 2]
+}
