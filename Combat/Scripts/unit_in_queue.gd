@@ -21,6 +21,11 @@ func _ready() -> void:
 	else :
 		print_debug("Unit is not assigned")
 		get_parent().queue_free()
+	
+	if disable_player:
+		$AnimationPlayer.active = false
+		(get_parent() as Control).custom_minimum_size = Vector2.ZERO
+		(get_parent() as Control).size.x = 0
 
 const LARGE_SCALE = Vector2(1.2, 1.2)
 const NORMAL_SCALE = Vector2(1.0, 1.0)
@@ -28,12 +33,15 @@ const CUSTOM_MINIMUM = Vector2(65, 0)
 
 var queue: MiniatureQueueManager
 
+var disable_player: bool = true
+
 func pause_animation() -> void:
 	$AnimationPlayer.pause()
 
 func animate_enter() -> void:
 	$AnimationPlayer.active = true
 	$AnimationPlayer.play(&"queue_enter_animation")
+	disable_player = false
 
 func animate_exit() -> void:
 	$AnimationPlayer.play(&"queue_exit_animation")
