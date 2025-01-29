@@ -175,6 +175,9 @@ func start_attacking_chosen_targets() -> void:
 
 #region UI utilities
 
+func remove_miniature(atk: UnitAttack) -> void:
+	miniature_queue_manager.remove_miniature(atk)
+
 func clear_nearest_miniature() -> void:
 	miniature_queue_manager.clear_nearest_miniature()
 

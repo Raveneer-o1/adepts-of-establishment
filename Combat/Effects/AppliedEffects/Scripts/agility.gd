@@ -4,9 +4,12 @@ extends AppliedEffect
 @export var turns: int = 2
 
 func _get_description() -> String:
-	return description % \
-			(round((buff - 1.0) * 100) if buff > 1.0 \
+	#print(description)
+	var percent: int = (round((buff - 1.0) * 100) if buff > 1.0 \
 			else 0)
+	#print(percent)
+	return description % percent
+			
 
 
 func trigger_effect(unit: Unit, attack: Attack) -> void:

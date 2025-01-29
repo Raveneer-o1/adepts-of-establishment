@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4vacv0yatrlg"]
+
+[ext_resource type="PackedScene" uid="uid://8d3sodh68huv" path="res://Combat/Effects/AppliedEffects/applied_effect.tscn" id="1_qx0uu"]
+[ext_resource type="Script" path="res://Combat/Effects/AppliedEffects/Scripts/assistance.gd" id="2_uqyki"]
+
+[node name="Assistance" instance=ExtResource("1_qx0uu")]
+script = ExtResource("2_uqyki")
+chance = 0.5
+effect_name = "Assistance"
+icon_index = 14
+description = "When another ally attacks, this unis has a %d%% chance of attacking the same target (unit uses its closest attack)"

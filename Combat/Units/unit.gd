@@ -236,13 +236,18 @@ func finish_attacking() -> void:
 	EventBus.attack_animation_finished.emit(self)
 
 
+## Set to false whe you need to scip next call of [method set_next_attack]
+var attack_setting: bool = true
+
 ## Assigns next current_attack if possible
 func set_next_attack() -> void:
-	#print("===")
+	if not attack_setting:
+		attack_setting = true
+		return
+	
 	current_attack = null
 	if attacks_for_this_round.size() > 0:
 		current_attack = attacks_for_this_round.pop_front()
-		#print(current_attack.damage_multiplier)
 
 
 ## Clears chosen targets for the unit if it matches the provided unit.
@@ -269,6 +274,71 @@ func arrange_attacks_and_set_next() -> void:
 
 #region Combat actions
 
+## Forces a unit to perform the specified [param attack] on [param target],
+## bypassing target validation and the normal attack order.[br][br]
+## If [param native_attack] is set to [code]true[/code]:[br]
+## * The unit will only attack if [param attack] is one of its own attacks.[br]
+## * [param attack] is removed from the attack queue.[br]
+## * If [param attack] is [code]null[/code], the unit uses its closest available attack, if any.[br][br]
+## If [param native_attack] is set to [code]false[/code], the attack is performed "out of nowhere,"
+## meaning it is not removed from any unit's list and is not removed from the queue.
+## If [param attack] is [code]null[/code], the unit uses a copy of its closest available attack.
+func force_attack(target: Unit, native_attack: bool = true, attack: UnitAttack = null) -> void:
+	if native_attack:
+		if attack == null:
+			attack = current_attack
+		if attack == null or \
+				not \
+				( \
+				attacks_for_this_round.has(attack) or \
+				current_attack == attack \
+				):
+			return
+		
+		var atk: Attack = create_attack(attack, [target.spot])
+		
+		animation_handle.play_attack_animation()
+		system.combat_logic.book_damage(atk)
+		system.combat_logic.remove_attack_from_queue(attack)
+	else:
+		# if not native_attack
+		if attack == null:
+			attack = current_attack
+		if attack == null:
+			return
+		
+		var atk: Attack = create_attack(attack, [target.spot])
+		
+		animation_handle.play_attack_animation()
+		system.combat_logic.book_damage(atk)
+		
+		# set flag to skip set_next_attack() when the attack is finished
+		attack_setting = false
+
+## Creates an [Attack] object and returns it
+func create_attack(unit_attack, targets: Array[UnitSpot]) -> Attack:
+	#var targets : Array[UnitSpot] = [target]
+	if unit_attack.additional_targets:
+		targets.append_array(
+			unit_attack.additional_targets.\
+				find_additional_targets(self, targets)
+		)
+	
+	var attack: Attack = Attack.new(
+		self, targets,
+		parameters.get_actual_damage(unit_attack),
+		unit_attack.type,
+		unit_attack.accuracy,
+		parameters.attack_effect
+	)
+	
+	if unit_attack.damage_policy:
+		attack.damage_policy = unit_attack.damage_policy
+	if not unit_attack.applying_effects.is_empty():
+		attack.applying_effects = unit_attack.applying_effects
+	
+	return attack
+
 ## Initiates an attack based on the chosen targets.
 func start_attacking() -> void:
 	if chosen_spots.is_empty():
@@ -276,24 +346,23 @@ func start_attacking() -> void:
 	defence_stance = false
 	animation_handle.play_attack_animation()
 	
-	@warning_ignore("narrowing_conversion")
-	var dmg: int = parameters.get_actual_damage(current_attack)
+	var attack: Attack = create_attack(current_attack, chosen_spots.duplicate())
 	
-	var targets := chosen_spots.duplicate()
-	if current_attack.additional_targets:
-		targets.append_array(
-			current_attack.additional_targets.\
-				find_additional_targets(self, targets)
-		)
+	#var targets := chosen_spots.duplicate()
+	#if current_attack.additional_targets:
+		#targets.append_array(
+			#current_attack.additional_targets.\
+				#find_additional_targets(self, targets)
+		#)
 	
-	var attack: Attack = Attack.new(
-		self, targets, dmg, current_attack.type, 
-		current_attack.accuracy, parameters.attack_effect
-	)
-	if current_attack.damage_policy:
-		attack.damage_policy = current_attack.damage_policy
-	if not current_attack.applying_effects.is_empty():
-		attack.applying_effects = current_attack.applying_effects
+	#Attack.new(
+		#self, targets, dmg, current_attack.type, 
+		#current_attack.accuracy, parameters.attack_effect
+	#)
+	#if current_attack.damage_policy:
+		#attack.damage_policy = current_attack.damage_policy
+	#if not current_attack.applying_effects.is_empty():
+		#attack.applying_effects = current_attack.applying_effects
 	system.combat_logic.book_damage(attack)
 
 # TODO: standardize spelling to 'defense'

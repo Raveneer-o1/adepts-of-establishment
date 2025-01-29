@@ -62,6 +62,14 @@ func filter_duplicates(arr: Array[Unit]) -> Array[Unit]:
 
 #region Combat managment
 
+func remove_attack_from_queue(attack: UnitAttack) -> void:
+	if not attacks_queue.has(attack):
+		return
+	
+	main_system.remove_miniature(attack)
+	
+	attacks_queue.erase(attack)
+
 ## Sets up the attack queue for the current round and resets atacks for each unit.
 func set_queue() -> void:
 	# Combine units from both parties, filter out nulls and dead units, then remove duplicates.
@@ -86,7 +94,16 @@ func set_queue() -> void:
 
 
 func check_dead_unit(unit: Unit) -> void:
-	#print_debug([unit.unit_name, current_attack.unit])
+	var attacks_to_remove: Array[UnitAttack] = []
+	
+	for attack in attacks_queue:
+		if attack != null and \
+				attack.unit == unit:
+			attacks_to_remove.append(attack)
+	
+	for attack in attacks_to_remove:
+		remove_attack_from_queue(attack)
+	
 	if unit == main_system.current_unit:
 		next_stage()
 

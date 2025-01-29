@@ -1,9 +1,13 @@
-[gd_scene load_steps=21 format=3 uid="uid://c4awr0jje6oes"]
+[gd_scene load_steps=25 format=3 uid="uid://c4awr0jje6oes"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_eigsw"]
 [ext_resource type="Texture2D" uid="uid://kjay0mljprno" path="res://Arts/Empire units/imperial Ranger idle .png" id="2_7fncv"]
 [ext_resource type="Texture2D" uid="uid://xdvwxdb8xg0o" path="res://Arts/Empire units/imperial Ranger attack .png" id="2_yf6ig"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_rlipv"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_e08dh"]
+[ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standart_archer_validity.tres" id="6_hpj5j"]
+[ext_resource type="PackedScene" uid="uid://drten8s54cfdq" path="res://Combat/Effects/AppliedEffects/Scenes/agility.tscn" id="7_f6qgq"]
+[ext_resource type="PackedScene" uid="uid://b4vacv0yatrlg" path="res://Combat/Effects/AppliedEffects/Scenes/assistance.tscn" id="8_y028e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lltaf"]
 atlas = ExtResource("2_yf6ig")
@@ -119,9 +123,9 @@ animations = [{
 [sub_resource type="Resource" id="Resource_f512a"]
 resource_local_to_scene = true
 script = ExtResource("4_rlipv")
-max_HP = 100
-base_damage = 30
-armor = 0
+max_HP = 170
+base_damage = 50
+armor = 20
 
 [node name="Imperial ranger" instance=ExtResource("1_eigsw")]
 unit_name = "Imperial Ranger"
@@ -133,6 +137,36 @@ sprite_frames = SubResource("SpriteFrames_issnm")
 animation = &"attack"
 autoplay = "default"
 offset = Vector2(8, 0)
+frames_to_emit = Array[int]([7])
 
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_f512a")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("5_e08dh")
+accuracy = 0.87
+initiative = 30
+target_validation = ExtResource("6_hpj5j")
+
+[node name="UnitAttack2" type="Node" parent="UnitParameters" index="2"]
+script = ExtResource("5_e08dh")
+accuracy = 0.87
+initiative = 20
+target_validation = ExtResource("6_hpj5j")
+
+[node name="UnitAttack3" type="Node" parent="UnitParameters" index="3"]
+script = ExtResource("5_e08dh")
+accuracy = 0.87
+initiative = 40
+target_validation = ExtResource("6_hpj5j")
+
+[node name="UnitAttack4" type="Node" parent="UnitParameters" index="4"]
+script = ExtResource("5_e08dh")
+accuracy = 0.87
+initiative = 10
+target_validation = ExtResource("6_hpj5j")
+
+[node name="Agility" parent="UnitParameters" index="5" instance=ExtResource("7_f6qgq")]
+buff = 1.12
+
+[node name="Assistance" parent="UnitParameters" index="6" instance=ExtResource("8_y028e")]

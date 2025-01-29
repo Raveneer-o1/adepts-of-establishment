@@ -150,9 +150,9 @@ animations = [{
 [sub_resource type="Resource" id="Resource_hq0gf"]
 resource_local_to_scene = true
 script = ExtResource("4_gsene")
-max_HP = 100
-base_damage = 30
-armor = 0
+max_HP = 200
+base_damage = 75
+armor = 60
 
 [node name="Unit" instance=ExtResource("1_v252y")]
 unit_name = "Paladin"
@@ -176,13 +176,11 @@ armor_increase = 10
 script = ExtResource("6_3s88y")
 damage_multiplier = 0.65
 accuracy = 0.88
-targets_needed = 1
 initiative = 70
 target_validation = ExtResource("7_63rex")
 
 [node name="UnitAttack2" type="Node" parent="UnitParameters" index="3"]
 script = ExtResource("6_3s88y")
 accuracy = 0.9
-targets_needed = 1
 initiative = 40
 target_validation = ExtResource("7_63rex")

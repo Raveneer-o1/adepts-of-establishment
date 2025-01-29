@@ -5,10 +5,13 @@ const UNIT_MINIATURE = preload("res://Combat/Scenes/unit_in_queue.tscn")
 const MAX_MINIATURES_ON_SCREEN = 15
 
 var hidden_miniatures: Array
+var miniatures: Dictionary
 
 func fill_queue(attacks_queue: Array[UnitAttack]) -> void:
 	for miniature in get_children():
 		miniature.queue_free()
+	
+	miniatures = {}
 	
 	var i: int = 1
 	for attack in attacks_queue:
@@ -16,6 +19,7 @@ func fill_queue(attacks_queue: Array[UnitAttack]) -> void:
 		new_miniature.get_child(0).unit = attack.unit
 		new_miniature.get_child(0).queue = self
 		add_child(new_miniature)
+		miniatures[attack] = new_miniature.get_child(0)
 		
 		
 		if i > MAX_MINIATURES_ON_SCREEN:
@@ -26,6 +30,11 @@ func fill_queue(attacks_queue: Array[UnitAttack]) -> void:
 			
 		i += 1
 
+
+func remove_miniature(atk: UnitAttack) -> void:
+	if miniatures.has(atk) and \
+			is_instance_valid(miniatures[atk]):
+		miniatures[atk].animate_exit()
 
 func clear_nearest_miniature() -> void:
 	if get_child_count() > 0:
