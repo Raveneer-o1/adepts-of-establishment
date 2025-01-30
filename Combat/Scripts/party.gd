@@ -77,6 +77,7 @@ func front_line_is_empty() -> bool:
 	return true
 
 ## Filters units based on a custom function.
+## Signature if a function is expected to be [codeblock](unit: Unit) -> bool[/codeblock]
 func get_units_custom(filter_func: Callable) -> Array[Unit]:
 	var result: Array[Unit] = []
 	for u in units:

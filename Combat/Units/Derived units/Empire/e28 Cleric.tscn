@@ -1,10 +1,13 @@
-[gd_scene load_steps=17 format=3 uid="uid://bnnj1tvjy65cq"]
+[gd_scene load_steps=20 format=3 uid="uid://bnnj1tvjy65cq"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_woc6m"]
 [ext_resource type="Texture2D" uid="uid://cfl0w6drqoq0h" path="res://Arts/Empire units/cleric attack .png" id="2_8n3o2"]
 [ext_resource type="Texture2D" uid="uid://cohp336pnts2b" path="res://Arts/Empire units/cleric idle .png" id="3_u5n3j"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_0mrxr"]
 [ext_resource type="PackedScene" uid="uid://cdicif6h0d041" path="res://Combat/Effects/Scenes/weak_heal.tscn" id="4_ly0be"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_ltkh1"]
+[ext_resource type="Resource" uid="uid://2rff7s5788qv" path="res://Combat/Units/Parameters/Validation/standart_healer_validity.tres" id="7_iip5h"]
+[ext_resource type="Resource" uid="uid://cu702u3q22fx4" path="res://Combat/Units/Parameters/Additional targets/mass_heal_targets.tres" id="8_2jybw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j4phf"]
 atlas = ExtResource("2_8n3o2")
@@ -85,8 +88,8 @@ animations = [{
 [sub_resource type="Resource" id="Resource_3q0ao"]
 resource_local_to_scene = true
 script = ExtResource("4_0mrxr")
-max_HP = 100
-base_damage = 30
+max_HP = 120
+base_damage = -25
 armor = 0
 
 [node name="Cleric" instance=ExtResource("1_woc6m")]
@@ -102,3 +105,8 @@ autoplay = "default"
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_3q0ao")
 attack_effect = ExtResource("4_ly0be")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("6_ltkh1")
+target_validation = ExtResource("7_iip5h")
+additional_targets = ExtResource("8_2jybw")

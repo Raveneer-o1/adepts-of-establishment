@@ -11,8 +11,14 @@ func _get_description() -> String:
 	return description % percent
 
 func check_trigger(attack: Attack) -> void:
+	if attack.targets.is_empty():
+		return
+	
+	var target: Unit = attack.targets[0]
+	
 	if attack.attacker.party != target_unit.party or \
-			attack.attacker == target_unit:
+			attack.attacker == target_unit or \
+			target.party == target_unit.party:
 		return
 	
 	# if random check didn't pass, return
@@ -20,7 +26,7 @@ func check_trigger(attack: Attack) -> void:
 		return
 	
 	
-	target_unit.force_attack(attack.targets[0])
+	target_unit.force_attack(target)
 
 ## Called when the effect is applied to a unit.
 func _apply_effect(params: Variant) -> void:

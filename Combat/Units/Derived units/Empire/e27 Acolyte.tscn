@@ -1,10 +1,12 @@
-[gd_scene load_steps=18 format=3 uid="uid://cl0qshk8ts3v5"]
+[gd_scene load_steps=20 format=3 uid="uid://cl0qshk8ts3v5"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_88v6m"]
 [ext_resource type="Texture2D" uid="uid://d1hxjpp8v2djr" path="res://Arts/Empire units/acolyte attack .png" id="2_nas8g"]
 [ext_resource type="Texture2D" uid="uid://v6aad5a8erb1" path="res://Arts/Empire units/acolyte idle .png" id="3_m0a2m"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_aftsa"]
 [ext_resource type="PackedScene" uid="uid://cdicif6h0d041" path="res://Combat/Effects/Scenes/weak_heal.tscn" id="4_qouqp"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_pt5wy"]
+[ext_resource type="Resource" uid="uid://2rff7s5788qv" path="res://Combat/Units/Parameters/Validation/standart_healer_validity.tres" id="7_q5wq1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qeq8s"]
 atlas = ExtResource("2_nas8g")
@@ -92,8 +94,8 @@ animations = [{
 [sub_resource type="Resource" id="Resource_a67g2"]
 resource_local_to_scene = true
 script = ExtResource("4_aftsa")
-max_HP = 100
-base_damage = 30
+max_HP = 90
+base_damage = -20
 armor = 0
 
 [node name="Acolyte" instance=ExtResource("1_88v6m")]
@@ -109,3 +111,10 @@ autoplay = "default"
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_a67g2")
 attack_effect = ExtResource("4_qouqp")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("6_pt5wy")
+type = 3
+accuracy = 1.0
+initiative = 10
+target_validation = ExtResource("7_q5wq1")

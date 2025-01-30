@@ -1,11 +1,6 @@
 extends BasePolicy
 
 func apply_policy(attack: Attack, index: int, finalize: bool) -> void:
-	if attack.target_spots.is_empty():
-		return
-	if index < 0 or index >= attack.target_spots.size():
-		return
-	
 	var spot := attack.target_spots[index]
 	if spot == null:
 		return

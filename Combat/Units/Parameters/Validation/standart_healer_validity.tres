@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://2rff7s5788qv"]
+
+[ext_resource type="Script" path="res://Combat/Units/Parameters/Validation/Scripts/standart_healer_validity.gd" id="1_81tyg"]
+
+[resource]
+script = ExtResource("1_81tyg")

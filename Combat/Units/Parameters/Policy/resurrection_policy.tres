@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dk2b5c0qnptvr"]
+
+[ext_resource type="Script" path="res://Combat/Units/Parameters/Policy/Scripts/resurrection_policy.gd" id="1_j42pe"]
+
+[resource]
+script = ExtResource("1_j42pe")

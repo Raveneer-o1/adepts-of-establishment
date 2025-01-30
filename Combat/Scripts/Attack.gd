@@ -8,9 +8,10 @@ var attacker: Unit
 var target_spots: Array[UnitSpot]
 var targets: Array[Unit]:
 	set(value):
+		target_spots = []
 		for unit in value:
 			if unit != null:
-				target_spots.append(unit.get_parent())
+				target_spots.append(unit.spot)
 	get:
 		var result : Array[Unit] = []
 		for spot in target_spots:

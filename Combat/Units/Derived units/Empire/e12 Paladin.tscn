@@ -169,7 +169,7 @@ frames_to_emit = Array[int]([5])
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_hq0gf")
 
-[node name="AppliedEffect" parent="UnitParameters" index="1" instance=ExtResource("4_sgewg")]
+[node name="Armor buff (aura)" parent="UnitParameters" index="1" instance=ExtResource("4_sgewg")]
 armor_increase = 10
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]

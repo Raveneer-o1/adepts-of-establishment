@@ -1,10 +1,14 @@
-[gd_scene load_steps=23 format=3 uid="uid://b517nmnvt04wo"]
+[gd_scene load_steps=27 format=3 uid="uid://b517nmnvt04wo"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_7jpg4"]
 [ext_resource type="Texture2D" uid="uid://clgh6r1cqhmd2" path="res://Arts/Empire units/Hierophant attack .png" id="2_drmbb"]
 [ext_resource type="Texture2D" uid="uid://cjr5n0iyypwhj" path="res://Arts/Empire units/Hierophant idle.png" id="3_anao4"]
 [ext_resource type="PackedScene" uid="uid://cvtcjsl55tqgq" path="res://Combat/Effects/Scenes/strong_heal.tscn" id="4_e1vxq"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_fbxf0"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_x7on8"]
+[ext_resource type="Resource" uid="uid://2rff7s5788qv" path="res://Combat/Units/Parameters/Validation/standart_healer_validity.tres" id="7_delep"]
+[ext_resource type="Resource" uid="uid://beulsq7x1px31" path="res://Combat/Units/Parameters/Validation/resurrection_validation.tres" id="7_umx74"]
+[ext_resource type="Resource" uid="uid://dk2b5c0qnptvr" path="res://Combat/Units/Parameters/Policy/resurrection_policy.tres" id="8_3owpt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b7k7j"]
 atlas = ExtResource("2_drmbb")
@@ -127,9 +131,9 @@ animations = [{
 [sub_resource type="Resource" id="Resource_hp16c"]
 resource_local_to_scene = true
 script = ExtResource("4_fbxf0")
-max_HP = 100
-base_damage = 30
-armor = 0
+max_HP = 180
+base_damage = -80
+armor = 10
 
 [node name="Hierophant" instance=ExtResource("1_7jpg4")]
 unit_name = "Hierophant"
@@ -144,3 +148,22 @@ autoplay = "default"
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_hp16c")
 attack_effect = ExtResource("4_e1vxq")
+
+[node name="Resurrection" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("6_x7on8")
+damage_multiplier = 0.0
+type = 4
+accuracy = 1.2
+initiative = 15
+target_validation = ExtResource("7_umx74")
+damage_policy = ExtResource("8_3owpt")
+
+[node name="Heal" type="Node" parent="UnitParameters" index="2"]
+script = ExtResource("6_x7on8")
+type = 3
+accuracy = 1.2
+initiative = 10
+target_validation = ExtResource("7_delep")
+applying_effects = {
+"cure": null
+}

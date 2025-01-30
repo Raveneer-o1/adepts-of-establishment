@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bk5e44jh8bg57"]
+
+[ext_resource type="PackedScene" uid="uid://8d3sodh68huv" path="res://Combat/Effects/AppliedEffects/applied_effect.tscn" id="1_idly1"]
+[ext_resource type="Script" path="res://Combat/Effects/AppliedEffects/Scripts/cure.gd" id="2_mx8hn"]
+
+[node name="Cure" instance=ExtResource("1_idly1")]
+script = ExtResource("2_mx8hn")
+display_text = "Cured"
+color_effect = Color(0, 0.85, 0.793333, 1)
+effect_name = "Cure"
+icon_index = 17

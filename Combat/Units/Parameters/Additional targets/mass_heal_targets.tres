@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cu702u3q22fx4"]
+
+[ext_resource type="Script" path="res://Combat/Units/Parameters/Additional targets/Scripts/mass_heal_targets.gd" id="1_8xmue"]
+
+[resource]
+script = ExtResource("1_8xmue")

@@ -57,7 +57,7 @@ func apply_modifier() -> void:
 			parameter,
 			self,
 			func (value: int) -> int:
-				return roundf(float(value) * multiplier + strength)
+				return roundi(float(value) * multiplier + strength)
 	)
 
 # Attempts to initialize the effect's parameters from a dictionary

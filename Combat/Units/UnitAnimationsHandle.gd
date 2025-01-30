@@ -13,20 +13,24 @@ var next_animation: StringName
 
 func finish_death_animation() -> void:
 	(get_parent() as Unit).visualize_death()
+	$AnimationPlayer.play(&"RESET")
+	play(&"default")
+	pause()
 
 
 func play_death_animation() -> void:
-	(get_child(0) as AnimationPlayer).play("unit_standart_death_animation")
+	(get_child(0) as AnimationPlayer).play(&"unit_standart_death_animation")
 
 func play_attack_animation() -> void:
-	if animation != "default":
-		next_animation = "attack"
+	if animation != &"default":
+		next_animation = &"attack"
 		return
-	play("attack")
+	play(&"attack")
+	
 	now_attacking = true
 
-func _process(delta: float) -> void:
-	pass
+#func _process(delta: float) -> void:
+	#pass
 	#print(now_attacking)
 
 
@@ -39,19 +43,19 @@ func play_damage_animation(message: String = "") -> void:
 			(get_child(0) as AnimationPlayer).play(message)
 			return
 	
-	var anim_name := "damage"
+	var anim_name := &"damage"
 	if sprite_frames.has_animation(anim_name):
 		play(anim_name)
 	else :
 		if not (get_child(0) as AnimationPlayer).is_playing():
-			(get_child(0) as AnimationPlayer).play("unit_standart_damage_animation")
+			(get_child(0) as AnimationPlayer).play(&"unit_standart_damage_animation")
 
 func play_heal_animation() -> void:
-	var anim_name := "heal"
+	var anim_name := &"heal"
 	if sprite_frames.has_animation(anim_name):
 		play(anim_name)
 	else :
-		(get_child(0) as AnimationPlayer).play("unit_standart_heal_animation")
+		(get_child(0) as AnimationPlayer).play(&"unit_standart_heal_animation")
 
 func finish_attack() -> void:
 	now_attacking = false
@@ -59,29 +63,29 @@ func finish_attack() -> void:
 
 func play_animation_by_name(animation_name: StringName) -> void:
 	match animation_name:
-		"attack":
+		&"attack":
 			play_attack_animation()
 			return
-		"death":
+		&"death":
 			play_death_animation()
 			return
-		"damage":
+		&"damage":
 			play_damage_animation()
 			return
-		"heal":
+		&"heal":
 			play_heal_animation()
 			return
 	print_debug("Unable to map '%s' animation!" % animation_name)
 	play("default")
 
 func _on_animation_finished() -> void:
-	play("default")
+	play(&"default")
 	if now_attacking:
 		finish_attack()
 	
-	if next_animation != "":
+	if next_animation != &"":
 		play_animation_by_name(next_animation)
-		next_animation = ""
+		next_animation = &""
 
 
 func _on_frame_changed() -> void:
@@ -94,6 +98,6 @@ func _on_frame_changed() -> void:
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if next_animation != "":
+	if next_animation != &"":
 		play_animation_by_name(next_animation)
-		next_animation = ""
+		next_animation = &""

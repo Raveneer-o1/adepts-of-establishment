@@ -2,10 +2,8 @@ extends BasePolicy
 
 @export var decay_rate : float = 0.5
 
-func apply_policy(attack: Attack, index: int, finalize: bool) -> void:
-	if attack.targets.is_empty():
-		return
-	if index < 0 or index >= attack.targets.size():
+func _apply_policy(attack: Attack, index: int, finalize: bool) -> void:
+	if attack.target_spots[index].unit == null:
 		return
 	
 	var first_position: int = attack.targets[0].party_position

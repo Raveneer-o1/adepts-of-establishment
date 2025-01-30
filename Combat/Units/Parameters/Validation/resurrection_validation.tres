@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://beulsq7x1px31"]
+
+[ext_resource type="Script" path="res://Combat/Units/Parameters/Validation/Scripts/resurrection_validity.gd" id="1_c18uy"]
+
+[resource]
+script = ExtResource("1_c18uy")

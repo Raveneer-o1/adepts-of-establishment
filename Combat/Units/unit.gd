@@ -91,6 +91,8 @@ var summoned_unit: bool = false
 
 ## Initializes unit variables and connects signals.
 func initialize_variables() -> bool:
+	if initialized:
+		return true
 	parameters = get_node("UnitParameters")
 	party = get_parent().get_parent() as Party
 	system = party.main_system
@@ -316,8 +318,7 @@ func force_attack(target: Unit, native_attack: bool = true, attack: UnitAttack =
 		attack_setting = false
 
 ## Creates an [Attack] object and returns it
-func create_attack(unit_attack, targets: Array[UnitSpot]) -> Attack:
-	#var targets : Array[UnitSpot] = [target]
+func create_attack(unit_attack: UnitAttack, targets: Array[UnitSpot]) -> Attack:
 	if unit_attack.additional_targets:
 		targets.append_array(
 			unit_attack.additional_targets.\
@@ -388,6 +389,25 @@ func try_waiting() -> bool:
 
 #region Combat interactions
 
+func resurrect() -> void:
+	var sp := get_parent().get_parent()
+	if sp is UnitSpot:
+		if spot.unit != null:
+			return
+		spot = sp
+	else:
+		print_debug("Trying to resurrect a unit that doesn't have a UnitSpot as a parent!")
+		return
+	
+	get_parent().remove_child(self)
+	
+	parameters.underlying_HP = 1
+	parameters.dead = false
+	spot.assign_unit(self)
+	visible = true
+	animation_handle.play(&"default")
+	
+	system.display_text_near_unit(self, "Resurrected!")
 
 ## Restores health to the unit and triggers associated animations.
 func heal(value: int) -> void:
