@@ -349,21 +349,6 @@ func start_attacking() -> void:
 	
 	var attack: Attack = create_attack(current_attack, chosen_spots.duplicate())
 	
-	#var targets := chosen_spots.duplicate()
-	#if current_attack.additional_targets:
-		#targets.append_array(
-			#current_attack.additional_targets.\
-				#find_additional_targets(self, targets)
-		#)
-	
-	#Attack.new(
-		#self, targets, dmg, current_attack.type, 
-		#current_attack.accuracy, parameters.attack_effect
-	#)
-	#if current_attack.damage_policy:
-		#attack.damage_policy = current_attack.damage_policy
-	#if not current_attack.applying_effects.is_empty():
-		#attack.applying_effects = current_attack.applying_effects
 	system.combat_logic.book_damage(attack)
 
 # TODO: standardize spelling to 'defense'
@@ -372,6 +357,7 @@ func try_take_defense_stance() -> bool:
 	if now_attacking():
 		return false
 	defence_stance = true
+	set_next_attack()
 	system.display_text_near_unit(self, "Defending")
 	return true
 

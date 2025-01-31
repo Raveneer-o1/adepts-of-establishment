@@ -10,7 +10,7 @@ class_name CombatLogic extends Node
 ## 1. Emitting Signals for Pre-Resolution Effects:[br]
 ##  - - Whenever an attack is booked, a signal is emitted to notify the system of the event.[br]
 ##  - - This allows other game systems or mechanics (e.g., buffs, debuffs, or triggered abilities) to react to the attack.[br]
-##  - - These reactions can modify the attack's properties, such as damage, critical chance, or effects, before the attack is finalized and resolved.[br]
+##  - - These reactions can modify the attack's properties, such as damage or effects, before the attack is finalized and resolved.[br]
 ## 2. Synchronizing Attack Resolution with Animations:[br]
 ##  - - By delaying the execution of the attack until it is resolved, the system ensures that the gameplay logic is in sync with the visual animations.[br]
 ##  - - This approach creates a cohesive player experience where damage or effects are applied at the precise moment they are visually communicated (e.g., when a sword strikes an enemy or a spell animation finishes).[br]
@@ -108,7 +108,7 @@ func check_dead_unit(unit: Unit) -> void:
 		next_stage()
 
 
-## Attempts waiting. I succsesfull, shifts current attack of a current unit to the end of a queue
+## Attempts waiting. If succsesfull, shifts current attack of a current unit to the end of a queue
 func try_wait() -> bool:
 	if waited_attacks.has(current_attack):
 		return false

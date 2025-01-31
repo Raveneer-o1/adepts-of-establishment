@@ -199,19 +199,19 @@ func display_hints() -> void:
 	remove_hints()
 	match show_hitns_mode:
 		SHOW_HINTS_ALWAYS:
-			var avaliable_targets := find_avaliable_targets()
-			for unit in left_party.units + right_party.units:
-				if unit == null or unit.parameters.dead:
-					continue
-				if avaliable_targets.has(unit.spot):
-					var marker: AnimatedSprite2D = unit_marker.instantiate()
-					displayed_hints.append(marker)
-					unit.add_child(marker)
-					marker.modulate = Color.FOREST_GREEN
+			var avaliable_targets: Array[UnitSpot] = find_avaliable_targets()
+			for target in avaliable_targets:
+				#if unit == null or unit.parameters.dead:
+					#continue
+				#if avaliable_targets.has(unit.spot):
+				var marker: AnimatedSprite2D = unit_marker.instantiate()
+				displayed_hints.append(marker)
+				target.unit.add_child(marker)
+				marker.modulate = Color.FOREST_GREEN
 		SHOW_HINTS_ON_HOVER:
 			var avaliable_targets := find_avaliable_targets()
 			for spot in left_party.unit_spots + right_party.unit_spots:
-				if spot == null or spot.unit == null or spot.unit.parameters.dead:
+				if spot == null:# or spot.unit == null or spot.unit.parameters.dead:
 					continue
 				var color: Color = Color.FIREBRICK
 				if avaliable_targets.has(spot):
@@ -308,7 +308,7 @@ func _ready() -> void:
 	combat_logic.start_battle()
 #endregion
 
-#region Unilities
+#region Utilities
 
 func find_targets_for_attack(attack: UnitAttack) -> Array[UnitSpot]:
 	if attack == null:
