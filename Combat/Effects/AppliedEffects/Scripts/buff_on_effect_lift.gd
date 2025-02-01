@@ -56,4 +56,5 @@ func _apply_effect(params: Variant) -> void:
 		print_debug("Empty parameter value!")
 		queue_free()
 		return
-	EventBus.effect_lifted.connect(apply_buff)
+	
+	_signal_function_pairs[EventBus.effect_lifted] = apply_buff

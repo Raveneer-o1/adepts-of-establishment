@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://c7fw6vrje4vcu"]
+[gd_scene load_steps=18 format=3 uid="uid://c7fw6vrje4vcu"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_i1163"]
 [ext_resource type="Texture2D" uid="uid://boc4av5vpbpqs" path="res://Arts/Undead units/u29 doomdrake attack .png" id="2_b78kq"]
 [ext_resource type="Texture2D" uid="uid://cx4h13smejnxp" path="res://Arts/Undead units/u29 doomdrake idle .png" id="3_j74lj"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_b6sio"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gtcrj"]
 atlas = ExtResource("2_b78kq")
@@ -94,6 +95,14 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_qum13"]
+resource_local_to_scene = true
+script = ExtResource("4_b6sio")
+max_HP = 100
+base_damage = 30
+armor = 0
+evasion = 0.02
+
 [node name="Doomdrake" instance=ExtResource("1_i1163")]
 unit_name = "Doomdrake"
 full_description = "A wyvern that succumbs to the influence of the Necropolis transforms into a Doomdrake. These beasts consume the fallen on the battlefield, growing stronger and more twisted with each kill. They are brutal shock troops, relentless in their charge and devastating in their bite, embodying the death they now serve."
@@ -104,6 +113,7 @@ autoplay = "default"
 offset = Vector2(8, 0)
 
 [node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_qum13")
 large_unit = true
 
 [node name="VisualBar" parent="UnitParameters" index="0"]

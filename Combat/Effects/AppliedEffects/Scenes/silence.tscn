@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://7dqmxc711tlc"]
+
+[ext_resource type="Script" path="res://Combat/Effects/AppliedEffects/Scripts/silence.gd" id="1_n3xhd"]
+
+[node name="Silence" type="Node"]
+script = ExtResource("1_n3xhd")
+silencable = false
+effect_name = "Silence"
+description = "All other effects of this unit were supressed"

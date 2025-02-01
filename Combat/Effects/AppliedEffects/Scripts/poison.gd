@@ -23,4 +23,6 @@ func _apply_effect(params: Variant) -> void:
 			turns = params[1]
 	else:
 		print_debug("Invalid parameter for a poison effect. Expected Array, found %s!" % type_string(typeof(params)))
-	EventBus.turn_started.connect(deal_damage)
+	
+	_signal_function_pairs[EventBus.turn_started] = deal_damage
+	

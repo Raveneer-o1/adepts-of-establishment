@@ -46,9 +46,9 @@ func _get_description() -> String:
 
 # Reduces the number of remaining turns and removes the effect when expired
 func count_turn(unit: Unit) -> void:
-	if unit == target_unit:
+	if unit == target_unit and turns > 0:
 		turns -= 1
-		if turns <= 0:
+		if turns == 0:
 			lift_effect()
 
 # Applies the parameter modifier to the target unit
@@ -65,7 +65,7 @@ func apply_modifier() -> void:
 func try_init_params(params: Variant) -> bool:
 	if params is Dictionary:
 		# Check and initialize "parameter" if present
-		var p : StringName = "parameter"
+		var p : StringName = &"parameter"
 		if params.has(p):
 			if PARAMETERS_NAMES.has(params[p]):
 				_parameter = params[p]
@@ -75,17 +75,17 @@ func try_init_params(params: Variant) -> bool:
 				return false
 		
 		# Check and initialize "turns" if present
-		p = "turns"
+		p = &"turns"
 		if params.has(p):
 			turns = params[p]
 		
 		# Check and initialize "strength" if present
-		p = "strength"
+		p = &"strength"
 		if params.has(p):
 			strength = params[p]
 		
 		# Check and initialize "multiplier" if present
-		p = "multiplier"
+		p = &"multiplier"
 		if params.has(p):
 			multiplier = params[p]
 		
@@ -105,8 +105,8 @@ func _apply_effect(params: Variant) -> void:
 		queue_free()
 		return
 	
-	# If the effect duration is zero or less, remove it immediately
-	if turns <= 0:
+	# If the effect duration is zero, remove it immediately
+	if turns == 0:
 		queue_free()
 		return
 	
@@ -114,4 +114,4 @@ func _apply_effect(params: Variant) -> void:
 	apply_modifier()
 	
 	# Connect to the event bus to handle turn-based decrement of the effect duration
-	EventBus.turn_started.connect(count_turn)
+	_signal_function_pairs[EventBus.turn_started] = count_turn

@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://b8yan7skrudpm"]
+[gd_scene load_steps=17 format=3 uid="uid://b8yan7skrudpm"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_7leqj"]
 [ext_resource type="Texture2D" uid="uid://b15tomtsyw2o" path="res://Arts/Undead units/u31 Gluttonous serpent attack .png" id="2_eynx3"]
 [ext_resource type="Texture2D" uid="uid://b4swk2jwnomow" path="res://Arts/Undead units/u31 Gluttonous serpent idle .png" id="3_l0khi"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_njdrb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pd7vp"]
 atlas = ExtResource("2_eynx3")
@@ -87,6 +88,14 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_sy5jc"]
+resource_local_to_scene = true
+script = ExtResource("4_njdrb")
+max_HP = 100
+base_damage = 30
+armor = 0
+evasion = 0.02
+
 [node name="The Devourer" instance=ExtResource("1_7leqj")]
 unit_name = "The Devourer"
 full_description = "The Devourer is a monstrous snake-like creature, bloated with the power of countless consumed souls. Its sheer size and overwhelming strength make it an unstoppable force, crushing enemies under its bulk. Its feeding frenzy is unending, spreading despair and destruction across the battlefield."
@@ -98,6 +107,7 @@ autoplay = "default"
 frames_to_emit = Array[int]([2])
 
 [node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_sy5jc")
 large_unit = true
 
 [node name="VisualBar" parent="UnitParameters" index="0"]

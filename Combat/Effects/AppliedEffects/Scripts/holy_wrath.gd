@@ -14,4 +14,4 @@ func trigger(attack: Attack) -> void:
 
 
 func _apply_effect(params: Variant) -> void:
-	EventBus.attack_booked.connect(trigger)
+	_signal_function_pairs[EventBus.attack_booked] = trigger

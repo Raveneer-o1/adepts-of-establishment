@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://vxd86ehx8d5b"]
+[gd_scene load_steps=24 format=3 uid="uid://vxd86ehx8d5b"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_382ol"]
 [ext_resource type="Texture2D" uid="uid://dxir7bnhfmo3q" path="res://Arts/Undead units/dark mage.png" id="2_wv2qb"]
 [ext_resource type="Texture2D" uid="uid://q3v5w50gfn3h" path="res://Arts/Undead units/dark mage idle.png" id="3_dfv7s"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_aw483"]
 [ext_resource type="PackedScene" uid="uid://c7bbto2q5jen7" path="res://Combat/Effects/Scenes/ritual_attack.tscn" id="4_ymfcx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vxycm"]
@@ -130,6 +131,14 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_ul3dm"]
+resource_local_to_scene = true
+script = ExtResource("4_aw483")
+max_HP = 100
+base_damage = 30
+armor = 0
+evasion = 0.02
+
 [node name="Dark Mage" instance=ExtResource("1_382ol")]
 unit_name = "Dark Mage"
 full_description = "Dark Mages delve into the forbidden arts of destructive magic, harnessing shadow and decay to annihilate their enemies. Their spells spread fear and chaos, breaking the will of the living. While less adept at raising the dead, their offensive capabilities make them invaluable on the battlefield."
@@ -140,4 +149,5 @@ animation = &"attack"
 autoplay = "default"
 
 [node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_ul3dm")
 attack_effect = ExtResource("4_ymfcx")

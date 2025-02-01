@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://c5vikx0bd5g7m"]
+[gd_scene load_steps=19 format=3 uid="uid://c5vikx0bd5g7m"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_jcdtv"]
 [ext_resource type="Texture2D" uid="uid://dsl21nqjf8sos" path="res://Arts/Undead units/u22 acolyte v2 attack .png" id="2_hxb6d"]
 [ext_resource type="Texture2D" uid="uid://df74mv2gn682" path="res://Arts/Undead units/u22 acolyte v2 idle .png" id="3_peot3"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_fyc4j"]
 [ext_resource type="PackedScene" uid="uid://cnl2vrahoavc6" path="res://Combat/Effects/Scenes/spiral_attack.tscn" id="4_idhnn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lldai"]
@@ -95,6 +96,14 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_k7mdc"]
+resource_local_to_scene = true
+script = ExtResource("4_fyc4j")
+max_HP = 100
+base_damage = 30
+armor = 0
+evasion = 0.02
+
 [node name="Death Acolyte" instance=ExtResource("1_jcdtv")]
 unit_name = "Death Acolyte"
 full_description = "Acolytes are novice practitioners of necromancy, drawn to the allure of death's secrets. Though their abilities are limited, they can channel minor curses to aid their allies. With time and guidance, these fledgling necromancers can evolve into powerful wielders of dark magic."
@@ -106,4 +115,5 @@ autoplay = "default"
 frames_to_emit = Array[int]([5])
 
 [node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_k7mdc")
 attack_effect = ExtResource("4_idhnn")

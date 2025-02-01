@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://dubag27s7x4c3"]
+[gd_scene load_steps=20 format=3 uid="uid://dubag27s7x4c3"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_r3u27"]
 [ext_resource type="Texture2D" uid="uid://c035w6ebxi08e" path="res://Arts/Undead units/u15 elder vampire attack .png" id="2_o7r33"]
 [ext_resource type="Texture2D" uid="uid://cynihqq3f0hjr" path="res://Arts/Undead units/u15 elder vampire idle .png" id="3_chw6d"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_e3bbf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5mt7d"]
 atlas = ExtResource("2_o7r33")
@@ -108,6 +109,14 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_kr20c"]
+resource_local_to_scene = true
+script = ExtResource("4_e3bbf")
+max_HP = 100
+base_damage = 30
+armor = 0
+evasion = 0.02
+
 [node name="Elder vampire" instance=ExtResource("1_r3u27")]
 unit_name = "Elder vampire"
 full_description = "Elder Vampires are ancient beings whose bloodlust excel limits of a mortal mind. They possess extraordinary strength and command blood magic with terrifying precision. Their mere presence inspires awe and dread, as they dominate the battlefield with their unmatched prowess and cunning."
@@ -116,3 +125,6 @@ full_description = "Elder Vampires are ancient beings whose bloodlust excel limi
 sprite_frames = SubResource("SpriteFrames_le8mf")
 animation = &"attack"
 autoplay = "default"
+
+[node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_kr20c")

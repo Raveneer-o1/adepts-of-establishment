@@ -42,6 +42,7 @@ func _apply_effect(params: Variant) -> void:
 		queue_free()
 		return
 	
-	EventBus.turn_started.connect(count_turn)
-	EventBus.attack_booked.connect(check_trigger)
+	_signal_function_pairs[EventBus.turn_started] = count_turn
+	_signal_function_pairs[EventBus.attack_booked] = check_trigger
+	
 	target_unit.system.display_text_near_unit(target_unit, message_start, color_start)

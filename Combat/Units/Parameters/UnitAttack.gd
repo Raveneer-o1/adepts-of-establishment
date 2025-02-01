@@ -3,7 +3,6 @@ class_name UnitAttack
 
 ## Represents attacks a unit can perform. 
 
-
 ## Unit, to which this object is attached
 var unit: Unit
 ## Multiplier to [member Unit.base_damage]
@@ -19,21 +18,22 @@ var unit: Unit
 ## Determines the order of attacks
 @export var initiative: int
 
-#@export_dir var target_validation_path: String
-#@export_dir var additional_targets_path: String
-#@export_dir var damage_policy_path: String
+## If [code]false[/code], target units can't evade this attack
+## during resolution but attack can still be missed.
+@export var evadable: bool = true
 
-## Function with signature [codeblock](attacker: Unit, target: UnitSpot) -> bool[/codeblock]
-## Returns whether [code]target[/code] is a valid targert for the attack
+## [color=red]This field is required for each attack![/color][br]
+## Returns whether [code]target[/code] is a valid targert for the attack.[br]
+## NOTE: you need to attach a resource, not a script file
 @export var target_validation: BaseValidation
 
-## Function with a signature [codeblock](attacker: Unit, chosen_targets: Array[Unit]) -> Array[Unit][/codeblock]
-## Returns list of auto-determined targets
-## Note: if combined with damage_policy, pay attention to the order of added units
+## Returns list of auto-determined targets[br]
+## NOTE: if combined with [member damage_policy], pay attention to the order of added units[br]
+## NOTE: you need to attach a resource, not a script file
 @export var additional_targets: BaseAdditionalTargets
 
-## Function with a signature [codeblock](attack: Attack, index: int) -> void [/codeblock]
-## If present, overrides [method Attack.resolve] and applies to all targets using their indexes
+## If present, overrides [method Attack.resolve] and applies to all targets using their indexes[br]
+## NOTE: you need to attach a resource, not a script file
 @export var damage_policy: BasePolicy
 
 

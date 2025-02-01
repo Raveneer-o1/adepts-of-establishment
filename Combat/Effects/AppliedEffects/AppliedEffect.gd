@@ -8,6 +8,10 @@ class_name AppliedEffect
 ## Note that you can still remove the effect with [code]queue_free()[/code]
 @export var liftable: bool = true
 
+## If [code]false[/code], [method silence_effect] doesn't block the effect.
+## Note that you can still remove the effect with [code]queue_free()[/code]
+@export var silencable: bool = true
+
 @export var color_start: Color = Color.BURLYWOOD
 @export var color_effect: Color = Color.YELLOW
 @export var color_end: Color = Color.WHITE
@@ -53,12 +57,19 @@ const ICONS = preload("res://Arts/icons.png")
 ## The unit to which this effect is attached.
 var target_unit: Unit
 
+## Stores pairs of signals an assosiated functions. Intended to be overridden is the derived classes
+var _signal_function_pairs: Dictionary
+
 func _get_description() -> String:
 	return description
 
 ## Called when the effect is applied to a unit.
 func _apply_effect(params: Variant) -> void:
 	# Override this method in derived classes to define the effect's behavior when applied.
+	pass
+
+## Internal cleanup when the effect is removed.
+func _remove_effect() -> void:
 	pass
 
 ## Call to manually remove the effect (e.g., if cured or expired).
@@ -74,9 +85,55 @@ func lift_effect() -> void:
 	queue_free()
 	target_unit.clean_effects()
 
-## Internal cleanup when the effect is removed.
-func _remove_effect() -> void:
-	pass
+var silenced_turns: int = -1
+
+func check_silence_countdown(unit: Unit) -> void:
+	if unit == target_unit:
+		if silenced_turns <= 0:
+			restore_effect()
+		silenced_turns -= 1
+
+var silenced: bool = false
+
+func silence_effect(turns: int = -1) -> void:
+	if not silencable:
+		return
+	
+	var silenced_storage := get_parent().find_child("SilencedEffects", false)
+	if not silenced_storage:
+		print_debug("Unable to find 'SilencedEffects' node!")
+		return
+	
+	silenced = true
+	
+	get_parent().remove_child(self)
+	silenced_storage.add_child(self)
+	
+	if turns >= 0:
+		silenced_turns = turns
+		EventBus.turn_ended.connect(check_silence_countdown)
+	
+	# disconnect callables
+	for signal_in_pairs in _signal_function_pairs:
+		if (signal_in_pairs as Signal).is_connected(_signal_function_pairs[signal_in_pairs]):
+			(signal_in_pairs as Signal).disconnect(_signal_function_pairs[signal_in_pairs])
+	
+
+func restore_effect() -> void:
+	var silenced_effects_node : Node = get_parent()
+	silenced_effects_node.remove_child(self)
+	silenced_effects_node.get_parent().add_child(self)
+	
+	connect_callables()
+	silenced = false
+	
+	if EventBus.turn_ended.is_connected(check_silence_countdown):
+		EventBus.turn_ended.disconnect(check_silence_countdown)
+
+func connect_callables() -> void:
+	for signal_in_pairs in _signal_function_pairs:
+		(signal_in_pairs as Signal).connect(_signal_function_pairs[signal_in_pairs])
+
 
 ## Called when this node is added to a unit. Automatically applies the effect.
 func initialize(params: Variant = null) -> void:
@@ -85,10 +142,12 @@ func initialize(params: Variant = null) -> void:
 		print_debug("Effect is missing a target unit!")
 		queue_free()
 		return
+	# if the effect os not stackable and the unit already have an similar effect (except self), remove the effect
 	if (not stackable) and target_unit.parameters.have_effect(effect_name, self):
 		queue_free()
 		return
 	_apply_effect(params)
+	connect_callables()
 	if icon_index >= 0:
 		var image := ICONS.get_layer_data(icon_index)
 		if not image:

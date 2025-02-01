@@ -1,8 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://b0eba27hxcu2e"]
+[gd_scene load_steps=19 format=3 uid="uid://b0eba27hxcu2e"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_4th5g"]
 [ext_resource type="Texture2D" uid="uid://u3usf1wk1pdk" path="res://Arts/Undead units/u05 zombie attack  (1).png" id="2_trhnh"]
 [ext_resource type="Texture2D" uid="uid://cbnc6f74822kc" path="res://Arts/Undead units/u05 zombie idle .png" id="3_3ikqb"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_3lo8i"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_2hxtx"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="6_7pxa0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_msrv3"]
 atlas = ExtResource("2_trhnh")
@@ -87,6 +90,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_182fl"]
+resource_local_to_scene = true
+script = ExtResource("4_3lo8i")
+max_HP = 180
+base_damage = 42
+armor = 10
+
 [node name="Zombie" instance=ExtResource("1_4th5g")]
 unit_name = "Zombie"
 full_description = "Zombies are the reanimated corpses of the recently deceased, brought back to life through dark magic. Slow and uncoordinated, they rely on their overwhelming resilience to survive attacks that would fell most living warriors. Though lacking in intelligence, their sheer persistence makes them a constant threat on the battlefield."
@@ -96,3 +106,13 @@ sprite_frames = SubResource("SpriteFrames_x5s0m")
 animation = &"attack"
 autoplay = "default"
 frames_to_emit = Array[int]([2])
+
+[node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_182fl")
+immunities = Array[int]([3])
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("5_2hxtx")
+accuracy = 0.75
+initiative = 30
+target_validation = ExtResource("6_7pxa0")

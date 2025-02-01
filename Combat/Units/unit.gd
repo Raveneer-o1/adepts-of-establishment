@@ -105,26 +105,36 @@ func initialize_variables() -> bool:
 	initialized = true
 	EventBus.turn_ended.connect(reset_chosen_targets)
 	EventBus.turn_ended.connect(clean_effects)
-	EventBus.turn_started.connect(clean_effects)
-	EventBus.unit_died.connect(clean_effects)
+	#EventBus.turn_started.connect(clear_objects)
+	#EventBus.unit_died.connect(clear_objects)
 	EventBus.round_started.connect(arrange_attacks_and_set_next)
 	EventBus.attack_reached.connect(check_taking_damage)
 	EventBus.attack_animation_finished.connect(finalize_all_attacks)
 	
 	return true
 
+## Clears references to objects that are used only once (e.g. Attacks)
+func clear_objects() -> void:
+	clean_effects()
+	shielded_attacks.clear()
+
 ## Cleans applied effects: removes dead references, removes unapplied icons. [br]
-## [param _unit] doesn't do anythig, it's only there to connect this method to
-## [member EventBus.turn_started], [member EventBus.turn_ended], [member EventBus.unit_died]
+## [param _unit] doesn't do anythig, it's only there to connect this method to signals
+## that have this parameter as part of their signatures
 func clean_effects(_unit: Unit = null) -> void:
-	parameters.clean_modifiers()
-	var _displayed_icons := displayed_icons.duplicate()
+	var _displayed_icons := displayed_icons
 	displayed_icons = {}
 	for icon: TextureRect in _displayed_icons:
 		if is_instance_valid(_displayed_icons[icon]):
 			displayed_icons[icon] = _displayed_icons[icon]
+			if (_displayed_icons[icon] as AppliedEffect).silenced:
+				icon.visible = false
+			else:
+				icon.visible = true
 			continue
 		icon.queue_free()
+	
+	parameters.clean_modifiers()
 
 
 ## Attempts to register a target for attack. Returns success or failure.
@@ -171,25 +181,38 @@ func finalize_all_attacks(_unit: Unit) -> void:
 	taking_damage_delays.clear()
 
 
+var shielded_attacks: Array[Attack] = []
+
 ## Applies damage from the closest attack in taking_damage_attacks
 func finalize_attack() -> void:
 	if taking_damage_attacks.size() == 0:
 		return
+	var attack_to_finalize: Attack = taking_damage_attacks.pop_front()
+	
+	if parameters.immunities.has(attack_to_finalize.type):
+		system.display_text_near_unit(self, "Immunity")
+		return
 	
 	var chance: float = randf()
-	var attack_to_finalize: Attack = taking_damage_attacks.pop_front()
 	
 	if attack_to_finalize.accuracy < chance:
 		system.display_text_near_unit(self, "Miss!")
+		EventBus.attack_missed.emit(self, attack_to_finalize)
 		return
 	
-	# recalculate random number to remove any numerical connection with accuracy
-	chance = randf()
-	
-	if parameters.evasion > chance:
-		EventBus.attack_evaded.emit(self, attack_to_finalize)
-		system.display_text_near_unit(self, "Evaded!")
+	if shielded_attacks.has(attack_to_finalize):
+		system.display_text_near_unit(self, "Shield!")
+		#EventBus.attack_shieled.emit(self, attack_to_finalize)
 		return
+	
+	if attack_to_finalize.evadable:
+		# recalculate random number to remove any numerical connection with accuracy
+		chance = randf()
+		
+		if parameters.evasion > chance:
+			EventBus.attack_evaded.emit(self, attack_to_finalize)
+			system.display_text_near_unit(self, "Evaded!")
+			return
 	
 	if not attack_to_finalize.applying_effects.is_empty():
 		for effect_name: String in attack_to_finalize.applying_effects:
@@ -585,6 +608,7 @@ func now_attacking() -> bool:
 	return false
 
 func display_effect_icon(image: Image, effect: AppliedEffect) -> void:
+	clean_effects()
 	var texture_rect: TextureRect = TextureRect.new()
 	effect_icons_container.add_child(texture_rect)
 	texture_rect.texture = ImageTexture.create_from_image(image)

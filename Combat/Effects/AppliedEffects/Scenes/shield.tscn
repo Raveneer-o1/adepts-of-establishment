@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1i0mf1877mfo"]
+
+[ext_resource type="Script" path="res://Combat/Effects/AppliedEffects/Scripts/shield.gd" id="1_iw7rj"]
+
+[node name="Shield" type="Node"]
+script = ExtResource("1_iw7rj")
+effect_name = "Shield"
+description = "Unit is save form the first attack of the type [i]'%s'[/i]"

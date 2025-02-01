@@ -31,7 +31,8 @@ func _apply_effect(params: Variant) -> void:
 		lift_effect()
 		return
 	
-	EventBus.turn_started.connect(count_turn)
+	_signal_function_pairs[EventBus.turn_started] = count_turn
+	
 	
 	target_unit.parameters.add_modifier(
 		"base_damage",

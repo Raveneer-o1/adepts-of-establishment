@@ -24,4 +24,5 @@ func vampiric_heal(attack: Attack) ->void:
 
 ## Called when the effect is applied to a unit.
 func _apply_effect(params: Variant) -> void:
-	EventBus.attack_booked.connect(vampiric_heal)
+	_signal_function_pairs[EventBus.attack_booked] = vampiric_heal
+	

@@ -30,5 +30,4 @@ func check_trigger(attack: Attack) -> void:
 
 ## Called when the effect is applied to a unit.
 func _apply_effect(params: Variant) -> void:
-	
-	EventBus.attack_booked.connect(check_trigger)
+	_signal_function_pairs[EventBus.attack_booked] = check_trigger

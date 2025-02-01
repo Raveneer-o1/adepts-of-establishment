@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://dr3gv7u8esdos"]
+[gd_scene load_steps=24 format=3 uid="uid://dr3gv7u8esdos"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_7w0k8"]
 [ext_resource type="Texture2D" uid="uid://cexhsrrwjxd5p" path="res://Arts/Undead units/u34 dracolich attack .png" id="2_l7hsi"]
 [ext_resource type="Texture2D" uid="uid://crvhuvpgegepr" path="res://Arts/Undead units/u34 dracolich idle .png" id="3_eg5ke"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_xokj1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_niwnx"]
 atlas = ExtResource("2_l7hsi")
@@ -136,6 +137,14 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_u3rrr"]
+resource_local_to_scene = true
+script = ExtResource("4_xokj1")
+max_HP = 100
+base_damage = 30
+armor = 0
+evasion = 0.02
+
 [node name="Dracolich" instance=ExtResource("1_7w0k8")]
 unit_name = "Dracolich"
 
@@ -146,6 +155,7 @@ offset = Vector2(10, -9)
 frames_to_emit = Array[int]([9])
 
 [node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_u3rrr")
 large_unit = true
 
 [node name="VisualBar" parent="UnitParameters" index="0"]

@@ -17,11 +17,12 @@ const STANDART_FRACTIONAL_DAMAGE_DEVIATION = 0.1
 
 @export var base_paramaters: BaseParameters
 
-@export var evasion: float = .02
 
 var attacks: Array[UnitAttack] = []
 
 @export var large_unit: bool = false
+
+@export var immunities: Array[EventBus.AttackType] = []
 
 @export var attack_effect: Resource
 @export var other_effects: Array[Resource]
@@ -33,6 +34,8 @@ var attacks: Array[UnitAttack] = []
 @export var base_damage_override: int = -1
 ## Setting these parameters will override base parameters (use if you want to experiment but don't want to change the intended behaviour)
 @export var armor_override := -1
+## Setting these parameters will override base parameters (use if you want to experiment but don't want to change the intended behaviour)
+@export var evasion_override := -1.0
 
 
 ## Recalculates human-readable armor parameter into actual multiplier.
@@ -50,6 +53,11 @@ var armor_multiplier: float:
 #region Underlying values
 
 var underlying_HP: int = 1
+
+@onready var underlying_evasion: float = \
+		evasion_override if evasion_override > 0 else \
+		base_paramaters.evasion if base_paramaters != null else \
+		0.02
 
 @onready var underlying_max_HP: int = \
 		max_hp_override if max_hp_override > 0 else \
@@ -73,7 +81,7 @@ var underlying_HP: int = 1
 
 var max_hp: int:
 	get:
-		const stat_name = "max_HP"
+		const stat_name = &"max_HP"
 		var underlying_value := underlying_max_HP
 		if stats_modifiers.has(stat_name):
 			return (stats_modifiers[stat_name] as ModifierStack).get_effective_value(underlying_value)
@@ -81,7 +89,7 @@ var max_hp: int:
 
 var base_damage: int:
 	get:
-		const stat_name = "base_damage"
+		const stat_name = &"base_damage"
 		var underlying_value := underlying_base_damage
 		if stats_modifiers.has(stat_name):
 			return (stats_modifiers[stat_name] as ModifierStack).get_effective_value(underlying_value)
@@ -89,21 +97,29 @@ var base_damage: int:
 
 var armor: int:
 	get:
-		const stat_name = "armor"
+		const stat_name = &"armor"
 		var underlying_value := underlying_armor
+		if stats_modifiers.has(stat_name):
+			return (stats_modifiers[stat_name] as ModifierStack).get_effective_value(underlying_value)
+		return underlying_value
+
+var evasion: float:
+	get:
+		const stat_name = &"evasion"
+		var underlying_value := underlying_evasion
 		if stats_modifiers.has(stat_name):
 			return (stats_modifiers[stat_name] as ModifierStack).get_effective_value(underlying_value)
 		return underlying_value
 
 var _hp: int:
 	get:
-		if stats_modifiers.has("max_HP"):
+		if stats_modifiers.has(&"max_HP"):
 			var ratio: float = float(underlying_HP) / float(underlying_max_HP)
 			@warning_ignore("narrowing_conversion")
 			return max_hp * ratio
 		return underlying_HP
 	set(value):
-		if stats_modifiers.has("max_HP"):
+		if stats_modifiers.has(&"max_HP"):
 			var ratio: float = float(value) / float(max_hp)
 			underlying_HP = roundi(ratio * underlying_max_HP)
 		else:
@@ -169,6 +185,7 @@ func clean_modifiers() -> void:
 ## [code]"max_HP"[/code][br]
 ## [code]"armor"[/code][br]
 ## [code]"base_damage"[/code][br]
+## [code]"evasion"[/code][br]
 ## [br][br]It's possible to add any other name but using it would have to be specified explicitly
 func add_modifier(stat: StringName, effect: AppliedEffect, influence: Callable) -> void:
 	if not stats_modifiers.has(stat):
@@ -252,13 +269,49 @@ func check_parameters() -> void:
 	# TODO: write check_parameters() function
 	initializtion_successful = true
 
-func apply_effect(effect_name: String, params: Variant) -> void:
-	var res : Resource = load("res://Combat/Effects/AppliedEffects/Scenes/%s.tscn" % effect_name)
+## Applies the effect specified by [param effect_name] by loading and instantiating its scene.
+## The effect scene is expected to be located directly in the
+## [i]"res://Combat/Effects/AppliedEffects/Scenes/"[/i]
+## directory (subdirectories are not searched). The scene file name should match
+## [param effect_name] exactly.[br]
+## [param params]: Data passed to the effect's initialization method.
+## Type and format depend on the specific effect.[br]
+## [param force_stackability] defines if [member AppliedEffect.stackable] should
+## be overridden with [param override_stackability]
+## Returns: The instantiated [AppliedEffect] node, or [code]null[/code] if the effect was immediately 
+##  removed (e.g., some one-time effects like cure effects might self-destruct after application).[br]
+##  Returns [code]null[/code] and prints a debug warning if the effect scene isn't found.
+func apply_effect(
+		effect_name: String, 
+		params: Variant, 
+		force_stackability: bool = false, 
+		override_stackability: bool = false
+	) -> AppliedEffect:
+	
+	var effect_path := "res://Combat/Effects/AppliedEffects/Scenes/%s.tscn" % effect_name
+	var res: Resource = load(effect_path)
+	
 	if not res:
-		print_debug(effect_name + " not found as an effect!")
+		# Log debug warning if resource is missing
+		print_debug("Effect '%s' not found at path: %s" % [effect_name, effect_path])
+		return null
+	
+	# Instantiate the effect scene and add to the scene tree
 	var child: AppliedEffect = res.instantiate()
 	add_child(child)
+	
+	if force_stackability:
+		child.stackable = override_stackability
+	
+	# Initialize effect with parameters (implementation-specific logic)
 	child.initialize(params)
+	
+	# Handle cases where the effect might self-remove immediately after initialization
+	# (e.g., one-time effects that complete their action in initialize())
+	if not is_instance_valid(child):
+		child = null  # Ensure reference is null if instance became invalid
+	
+	return child
 
 func turn_start_reaction(_unit: Unit) -> void:
 	update_effects()

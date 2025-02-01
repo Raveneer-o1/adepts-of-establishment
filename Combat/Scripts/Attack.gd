@@ -20,6 +20,8 @@ var targets: Array[Unit]:
 		return result
 var effect: Resource
 
+var evadable: bool
+
 ## Dictionary containing elements in the format: <effect_name: String, params: Variant>[br]
 ## [code]effect_name[/code]: The name of a scene located in the folder 
 ## [kbd]res://Combat/Effects/AppliedEffects/Scenes/[/kbd]. This is used by the game to dynamically load the effect.[br]
@@ -30,6 +32,8 @@ var applying_effects: Dictionary
 ## Function with a signature [codeblock](attacker: Unit, target: Unit, index: int, finalize: bool) -> void[/codeblock]
 ## Overrides [method Attack.resolve] and applies to all targets using their indexes
 var damage_policy: BasePolicy
+
+var tags: Array[StringName] = []
 
 ## Calles [method Unit.resolve_attack] on each of its targets
 func resolve(finalize: bool = false) -> void:
@@ -68,10 +72,12 @@ func duplicate() -> Attack:
 
 func _init(_attacker: Unit, _spots: Array[UnitSpot],
 		dmg: int, ty: EventBus.AttackType,
-		_accuracy: float, eff: Resource = null) -> void:
+		_accuracy: float, eff: Resource = null,
+		_evadable: bool = true) -> void:
 	type = ty
 	attacker = _attacker
 	target_spots = _spots
 	damage = dmg
 	accuracy = _accuracy
 	effect = eff
+	evadable = _evadable

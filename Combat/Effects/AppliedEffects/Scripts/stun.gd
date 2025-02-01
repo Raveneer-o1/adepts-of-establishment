@@ -38,6 +38,8 @@ func _apply_effect(params: Variant) -> void:
 	if turns <= 0:
 		queue_free()
 		return
-	EventBus.turn_started.connect(skip_turn)
 	target_unit.system.display_text_near_unit(target_unit, message_start, color_start)
 	target_unit.animation_handle.pause()
+	
+	_signal_function_pairs[EventBus.turn_started] = skip_turn
+	

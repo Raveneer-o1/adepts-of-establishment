@@ -26,4 +26,4 @@ func trigger_effect(unit: Unit, attack: Attack) -> void:
 
 ## Called when the effect is applied to a unit.
 func _apply_effect(params: Variant) -> void:
-	EventBus.attack_evaded.connect(trigger_effect)
+	_signal_function_pairs[EventBus.attack_evaded] = trigger_effect

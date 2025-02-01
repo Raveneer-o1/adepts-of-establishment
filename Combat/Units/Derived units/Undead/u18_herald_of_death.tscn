@@ -1,8 +1,9 @@
-[gd_scene load_steps=28 format=3 uid="uid://bjf64unkm13v7"]
+[gd_scene load_steps=30 format=3 uid="uid://bjf64unkm13v7"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_sqfu4"]
 [ext_resource type="Texture2D" uid="uid://l00uakxeiih3" path="res://Arts/Undead units/u13 wraith attack .png" id="2_ookue"]
 [ext_resource type="Texture2D" uid="uid://c7qwrcmu6tcqj" path="res://Arts/Undead units/u13 wraith  idle .png" id="3_lmnsb"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_mp57r"]
 [ext_resource type="PackedScene" uid="uid://cxc4kawwgjahf" path="res://Combat/Effects/Scenes/Herald_effect.tscn" id="4_uyepk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jg0nu"]
@@ -172,6 +173,14 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_rkstj"]
+resource_local_to_scene = true
+script = ExtResource("4_mp57r")
+max_HP = 100
+base_damage = 30
+armor = 0
+evasion = 0.02
+
 [node name="Herald of Death" instance=ExtResource("1_sqfu4")]
 unit_name = "Herald of Death"
 full_description = "The Heralds of Death are necromantic priests who serve as emissaries of the Necropolis's dark gods. They channel divine death magic to empower allies and wreak havoc on their enemies. With their unholy auras and devastating spells, they are both revered by their followers and feared by their foes."
@@ -184,4 +193,5 @@ offset = Vector2(8, 0)
 frames_to_emit = Array[int]([9])
 
 [node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_rkstj")
 attack_effect = ExtResource("4_uyepk")

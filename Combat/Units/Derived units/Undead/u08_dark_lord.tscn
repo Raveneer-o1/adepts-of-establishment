@@ -1,8 +1,12 @@
-[gd_scene load_steps=21 format=3 uid="uid://bjk8a3nvget8"]
+[gd_scene load_steps=26 format=3 uid="uid://bjk8a3nvget8"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_udcxh"]
 [ext_resource type="Texture2D" uid="uid://brf8o1i5bgqfa" path="res://Arts/Undead units/u04 dark lord attack.png" id="2_54k2p"]
 [ext_resource type="Texture2D" uid="uid://bx4peb3ny0gn1" path="res://Arts/Undead units/u04 dark lord idle .png" id="3_qfhav"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_xtssu"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_0cvil"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="6_4hyfv"]
+[ext_resource type="PackedScene" uid="uid://b1i0mf1877mfo" path="res://Combat/Effects/AppliedEffects/Scenes/shield.tscn" id="7_d53df"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7cmw0"]
 atlas = ExtResource("2_54k2p")
@@ -129,6 +133,14 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_kfdto"]
+resource_local_to_scene = true
+script = ExtResource("4_xtssu")
+max_HP = 1000
+base_damage = 30
+armor = 30
+evasion = 0.02
+
 [node name="Dark lord" instance=ExtResource("1_udcxh")]
 unit_name = "Dark Lord"
 full_description = "Dark Lords are powerful commanders of the Necropolis, imbued with overwhelming dark magic and martial prowess. Their mere presence unnerves the living, sapping their will to fight. Wielding cursed weapons and commanding legions of undead, they are both fearsome warriors and ruthless strategists, capable of turning the tide of any battle."
@@ -139,3 +151,19 @@ animation = &"attack"
 autoplay = "default"
 offset = Vector2(8, 0)
 frames_to_emit = Array[int]([4, 7])
+
+[node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_kfdto")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+script = ExtResource("5_0cvil")
+accuracy = 0.88
+targets_needed = 2
+initiative = 40
+target_validation = ExtResource("6_4hyfv")
+applying_effects = {
+"silence": 1
+}
+
+[node name="Shield" parent="UnitParameters" index="3" instance=ExtResource("7_d53df")]
+icon_index = 4

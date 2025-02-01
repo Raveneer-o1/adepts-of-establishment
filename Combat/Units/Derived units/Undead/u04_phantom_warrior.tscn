@@ -1,8 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://cqqivpoythkv"]
+[gd_scene load_steps=21 format=3 uid="uid://cqqivpoythkv"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_g7wac"]
 [ext_resource type="Texture2D" uid="uid://dhjoy0sc4slw4" path="res://Arts/Undead units/u06 phantom warrior attack .png" id="2_qmjum"]
 [ext_resource type="Texture2D" uid="uid://cav43qmwfn58b" path="res://Arts/Undead units/u06 phantom warrior idle .png" id="3_hyxca"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_yl5id"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_b6hx8"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="6_1vihk"]
+[ext_resource type="PackedScene" uid="uid://baen1w1a16rc7" path="res://Combat/Effects/AppliedEffects/Scenes/illusive.tscn" id="7_g2u3k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ajw3c"]
 atlas = ExtResource("2_qmjum")
@@ -94,6 +98,14 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_gom41"]
+resource_local_to_scene = true
+script = ExtResource("4_yl5id")
+max_HP = 150
+base_damage = 45
+armor = 10
+evasion = 0.05
+
 [node name="Phantom Warrior" instance=ExtResource("1_g7wac")]
 unit_name = "Phantom Warrior"
 full_description = "Phantom Warriors are spectral remnants of fallen soldiers, bound to the will of the Necropolis. They drift across the battlefield, their incorporeal forms allowing them to evade physical attacks. Armed with ghostly weapons, they deliver chilling strikes that sap the vitality of their foes, leaving them weakened and vulnerable."
@@ -104,3 +116,20 @@ animation = &"attack"
 autoplay = "default"
 offset = Vector2(8, 0)
 frames_to_emit = Array[int]([5])
+
+[node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_gom41")
+immunities = Array[int]([3])
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("5_b6hx8")
+type = 2
+accuracy = 0.8
+initiative = 40
+target_validation = ExtResource("6_1vihk")
+
+[node name="Illusive" parent="UnitParameters" index="2" instance=ExtResource("7_g2u3k")]
+evasion_buff = 0.01
+other_stat_buff = "Attack"
+other_stat_buff_strength = 10
+liftable = false

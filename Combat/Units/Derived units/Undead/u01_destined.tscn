@@ -1,8 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://c8vscof46xqwy"]
+[gd_scene load_steps=19 format=3 uid="uid://c8vscof46xqwy"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_lms7p"]
 [ext_resource type="Texture2D" uid="uid://chnfnvxas45jg" path="res://Arts/Undead units/u01 warrior attack .png" id="2_ovvav"]
 [ext_resource type="Texture2D" uid="uid://bgy1ihw85d6pw" path="res://Arts/Undead units/u01 warrior idle .png" id="3_78kv8"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_efdty"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_tyvi1"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="6_n8qtq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3y5sv"]
 atlas = ExtResource("2_ovvav")
@@ -87,6 +90,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_vwiay"]
+resource_local_to_scene = true
+script = ExtResource("4_efdty")
+max_HP = 110
+base_damage = 35
+armor = 5
+
 [node name="Destined" instance=ExtResource("1_lms7p")]
 unit_name = "Destined"
 full_description = "The Destined are individuals who pledge their lives to the King of Necropolis even before death claims them. This devotion grants them a fragile connection to the forces of death, allowing them to manipulate minor necromantic powers. However, their frail, living bodies struggle to withstand the rigors of combat"
@@ -96,3 +106,12 @@ sprite_frames = SubResource("SpriteFrames_oo6lg")
 animation = &"attack"
 autoplay = "default"
 frames_to_emit = Array[int]([3])
+
+[node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_vwiay")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("5_tyvi1")
+accuracy = 0.7
+initiative = 35
+target_validation = ExtResource("6_n8qtq")

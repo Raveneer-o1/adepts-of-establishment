@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://talu2uhdeu5q"]
+[gd_scene load_steps=18 format=3 uid="uid://talu2uhdeu5q"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_u1jip"]
 [ext_resource type="Texture2D" uid="uid://8osuulyoov3h" path="res://Arts/Undead units/u24 shadow attack  (1).png" id="2_skljb"]
 [ext_resource type="Texture2D" uid="uid://b6wje3dnktet8" path="res://Arts/Undead units/u24 shadow idle .png" id="3_i3ayl"]
 [ext_resource type="PackedScene" uid="uid://cqi6uvygpbulg" path="res://Combat/Effects/Scenes/Undead_spider_effect.tscn" id="4_2tpcm"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_onv2w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_extqq"]
 atlas = ExtResource("2_skljb")
@@ -88,6 +89,14 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_cbcbq"]
+resource_local_to_scene = true
+script = ExtResource("4_onv2w")
+max_HP = 100
+base_damage = 30
+armor = 0
+evasion = 0.02
+
 [node name="Shadow" instance=ExtResource("1_u1jip")]
 unit_name = "Shadow"
 full_description = "Shadow's very essence a manifestation of fear and despair. They attack by engulfing their targets in a cold, suffocating void, sapping their strength and will. Difficult to detect and harder to fight, Shadows excel at ambushing their prey and disrupting enemy formations."
@@ -97,4 +106,5 @@ sprite_frames = SubResource("SpriteFrames_c11wf")
 autoplay = "default"
 
 [node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_cbcbq")
 attack_effect = ExtResource("4_2tpcm")

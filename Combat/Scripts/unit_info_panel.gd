@@ -8,6 +8,7 @@ class_name UnitInfoPanel
 const HP_LINE = "HP: %d/%d\n"
 const DAMAGE_LINE = "Damage: %d (%s)\n"
 const ARMOR_LINE = "Armor: %d\n"
+const EVASION_LINE = "Evasion: %.2f\n"
 const ACCURACY_LINE = "Accuracy: %s\n"
 const INITIATIVE_LINE = "Initiative: %s\n"
 const TYPE_LINE = "Type: %s\n"
@@ -18,18 +19,7 @@ const BRACKETS_ENCLOSURE = "(%s)"
 
 # Converts an attack type enum value into a human-readable string.
 func attack_type_to_str(type: EventBus.AttackType) -> String:
-	match type:
-		EventBus.AttackType.Physical:
-			return "Physical"
-		EventBus.AttackType.Mind:
-			return "Mind"
-		EventBus.AttackType.Elemental:
-			return "Elemental"
-		EventBus.AttackType.Life:
-			return "Life"
-		EventBus.AttackType.None:
-			return "None"
-	return "undefined type"
+	return EventBus.AttackType.keys()[type]
 
 ## Populates the UI panel with formatted unit information.
 ## Displays HP, armor, base damage, and details of each attack
@@ -41,6 +31,7 @@ func populate_panel_with_info(unit: Unit) -> void:
 	# Format unit attributes for display
 	var hp_text: String = HP_LINE % [unit.parameters.hp, unit.parameters.max_hp]
 	var armor_text := ARMOR_LINE % unit.parameters.armor
+	var evasion_text := EVASION_LINE % unit.parameters.evasion
 	var damage_text: String = ""
 	var type_text: String = ""
 	var initiative_text: String = ""
@@ -98,6 +89,7 @@ func populate_panel_with_info(unit: Unit) -> void:
 	full_info.append_text(\
 			hp_text + \
 			armor_text + \
+			evasion_text + \
 			damage_text + \
 			effect_text + \
 			accuracy_text + \
