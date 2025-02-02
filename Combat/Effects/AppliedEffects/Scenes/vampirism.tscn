@@ -7,3 +7,6 @@
 script = ExtResource("2_nf78r")
 heal = 0.0
 is_percentage = false
+effect_name = "Vampirism"
+icon_index = 1
+description = "When this unit attacks, it restores %s health"

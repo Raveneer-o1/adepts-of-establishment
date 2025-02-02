@@ -2,6 +2,7 @@ extends AppliedEffect
 class_name Stun
 
 @export var turns: int = 1
+@export var chance_to_be_lifted: float = 1.0
 
 @export var message_start: String = "Stunned!"
 @export var message_skip: String = "Skip turn!"
@@ -12,25 +13,22 @@ func _get_description() -> String:
 
 
 func skip_turn(unit: Unit) -> void:
-	if unit == target_unit:
-		turns -= 1
-		if turns <= 0:
-			target_unit.animation_handle.play()
-			lift_effect()
-			target_unit.skip_attack(message_end, color_effect)
-		else:
-			target_unit.skip_attack(message_skip, color_effect)
+	if unit != target_unit:
+		return
+	
+	turns -= 1
+	if turns <= 0 and randf() <= chance_to_be_lifted:
+		target_unit.animation_handle.play()
+		lift_effect()
+	
+	target_unit.skip_attack(message_skip, color_effect)
 
 ## Called when the effect is applied to a unit.
 func _apply_effect(params: Variant) -> void:
 	if params is Array:
 		if params.size() >= 2:
-			var chance := randf()
-			if chance < params[0]:
-				turns = params[1]
-			else:
-				queue_free()
-				return
+			chance_to_be_lifted = params[0]
+			turns = params[1]
 		else:
 			print_debug("Invalid number parameter for a stun effect. Expected 2, found %d!" % params.size())
 	else:

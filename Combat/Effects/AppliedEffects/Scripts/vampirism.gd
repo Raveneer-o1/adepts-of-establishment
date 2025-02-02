@@ -9,7 +9,7 @@ extends AppliedEffect
 
 func _get_description() -> String:
 	return description % [heal,
-		"% of damage as" if is_percentage \
+		"%% of damage as" if is_percentage \
 		else ""
 	]
 
@@ -17,7 +17,7 @@ func _get_description() -> String:
 func vampiric_heal(attack: Attack) ->void:
 	if attack.attacker == target_unit:
 		@warning_ignore("narrowing_conversion")
-		target_unit.parameters.heal(
+		target_unit.heal(
 			heal * attack.damage if is_percentage \
 			else heal
 		)

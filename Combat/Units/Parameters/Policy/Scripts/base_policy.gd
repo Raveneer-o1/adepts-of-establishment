@@ -1,6 +1,7 @@
 extends Resource
 class_name BasePolicy
 
+## Wrapper that filters invalid input (i.e. [param attack] being null, [param index] outside boundaries)
 func apply_policy(attack: Attack, index: int, finalize: bool) -> void:
 	if attack.target_spots.is_empty():
 		return

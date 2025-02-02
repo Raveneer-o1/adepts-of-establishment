@@ -1,10 +1,14 @@
-[gd_scene load_steps=24 format=3 uid="uid://c42n73wmostxu"]
+[gd_scene load_steps=28 format=3 uid="uid://c42n73wmostxu"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_jlfmv"]
 [ext_resource type="Texture2D" uid="uid://b8w26q446mi24" path="res://Arts/Undead units/u21 archlich attack.png" id="2_d3c0n"]
 [ext_resource type="Texture2D" uid="uid://brgwgs2tc646c" path="res://Arts/Undead units/u21 archlich idle .png" id="3_ppol0"]
 [ext_resource type="PackedScene" uid="uid://bq5fuvt6gwhs6" path="res://Combat/Effects/Scenes/sythe.tscn" id="4_11wyg"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_dl1x1"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_e10lm"]
+[ext_resource type="Resource" uid="uid://davbg4egq6lu0" path="res://Combat/Units/Parameters/Validation/necromancer_validity.tres" id="7_466vw"]
+[ext_resource type="Resource" uid="uid://bhe5cl2bujg8i" path="res://Combat/Units/Parameters/Additional targets/Splash.tres" id="8_uexn6"]
+[ext_resource type="Resource" uid="uid://cbtn2lhkxm7ql" path="res://Combat/Units/Parameters/Policy/necromancer_policy.tres" id="9_7xkoy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o1coi"]
 atlas = ExtResource("2_d3c0n")
@@ -134,9 +138,9 @@ animations = [{
 [sub_resource type="Resource" id="Resource_l8l5r"]
 resource_local_to_scene = true
 script = ExtResource("4_dl1x1")
-max_HP = 100
-base_damage = 30
-armor = 0
+max_HP = 200
+base_damage = 50
+armor = 10
 evasion = 0.02
 
 [node name="Archlich" instance=ExtResource("1_jlfmv")]
@@ -147,8 +151,19 @@ full_description = "Archliches are the pinnacle of necromantic evolution, their 
 sprite_frames = SubResource("SpriteFrames_e4wxl")
 animation = &"attack"
 autoplay = "default"
-frames_to_emit = Array[int]([7])
+frames_to_emit = Array[int]([6, 8])
 
 [node name="UnitParameters" parent="." index="1"]
+level = 4
 base_paramaters = SubResource("Resource_l8l5r")
+immunities = Array[int]([3])
 attack_effect = ExtResource("4_11wyg")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+script = ExtResource("6_e10lm")
+accuracy = 0.885
+targets_needed = 2
+initiative = 30
+target_validation = ExtResource("7_466vw")
+additional_targets = ExtResource("8_uexn6")
+damage_policy = ExtResource("9_7xkoy")

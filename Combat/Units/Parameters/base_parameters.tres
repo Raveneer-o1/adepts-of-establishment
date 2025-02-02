@@ -8,3 +8,4 @@ script = ExtResource("1_rcmmf")
 max_HP = 100
 base_damage = 30
 armor = 0
+evasion = 0.02

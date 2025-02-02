@@ -1,9 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://bs5j34llrk1jo"]
+[gd_scene load_steps=20 format=3 uid="uid://bs5j34llrk1jo"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_lj8lh"]
 [ext_resource type="Texture2D" uid="uid://dfbyfcvwyc4ah" path="res://Arts/Undead units/u28 wyvern attack .png" id="2_yakh1"]
 [ext_resource type="Texture2D" uid="uid://bwxxu24fw81km" path="res://Arts/Undead units/u28 wyvern idle .png" id="3_v6we3"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_ai02h"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_1lqiu"]
+[ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standart_archer_validity.tres" id="6_d1jj8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oqaji"]
 atlas = ExtResource("2_yakh1")
@@ -98,13 +100,14 @@ animations = [{
 [sub_resource type="Resource" id="Resource_5c60v"]
 resource_local_to_scene = true
 script = ExtResource("4_ai02h")
-max_HP = 100
-base_damage = 30
-armor = 0
-evasion = 0.02
+max_HP = 220
+base_damage = 50
+armor = 10
+evasion = 0.005
 
 [node name="Wyvern" instance=ExtResource("1_lj8lh")]
 unit_name = "Wyvern"
+unit_type = "Defender"
 full_description = "Wyverns are the earthbound cousins of dragons, stripped of the freedom of flight. Their bitterness over this difference drives them to seek power, often turning to the God of Death for strength and vengeance. While physically imposing, wyverns lack the majesty of true dragons, channeling their rage into ferocious attacks."
 
 [node name="AnimationHandle" parent="." index="0"]
@@ -119,3 +122,10 @@ large_unit = true
 [node name="VisualBar" parent="UnitParameters" index="0"]
 offset_left = -31.0
 offset_right = 29.0
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+script = ExtResource("5_1lqiu")
+type = 1
+accuracy = 0.8
+initiative = 35
+target_validation = ExtResource("6_d1jj8")

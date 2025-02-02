@@ -1,10 +1,12 @@
-[gd_scene load_steps=23 format=3 uid="uid://d3c7npnpxkrt4"]
+[gd_scene load_steps=25 format=3 uid="uid://d3c7npnpxkrt4"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_27vee"]
 [ext_resource type="Texture2D" uid="uid://cegcrx5oq7gl7" path="res://Arts/Undead units/u20 will-o-wisp attack .png" id="2_1rynm"]
 [ext_resource type="Texture2D" uid="uid://dj7xt0w8xynpi" path="res://Arts/Undead units/u20 will-o-wisp idle .png" id="3_osvqp"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_co076"]
 [ext_resource type="PackedScene" uid="uid://7vboji3lb2aa" path="res://Combat/Effects/Scenes/whisp_attack.tscn" id="4_gye3m"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_tko31"]
+[ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standart_archer_validity.tres" id="7_7imro"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ueq40"]
 atlas = ExtResource("2_1rynm")
@@ -127,10 +129,10 @@ animations = [{
 [sub_resource type="Resource" id="Resource_6wtdo"]
 resource_local_to_scene = true
 script = ExtResource("4_co076")
-max_HP = 100
-base_damage = 30
-armor = 0
-evasion = 0.02
+max_HP = 140
+base_damage = 35
+armor = 5
+evasion = 0.085
 
 [node name="Will-o’-Wisp" instance=ExtResource("1_27vee")]
 unit_name = "Will-o’-Wisp"
@@ -143,3 +145,14 @@ autoplay = "default"
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_6wtdo")
 attack_effect = ExtResource("4_gye3m")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+script = ExtResource("6_tko31")
+type = 1
+accuracy = 0.7
+initiative = 30
+target_validation = ExtResource("7_7imro")
+applying_effects = {
+"burn": [1, 25],
+"paralysis": [0.9, 1]
+}

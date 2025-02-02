@@ -1,10 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://talu2uhdeu5q"]
+[gd_scene load_steps=21 format=3 uid="uid://talu2uhdeu5q"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_u1jip"]
 [ext_resource type="Texture2D" uid="uid://8osuulyoov3h" path="res://Arts/Undead units/u24 shadow attack  (1).png" id="2_skljb"]
 [ext_resource type="Texture2D" uid="uid://b6wje3dnktet8" path="res://Arts/Undead units/u24 shadow idle .png" id="3_i3ayl"]
 [ext_resource type="PackedScene" uid="uid://cqi6uvygpbulg" path="res://Combat/Effects/Scenes/Undead_spider_effect.tscn" id="4_2tpcm"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_onv2w"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_f03p3"]
+[ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standart_archer_validity.tres" id="7_e144q"]
+[ext_resource type="Resource" uid="uid://bhe5cl2bujg8i" path="res://Combat/Units/Parameters/Additional targets/Splash.tres" id="8_2mes4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_extqq"]
 atlas = ExtResource("2_skljb")
@@ -92,10 +95,10 @@ animations = [{
 [sub_resource type="Resource" id="Resource_cbcbq"]
 resource_local_to_scene = true
 script = ExtResource("4_onv2w")
-max_HP = 100
+max_HP = 150
 base_damage = 30
-armor = 0
-evasion = 0.02
+armor = 5
+evasion = 0.12
 
 [node name="Shadow" instance=ExtResource("1_u1jip")]
 unit_name = "Shadow"
@@ -106,5 +109,17 @@ sprite_frames = SubResource("SpriteFrames_c11wf")
 autoplay = "default"
 
 [node name="UnitParameters" parent="." index="1"]
+level = 3
 base_paramaters = SubResource("Resource_cbcbq")
+immunities = Array[int]([2, 3])
 attack_effect = ExtResource("4_2tpcm")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+script = ExtResource("6_f03p3")
+accuracy = 0.65
+initiative = 25
+target_validation = ExtResource("7_e144q")
+additional_targets = ExtResource("8_2mes4")
+applying_effects = {
+"paralysis": [0.9, 2]
+}

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnxkr164m8hpp"]
+
+[ext_resource type="Script" path="res://Combat/Effects/AppliedEffects/Scripts/crafted_body.gd" id="1_m4w4p"]
+
+[node name="Crafted body" type="Node"]
+script = ExtResource("1_m4w4p")
+effect_name = "Crafted body"
+icon_index = 3
+description = "Each time this unit is revived, it rises with increased parameters."

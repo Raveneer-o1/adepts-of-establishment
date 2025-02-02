@@ -1,9 +1,14 @@
-[gd_scene load_steps=21 format=3 uid="uid://c4wmjlxgojxgm"]
+[gd_scene load_steps=26 format=3 uid="uid://c4wmjlxgojxgm"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_7kl12"]
 [ext_resource type="Texture2D" uid="uid://ch0inodjly3mq" path="res://Arts/Undead units/u16 vampire lord attack .png" id="2_fcnea"]
 [ext_resource type="Texture2D" uid="uid://c80y2a67i4k66" path="res://Arts/Undead units/u16 vampire lord idle .png" id="3_7m43w"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_v6g03"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_mqc6w"]
+[ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standart_archer_validity.tres" id="6_2bq5g"]
+[ext_resource type="Resource" uid="uid://bhe5cl2bujg8i" path="res://Combat/Units/Parameters/Additional targets/Splash.tres" id="7_jj583"]
+[ext_resource type="Resource" uid="uid://cxvfk7vgegqq2" path="res://Combat/Units/Parameters/Policy/decay_policy.tres" id="8_odjqq"]
+[ext_resource type="PackedScene" uid="uid://cxt0p01rq72n1" path="res://Combat/Effects/AppliedEffects/Scenes/vampirism.tscn" id="9_uy4hc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_arw44"]
 atlas = ExtResource("2_fcnea")
@@ -119,10 +124,10 @@ animations = [{
 [sub_resource type="Resource" id="Resource_jg442"]
 resource_local_to_scene = true
 script = ExtResource("4_v6g03")
-max_HP = 100
-base_damage = 30
-armor = 0
-evasion = 0.02
+max_HP = 230
+base_damage = 75
+armor = 20
+evasion = 0.03
 
 [node name="Vampire Lord" instance=ExtResource("1_7kl12")]
 unit_name = "Vampire Lord"
@@ -136,3 +141,16 @@ offset = Vector2(0, -8)
 
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_jg442")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+script = ExtResource("5_mqc6w")
+type = 3
+accuracy = 0.9
+initiative = 45
+target_validation = ExtResource("6_2bq5g")
+additional_targets = ExtResource("7_jj583")
+damage_policy = ExtResource("8_odjqq")
+
+[node name="Vampirism" parent="UnitParameters" index="3" instance=ExtResource("9_uy4hc")]
+heal = 0.65
+is_percentage = true

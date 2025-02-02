@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dk7ouduwwj4wg"]
+
+[ext_resource type="Script" path="res://Combat/Effects/AppliedEffects/Scripts/fear_aura.gd" id="1_olbpa"]
+
+[node name="Fear aura" type="Node"]
+script = ExtResource("1_olbpa")
+effect_name = "Fear aura"
+icon_index = 9
+description = "Decreases evasion of ALL adjacent units by %.2f"

@@ -1,9 +1,13 @@
-[gd_scene load_steps=17 format=3 uid="uid://enny5k73ap16"]
+[gd_scene load_steps=21 format=3 uid="uid://enny5k73ap16"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_nautt"]
 [ext_resource type="Texture2D" uid="uid://ddk5e7ar6yos4" path="res://Arts/Undead units/u32 Gluttonous serpent attack.png" id="2_jb0i1"]
 [ext_resource type="Texture2D" uid="uid://dux6ymkrjppke" path="res://Arts/Undead units/u32 Gluttonous serpent idle .png" id="3_lw716"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_gsme7"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_1scgy"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="6_j2236"]
+[ext_resource type="PackedScene" uid="uid://b1i0mf1877mfo" path="res://Combat/Effects/AppliedEffects/Scenes/shield.tscn" id="7_yrrec"]
+[ext_resource type="PackedScene" uid="uid://cpjv5cb5u6bt6" path="res://Combat/Effects/AppliedEffects/Scenes/devourer.tscn" id="8_ovriw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k21gp"]
 atlas = ExtResource("2_jb0i1")
@@ -114,3 +118,14 @@ large_unit = true
 [node name="VisualBar" parent="UnitParameters" index="0"]
 offset_left = -31.0
 offset_right = 29.0
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+script = ExtResource("5_1scgy")
+accuracy = 0.85
+initiative = 35
+target_validation = ExtResource("6_j2236")
+
+[node name="Shield" parent="UnitParameters" index="3" instance=ExtResource("7_yrrec")]
+damage_type = 3
+
+[node name="Devourer" parent="UnitParameters" index="4" instance=ExtResource("8_ovriw")]

@@ -189,7 +189,8 @@ func finalize_attack() -> void:
 		return
 	var attack_to_finalize: Attack = taking_damage_attacks.pop_front()
 	
-	if parameters.immunities.has(attack_to_finalize.type):
+	if attack_to_finalize.type != EventBus.AttackType.None and \
+			parameters.immunities.has(attack_to_finalize.type):
 		system.display_text_near_unit(self, "Immunity")
 		return
 	
@@ -222,6 +223,10 @@ func finalize_attack() -> void:
 			)
 	
 	take_damage(attack_to_finalize.damage)
+	
+	# if untit is dead after taking damage, it was killed by this attack
+	if parameters.dead:
+		EventBus.unit_killed.emit(self, attack_to_finalize.attacker)
 
 
 ## Resolves an attack directed at this unit.
@@ -417,6 +422,7 @@ func resurrect() -> void:
 	animation_handle.play(&"default")
 	
 	system.display_text_near_unit(self, "Resurrected!")
+	EventBus.unit_revived.emit(self)
 
 ## Restores health to the unit and triggers associated animations.
 func heal(value: int) -> void:

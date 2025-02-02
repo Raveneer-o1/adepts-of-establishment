@@ -7,6 +7,10 @@ func trigger_effect(attack: Attack) -> void:
 	if not attack.targets.has(target_unit):
 		return
 	
+	# Empty attack type is impossible to block
+	if attack.type == EventBus.AttackType.None:
+		return
+	
 	if attack.type == damage_type:
 		target_unit.shielded_attacks.append(attack)
 		queue_free()

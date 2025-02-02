@@ -1,10 +1,13 @@
-[gd_scene load_steps=20 format=3 uid="uid://debujdw84uwas"]
+[gd_scene load_steps=23 format=3 uid="uid://debujdw84uwas"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_lnsio"]
 [ext_resource type="Texture2D" uid="uid://c8ir36lajxom0" path="res://Arts/Undead units/u12 death attack.png" id="2_qbo8e"]
 [ext_resource type="Texture2D" uid="uid://dig3hbcgskcyd" path="res://Arts/Undead units/u12 death idle .png" id="3_e205o"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_4vmmi"]
 [ext_resource type="PackedScene" uid="uid://bsii5o6erpsok" path="res://Combat/Effects/Scenes/Wraith_attack.tscn" id="4_l8fql"]
+[ext_resource type="PackedScene" uid="uid://b1i0mf1877mfo" path="res://Combat/Effects/AppliedEffects/Scenes/shield.tscn" id="6_los5w"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="7_a2d6l"]
+[ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standart_archer_validity.tres" id="8_yi3gy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rwjmg"]
 atlas = ExtResource("2_qbo8e")
@@ -122,3 +125,15 @@ autoplay = "default"
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_46ohn")
 attack_effect = ExtResource("4_l8fql")
+
+[node name="Shield" parent="UnitParameters" index="2" instance=ExtResource("6_los5w")]
+damage_type = 0
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="3"]
+script = ExtResource("7_a2d6l")
+accuracy = 0.85
+initiative = 45
+target_validation = ExtResource("8_yi3gy")
+applying_effects = {
+"weakness": [1, 7]
+}

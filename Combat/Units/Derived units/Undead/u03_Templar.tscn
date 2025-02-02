@@ -1,9 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://cctpkb760qvr8"]
+[gd_scene load_steps=22 format=3 uid="uid://cctpkb760qvr8"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_tkxce"]
 [ext_resource type="Texture2D" uid="uid://bdg0r0dumgif4" path="res://Arts/Undead units/u02 Templar attack .png" id="2_f5d7c"]
 [ext_resource type="Texture2D" uid="uid://c82h0vwwedt1o" path="res://Arts/Undead units/u02 Templar idle .png" id="3_jnlcm"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_a5q33"]
+[ext_resource type="PackedScene" uid="uid://b1i0mf1877mfo" path="res://Combat/Effects/AppliedEffects/Scenes/shield.tscn" id="5_0k2wg"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_dtok8"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="7_apbbl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_16nrb"]
 atlas = ExtResource("2_f5d7c")
@@ -105,9 +108,9 @@ animations = [{
 [sub_resource type="Resource" id="Resource_5xu2y"]
 resource_local_to_scene = true
 script = ExtResource("4_a5q33")
-max_HP = 100
-base_damage = 30
-armor = 0
+max_HP = 160
+base_damage = 45
+armor = 10
 evasion = 0.02
 
 [node name="Templar" instance=ExtResource("1_tkxce")]
@@ -123,3 +126,11 @@ frames_to_emit = Array[int]([4])
 
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_5xu2y")
+
+[node name="Shield" parent="UnitParameters" index="2" instance=ExtResource("5_0k2wg")]
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="3"]
+script = ExtResource("6_dtok8")
+accuracy = 0.8
+initiative = 40
+target_validation = ExtResource("7_apbbl")

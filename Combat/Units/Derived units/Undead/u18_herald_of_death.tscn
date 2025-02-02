@@ -1,10 +1,13 @@
-[gd_scene load_steps=30 format=3 uid="uid://bjf64unkm13v7"]
+[gd_scene load_steps=33 format=3 uid="uid://bjf64unkm13v7"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_sqfu4"]
 [ext_resource type="Texture2D" uid="uid://l00uakxeiih3" path="res://Arts/Undead units/u13 wraith attack .png" id="2_ookue"]
 [ext_resource type="Texture2D" uid="uid://c7qwrcmu6tcqj" path="res://Arts/Undead units/u13 wraith  idle .png" id="3_lmnsb"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_mp57r"]
 [ext_resource type="PackedScene" uid="uid://cxc4kawwgjahf" path="res://Combat/Effects/Scenes/Herald_effect.tscn" id="4_uyepk"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_j8oql"]
+[ext_resource type="Resource" uid="uid://bkoge3ibwhgcc" path="res://Combat/Units/Parameters/Validation/standart_mage_validity.tres" id="7_mwbfh"]
+[ext_resource type="Resource" uid="uid://bhe5cl2bujg8i" path="res://Combat/Units/Parameters/Additional targets/Splash.tres" id="8_076jq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jg0nu"]
 atlas = ExtResource("2_ookue")
@@ -176,9 +179,9 @@ animations = [{
 [sub_resource type="Resource" id="Resource_rkstj"]
 resource_local_to_scene = true
 script = ExtResource("4_mp57r")
-max_HP = 100
-base_damage = 30
-armor = 0
+max_HP = 220
+base_damage = 80
+armor = 10
 evasion = 0.02
 
 [node name="Herald of Death" instance=ExtResource("1_sqfu4")]
@@ -193,5 +196,14 @@ offset = Vector2(8, 0)
 frames_to_emit = Array[int]([9])
 
 [node name="UnitParameters" parent="." index="1"]
+level = 4
 base_paramaters = SubResource("Resource_rkstj")
+immunities = Array[int]([3])
 attack_effect = ExtResource("4_uyepk")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+script = ExtResource("6_j8oql")
+accuracy = 0.9
+initiative = 40
+target_validation = ExtResource("7_mwbfh")
+additional_targets = ExtResource("8_076jq")

@@ -6,7 +6,7 @@ func _validate_target(attacker: Unit, target_spot: UnitSpot) -> bool:
 		return false
 		
 	# if units are in the same party, we don't attack
-	if attacker.party.units.has(target_spot.unit):
+	if attacker.party.unit_spots.has(target_spot):
 		return false
 	
 	return true

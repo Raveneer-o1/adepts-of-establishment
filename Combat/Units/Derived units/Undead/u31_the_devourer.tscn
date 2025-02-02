@@ -1,9 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://b8yan7skrudpm"]
+[gd_scene load_steps=20 format=3 uid="uid://b8yan7skrudpm"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_7leqj"]
 [ext_resource type="Texture2D" uid="uid://b15tomtsyw2o" path="res://Arts/Undead units/u31 Gluttonous serpent attack .png" id="2_eynx3"]
 [ext_resource type="Texture2D" uid="uid://b4swk2jwnomow" path="res://Arts/Undead units/u31 Gluttonous serpent idle .png" id="3_l0khi"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_njdrb"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_34qfr"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="6_67hnq"]
+[ext_resource type="PackedScene" uid="uid://cpjv5cb5u6bt6" path="res://Combat/Effects/AppliedEffects/Scenes/devourer.tscn" id="6_moql6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pd7vp"]
 atlas = ExtResource("2_eynx3")
@@ -91,10 +94,10 @@ animations = [{
 [sub_resource type="Resource" id="Resource_sy5jc"]
 resource_local_to_scene = true
 script = ExtResource("4_njdrb")
-max_HP = 100
-base_damage = 30
-armor = 0
-evasion = 0.02
+max_HP = 380
+base_damage = 90
+armor = 30
+evasion = 0.015
 
 [node name="The Devourer" instance=ExtResource("1_7leqj")]
 unit_name = "The Devourer"
@@ -107,9 +110,19 @@ autoplay = "default"
 frames_to_emit = Array[int]([2])
 
 [node name="UnitParameters" parent="." index="1"]
+level = 3
 base_paramaters = SubResource("Resource_sy5jc")
 large_unit = true
 
 [node name="VisualBar" parent="UnitParameters" index="0"]
 offset_left = -31.0
 offset_right = 29.0
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+script = ExtResource("5_34qfr")
+accuracy = 0.9
+initiative = 40
+target_validation = ExtResource("6_67hnq")
+
+[node name="Devourer" parent="UnitParameters" index="3" instance=ExtResource("6_moql6")]
+health_restore = 60

@@ -39,6 +39,8 @@ var packed_menu: PackedScene
 @warning_ignore("unused_signal") signal attack_missed(target: Unit, attack: Attack)
 @warning_ignore("unused_signal") signal attack_animation_finished(unit: Unit)
 @warning_ignore("unused_signal") signal unit_died(unit: Unit)
+@warning_ignore("unused_signal") signal unit_revived(unit: Unit)
+@warning_ignore("unused_signal") signal unit_killed(unit: Unit, killer: Unit)
 @warning_ignore("unused_signal") signal unit_description_requested(unit: Unit)
 @warning_ignore("unused_signal") signal effect_applied(effect: AppliedEffect)
 @warning_ignore("unused_signal") signal effect_lifted(effect: AppliedEffect)

@@ -253,9 +253,9 @@ func die() -> void:
 	dead = true
 	parent_unit.die()
 	
-	for child in get_children():
-		if child is AppliedEffect:
-			child.queue_free()
+	#for child in get_children():
+		#if child is AppliedEffect:
+			#child.queue_free()
 
 func set_references() -> void:
 	for child in get_children():

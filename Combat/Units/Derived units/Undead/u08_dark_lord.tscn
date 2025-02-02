@@ -136,7 +136,7 @@ animations = [{
 [sub_resource type="Resource" id="Resource_kfdto"]
 resource_local_to_scene = true
 script = ExtResource("4_xtssu")
-max_HP = 1000
+max_HP = 200
 base_damage = 30
 armor = 30
 evasion = 0.02
@@ -166,4 +166,3 @@ applying_effects = {
 }
 
 [node name="Shield" parent="UnitParameters" index="3" instance=ExtResource("7_d53df")]
-icon_index = 4

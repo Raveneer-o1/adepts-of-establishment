@@ -1,9 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://bij67u1mx8c1"]
+[gd_scene load_steps=18 format=3 uid="uid://bij67u1mx8c1"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_ste1w"]
 [ext_resource type="Texture2D" uid="uid://b30nutai4e0bu" path="res://Arts/Undead units/u11 ghost attack .png" id="2_mtewv"]
 [ext_resource type="Texture2D" uid="uid://bedw2sa7f2pc4" path="res://Arts/Undead units/u11 ghost idle .png" id="3_ilocx"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_ibcd7"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_b52pm"]
+[ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standart_archer_validity.tres" id="6_0ndwb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t74pg"]
 atlas = ExtResource("2_mtewv")
@@ -84,10 +86,10 @@ animations = [{
 [sub_resource type="Resource" id="Resource_du1ct"]
 resource_local_to_scene = true
 script = ExtResource("4_ibcd7")
-max_HP = 100
-base_damage = 30
+max_HP = 70
+base_damage = 0
 armor = 0
-evasion = 0.02
+evasion = 0.07
 
 [node name="Ghost" instance=ExtResource("1_ste1w")]
 unit_name = "Ghost"
@@ -100,3 +102,13 @@ autoplay = "default"
 
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_du1ct")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+script = ExtResource("5_b52pm")
+type = 2
+accuracy = 0.65
+initiative = 25
+target_validation = ExtResource("6_0ndwb")
+applying_effects = {
+"paralysis": [1.0, 1]
+}

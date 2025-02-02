@@ -1,9 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://cvmvfp5vmhexe"]
+[gd_scene load_steps=24 format=3 uid="uid://cvmvfp5vmhexe"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_m5le8"]
 [ext_resource type="Texture2D" uid="uid://cm6gduifdftsj" path="res://Arts/Undead units/u08 skeleton warrior attack .png" id="2_k4rwu"]
 [ext_resource type="Texture2D" uid="uid://btkokdumf0jum" path="res://Arts/Undead units/u08 skeleton warrior idle.png" id="3_y50yy"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_mtitt"]
+[ext_resource type="PackedScene" uid="uid://dnxkr164m8hpp" path="res://Combat/Effects/AppliedEffects/Scenes/crafted_body.tscn" id="5_a3k2t"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_gonsu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5xc6k"]
 atlas = ExtResource("2_k4rwu")
@@ -126,10 +128,10 @@ animations = [{
 [sub_resource type="Resource" id="Resource_0i66v"]
 resource_local_to_scene = true
 script = ExtResource("4_mtitt")
-max_HP = 100
-base_damage = 30
-armor = 0
-evasion = 0.02
+max_HP = 200
+base_damage = 65
+armor = 20
+evasion = 0.01
 
 [node name="Skeleton warrior" instance=ExtResource("1_m5le8")]
 unit_name = "Skeleton warrior"
@@ -143,3 +145,16 @@ frames_to_emit = Array[int]([7])
 
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_0i66v")
+
+[node name="Crafted body" parent="UnitParameters" index="2" instance=ExtResource("5_a3k2t")]
+buff_parameters = {
+"armor": 5,
+"base_damage": 7,
+"evasion": 0.005,
+"max_HP": 15
+}
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="3"]
+script = ExtResource("6_gonsu")
+accuracy = 0.8
+initiative = 40

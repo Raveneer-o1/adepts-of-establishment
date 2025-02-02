@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://davbg4egq6lu0"]
+
+[ext_resource type="Script" path="res://Combat/Units/Parameters/Validation/Scripts/necromancer_validation.gd" id="1_1ospt"]
+
+[resource]
+script = ExtResource("1_1ospt")

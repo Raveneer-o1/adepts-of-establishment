@@ -5,4 +5,6 @@
 [node name="Shield" type="Node"]
 script = ExtResource("1_iw7rj")
 effect_name = "Shield"
-description = "Unit is save form the first attack of the type [i]'%s'[/i]"
+icon_index = 4
+description = "Unit is safe form the first attack of the type [i]'%s'[/i]"
+stackable = true

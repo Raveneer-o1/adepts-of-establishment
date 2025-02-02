@@ -1,9 +1,13 @@
-[gd_scene load_steps=21 format=3 uid="uid://1hu3f7g1ei2k"]
+[gd_scene load_steps=25 format=3 uid="uid://1hu3f7g1ei2k"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_d17v1"]
 [ext_resource type="Texture2D" uid="uid://cqwlaxjk1ffsv" path="res://Arts/Undead units/u33 Undying nighthunter attack .png" id="2_s7d44"]
 [ext_resource type="Texture2D" uid="uid://cdpajkyngqmfu" path="res://Arts/Undead units/u33 Undying nighthunter idle .png" id="3_i4tnq"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_kq7e2"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_qcd0c"]
+[ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standart_archer_validity.tres" id="6_pyoen"]
+[ext_resource type="Resource" uid="uid://bhe5cl2bujg8i" path="res://Combat/Units/Parameters/Additional targets/Splash.tres" id="7_ke8ww"]
+[ext_resource type="Resource" uid="uid://cxvfk7vgegqq2" path="res://Combat/Units/Parameters/Policy/decay_policy.tres" id="8_2bjgu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wkb4w"]
 atlas = ExtResource("2_s7d44")
@@ -119,10 +123,10 @@ animations = [{
 [sub_resource type="Resource" id="Resource_k7fea"]
 resource_local_to_scene = true
 script = ExtResource("4_kq7e2")
-max_HP = 100
-base_damage = 30
-armor = 0
-evasion = 0.02
+max_HP = 400
+base_damage = 85
+armor = 25
+evasion = 0.01
 
 [node name="Undying Nighthunter" instance=ExtResource("1_d17v1")]
 unit_name = "Undying Nighthunter"
@@ -134,9 +138,20 @@ autoplay = "default"
 offset = Vector2(8, -8)
 
 [node name="UnitParameters" parent="." index="1"]
+level = 4
 base_paramaters = SubResource("Resource_k7fea")
 large_unit = true
+immunities = Array[int]([3])
 
 [node name="VisualBar" parent="UnitParameters" index="0"]
 offset_left = -31.0
 offset_right = 29.0
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+script = ExtResource("5_qcd0c")
+type = 1
+accuracy = 0.85
+initiative = 35
+target_validation = ExtResource("6_pyoen")
+additional_targets = ExtResource("7_ke8ww")
+damage_policy = ExtResource("8_2bjgu")

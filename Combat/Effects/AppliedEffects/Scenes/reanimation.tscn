@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://xje6iyqcaugy"]
+
+[ext_resource type="Script" path="res://Combat/Effects/AppliedEffects/Scripts/reanimation.gd" id="1_dehaw"]
+
+[node name="Reanimation" type="Node"]
+script = ExtResource("1_dehaw")
+liftable = false
+silencable = false
+effect_name = "Reanimation"
+icon_index = 19
+description = "Increases parameters. Cannot be dispelled, removed, or expire. Persists indefinitely."
+stackable = true

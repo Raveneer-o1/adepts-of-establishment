@@ -1,9 +1,12 @@
-[gd_scene load_steps=23 format=3 uid="uid://bp1r2pdt68e7t"]
+[gd_scene load_steps=26 format=3 uid="uid://bp1r2pdt68e7t"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_23at2"]
 [ext_resource type="Texture2D" uid="uid://c8fie48u2gsl" path="res://Arts/Undead units/u30 dreadwyrm attack .png" id="2_ai7dd"]
 [ext_resource type="Texture2D" uid="uid://dxj8oto08lqym" path="res://Arts/Undead units/u30 dreadwyrm idle .png" id="3_txq8v"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_ju4yq"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_asghm"]
+[ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standart_archer_validity.tres" id="6_15ntb"]
+[ext_resource type="PackedScene" uid="uid://b1i0mf1877mfo" path="res://Combat/Effects/AppliedEffects/Scenes/shield.tscn" id="7_3uj7m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uohc2"]
 atlas = ExtResource("2_ai7dd")
@@ -133,14 +136,15 @@ animations = [{
 [sub_resource type="Resource" id="Resource_08qc4"]
 resource_local_to_scene = true
 script = ExtResource("4_ju4yq")
-max_HP = 100
-base_damage = 30
-armor = 0
-evasion = 0.02
+max_HP = 350
+base_damage = 80
+armor = 20
+evasion = 0.01
 
 [node name="Dreadwyrm" instance=ExtResource("1_23at2")]
 unit_name = "Dreadwyrm"
-full_description = "The Dreadwyrm is a terrifying draconic creature cloaked in shadow and necrotic energy. It soars above the battlefield, raining destruction with its corrupted breath. As a manifestation of death's will, it instills fear in all who face it, ensuring the enemy falters before its might."
+unit_type = "Defender"
+full_description = "The Dreadwyrm is a terrifying draconic creature cloaked in necrotic energy. It soars above the battlefield, raining destruction with its corrupted breath. As a manifestation of death's will, it instills fear in all who face it, ensuring the enemy falters before its might."
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_8f6gl")
@@ -148,9 +152,21 @@ autoplay = "default"
 offset = Vector2(0, -8)
 
 [node name="UnitParameters" parent="." index="1"]
+level = 3
 base_paramaters = SubResource("Resource_08qc4")
 large_unit = true
 
 [node name="VisualBar" parent="UnitParameters" index="0"]
 offset_left = -31.0
 offset_right = 29.0
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+script = ExtResource("5_asghm")
+type = 1
+accuracy = 0.85
+initiative = 35
+target_validation = ExtResource("6_15ntb")
+
+[node name="Shield" parent="UnitParameters" index="3" instance=ExtResource("7_3uj7m")]
+damage_type = 3
+silencable = false

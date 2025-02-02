@@ -1,9 +1,13 @@
-[gd_scene load_steps=21 format=3 uid="uid://qd1eeef07rkl"]
+[gd_scene load_steps=25 format=3 uid="uid://qd1eeef07rkl"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_kf05b"]
 [ext_resource type="Texture2D" uid="uid://cv63wso5tovo4" path="res://Arts/Undead units/u25 blood spawn attack .png" id="2_o5ldf"]
 [ext_resource type="Texture2D" uid="uid://ccycxtwu40sx" path="res://Arts/Undead units/u25 blood spawn idle .png" id="3_akp6c"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_ilmiu"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_wwrrp"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="6_vhqwp"]
+[ext_resource type="PackedScene" uid="uid://cxt0p01rq72n1" path="res://Combat/Effects/AppliedEffects/Scenes/vampirism.tscn" id="7_r3gra"]
+[ext_resource type="PackedScene" uid="uid://dk7ouduwwj4wg" path="res://Combat/Effects/AppliedEffects/Scenes/fear_aura.tscn" id="8_86h8w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5qx11"]
 atlas = ExtResource("2_o5ldf")
@@ -119,8 +123,8 @@ animations = [{
 [sub_resource type="Resource" id="Resource_sqau8"]
 resource_local_to_scene = true
 script = ExtResource("4_ilmiu")
-max_HP = 100
-base_damage = 30
+max_HP = 300
+base_damage = 90
 armor = 0
 evasion = 0.02
 
@@ -137,3 +141,18 @@ frames_to_emit = Array[int]([2, 5])
 
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_sqau8")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+script = ExtResource("5_wwrrp")
+accuracy = 0.9
+targets_needed = 2
+initiative = 40
+target_validation = ExtResource("6_vhqwp")
+
+[node name="Vampirism" parent="UnitParameters" index="3" instance=ExtResource("7_r3gra")]
+heal = 0.5
+is_percentage = true
+
+[node name="Fear aura" parent="UnitParameters" index="4" instance=ExtResource("8_86h8w")]
+liftable = false
+silencable = false

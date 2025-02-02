@@ -1,9 +1,12 @@
-[gd_scene load_steps=21 format=3 uid="uid://cyfiyiae3d4a3"]
+[gd_scene load_steps=24 format=3 uid="uid://cyfiyiae3d4a3"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_frigw"]
 [ext_resource type="Texture2D" uid="uid://c1cevuork88ky" path="res://Arts/Undead units/u07 skeleton attack .png" id="2_upqnb"]
 [ext_resource type="Texture2D" uid="uid://b7ysbyome825h" path="res://Arts/Undead units/u07 skeleton idle .png" id="3_qgbpe"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_cwgxh"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_7e62a"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="6_ksd4k"]
+[ext_resource type="PackedScene" uid="uid://dnxkr164m8hpp" path="res://Combat/Effects/AppliedEffects/Scenes/crafted_body.tscn" id="7_mknrn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_poi57"]
 atlas = ExtResource("2_upqnb")
@@ -119,9 +122,9 @@ animations = [{
 [sub_resource type="Resource" id="Resource_b51no"]
 resource_local_to_scene = true
 script = ExtResource("4_cwgxh")
-max_HP = 100
-base_damage = 30
-armor = 0
+max_HP = 180
+base_damage = 60
+armor = 10
 evasion = 0.02
 
 [node name="Skeleton" instance=ExtResource("1_frigw")]
@@ -136,4 +139,19 @@ offset = Vector2(8, 0)
 frames_to_emit = Array[int]([4])
 
 [node name="UnitParameters" parent="." index="1"]
+level = 3
 base_paramaters = SubResource("Resource_b51no")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+script = ExtResource("5_7e62a")
+accuracy = 0.82
+initiative = 40
+target_validation = ExtResource("6_ksd4k")
+
+[node name="Crafted body" parent="UnitParameters" index="3" instance=ExtResource("7_mknrn")]
+buff_parameters = {
+"armor": 5,
+"base_damage": 5,
+"evasion": 0.005,
+"max_HP": 15
+}

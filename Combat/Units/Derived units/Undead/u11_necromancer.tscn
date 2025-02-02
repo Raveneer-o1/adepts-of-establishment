@@ -1,10 +1,14 @@
-[gd_scene load_steps=20 format=3 uid="uid://1xjofqtit2aj"]
+[gd_scene load_steps=24 format=3 uid="uid://1xjofqtit2aj"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_tcv8q"]
 [ext_resource type="Texture2D" uid="uid://c7rdtcece7r2p" path="res://Arts/Undead units/u23 necromancer attack .png" id="2_0chdl"]
 [ext_resource type="Texture2D" uid="uid://du1y3ccvfyyea" path="res://Arts/Undead units/u23 necromancer idle .png" id="3_itfo3"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_4j4yj"]
 [ext_resource type="PackedScene" uid="uid://n7w0136buyjd" path="res://Combat/Effects/Scenes/circle_attack.tscn" id="4_npxus"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_fqff2"]
+[ext_resource type="Resource" uid="uid://davbg4egq6lu0" path="res://Combat/Units/Parameters/Validation/necromancer_validity.tres" id="7_0xeya"]
+[ext_resource type="Resource" uid="uid://bhe5cl2bujg8i" path="res://Combat/Units/Parameters/Additional targets/Splash.tres" id="8_ww20x"]
+[ext_resource type="Resource" uid="uid://cbtn2lhkxm7ql" path="res://Combat/Units/Parameters/Policy/necromancer_policy.tres" id="9_h5bv1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6puoe"]
 atlas = ExtResource("2_0chdl")
@@ -106,9 +110,9 @@ animations = [{
 [sub_resource type="Resource" id="Resource_jtalj"]
 resource_local_to_scene = true
 script = ExtResource("4_4j4yj")
-max_HP = 100
-base_damage = 30
-armor = 0
+max_HP = 90
+base_damage = 40
+armor = 5
 evasion = 0.02
 
 [node name="Necromancer" instance=ExtResource("1_tcv8q")]
@@ -120,5 +124,14 @@ sprite_frames = SubResource("SpriteFrames_yumoh")
 autoplay = "default"
 
 [node name="UnitParameters" parent="." index="1"]
+level = 2
 base_paramaters = SubResource("Resource_jtalj")
 attack_effect = ExtResource("4_npxus")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+script = ExtResource("6_fqff2")
+accuracy = 0.785
+initiative = 30
+target_validation = ExtResource("7_0xeya")
+additional_targets = ExtResource("8_ww20x")
+damage_policy = ExtResource("9_h5bv1")

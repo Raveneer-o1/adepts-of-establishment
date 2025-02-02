@@ -109,14 +109,15 @@ func silence_effect(turns: int = -1) -> void:
 	get_parent().remove_child(self)
 	silenced_storage.add_child(self)
 	
+	# connect timeout clock if necessary
 	if turns >= 0:
 		silenced_turns = turns
 		EventBus.turn_ended.connect(check_silence_countdown)
 	
 	# disconnect callables
-	for signal_in_pairs in _signal_function_pairs:
-		if (signal_in_pairs as Signal).is_connected(_signal_function_pairs[signal_in_pairs]):
-			(signal_in_pairs as Signal).disconnect(_signal_function_pairs[signal_in_pairs])
+	for signal_in_pairs: Signal in _signal_function_pairs:
+		if signal_in_pairs.is_connected(_signal_function_pairs[signal_in_pairs]):
+			signal_in_pairs.disconnect(_signal_function_pairs[signal_in_pairs])
 	
 
 func restore_effect() -> void:
@@ -131,8 +132,8 @@ func restore_effect() -> void:
 		EventBus.turn_ended.disconnect(check_silence_countdown)
 
 func connect_callables() -> void:
-	for signal_in_pairs in _signal_function_pairs:
-		(signal_in_pairs as Signal).connect(_signal_function_pairs[signal_in_pairs])
+	for signal_in_pairs: Signal in _signal_function_pairs:
+		signal_in_pairs.connect(_signal_function_pairs[signal_in_pairs])
 
 
 ## Called when this node is added to a unit. Automatically applies the effect.

@@ -1,9 +1,12 @@
-[gd_scene load_steps=20 format=3 uid="uid://dfs7pvexbq8o"]
+[gd_scene load_steps=23 format=3 uid="uid://dfs7pvexbq8o"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_nnejl"]
 [ext_resource type="Texture2D" uid="uid://dnr5u4r383k1" path="res://Arts/Undead units/u14 vampire attack .png" id="2_hms6t"]
 [ext_resource type="Texture2D" uid="uid://dn6hcx54e4olf" path="res://Arts/Undead units/u14 vampire idle.png" id="3_8315t"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_6owde"]
+[ext_resource type="PackedScene" uid="uid://cxt0p01rq72n1" path="res://Combat/Effects/AppliedEffects/Scenes/vampirism.tscn" id="5_6e8ga"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_fp4jo"]
+[ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standart_archer_validity.tres" id="7_vvuxm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_trfii"]
 atlas = ExtResource("2_hms6t")
@@ -112,10 +115,10 @@ animations = [{
 [sub_resource type="Resource" id="Resource_gwtjp"]
 resource_local_to_scene = true
 script = ExtResource("4_6owde")
-max_HP = 100
-base_damage = 30
-armor = 0
-evasion = 0.02
+max_HP = 200
+base_damage = 50
+armor = 5
+evasion = 0.01
 
 [node name="Vampire" instance=ExtResource("1_nnejl")]
 unit_name = "Vampire"
@@ -129,3 +132,15 @@ frames_to_emit = Array[int]([6])
 
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_gwtjp")
+
+[node name="Vampirism" parent="UnitParameters" index="2" instance=ExtResource("5_6e8ga")]
+heal = 0.4
+is_percentage = true
+liftable = false
+silencable = false
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="3"]
+script = ExtResource("6_fp4jo")
+accuracy = 0.8
+initiative = 40
+target_validation = ExtResource("7_vvuxm")

@@ -1,10 +1,12 @@
-[gd_scene load_steps=20 format=3 uid="uid://b82ediua8s2v2"]
+[gd_scene load_steps=22 format=3 uid="uid://b82ediua8s2v2"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_rnn02"]
 [ext_resource type="Texture2D" uid="uid://bxnp8khaemwj8" path="res://Arts/Undead units/u26 The Eternal attack .png" id="2_47vol"]
 [ext_resource type="Texture2D" uid="uid://d0rmap5kwg2nq" path="res://Arts/Undead units/u26 The Eternal idle .png" id="3_01npa"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_ayyqw"]
 [ext_resource type="PackedScene" uid="uid://bem6bxlown8bm" path="res://Combat/Effects/Scenes/The_eternal_effect.tscn" id="4_dn35n"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_7uruf"]
+[ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standart_archer_validity.tres" id="7_qmbg8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jw05b"]
 atlas = ExtResource("2_47vol")
@@ -109,10 +111,11 @@ script = ExtResource("4_ayyqw")
 max_HP = 100
 base_damage = 30
 armor = 0
-evasion = 0.02
+evasion = 0.1
 
 [node name="The Eternal" instance=ExtResource("1_rnn02")]
 unit_name = "The Eternal"
+unit_type = "Debuffer"
 full_description = "The Eternal is a spirit bound by an ancient, unbreakable curse, its presence a harbinger of inevitable doom. This spectral entity wields overwhelming power, draining life from entire groups of enemies with its devastating attacks. Its unyielding persistence in battle makes it a terrifying force, embodying the unending grasp of death."
 
 [node name="AnimationHandle" parent="." index="0"]
@@ -122,3 +125,14 @@ autoplay = "default"
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_ls1tn")
 attack_effect = ExtResource("4_dn35n")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+script = ExtResource("6_7uruf")
+type = 1
+accuracy = 0.725
+initiative = 35
+target_validation = ExtResource("7_qmbg8")
+applying_effects = {
+"burn": [2, 40],
+"paralysis": [0.8, 1]
+}

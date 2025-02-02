@@ -18,9 +18,9 @@ func deal_damage(unit: Unit) -> void:
 ## Called when the effect is applied to a unit.
 func _apply_effect(params: Variant) -> void:
 	if params is Array:
-		damage_pet_turn = params[0]
 		if params.size() >= 2:
-			turns = params[1]
+			turns = params[0]
+			damage_pet_turn = params[1]
 	else:
 		print_debug("Invalid parameter for a burn effect. Expected Array, found %s!" % type_string(typeof(params)))
 	

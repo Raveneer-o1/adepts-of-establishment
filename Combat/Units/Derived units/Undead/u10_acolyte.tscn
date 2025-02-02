@@ -1,10 +1,14 @@
-[gd_scene load_steps=19 format=3 uid="uid://c5vikx0bd5g7m"]
+[gd_scene load_steps=23 format=3 uid="uid://c5vikx0bd5g7m"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_jcdtv"]
 [ext_resource type="Texture2D" uid="uid://dsl21nqjf8sos" path="res://Arts/Undead units/u22 acolyte v2 attack .png" id="2_hxb6d"]
 [ext_resource type="Texture2D" uid="uid://df74mv2gn682" path="res://Arts/Undead units/u22 acolyte v2 idle .png" id="3_peot3"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_fyc4j"]
 [ext_resource type="PackedScene" uid="uid://cnl2vrahoavc6" path="res://Combat/Effects/Scenes/spiral_attack.tscn" id="4_idhnn"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_v1c5e"]
+[ext_resource type="Resource" uid="uid://bkoge3ibwhgcc" path="res://Combat/Units/Parameters/Validation/standart_mage_validity.tres" id="7_w8433"]
+[ext_resource type="Resource" uid="uid://bhe5cl2bujg8i" path="res://Combat/Units/Parameters/Additional targets/Splash.tres" id="8_xwvfk"]
+[ext_resource type="Resource" uid="uid://cxvfk7vgegqq2" path="res://Combat/Units/Parameters/Policy/decay_policy.tres" id="9_81ab4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lldai"]
 atlas = ExtResource("2_hxb6d")
@@ -99,8 +103,8 @@ animations = [{
 [sub_resource type="Resource" id="Resource_k7mdc"]
 resource_local_to_scene = true
 script = ExtResource("4_fyc4j")
-max_HP = 100
-base_damage = 30
+max_HP = 70
+base_damage = 25
 armor = 0
 evasion = 0.02
 
@@ -117,3 +121,11 @@ frames_to_emit = Array[int]([5])
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_k7mdc")
 attack_effect = ExtResource("4_idhnn")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+script = ExtResource("6_v1c5e")
+accuracy = 0.77
+initiative = 35
+target_validation = ExtResource("7_w8433")
+additional_targets = ExtResource("8_xwvfk")
+damage_policy = ExtResource("9_81ab4")
