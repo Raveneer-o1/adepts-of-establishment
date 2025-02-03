@@ -46,6 +46,29 @@ func animate_enter() -> void:
 func animate_exit() -> void:
 	$AnimationPlayer.play(&"queue_exit_animation")
 
+func animate_shift(pos: float) -> void:
+	const KEYFRAME_TIME = 1.1
+	#const BOUNCE = 10.5
+	
+	#print(position)
+	var anim: Animation = $AnimationPlayer.get_animation(&"queue_shift_animation")
+	var track_id: int = anim.find_track(".:position", Animation.TYPE_VALUE)
+	var key_id: int = anim.track_find_key(track_id, KEYFRAME_TIME)
+	anim.track_set_enabled(track_id, true)
+	anim.track_set_key_value(track_id, key_id, Vector2(pos, 0.0))
+	#print(position)
+	
+	
+	$AnimationPlayer.play(&"queue_shift_animation")
+
+
+func _on_shift_animation_finished() -> void:
+	queue.end_shifting_miniatures_animation.emit()
+	var anim: Animation = $AnimationPlayer.get_animation(&"queue_shift_animation")
+	var track_id: int = anim.find_track(".:position", Animation.TYPE_VALUE)
+	anim.track_set_enabled(track_id, false)
+	position = Vector2.ZERO
+
 func _on_mouse_entered() -> void:
 	unit.spot.area_2d._on_mouse_entered()
 	scale = LARGE_SCALE

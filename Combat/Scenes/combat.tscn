@@ -74,6 +74,8 @@ animations = [{
 
 [node name="Combat" type="Node2D" node_paths=PackedStringArray("left_player", "right_player")]
 script = ExtResource("1_y8ty4")
+left_party_units = null
+right_party_units = null
 unit_parameters_database = ExtResource("2_x7h3h")
 unit_marker = ExtResource("3_tn6ox")
 left_player = NodePath("Left Player API")

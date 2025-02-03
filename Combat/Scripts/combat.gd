@@ -157,10 +157,13 @@ func choose_unit(spot: UnitSpot) -> void:
 
 
 func try_waiting() -> bool:
-	if combat_logic.try_wait():
-		combat_logic.next_stage()
-		return true
-	return false
+	if not combat_logic.try_wait():
+		return false
+	
+	miniature_queue_manager.shift_miniature(combat_logic.current_attack)
+	combat_logic.next_stage(false)
+	
+	return true
 
 
 func try_taking_defense_stance() -> bool:

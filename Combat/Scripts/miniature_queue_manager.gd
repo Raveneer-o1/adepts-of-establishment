@@ -15,20 +15,38 @@ func fill_queue(attacks_queue: Array[UnitAttack]) -> void:
 	
 	var i: int = 1
 	for attack in attacks_queue:
-		var new_miniature := UNIT_MINIATURE.instantiate()
-		new_miniature.get_child(0).unit = attack.unit
-		new_miniature.get_child(0).queue = self
-		add_child(new_miniature)
-		miniatures[attack] = new_miniature.get_child(0)
-		
-		
-		if i > MAX_MINIATURES_ON_SCREEN:
-			#(new_miniature.get_child(0) as AnimationPlayer).pause_animation()
-			hidden_miniatures.append(new_miniature)
-		else:
-			new_miniature.get_child(0).animate_enter()
-			
+		add_miniature(attack, i)
 		i += 1
+
+
+func shift_miniature(atk: UnitAttack, place: int = get_child_count()) -> void:
+	if not (miniatures.has(atk) and \
+			is_instance_valid(miniatures[atk])):
+		return
+	
+	const DISTANCE_BETWEEN_FLAGS = 65.0
+	var unit_it_queue: UnitInQueue = miniatures[atk]
+	unit_it_queue.animate_shift(place * DISTANCE_BETWEEN_FLAGS)
+	
+	await end_shifting_miniatures_animation
+	move_child(unit_it_queue.get_parent(), place)
+
+signal end_shifting_miniatures_animation
+
+
+func add_miniature(attack: UnitAttack, i: int = get_child_count()) -> void:
+	var new_miniature := UNIT_MINIATURE.instantiate()
+	new_miniature.get_child(0).unit = attack.unit
+	new_miniature.get_child(0).queue = self
+	add_child(new_miniature)
+	miniatures[attack] = new_miniature.get_child(0)
+	
+	
+	if i > MAX_MINIATURES_ON_SCREEN:
+		#(new_miniature.get_child(0) as AnimationPlayer).pause_animation()
+		hidden_miniatures.append(new_miniature)
+	else:
+		new_miniature.get_child(0).animate_enter()
 
 
 func remove_miniature(atk: UnitAttack) -> void:

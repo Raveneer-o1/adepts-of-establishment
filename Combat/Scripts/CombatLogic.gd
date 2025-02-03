@@ -131,14 +131,15 @@ func start_round() -> void:
 
 
 ##  Starts a turn for the next unit in the queue.
-func start_turn() -> void:
+func start_turn(remove_miniature: bool = true) -> void:
 	if not battle_in_progress:
 		return
 	var curr := main_system.current_unit
 	current_attack = null
 	if curr != null:
 		main_system.current_unit = null
-		main_system.clear_nearest_miniature()
+		if remove_miniature:
+			main_system.clear_nearest_miniature()
 		EventBus.turn_ended.emit(curr)
 	
 	while attacks_queue.size() > 0:
@@ -160,14 +161,14 @@ func start_turn() -> void:
 
 ##  Advances the combat flow to the next stage.
 ##  Starts a new turn or round, or ends the battle if no units are left to act.
-func next_stage() -> void:
+func next_stage(remove_miniature: bool = true) -> void:
 	if not battle_in_progress:
 		return
-	start_turn()
+	start_turn(remove_miniature)
 	# if start_turn didn't set current_unit, there's no units left in queue
 	if main_system.current_unit == null:
 		start_round()
-		start_turn()
+		start_turn(remove_miniature)
 		# if start_turn didn't set current_unit after queue has been reset, there's no units left
 		if main_system.current_unit == null:
 			end_battle()
