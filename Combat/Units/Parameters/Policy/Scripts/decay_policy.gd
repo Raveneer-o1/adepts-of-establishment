@@ -10,5 +10,6 @@ func _apply_policy(attack: Attack, index: int, finalize: bool) -> void:
 	var target := attack.targets[index]
 	var distance:int = Party.get_distance(first_position, target.party_position)
 	
-	@warning_ignore("narrowing_conversion") attack.damage *= pow(decay_rate, distance)
+	@warning_ignore("narrowing_conversion") 
+	attack.damages[attack.target_spots[index]] *= pow(decay_rate, distance)
 	target.resolve_attack(attack, index + 1, true)

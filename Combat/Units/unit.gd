@@ -215,6 +215,7 @@ func finalize_attack() -> void:
 			system.display_text_near_unit(self, "Evaded!")
 			return
 	
+	# apply effects if any are present
 	if not attack_to_finalize.applying_effects.is_empty():
 		for effect_name: String in attack_to_finalize.applying_effects:
 			parameters.apply_effect(
@@ -222,7 +223,10 @@ func finalize_attack() -> void:
 				attack_to_finalize.applying_effects[effect_name]
 			)
 	
-	take_damage(attack_to_finalize.damage)
+	var damage_to_take: int = \
+			attack_to_finalize.damages[spot] if attack_to_finalize.damages.has(spot) \
+			else attack_to_finalize.default_damage
+	take_damage(damage_to_take)
 	
 	# if untit is dead after taking damage, it was killed by this attack
 	if parameters.dead:
@@ -266,7 +270,7 @@ func finish_attacking() -> void:
 	EventBus.attack_animation_finished.emit(self)
 
 
-## Set to false whe you need to scip next call of [method set_next_attack]
+## Set to false when you need to skip next call of [method set_next_attack]
 var attack_setting: bool = true
 
 ## Assigns next current_attack if possible
@@ -344,29 +348,6 @@ func force_attack(target: Unit, native_attack: bool = true, attack: UnitAttack =
 		
 		# set flag to skip set_next_attack() when the attack is finished
 		attack_setting = false
-
-## Creates an [Attack] object and returns it
-func create_attack(unit_attack: UnitAttack, targets: Array[UnitSpot]) -> Attack:
-	if unit_attack.additional_targets:
-		targets.append_array(
-			unit_attack.additional_targets.\
-				find_additional_targets(self, targets)
-		)
-	
-	var attack: Attack = Attack.new(
-		self, targets,
-		parameters.get_actual_damage(unit_attack),
-		unit_attack.type,
-		unit_attack.accuracy,
-		parameters.attack_effect
-	)
-	
-	if unit_attack.damage_policy:
-		attack.damage_policy = unit_attack.damage_policy
-	if not unit_attack.applying_effects.is_empty():
-		attack.applying_effects = unit_attack.applying_effects
-	
-	return attack
 
 ## Initiates an attack based on the chosen targets.
 func start_attacking() -> void:
@@ -605,6 +586,29 @@ func display_next_text() -> void:
 
 
 #region Utilities
+
+## Creates an [Attack] object and returns it
+func create_attack(unit_attack: UnitAttack, targets: Array[UnitSpot]) -> Attack:
+	if unit_attack.additional_targets:
+		targets.append_array(
+			unit_attack.additional_targets.\
+				find_additional_targets(self, targets)
+		)
+	
+	var attack: Attack = Attack.new(
+		self, targets,
+		parameters.get_actual_damage(unit_attack),
+		unit_attack.type,
+		unit_attack.accuracy,
+		parameters.attack_effect
+	)
+	
+	if unit_attack.damage_policy:
+		attack.damage_policy = unit_attack.damage_policy
+	if not unit_attack.applying_effects.is_empty():
+		attack.applying_effects = unit_attack.applying_effects
+	
+	return attack
 
 func now_attacking() -> bool:
 	if not chosen_targets.is_empty():

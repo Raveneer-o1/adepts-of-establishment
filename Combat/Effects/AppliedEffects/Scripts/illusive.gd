@@ -10,7 +10,7 @@ extends AppliedEffect
 
 
 func _get_description() -> String:
-	var inceases_evsion: bool = is_equal_approx(evasion_buff, 0.0)
+	var inceases_evsion: bool = not is_equal_approx(evasion_buff, 0.0)
 	var increases_other_param: bool = other_stat_buff != ""
 	
 	if inceases_evsion != increases_other_param:

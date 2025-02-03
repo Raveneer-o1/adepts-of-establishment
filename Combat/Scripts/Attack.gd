@@ -1,11 +1,27 @@
 #extends Object
 class_name Attack
 
-var damage: int
+
+var damages: Dictionary # <target: UnitSpot, damage: int>
+
+# if target can't be found in damages dictionary, this value will be used as damage
+var default_damage: int
+
 var accuracy: float
 var type: EventBus.AttackType
 var attacker: Unit
-var target_spots: Array[UnitSpot]
+var target_spots: Array[UnitSpot]:
+	get:
+		var result: Array[UnitSpot] = []
+		for key in damages.keys():
+			if key is UnitSpot:
+				result.append(key)
+			else:
+				print_debug(\
+					"Unexpected type in the tarrets of an Attack object! UnitSpot expected, but %s found!" \
+					% type_string( typeof(key) )
+				)
+		return result
 var targets: Array[Unit]:
 	set(value):
 		target_spots = []
@@ -59,11 +75,13 @@ func duplicate() -> Attack:
 	var result := Attack.new(
 		attacker,
 		target_spots,
-		damage,
+		0,
 		type,
 		accuracy,
-		effect
+		effect,
+		evadable
 	)
+	result.damages = damages
 	if damage_policy:
 		result.damage_policy = damage_policy
 	if applying_effects:
@@ -77,7 +95,9 @@ func _init(_attacker: Unit, _spots: Array[UnitSpot],
 	type = ty
 	attacker = _attacker
 	target_spots = _spots
-	damage = dmg
 	accuracy = _accuracy
 	effect = eff
 	evadable = _evadable
+	default_damage = dmg
+	for spot: UnitSpot in _spots:
+		damages[spot] = dmg
