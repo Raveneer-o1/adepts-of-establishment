@@ -2,7 +2,7 @@ extends HBoxContainer
 class_name MiniatureQueueManager
 
 const UNIT_MINIATURE = preload("res://Combat/Scenes/unit_in_queue.tscn")
-const MAX_MINIATURES_ON_SCREEN = 15
+const MAX_MINIATURES_ON_SCREEN = 5
 
 var hidden_miniatures: Array
 var miniatures: Dictionary
@@ -19,14 +19,21 @@ func fill_queue(attacks_queue: Array[UnitAttack]) -> void:
 		i += 1
 
 
-func shift_miniature(atk: UnitAttack, place: int = get_child_count()) -> void:
+func shift_miniature(atk: UnitAttack, place: int = get_child_count() - 1) -> void:
 	if not (miniatures.has(atk) and \
 			is_instance_valid(miniatures[atk])):
 		return
 	
-	const DISTANCE_BETWEEN_FLAGS = 65.0
+	const DISTANCE_BETWEEN_FLAGS = 69.0
 	var unit_it_queue: UnitInQueue = miniatures[atk]
-	unit_it_queue.animate_shift(place * DISTANCE_BETWEEN_FLAGS)
+	
+	#print(place * DISTANCE_BETWEEN_FLAGS)
+	if place > MAX_MINIATURES_ON_SCREEN:
+		unit_it_queue.animate_shift_to_hide(place * DISTANCE_BETWEEN_FLAGS)
+		hidden_miniatures.append(unit_it_queue.get_parent())
+		add_new_miniature()
+	else:
+		unit_it_queue.animate_shift(place * DISTANCE_BETWEEN_FLAGS)
 	
 	await end_shifting_miniatures_animation
 	move_child(unit_it_queue.get_parent(), place)

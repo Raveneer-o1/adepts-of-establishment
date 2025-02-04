@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://5od606rggoqo"]
+[gd_scene load_steps=11 format=3 uid="uid://5od606rggoqo"]
 
 [ext_resource type="Script" path="res://Combat/Scripts/unit_in_queue.gd" id="1_bhr41"]
 [ext_resource type="Texture2D" uid="uid://7pynuterl1a0" path="res://Arts/itch assets/Retro Pixel Ribbons, Banners and Frames 2 [BDragon1727]/BorderQueue.tres" id="1_oqw0v"]
@@ -80,7 +80,7 @@ tracks/5/keys = {
 }
 tracks/6/type = "value"
 tracks/6/imported = false
-tracks/6/enabled = true
+tracks/6/enabled = false
 tracks/6/path = NodePath(".:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
@@ -233,12 +233,79 @@ tracks/3/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_fjupl"]
+resource_name = "queue_shift_to_hide_animation"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.466667, 1.06667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(65, 0), Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.466667, 1.06667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(65, 0), Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(100, 0)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.13333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_on_shift_animation_finished"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.978395), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_figen"]
 _data = {
 "RESET": SubResource("Animation_avasp"),
 "queue_enter_animation": SubResource("Animation_7quxo"),
 "queue_exit_animation": SubResource("Animation_8v3r7"),
-"queue_shift_animation": SubResource("Animation_3ac1i")
+"queue_shift_animation": SubResource("Animation_3ac1i"),
+"queue_shift_to_hide_animation": SubResource("Animation_fjupl")
 }
 
 [sub_resource type="LabelSettings" id="LabelSettings_e36st"]
@@ -251,19 +318,18 @@ shadow_color = Color(0, 0, 0, 0.529412)
 shadow_offset = Vector2(2, 2)
 
 [node name="Control" type="Control"]
-custom_minimum_size = Vector2(65, 0)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 65.0
 offset_bottom = 50.0
 size_flags_horizontal = 0
 
 [node name="Unit in queue" type="PanelContainer" parent="."]
-modulate = Color(1, 1, 1, 0.978395)
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 offset_right = 100.0
 offset_bottom = 50.0
 rotation = 1.13446
+pivot_offset = Vector2(50, -50)
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxTexture_xijgp")
 script = ExtResource("1_bhr41")
