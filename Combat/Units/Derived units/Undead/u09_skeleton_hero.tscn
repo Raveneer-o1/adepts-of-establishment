@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://vtklf4i1s3e"]
+[gd_scene load_steps=26 format=3 uid="uid://vtklf4i1s3e"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_f4ptt"]
 [ext_resource type="Texture2D" uid="uid://nacrjv0loeng" path="res://Arts/Undead units/u10 skeleton hero attack .png" id="2_n2bpl"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_mblbc"]
 [ext_resource type="PackedScene" uid="uid://dnxkr164m8hpp" path="res://Combat/Effects/AppliedEffects/Scenes/crafted_body.tscn" id="5_2w0yc"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_so8y8"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="7_m5q7x"]
 [ext_resource type="PackedScene" uid="uid://cxt0p01rq72n1" path="res://Combat/Effects/AppliedEffects/Scenes/vampirism.tscn" id="7_ncqux"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_82ji2"]
@@ -153,6 +154,9 @@ base_paramaters = SubResource("Resource_qsnad")
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="3"]
 script = ExtResource("6_so8y8")
+accuracy = 0.8
+initiative = 40
+target_validation = ExtResource("7_m5q7x")
 
 [node name="Vampirism" parent="UnitParameters" index="4" instance=ExtResource("7_ncqux")]
 heal = 20.0

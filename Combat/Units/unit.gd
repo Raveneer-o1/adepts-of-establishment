@@ -275,6 +275,7 @@ var attack_setting: bool = true
 
 ## Assigns next current_attack if possible
 func set_next_attack() -> void:
+	#print(unit_name)
 	if not attack_setting:
 		attack_setting = true
 		return

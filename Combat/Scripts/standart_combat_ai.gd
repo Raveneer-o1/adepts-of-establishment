@@ -255,6 +255,7 @@ func choose_action(unit: Unit) -> void:
 	var avaliable_targets := api.combat_system.find_avaliable_targets()
 	if avaliable_targets.is_empty():
 		api.use_defense_stance()
+		return
 	
 	if unit.unit_type == "Healer":
 		choose_healer_action(unit, avaliable_targets)

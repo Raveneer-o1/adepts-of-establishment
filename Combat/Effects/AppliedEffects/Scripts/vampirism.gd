@@ -8,10 +8,10 @@ extends AppliedEffect
 
 
 func _get_description() -> String:
-	return description % [heal,
+	return description % heal + \
 		"%% of damage as" if is_percentage \
 		else ""
-	]
+	
 
 
 func vampiric_heal(attack: Attack) ->void:

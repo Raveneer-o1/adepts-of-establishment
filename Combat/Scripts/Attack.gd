@@ -13,6 +13,7 @@ var attacker: Unit
 var target_spots: Array[UnitSpot]:
 	get:
 		var result: Array[UnitSpot] = []
+		@warning_ignore("untyped_declaration")
 		for key in damages.keys():
 			if key is UnitSpot:
 				result.append(key)
