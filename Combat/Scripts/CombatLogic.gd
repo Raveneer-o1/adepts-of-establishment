@@ -134,13 +134,16 @@ func start_round() -> void:
 func start_turn(remove_miniature: bool = true) -> void:
 	if not battle_in_progress:
 		return
+	
 	var curr := main_system.current_unit
-	current_attack = null
+	
 	if curr != null:
 		main_system.current_unit = null
 		if remove_miniature:
-			main_system.clear_nearest_miniature()
+			main_system.remove_miniature(current_attack)
 		EventBus.turn_ended.emit(curr)
+	
+	current_attack = null
 	
 	while attacks_queue.size() > 0:
 		current_attack = attacks_queue.pop_front()

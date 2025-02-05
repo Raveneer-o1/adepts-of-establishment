@@ -2,7 +2,7 @@ extends HBoxContainer
 class_name MiniatureQueueManager
 
 const UNIT_MINIATURE = preload("res://Combat/Scenes/unit_in_queue.tscn")
-const MAX_MINIATURES_ON_SCREEN = 5
+const MAX_MINIATURES_ON_SCREEN = 15
 
 var hidden_miniatures: Array
 var miniatures: Dictionary
@@ -60,6 +60,11 @@ func remove_miniature(atk: UnitAttack) -> void:
 	if miniatures.has(atk) and \
 			is_instance_valid(miniatures[atk]):
 		miniatures[atk].animate_exit()
+	else:
+		print("Failed to remove miniature!")
+		if atk != null:
+			print(atk.unit.unit_name)
+
 
 func clear_nearest_miniature() -> void:
 	if get_child_count() > 0:
