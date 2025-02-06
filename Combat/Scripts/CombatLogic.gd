@@ -145,12 +145,15 @@ func start_turn(remove_miniature: bool = true) -> void:
 	
 	current_attack = null
 	
+	# trying to assign surrent_attack while there is entries in queue
 	while attacks_queue.size() > 0:
 		current_attack = attacks_queue.pop_front()
-		if current_attack == null or current_attack.unit == null or current_attack.unit.parameters.dead:
+		# skipping all dead references and dead units, if we skip all entries,
+		# method will return without setting current_unit which means no unit was found
+		if current_attack == null or \
+				not current_attack.can_be_performed():
 			continue
 		main_system.current_unit = current_attack.unit
-		#current_attack.unit.set_next_attack()
 		EventBus.turn_started.emit(main_system.current_unit)
 		
 		if main_system.current_unit.skipping_turn:
@@ -172,7 +175,8 @@ func next_stage(remove_miniature: bool = true) -> void:
 	if main_system.current_unit == null:
 		start_round()
 		start_turn(remove_miniature)
-		# if start_turn didn't set current_unit after queue has been reset, there's no units left
+		# if start_turn didn't set current_unit after queue has been reset,
+		# there's no units left
 		if main_system.current_unit == null:
 			end_battle()
 
@@ -227,7 +231,6 @@ func book_damages(attacks: Array[Attack]) -> void:
 
 ##  Resolves a specific booked attack and applies its effects to the target.
 func resolve_attack(attack: Attack) -> void:
-	##  Ensure the attack is in the booked list before resolving.
 	if not booked_attacks.has(attack):
 		return
 	booked_attacks.erase(attack)

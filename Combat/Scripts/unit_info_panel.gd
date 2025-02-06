@@ -3,6 +3,7 @@ class_name UnitInfoPanel
 
 @onready var info := get_node("Panel/MainContainer/LeftContainer/DesctiprionPanel/DescriptionLabel") as RichTextLabel
 @onready var full_info: RichTextLabel = $Panel/MainContainer/RightContainer/FullInfo
+@onready var portrait: TextureRect = $Panel/MainContainer/LeftContainer/PortraitPanel/PortraitMargin/Portrait
 
 # Formatting constants for unit stats to maintain consistency in text presentation.
 const HP_LINE = "HP: %d/%d\n"
@@ -21,10 +22,7 @@ const BRACKETS_ENCLOSURE = "(%s)"
 func attack_type_to_str(type: EventBus.AttackType) -> String:
 	return EventBus.AttackType.keys()[type]
 
-## Populates the UI panel with formatted unit information.
-## Displays HP, armor, base damage, and details of each attack
-## (damage, initiative, accuracy, type, effects).
-func populate_panel_with_info(unit: Unit) -> void:
+func fill_text_data(unit: Unit) -> void:
 	info.text = ""  # Clear short info text
 	full_info.text = ""  # Clear detailed info text
 	
@@ -99,6 +97,20 @@ func populate_panel_with_info(unit: Unit) -> void:
 			DESCRIOTION_LINE % unit.full_description
 	)
 	info.text = hp_text + unit.brief_description
+
+
+func replace_portrait(texture: Texture2D) -> void:
+	if texture != null:
+		portrait.texture = texture
+
+
+## Populates the UI panel with formatted unit information.
+## Displays HP, armor, base damage, and details of each attack
+## (damage, initiative, accuracy, type, effects).
+func populate_panel_with_info(unit: Unit) -> void:
+	fill_text_data(unit)
+	
+	replace_portrait(unit.portrait_texture)
 	
 	# Set panel visibility
 	visible = true

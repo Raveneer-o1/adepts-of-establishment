@@ -9,4 +9,4 @@ buff = 0.0
 turns = 2
 effect_name = "Agility"
 icon_index = 13
-description = "When this unit evades an attack, it's damage increases by %d%%"
+description = "When this unit evades an attack, its damage increases by %d%%"

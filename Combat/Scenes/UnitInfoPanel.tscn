@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://d12hr40jjb8s8"]
+[gd_scene load_steps=4 format=3 uid="uid://d12hr40jjb8s8"]
 
 [ext_resource type="Script" path="res://Combat/Scripts/unit_info_panel.gd" id="1_udonc"]
 [ext_resource type="Texture2D" uid="uid://cakixrycrne80" path="res://Arts/Placeholder portrait.jpg" id="2_ljltd"]
+[ext_resource type="Texture2D" uid="uid://dxhnooqfvgjkt" path="res://Arts/itch assets/Custom Border and Panels Menu All Part [BDragon1727]/border.tres" id="3_5gem6"]
 
 [node name="UnitInfoPanel" type="Control"]
 layout_mode = 3
@@ -62,6 +63,10 @@ layout_mode = 2
 texture = ExtResource("2_ljltd")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="Panel/MainContainer/LeftContainer/PortraitPanel/PortraitMargin"]
+layout_mode = 2
+texture = ExtResource("3_5gem6")
 
 [node name="DesctiprionPanel" type="Panel" parent="Panel/MainContainer/LeftContainer"]
 layout_mode = 2

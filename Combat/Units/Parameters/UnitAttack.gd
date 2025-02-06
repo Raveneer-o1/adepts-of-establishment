@@ -48,5 +48,14 @@ var unit: Unit
 func initialize(u: Unit) -> void:
 	if target_validation == null:
 		print_debug("Target validation is empty! Unit: %s" % u.unit_name)
-		u.queue_free()
+		queue_free()
 	unit = u
+
+func can_be_performed() -> bool:
+	if unit == null:
+		return false
+	if unit.parameters.dead:
+		return false
+	if unit.current_attack == self:
+		return true
+	return unit.attacks_for_this_round.has(self)

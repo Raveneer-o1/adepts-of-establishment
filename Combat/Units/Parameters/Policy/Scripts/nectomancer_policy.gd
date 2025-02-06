@@ -12,7 +12,10 @@ func deal_damage(attack: Attack, index: int, finalize: bool) -> void:
 	var target := attack.targets[index]
 	var distance:int = Party.get_distance(first_position, target.party_position)
 	
-	@warning_ignore("narrowing_conversion") attack.damage *= pow(decay_rate, distance)
+	if attack.damages.has(target.spot):
+		@warning_ignore("narrowing_conversion") attack.damages[target.spot] *= pow(decay_rate, distance)
+	else:
+		print_debug("%s's spot is not found in the attack's Dictionary!" % target.unit_name)
 	target.resolve_attack(attack, index + 1, true)
 
 # Copy of the resurrection_policy

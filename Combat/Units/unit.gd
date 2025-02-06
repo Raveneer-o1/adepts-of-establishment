@@ -25,6 +25,7 @@ const SKIP_DELAY = 0.4
 @export_enum("Healer", "Warrior", "Defender", "Buffer", "Debuffer", "Archer", "Mage") var unit_type: String
 @export_multiline var brief_description: String
 @export_multiline var full_description: String
+@export var portrait_texture: Texture2D
 #endregion
 
 
@@ -39,6 +40,7 @@ const SKIP_DELAY = 0.4
 var parameters: UnitParameters
 var party: Party
 var system: CombatSystem
+
 
 var initialized: bool = false
 
@@ -102,15 +104,13 @@ func initialize_variables() -> bool:
 	if not parameters.initialize_variables():
 		return false
 	
-	initialized = true
 	EventBus.turn_ended.connect(reset_chosen_targets)
 	EventBus.turn_ended.connect(clean_effects)
-	#EventBus.turn_started.connect(clear_objects)
-	#EventBus.unit_died.connect(clear_objects)
 	EventBus.round_started.connect(arrange_attacks_and_set_next)
 	EventBus.attack_reached.connect(check_taking_damage)
 	EventBus.attack_animation_finished.connect(finalize_all_attacks)
 	
+	initialized = true
 	return true
 
 ## Clears references to objects that are used only once (e.g. Attacks)
@@ -140,9 +140,9 @@ func clean_effects(_unit: Unit = null) -> void:
 ## Attempts to register a target for attack. Returns success or failure.
 func give_target(_spot: UnitSpot) -> bool:
 	if current_attack == null:
-		set_next_attack()
-		if current_attack == null:
+		if attacks_for_this_round.is_empty():
 			return false
+		set_next_attack()
 	if chosen_spots.size() >= current_attack.targets_needed:
 		return false
 	var is_target_valid: bool = current_attack.target_validation._validate_target(self, _spot)
@@ -309,6 +309,33 @@ func arrange_attacks_and_set_next() -> void:
 
 #region Combat actions
 
+func _force_native_attack(target: Unit, attack: UnitAttack = null) -> Attack:
+	if attack == null:
+		attack = current_attack
+	if attack == null or \
+			not \
+			( \
+			attacks_for_this_round.has(attack) or \
+			current_attack == attack \
+			):
+		return null
+	
+	var atk: Attack = create_attack(attack, [target.spot])
+	
+	system.combat_logic.remove_attack_from_queue(attack)
+	
+	return atk
+
+func _force_arbitrary_attack(target: Unit, attack: UnitAttack) -> Attack:
+	if attack == null:
+		attack = current_attack
+	if attack == null:
+		return null
+	
+	var atk: Attack = create_attack(attack, [target.spot])
+	
+	return atk
+
 ## Forces a unit to perform the specified [param attack] on [param target],
 ## bypassing target validation and the normal attack order.[br][br]
 ## If [param native_attack] is set to [code]true[/code]:[br]
@@ -319,36 +346,23 @@ func arrange_attacks_and_set_next() -> void:
 ## meaning it is not removed from any unit's list and is not removed from the queue.
 ## If [param attack] is [code]null[/code], the unit uses a copy of its closest available attack.
 func force_attack(target: Unit, native_attack: bool = true, attack: UnitAttack = null) -> void:
+	var atk: Attack = null
+	
 	if native_attack:
-		if attack == null:
-			attack = current_attack
-		if attack == null or \
-				not \
-				( \
-				attacks_for_this_round.has(attack) or \
-				current_attack == attack \
-				):
-			return
-		
-		var atk: Attack = create_attack(attack, [target.spot])
-		
-		animation_handle.play_attack_animation()
-		system.combat_logic.book_damage(atk)
-		system.combat_logic.remove_attack_from_queue(attack)
+		atk = _force_native_attack(target, attack)
 	else:
-		# if not native_attack
-		if attack == null:
-			attack = current_attack
-		if attack == null:
-			return
-		
-		var atk: Attack = create_attack(attack, [target.spot])
-		
-		animation_handle.play_attack_animation()
-		system.combat_logic.book_damage(atk)
-		
-		# set flag to skip set_next_attack() when the attack is finished
-		attack_setting = false
+		atk = _force_arbitrary_attack(target, attack)
+		if atk != null:
+			# set flag to skip set_next_attack() when the forced attack is finished
+			attack_setting = false
+	
+	if atk == null:
+		return
+	
+	atk.tags.append(&"forced")
+	
+	animation_handle.play_attack_animation()
+	system.combat_logic.book_damage(atk)
 
 ## Initiates an attack based on the chosen targets.
 func start_attacking() -> void:
@@ -392,7 +406,7 @@ func resurrect() -> void:
 			return
 		spot = sp
 	else:
-		print_debug("Trying to resurrect a unit that doesn't have a UnitSpot as a parent!")
+		print_debug("Trying to resurrect a unit that doesn't have a UnitSpot as a grandparent!")
 		return
 	
 	get_parent().remove_child(self)
@@ -558,9 +572,6 @@ func _display_text_near_unit(d_text: DisplayedText) -> void:
 	lbl.text = d_text.text
 	lbl.set_begin(d_text.unit.global_position + offset)
 	lbl.modulate = d_text.color
-	
-	#if not texts_to_display.is_empty():
-		#pass
 
 func display_next_text_out() -> void:
 	display_next_text()

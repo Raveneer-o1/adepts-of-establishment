@@ -13,6 +13,8 @@ func _get_description() -> String:
 func check_trigger(attack: Attack) -> void:
 	if attack.targets.is_empty():
 		return
+	if attack.tags.has(&"forced"):
+		return
 	
 	var target: Unit = attack.targets[0]
 	
@@ -25,6 +27,7 @@ func check_trigger(attack: Attack) -> void:
 	if chance < randf():
 		return
 	
+	#print_debug("Triggered assistance on the attack of %s" % attack.attacker.unit_name)
 	
 	target_unit.force_attack(target)
 
