@@ -1,6 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://b8yan7skrudpm"]
+[gd_scene load_steps=21 format=3 uid="uid://b8yan7skrudpm"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_7leqj"]
+[ext_resource type="Texture2D" uid="uid://kwhq6jdvue87" path="res://Arts/Placeholders/Devourer.jpg" id="2_0dxqj"]
 [ext_resource type="Texture2D" uid="uid://b15tomtsyw2o" path="res://Arts/Undead units/u31 Gluttonous serpent attack .png" id="2_eynx3"]
 [ext_resource type="Texture2D" uid="uid://b4swk2jwnomow" path="res://Arts/Undead units/u31 Gluttonous serpent idle .png" id="3_l0khi"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_njdrb"]
@@ -102,6 +103,7 @@ evasion = 0.015
 [node name="The Devourer" instance=ExtResource("1_7leqj")]
 unit_name = "The Devourer"
 full_description = "The Devourer is a monstrous snake-like creature, bloated with the power of countless consumed souls. Its sheer size and overwhelming strength make it an unstoppable force, crushing enemies under its bulk. Its feeding frenzy is unending, spreading despair and destruction across the battlefield."
+portrait_texture = ExtResource("2_0dxqj")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_k4p10")

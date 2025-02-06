@@ -139,8 +139,9 @@ script = ExtResource("4_j3lff")
 max_HP = 200
 base_damage = 60
 armor = 25
+evasion = 0.02
 
-[node name="Unit" instance=ExtResource("1_iyxx7")]
+[node name="Inquisitor" instance=ExtResource("1_iyxx7")]
 unit_name = "Inquisitor"
 unit_type = "Warrior"
 full_description = "Inquisitors are relentless hunters of heresy, wielding heavy maces to deliver unyielding punishment. Their attacks pierce through magical defenses, making them especially deadly against spellcasters and enchanted foes. Unshakable in their faith, they inspire their allies and bring fear to the corrupted. On the battlefield, an Inquisitor is a resolute force of righteousness, relentless in their pursuit of heretics and the unholy."
@@ -161,6 +162,5 @@ base_paramaters = SubResource("Resource_4tkcb")
 script = ExtResource("6_dn7kg")
 type = 4
 accuracy = 0.82
-targets_needed = 1
 initiative = 45
 target_validation = ExtResource("7_7f3u0")

@@ -1,7 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://bp1r2pdt68e7t"]
+[gd_scene load_steps=27 format=3 uid="uid://bp1r2pdt68e7t"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_23at2"]
 [ext_resource type="Texture2D" uid="uid://c8fie48u2gsl" path="res://Arts/Undead units/u30 dreadwyrm attack .png" id="2_ai7dd"]
+[ext_resource type="Texture2D" uid="uid://cs5ikadwfksoc" path="res://Arts/Placeholders/Dreadwyrm.jpg" id="2_twryw"]
 [ext_resource type="Texture2D" uid="uid://dxj8oto08lqym" path="res://Arts/Undead units/u30 dreadwyrm idle .png" id="3_txq8v"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_ju4yq"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_asghm"]
@@ -145,6 +146,7 @@ evasion = 0.01
 unit_name = "Dreadwyrm"
 unit_type = "Defender"
 full_description = "The Dreadwyrm is a terrifying draconic creature cloaked in necrotic energy. It soars above the battlefield, raining destruction with its corrupted breath. As a manifestation of death's will, it instills fear in all who face it, ensuring the enemy falters before its might."
+portrait_texture = ExtResource("2_twryw")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_8f6gl")

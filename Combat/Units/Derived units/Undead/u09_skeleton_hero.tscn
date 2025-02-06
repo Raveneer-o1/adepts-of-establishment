@@ -1,7 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://vtklf4i1s3e"]
+[gd_scene load_steps=27 format=3 uid="uid://vtklf4i1s3e"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_f4ptt"]
 [ext_resource type="Texture2D" uid="uid://nacrjv0loeng" path="res://Arts/Undead units/u10 skeleton hero attack .png" id="2_n2bpl"]
+[ext_resource type="Texture2D" uid="uid://bvrtben3jtmhj" path="res://Arts/Placeholders/Phantom warrior.jpg" id="2_tryhr"]
 [ext_resource type="Texture2D" uid="uid://bwwvgiihse2ur" path="res://Arts/Undead units/u10 skeleton hero idle.png" id="3_41opj"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_mblbc"]
 [ext_resource type="PackedScene" uid="uid://dnxkr164m8hpp" path="res://Combat/Effects/AppliedEffects/Scenes/crafted_body.tscn" id="5_2w0yc"]
@@ -137,7 +138,9 @@ evasion = 0.02
 
 [node name="Skeleton Hero" instance=ExtResource("1_f4ptt")]
 unit_name = "Skeleton Hero"
+unit_type = "Warrior"
 full_description = "Skeleton Heroes are the pinnacle of necromantic reanimation, resurrected from the remains of legendary champions of old. Their undying forms retain the combat expertise they mastered in life, now enhanced by unholy power. Leading the armies of the Necropolis with a mix of tactical brilliance and raw strength, they are a force to be reckoned with, feared by both the living and the dead."
+portrait_texture = ExtResource("2_tryhr")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_l7w6p")

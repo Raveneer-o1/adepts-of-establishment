@@ -196,6 +196,7 @@ script = ExtResource("4_ptq6f")
 max_HP = 150
 base_damage = 50
 armor = 20
+evasion = 0.02
 
 [node name="Scout" instance=ExtResource("1_65je8")]
 unit_name = "Scout"
@@ -210,7 +211,6 @@ frames_to_emit = Array[int]([8])
 
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_t45eh")
-evasion = 0.1
 attack_effect = ExtResource("4_vlh87")
 
 [node name="UnitAttack2" type="Node" parent="UnitParameters" index="1"]

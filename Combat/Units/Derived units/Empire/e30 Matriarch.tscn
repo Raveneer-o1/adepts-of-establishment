@@ -105,6 +105,7 @@ script = ExtResource("4_fpf5w")
 max_HP = 150
 base_damage = -45
 armor = 10
+evasion = 0.02
 
 [node name="Matriarch" instance=ExtResource("1_eiqlo")]
 unit_name = "Matriarch"

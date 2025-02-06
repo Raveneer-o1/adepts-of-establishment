@@ -1,6 +1,7 @@
-[gd_scene load_steps=28 format=3 uid="uid://c42n73wmostxu"]
+[gd_scene load_steps=29 format=3 uid="uid://c42n73wmostxu"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_jlfmv"]
+[ext_resource type="Texture2D" uid="uid://dl60n0aml4oen" path="res://Arts/Placeholders/Archlich.jpg" id="2_6wk45"]
 [ext_resource type="Texture2D" uid="uid://b8w26q446mi24" path="res://Arts/Undead units/u21 archlich attack.png" id="2_d3c0n"]
 [ext_resource type="Texture2D" uid="uid://brgwgs2tc646c" path="res://Arts/Undead units/u21 archlich idle .png" id="3_ppol0"]
 [ext_resource type="PackedScene" uid="uid://bq5fuvt6gwhs6" path="res://Combat/Effects/Scenes/sythe.tscn" id="4_11wyg"]
@@ -145,7 +146,9 @@ evasion = 0.02
 
 [node name="Archlich" instance=ExtResource("1_jlfmv")]
 unit_name = "Archlich"
+unit_type = "Mage"
 full_description = "Archliches are the pinnacle of necromantic evolution, their phylacteries granting them near-immortality and inexhaustible power. They wield arcane forces capable of obliterating entire battalions or summoning legions of undead. Revered as leaders and feared as conquerors, Archliches are the true masterminds of the Necropolis."
+portrait_texture = ExtResource("2_6wk45")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_e4wxl")

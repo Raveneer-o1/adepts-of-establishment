@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://dgj6r83d15wkr"]
+[gd_scene load_steps=24 format=3 uid="uid://dgj6r83d15wkr"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_ufroq"]
 [ext_resource type="Texture2D" uid="uid://bnhwlr01egvif" path="res://Arts/Undead units/u19 lich attack .png" id="2_f8uy4"]
+[ext_resource type="Texture2D" uid="uid://vm6af7c81wtf" path="res://Arts/Placeholders/Lich.jpg" id="2_jn4dx"]
 [ext_resource type="Texture2D" uid="uid://cqoap6ffdylqf" path="res://Arts/Undead units/u19 lich idle .png" id="3_v01q3"]
 [ext_resource type="PackedScene" uid="uid://jcge4l3lj63w" path="res://Combat/Effects/Scenes/skull_medium.tscn" id="4_bbbue"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_vyg4y"]
@@ -104,10 +105,12 @@ evasion = 0.02
 [sub_resource type="Resource" id="Resource_4gd0u"]
 script = ExtResource("9_3no2e")
 decay_rate = 0.55
+resurrection_with_percent_hp = -1.0
 
 [node name="Lich" instance=ExtResource("1_ufroq")]
 unit_name = "Lich"
 full_description = "Liches are necromancers who have transcended mortality by binding their souls to phylacteries. These skeletal sorcerers wield immense magical power, unleashing devastating curses and summoning hordes of undead with ease. Their cold intellect and timeless experience make them formidable adversaries and invaluable strategists."
+portrait_texture = ExtResource("2_jn4dx")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_sip5u")

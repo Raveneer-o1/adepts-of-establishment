@@ -126,6 +126,7 @@ script = ExtResource("4_rlipv")
 max_HP = 170
 base_damage = 50
 armor = 20
+evasion = 0.02
 
 [node name="Imperial ranger" instance=ExtResource("1_eigsw")]
 unit_name = "Imperial Ranger"
@@ -140,6 +141,7 @@ offset = Vector2(8, 0)
 frames_to_emit = Array[int]([7])
 
 [node name="UnitParameters" parent="." index="1"]
+level = 4
 base_paramaters = SubResource("Resource_f512a")
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]

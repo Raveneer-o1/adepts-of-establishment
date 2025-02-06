@@ -1,7 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://bjk8a3nvget8"]
+[gd_scene load_steps=27 format=3 uid="uid://bjk8a3nvget8"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_udcxh"]
 [ext_resource type="Texture2D" uid="uid://brf8o1i5bgqfa" path="res://Arts/Undead units/u04 dark lord attack.png" id="2_54k2p"]
+[ext_resource type="Texture2D" uid="uid://bp4tyxkpwxdki" path="res://Arts/Placeholders/Dark lord.jpg" id="2_ifm0e"]
 [ext_resource type="Texture2D" uid="uid://bx4peb3ny0gn1" path="res://Arts/Undead units/u04 dark lord idle .png" id="3_qfhav"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_xtssu"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_0cvil"]
@@ -143,7 +144,9 @@ evasion = 0.02
 
 [node name="Dark lord" instance=ExtResource("1_udcxh")]
 unit_name = "Dark Lord"
+unit_type = "Warrior"
 full_description = "Dark Lords are powerful commanders of the Necropolis, imbued with overwhelming dark magic and martial prowess. Their mere presence unnerves the living, sapping their will to fight. Wielding cursed weapons and commanding legions of undead, they are both fearsome warriors and ruthless strategists, capable of turning the tide of any battle."
+portrait_texture = ExtResource("2_ifm0e")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_4pnnk")

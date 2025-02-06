@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://dfoepv37rvpcx"]
+[gd_scene load_steps=22 format=3 uid="uid://dfoepv37rvpcx"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_v36aa"]
 [ext_resource type="Texture2D" uid="uid://1vga11ugptc3" path="res://Arts/Undead units/u17 fallen inquisitor attack .png" id="2_rc34i"]
+[ext_resource type="Texture2D" uid="uid://clsdibffwyjbm" path="res://Arts/Placeholders/Fallen inquisitor.jpg" id="2_wxjrt"]
 [ext_resource type="Texture2D" uid="uid://bpyjaswl38l7p" path="res://Arts/Undead units/u17 fallen inquisitor idle .png" id="3_n64tb"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_a5d6o"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_pu3wl"]
@@ -108,7 +109,9 @@ evasion = 0.02
 
 [node name="Fallen Inquisitor" instance=ExtResource("1_v36aa")]
 unit_name = "Fallen Inquisitor"
+unit_type = "Warrior"
 full_description = "Once holy warriors, Fallen Inquisitors were corrupted by the Necropolis's dark power. Now they wield their former knowledge of divine magic against the living, combining brutal melee combat with devastating unholy spells. Their tragic fall from grace is reflected in their fierce hatred for their former brethren, making them relentless in battle."
+portrait_texture = ExtResource("2_wxjrt")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_0omuv")

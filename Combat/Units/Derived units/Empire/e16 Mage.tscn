@@ -99,6 +99,7 @@ script = ExtResource("4_w74yc")
 max_HP = 150
 base_damage = 45
 armor = 10
+evasion = 0.02
 
 [sub_resource type="Resource" id="Resource_pg2a5"]
 script = ExtResource("9_ijl56")

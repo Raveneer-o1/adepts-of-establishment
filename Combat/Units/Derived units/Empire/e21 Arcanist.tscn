@@ -106,6 +106,7 @@ script = ExtResource("4_aurst")
 max_HP = 220
 base_damage = 80
 armor = 35
+evasion = 0.02
 
 [sub_resource type="Resource" id="Resource_qbj8a"]
 resource_local_to_scene = true

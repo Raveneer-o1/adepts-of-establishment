@@ -1,7 +1,8 @@
-[gd_scene load_steps=27 format=3 uid="uid://b517nmnvt04wo"]
+[gd_scene load_steps=28 format=3 uid="uid://b517nmnvt04wo"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_7jpg4"]
 [ext_resource type="Texture2D" uid="uid://clgh6r1cqhmd2" path="res://Arts/Empire units/Hierophant attack .png" id="2_drmbb"]
+[ext_resource type="Texture2D" uid="uid://ddx1ise56p1xw" path="res://Arts/Placeholders/Hierophant.jpg" id="2_xtxab"]
 [ext_resource type="Texture2D" uid="uid://cjr5n0iyypwhj" path="res://Arts/Empire units/Hierophant idle.png" id="3_anao4"]
 [ext_resource type="PackedScene" uid="uid://cvtcjsl55tqgq" path="res://Combat/Effects/Scenes/strong_heal.tscn" id="4_e1vxq"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_fbxf0"]
@@ -134,11 +135,13 @@ script = ExtResource("4_fbxf0")
 max_HP = 180
 base_damage = -80
 armor = 10
+evasion = 0.02
 
 [node name="Hierophant" instance=ExtResource("1_7jpg4")]
 unit_name = "Hierophant"
 unit_type = "Healer"
 full_description = "Hierophants are revered figures, blessed with the power to channel miracles. In addition to healing grievous injuries, they can resurrect fallen allies, bringing hope to even the bleakest battlefields. Their presence inspires courage, as their divine powers can restore both body and spirit."
+portrait_texture = ExtResource("2_xtxab")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_665ew")

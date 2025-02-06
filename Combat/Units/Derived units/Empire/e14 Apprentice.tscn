@@ -106,6 +106,7 @@ script = ExtResource("4_bski4")
 max_HP = 70
 base_damage = 25
 armor = 0
+evasion = 0.02
 
 [node name="Unit" instance=ExtResource("1_0p7og")]
 unit_name = "Apprentice"

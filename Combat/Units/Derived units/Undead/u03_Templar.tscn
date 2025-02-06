@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://cctpkb760qvr8"]
+[gd_scene load_steps=23 format=3 uid="uid://cctpkb760qvr8"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_tkxce"]
 [ext_resource type="Texture2D" uid="uid://bdg0r0dumgif4" path="res://Arts/Undead units/u02 Templar attack .png" id="2_f5d7c"]
+[ext_resource type="Texture2D" uid="uid://b57tabxji2e6v" path="res://Arts/Placeholders/Templar.jpg" id="2_imxh0"]
 [ext_resource type="Texture2D" uid="uid://c82h0vwwedt1o" path="res://Arts/Undead units/u02 Templar idle .png" id="3_jnlcm"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_a5q33"]
 [ext_resource type="PackedScene" uid="uid://b1i0mf1877mfo" path="res://Combat/Effects/AppliedEffects/Scenes/shield.tscn" id="5_0k2wg"]
@@ -115,7 +116,9 @@ evasion = 0.02
 
 [node name="Templar" instance=ExtResource("1_tkxce")]
 unit_name = "Templar"
+unit_type = "Warrior"
 full_description = "Templars are former knights who willingly embraced undeath to serve the Necropolis. Empowered by unholy energy, they strike down enemies with cursed blades that sap life from their foes. Their armor, imbued with necromantic runes, provides enhanced protection, making them formidable front-line warriors with a sinister aura."
+portrait_texture = ExtResource("2_imxh0")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_3kbyq")

@@ -1,6 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://enny5k73ap16"]
+[gd_scene load_steps=22 format=3 uid="uid://enny5k73ap16"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_nautt"]
+[ext_resource type="Texture2D" uid="uid://b4ep0p064o02t" path="res://Arts/Placeholders/Gluttonous serpent.jpg" id="2_hpxbw"]
 [ext_resource type="Texture2D" uid="uid://ddk5e7ar6yos4" path="res://Arts/Undead units/u32 Gluttonous serpent attack.png" id="2_jb0i1"]
 [ext_resource type="Texture2D" uid="uid://dux6ymkrjppke" path="res://Arts/Undead units/u32 Gluttonous serpent idle .png" id="3_lw716"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_gsme7"]
@@ -103,6 +104,7 @@ evasion = 0.02
 [node name="Gluttonous Serpent" instance=ExtResource("1_nautt")]
 unit_name = "Gluttonous Serpent"
 full_description = "The Gluttonous Serpent is a grotesque creature that has abandoned all thought for insatiable hunger. With an elongated, serpentine body and jaws capable of consuming multiple foes, it leaves destruction in its wake. Though mindless, its appetite makes it an overwhelming force that overwhelms through sheer persistence."
+portrait_texture = ExtResource("2_hpxbw")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_e5322")

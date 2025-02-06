@@ -1,6 +1,7 @@
-[gd_scene load_steps=26 format=3 uid="uid://c4wmjlxgojxgm"]
+[gd_scene load_steps=27 format=3 uid="uid://c4wmjlxgojxgm"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_7kl12"]
+[ext_resource type="Texture2D" uid="uid://cn16l2aavsl2l" path="res://Arts/Placeholders/Vampire lord (2).jpg" id="2_8nuui"]
 [ext_resource type="Texture2D" uid="uid://ch0inodjly3mq" path="res://Arts/Undead units/u16 vampire lord attack .png" id="2_fcnea"]
 [ext_resource type="Texture2D" uid="uid://c80y2a67i4k66" path="res://Arts/Undead units/u16 vampire lord idle .png" id="3_7m43w"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_v6g03"]
@@ -132,6 +133,7 @@ evasion = 0.03
 [node name="Vampire Lord" instance=ExtResource("1_7kl12")]
 unit_name = "Vampire Lord"
 full_description = "Vampire Lords are the supreme rulers of their kind, commanding legions of undead and wielding unparalleled mastery over blood magic. Their regal presence belies their monstrous strength and cunning intellect, making them both inspiring leaders and fearsome warriors. With centuries of experience and an insatiable hunger for power, Vampire Lords are the ultimate embodiment of the Necropolis's dark ambition."
+portrait_texture = ExtResource("2_8nuui")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_qo2wt")

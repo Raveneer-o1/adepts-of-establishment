@@ -1,7 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://mi3iybiptekr"]
+[gd_scene load_steps=26 format=3 uid="uid://mi3iybiptekr"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_rj356"]
 [ext_resource type="Texture2D" uid="uid://3gn1g2kxv12" path="res://Arts/Empire units/archer attack .png" id="2_5paof"]
+[ext_resource type="Texture2D" uid="uid://dvjqiqnej7mt7" path="res://Arts/Placeholders/Archer.jpg" id="2_oeoou"]
 [ext_resource type="Texture2D" uid="uid://l2w3f2hxp5aj" path="res://Arts/Empire units/archer idle .png" id="3_c26eu"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_j46uk"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_jkb3r"]
@@ -138,11 +139,13 @@ script = ExtResource("4_j46uk")
 max_HP = 90
 base_damage = 28
 armor = 5
+evasion = 0.02
 
 [node name="Archer" instance=ExtResource("1_rj356")]
 unit_name = "Archer"
 unit_type = "Archer"
 full_description = "Archers are the backbone of any ranged offense, skilled in the art of precision and timing. Armed with simple bows, they provide consistent support from the backlines, picking off weaker targets or softening up foes before the main assault."
+portrait_texture = ExtResource("2_oeoou")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_7tod5")

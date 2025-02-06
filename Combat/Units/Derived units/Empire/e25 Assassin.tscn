@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://d2d0dy4l6eowh"]
+[gd_scene load_steps=24 format=3 uid="uid://d2d0dy4l6eowh"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_kms13"]
 [ext_resource type="Texture2D" uid="uid://7vo4wp37oy6k" path="res://Arts/Empire units/assassin attack .png" id="2_2bipl"]
+[ext_resource type="Texture2D" uid="uid://ca2miqb8omhpo" path="res://Arts/Placeholders/Assassin.jpg" id="2_26dl6"]
 [ext_resource type="Texture2D" uid="uid://bsv5gcue6nrx0" path="res://Arts/Empire units/assassin idle .png" id="3_bgwsp"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_2iua4"]
 [ext_resource type="PackedScene" uid="uid://b3gssbgpd05vu" path="res://Combat/Effects/Scenes/assassin_clone.tscn" id="4_h3kiw"]
@@ -112,11 +113,13 @@ script = ExtResource("4_2iua4")
 max_HP = 100
 base_damage = 30
 armor = 0
+evasion = 0.02
 
 [node name="Unit" instance=ExtResource("1_kms13")]
 unit_name = "Assassin"
 unit_type = "Debuffer"
 full_description = "Masters of shdows, assassins prefer poison over the raw strength."
+portrait_texture = ExtResource("2_26dl6")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_o6vjn")

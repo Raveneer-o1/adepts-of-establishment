@@ -155,6 +155,7 @@ script = ExtResource("4_ulrri")
 max_HP = 250
 base_damage = 80
 armor = 20
+evasion = 0.02
 
 [sub_resource type="Resource" id="Resource_6ey57"]
 resource_local_to_scene = true

@@ -1,6 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://bqv1kfynrm8nu"]
+[gd_scene load_steps=21 format=3 uid="uid://bqv1kfynrm8nu"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_0mhe0"]
+[ext_resource type="Texture2D" uid="uid://bq6p452s6vbyo" path="res://Arts/Placeholders/Specter.jpg" id="2_f2jof"]
 [ext_resource type="Texture2D" uid="uid://ct8wp2r4bscw8" path="res://Arts/Undead units/u18 specter attack .png" id="2_rtce2"]
 [ext_resource type="Texture2D" uid="uid://kjp4rdn6u2uk" path="res://Arts/Undead units/u18 specter idle .png" id="3_j6vld"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_3ov6r"]
@@ -108,6 +109,7 @@ evasion = 0.1
 [node name="Specter" instance=ExtResource("1_0mhe0")]
 unit_name = "Specter"
 full_description = "Specters are stronger and more malicious spirits, bound by dark magic to serve the Necropolis. Their ethereal nature allows them to phase through obstacles and evade most attacks, striking fear into the hearts of their foes. They emit a spectral wail that unnerves enemies and disrupts their defenses."
+portrait_texture = ExtResource("2_f2jof")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_pih6i")

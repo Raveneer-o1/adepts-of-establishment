@@ -1,7 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://myudchej460j"]
+[gd_scene load_steps=27 format=3 uid="uid://myudchej460j"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_34hwq"]
 [ext_resource type="Texture2D" uid="uid://bv8vhh3n6l5iq" path="res://Arts/Empire units/samurai attack .png" id="2_i31ko"]
+[ext_resource type="Texture2D" uid="uid://ngtd081l2gpq" path="res://Arts/Placeholders/Samurai.jpg" id="2_utg5b"]
 [ext_resource type="Texture2D" uid="uid://dqqvtoxohap4k" path="res://Arts/Empire units/samurai idle .png" id="3_26pc1"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_mc75p"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_ol2r7"]
@@ -145,11 +146,13 @@ script = ExtResource("4_mc75p")
 max_HP = 200
 base_damage = 40
 armor = 15
+evasion = 0.02
 
-[node name="Unit" instance=ExtResource("1_34hwq")]
+[node name="Samurai" instance=ExtResource("1_34hwq")]
 unit_name = "Samurai"
 unit_type = "Warrior"
 full_description = "Samurai are elite warriors who combine unmatched discipline with masterful swordsmanship. Adhering to a strict code of honor, they are steadfast defenders of their allies, standing unyielding in the face of overwhelming odds. With swift, precise strikes and the ability to anticipate their foes' moves, samurai can atack twice."
+portrait_texture = ExtResource("2_utg5b")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_qfxv1")

@@ -106,6 +106,7 @@ script = ExtResource("4_rto2v")
 max_HP = 120
 base_damage = 55
 armor = 5
+evasion = 0.02
 
 [node name="Elementalist" instance=ExtResource("1_wepdu")]
 unit_name = "Elementalist"

@@ -96,6 +96,7 @@ script = ExtResource("4_3lo8i")
 max_HP = 180
 base_damage = 42
 armor = 10
+evasion = 0.02
 
 [node name="Zombie" instance=ExtResource("1_4th5g")]
 unit_name = "Zombie"

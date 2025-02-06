@@ -118,6 +118,7 @@ script = ExtResource("4_lnkbd")
 max_HP = 160
 base_damage = -60
 armor = 10
+evasion = 0.02
 
 [node name="Clergyman" instance=ExtResource("1_wpfih")]
 unit_name = "Imperial priest"

@@ -1,6 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://cqqivpoythkv"]
+[gd_scene load_steps=22 format=3 uid="uid://cqqivpoythkv"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_g7wac"]
+[ext_resource type="Texture2D" uid="uid://dx3mc4k1axr5w" path="res://Arts/Placeholders/Skeleton hero.jpg" id="2_5g80a"]
 [ext_resource type="Texture2D" uid="uid://dhjoy0sc4slw4" path="res://Arts/Undead units/u06 phantom warrior attack .png" id="2_qmjum"]
 [ext_resource type="Texture2D" uid="uid://cav43qmwfn58b" path="res://Arts/Undead units/u06 phantom warrior idle .png" id="3_hyxca"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_yl5id"]
@@ -108,7 +109,9 @@ evasion = 0.05
 
 [node name="Phantom Warrior" instance=ExtResource("1_g7wac")]
 unit_name = "Phantom Warrior"
+unit_type = "Warrior"
 full_description = "Phantom Warriors are spectral remnants of fallen soldiers, bound to the will of the Necropolis. They drift across the battlefield, their incorporeal forms allowing them to evade physical attacks. Armed with ghostly weapons, they deliver chilling strikes that sap the vitality of their foes, leaving them weakened and vulnerable."
+portrait_texture = ExtResource("2_5g80a")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_qrsla")

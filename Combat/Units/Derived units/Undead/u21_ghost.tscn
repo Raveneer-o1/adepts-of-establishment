@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://bij67u1mx8c1"]
+[gd_scene load_steps=19 format=3 uid="uid://bij67u1mx8c1"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_ste1w"]
+[ext_resource type="Texture2D" uid="uid://c55rskqmmcjuq" path="res://Arts/Placeholders/Ghost.jpg" id="2_axmat"]
 [ext_resource type="Texture2D" uid="uid://b30nutai4e0bu" path="res://Arts/Undead units/u11 ghost attack .png" id="2_mtewv"]
 [ext_resource type="Texture2D" uid="uid://bedw2sa7f2pc4" path="res://Arts/Undead units/u11 ghost idle .png" id="3_ilocx"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_ibcd7"]
@@ -94,6 +95,7 @@ evasion = 0.07
 [node name="Ghost" instance=ExtResource("1_ste1w")]
 unit_name = "Ghost"
 full_description = "Ghosts are the lingering spirits of the dead, cursed to wander the mortal realm. Though their spectral forms are fragile, they are immune to physical attacks, making them tricky opponents. Their chilling presence weakens the resolve of their enemies, while their attacks drain the vitality of the living leaving them paralyzed."
+portrait_texture = ExtResource("2_axmat")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_2hmas")

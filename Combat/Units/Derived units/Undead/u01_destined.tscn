@@ -96,6 +96,7 @@ script = ExtResource("4_efdty")
 max_HP = 110
 base_damage = 35
 armor = 5
+evasion = 0.02
 
 [node name="Destined" instance=ExtResource("1_lms7p")]
 unit_name = "Destined"

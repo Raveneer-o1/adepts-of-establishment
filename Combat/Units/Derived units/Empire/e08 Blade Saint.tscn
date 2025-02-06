@@ -1,7 +1,8 @@
-[gd_scene load_steps=35 format=3 uid="uid://ch3kmc8o8pjub"]
+[gd_scene load_steps=36 format=3 uid="uid://ch3kmc8o8pjub"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_v0wje"]
 [ext_resource type="Texture2D" uid="uid://cnpacvfpqiwqt" path="res://Arts/Empire units/sword saint attack.png" id="2_gvero"]
+[ext_resource type="Texture2D" uid="uid://3g5ot46df5h" path="res://Arts/Placeholders/Blade saint.jpg" id="2_irywl"]
 [ext_resource type="Texture2D" uid="uid://bo0r7ymf2uybw" path="res://Arts/Empire units/sword saint idle .png" id="3_dcb7y"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_g23n6"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_g7cjh"]
@@ -208,11 +209,13 @@ script = ExtResource("4_g23n6")
 max_HP = 200
 base_damage = 60
 armor = 20
+evasion = 0.02
 
-[node name="Unit" instance=ExtResource("1_v0wje")]
+[node name="Blade saint" instance=ExtResource("1_v0wje")]
 unit_name = "Blade Saint"
 unit_type = "Warrior"
 full_description = "Blade Saints are legendary swordsmen whose mastery of the blade borders on the supernatural. Their movements are fluid and precise, cutting through enemies with unmatched grace and speed. Years of discipline and devotion to their craft have made them nearly invincible."
+portrait_texture = ExtResource("2_irywl")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_oreww")

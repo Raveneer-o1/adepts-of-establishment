@@ -1,8 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://bit78176xambc"]
+[gd_scene load_steps=23 format=3 uid="uid://bit78176xambc"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_8bfir"]
 [ext_resource type="Texture2D" uid="uid://cpovl2mar137q" path="res://Arts/Empire units/elemental attack .png" id="2_wfcjt"]
+[ext_resource type="Texture2D" uid="uid://b60iieq1o5n47" path="res://Arts/Placeholders/Elemental.jpg" id="2_x1sii"]
 [ext_resource type="Texture2D" uid="uid://ck7f0sx0d61ey" path="res://Arts/Empire units/elemental idle .png" id="3_dsoog"]
+[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_dakjd"]
 [ext_resource type="PackedScene" uid="uid://n106oxapxy1v" path="res://Combat/Effects/Scenes/medium_wind.tscn" id="4_nay0k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_srrfl"]
@@ -116,8 +118,18 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Unit2" instance=ExtResource("1_8bfir")]
+[sub_resource type="Resource" id="Resource_eejty"]
+resource_local_to_scene = true
+script = ExtResource("4_dakjd")
+max_HP = 100
+base_damage = 30
+armor = 0
+evasion = 0.02
+
+[node name="Elemental" instance=ExtResource("1_8bfir")]
 unit_name = "Elemental"
+unit_type = "Warrior"
+portrait_texture = ExtResource("2_x1sii")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_qguhu")
@@ -125,4 +137,5 @@ animation = &"attack"
 autoplay = "default"
 
 [node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_eejty")
 attack_effect = ExtResource("4_nay0k")

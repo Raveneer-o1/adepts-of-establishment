@@ -153,6 +153,7 @@ script = ExtResource("4_gsene")
 max_HP = 200
 base_damage = 75
 armor = 60
+evasion = 0.02
 
 [node name="Unit" instance=ExtResource("1_v252y")]
 unit_name = "Paladin"

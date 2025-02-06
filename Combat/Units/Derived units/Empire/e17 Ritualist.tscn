@@ -92,6 +92,7 @@ script = ExtResource("4_fdnoa")
 max_HP = 165
 base_damage = 70
 armor = 20
+evasion = 0.02
 
 [node name="Ritualist" instance=ExtResource("1_nifrr")]
 unit_name = "Ritualist"

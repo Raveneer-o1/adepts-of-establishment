@@ -1,11 +1,13 @@
-[gd_scene load_steps=24 format=3 uid="uid://cvmvfp5vmhexe"]
+[gd_scene load_steps=26 format=3 uid="uid://cvmvfp5vmhexe"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_m5le8"]
+[ext_resource type="Texture2D" uid="uid://nr7y53m7v5yi" path="res://Arts/Placeholders/Skeleton champion.jpg" id="2_bljp6"]
 [ext_resource type="Texture2D" uid="uid://cm6gduifdftsj" path="res://Arts/Undead units/u08 skeleton warrior attack .png" id="2_k4rwu"]
 [ext_resource type="Texture2D" uid="uid://btkokdumf0jum" path="res://Arts/Undead units/u08 skeleton warrior idle.png" id="3_y50yy"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_mtitt"]
 [ext_resource type="PackedScene" uid="uid://dnxkr164m8hpp" path="res://Combat/Effects/AppliedEffects/Scenes/crafted_body.tscn" id="5_a3k2t"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_gonsu"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="8_1bqap"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5xc6k"]
 atlas = ExtResource("2_k4rwu")
@@ -136,6 +138,7 @@ evasion = 0.01
 [node name="Skeleton warrior" instance=ExtResource("1_m5le8")]
 unit_name = "Skeleton warrior"
 full_description = "Elite undead warriors, crafted from the bones of legendary fighters. Their bodies are reinforced with necromantic magic, granting them unparalleled strength and durability. Clad in ancient, rune-inscribed armor, they lead lesser undead into battle with an imposing presence that inspires dread in their enemies."
+portrait_texture = ExtResource("2_bljp6")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_uroni")
@@ -158,3 +161,4 @@ buff_parameters = {
 script = ExtResource("6_gonsu")
 accuracy = 0.8
 initiative = 40
+target_validation = ExtResource("8_1bqap")

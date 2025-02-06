@@ -1,6 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://cyfiyiae3d4a3"]
+[gd_scene load_steps=25 format=3 uid="uid://cyfiyiae3d4a3"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_frigw"]
+[ext_resource type="Texture2D" uid="uid://bk1jwqaau3mnk" path="res://Arts/Placeholders/Skeleton.jpg" id="2_7f057"]
 [ext_resource type="Texture2D" uid="uid://c1cevuork88ky" path="res://Arts/Undead units/u07 skeleton attack .png" id="2_upqnb"]
 [ext_resource type="Texture2D" uid="uid://b7ysbyome825h" path="res://Arts/Undead units/u07 skeleton idle .png" id="3_qgbpe"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_cwgxh"]
@@ -129,7 +130,9 @@ evasion = 0.02
 
 [node name="Skeleton" instance=ExtResource("1_frigw")]
 unit_name = "Skeleton"
+unit_type = "Warrior"
 full_description = "Skeletons are the quintessential soldiers of the undead, reassembled from the bones of the dead. While they lack the sophistication of living warriors, their undying loyalty and endless stamina make them reliable infantry. Armed with a variety of weapons, they form the backbone of the Necropolis's armies, marching tirelessly to their master's commands."
+portrait_texture = ExtResource("2_7f057")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_5p842")

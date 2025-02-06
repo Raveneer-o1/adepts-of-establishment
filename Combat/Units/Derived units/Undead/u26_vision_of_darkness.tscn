@@ -1,6 +1,7 @@
-[gd_scene load_steps=33 format=3 uid="uid://cqa7pi3fgdon4"]
+[gd_scene load_steps=34 format=3 uid="uid://cqa7pi3fgdon4"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_8j244"]
+[ext_resource type="Texture2D" uid="uid://champsfamwnq3" path="res://Arts/Placeholders/Vision of darkness.jpg" id="2_auyjr"]
 [ext_resource type="Texture2D" uid="uid://baj8bsume4tn5" path="res://Arts/Undead units/u27 Vision of darkness attack .png" id="2_c0ip2"]
 [ext_resource type="Texture2D" uid="uid://b8mxdxvy5c4si" path="res://Arts/Undead units/u27 Vision of darkness idle.png" id="3_kn74n"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_op4sp"]
@@ -187,6 +188,7 @@ evasion = 0.135
 [node name="Vision of Darkness" instance=ExtResource("1_8j244")]
 unit_name = "Vision of Darkness"
 full_description = "The Vision of Darkness is an eldritch apparition that embodies the deepest fears of the living. It projects illusions to disorient and terrify enemies, making them vulnerable to other undead forces. With its commanding aura and mind-twisting abilities, the Vision of Darkness is both a psychological and magical powerhouse on the battlefield."
+portrait_texture = ExtResource("2_auyjr")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_cpb45")

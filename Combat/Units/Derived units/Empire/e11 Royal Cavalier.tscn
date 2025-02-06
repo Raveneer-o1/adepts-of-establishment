@@ -138,6 +138,7 @@ script = ExtResource("4_kgaai")
 max_HP = 100
 base_damage = 30
 armor = 0
+evasion = 0.02
 
 [node name="Unit" instance=ExtResource("1_atu73")]
 unit_name = "Royal Cavalier"
@@ -158,7 +159,6 @@ base_paramaters = SubResource("Resource_plr1t")
 script = ExtResource("5_ksxxa")
 damage_multiplier = 0.6
 accuracy = 0.85
-targets_needed = 1
 initiative = 70
 target_validation = ExtResource("6_3ie0m")
 
@@ -166,6 +166,5 @@ target_validation = ExtResource("6_3ie0m")
 script = ExtResource("5_ksxxa")
 damage_multiplier = 0.9
 accuracy = 0.88
-targets_needed = 1
 initiative = 40
 target_validation = ExtResource("6_3ie0m")

@@ -1,6 +1,7 @@
-[gd_scene load_steps=29 format=3 uid="uid://bc38vqrm2krpb"]
+[gd_scene load_steps=30 format=3 uid="uid://bc38vqrm2krpb"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_w7nds"]
+[ext_resource type="Texture2D" uid="uid://piipgn7okovo" path="res://Arts/Placeholders/Horseman.jpg" id="2_1mg5r"]
 [ext_resource type="Texture2D" uid="uid://h8nx5wkya767" path="res://Arts/Empire units/horseman attack .png" id="2_6doph"]
 [ext_resource type="Texture2D" uid="uid://s4ro0eapkwht" path="res://Arts/Empire units/horseman idle .png" id="3_rt307"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_porei"]
@@ -166,11 +167,13 @@ script = ExtResource("4_porei")
 max_HP = 100
 base_damage = 30
 armor = 0
+evasion = 0.02
 
-[node name="Unit" instance=ExtResource("1_w7nds")]
+[node name="Horseman" instance=ExtResource("1_w7nds")]
 unit_name = "Horseman"
 unit_type = "Warrior"
 full_description = "Horsemen are swift and adaptable warriors who rely on speed and maneuverability to outflank enemies and strike with precision. Their mobility makes them invaluable for rapid assaults or defensive countermeasures. A Horseman’s strength lies not only in their combat prowess but in their ability to turn the tide of battle with quick and decisive actions."
+portrait_texture = ExtResource("2_1mg5r")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_ddpld")
@@ -185,7 +188,6 @@ base_paramaters = SubResource("Resource_o2474")
 script = ExtResource("5_80t0n")
 damage_multiplier = 0.6
 accuracy = 0.85
-targets_needed = 1
 initiative = 70
 target_validation = ExtResource("6_8uswv")
 
@@ -193,6 +195,5 @@ target_validation = ExtResource("6_8uswv")
 script = ExtResource("5_80t0n")
 damage_multiplier = 0.9
 accuracy = 0.82
-targets_needed = 1
 initiative = 40
 target_validation = ExtResource("6_8uswv")
