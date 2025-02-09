@@ -161,6 +161,18 @@ var stats_modifiers: Dictionary = {}
 
 @onready var visual_bar := get_node("VisualBar") as TextureProgressBar
 
+func count_effects(effect_name: StringName, except: AppliedEffect = null) -> int:
+	var result: int = 0
+	for child in get_children():
+		if not child is AppliedEffect:
+			continue
+		if child == except:
+			continue
+		
+		if (child as AppliedEffect).effect_name == effect_name:
+			result += 1
+	return result
+
 func have_effect(effect_name: StringName, except: AppliedEffect = null) -> bool:
 	for child in get_children():
 		if not child is AppliedEffect:

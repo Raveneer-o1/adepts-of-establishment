@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7l7e3cr20yw1"]
+
+[ext_resource type="Script" path="res://Combat/Effects/AppliedEffects/Scripts/taunt.gd" id="1_hkkfj"]
+
+[node name="Taunt" type="Node"]
+script = ExtResource("1_hkkfj")
+effect_name = "Taunt"
+icon_index = 7
+description = "This unit will try to make other units attack itself if it can be a valid target for them."

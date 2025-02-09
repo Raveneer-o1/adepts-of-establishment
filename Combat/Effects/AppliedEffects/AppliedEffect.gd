@@ -54,6 +54,12 @@ const ICONS = preload("res://Arts/icons.png")
 ## if [code]true[/code], the effect can be applied multiple times
 @export var stackable: bool = false
 
+## When [member stackable] is [code]true[/code], defines the maximum stack count:[br]
+## - [b]-1[/b]: Unlimited stacks[br]
+## - [b]0[/b]: [color=red]WARNING[/color] Effect becomes impossible to apply[br]
+## - [b]>0[/b]: Exact maximum simultaneous instances[br]
+@export var stack_limit: int = -1
+
 ## The unit to which this effect is attached.
 var target_unit: Unit
 
@@ -143,10 +149,25 @@ func initialize(params: Variant = null) -> void:
 		print_debug("Effect is missing a target unit!")
 		queue_free()
 		return
-	# if the effect os not stackable and the unit already have an similar effect (except self), remove the effect
-	if (not stackable) and target_unit.parameters.have_effect(effect_name, self):
-		queue_free()
-		return
+	
+	# Non-stackable effect handling: Remove this instance if the target already has the effect
+	if not stackable:
+		# Check if effect exists on unit (excluding this instance which is being added)
+		if target_unit.parameters.have_effect(effect_name, self):
+			queue_free()
+			return
+		
+	# Stackable effect handling: Enforce maximum instance limit
+	else:
+		# Count existing instances of this effect (excluding current pending instance)
+		var effect_count: int = target_unit.parameters.count_effects(effect_name, self)
+		
+		# Remove this instance if stack limit reached
+		if stack_limit != -1 and effect_count >= stack_limit:
+			queue_free()
+			return
+	
+	
 	_apply_effect(params)
 	connect_callables()
 	if icon_index >= 0:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://coatn3gvfj7o4"]
+[gd_scene load_steps=23 format=3 uid="uid://coatn3gvfj7o4"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_jylln"]
 [ext_resource type="Texture2D" uid="uid://brpggj3jiev42" path="res://Arts/Placeholders/Knight.jpg" id="2_udn4r"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_f7s68"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_k3q6v"]
 [ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="6_lycjm"]
+[ext_resource type="PackedScene" uid="uid://b7l7e3cr20yw1" path="res://Combat/Effects/AppliedEffects/Scenes/taunt.tscn" id="8_1tpk0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qlkrr"]
 atlas = ExtResource("2_y2ul3")
@@ -134,3 +135,6 @@ script = ExtResource("5_k3q6v")
 accuracy = 0.75
 initiative = 35
 target_validation = ExtResource("6_lycjm")
+
+[node name="Taunt" parent="UnitParameters" index="3" instance=ExtResource("8_1tpk0")]
+chance_to_taunt = 1.0

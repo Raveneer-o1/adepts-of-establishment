@@ -608,10 +608,9 @@ func create_attack(unit_attack: UnitAttack, targets: Array[UnitSpot]) -> Attack:
 		)
 	
 	var attack: Attack = Attack.new(
-		self, targets,
+		unit_attack,
+		targets,
 		parameters.get_actual_damage(unit_attack),
-		unit_attack.type,
-		unit_attack.accuracy,
 		parameters.attack_effect
 	)
 	

@@ -101,6 +101,9 @@ func _on_start_button_pressed() -> void:
 	
 	var can_start: bool = false  # Flag to check if the game can start
 	
+	if OS.is_debug_build():
+		can_start = true
+	
 	# Process the left unit panels
 	for panel in left_array:
 		# If the panel is invalid or null, mark spot as empty by appending an empty string
