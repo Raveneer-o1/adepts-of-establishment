@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://yhsyg68w5uf3"]
+[gd_scene load_steps=24 format=3 uid="uid://yhsyg68w5uf3"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_wpfih"]
 [ext_resource type="Texture2D" uid="uid://mrk2c6001uak" path="res://Arts/Empire units/clergyman attack .png" id="2_fwl8a"]
+[ext_resource type="Texture2D" uid="uid://cv441khnv5ncg" path="res://Arts/Placeholders/Clergyman.jpg" id="2_v4rxq"]
 [ext_resource type="Texture2D" uid="uid://brj6uds2n2qim" path="res://Arts/Empire units/clergyman idle .png" id="3_df5py"]
 [ext_resource type="PackedScene" uid="uid://d1uk2tsyu7ay0" path="res://Combat/Effects/Scenes/medium_heal.tscn" id="4_lf87e"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_lnkbd"]
@@ -124,6 +125,7 @@ evasion = 0.02
 unit_name = "Imperial priest"
 unit_type = "Healer"
 full_description = "Clergymen are stalwart defenders of faith and life, wielding potent healing magic to sustain their allies. Their unwavering devotion allows them to keep even gravely wounded warriors in the fray. They are a cornerstone of any formation, ensuring the survival of their party's strongest fighters."
+portrait_texture = ExtResource("2_v4rxq")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_3td0u")

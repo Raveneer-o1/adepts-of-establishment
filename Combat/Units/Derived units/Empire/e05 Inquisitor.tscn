@@ -1,7 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://ces8ntf3a67x7"]
+[gd_scene load_steps=27 format=3 uid="uid://ces8ntf3a67x7"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_iyxx7"]
 [ext_resource type="Texture2D" uid="uid://14gfl0hqnfjd" path="res://Arts/Empire units/inquisitor attack.png" id="2_ckwba"]
+[ext_resource type="Texture2D" uid="uid://bibq08fxduijf" path="res://Arts/Placeholders/Inquisitor.jpg" id="2_qb4re"]
 [ext_resource type="Texture2D" uid="uid://bl2wscwptb6yj" path="res://Arts/Empire units/inquisitor idle.png" id="3_p1p2e"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_j3lff"]
 [ext_resource type="PackedScene" uid="uid://b5btb6pxaufjw" path="res://Combat/Effects/AppliedEffects/Scenes/holy_wrath.tscn" id="5_txbsl"]
@@ -145,6 +146,7 @@ evasion = 0.02
 unit_name = "Inquisitor"
 unit_type = "Warrior"
 full_description = "Inquisitors are relentless hunters of heresy, wielding heavy maces to deliver unyielding punishment. Their attacks pierce through magical defenses, making them especially deadly against spellcasters and enchanted foes. Unshakable in their faith, they inspire their allies and bring fear to the corrupted. On the battlefield, an Inquisitor is a resolute force of righteousness, relentless in their pursuit of heretics and the unholy."
+portrait_texture = ExtResource("2_qb4re")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_luotl")

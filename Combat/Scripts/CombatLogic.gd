@@ -148,7 +148,8 @@ func start_turn(remove_miniature: bool = true) -> void:
 	# trying to assign surrent_attack while there is entries in queue
 	while attacks_queue.size() > 0:
 		current_attack = attacks_queue.pop_front()
-		# skipping all dead references and dead units, if we skip all entries,
+		# Skipping all dead references and dead units
+		# If we skip all entries,
 		# method will return without setting current_unit which means no unit was found
 		if current_attack == null or \
 				not current_attack.can_be_performed():
@@ -170,11 +171,15 @@ func start_turn(remove_miniature: bool = true) -> void:
 func next_stage(remove_miniature: bool = true) -> void:
 	if not battle_in_progress:
 		return
+	
+	main_system.check_winner()
+	
 	start_turn(remove_miniature)
 	# if start_turn didn't set current_unit, there's no units left in queue
 	if main_system.current_unit == null:
 		start_round()
 		start_turn(remove_miniature)
+		
 		# if start_turn didn't set current_unit after queue has been reset,
 		# there's no units left
 		if main_system.current_unit == null:
@@ -196,6 +201,9 @@ func initialize_effects() -> void:
 
 ##  Ends the battle and cleans up resources.
 func end_battle() -> void:
+	if not battle_in_progress:
+		return
+	#main_system.check_winner()
 	print("The battle is over!")
 	main_system.win_label.visible = true
 	battle_in_progress = false

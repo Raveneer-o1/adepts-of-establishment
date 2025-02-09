@@ -104,26 +104,30 @@ var timer: SceneTreeTimer
 
 
 ## Checks if any party is empty and determines a winner
-func check_winner(_unit: Unit) -> void:
+func check_winner(_unit: Unit = null) -> void:
 	if timer != null:
 		return
 	var left_empty := left_party.check_if_empty()
 	var right_empty := right_party.check_if_empty()
 	if left_empty and right_empty:
 		win_label.text = WIN_LABEL_LINE % "Tie!"
-		combat_logic.end_battle()
-		start_end_countdown()
-		return
-	if left_empty:
+		#combat_logic.end_battle()
+		#start_end_countdown()
+		#return
+	elif left_empty:
 		win_label.text = WIN_LABEL_LINE % "Right wins!"
-		combat_logic.end_battle()
-		start_end_countdown()
-		return
-	if right_empty:
+		#combat_logic.end_battle()
+		#start_end_countdown()
+		#return
+	elif right_empty:
 		win_label.text = WIN_LABEL_LINE % "Left wins!"
-		combat_logic.end_battle()
-		start_end_countdown()
+		#combat_logic.end_battle()
+		#start_end_countdown()
+		#return
+	else:
 		return
+	combat_logic.end_battle()
+	start_end_countdown()
 
 ## Handles the resolution of all attacks and prepares for the next combat stage
 func finish_attack() -> void:
@@ -294,8 +298,8 @@ func initialize_variables() -> void:
 	left_party.initialize_variables()
 	right_party.initialize_variables()
 	EventBus.attack_animation_finished.connect(check_finished_animation)
-	EventBus.turn_started.connect(check_winner)
-	EventBus.unit_died.connect(check_winner)
+	#EventBus.turn_started.connect(check_winner)
+	#EventBus.unit_died.connect(check_winner)
 	left_party_units = EventBus.left_units
 	right_party_units = EventBus.right_units
 

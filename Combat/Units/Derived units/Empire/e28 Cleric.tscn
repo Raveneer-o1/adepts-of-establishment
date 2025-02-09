@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://bnnj1tvjy65cq"]
+[gd_scene load_steps=21 format=3 uid="uid://bnnj1tvjy65cq"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_woc6m"]
 [ext_resource type="Texture2D" uid="uid://cfl0w6drqoq0h" path="res://Arts/Empire units/cleric attack .png" id="2_8n3o2"]
+[ext_resource type="Texture2D" uid="uid://1us87ffp5s12" path="res://Arts/Placeholders/Cleric.jpg" id="2_qwoac"]
 [ext_resource type="Texture2D" uid="uid://cohp336pnts2b" path="res://Arts/Empire units/cleric idle .png" id="3_u5n3j"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_0mrxr"]
 [ext_resource type="PackedScene" uid="uid://cdicif6h0d041" path="res://Combat/Effects/Scenes/weak_heal.tscn" id="4_ly0be"]
@@ -97,6 +98,7 @@ evasion = 0.02
 unit_name = "Cleric"
 unit_type = "Healer"
 full_description = "Clerics provide balanced healing to the entire party, spreading divine energy to mend multiple allies at once. Though their magic isn’t as potent as focused healers, their ability to stabilize the group makes them indispensable in prolonged battles."
+portrait_texture = ExtResource("2_qwoac")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_i04ec")

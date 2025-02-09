@@ -1,13 +1,50 @@
-[gd_scene load_steps=28 format=3 uid="uid://dww7nc1dkk4gb"]
+[gd_scene load_steps=38 format=3 uid="uid://dww7nc1dkk4gb"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_qe102"]
 [ext_resource type="Texture2D" uid="uid://cxru2a7kxgebn" path="res://Arts/Heroes/hero09 Grave Whisperer attack 2.png" id="2_8iyoj"]
+[ext_resource type="Texture2D" uid="uid://4rdjph01p1sk" path="res://Arts/Heroes/hero09 Grave Whisperer attack 1 (1).png" id="2_asdcv"]
 [ext_resource type="Texture2D" uid="uid://cjcepoarilpau" path="res://Arts/Heroes/hero09 Grave Whisperer damage .png" id="3_347pa"]
 [ext_resource type="Texture2D" uid="uid://cf0lu3d17s4gf" path="res://Arts/Heroes/hero09 Grave Whisperer idle .png" id="4_6jsds"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="5_6myen"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_wg2k3"]
 [ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="7_gle8i"]
 [ext_resource type="PackedScene" uid="uid://cxt0p01rq72n1" path="res://Combat/Effects/AppliedEffects/Scenes/vampirism.tscn" id="8_mwcfh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6rgy"]
+atlas = ExtResource("2_asdcv")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cckhh"]
+atlas = ExtResource("2_asdcv")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ec3pc"]
+atlas = ExtResource("2_asdcv")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e5tf1"]
+atlas = ExtResource("2_asdcv")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ayg0a"]
+atlas = ExtResource("2_asdcv")
+region = Rect2(0, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pw1dd"]
+atlas = ExtResource("2_asdcv")
+region = Rect2(0, 240, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wih8"]
+atlas = ExtResource("2_asdcv")
+region = Rect2(0, 288, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwr58"]
+atlas = ExtResource("2_asdcv")
+region = Rect2(0, 336, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjbo3"]
+atlas = ExtResource("2_asdcv")
+region = Rect2(0, 384, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q5ig7"]
 atlas = ExtResource("2_8iyoj")
@@ -81,6 +118,38 @@ region = Rect2(0, 144, 48, 48)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_q6rgy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cckhh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ec3pc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e5tf1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ayg0a")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_pw1dd")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_1wih8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uwr58")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjbo3")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_q5ig7")
 }, {
 "duration": 1.0,
@@ -111,7 +180,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_hj4pi")
 }],
 "loop": false,
-"name": &"attack",
+"name": &"attack 2",
 "speed": 5.0
 }, {
 "frames": [{
@@ -152,6 +221,7 @@ script = ExtResource("5_6myen")
 max_HP = 150
 base_damage = 80
 armor = 0
+evasion = 0.02
 
 [node name="Grave whisperer" instance=ExtResource("1_qe102")]
 unit_name = "Grave whisperer"
@@ -185,5 +255,4 @@ target_validation = ExtResource("7_gle8i")
 heal = 0.35
 is_percentage = true
 effect_name = "Vamirism"
-icon_index = 1
 description = "When attacking, units restores %d%s health"

@@ -15,11 +15,11 @@ var target_spots: Array[UnitSpot]:
 		var result: Array[UnitSpot] = []
 		@warning_ignore("untyped_declaration")
 		for key in damages.keys():
-			if key is UnitSpot:
-				result.append(key)
+			if key is UnitSpotReference:
+				result.append(key.spot)
 			else:
 				print_debug(\
-					"Unexpected type in the tarrets of an Attack object! UnitSpot expected, but %s found!" \
+					"Unexpected type in the targets of an Attack object! UnitSpotReference expected, but %s found!" \
 					% type_string( typeof(key) )
 				)
 		return result
@@ -101,4 +101,5 @@ func _init(_attacker: Unit, _spots: Array[UnitSpot],
 	evadable = _evadable
 	default_damage = dmg
 	for spot: UnitSpot in _spots:
-		damages[spot] = dmg
+		var ref: UnitSpotReference = UnitSpotReference.new(spot)
+		damages[ref] = dmg

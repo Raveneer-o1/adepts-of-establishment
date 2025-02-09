@@ -1,6 +1,7 @@
-[gd_scene load_steps=32 format=3 uid="uid://dyvbe6w1ymxve"]
+[gd_scene load_steps=33 format=3 uid="uid://dyvbe6w1ymxve"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_pd60s"]
+[ext_resource type="Texture2D" uid="uid://bahgki3hx36ax" path="res://Arts/Placeholders/Grand inquisitor.jpg" id="2_7ao73"]
 [ext_resource type="Texture2D" uid="uid://bpxj1cae61n23" path="res://Arts/Empire units/Grand inquisitor idle  (1).png" id="2_rp3ci"]
 [ext_resource type="Texture2D" uid="uid://iweqr66amh3y" path="res://Arts/Empire units/Grand inquisitor attack.png" id="2_s1fcq"]
 [ext_resource type="PackedScene" uid="uid://cjtnm7lly4yca" path="res://Combat/Effects/AppliedEffects/Scenes/hp_buff_aura.tscn" id="4_b4oav"]
@@ -167,6 +168,7 @@ decay_rate = 0.3
 unit_name = "Grand Inquisitor"
 unit_type = "Warrior"
 full_description = "Grand Inquisitors channel divine energy to manifest enormous spectral warhammers, delivering crushing blows that bypass magical defenses. Their presence on the battlefield bolsters the vitality of nearby allies, increasing their resilience against even the fiercest assaults. With unwavering conviction, they serve as both protectors and avengers, ensuring the light triumphs over darkness."
+portrait_texture = ExtResource("2_7ao73")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_qvodb")

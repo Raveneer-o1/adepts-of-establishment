@@ -1,6 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://dexm8kl4f5lry"]
+[gd_scene load_steps=22 format=3 uid="uid://dexm8kl4f5lry"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_f4fct"]
+[ext_resource type="Texture2D" uid="uid://b50xolqe7tyk6" path="res://Arts/Placeholders/Witch hunter.jpg" id="2_1j3rb"]
 [ext_resource type="Texture2D" uid="uid://neixpsu60a85" path="res://Arts/Empire units/Witch hunter idle .png" id="2_et3pr"]
 [ext_resource type="Texture2D" uid="uid://bb3a2xlnbn5rl" path="res://Arts/Empire units/Witch hunter attack .png" id="2_l5amp"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_nu5d5"]
@@ -116,6 +117,7 @@ evasion = 0.02
 unit_name = "Witch hunter"
 unit_type = "Warrior"
 full_description = "Witch Hunters are zealous warriors trained to purge dark magic and heresy wherever it festers. Armed with specialized tools and unwavering faith, they excel at confronting spellcasters and disrupting their powers. Their knowledge of arcane threats makes them formidable foes against the unnatural."
+portrait_texture = ExtResource("2_1j3rb")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_l285r")
