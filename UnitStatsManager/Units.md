@@ -44,7 +44,7 @@
  
 * [Death Acolyte](#death_acolyte) 
 	* [Necromancer](#necromancer) 
-		*[Vampire](#vampire) 
+		* [Vampire](#vampire) 
 			* [Elder vampire](#elder_vampire) 
 				* [Vampire Lord](#vampire_lord) 
 				* [Blood spawn](#blood_spawn) 

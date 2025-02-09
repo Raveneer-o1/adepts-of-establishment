@@ -94,7 +94,7 @@ def generate_md_file(units, output_file):
  \n\
 * [Death Acolyte](#death_acolyte) \n\
 	* [Necromancer](#necromancer) \n\
-		*[Vampire](#vampire) \n\
+		* [Vampire](#vampire) \n\
 			* [Elder vampire](#elder_vampire) \n\
 				* [Vampire Lord](#vampire_lord) \n\
 				* [Blood spawn](#blood_spawn) \n\
