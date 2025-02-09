@@ -10,7 +10,7 @@ import os
 from pathlib import Path
 
 class UnitData:
-	def __init__(self, name, level, max_hp, base_damage, armor, attacks, faction = "Neutral"):
+	def __init__(self, name, level, max_hp, base_damage, armor, attacks, effects = None, faction = "Neutral"):
 		"""
 		Initialize a UnitData instance.
 
@@ -29,11 +29,13 @@ class UnitData:
 		self.armor = armor
 		self.attacks = attacks
 		self.faction = faction
+		self.effects = effects if effects else []
 
 	def __repr__(self):
 		return (
 			f"name = {self.name}, level = {self.level}\nmax_hp = {self.max_hp}\n"
-			f"base_damage = {self.base_damage}\narmor = {self.armor}\nattacks:\n{self.attacks}"
+			f"base_damage = {self.base_damage}\narmor = {self.armor}\n"
+			f"attacks:\n{self.attacks}\neffects: {self.effects}"
 		)
 
 
@@ -45,7 +47,7 @@ def generate_md_file(units, output_file):
 		units (list[UnitData]): List of UnitData objects.
 		output_file (str): Path to the output .md file.
 	"""
-	with open(output_file, "w") as f:
+	with open(output_file, "w", newline='\n') as f:
 		f.write("# Units Overview \n\
  \n\
 ## Unit trees \n\
@@ -56,6 +58,9 @@ def generate_md_file(units, output_file):
 	* [Knight](#knight) \n\
 		* [Knight Master](#knight_master)  \n\
 			* [Angel Knight](#angel_knight) \n\
+		* [Horseman](#horseman) \n\
+			* [Royal Cavalier](#royal_cavalier) \n\
+				* [Paladin](#paladin) \n\
 	* [Witch hunter](#witch_hunter) \n\
 		* [Inquisitor](#inquisitor) \n\
 			* [Grand Inquisitor](#grand_inquisitor) \n\
@@ -89,6 +94,10 @@ def generate_md_file(units, output_file):
  \n\
 * [Death Acolyte](#death_acolyte) \n\
 	* [Necromancer](#necromancer) \n\
+		*[Vampire](#vampire) \n\
+			* [Elder vampire](#elder_vampire) \n\
+				* [Vampire Lord](#vampire_lord) \n\
+				* [Blood spawn](#blood_spawn) \n\
 		* [Lich](#lich) \n\
 			* [Archlich](#archlich) \n\
 	* [Dark Mage](#dark_mage) \n\
@@ -114,6 +123,7 @@ def generate_md_file(units, output_file):
 		units_by_faction = {}
 		for unit in units:
 			faction = unit.faction
+			print(faction)
 			units_by_faction.setdefault(faction, []).append(unit)
 
 		for faction, faction_units in units_by_faction.items():
@@ -126,6 +136,9 @@ def generate_md_file(units, output_file):
 				attacks = ", ".join(repr(a) for a in unit.attacks)
 				if attacks:
 					f.write(f"* **Attacks:** {attacks}\n")
+				if unit.effects:
+					effects = ", ".join(unit.effects)
+					f.write(f"* **Effects:** {effects}\n")
 				f.write("\n")
 
 
@@ -150,7 +163,7 @@ def read_and_compare_md_file(md_file, units):
 	discrepancies = []
 
 	# Read the .md file into a structured format
-	with open(md_file, "r") as f:
+	with open(md_file, "r", newline='\n') as f:
 		lines = f.readlines()
 
 	current_unit = None
@@ -170,8 +183,10 @@ def read_and_compare_md_file(md_file, units):
 				unit_data[current_unit]["Defense"] = int(line.split(":**")[1].strip())
 			elif line.startswith("* **Attacks:**"):
 				attacks = [ln.strip().strip("'") for ln in line.split(":**")[1].split("',")]
-				#print(f"DEBUG {unit_name}: {attacks}")
 				unit_data[current_unit]["Attacks"] = attacks
+			elif line.startswith("* **Effects:**"):
+				effects = [ln.strip().strip("'") for ln in line.split(":**")[1].split("',")]
+				unit_data[current_unit]["Effects"] = effects
 
 	# Validate unit names and stats
 	for data in unit_data:
@@ -259,7 +274,13 @@ class UnitParser:
 		# Extract all [node name="UnitAttack"] sections
 		unit_attacks = re.findall(r'\[node name="UnitAttack".*?\](.*?)\n\[', content, re.S) + \
 				re.findall(r'\[node name="UnitAttack".*?\](.*?)\n\Z', content, re.S)
-		#print(unit_attacks)
+		
+		# Find all effects in the file
+		effects = re.findall(
+			r'AppliedEffects/Scenes/(\w+)\.tscn',
+			content
+		)
+
 		attacks = []
 		for attack in unit_attacks:
 			attack_data = \
@@ -277,6 +298,7 @@ class UnitParser:
 			int(unit_data['base_damage']), \
 			int(unit_data['armor']), \
 			unit_data['attacks'], \
+			effects
 			)
 
 		return unit

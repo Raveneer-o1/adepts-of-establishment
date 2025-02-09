@@ -8,6 +8,9 @@
 	* [Knight](#knight) 
 		* [Knight Master](#knight_master)  
 			* [Angel Knight](#angel_knight) 
+		* [Horseman](#horseman) 
+			* [Royal Cavalier](#royal_cavalier) 
+				* [Paladin](#paladin) 
 	* [Witch hunter](#witch_hunter) 
 		* [Inquisitor](#inquisitor) 
 			* [Grand Inquisitor](#grand_inquisitor) 
@@ -41,6 +44,10 @@
  
 * [Death Acolyte](#death_acolyte) 
 	* [Necromancer](#necromancer) 
+		*[Vampire](#vampire) 
+			* [Elder vampire](#elder_vampire) 
+				* [Vampire Lord](#vampire_lord) 
+				* [Blood spawn](#blood_spawn) 
 		* [Lich](#lich) 
 			* [Archlich](#archlich) 
 	* [Dark Mage](#dark_mage) 
@@ -73,19 +80,20 @@
 * **Health:** 100
 * **Attack:** 30
 * **Defense:** 0
-* **Attacks:** 'accuracy: 0.7, damage_multiplier: 0, initiative: 40, targets_needed: 1'
+* **Attacks:** 'accuracy: 0.7, damage_multiplier: 0, initiative: 40, targets_needed: 0'
 
 #### Witch hunter
 * **Health:** 150
 * **Attack:** 45
 * **Defense:** 10
-* **Attacks:** 'accuracy: 0.75, damage_multiplier: 0, initiative: 40, targets_needed: 1'
+* **Attacks:** 'accuracy: 0.75, damage_multiplier: 0, initiative: 40, targets_needed: 0'
 
 #### Knight
 * **Health:** 160
 * **Attack:** 45
 * **Defense:** 20
-* **Attacks:** 'accuracy: 0.75, damage_multiplier: 0, initiative: 35, targets_needed: 0'
+* **Attacks:** 'accuracy: 0.75, damage_multiplier: 0, initiative: 35, targets_needed: 0', 'accuracy: 0.75, damage_multiplier: 0, initiative: 35, targets_needed: 0'
+* **Effects:** taunt
 
 #### Samurai
 * **Health:** 200
@@ -97,19 +105,20 @@
 * **Health:** 200
 * **Attack:** 60
 * **Defense:** 25
-* **Attacks:** 'accuracy: 0.82, damage_multiplier: 0, initiative: 45, targets_needed: 1'
+* **Attacks:** 'accuracy: 0.82, damage_multiplier: 0, initiative: 45, targets_needed: 0'
+* **Effects:** holy_wrath
 
 #### Knight Master
 * **Health:** 200
 * **Attack:** 50
 * **Defense:** 45
-* **Attacks:** 'accuracy: 0.84, damage_multiplier: 1.5, initiative: 45, targets_needed: 1'
+* **Attacks:** 'accuracy: 0.84, damage_multiplier: 1.5, initiative: 45, targets_needed: 0'
 
 #### Horseman
 * **Health:** 100
 * **Attack:** 30
 * **Defense:** 0
-* **Attacks:** 'accuracy: 0.85, damage_multiplier: 0.6, initiative: 70, targets_needed: 1', 'accuracy: 0.85, damage_multiplier: 0.6, initiative: 70, targets_needed: 1'
+* **Attacks:** 'accuracy: 0.85, damage_multiplier: 0.6, initiative: 70, targets_needed: 0', 'accuracy: 0.85, damage_multiplier: 0.6, initiative: 70, targets_needed: 0'
 
 #### Blade Saint
 * **Health:** 200
@@ -122,30 +131,34 @@
 * **Attack:** 70
 * **Defense:** 40
 * **Attacks:** 'accuracy: 0.85, damage_multiplier: 0, initiative: 40, targets_needed: 0'
+* **Effects:** hp_buff_aura, holy_wrath
 
 #### Angel Knight
 * **Health:** 100
 * **Attack:** 30
 * **Defense:** 0
-* **Attacks:** 'accuracy: 0.87, damage_multiplier: 0, initiative: 40, targets_needed: 1'
+* **Attacks:** 'accuracy: 0.87, damage_multiplier: 0, initiative: 40, targets_needed: 0'
+* **Effects:** damage_buff_aura
 
 #### Royal Cavalier
 * **Health:** 100
 * **Attack:** 30
 * **Defense:** 0
-* **Attacks:** 'accuracy: 0.85, damage_multiplier: 0.6, initiative: 70, targets_needed: 1', 'accuracy: 0.85, damage_multiplier: 0.6, initiative: 70, targets_needed: 1'
+* **Attacks:** 'accuracy: 0.85, damage_multiplier: 0.6, initiative: 70, targets_needed: 0', 'accuracy: 0.85, damage_multiplier: 0.6, initiative: 70, targets_needed: 0'
 
 #### Paladin
 * **Health:** 200
 * **Attack:** 75
 * **Defense:** 60
 * **Attacks:** 'accuracy: 0.88, damage_multiplier: 0.65, initiative: 70, targets_needed: 0', 'accuracy: 0.88, damage_multiplier: 0.65, initiative: 70, targets_needed: 0'
+* **Effects:** armor_buff_aura
 
 #### Angel
 * **Health:** 250
 * **Attack:** 100
 * **Defense:** 20
 * **Attacks:** 'accuracy: 0.85, damage_multiplier: 0, initiative: 35, targets_needed: 0', 'accuracy: 0.85, damage_multiplier: 0, initiative: 35, targets_needed: 0'
+* **Effects:** armor_buff_aura
 
 #### Apprentice
 * **Health:** 70
@@ -212,18 +225,21 @@
 * **Attack:** 50
 * **Defense:** 20
 * **Attacks:** 'accuracy: 0.8, damage_multiplier: 0, initiative: 50, targets_needed: 0', 'accuracy: 0.8, damage_multiplier: 0, initiative: 50, targets_needed: 0'
+* **Effects:** agility
 
 #### Assassin
 * **Health:** 100
 * **Attack:** 30
 * **Defense:** 0
 * **Attacks:** 'accuracy: 0.85, damage_multiplier: 0, initiative: 50, targets_needed: 0', 'accuracy: 0.85, damage_multiplier: 0, initiative: 50, targets_needed: 0'
+* **Effects:** agility
 
 #### Imperial Ranger
 * **Health:** 170
 * **Attack:** 50
 * **Defense:** 20
 * **Attacks:** 'accuracy: 0.87, damage_multiplier: 0, initiative: 30, targets_needed: 0', 'accuracy: 0.87, damage_multiplier: 0, initiative: 30, targets_needed: 0'
+* **Effects:** agility, assistance
 
 #### Acolyte
 * **Health:** 90
@@ -289,6 +305,7 @@
 * **Attack:** 80
 * **Defense:** 0
 * **Attacks:** 'accuracy: 0.8, damage_multiplier: 0.65, initiative: 65, targets_needed: 0', 'accuracy: 0.8, damage_multiplier: 0.65, initiative: 65, targets_needed: 0'
+* **Effects:** vampirism
 
 #### Thymaël Doux, the Blade of Holy Light
 * **Health:** 200
@@ -342,42 +359,49 @@
 * **Attack:** 45
 * **Defense:** 10
 * **Attacks:** 'accuracy: 0.8, damage_multiplier: 0, initiative: 40, targets_needed: 0'
+* **Effects:** shield
 
 #### Phantom Warrior
 * **Health:** 150
 * **Attack:** 45
 * **Defense:** 10
 * **Attacks:** 'accuracy: 0.8, damage_multiplier: 0, initiative: 40, targets_needed: 0', 'accuracy: 0.8, damage_multiplier: 0, initiative: 40, targets_needed: 0'
+* **Effects:** illusive
 
 #### Skeleton
 * **Health:** 180
 * **Attack:** 60
 * **Defense:** 10
 * **Attacks:** 'accuracy: 0.82, damage_multiplier: 0, initiative: 40, targets_needed: 0', 'accuracy: 0.82, damage_multiplier: 0, initiative: 40, targets_needed: 0'
+* **Effects:** crafted_body
 
 #### Fallen Inquisitor
 * **Health:** 180
 * **Attack:** 50
 * **Defense:** 20
 * **Attacks:** 'accuracy: 0.84, damage_multiplier: 0, initiative: 40, targets_needed: 0', 'accuracy: 0.84, damage_multiplier: 0, initiative: 40, targets_needed: 0'
+* **Effects:** shield
 
 #### Skeleton warrior
 * **Health:** 200
 * **Attack:** 65
 * **Defense:** 20
 * **Attacks:** 'accuracy: 0.8, damage_multiplier: 0, initiative: 40, targets_needed: 0'
+* **Effects:** crafted_body
 
 #### Dark Lord
 * **Health:** 200
 * **Attack:** 30
 * **Defense:** 30
 * **Attacks:** 'accuracy: 0.88, damage_multiplier: 0, initiative: 40, targets_needed: 2', 'accuracy: 0.88, damage_multiplier: 0, initiative: 40, targets_needed: 2'
+* **Effects:** shield
 
 #### Skeleton Hero
 * **Health:** 220
 * **Attack:** 70
 * **Defense:** 35
-* **Attacks:** 'accuracy: 0, damage_multiplier: 0, initiative: 0, targets_needed: 0', 'accuracy: 0, damage_multiplier: 0, initiative: 0, targets_needed: 0'
+* **Attacks:** 'accuracy: 0.8, damage_multiplier: 0, initiative: 40, targets_needed: 0', 'accuracy: 0.8, damage_multiplier: 0, initiative: 40, targets_needed: 0'
+* **Effects:** crafted_body, vampirism
 
 #### Death Acolyte
 * **Health:** 70
@@ -402,6 +426,7 @@
 * **Attack:** 50
 * **Defense:** 5
 * **Attacks:** 'accuracy: 0.8, damage_multiplier: 0, initiative: 40, targets_needed: 0'
+* **Effects:** vampirism
 
 #### Lich
 * **Health:** 180
@@ -414,6 +439,7 @@
 * **Attack:** 30
 * **Defense:** 0
 * **Attacks:** 'accuracy: 0.85, damage_multiplier: 0, initiative: 45, targets_needed: 0'
+* **Effects:** shield
 
 #### Elder vampire
 * **Health:** 250
@@ -438,12 +464,14 @@
 * **Attack:** 90
 * **Defense:** 0
 * **Attacks:** 'accuracy: 0.9, damage_multiplier: 0, initiative: 40, targets_needed: 2', 'accuracy: 0.9, damage_multiplier: 0, initiative: 40, targets_needed: 2'
+* **Effects:** vampirism, fear_aura
 
 #### Vampire Lord
 * **Health:** 230
 * **Attack:** 75
 * **Defense:** 20
 * **Attacks:** 'accuracy: 0.9, damage_multiplier: 0, initiative: 45, targets_needed: 0', 'accuracy: 0.9, damage_multiplier: 0, initiative: 45, targets_needed: 0'
+* **Effects:** vampirism
 
 #### Ghost
 * **Health:** 70
@@ -492,24 +520,28 @@
 * **Attack:** 65
 * **Defense:** 15
 * **Attacks:** 'accuracy: 0.82, damage_multiplier: 0, initiative: 35, targets_needed: 0'
+* **Effects:** shield
 
 #### Gluttonous Serpent
 * **Health:** 100
 * **Attack:** 30
 * **Defense:** 0
 * **Attacks:** 'accuracy: 0.85, damage_multiplier: 0, initiative: 35, targets_needed: 0', 'accuracy: 0.85, damage_multiplier: 0, initiative: 35, targets_needed: 0'
+* **Effects:** shield, devourer
 
 #### Dreadwyrm
 * **Health:** 350
 * **Attack:** 80
 * **Defense:** 20
 * **Attacks:** 'accuracy: 0.85, damage_multiplier: 0, initiative: 35, targets_needed: 0', 'accuracy: 0.85, damage_multiplier: 0, initiative: 35, targets_needed: 0'
+* **Effects:** shield
 
 #### The Devourer
 * **Health:** 380
 * **Attack:** 90
 * **Defense:** 30
 * **Attacks:** 'accuracy: 0.9, damage_multiplier: 0, initiative: 40, targets_needed: 0', 'accuracy: 0.9, damage_multiplier: 0, initiative: 40, targets_needed: 0'
+* **Effects:** devourer
 
 #### Undying Nighthunter
 * **Health:** 400
@@ -522,4 +554,5 @@
 * **Attack:** 110
 * **Defense:** 35
 * **Attacks:** 'accuracy: 0.885, damage_multiplier: 0, initiative: 35, targets_needed: 0', 'accuracy: 0.885, damage_multiplier: 0, initiative: 35, targets_needed: 0'
+* **Effects:** illusive
 
