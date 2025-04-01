@@ -2,22 +2,15 @@
 
 [![GPLv3 License](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://opensource.org/licenses/)
 [![Godot Engine](https://img.shields.io/badge/Godot-4.2%2B-%23478cbf)](https://godotengine.org)
+[![Project Status](https://img.shields.io/badge/Status-Active%20Maintenance-yellowgreen)](https://github.com/Raveneer-o1/adepts-of-establishment)
 
-**A free open-source spiritual successor to Disciples II**  
+**🚧 Project Status Notice (Updated: 02-03-2025)**
+The Adepts of Establishment project is entering a maintenance phase while I focus on personal obligations. While active development is paused, **the project remains open**: I will be reviewing PRs, discussing issues etc.
+
+
+## 🏰 Project Overview
+**A free open-source spiritual successor to Disciples II**
 *Turn-based strategy with evolution based progression in a dark fantasy world*
-
-<!--
-<img src="screenshots/gameplay_preview.png" width="600" alt="Gameplay preview showing tactical map and unit roster">
--->
-
-## 🏰 Project Overview  
-A hexagonal-tile tactical RPG where factions vie for control of a decaying kingdom. Features:  
-- **Strategic Empire Building** - Capture resources, upgrade cities with faction-specific architectures  
-- **Squad-Based Combat** - Manual JRPG-style battles with flanking bonuses and elevation mechanics  
-- **Evolving Units** - Branching unit trees (Squire → Paladin)
-- **Dynamic Effects System** - Many status effects that combine/create new synergies  
-
-*"Imagine Disciples meets Final Fantasy Tactics with the moddability of OpenXCOM"*
 
 ### If you're unfamiliar with the Disciples series:
 Disciples is a dark fantasy strategy series blending turn-based empire-building, tactical combat, and rich RPG storytelling. The series initially drew comparisons to Heroes of Might & Magic but carved its niche through grim aesthetics and unit evolution system. These games combine strategic city management, hero development, and JRPG-like battles where unit positioning and evolution shape victory. The series is famed for its grim art style (by Patrick Lambert), and a "no-movement" combat system that emphasizes pre-planning over real-time tactics.
@@ -25,7 +18,7 @@ Disciples is a dark fantasy strategy series blending turn-based empire-building,
 **Adepts of Establishment** carries this legacy forward with an open-source approach. We aim to create a game made by fans for fans.
 
 ## 🛠️ Getting Started
-**Requirements**: Godot Engine 4.3+
+**Requirements**: Godot Engine 4.3
 
 ```bash
 git clone https://github.com/Raveneer-o1/adepts-of-establishment/adepts-of-establishment.git
@@ -48,13 +41,6 @@ All help welcome! No contribution too small:
 - Lore text is ok, however I do have my own vision on this world so it's best to leave this kind of changes to different forks
 ### **Testing**:
 - Bug reports, compatibility checks
-
-### Contribution Flow
-1. Fork repository
-2. Create feature branch (`feat/my-contribution`)
-3. Commit changes
-4. Submit PR with description of changes
-5. I'm always available on [Reddit](https://www.reddit.com/user/Raveneer-o1/) or [github](https://github.com/Raveneer-o1)
 
 
 ## 📜 License
