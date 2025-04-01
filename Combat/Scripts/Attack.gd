@@ -7,9 +7,24 @@ var damages: Dictionary # <target: UnitSpotReference, damage: int>
 # if target can't be found in damages dictionary, this value will be used as damage
 var default_damage: int
 
+var redirected: bool = false
+
 var accuracy: float
 var type: EventBus.AttackType
 var attacker: Unit
+var target_references: Array[UnitSpotReference]:
+	get:
+		var result: Array[UnitSpotReference] = []
+		@warning_ignore("untyped_declaration")
+		for key in damages.keys():
+			if key is UnitSpotReference:
+				result.append(key)
+			else:
+				print_debug(\
+					"Unexpected type in the targets of an Attack object! UnitSpotReference expected, but %s found!" \
+					% type_string( typeof(key) )
+				)
+		return result
 var target_spots: Array[UnitSpot]:
 	get:
 		var result: Array[UnitSpot] = []
@@ -72,6 +87,13 @@ func resolve(finalize: bool = false) -> void:
 func set_parameters(attack: UnitAttack) -> void:
 	damage_policy = attack.damage_policy
 	applying_effects = attack.applying_effects.duplicate()
+
+func redirect_to(target_index: UnitSpotReference, target_unit:Unit) -> void:
+	var damage: int = damages[target_index]
+	var new_index := UnitSpotReference.new(target_unit.spot)
+	damages.erase(target_index)
+	damages[new_index] = damage
+	redirected = true
 
 ## Returnes a shallow copy of the object. All nested Array, Dictionary and Object elements are shared 
 ## with the original. Modifying them in one object will also affect them in the other.

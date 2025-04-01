@@ -8,12 +8,14 @@ func check_trigger(attack: Attack) -> void:
 	if attack == null:
 		return
 	
-	# filter cases when unit cant be a target of the attack
+	# filter cases when unit can't be a target of the attack
 	if not attack.validation._validate_target(attack.attacker, target_unit.spot):
 		return
 	
 	# filter cases when there's no point in redirecting
 	# (e.g. when the attack is already targeted at this unit)
+	if attack.redirected:
+		return
 	var target_index: UnitSpotReference = null
 	for target: UnitSpotReference in attack.damages:
 		if target.spot.unit == target_unit:
@@ -28,11 +30,7 @@ func check_trigger(attack: Attack) -> void:
 	if randf() > chance_to_taunt:
 		return
 	
-	var damage: int = attack.damages[target_index]
-	var new_index = UnitSpotReference.new(target_unit.spot)
-	
-	attack.damages.erase(target_index)
-	attack.damages[new_index] = damage
+	attack.redirect_to(target_index, target_unit)
 	
 	target_unit.system.display_text_near_unit(target_unit, message, color_effect)
 
