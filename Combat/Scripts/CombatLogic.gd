@@ -147,13 +147,18 @@ func start_turn(remove_miniature: bool = true) -> void:
 	
 	# trying to assign surrent_attack while there is entries in queue
 	while attacks_queue.size() > 0:
-		current_attack = attacks_queue.pop_front()
 		# Skipping all dead references and dead units
 		# If we skip all entries,
 		# method will return without setting current_unit which means no unit was found
+		if not is_instance_valid(attacks_queue.front()):
+			attacks_queue.remove_at(0)
+			continue
+		current_attack = attacks_queue.pop_front()
 		if current_attack == null or \
 				not current_attack.can_be_performed():
 			continue
+		
+		#Setting current unit
 		main_system.current_unit = current_attack.unit
 		EventBus.turn_started.emit(main_system.current_unit)
 		

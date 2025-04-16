@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bb3a2xlnbn5rl" path="res://Arts/Empire units/Witch hunter attack .png" id="2_l5amp"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_nu5d5"]
 [ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_40kki"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/Validation/Scripts/standart_melee_validity.gd" id="6_2yro3"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="7_q5wki"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gii6h"]
 atlas = ExtResource("2_l5amp")
@@ -133,4 +133,4 @@ base_paramaters = SubResource("Resource_krs8q")
 script = ExtResource("5_40kki")
 accuracy = 0.75
 initiative = 40
-target_validation = ExtResource("6_2yro3")
+target_validation = ExtResource("7_q5wki")
