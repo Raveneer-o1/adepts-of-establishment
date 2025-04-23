@@ -17,6 +17,8 @@ Disciples is a dark fantasy strategy series blending turn-based empire-building,
 
 **Adepts of Establishment** carries this legacy forward with an open-source approach. We aim to create a game made by fans for fans.
 
+[Unit trees](UnitStatsManager/unit%20trees.svg)
+
 ## 🛠️ Getting Started
 **Requirements**: Godot Engine 4.3
 
