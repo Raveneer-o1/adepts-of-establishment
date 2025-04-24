@@ -56,10 +56,6 @@ Disciples is a dark fantasy strategy series blending turn-based empire-building,
         Priest --> Imperial_priest["Imperial priest"]
         Imperial_priest --> Hierophant["Hierophant"]
     end
-  ```
-
-  ```mermaid
-  graph TD
     subgraph Undead
         Warrior["Warrior"] --> Zombie["Zombie"]
         Zombie --> Phantom_warrior["Phantom warrior"]
