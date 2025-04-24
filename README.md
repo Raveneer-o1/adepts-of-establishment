@@ -17,7 +17,89 @@ Disciples is a dark fantasy strategy series blending turn-based empire-building,
 
 **Adepts of Establishment** carries this legacy forward with an open-source approach. We aim to create a game made by fans for fans.
 
-[Unit trees](UnitStatsManager/unit%20trees.svg)
+<details>
+  <summary>Unit trees</summary>
+
+  ```mermaid
+  graph TD
+    subgraph Empire
+        Squire["Squire"] --> Knight["Knight"]
+        Knight --> Knight_Master["Knight Master"]
+        Knight_Master --> Angel_Knight["Angel Knight"]
+        Knight --> Horseman["Horseman"]
+        Horseman --> Royal_Cavalier["Royal Cavalier"]
+        Royal_Cavalier --> Paladin["Paladin"]
+        
+        Squire --> Witch_Hunter["Witch hunter"]
+        Witch_Hunter --> Inquisitor["Inquisitor"]
+        Inquisitor --> Grand_Inquisitor["Grand Inquisitor"]
+        Witch_Hunter --> Samurai["Samurai"]
+        Samurai --> Blade_Saint["Blade Saint"]
+        
+        Apprentice["Apprentice"] --> Elementalist["Elementalist"]
+        Elementalist --> Ritualist["Ritualist"]
+        Apprentice --> Mage["Mage"]
+        Mage --> Wizard["Wizard"]
+        Wizard --> White_Mage["White Mage"]
+        White_Mage --> Keeper_of_Knowledge["Keeper of Knowledge"]
+        White_Mage --> Arcanist["Arcanist"]
+        
+        Archer["Archer"] --> Marksman["Marksman"]
+        Marksman --> Scout["Scout"]
+        Scout --> Imperial_Ranger["Imperial Ranger"]
+        Marksman --> Assassin["Assassin"]
+        
+        Acolyte["Acolyte"] --> Cleric["Cleric"]
+        Cleric --> Matriarch["Matriarch"]
+        Matriarch --> Prophetess["Prophetess"]
+        Acolyte --> Priest["Priest"]
+        Priest --> Imperial_priest["Imperial priest"]
+        Imperial_priest --> Hierophant["Hierophant"]
+    end
+  ```
+
+  ```mermaid
+  graph TD
+    subgraph Undead
+        Warrior["Warrior"] --> Zombie["Zombie"]
+        Zombie --> Phantom_warrior["Phantom warrior"]
+        Zombie --> Skeleton["Skeleton"]
+        Skeleton --> Skeleton_warrior["Skeleton warrior"]
+        Skeleton_warrior --> Skeleton_champion["Skeleton champion"]
+        Warrior --> Templar["Templar"]
+        Templar --> Fallen_inquisitor["Fallen inquisitor"]
+        Fallen_inquisitor --> Dark_lord["Dark lord"]
+
+        Death_Acolyte["Death Acolyte"] --> Necromancer["Necromancer"]
+        Necromancer --> Vampire["Vampire"]
+        Vampire --> Elder_vampire["Elder vampire"]
+        Elder_vampire --> Vampire_Lord["Vampire Lord"]
+        Elder_vampire --> Blood_spawn["Blood spawn"]
+        Necromancer --> Lich["Lich"]
+        Lich --> Archlich["Archlich"]
+        Death_Acolyte --> Dark_Mage["Dark Mage"]
+        Dark_Mage --> Wraith["Wraith"]
+        Wraith --> Herald_of_Death["Herald of Death"]
+        
+        Ghost["Ghost"] --> Specter["Specter"]
+        Specter --> Will_o_Wisp["Will-o’-Wisp"]
+        Will_o_Wisp --> The_eternal["The eternal"]
+        Specter --> Shadow["Shadow"]
+        Shadow --> Vision_of_Darkness["Vision of Darkness"]
+        Shadow --> placeholder[style=invis]
+        
+        Wyvern["Wyvern"] --> Doomdrake["Doomdrake"]
+        Doomdrake --> Gluttonous_Serpent["Gluttonous Serpent"]
+        Gluttonous_Serpent --> The_Devourer["The Devourer"]
+        Doomdrake --> Dreadwyrm["Dreadwyrm"]
+        Dreadwyrm --> Undying_Nighthunter["Undying Nighthunter"]
+        Undying_Nighthunter --> Dracolich["Dracolich"]
+    end
+  ```
+
+  [Unit trees (old)](UnitStatsManager/unit%20trees.svg)
+  
+</details>
 
 ## 🛠️ Getting Started
 **Requirements**: Godot Engine 4.3
