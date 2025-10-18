@@ -17,7 +17,7 @@ class_name AppliedEffect
 @export var color_end: Color = Color.WHITE
 
 
-const ICONS = preload("res://Arts/icons.png")
+const ICONS := preload("res://Arts/icons.png")
 
 @export var effect_name: String = "Undefined"
 
@@ -171,8 +171,8 @@ func initialize(params: Variant = null) -> void:
 	_apply_effect(params)
 	connect_callables()
 	if icon_index >= 0:
-		var image := ICONS.get_layer_data(icon_index)
-		if not image:
+		var image: Image = ICONS.get_layer_data(icon_index)
+		if image == null:
 			print_debug("Icon not found!")
 			return
 		target_unit.display_effect_icon(image, self)

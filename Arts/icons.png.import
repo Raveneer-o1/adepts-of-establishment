@@ -2,7 +2,7 @@
 
 importer="2d_array_texture"
 type="CompressedTexture2DArray"
-uid="uid://b4km327y56icd"
+uid="uid://mv3hxyr12jd2"
 path="res://.godot/imported/icons.png-90071867d8f001012f1f07168629c516.ctexarray"
 metadata={
 "vram_texture": false
@@ -18,6 +18,8 @@ dest_files=["res://.godot/imported/icons.png-90071867d8f001012f1f07168629c516.ct
 compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/channel_pack=0
 mipmaps/generate=false

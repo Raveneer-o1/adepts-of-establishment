@@ -2,7 +2,7 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://cy2a3xknm673w"
+uid="uid://b3ddoa1b1qih8"
 path="res://.godot/imported/DungeonFont [vrtxrry].ttf-0cfc7324f3d7e664dbcc4ff578daf680.fontdata"
 
 [deps]
@@ -21,8 +21,10 @@ msdf_pixel_range=8
 msdf_size=48
 allow_system_fallback=true
 force_autohinter=false
+modulate_color_glyphs=false
 hinting=1
-subpixel_positioning=1
+subpixel_positioning=4
+keep_rounding_remainders=true
 oversampling=0.0
 Fallbacks=null
 fallbacks=[]
