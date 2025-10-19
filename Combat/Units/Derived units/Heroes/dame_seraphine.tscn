@@ -1,12 +1,12 @@
 [gd_scene load_steps=32 format=3 uid="uid://dvontdt3qn5bj"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_yi6g7"]
-[ext_resource type="Texture2D" uid="uid://cr6r1iucbnk4" path="res://Arts/Heroes/hero06 Dame Seraphine attack 1.png" id="2_vwke8"]
-[ext_resource type="Texture2D" uid="uid://caxos6bj3583s" path="res://Arts/Heroes/hero06 Dame Seraphine attack 2.png" id="3_rr4rt"]
-[ext_resource type="Texture2D" uid="uid://7hfpcesf28fc" path="res://Arts/Heroes/hero06 Dame Seraphine damage .png" id="4_abdk1"]
-[ext_resource type="Texture2D" uid="uid://bo87nycncdbqe" path="res://Arts/Heroes/hero06 Dame Seraphine idle .png" id="5_l622j"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="6_h8vqq"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="7_jf6xl"]
+[ext_resource type="Texture2D" uid="uid://x3dqtlu154qw" path="res://Arts/Heroes/hero06 Dame Seraphine attack 1.png" id="2_vwke8"]
+[ext_resource type="Texture2D" uid="uid://eg1uc4366vnt" path="res://Arts/Heroes/hero06 Dame Seraphine attack 2.png" id="3_rr4rt"]
+[ext_resource type="Texture2D" uid="uid://dabp1hnwbqq0t" path="res://Arts/Heroes/hero06 Dame Seraphine damage .png" id="4_abdk1"]
+[ext_resource type="Texture2D" uid="uid://b2koqbphyark1" path="res://Arts/Heroes/hero06 Dame Seraphine idle .png" id="5_l622j"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="6_h8vqq"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="7_jf6xl"]
 [ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="8_u67v8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rdqse"]

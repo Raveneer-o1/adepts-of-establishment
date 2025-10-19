@@ -1,11 +1,11 @@
 [gd_scene load_steps=35 format=3 uid="uid://dq7l1aj4psenm"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_65je8"]
-[ext_resource type="Texture2D" uid="uid://csmxkvxbnbnm" path="res://Arts/Empire units/Scout attack .png" id="2_dtgb5"]
-[ext_resource type="Texture2D" uid="uid://ctwhljqp3ejqy" path="res://Arts/Empire units/Scout idle .png" id="3_o6itt"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_ptq6f"]
+[ext_resource type="Texture2D" uid="uid://cpkd3cvehefh4" path="res://Arts/Empire units/Scout attack .png" id="2_dtgb5"]
+[ext_resource type="Texture2D" uid="uid://d20ho4xfcw5ci" path="res://Arts/Empire units/Scout idle .png" id="3_o6itt"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_ptq6f"]
 [ext_resource type="PackedScene" uid="uid://cnlyt2k5jjchq" path="res://Combat/Effects/Scenes/target_throw.tscn" id="4_vlh87"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_fc8i6"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_fc8i6"]
 [ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standart_archer_validity.tres" id="7_l3bih"]
 [ext_resource type="PackedScene" uid="uid://drten8s54cfdq" path="res://Combat/Effects/AppliedEffects/Scenes/agility.tscn" id="8_sss3p"]
 
@@ -196,7 +196,6 @@ script = ExtResource("4_ptq6f")
 max_HP = 150
 base_damage = 50
 armor = 20
-evasion = 0.02
 
 [node name="Scout" instance=ExtResource("1_65je8")]
 unit_name = "Scout"

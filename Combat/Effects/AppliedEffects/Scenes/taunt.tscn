@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b7l7e3cr20yw1"]
 
-[ext_resource type="Script" path="res://Combat/Effects/AppliedEffects/Scripts/taunt.gd" id="1_hkkfj"]
+[ext_resource type="Script" uid="uid://b6oj6b4x3onyw" path="res://Combat/Effects/AppliedEffects/Scripts/taunt.gd" id="1_hkkfj"]
 
 [node name="Taunt" type="Node"]
 script = ExtResource("1_hkkfj")

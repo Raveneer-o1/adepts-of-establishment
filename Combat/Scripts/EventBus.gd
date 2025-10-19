@@ -35,6 +35,7 @@ var packed_menu: PackedScene
 @warning_ignore("unused_signal") signal round_started()
 @warning_ignore("unused_signal") signal attack_booked(attack: Attack)
 @warning_ignore("unused_signal") signal attack_reached(unit: Unit)
+@warning_ignore("unused_signal") signal attack_concluded(attack: Attack)
 @warning_ignore("unused_signal") signal attack_evaded(target: Unit, attack: Attack)
 @warning_ignore("unused_signal") signal attack_missed(target: Unit, attack: Attack)
 @warning_ignore("unused_signal") signal attack_animation_finished(unit: Unit)

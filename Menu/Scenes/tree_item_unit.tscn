@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c2moqu8obnwmg"]
 
-[ext_resource type="Script" path="res://Menu/tree_item_unit.gd" id="1_b84d5"]
+[ext_resource type="Script" uid="uid://uac0vvy5awfg" path="res://Menu/tree_item_unit.gd" id="1_b84d5"]
 
 [node name="Tree Item Unit" type="PanelContainer"]
 custom_minimum_size = Vector2(100, 70)

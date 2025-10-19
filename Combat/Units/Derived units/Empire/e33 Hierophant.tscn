@@ -1,12 +1,12 @@
 [gd_scene load_steps=28 format=3 uid="uid://b517nmnvt04wo"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_7jpg4"]
-[ext_resource type="Texture2D" uid="uid://clgh6r1cqhmd2" path="res://Arts/Empire units/Hierophant attack .png" id="2_drmbb"]
-[ext_resource type="Texture2D" uid="uid://ddx1ise56p1xw" path="res://Arts/Placeholders/Hierophant.jpg" id="2_xtxab"]
-[ext_resource type="Texture2D" uid="uid://cjr5n0iyypwhj" path="res://Arts/Empire units/Hierophant idle.png" id="3_anao4"]
+[ext_resource type="Texture2D" uid="uid://ddyta5y57dk5j" path="res://Arts/Empire units/Hierophant attack .png" id="2_drmbb"]
+[ext_resource type="Texture2D" uid="uid://dai5ga6qy8njv" path="res://Arts/Placeholders/Hierophant.jpg" id="2_xtxab"]
+[ext_resource type="Texture2D" uid="uid://bmajlc2yu7loo" path="res://Arts/Empire units/Hierophant idle.png" id="3_anao4"]
 [ext_resource type="PackedScene" uid="uid://cvtcjsl55tqgq" path="res://Combat/Effects/Scenes/strong_heal.tscn" id="4_e1vxq"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_fbxf0"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_x7on8"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_fbxf0"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_x7on8"]
 [ext_resource type="Resource" uid="uid://2rff7s5788qv" path="res://Combat/Units/Parameters/Validation/standart_healer_validity.tres" id="7_delep"]
 [ext_resource type="Resource" uid="uid://beulsq7x1px31" path="res://Combat/Units/Parameters/Validation/resurrection_validation.tres" id="7_umx74"]
 [ext_resource type="Resource" uid="uid://dk2b5c0qnptvr" path="res://Combat/Units/Parameters/Policy/resurrection_policy.tres" id="8_3owpt"]
@@ -135,7 +135,6 @@ script = ExtResource("4_fbxf0")
 max_HP = 180
 base_damage = -80
 armor = 10
-evasion = 0.02
 
 [node name="Hierophant" instance=ExtResource("1_7jpg4")]
 unit_name = "Hierophant"

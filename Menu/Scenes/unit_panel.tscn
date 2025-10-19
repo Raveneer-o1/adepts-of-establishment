@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bdqbjfuqfht8s"]
 
-[ext_resource type="Script" path="res://Menu/unit_panel.gd" id="1_q7xab"]
+[ext_resource type="Script" uid="uid://cg16hawycono1" path="res://Menu/unit_panel.gd" id="1_q7xab"]
 
 [node name="Unit" type="Panel"]
 clip_contents = true

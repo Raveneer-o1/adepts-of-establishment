@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bk5e44jh8bg57"]
 
 [ext_resource type="PackedScene" uid="uid://8d3sodh68huv" path="res://Combat/Effects/AppliedEffects/applied_effect.tscn" id="1_idly1"]
-[ext_resource type="Script" path="res://Combat/Effects/AppliedEffects/Scripts/cure.gd" id="2_mx8hn"]
+[ext_resource type="Script" uid="uid://cgtyg2tx3gdhg" path="res://Combat/Effects/AppliedEffects/Scripts/cure.gd" id="2_mx8hn"]
 
 [node name="Cure" instance=ExtResource("1_idly1")]
 script = ExtResource("2_mx8hn")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cpjv5cb5u6bt6"]
 
-[ext_resource type="Script" path="res://Combat/Effects/AppliedEffects/Scripts/devourer.gd" id="1_s2hof"]
+[ext_resource type="Script" uid="uid://dk7ylrvbndxtq" path="res://Combat/Effects/AppliedEffects/Scripts/devourer.gd" id="1_s2hof"]
 
 [node name="Devourer" type="Node"]
 script = ExtResource("1_s2hof")

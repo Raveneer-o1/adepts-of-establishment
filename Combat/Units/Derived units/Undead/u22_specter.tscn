@@ -1,11 +1,11 @@
 [gd_scene load_steps=21 format=3 uid="uid://bqv1kfynrm8nu"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_0mhe0"]
-[ext_resource type="Texture2D" uid="uid://bq6p452s6vbyo" path="res://Arts/Placeholders/Specter.jpg" id="2_f2jof"]
-[ext_resource type="Texture2D" uid="uid://ct8wp2r4bscw8" path="res://Arts/Undead units/u18 specter attack .png" id="2_rtce2"]
-[ext_resource type="Texture2D" uid="uid://kjp4rdn6u2uk" path="res://Arts/Undead units/u18 specter idle .png" id="3_j6vld"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_3ov6r"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_wa0lm"]
+[ext_resource type="Texture2D" uid="uid://no66pyntr8ca" path="res://Arts/Placeholders/Specter.jpg" id="2_f2jof"]
+[ext_resource type="Texture2D" uid="uid://dw6unyete0t2" path="res://Arts/Undead units/u18 specter attack .png" id="2_rtce2"]
+[ext_resource type="Texture2D" uid="uid://cun31pqgeq65o" path="res://Arts/Undead units/u18 specter idle .png" id="3_j6vld"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_3ov6r"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_wa0lm"]
 [ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standart_archer_validity.tres" id="6_1n3bd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hctge"]
@@ -103,7 +103,6 @@ resource_local_to_scene = true
 script = ExtResource("4_3ov6r")
 max_HP = 110
 base_damage = 15
-armor = 0
 evasion = 0.1
 
 [node name="Specter" instance=ExtResource("1_0mhe0")]

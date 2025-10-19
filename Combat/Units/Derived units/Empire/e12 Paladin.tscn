@@ -1,11 +1,11 @@
 [gd_scene load_steps=28 format=3 uid="uid://chwmireeop57v"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_v252y"]
-[ext_resource type="Texture2D" uid="uid://dpdy65vv3ckb6" path="res://Arts/Empire units/Defender of Faith attack .png" id="2_m0rao"]
-[ext_resource type="Texture2D" uid="uid://bmex6wa78gk6k" path="res://Arts/Empire units/Defender of Faith idle .png" id="3_v31eh"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_gsene"]
+[ext_resource type="Texture2D" uid="uid://8rxcuhro2ji3" path="res://Arts/Empire units/Defender of Faith attack .png" id="2_m0rao"]
+[ext_resource type="Texture2D" uid="uid://dkvu558ho6w8r" path="res://Arts/Empire units/Defender of Faith idle .png" id="3_v31eh"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_gsene"]
 [ext_resource type="PackedScene" uid="uid://chpw2oyl5kpky" path="res://Combat/Effects/AppliedEffects/Scenes/armor_buff_aura.tscn" id="4_sgewg"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_3s88y"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_3s88y"]
 [ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="7_63rex"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xphl8"]
@@ -153,7 +153,6 @@ script = ExtResource("4_gsene")
 max_HP = 200
 base_damage = 75
 armor = 60
-evasion = 0.02
 
 [node name="Unit" instance=ExtResource("1_v252y")]
 unit_name = "Paladin"

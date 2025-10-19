@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://drten8s54cfdq"]
 
 [ext_resource type="PackedScene" uid="uid://8d3sodh68huv" path="res://Combat/Effects/AppliedEffects/applied_effect.tscn" id="1_7qomo"]
-[ext_resource type="Script" path="res://Combat/Effects/AppliedEffects/Scripts/agility.gd" id="2_8i73u"]
+[ext_resource type="Script" uid="uid://b1f4cuxd6r4ha" path="res://Combat/Effects/AppliedEffects/Scripts/agility.gd" id="2_8i73u"]
 
 [node name="Agility" instance=ExtResource("1_7qomo")]
 script = ExtResource("2_8i73u")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://xje6iyqcaugy"]
 
-[ext_resource type="Script" path="res://Combat/Effects/AppliedEffects/Scripts/reanimation.gd" id="1_dehaw"]
+[ext_resource type="Script" uid="uid://m3hae5rh281g" path="res://Combat/Effects/AppliedEffects/Scripts/reanimation.gd" id="1_dehaw"]
 
 [node name="Reanimation" type="Node"]
 script = ExtResource("1_dehaw")

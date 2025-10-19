@@ -1,10 +1,10 @@
 [gd_scene load_steps=19 format=3 uid="uid://c8vscof46xqwy"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_lms7p"]
-[ext_resource type="Texture2D" uid="uid://chnfnvxas45jg" path="res://Arts/Undead units/u01 warrior attack .png" id="2_ovvav"]
-[ext_resource type="Texture2D" uid="uid://bgy1ihw85d6pw" path="res://Arts/Undead units/u01 warrior idle .png" id="3_78kv8"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_efdty"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_tyvi1"]
+[ext_resource type="Texture2D" uid="uid://ds2w2jqyxfrde" path="res://Arts/Undead units/u01 warrior attack .png" id="2_ovvav"]
+[ext_resource type="Texture2D" uid="uid://ctrls0vq6tt6v" path="res://Arts/Undead units/u01 warrior idle .png" id="3_78kv8"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_efdty"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_tyvi1"]
 [ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="6_n8qtq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3y5sv"]
@@ -96,7 +96,6 @@ script = ExtResource("4_efdty")
 max_HP = 110
 base_damage = 35
 armor = 5
-evasion = 0.02
 
 [node name="Destined" instance=ExtResource("1_lms7p")]
 unit_name = "Destined"

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b5wkx4gmg5i40"]
 
 [ext_resource type="PackedScene" uid="uid://8d3sodh68huv" path="res://Combat/Effects/AppliedEffects/applied_effect.tscn" id="1_48nys"]
-[ext_resource type="Script" path="res://Combat/Effects/AppliedEffects/Scripts/temp_buff.gd" id="2_vwa1h"]
+[ext_resource type="Script" uid="uid://c3r63l36xajj3" path="res://Combat/Effects/AppliedEffects/Scripts/temp_buff.gd" id="2_vwa1h"]
 
 [node name="Temporary buff" instance=ExtResource("1_48nys")]
 script = ExtResource("2_vwa1h")

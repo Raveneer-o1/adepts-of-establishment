@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b48ybfct0yec6"]
 
-[ext_resource type="Texture2D" uid="uid://b1tegh3xgra6f" path="res://Arts/hex hint 64.png" id="1_cmxdm"]
+[ext_resource type="Texture2D" uid="uid://c1lw1c3qt0mc8" path="res://Arts/hex hint 64.png" id="1_cmxdm"]
 
 [node name="Hex hint" type="TextureRect"]
 anchors_preset = 15

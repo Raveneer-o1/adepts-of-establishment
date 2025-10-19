@@ -1,17 +1,17 @@
 [gd_scene load_steps=17 format=3 uid="uid://rhljgisluynr"]
 
 [ext_resource type="PackedScene" uid="uid://bt1s54jsu58q1" path="res://Menu/Scenes/menu_unit_place.tscn" id="1_3imto"]
-[ext_resource type="Script" path="res://Menu/menu.gd" id="1_h46x8"]
+[ext_resource type="Script" uid="uid://chbge2rkv57yv" path="res://Menu/menu.gd" id="1_h46x8"]
 [ext_resource type="Theme" uid="uid://eh5pr46h0ubl" path="res://Themes/Theme_ETA.tres" id="1_kyvhq"]
-[ext_resource type="Script" path="res://Menu/central_part.gd" id="2_guvaa"]
+[ext_resource type="Script" uid="uid://cfsf6r3wkfmcg" path="res://Menu/central_part.gd" id="2_guvaa"]
 [ext_resource type="PackedScene" uid="uid://c2moqu8obnwmg" path="res://Menu/Scenes/tree_item_unit.tscn" id="2_r33n7"]
-[ext_resource type="Texture2D" uid="uid://hmpd2bbjtf7w" path="res://Arts/itch assets/Super Mountain Dusk Files/version A/sky.png" id="3_xn12a"]
-[ext_resource type="Texture2D" uid="uid://dc7ad67b8bp70" path="res://Arts/itch assets/Super Mountain Dusk Files/version A/far-clouds.png" id="4_0dw8i"]
+[ext_resource type="Texture2D" uid="uid://cudu0li055m7q" path="res://Arts/itch assets/Super Mountain Dusk Files/version A/sky.png" id="3_xn12a"]
+[ext_resource type="Texture2D" uid="uid://vf2q3jvy6gwy" path="res://Arts/itch assets/Super Mountain Dusk Files/version A/far-clouds.png" id="4_0dw8i"]
 [ext_resource type="PackedScene" uid="uid://cfyuu528t154q" path="res://Menu/Scenes/Base_menu_ui_panel.tscn" id="5_lsi2e"]
-[ext_resource type="Texture2D" uid="uid://dpvgolxji2iei" path="res://Arts/itch assets/Super Mountain Dusk Files/version A/near-clouds.png" id="5_x4qvl"]
-[ext_resource type="Texture2D" uid="uid://b5yt7brb8m1og" path="res://Arts/itch assets/Super Mountain Dusk Files/version A/far-mountains.png" id="6_8mjlq"]
-[ext_resource type="Texture2D" uid="uid://dibdwjjfhg0wh" path="res://Arts/itch assets/Super Mountain Dusk Files/version A/mountains.png" id="7_oka86"]
-[ext_resource type="Texture2D" uid="uid://cpg3btsodi8mu" path="res://Arts/itch assets/Super Mountain Dusk Files/version A/trees.png" id="8_aw7hc"]
+[ext_resource type="Texture2D" uid="uid://laip0kb3qk2w" path="res://Arts/itch assets/Super Mountain Dusk Files/version A/near-clouds.png" id="5_x4qvl"]
+[ext_resource type="Texture2D" uid="uid://8mireq77lmvq" path="res://Arts/itch assets/Super Mountain Dusk Files/version A/far-mountains.png" id="6_8mjlq"]
+[ext_resource type="Texture2D" uid="uid://c8wn1ii11lft1" path="res://Arts/itch assets/Super Mountain Dusk Files/version A/mountains.png" id="7_oka86"]
+[ext_resource type="Texture2D" uid="uid://c0aorkr7riv3h" path="res://Arts/itch assets/Super Mountain Dusk Files/version A/trees.png" id="8_aw7hc"]
 [ext_resource type="PackedScene" uid="uid://b48ybfct0yec6" path="res://Menu/Scenes/hex_hint.tscn" id="10_0n6gr"]
 
 [sub_resource type="Animation" id="Animation_l6mnw"]
@@ -166,8 +166,8 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rj2su"]
 _data = {
-"RESET": SubResource("Animation_l6mnw"),
-"background_animation": SubResource("Animation_kv8pg")
+&"RESET": SubResource("Animation_l6mnw"),
+&"background_animation": SubResource("Animation_kv8pg")
 }
 
 [node name="Control" type="Control"]
@@ -270,7 +270,7 @@ stretch_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Background"]
 libraries = {
-"": SubResource("AnimationLibrary_rj2su")
+&"": SubResource("AnimationLibrary_rj2su")
 }
 autoplay = "background_animation"
 

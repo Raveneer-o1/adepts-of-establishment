@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://5ouvt0ouuy23"]
+[gd_scene load_steps=21 format=3 uid="uid://5ouvt0ouuy23"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_878kx"]
-[ext_resource type="Texture2D" uid="uid://c64cijaidhqsx" path="res://Arts/Generic/g03 ogre attack .png" id="2_67f6v"]
-[ext_resource type="Texture2D" uid="uid://ckyp0mu6xu5jm" path="res://Arts/Generic/g03 ogre idle  (2).png" id="3_hi10f"]
+[ext_resource type="Texture2D" uid="uid://v616i1dyc5im" path="res://Arts/Generic/g03 ogre attack .png" id="2_67f6v"]
+[ext_resource type="Texture2D" uid="uid://b6hkkb86o6qxt" path="res://Arts/Generic/g03 ogre idle  (2).png" id="3_hi10f"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_wgrcg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dmh4u"]
 atlas = ExtResource("2_67f6v")
@@ -115,6 +116,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_ego08"]
+resource_local_to_scene = true
+script = ExtResource("4_wgrcg")
+max_HP = 100
+base_damage = 30
+
 [node name="Ogre" instance=ExtResource("1_878kx")]
 unit_name = "Ogre"
 unit_type = "Warrior"
@@ -128,4 +135,5 @@ offset = Vector2(0, -16)
 frames_to_emit = Array[int]([3, 5])
 
 [node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_ego08")
 large_unit = true

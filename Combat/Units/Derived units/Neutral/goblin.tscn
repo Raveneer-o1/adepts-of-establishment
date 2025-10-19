@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://bbn7oowueyb2d"]
+[gd_scene load_steps=18 format=3 uid="uid://bbn7oowueyb2d"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_3oyoe"]
-[ext_resource type="Texture2D" uid="uid://8q0vkd4qw755" path="res://Arts/Generic/g02 goblin attack .png" id="2_d5iwd"]
-[ext_resource type="Texture2D" uid="uid://3434cdveejcg" path="res://Arts/Generic/g02 goblin idle .png" id="3_8wcna"]
+[ext_resource type="Texture2D" uid="uid://bgihi2b2t55ff" path="res://Arts/Generic/g02 goblin attack .png" id="2_d5iwd"]
+[ext_resource type="Texture2D" uid="uid://2wrdm3qvhlb8" path="res://Arts/Generic/g02 goblin idle .png" id="3_8wcna"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_3oi2l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v8s1w"]
 atlas = ExtResource("2_d5iwd")
@@ -94,6 +95,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_k20xa"]
+resource_local_to_scene = true
+script = ExtResource("4_3oi2l")
+max_HP = 100
+base_damage = 30
+
 [node name="Goblin" instance=ExtResource("1_3oyoe")]
 unit_name = "Goblin"
 unit_type = "Archer"
@@ -103,3 +110,6 @@ full_description = "Goblin Archers are small but surprisingly deadly, using thei
 sprite_frames = SubResource("SpriteFrames_ofmvw")
 animation = &"attack"
 autoplay = "default"
+
+[node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_k20xa")

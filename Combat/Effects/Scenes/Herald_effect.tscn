@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://cxc4kawwgjahf"]
 
 [ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/Scenes/abstract_effect.tscn" id="1_cv0da"]
-[ext_resource type="Texture2D" uid="uid://cy1w5bf6tu7sv" path="res://Arts/Undead units/u13 wraith effect .png" id="2_3mcec"]
+[ext_resource type="Texture2D" uid="uid://btvlpt36a5udh" path="res://Arts/Undead units/u13 wraith effect .png" id="2_3mcec"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bp7h6"]
 atlas = ExtResource("2_3mcec")

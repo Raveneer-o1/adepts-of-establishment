@@ -1,12 +1,12 @@
 [gd_scene load_steps=26 format=3 uid="uid://c2fjkfqrs2cm6"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_c6arl"]
-[ext_resource type="Texture2D" uid="uid://cceo0jjxc4gm5" path="res://Arts/Heroes/h10 bone collector attack 1.png" id="2_fsc52"]
-[ext_resource type="Texture2D" uid="uid://bwpowb6ptdikn" path="res://Arts/Heroes/h10 bone collector damage .png" id="3_cjjn3"]
-[ext_resource type="Texture2D" uid="uid://dxsrrxta6mpre" path="res://Arts/Heroes/h10 bone collector idle.png" id="4_wxthc"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="5_wie3s"]
+[ext_resource type="Texture2D" uid="uid://c51y343ctnrxt" path="res://Arts/Heroes/h10 bone collector attack 1.png" id="2_fsc52"]
+[ext_resource type="Texture2D" uid="uid://hv0g71m2ffen" path="res://Arts/Heroes/h10 bone collector damage .png" id="3_cjjn3"]
+[ext_resource type="Texture2D" uid="uid://bh4iuw3s7v62m" path="res://Arts/Heroes/h10 bone collector idle.png" id="4_wxthc"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="5_wie3s"]
 [ext_resource type="PackedScene" uid="uid://thxi4t5byubf" path="res://Combat/Effects/heros' effects/bone_collector_effect.tscn" id="6_hhhol"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_pympk"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_pympk"]
 [ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standart_archer_validity.tres" id="7_0mn26"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yggjw"]
@@ -137,7 +137,6 @@ resource_local_to_scene = true
 script = ExtResource("5_wie3s")
 max_HP = 100
 base_damage = 30
-armor = 0
 
 [node name="Bone collector" instance=ExtResource("1_c6arl")]
 unit_name = "Bone collector"

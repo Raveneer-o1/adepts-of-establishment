@@ -1,4 +1,5 @@
-class_name UnitParameters extends Node
+class_name UnitParameters
+extends Node
 
 ## This class represents inner logic of a unit: its health, damage and abilities
 
@@ -7,10 +8,10 @@ class_name UnitParameters extends Node
 const ARMOR_CAP = 900
 
 ## Max damage deviation. Note: actual deviation is maximum between
-## [code]STANDART_DAMAGE_DEVIATION[/code] and [code]STANDART_FRACTIONAL_DAMAGE_DEVIATION * damage[/code]
+## [member STANDART_DAMAGE_DEVIATION] and [member STANDART_FRACTIONAL_DAMAGE_DEVIATION] * damage
 const STANDART_DAMAGE_DEVIATION = 5
 ## Fraction of base damage that is used as max deviation. Note: actual deviation is maximum between
-## [code]STANDART_DAMAGE_DEVIATION[/code] and [code]STANDART_FRACTIONAL_DAMAGE_DEVIATION * damage[/code]
+## [member STANDART_DAMAGE_DEVIATION] and [member STANDART_FRACTIONAL_DAMAGE_DEVIATION] * damage
 const STANDART_FRACTIONAL_DAMAGE_DEVIATION = 0.1
 
 @export var level: int = 1
@@ -39,11 +40,11 @@ var attacks: Array[UnitAttack] = []
 
 
 ## Recalculates human-readable armor parameter into actual multiplier.
-## The idea is that player can increase
-## armor stat indefinitely but will see deminishing returns.
+## The idea is that players can increase
+## armor stat indefinitely but will see diminishing returns.
 ## Thus, it's possible to let players increase the stat as
 ## much as they want rather than cap it at a specific value.[br]
-## NOTE: armor is still capped at [member UnitParameters.ARMOR_CAP] but that value is much harder to achieve
+## NOTE: Armor is still capped at [member UnitParameters.ARMOR_CAP], but that value is much harder to achieve.
 var armor_multiplier: float:
 	get:
 		if armor >= ARMOR_CAP:
@@ -189,16 +190,16 @@ func clean_modifiers() -> void:
 	for modifier in stats_modifiers.values():
 		(modifier as ModifierStack).clean()
 
-## Adds new modifier to the stack with name [param stat].[br]
-## First addition of a stat creates new stack for it.[br]
-## [param influence] should have signature [code]func(int) -> int[/code]
-## and given previous value of the paramater, it should return a new one[br]
-## Avaliable modifiers:[br]
+## Adds a new modifier to the stack for the specified [param stat].[br]
+## The first addition of a stat creates its stack.[br]
+## [param influence] should be a function with signature [code]func(int) -> int[/code]
+## that takes the previous value and returns the modified value.[br]
+## Predefined modifiers:[br]
 ## [code]"max_HP"[/code][br]
 ## [code]"armor"[/code][br]
 ## [code]"base_damage"[/code][br]
 ## [code]"evasion"[/code][br]
-## [br][br]It's possible to add any other name but using it would have to be specified explicitly
+## [br][br]Custom stat names can be added but must be explicitly handled.
 func add_modifier(stat: StringName, effect: AppliedEffect, influence: Callable) -> void:
 	if not stats_modifiers.has(stat):
 		stats_modifiers[stat] = ModifierStack.new()
@@ -289,9 +290,9 @@ func check_parameters() -> void:
 ## [param params]: Data passed to the effect's initialization method.
 ## Type and format depend on the specific effect.[br]
 ## [param force_stackability] defines if [member AppliedEffect.stackable] should
-## be overridden with [param override_stackability]
+## be overridden with [param override_stackability].
 ## Returns: The instantiated [AppliedEffect] node, or [code]null[/code] if the effect was immediately 
-##  removed (e.g., some one-time effects like cure effects might self-destruct after application).[br]
+##  removed (e.g., some one-time effects like cure effects might self-destruct after application). [br]
 ##  Returns [code]null[/code] and prints a debug warning if the effect scene isn't found.
 func apply_effect(
 		effect_name: String, 
@@ -349,10 +350,13 @@ func take_damage(dmg: int, randomize_damage: bool = true) -> int:
 		var random_deviation: int = max(dmg * STANDART_FRACTIONAL_DAMAGE_DEVIATION, STANDART_DAMAGE_DEVIATION)
 		dmg += randi_range(-random_deviation, random_deviation)
 	
+	# needs to be this way because hp is a property that does some more calculations
 	var original_hp := hp
 	hp -= dmg
 	return original_hp - hp
 
 
-func heal(value: int) -> void:
+func heal(value: int) -> int:
+	var original_hp: int = hp
 	hp += value
+	return hp - original_hp

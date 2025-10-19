@@ -1,12 +1,12 @@
 [gd_scene load_steps=24 format=3 uid="uid://b28vra3v386au"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_p4gqo"]
-[ext_resource type="Texture2D" uid="uid://plf57i8jdgge" path="res://Arts/Empire units/prophetess attack .png" id="2_hth4n"]
-[ext_resource type="Texture2D" uid="uid://dy3bei7ur82xk" path="res://Arts/Placeholders/Prophetess.jpg" id="2_kdng4"]
-[ext_resource type="Texture2D" uid="uid://c4bt0on8knanb" path="res://Arts/Empire units/prophetess idle .png" id="3_tad3d"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_h4fa4"]
+[ext_resource type="Texture2D" uid="uid://bvr8x4a5qowsf" path="res://Arts/Empire units/prophetess attack .png" id="2_hth4n"]
+[ext_resource type="Texture2D" uid="uid://cu4d8ol8oqm3n" path="res://Arts/Placeholders/Prophetess.jpg" id="2_kdng4"]
+[ext_resource type="Texture2D" uid="uid://qjlqr01x7xk4" path="res://Arts/Empire units/prophetess idle .png" id="3_tad3d"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_h4fa4"]
 [ext_resource type="PackedScene" uid="uid://cvtcjsl55tqgq" path="res://Combat/Effects/Scenes/strong_heal.tscn" id="4_y4o6y"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_avec3"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_avec3"]
 [ext_resource type="Resource" uid="uid://2rff7s5788qv" path="res://Combat/Units/Parameters/Validation/standart_healer_validity.tres" id="7_ioare"]
 [ext_resource type="Resource" uid="uid://cu702u3q22fx4" path="res://Combat/Units/Parameters/Additional targets/mass_heal_targets.tres" id="8_4ae8m"]
 
@@ -113,7 +113,6 @@ script = ExtResource("4_h4fa4")
 max_HP = 180
 base_damage = -65
 armor = 15
-evasion = 0.02
 
 [node name="Prophetess" instance=ExtResource("1_p4gqo")]
 unit_name = "Prophetess"

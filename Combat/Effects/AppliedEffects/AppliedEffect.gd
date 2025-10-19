@@ -1,8 +1,15 @@
 extends Node
 class_name AppliedEffect
 
-## Abstract class for effects, applied to a unit, such as buffs or abilities.
-## Designed to be modular and self-contained, with automatic cleanup once the effect ends.
+## Abstract class for unit effects like buffs or abilities.
+## Designed to be modular and self-contained, with automatic cleanup when the effect ends.
+##
+## Note: [AppliedEffect] references can become invalid at any time since these are non-deterministic objects.
+## This even applies to applying new effects. Some effects (like cure) call [code]queue_free()[/code] 
+## on themselves in [method _apply_effect] [br]
+## This node attaches directly to a unit's [UnitParameters] node. Remove it using either: [br]
+## - [method lift_effect] for normal removal [br]
+## - [code]queue_free()[/code] to remove without triggering associated effects [br]
 
 ## If [code]false[/code], [method lift_effect] doesn't lift the effect.
 ## Note that you can still remove the effect with [code]queue_free()[/code]
@@ -24,26 +31,26 @@ const ICONS := preload("res://Arts/icons.png")
 ## Index of the effect's icon in the file [code]res://Arts/icons.png[/code].
 ## Shows on a unit that carries this effect, not on units affected by it.
 ## Value -1 disables icon.[br]
-## 0 - Poison.[br]
-## 1 - Blood loss.[br]
-## 2 - Generic effect.[br]
-## 3 - Heart.[br]
-## 4 - Shield.[br]
-## 5 - Up.[br]
-## 6 - Down.[br]
-## 7 - Shield aura.[br]
-## 8 - Heart aura.[br]
-## 9 - Generic aura.[br]
-## 10 - Fire.[br]
-## 11 - Sword.[br]
-## 12 - Eliptic/hexagonal magic.[br]
-## 13 - Eye.[br]
-## 14 - Bow.[br]
-## 15 - Halo.[br]
-## 16 - Skull.[br]
-## 17 - Purple bottle.[br]
-## 18 - Yellow bottle.[br]
-## 19. - Blue bottle.[br]
+## 0 - Poison [br]
+## 1 - Blood loss [br]
+## 2 - Generic effect [br]
+## 3 - Heart [br]
+## 4 - Shield [br]
+## 5 - Up [br]
+## 6 - Down [br]
+## 7 - Shield aura [br]
+## 8 - Heart aura [br]
+## 9 - Generic aura [br]
+## 10 - Fire [br]
+## 11 - Sword [br]
+## 12 - Eliptic/hexagonal magic [br]
+## 13 - Eye [br]
+## 14 - Bow [br]
+## 15 - Halo [br]
+## 16 - Skull [br]
+## 17 - Purple bottle [br]
+## 18 - Yellow bottle [br]
+## 19 - Blue bottle [br]
 @export var icon_index: int = 2
 
 ## If [code]true[/code], this effect will be lifted when unit is cured.
@@ -55,9 +62,9 @@ const ICONS := preload("res://Arts/icons.png")
 @export var stackable: bool = false
 
 ## When [member stackable] is [code]true[/code], defines the maximum stack count:[br]
-## - [b]-1[/b]: Unlimited stacks[br]
-## - [b]0[/b]: [color=red]WARNING[/color] Effect becomes impossible to apply[br]
-## - [b]>0[/b]: Exact maximum simultaneous instances[br]
+## [b]-1[/b]: Unlimited stacks[br]
+## [b]0[/b]: [color=red]WARNING[/color] Effect becomes impossible to apply[br]
+## [b]>0[/b]: Exact maximum simultaneous instances[br]
 @export var stack_limit: int = -1
 
 ## The unit to which this effect is attached.

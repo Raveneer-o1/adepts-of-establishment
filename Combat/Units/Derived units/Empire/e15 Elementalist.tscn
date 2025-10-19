@@ -1,12 +1,12 @@
 [gd_scene load_steps=23 format=3 uid="uid://b43q5ajr0udev"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_wepdu"]
-[ext_resource type="Texture2D" uid="uid://bshfdwhdeo47r" path="res://Arts/Empire units/elementalist attack .png" id="2_qdt4o"]
-[ext_resource type="Texture2D" uid="uid://c32l5klltf2ga" path="res://Arts/Empire units/elementalist idle .png" id="3_tmf5a"]
+[ext_resource type="Texture2D" uid="uid://cr7bywqyioriv" path="res://Arts/Empire units/elementalist attack .png" id="2_qdt4o"]
+[ext_resource type="Texture2D" uid="uid://gb5mdntmnw15" path="res://Arts/Empire units/elementalist idle .png" id="3_tmf5a"]
 [ext_resource type="PackedScene" uid="uid://n106oxapxy1v" path="res://Combat/Effects/Scenes/medium_wind.tscn" id="4_jm0nb"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_rto2v"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_rto2v"]
 [ext_resource type="PackedScene" uid="uid://bit78176xambc" path="res://Combat/Units/Derived units/Elemental.tscn" id="5_uw7aa"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="7_wg8vq"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="7_wg8vq"]
 [ext_resource type="Resource" uid="uid://cfrijbj5w6tub" path="res://Combat/Units/Parameters/Validation/elementalist_validity.tres" id="8_g6lhr"]
 [ext_resource type="Resource" uid="uid://bix5hc43n2tpi" path="res://Combat/Units/Parameters/Policy/elementalist_policy.tres" id="9_vgmpc"]
 
@@ -106,7 +106,6 @@ script = ExtResource("4_rto2v")
 max_HP = 120
 base_damage = 55
 armor = 5
-evasion = 0.02
 
 [node name="Elementalist" instance=ExtResource("1_wepdu")]
 unit_name = "Elementalist"

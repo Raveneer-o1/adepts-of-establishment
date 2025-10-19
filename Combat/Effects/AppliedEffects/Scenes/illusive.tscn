@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://baen1w1a16rc7"]
 
-[ext_resource type="Script" path="res://Combat/Effects/AppliedEffects/Scripts/illusive.gd" id="1_dovcq"]
+[ext_resource type="Script" uid="uid://bms5uojv4syns" path="res://Combat/Effects/AppliedEffects/Scripts/illusive.gd" id="1_dovcq"]
 
 [node name="Illusive" type="Node"]
 script = ExtResource("1_dovcq")

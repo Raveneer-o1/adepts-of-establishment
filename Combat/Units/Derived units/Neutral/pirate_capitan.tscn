@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://dkjn6j1f7evlx"]
+[gd_scene load_steps=20 format=3 uid="uid://dkjn6j1f7evlx"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_djdtx"]
-[ext_resource type="Texture2D" uid="uid://bybu24n81cuqj" path="res://Arts/Generic/g10 pirate captain attack .png" id="2_fk3iu"]
-[ext_resource type="Texture2D" uid="uid://dqui14ovd82ip" path="res://Arts/Generic/g10 pirate captain idle.png" id="3_87qwq"]
+[ext_resource type="Texture2D" uid="uid://bauupjsr2umdm" path="res://Arts/Generic/g10 pirate captain attack .png" id="2_fk3iu"]
+[ext_resource type="Texture2D" uid="uid://dpmq1g1c1hj7r" path="res://Arts/Generic/g10 pirate captain idle.png" id="3_87qwq"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_q8805"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yc7ot"]
 atlas = ExtResource("2_fk3iu")
@@ -108,6 +109,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_2xuvq"]
+resource_local_to_scene = true
+script = ExtResource("4_q8805")
+max_HP = 100
+base_damage = 30
+
 [node name="Pirate capitan" instance=ExtResource("1_djdtx")]
 unit_name = "Pirate capitan"
 unit_type = "Warrior"
@@ -119,3 +126,6 @@ animation = &"attack"
 autoplay = "default"
 offset = Vector2(8, -4)
 frames_to_emit = Array[int]([4, 7])
+
+[node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_2xuvq")

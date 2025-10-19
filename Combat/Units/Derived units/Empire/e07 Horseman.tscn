@@ -1,11 +1,11 @@
 [gd_scene load_steps=30 format=3 uid="uid://bc38vqrm2krpb"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_w7nds"]
-[ext_resource type="Texture2D" uid="uid://piipgn7okovo" path="res://Arts/Placeholders/Horseman.jpg" id="2_1mg5r"]
-[ext_resource type="Texture2D" uid="uid://h8nx5wkya767" path="res://Arts/Empire units/horseman attack .png" id="2_6doph"]
-[ext_resource type="Texture2D" uid="uid://s4ro0eapkwht" path="res://Arts/Empire units/horseman idle .png" id="3_rt307"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_porei"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_80t0n"]
+[ext_resource type="Texture2D" uid="uid://bs3l3ol0rvl3q" path="res://Arts/Placeholders/Horseman.jpg" id="2_1mg5r"]
+[ext_resource type="Texture2D" uid="uid://dn3uincp7x2uk" path="res://Arts/Empire units/horseman attack .png" id="2_6doph"]
+[ext_resource type="Texture2D" uid="uid://dk6td4x3fw4h2" path="res://Arts/Empire units/horseman idle .png" id="3_rt307"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_porei"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_80t0n"]
 [ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="6_8uswv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ufxv4"]
@@ -166,8 +166,6 @@ resource_local_to_scene = true
 script = ExtResource("4_porei")
 max_HP = 100
 base_damage = 30
-armor = 0
-evasion = 0.02
 
 [node name="Horseman" instance=ExtResource("1_w7nds")]
 unit_name = "Horseman"

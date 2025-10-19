@@ -1,11 +1,11 @@
 [gd_scene load_steps=21 format=3 uid="uid://b8yan7skrudpm"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_7leqj"]
-[ext_resource type="Texture2D" uid="uid://kwhq6jdvue87" path="res://Arts/Placeholders/Devourer.jpg" id="2_0dxqj"]
-[ext_resource type="Texture2D" uid="uid://b15tomtsyw2o" path="res://Arts/Undead units/u31 Gluttonous serpent attack .png" id="2_eynx3"]
-[ext_resource type="Texture2D" uid="uid://b4swk2jwnomow" path="res://Arts/Undead units/u31 Gluttonous serpent idle .png" id="3_l0khi"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_njdrb"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_34qfr"]
+[ext_resource type="Texture2D" uid="uid://vlpfby3hjx8k" path="res://Arts/Placeholders/Devourer.jpg" id="2_0dxqj"]
+[ext_resource type="Texture2D" uid="uid://c55t77wvnjoxw" path="res://Arts/Undead units/u31 Gluttonous serpent attack .png" id="2_eynx3"]
+[ext_resource type="Texture2D" uid="uid://cc8q0acwv3r1m" path="res://Arts/Undead units/u31 Gluttonous serpent idle .png" id="3_l0khi"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_njdrb"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_34qfr"]
 [ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="6_67hnq"]
 [ext_resource type="PackedScene" uid="uid://cpjv5cb5u6bt6" path="res://Combat/Effects/AppliedEffects/Scenes/devourer.tscn" id="6_moql6"]
 

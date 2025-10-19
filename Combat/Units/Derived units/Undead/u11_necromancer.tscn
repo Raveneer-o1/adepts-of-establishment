@@ -1,11 +1,11 @@
 [gd_scene load_steps=24 format=3 uid="uid://1xjofqtit2aj"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_tcv8q"]
-[ext_resource type="Texture2D" uid="uid://c7rdtcece7r2p" path="res://Arts/Undead units/u23 necromancer attack .png" id="2_0chdl"]
-[ext_resource type="Texture2D" uid="uid://du1y3ccvfyyea" path="res://Arts/Undead units/u23 necromancer idle .png" id="3_itfo3"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_4j4yj"]
+[ext_resource type="Texture2D" uid="uid://dx47i00lvfvoa" path="res://Arts/Undead units/u23 necromancer attack .png" id="2_0chdl"]
+[ext_resource type="Texture2D" uid="uid://k3hv7kx0p26j" path="res://Arts/Undead units/u23 necromancer idle .png" id="3_itfo3"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_4j4yj"]
 [ext_resource type="PackedScene" uid="uid://n7w0136buyjd" path="res://Combat/Effects/Scenes/circle_attack.tscn" id="4_npxus"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_fqff2"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_fqff2"]
 [ext_resource type="Resource" uid="uid://davbg4egq6lu0" path="res://Combat/Units/Parameters/Validation/necromancer_validity.tres" id="7_0xeya"]
 [ext_resource type="Resource" uid="uid://bhe5cl2bujg8i" path="res://Combat/Units/Parameters/Additional targets/Splash.tres" id="8_ww20x"]
 [ext_resource type="Resource" uid="uid://cbtn2lhkxm7ql" path="res://Combat/Units/Parameters/Policy/necromancer_policy.tres" id="9_h5bv1"]
@@ -113,7 +113,6 @@ script = ExtResource("4_4j4yj")
 max_HP = 90
 base_damage = 40
 armor = 5
-evasion = 0.02
 
 [node name="Necromancer" instance=ExtResource("1_tcv8q")]
 unit_name = "Necromancer"

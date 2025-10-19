@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=4 uid="uid://dsk1e0o76tdgv"]
 
-[ext_resource type="Texture2D" uid="uid://5ebn8645jvl0" path="res://Arts/itch assets/Farm Game Dungeon Cellar Tileset/Farm Game Dungeon Cellar Tileset/Tilesets/FG_Cellar.png" id="1_fhv7p"]
-[ext_resource type="Texture2D" uid="uid://uyhxfs747872" path="res://Arts/itch assets/Farm Game Dungeon Cellar Tileset/Farm Game Dungeon Cellar Tileset/Tilesets/FG_Cellar_Doors.png" id="2_tckdt"]
+[ext_resource type="Texture2D" uid="uid://bvfkybxc1ndsx" path="res://Arts/itch assets/Farm Game Dungeon Cellar Tileset/Farm Game Dungeon Cellar Tileset/Tilesets/FG_Cellar.png" id="1_fhv7p"]
+[ext_resource type="Texture2D" uid="uid://cr8asxq78kjn" path="res://Arts/itch assets/Farm Game Dungeon Cellar Tileset/Farm Game Dungeon Cellar Tileset/Tilesets/FG_Cellar_Doors.png" id="2_tckdt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n5t2q"]
 texture = ExtResource("1_fhv7p")

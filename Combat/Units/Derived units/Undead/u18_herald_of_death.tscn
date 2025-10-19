@@ -1,11 +1,11 @@
 [gd_scene load_steps=33 format=3 uid="uid://bjf64unkm13v7"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_sqfu4"]
-[ext_resource type="Texture2D" uid="uid://l00uakxeiih3" path="res://Arts/Undead units/u13 wraith attack .png" id="2_ookue"]
-[ext_resource type="Texture2D" uid="uid://c7qwrcmu6tcqj" path="res://Arts/Undead units/u13 wraith  idle .png" id="3_lmnsb"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_mp57r"]
+[ext_resource type="Texture2D" uid="uid://domqvoferonvo" path="res://Arts/Undead units/u13 wraith attack .png" id="2_ookue"]
+[ext_resource type="Texture2D" uid="uid://i06l4f6eumgu" path="res://Arts/Undead units/u13 wraith  idle .png" id="3_lmnsb"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_mp57r"]
 [ext_resource type="PackedScene" uid="uid://cxc4kawwgjahf" path="res://Combat/Effects/Scenes/Herald_effect.tscn" id="4_uyepk"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_j8oql"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_j8oql"]
 [ext_resource type="Resource" uid="uid://bkoge3ibwhgcc" path="res://Combat/Units/Parameters/Validation/standart_mage_validity.tres" id="7_mwbfh"]
 [ext_resource type="Resource" uid="uid://bhe5cl2bujg8i" path="res://Combat/Units/Parameters/Additional targets/Splash.tres" id="8_076jq"]
 
@@ -182,7 +182,6 @@ script = ExtResource("4_mp57r")
 max_HP = 220
 base_damage = 80
 armor = 10
-evasion = 0.02
 
 [node name="Herald of Death" instance=ExtResource("1_sqfu4")]
 unit_name = "Herald of Death"

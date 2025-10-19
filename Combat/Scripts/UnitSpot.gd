@@ -1,6 +1,11 @@
 extends Node2D
 class_name UnitSpot
 
+## A spot for a unit.
+##
+## Each [UnitSpot] object has a fixed place of a battlefield and contains one or zero [Unit]s,
+## a list of corpses inside a [member corpse_container].
+
 var active: bool:
 	get:
 		return process_mode == PROCESS_MODE_DISABLED

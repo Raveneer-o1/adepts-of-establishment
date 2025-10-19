@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c6666tjxenl43"]
 
 [ext_resource type="PackedScene" uid="uid://8d3sodh68huv" path="res://Combat/Effects/AppliedEffects/applied_effect.tscn" id="1_te1p2"]
-[ext_resource type="Script" path="res://Combat/Effects/AppliedEffects/Scripts/electified.gd" id="2_bwytv"]
+[ext_resource type="Script" uid="uid://dcimqsis185co" path="res://Combat/Effects/AppliedEffects/Scripts/electified.gd" id="2_bwytv"]
 
 [node name="Electified" instance=ExtResource("1_te1p2")]
 script = ExtResource("2_bwytv")

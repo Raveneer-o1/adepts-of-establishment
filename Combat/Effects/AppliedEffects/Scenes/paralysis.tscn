@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bst1cs31rr63r"]
 
-[ext_resource type="Script" path="res://Combat/Effects/AppliedEffects/Scripts/paralysis.gd" id="1_jfd56"]
+[ext_resource type="Script" uid="uid://dybah1uuaeqob" path="res://Combat/Effects/AppliedEffects/Scripts/paralysis.gd" id="1_jfd56"]
 
 [node name="Paralysis" type="Node"]
 script = ExtResource("1_jfd56")

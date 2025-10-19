@@ -1,9 +1,9 @@
 [gd_scene load_steps=24 format=3 uid="uid://m32n7akyixp5"]
 
-[ext_resource type="Script" path="res://Combat/Scripts/unit_spot.gd" id="1_6hkem"]
-[ext_resource type="Script" path="res://Combat/Units/unit_area_2d_node.gd" id="2_7i5yl"]
-[ext_resource type="Texture2D" uid="uid://dnao7cqp8wxhw" path="res://Arts/Combat effects/white circle .png" id="3_jln8r"]
-[ext_resource type="Texture2D" uid="uid://jdc0m3idvya3" path="res://Arts/Combat effects/yellow circle .png" id="4_4j5to"]
+[ext_resource type="Script" uid="uid://b2mh46mi08m02" path="res://Combat/Scripts/UnitSpot.gd" id="1_6hkem"]
+[ext_resource type="Script" uid="uid://dt5qx6582fd7b" path="res://Combat/Units/unit_area_2d_node.gd" id="2_7i5yl"]
+[ext_resource type="Texture2D" uid="uid://c8p5qer0nq5e0" path="res://Arts/Combat effects/white circle .png" id="3_jln8r"]
+[ext_resource type="Texture2D" uid="uid://brsnuq861bob7" path="res://Arts/Combat effects/yellow circle .png" id="4_4j5to"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ax4nd"]
 

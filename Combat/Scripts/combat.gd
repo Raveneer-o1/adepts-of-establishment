@@ -213,7 +213,7 @@ func display_hints() -> void:
 				#if avaliable_targets.has(unit.spot):
 				var marker: AnimatedSprite2D = unit_marker.instantiate()
 				displayed_hints.append(marker)
-				target.unit.add_child(marker)
+				target.add_child(marker)
 				marker.modulate = Color.FOREST_GREEN
 		SHOW_HINTS_ON_HOVER:
 			var avaliable_targets := find_avaliable_targets()
@@ -302,6 +302,7 @@ func initialize_variables() -> void:
 	#EventBus.unit_died.connect(check_winner)
 	left_party_units = EventBus.left_units
 	right_party_units = EventBus.right_units
+	EventBus.attack_concluded.connect(clear_emittings)
 
 
 func place_units() -> void:
@@ -316,6 +317,11 @@ func _ready() -> void:
 #endregion
 
 #region Utilities
+
+func clear_emittings(unit: Unit) -> void:
+	for c: Dictionary in EventBus.attack_concluded.get_connections():
+		EventBus.attack_concluded.disconnect(c.callable)
+	EventBus.attack_concluded.connect(clear_emittings)
 
 func find_targets_for_attack(attack: UnitAttack) -> Array[UnitSpot]:
 	if attack == null:

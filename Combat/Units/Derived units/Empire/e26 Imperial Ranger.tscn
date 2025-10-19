@@ -1,10 +1,10 @@
 [gd_scene load_steps=25 format=3 uid="uid://c4awr0jje6oes"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_eigsw"]
-[ext_resource type="Texture2D" uid="uid://kjay0mljprno" path="res://Arts/Empire units/imperial Ranger idle .png" id="2_7fncv"]
-[ext_resource type="Texture2D" uid="uid://xdvwxdb8xg0o" path="res://Arts/Empire units/imperial Ranger attack .png" id="2_yf6ig"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_rlipv"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_e08dh"]
+[ext_resource type="Texture2D" uid="uid://67hiykooll2a" path="res://Arts/Empire units/imperial Ranger idle .png" id="2_7fncv"]
+[ext_resource type="Texture2D" uid="uid://5ito27eakju8" path="res://Arts/Empire units/imperial Ranger attack .png" id="2_yf6ig"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_rlipv"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_e08dh"]
 [ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standart_archer_validity.tres" id="6_hpj5j"]
 [ext_resource type="PackedScene" uid="uid://drten8s54cfdq" path="res://Combat/Effects/AppliedEffects/Scenes/agility.tscn" id="7_f6qgq"]
 [ext_resource type="PackedScene" uid="uid://b4vacv0yatrlg" path="res://Combat/Effects/AppliedEffects/Scenes/assistance.tscn" id="8_y028e"]
@@ -126,7 +126,6 @@ script = ExtResource("4_rlipv")
 max_HP = 170
 base_damage = 50
 armor = 20
-evasion = 0.02
 
 [node name="Imperial ranger" instance=ExtResource("1_eigsw")]
 unit_name = "Imperial Ranger"

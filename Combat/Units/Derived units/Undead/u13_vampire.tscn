@@ -1,12 +1,12 @@
 [gd_scene load_steps=24 format=3 uid="uid://dfs7pvexbq8o"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_nnejl"]
-[ext_resource type="Texture2D" uid="uid://cio1i52w6od0a" path="res://Arts/Placeholders/Vampire.jpg" id="2_ahyrf"]
-[ext_resource type="Texture2D" uid="uid://dnr5u4r383k1" path="res://Arts/Undead units/u14 vampire attack .png" id="2_hms6t"]
-[ext_resource type="Texture2D" uid="uid://dn6hcx54e4olf" path="res://Arts/Undead units/u14 vampire idle.png" id="3_8315t"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_6owde"]
+[ext_resource type="Texture2D" uid="uid://dpnbjltuc2ibj" path="res://Arts/Placeholders/Vampire.jpg" id="2_ahyrf"]
+[ext_resource type="Texture2D" uid="uid://bu2k8r3jpr0md" path="res://Arts/Undead units/u14 vampire attack .png" id="2_hms6t"]
+[ext_resource type="Texture2D" uid="uid://ghavp4bl4tup" path="res://Arts/Undead units/u14 vampire idle.png" id="3_8315t"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_6owde"]
 [ext_resource type="PackedScene" uid="uid://cxt0p01rq72n1" path="res://Combat/Effects/AppliedEffects/Scenes/vampirism.tscn" id="5_6e8ga"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_fp4jo"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_fp4jo"]
 [ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standart_archer_validity.tres" id="7_vvuxm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_trfii"]

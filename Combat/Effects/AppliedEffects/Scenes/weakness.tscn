@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cvjwdeayipknu"]
 
 [ext_resource type="PackedScene" uid="uid://8d3sodh68huv" path="res://Combat/Effects/AppliedEffects/applied_effect.tscn" id="1_n3tn8"]
-[ext_resource type="Script" path="res://Combat/Effects/AppliedEffects/Scripts/weakness.gd" id="2_j365b"]
+[ext_resource type="Script" uid="uid://dpqmfveb5fp25" path="res://Combat/Effects/AppliedEffects/Scripts/weakness.gd" id="2_j365b"]
 
 [node name="Weakness" instance=ExtResource("1_n3tn8")]
 script = ExtResource("2_j365b")

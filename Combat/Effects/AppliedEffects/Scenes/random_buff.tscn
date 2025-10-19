@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bowr4vtatrcq5"]
 
-[ext_resource type="Script" path="res://Combat/Effects/AppliedEffects/Scripts/random_buff.gd" id="1_0yq33"]
+[ext_resource type="Script" uid="uid://bga8vsxks4x7y" path="res://Combat/Effects/AppliedEffects/Scripts/random_buff.gd" id="1_0yq33"]
 
 [node name="Random buff" type="Node"]
 script = ExtResource("1_0yq33")

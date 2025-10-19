@@ -1,12 +1,12 @@
 [gd_scene load_steps=24 format=3 uid="uid://yhsyg68w5uf3"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_wpfih"]
-[ext_resource type="Texture2D" uid="uid://mrk2c6001uak" path="res://Arts/Empire units/clergyman attack .png" id="2_fwl8a"]
-[ext_resource type="Texture2D" uid="uid://cv441khnv5ncg" path="res://Arts/Placeholders/Clergyman.jpg" id="2_v4rxq"]
-[ext_resource type="Texture2D" uid="uid://brj6uds2n2qim" path="res://Arts/Empire units/clergyman idle .png" id="3_df5py"]
+[ext_resource type="Texture2D" uid="uid://d4kd22gjmt85s" path="res://Arts/Empire units/clergyman attack .png" id="2_fwl8a"]
+[ext_resource type="Texture2D" uid="uid://b8j5e26vmh7xa" path="res://Arts/Placeholders/Clergyman.jpg" id="2_v4rxq"]
+[ext_resource type="Texture2D" uid="uid://b2f2k2uy7dheo" path="res://Arts/Empire units/clergyman idle .png" id="3_df5py"]
 [ext_resource type="PackedScene" uid="uid://d1uk2tsyu7ay0" path="res://Combat/Effects/Scenes/medium_heal.tscn" id="4_lf87e"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_lnkbd"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_idslg"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_lnkbd"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_idslg"]
 [ext_resource type="Resource" uid="uid://2rff7s5788qv" path="res://Combat/Units/Parameters/Validation/standart_healer_validity.tres" id="7_5etr8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rmtc7"]
@@ -119,7 +119,6 @@ script = ExtResource("4_lnkbd")
 max_HP = 160
 base_damage = -60
 armor = 10
-evasion = 0.02
 
 [node name="Clergyman" instance=ExtResource("1_wpfih")]
 unit_name = "Imperial priest"

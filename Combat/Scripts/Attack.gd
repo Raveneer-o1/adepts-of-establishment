@@ -70,6 +70,10 @@ var validation: BaseValidation
 
 var tags: Array[StringName] = []
 
+var applied_damage: int = 0
+
+var original: Attack = null
+
 ## Calles [method Unit.resolve_attack] on each of its targets
 func resolve(finalize: bool = false) -> void:
 	# if standart attack resolution if overridden
@@ -104,6 +108,7 @@ func duplicate() -> Attack:
 		result.damage_policy = damage_policy
 	if applying_effects:
 		result.applying_effects = applying_effects
+	result.original = original if original else self
 	return result
 
 func __init_via_Attack(attack: Attack) -> void:

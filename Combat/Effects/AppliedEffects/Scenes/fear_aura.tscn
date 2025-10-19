@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dk7ouduwwj4wg"]
 
-[ext_resource type="Script" path="res://Combat/Effects/AppliedEffects/Scripts/fear_aura.gd" id="1_olbpa"]
+[ext_resource type="Script" uid="uid://b83tb3i23o0jp" path="res://Combat/Effects/AppliedEffects/Scripts/fear_aura.gd" id="1_olbpa"]
 
 [node name="Fear aura" type="Node"]
 script = ExtResource("1_olbpa")

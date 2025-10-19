@@ -1,11 +1,11 @@
 [gd_scene load_steps=22 format=3 uid="uid://dfoepv37rvpcx"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_v36aa"]
-[ext_resource type="Texture2D" uid="uid://1vga11ugptc3" path="res://Arts/Undead units/u17 fallen inquisitor attack .png" id="2_rc34i"]
-[ext_resource type="Texture2D" uid="uid://clsdibffwyjbm" path="res://Arts/Placeholders/Fallen inquisitor.jpg" id="2_wxjrt"]
-[ext_resource type="Texture2D" uid="uid://bpyjaswl38l7p" path="res://Arts/Undead units/u17 fallen inquisitor idle .png" id="3_n64tb"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_a5d6o"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_pu3wl"]
+[ext_resource type="Texture2D" uid="uid://u2qmyni5kqnr" path="res://Arts/Undead units/u17 fallen inquisitor attack .png" id="2_rc34i"]
+[ext_resource type="Texture2D" uid="uid://cercvho2efxdf" path="res://Arts/Placeholders/Fallen inquisitor.jpg" id="2_wxjrt"]
+[ext_resource type="Texture2D" uid="uid://c63lmnrjyaltp" path="res://Arts/Undead units/u17 fallen inquisitor idle .png" id="3_n64tb"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_a5d6o"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_pu3wl"]
 [ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="6_nnhx0"]
 [ext_resource type="PackedScene" uid="uid://b1i0mf1877mfo" path="res://Combat/Effects/AppliedEffects/Scenes/shield.tscn" id="7_u3byy"]
 
@@ -105,7 +105,6 @@ script = ExtResource("4_a5d6o")
 max_HP = 180
 base_damage = 50
 armor = 20
-evasion = 0.02
 
 [node name="Fallen Inquisitor" instance=ExtResource("1_v36aa")]
 unit_name = "Fallen Inquisitor"

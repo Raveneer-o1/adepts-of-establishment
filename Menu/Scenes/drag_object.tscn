@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://camxn3yy2yjxq"]
 
-[ext_resource type="Script" path="res://drag_object.gd" id="1_hwo2g"]
+[ext_resource type="Script" uid="uid://bn8njb2oh6yd" path="res://drag_object.gd" id="1_hwo2g"]
 
 [node name="DragObject" type="PanelContainer"]
 anchors_preset = 8

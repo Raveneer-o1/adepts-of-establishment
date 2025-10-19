@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://5od606rggoqo"]
 
-[ext_resource type="Script" path="res://Combat/Scripts/unit_in_queue.gd" id="1_bhr41"]
+[ext_resource type="Script" uid="uid://dswyuihq2a3yq" path="res://Combat/Scripts/unit_in_queue.gd" id="1_bhr41"]
 [ext_resource type="Texture2D" uid="uid://7pynuterl1a0" path="res://Arts/itch assets/Retro Pixel Ribbons, Banners and Frames 2 [BDragon1727]/BorderQueue.tres" id="1_oqw0v"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xijgp"]
@@ -301,11 +301,11 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_figen"]
 _data = {
-"RESET": SubResource("Animation_avasp"),
-"queue_enter_animation": SubResource("Animation_7quxo"),
-"queue_exit_animation": SubResource("Animation_8v3r7"),
-"queue_shift_animation": SubResource("Animation_3ac1i"),
-"queue_shift_to_hide_animation": SubResource("Animation_fjupl")
+&"RESET": SubResource("Animation_avasp"),
+&"queue_enter_animation": SubResource("Animation_7quxo"),
+&"queue_exit_animation": SubResource("Animation_8v3r7"),
+&"queue_shift_animation": SubResource("Animation_3ac1i"),
+&"queue_shift_to_hide_animation": SubResource("Animation_fjupl")
 }
 
 [sub_resource type="LabelSettings" id="LabelSettings_e36st"]
@@ -325,7 +325,7 @@ size_flags_horizontal = 0
 
 [node name="Unit in queue" type="PanelContainer" parent="."]
 modulate = Color(1, 1, 1, 0)
-layout_mode = 2
+layout_mode = 0
 offset_right = 100.0
 offset_bottom = 50.0
 rotation = 1.13446
@@ -336,7 +336,7 @@ script = ExtResource("1_bhr41")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Unit in queue"]
 libraries = {
-"": SubResource("AnimationLibrary_figen")
+&"": SubResource("AnimationLibrary_figen")
 }
 
 [node name="Label" type="Label" parent="Unit in queue"]

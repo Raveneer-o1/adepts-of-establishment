@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://bsii5o6erpsok"]
 
 [ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/Scenes/abstract_effect.tscn" id="1_pt06m"]
-[ext_resource type="Texture2D" uid="uid://6gy38mgmi1hk" path="res://Arts/Undead units/u12 death effect .png" id="2_48ugl"]
+[ext_resource type="Texture2D" uid="uid://dkj7ol2uovbfp" path="res://Arts/Undead units/u12 death effect .png" id="2_48ugl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f2ml3"]
 atlas = ExtResource("2_48ugl")

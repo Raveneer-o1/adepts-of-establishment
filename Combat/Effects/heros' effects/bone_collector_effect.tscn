@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://thxi4t5byubf"]
 
 [ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/Scenes/abstract_effect.tscn" id="1_k2cjn"]
-[ext_resource type="Texture2D" uid="uid://bgupyknuy3vci" path="res://Arts/Heroes/h10 bone collector effect .png" id="2_c3ank"]
+[ext_resource type="Texture2D" uid="uid://dm6ne6bcbbi6p" path="res://Arts/Heroes/h10 bone collector effect .png" id="2_c3ank"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vpsnm"]
 atlas = ExtResource("2_c3ank")

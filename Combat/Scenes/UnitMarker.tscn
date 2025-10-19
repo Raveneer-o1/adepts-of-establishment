@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://baracsktpldx5"]
 
-[ext_resource type="Texture2D" uid="uid://dnao7cqp8wxhw" path="res://Arts/Combat effects/white circle .png" id="1_ahefj"]
+[ext_resource type="Texture2D" uid="uid://c8p5qer0nq5e0" path="res://Arts/Combat effects/white circle .png" id="1_ahefj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3ga1s"]
 atlas = ExtResource("1_ahefj")

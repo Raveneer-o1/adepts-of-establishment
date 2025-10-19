@@ -1,12 +1,12 @@
 [gd_scene load_steps=23 format=3 uid="uid://jlqcu2psmrph"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_eiqlo"]
-[ext_resource type="Texture2D" uid="uid://dvjajvvh5rd7u" path="res://Arts/Placeholders/Matriarch.jpg" id="2_2p06v"]
-[ext_resource type="Texture2D" uid="uid://bopt04sefliqu" path="res://Arts/Empire units/Matriarch attack .png" id="2_cwyp3"]
-[ext_resource type="Texture2D" uid="uid://b0jsp0mbn5teq" path="res://Arts/Empire units/Matriarch idle .png" id="3_x4djd"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_fpf5w"]
+[ext_resource type="Texture2D" uid="uid://demcuxubrkf3c" path="res://Arts/Placeholders/Matriarch.jpg" id="2_2p06v"]
+[ext_resource type="Texture2D" uid="uid://brrnnnhf34pbt" path="res://Arts/Empire units/Matriarch attack .png" id="2_cwyp3"]
+[ext_resource type="Texture2D" uid="uid://def6ktpgfwwy" path="res://Arts/Empire units/Matriarch idle .png" id="3_x4djd"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_fpf5w"]
 [ext_resource type="PackedScene" uid="uid://d1uk2tsyu7ay0" path="res://Combat/Effects/Scenes/medium_heal.tscn" id="4_leg74"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_i11c4"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_i11c4"]
 [ext_resource type="Resource" uid="uid://2rff7s5788qv" path="res://Combat/Units/Parameters/Validation/standart_healer_validity.tres" id="7_vjttj"]
 [ext_resource type="Resource" uid="uid://cu702u3q22fx4" path="res://Combat/Units/Parameters/Additional targets/mass_heal_targets.tres" id="8_luoci"]
 
@@ -106,7 +106,6 @@ script = ExtResource("4_fpf5w")
 max_HP = 150
 base_damage = -45
 armor = 10
-evasion = 0.02
 
 [node name="Matriarch" instance=ExtResource("1_eiqlo")]
 unit_name = "Matriarch"

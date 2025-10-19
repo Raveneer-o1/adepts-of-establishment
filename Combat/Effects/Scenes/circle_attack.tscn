@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://n7w0136buyjd"]
 
 [ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/Scenes/abstract_effect.tscn" id="1_w2we5"]
-[ext_resource type="Texture2D" uid="uid://dci3deigm47n7" path="res://Arts/Undead units/u23 necromancer effect .png" id="2_xheun"]
+[ext_resource type="Texture2D" uid="uid://n3u31cr1h000" path="res://Arts/Undead units/u23 necromancer effect .png" id="2_xheun"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0m5ml"]
 atlas = ExtResource("2_xheun")

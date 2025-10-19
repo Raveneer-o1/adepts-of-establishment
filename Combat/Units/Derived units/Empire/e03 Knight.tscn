@@ -1,11 +1,11 @@
 [gd_scene load_steps=23 format=3 uid="uid://coatn3gvfj7o4"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_jylln"]
-[ext_resource type="Texture2D" uid="uid://brpggj3jiev42" path="res://Arts/Placeholders/Knight.jpg" id="2_udn4r"]
-[ext_resource type="Texture2D" uid="uid://b74twvxyqvliw" path="res://Arts/Empire units/knight attack.png" id="2_y2ul3"]
-[ext_resource type="Texture2D" uid="uid://dotrymeobcf7f" path="res://Arts/Empire units/knight idle .png" id="3_uphvs"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_f7s68"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_k3q6v"]
+[ext_resource type="Texture2D" uid="uid://r4fseu0fink0" path="res://Arts/Placeholders/Knight.jpg" id="2_udn4r"]
+[ext_resource type="Texture2D" uid="uid://uau8ad0mjrns" path="res://Arts/Empire units/knight attack.png" id="2_y2ul3"]
+[ext_resource type="Texture2D" uid="uid://b4rbb5ligj1is" path="res://Arts/Empire units/knight idle .png" id="3_uphvs"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_f7s68"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_k3q6v"]
 [ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="6_lycjm"]
 [ext_resource type="PackedScene" uid="uid://b7l7e3cr20yw1" path="res://Combat/Effects/AppliedEffects/Scenes/taunt.tscn" id="8_1tpk0"]
 
@@ -112,7 +112,6 @@ script = ExtResource("4_f7s68")
 max_HP = 160
 base_damage = 45
 armor = 20
-evasion = 0.02
 
 [node name="Knight" instance=ExtResource("1_jylln")]
 unit_name = "Knight"

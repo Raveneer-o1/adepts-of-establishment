@@ -1,11 +1,11 @@
 [gd_scene load_steps=27 format=3 uid="uid://myudchej460j"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_34hwq"]
-[ext_resource type="Texture2D" uid="uid://bv8vhh3n6l5iq" path="res://Arts/Empire units/samurai attack .png" id="2_i31ko"]
-[ext_resource type="Texture2D" uid="uid://ngtd081l2gpq" path="res://Arts/Placeholders/Samurai.jpg" id="2_utg5b"]
-[ext_resource type="Texture2D" uid="uid://dqqvtoxohap4k" path="res://Arts/Empire units/samurai idle .png" id="3_26pc1"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_mc75p"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_ol2r7"]
+[ext_resource type="Texture2D" uid="uid://bqy4vj0v38yak" path="res://Arts/Empire units/samurai attack .png" id="2_i31ko"]
+[ext_resource type="Texture2D" uid="uid://dxxemlykgsa5o" path="res://Arts/Placeholders/Samurai.jpg" id="2_utg5b"]
+[ext_resource type="Texture2D" uid="uid://dqmsdyslq5xbc" path="res://Arts/Empire units/samurai idle .png" id="3_26pc1"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_mc75p"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_ol2r7"]
 [ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="6_plv2k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1eqkd"]
@@ -146,7 +146,6 @@ script = ExtResource("4_mc75p")
 max_HP = 200
 base_damage = 40
 armor = 15
-evasion = 0.02
 
 [node name="Samurai" instance=ExtResource("1_34hwq")]
 unit_name = "Samurai"

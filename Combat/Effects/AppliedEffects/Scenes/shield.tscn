@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b1i0mf1877mfo"]
 
-[ext_resource type="Script" path="res://Combat/Effects/AppliedEffects/Scripts/shield.gd" id="1_iw7rj"]
+[ext_resource type="Script" uid="uid://cwsljqsiow8li" path="res://Combat/Effects/AppliedEffects/Scripts/shield.gd" id="1_iw7rj"]
 
 [node name="Shield" type="Node"]
 script = ExtResource("1_iw7rj")

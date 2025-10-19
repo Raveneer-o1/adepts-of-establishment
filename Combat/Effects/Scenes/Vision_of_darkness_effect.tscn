@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://cuqvottp86aof"]
 
 [ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/Scenes/abstract_effect.tscn" id="1_tdhaa"]
-[ext_resource type="Texture2D" uid="uid://baqeq7qi03voi" path="res://Arts/Undead units/u27 Vision of darkness effect .png" id="2_ku5mq"]
+[ext_resource type="Texture2D" uid="uid://bu7ituxh50kt3" path="res://Arts/Undead units/u27 Vision of darkness effect .png" id="2_ku5mq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n8ipj"]
 atlas = ExtResource("2_ku5mq")

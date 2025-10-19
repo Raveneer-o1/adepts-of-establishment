@@ -1,11 +1,11 @@
 [gd_scene load_steps=28 format=3 uid="uid://dfb8a8lhxhbxv"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_ghq34"]
-[ext_resource type="Texture2D" uid="uid://cy21efkrtc7gp" path="res://Arts/Placeholders/Angel.jpg" id="2_cyr52"]
-[ext_resource type="Texture2D" uid="uid://du3k0h3s7hxoa" path="res://Arts/Empire units/angel  attack .png" id="2_j3ymb"]
-[ext_resource type="Texture2D" uid="uid://idex7y6u10f3" path="res://Arts/Empire units/angel idle .png" id="3_kot7h"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_53ols"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_4cpgb"]
+[ext_resource type="Texture2D" uid="uid://dgrhklu28433n" path="res://Arts/Placeholders/Angel.jpg" id="2_cyr52"]
+[ext_resource type="Texture2D" uid="uid://bjex287upxspf" path="res://Arts/Empire units/angel  attack .png" id="2_j3ymb"]
+[ext_resource type="Texture2D" uid="uid://c13lxcntcy7nn" path="res://Arts/Empire units/angel idle .png" id="3_kot7h"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_53ols"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_4cpgb"]
 [ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="6_frmgx"]
 [ext_resource type="PackedScene" uid="uid://chpw2oyl5kpky" path="res://Combat/Effects/AppliedEffects/Scenes/armor_buff_aura.tscn" id="7_fqy2s"]
 
@@ -147,7 +147,6 @@ script = ExtResource("4_53ols")
 max_HP = 250
 base_damage = 100
 armor = 20
-evasion = 0.02
 
 [node name="Angel" instance=ExtResource("1_ghq34")]
 unit_name = "Angel"

@@ -1,8 +1,9 @@
-[gd_scene load_steps=26 format=3 uid="uid://due6cek848mty"]
+[gd_scene load_steps=28 format=3 uid="uid://due6cek848mty"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_8bqrg"]
-[ext_resource type="Texture2D" uid="uid://br0e5f67du8am" path="res://Arts/Generic/g01 orc chieftain attack .png" id="2_nnypv"]
-[ext_resource type="Texture2D" uid="uid://d2x5accd8nuk1" path="res://Arts/Generic/g01 orc chieftain idle .png" id="3_xhkvy"]
+[ext_resource type="Texture2D" uid="uid://ragymeslg6lq" path="res://Arts/Generic/g01 orc chieftain attack .png" id="2_nnypv"]
+[ext_resource type="Texture2D" uid="uid://b861bayrkpx0o" path="res://Arts/Generic/g01 orc chieftain idle .png" id="3_xhkvy"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_rcpxb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_canxf"]
 atlas = ExtResource("2_nnypv")
@@ -164,6 +165,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_r7gwq"]
+resource_local_to_scene = true
+script = ExtResource("4_rcpxb")
+max_HP = 100
+base_damage = 30
+
 [node name="Orc cheiftain" instance=ExtResource("1_8bqrg")]
 unit_name = "Orc cheiftain"
 unit_type = "Warrior"
@@ -176,3 +183,6 @@ autoplay = "default"
 offset = Vector2(8, -8)
 frames_to_emit = Array[int]([5])
 last_frame = 10
+
+[node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_r7gwq")

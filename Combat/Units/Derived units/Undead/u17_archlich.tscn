@@ -1,12 +1,12 @@
 [gd_scene load_steps=29 format=3 uid="uid://c42n73wmostxu"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_jlfmv"]
-[ext_resource type="Texture2D" uid="uid://dl60n0aml4oen" path="res://Arts/Placeholders/Archlich.jpg" id="2_6wk45"]
-[ext_resource type="Texture2D" uid="uid://b8w26q446mi24" path="res://Arts/Undead units/u21 archlich attack.png" id="2_d3c0n"]
-[ext_resource type="Texture2D" uid="uid://brgwgs2tc646c" path="res://Arts/Undead units/u21 archlich idle .png" id="3_ppol0"]
+[ext_resource type="Texture2D" uid="uid://d3rtwmp4xvfdg" path="res://Arts/Placeholders/Archlich.jpg" id="2_6wk45"]
+[ext_resource type="Texture2D" uid="uid://bhoee7tysve3i" path="res://Arts/Undead units/u21 archlich attack.png" id="2_d3c0n"]
+[ext_resource type="Texture2D" uid="uid://dvnlrgwkd4lgp" path="res://Arts/Undead units/u21 archlich idle .png" id="3_ppol0"]
 [ext_resource type="PackedScene" uid="uid://bq5fuvt6gwhs6" path="res://Combat/Effects/Scenes/sythe.tscn" id="4_11wyg"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_dl1x1"]
-[ext_resource type="Script" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_e10lm"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_dl1x1"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_e10lm"]
 [ext_resource type="Resource" uid="uid://davbg4egq6lu0" path="res://Combat/Units/Parameters/Validation/necromancer_validity.tres" id="7_466vw"]
 [ext_resource type="Resource" uid="uid://bhe5cl2bujg8i" path="res://Combat/Units/Parameters/Additional targets/Splash.tres" id="8_uexn6"]
 [ext_resource type="Resource" uid="uid://cbtn2lhkxm7ql" path="res://Combat/Units/Parameters/Policy/necromancer_policy.tres" id="9_7xkoy"]
@@ -142,7 +142,6 @@ script = ExtResource("4_dl1x1")
 max_HP = 200
 base_damage = 50
 armor = 10
-evasion = 0.02
 
 [node name="Archlich" instance=ExtResource("1_jlfmv")]
 unit_name = "Archlich"

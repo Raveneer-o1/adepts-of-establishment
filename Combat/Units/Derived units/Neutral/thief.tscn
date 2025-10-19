@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://0gkab1f2csfn"]
+[gd_scene load_steps=16 format=3 uid="uid://0gkab1f2csfn"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_k4b78"]
-[ext_resource type="Texture2D" uid="uid://ci471nyyoa60b" path="res://Arts/Generic/g06 thief attack .png" id="2_xcqht"]
-[ext_resource type="Texture2D" uid="uid://0ctniy0wdeep" path="res://Arts/Generic/g06 thief idle .png" id="3_gvceb"]
+[ext_resource type="Texture2D" uid="uid://dys4htvlwcr2r" path="res://Arts/Generic/g06 thief attack .png" id="2_xcqht"]
+[ext_resource type="Texture2D" uid="uid://rhoo6oqn04u7" path="res://Arts/Generic/g06 thief idle .png" id="3_gvceb"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_erptq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ffh1g"]
 atlas = ExtResource("2_xcqht")
@@ -80,6 +81,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_dv33m"]
+resource_local_to_scene = true
+script = ExtResource("4_erptq")
+max_HP = 100
+base_damage = 30
+
 [node name="Thief" instance=ExtResource("1_k4b78")]
 unit_name = "Thief"
 unit_type = "Warrior"
@@ -90,3 +97,6 @@ sprite_frames = SubResource("SpriteFrames_fnpog")
 animation = &"attack"
 autoplay = "default"
 frames_to_emit = Array[int]([3])
+
+[node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_dv33m")

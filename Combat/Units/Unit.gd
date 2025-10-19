@@ -1,20 +1,44 @@
 class_name Unit
 extends Node2D
 
-## Core class for all combat units.
-## Handles interactions with the combat system and delegates tasks to helper classes
-## (e.g., animations and parameters).
-##
-## The Unit class is a highly flexible framework for characters in the combat system, 
-## supporting diverse mechanics and behaviors. Each unit has customizable parameters stored in a shared database, 
-## along with a list of actions defined by the [UnitAttack] class, which handles target validation and optional 
-## custom damage logic. Effects, implemented as modular nodes, can dynamically modify a unit's stats or behavior 
-## and are automatically removed when expired. This design enables easy creation of unique unit types through 
-## subclassing and composition, allowing specialized mechanics without significant code duplication. 
 
+## Unit is central combat entity, they perform actions during combat.
+##
+## [Unit] objects are the main part of the combat system.
+## [Party] class has an array of [UnitSpot] objects, each [UnitSpot] may or may not
+## contain a [Unit] object. [Unit] itself is an object that is intended to handle high-level
+## interactions with the rest of the system: receiving targets for attacks and delegating
+## incoming attacks to [UnitParameters], making queries to [UnitAnimationsHandle] etc. [br] [br]
+##
+## Term [i]"attack"[/i] usually refers to a specific action a unit can perform. Each attack is
+## performed on a separete turn and each unit can have multiple different attacks.
+## Each [Unit] object has a list of attacks (as [UnitAttack] nodes). At the start of each round
+## this list is copied (shallow copy) into [member attacks_for_this_round].
+## This list is emptied one-by-one by removing attacks into [member current_attack]
+## and later into [Attack] constructor. [br] [br]
+##
+## When the unit attacks, [Attack] object is created.
+## [Attack] is a class that represents attack in progress. It copies every relevant field
+## from [UnitAttack] but is independent. When the [Attack] object is created,
+## [signal attack_reached] is emitted and all units trigger their relevant effects (if any).
+## These effects can change [Attack] object without changing the original [UnitAttack]
+## (that's why there's two classes). [br] [br]
+##
+## After the signal is emitted and all effects are applied, the attack is resolved by [Unit] object.
+## This means populating [member taking_damage_attacks] and [member taking_damage_delays] as necessary.
+## This is to sync animations: when the animation reaches active frame, [method finilize_attack]
+## is called on a unit and the values are updated. 
+## As a safeguard, at the end of the animation [method finalize_all_attacks] is also called. [br] [br]
+##
+## [Unit] class only handles delegation of the effects to [UnitParameters], it does not store 
+## any effects. There are fields and methods like [method clean_effects] but they only handle
+## visual representation, not the actual behavior or other logic. [br] [br]
+##
+## [color=yellow][b]Note:[/b][/color] This class is not intended to be overriden.
+## Extend functionality through component nodes rather than inheritance.
 
 const EFFECT_ICONS_SCALE = 0.75
-## Delay in seconds between proccesing skip turn and pocceding to the next stage
+## Delay in seconds between proccesing skip turn and procceding to the next stage
 const SKIP_DELAY = 0.4
 
 
@@ -42,6 +66,10 @@ var party: Party
 var system: CombatSystem
 
 
+## flag is used during the initialization exclusively. 
+## It's here to prevent calling error-prone functions before the object is fully initialized.
+## This is required because sometimes units are added during the combat.
+## And it may cause problems without this check.
 var initialized: bool = false
 
 ## <TextureRect, AppliedEffect>
@@ -79,10 +107,17 @@ var taking_damage_attacks: Array[Attack] = []
 ## If the first element is 0, finalizes closest attack from [code]taking_damage_attacks[/code]
 var taking_damage_delays: Array[int] = []
 
-## Indicates if unit is in a defense stance
+## Indicates if unit is in a defense stance. [br]
+## This flag has only one job - to cut incoming damage in half.
+## @experimental: This behavior is a legacy from Disciples and may be a subject to future changes.
 var defence_stance: bool = false
 
-## Indicates if this unit is in the procces of skipping turn
+## Indicates if this unit is in the procces of skipping turn.
+## Needed for the sync reasons: when the attack is to be skipped,
+## the player won't be prompted to chose a target. Also, this flag makes the skipping attack
+## independent of the attack itself
+## @experimental: This behavior is a legacy from Disciples and may be a subject to future changes.
+## For example, skipping sevral turns may be added as a feature or skipping a particular attack.
 var skipping_turn: bool = false
 
 ## If [code]true[/code], unit doesn't leave corpse after death (the object is comletely deleted).
@@ -226,7 +261,11 @@ func finalize_attack() -> void:
 	var damage_to_take: int = \
 			attack_to_finalize.damages[spot] if attack_to_finalize.damages.has(spot) \
 			else attack_to_finalize.default_damage
-	take_damage(damage_to_take)
+	var damage_taken: int = take_damage(damage_to_take)
+	if attack_to_finalize.original:
+		attack_to_finalize.original.applied_damage += damage_taken;
+	else:
+		attack_to_finalize.applied_damage += damage_taken;
 	
 	# if untit is dead after taking damage, it was killed by this attack
 	if parameters.dead:
@@ -268,6 +307,7 @@ func finish_attacking() -> void:
 	reset_chosen_targets(self)
 	set_next_attack()
 	EventBus.attack_animation_finished.emit(self)
+	EventBus.attack_concluded.emit(self)
 
 
 ## Set to false when you need to skip next call of [method set_next_attack]
@@ -421,16 +461,17 @@ func resurrect() -> void:
 	EventBus.unit_revived.emit(self)
 
 ## Restores health to the unit and triggers associated animations.
-func heal(value: int) -> void:
+func heal(value: int) -> int:
 	if value == 0:
-		return
+		return 0
 	if value < 0:
 		take_damage(-value)
-		return
+		return 0
 	
-	parameters.heal(value)
+	var hp_healed: int = parameters.heal(value)
 	animation_handle.play_heal_animation()
-	system.display_text_near_unit(self, "+" + str(value), HEAL_COLOR)
+	system.display_text_near_unit(self, "+" + str(hp_healed), HEAL_COLOR)
+	return hp_healed
 
 
 const MIN_DAMAGE_COLOR = Color.WEB_MAROON
@@ -471,12 +512,12 @@ func take_direct_damage(dmg: int, message: String = "", text_color: Color = Colo
 ## [param message] is message that will be displayed near the number.[br]
 ## [param text_color] is color of the text. If left as Color.TRANSPARENT,
 ## color is detemined by calling [method damage_color].[br]
-func take_damage(dmg: int, message: String = "", text_color: Color = Color.TRANSPARENT) -> void:
+func take_damage(dmg: int, message: String = "", text_color: Color = Color.TRANSPARENT) -> int:
 	if dmg == 0:
-		return
+		return 0
 	if dmg < 0:
 		heal(-dmg)
-		return
+		return 0
 	
 	if defence_stance:
 		dmg /= 2
@@ -496,6 +537,7 @@ func take_damage(dmg: int, message: String = "", text_color: Color = Color.TRANS
 			message,
 			color
 	)
+	return damage_taken
 
 ## Processes the unit's death.
 func die() -> void:
