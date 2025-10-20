@@ -10,7 +10,7 @@ import os
 from pathlib import Path
 
 class UnitData:
-	def __init__(self, name, level, max_hp, base_damage, armor, attacks, effects = None, faction = "Neutral"):
+	def __init__(self, name, level, max_hp, base_damage, armor, attacks, effects = None, faction = "Neutral", description=""):
 		"""
 		Initialize a UnitData instance.
 
@@ -21,6 +21,7 @@ class UnitData:
 			base_damage (int): Base damage of the unit.
 			armor (int): Armor value of the unit.
 			attacks (list[dict]): List of attacks with their properties.
+			description (string)
 		"""
 		self.name = name
 		self.level = level
@@ -30,12 +31,15 @@ class UnitData:
 		self.attacks = attacks
 		self.faction = faction
 		self.effects = effects if effects else []
+		self.description = description
+		# print (f"description: {description}")
 
 	def __repr__(self):
 		return (
 			f"name = {self.name}, level = {self.level}\nmax_hp = {self.max_hp}\n"
 			f"base_damage = {self.base_damage}\narmor = {self.armor}\n"
-			f"attacks:\n{self.attacks}\neffects: {self.effects}"
+			f"attacks:\n{self.attacks}\neffects: {self.effects}\n"
+			f"description: {self.description}"
 		)
 
 
@@ -54,9 +58,9 @@ def generate_md_file(units, output_file):
  \n\
 ### Empire \n\
  \n\
-* [Squire](#squire)  \n\
+* [Squire](#squire) \n\
 	* [Knight](#knight) \n\
-		* [Knight Master](#knight_master)  \n\
+		* [Knight Master](#knight_master) \n\
 			* [Angel Knight](#angel_knight) \n\
 		* [Horseman](#horseman) \n\
 			* [Royal Cavalier](#royal_cavalier) \n\
@@ -248,7 +252,9 @@ class UnitParser:
 			return None
 
 
-		# Extract unit name
+		# Extract unit name and description
+		description = re.search(r'full_description = \"(.*?)\"', content, re.S)
+		description = description.group(1) if description else ""
 		unit_name = re.search(r'unit_name = \"(.*?)\"', content, re.S)
 		if not unit_name:
 			print (f"In the file {file_path} 'unit_name' is not found!")
@@ -291,15 +297,17 @@ class UnitParser:
 			attacks.append(attack_data)
 		unit_data['attacks'] = attacks
 
-		unit = UnitData( \
-			unit_data['unit_name'], \
-			int(unit_data['level']), \
-			int(unit_data['max_HP']), \
-			int(unit_data['base_damage']), \
-			int(unit_data['armor']), \
-			unit_data['attacks'], \
-			effects
-			)
+		# print(description)
+		unit = UnitData(
+			unit_data['unit_name'],
+			int(unit_data['level']),
+			int(unit_data['max_HP']),
+			int(unit_data['base_damage']),
+			int(unit_data['armor']),
+			unit_data['attacks'],
+			effects,
+			description=description
+		)
 
 		return unit
 
@@ -329,6 +337,7 @@ class UnitParser:
 			#if unit_data.name == 'unit_name':
 			if unit_data:
 				self.units_data[unit_data.name] = unit_data
+				# print(self.units_data[unit_data.name])
 		return self.units_data
 
 
@@ -337,6 +346,7 @@ def initialize_parser():
 	parser = UnitParser("unit_file_patterns.txt")
 	unit_list = parser.consolidate_units()
 	units = unit_list.values()	
+	# print(units[0])
 	print ("Files parsed successfully.\n")
 
 
@@ -359,7 +369,7 @@ def print_units(units):
 		print("==============")
 
 if __name__ == "__main__":
-	os.system('cls')
+	# os.system('cls')
 
 	(unit_list, units) = initialize_parser()
 

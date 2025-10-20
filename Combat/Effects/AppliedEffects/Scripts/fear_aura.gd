@@ -17,8 +17,10 @@ func _apply_effect(params: Variant) -> void:
 	if pos % 2 == 0:
 		var adjacent_units_from_another_party := \
 			target_unit.party.other_party.get_units_at_positions(
-				[pos, pos - 2,  pos +2], # step of 2 indicates adjacent units in the same row *see Party class documentation*
-				false # we don't need nulls for out-of-bounds positions
+				# step of 2 indicates adjacent units in the same row (see Party class documentation)
+				[pos, pos - 2,  pos +2], 
+				# don't need nulls for out-of-bounds positions
+				false 
 			)
 		affected_units.append_array(adjacent_units_from_another_party)
 	
@@ -26,6 +28,6 @@ func _apply_effect(params: Variant) -> void:
 		affected_unit.parameters.add_modifier(
 			&"evasion", 
 			self, 
-			func(val: int) -> int: return val - evasion_decrease
+			func(val: int) -> int: return val - int(evasion_decrease)
 		)
 		affected_unit.display_effect_icon(ICONS.get_layer_data(DEBUFF_ICON_INDEX), self)

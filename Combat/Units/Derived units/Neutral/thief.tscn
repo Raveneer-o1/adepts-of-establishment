@@ -1,9 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://0gkab1f2csfn"]
+[gd_scene load_steps=18 format=3 uid="uid://0gkab1f2csfn"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_k4b78"]
 [ext_resource type="Texture2D" uid="uid://dys4htvlwcr2r" path="res://Arts/Generic/g06 thief attack .png" id="2_xcqht"]
 [ext_resource type="Texture2D" uid="uid://rhoo6oqn04u7" path="res://Arts/Generic/g06 thief idle .png" id="3_gvceb"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_erptq"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_7iary"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="6_ah66w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ffh1g"]
 atlas = ExtResource("2_xcqht")
@@ -84,7 +86,7 @@ animations = [{
 [sub_resource type="Resource" id="Resource_dv33m"]
 resource_local_to_scene = true
 script = ExtResource("4_erptq")
-max_HP = 100
+max_HP = 90
 base_damage = 30
 
 [node name="Thief" instance=ExtResource("1_k4b78")]
@@ -100,3 +102,15 @@ frames_to_emit = Array[int]([3])
 
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_dv33m")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+script = ExtResource("5_7iary")
+initiative = 65
+target_validation = ExtResource("6_ah66w")
+metadata/_custom_type_script = "uid://c5u15vrtdf7kf"
+
+[node name="UnitAttack2" type="Node" parent="UnitParameters" index="3"]
+script = ExtResource("5_7iary")
+initiative = 30
+target_validation = ExtResource("6_ah66w")
+metadata/_custom_type_script = "uid://c5u15vrtdf7kf"

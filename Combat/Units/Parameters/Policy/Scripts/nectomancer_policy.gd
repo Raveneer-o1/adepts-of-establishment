@@ -29,6 +29,7 @@ func resurrect(attack: Attack, index: int, finalize: bool) -> void:
 	var unit: Unit = corpse_container.get_child(0)
 	unit.resurrect()
 	if resurrection_with_percent_hp > 0.0:
+		@warning_ignore("narrowing_conversion")
 		unit.heal(resurrection_with_percent_hp * unit.parameters.max_hp - 1)
 
 func _apply_policy(attack: Attack, index: int, finalize: bool) -> void:

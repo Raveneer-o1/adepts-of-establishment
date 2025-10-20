@@ -1,9 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://bbn7oowueyb2d"]
+[gd_scene load_steps=20 format=3 uid="uid://bbn7oowueyb2d"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_3oyoe"]
 [ext_resource type="Texture2D" uid="uid://bgihi2b2t55ff" path="res://Arts/Generic/g02 goblin attack .png" id="2_d5iwd"]
 [ext_resource type="Texture2D" uid="uid://2wrdm3qvhlb8" path="res://Arts/Generic/g02 goblin idle .png" id="3_8wcna"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_3oi2l"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_k20xa"]
+[ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standart_archer_validity.tres" id="6_o14sr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v8s1w"]
 atlas = ExtResource("2_d5iwd")
@@ -113,3 +115,15 @@ autoplay = "default"
 
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_k20xa")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+script = ExtResource("5_k20xa")
+initiative = 10
+target_validation = ExtResource("6_o14sr")
+metadata/_custom_type_script = "uid://c5u15vrtdf7kf"
+
+[node name="UnitAttack2" type="Node" parent="UnitParameters" index="3"]
+script = ExtResource("5_k20xa")
+initiative = 40
+target_validation = ExtResource("6_o14sr")
+metadata/_custom_type_script = "uid://c5u15vrtdf7kf"

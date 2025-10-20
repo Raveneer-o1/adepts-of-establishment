@@ -273,6 +273,7 @@ base_damage = 30
 armor = 30
 
 [node name="Unit" instance=ExtResource("1_lmg0p")]
+unit_name = "High mage"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_6bfke")

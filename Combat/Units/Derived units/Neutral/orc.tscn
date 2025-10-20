@@ -1,9 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://g5hai1278qua"]
+[gd_scene load_steps=19 format=3 uid="uid://g5hai1278qua"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_qx1fk"]
 [ext_resource type="Texture2D" uid="uid://bdtsjxgm0nbrq" path="res://Arts/Generic/g02 orc attack.png" id="2_gc78g"]
 [ext_resource type="Texture2D" uid="uid://bji5lpnoskyhq" path="res://Arts/Generic/g02 orc idle .png" id="3_4jnn6"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_ue142"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_5ho5h"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="6_ovefx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v5lms"]
 atlas = ExtResource("2_gc78g")
@@ -91,8 +93,8 @@ animations = [{
 [sub_resource type="Resource" id="Resource_82im7"]
 resource_local_to_scene = true
 script = ExtResource("4_ue142")
-max_HP = 100
-base_damage = 30
+max_HP = 120
+base_damage = 50
 
 [node name="Orc" instance=ExtResource("1_qx1fk")]
 unit_name = "Orc"
@@ -107,3 +109,9 @@ frames_to_emit = Array[int]([3])
 
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_82im7")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+script = ExtResource("5_5ho5h")
+initiative = 30
+target_validation = ExtResource("6_ovefx")
+metadata/_custom_type_script = "uid://c5u15vrtdf7kf"

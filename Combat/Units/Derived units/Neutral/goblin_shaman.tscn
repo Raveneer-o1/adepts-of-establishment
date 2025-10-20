@@ -1,9 +1,12 @@
-[gd_scene load_steps=21 format=3 uid="uid://b7jgva2bs2d6e"]
+[gd_scene load_steps=24 format=3 uid="uid://b7jgva2bs2d6e"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_fstih"]
 [ext_resource type="Texture2D" uid="uid://7k0j7p0lbbcg" path="res://Arts/Generic/g04 goblin shaman attack .png" id="2_mqek8"]
 [ext_resource type="Texture2D" uid="uid://h6542div5f7v" path="res://Arts/Generic/g04 goblin shaman idle .png" id="3_1862s"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_s7gjm"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_d4ejt"]
+[ext_resource type="Resource" uid="uid://bkoge3ibwhgcc" path="res://Combat/Units/Parameters/Validation/standart_mage_validity.tres" id="6_g5vpg"]
+[ext_resource type="Resource" uid="uid://cejkgjwk05uws" path="res://Combat/Units/Parameters/Additional targets/standart_mage_targets.tres" id="7_fqagl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7c8q6"]
 atlas = ExtResource("2_mqek8")
@@ -134,3 +137,11 @@ autoplay = "default"
 
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_vkt8x")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+script = ExtResource("5_d4ejt")
+type = 1
+initiative = 15
+target_validation = ExtResource("6_g5vpg")
+additional_targets = ExtResource("7_fqagl")
+metadata/_custom_type_script = "uid://c5u15vrtdf7kf"

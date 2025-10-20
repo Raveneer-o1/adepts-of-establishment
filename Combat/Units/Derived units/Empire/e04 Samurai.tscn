@@ -146,6 +146,7 @@ script = ExtResource("4_mc75p")
 max_HP = 200
 base_damage = 40
 armor = 15
+evasion = 0.05
 
 [node name="Samurai" instance=ExtResource("1_34hwq")]
 unit_name = "Samurai"

@@ -1,9 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://bvukrawyoou4a"]
+[gd_scene load_steps=24 format=3 uid="uid://bvukrawyoou4a"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_10x7v"]
 [ext_resource type="Texture2D" uid="uid://t8jags4e58qw" path="res://Arts/Generic/g08 pirate attack .png" id="2_o78dn"]
 [ext_resource type="Texture2D" uid="uid://bixrbc1v3q184" path="res://Arts/Generic/g08 pirate idle .png" id="3_vjqqe"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_ynki6"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_adgq4"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="6_edvml"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6h7hd"]
 atlas = ExtResource("2_o78dn")
@@ -126,8 +128,9 @@ animations = [{
 [sub_resource type="Resource" id="Resource_s0041"]
 resource_local_to_scene = true
 script = ExtResource("4_ynki6")
-max_HP = 100
-base_damage = 30
+max_HP = 150
+base_damage = 60
+armor = 10
 
 [node name="Pirate" instance=ExtResource("1_10x7v")]
 unit_name = "Pirate"
@@ -143,3 +146,10 @@ frames_to_emit = Array[int]([3, 6])
 
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_s0041")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+script = ExtResource("5_adgq4")
+targets_needed = 2
+initiative = 40
+target_validation = ExtResource("6_edvml")
+metadata/_custom_type_script = "uid://c5u15vrtdf7kf"

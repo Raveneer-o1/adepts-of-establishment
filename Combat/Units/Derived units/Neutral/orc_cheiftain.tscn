@@ -1,9 +1,11 @@
-[gd_scene load_steps=28 format=3 uid="uid://due6cek848mty"]
+[gd_scene load_steps=30 format=3 uid="uid://due6cek848mty"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_8bqrg"]
 [ext_resource type="Texture2D" uid="uid://ragymeslg6lq" path="res://Arts/Generic/g01 orc chieftain attack .png" id="2_nnypv"]
 [ext_resource type="Texture2D" uid="uid://b861bayrkpx0o" path="res://Arts/Generic/g01 orc chieftain idle .png" id="3_xhkvy"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_rcpxb"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_olqh7"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="6_aembs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_canxf"]
 atlas = ExtResource("2_nnypv")
@@ -168,8 +170,9 @@ animations = [{
 [sub_resource type="Resource" id="Resource_r7gwq"]
 resource_local_to_scene = true
 script = ExtResource("4_rcpxb")
-max_HP = 100
-base_damage = 30
+max_HP = 180
+base_damage = 70
+armor = 20
 
 [node name="Orc cheiftain" instance=ExtResource("1_8bqrg")]
 unit_name = "Orc cheiftain"
@@ -186,3 +189,9 @@ last_frame = 10
 
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_r7gwq")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+script = ExtResource("5_olqh7")
+initiative = 40
+target_validation = ExtResource("6_aembs")
+metadata/_custom_type_script = "uid://c5u15vrtdf7kf"
