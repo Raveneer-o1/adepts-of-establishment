@@ -3,7 +3,7 @@ extends AppliedEffect
 
 
 func trigger(attack: Attack) -> void:
-	if attack.type != EventBus.AttackType.Mind:
+	if attack.type != GlobalDefs.AttackType.Mind:
 		return
 	if attack.targets.has(target_unit):
 		target_unit.parameters.apply_effect("temporary_buff", {

@@ -1,8 +1,48 @@
 class_name CombatSystem
 extends Node2D
 
-## Handles high-level interactions between combat system nodes, external systems, 
-## and utility functions such as player input.
+## The main combat component
+##
+## Serves as the orchestrator and interface layer that coordinates between different
+## combat subsystems and handles external interactions.[br][br]
+##
+## This class does not handle the overall logic of combat. That is the job of a dedicated
+## class - [CombatLogic] - that drives the actual combat mechanics.
+## Essentially, [CombatSystem] receives notifications that something should happen
+## (e.g., when the player clicks a unit, [method choose_unit] is called),
+## and after consulting [CombatLogic], responds accordingly.[br][br]
+##
+## The combat scene consists of two [Party] nodes, two [PlayerAPI] nodes,
+## a [CombatLogic] node, and some helper nodes like [member active_unit_marker].[br][br]
+##
+## Combat Structure:[br]
+## [i]Battle[/i]: The entire combat encounter from start to finish.[br]
+## [i]Round[/i]: A complete cycle where all units have an opportunity to act. More specifically,
+## during a round, each [UnitAttack] is attended to exactly once.[br]
+## [i]Turn[/i]: A single unit's action.[br][br]
+##
+## Turns are ordered by [member UnitAttack.initiative], independent of the parties.
+## The ordered [UnitAttack]s form an [i]action queue[/i].[br][br]
+##
+## The most important concept in combat is the turn. Each turn is an opportunity to perform
+## exactly one action. This action can be taking a [i]defense[/i] stance, [i]waiting[/i],
+## or [i]attacking[/i] (see [Unit] for more details).
+## The attack action is performed in several stages:[br]
+## - Target Validation[br]
+## - Attack Booking[br]
+## - Effect Application[br]
+## - Resolution[br]
+## - Finalization[br]
+## - Cleanup[br]
+## For more details see [Attack].[br][br]
+##
+## [b]Other Notes[/b][br]
+## Extend through component composition rather than inheritance. This applies to
+## the majority of this project. Unless a class is specifically designed to be overridden,
+## composition is always preferable to inheritance.[br]
+## For detailed implementation guides on these subsystems, refer to the [Unit] and
+## [UnitAttack] documentation. [br]
+## [b]See also:[/b] [Unit], [UnitAttack], [Attack]
 
 # Temporary label scene for displaying text near units
 const TEMP_LABEL = preload("res://Combat/Scenes/TempLabel.tscn")
@@ -64,20 +104,22 @@ var current_unit: Unit:
 	get:
 		return _current_unit
 	set(value):
-		current_player = null
 		_current_unit = value
 		if value == null or value.parameters.dead:
 			active_unit_marker.visible = false
+			current_player = null
 		else:
 			active_unit_marker.position = value.global_position
 			active_unit_marker.visible = true
 			current_player = value.party.player
 
+## 11. What is the role of `current_unit` and `current_player` in managing turn flow?
 var _current_player: PlayerAPI
 var current_player: PlayerAPI:
 	get:
 		return _current_player
 	set(value):
+		if _current_player == value: return
 		if _current_player != null:
 			_current_player.disabled = true
 		
@@ -139,7 +181,7 @@ func finish_attack() -> void:
 	combat_logic.next_stage()
 
 ## Called when an attack is finished
-## Checks if the attack was of an active unit and triggers attack resolution if it is
+## Checks if the attack was of an active unit and triggers attack resolution if it was
 func check_finished_animation(unit: Unit) -> void:
 	if unit == current_unit:
 		finish_attack()
@@ -304,7 +346,6 @@ func initialize_variables() -> void:
 	right_party_units = EventBus.right_units
 	EventBus.attack_concluded.connect(clear_emittings)
 
-
 func place_units() -> void:
 	right_party.place_units(right_party_units)
 	left_party.place_units(left_party_units)
@@ -341,6 +382,7 @@ func find_targets_for_attack(attack: UnitAttack) -> Array[UnitSpot]:
 	
 	return result
 
+## 18. What is the difference between `find_targets_for_attack()` and `find_avaliable_targets()`?
 func find_avaliable_targets(unit: Unit = current_unit) -> Array[UnitSpot]:
 	if unit == null:
 		return []

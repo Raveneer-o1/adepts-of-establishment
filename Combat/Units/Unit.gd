@@ -4,14 +4,14 @@ extends Node2D
 
 ## Unit is central combat entity, they perform actions during combat.
 ##
-## [Unit] objects are the main part of the combat system.
+## [Unit] objects are the main part of the battle.
 ## [Party] class has an array of [UnitSpot] objects, each [UnitSpot] may or may not
 ## contain a [Unit] object. [Unit] itself is an object that is intended to handle high-level
 ## interactions with the rest of the system: receiving targets for attacks and delegating
 ## incoming attacks to [UnitParameters], making queries to [UnitAnimationsHandle] etc. [br] [br]
 ##
 ## Term [i]"attack"[/i] usually refers to a specific action a unit can perform. Each attack is
-## performed on a separete turn and each unit can have multiple different attacks.
+## performed on a separate turn and each unit can have multiple different attacks.
 ## Each [Unit] object has a list of attacks (as [UnitAttack] nodes). At the start of each round
 ## this list is copied (shallow copy) into [member attacks_for_this_round].
 ## This list is emptied one-by-one by removing attacks into [member current_attack]
@@ -34,8 +34,9 @@ extends Node2D
 ## any effects. There are fields and methods like [method clean_effects] but they only handle
 ## visual representation, not the actual behavior or other logic. [br] [br]
 ##
-## [color=yellow][b]Note:[/b][/color] This class is not intended to be overriden.
-## Extend functionality through component nodes rather than inheritance.
+## [color=yellow]Note:[/color] This class is not intended to be overriden.
+## Extend functionality through component nodes rather than inheritance.[br]
+## [b]See also:[/b] [CombatSystem], [UnitAttack], [Attack]
 
 const EFFECT_ICONS_SCALE = 0.75
 ## Delay in seconds between proccesing skip turn and procceding to the next stage
@@ -224,7 +225,7 @@ func finalize_attack() -> void:
 		return
 	var attack_to_finalize: Attack = taking_damage_attacks.pop_front()
 	
-	if attack_to_finalize.type != EventBus.AttackType.None and \
+	if attack_to_finalize.type != GlobalDefs.AttackType.None and \
 			parameters.immunities.has(attack_to_finalize.type):
 		system.display_text_near_unit(self, "Immunity")
 		return

@@ -19,8 +19,8 @@ const DESCRIOTION_LINE = "\n\n---\n%s"
 const BRACKETS_ENCLOSURE = "(%s)"
 
 # Converts an attack type enum value into a human-readable string.
-func attack_type_to_str(type: EventBus.AttackType) -> String:
-	return EventBus.AttackType.keys()[type]
+func attack_type_to_str(type: GlobalDefs.AttackType) -> String:
+	return GlobalDefs.AttackType.keys()[type]
 
 func fill_text_data(unit: Unit) -> void:
 	info.text = ""  # Clear short info text

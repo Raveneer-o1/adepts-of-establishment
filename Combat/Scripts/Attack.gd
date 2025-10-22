@@ -1,6 +1,31 @@
 #extends Object
 class_name Attack
 
+## Attack that is being performed
+##
+## This class manages attacks tha are in the proccess of being performed.
+## Each [Attack] does through a series of stages: [br]
+## 1. [b]Target Validation[/b]: The player/AI selects valid targets based on attack rules
+## (see [UnitAttack.target_validation], class [BaseValidation]).[br]
+## 2. [b]Attack Booking[/b]: An [Attack] instance is created and queued for resolution. This emits
+## [signal EventBus.attack_booked].[br]
+## 3. [b]Effect Application[/b]: Effects connected to [signal EventBus.attack_booked]
+## can modify the booked attack.[br]
+## 4. [b]Resolution[/b]: When the animation reaches its first active frame
+## (set via [member UnitAnimationsHandle.frames_to_emit]), all attacks are resolved.[br]
+## 5. [b]Finalization[/b]: In some cases, it might be necessary to delay the visual
+## representation of the attack results (e.g., when there are two active frames, you
+## might want to delay the second damage number until the second hit actually connects).
+## In this case, the unit will store the resolved attack
+## but not finalize it until [signal EventBus.attack_reached] is emitted again.[br]
+## [color=lightgreen]Note: The unit's combat stats are currently modified inside
+## [method Unit.finalize_attack]. This is a temporary workaround. The intended design is
+## for this function to only handle visual updates, while the actual combat calculations
+## should happen during the resolution phase.[/color][br]
+## 6. [b]Cleanup[/b]: The next attack from the [i]action queue[/i] is popped and moved to
+## [member CombatLogic.current_attack].[br][br]
+##
+## [b]See also:[/b] [CombatSystem], [UnitAttack], [Unit]
 
 var damages: Dictionary # <target: UnitSpotReference, damage: int>
 
@@ -10,7 +35,7 @@ var default_damage: int
 var redirected: bool = false
 
 var accuracy: float
-var type: EventBus.AttackType
+var type: GlobalDefs.AttackType
 var attacker: Unit
 var target_references: Array[UnitSpotReference]:
 	get:

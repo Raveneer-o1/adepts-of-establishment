@@ -1,20 +1,9 @@
 class_name CombatLogic extends Node
 
-## CombatLogic class handles the flow of combat, manages turn order, resolves attacks,
-## and communicates events through signals. [br]It acts as the primary controller for combat actions,
-## ensuring synchronization between animations and gameplay logic.
+## The main brain of a combat system.
 ##
-## This script stores and manages the resolution of units' attacks in combat.[br]
-## When a unit attacks, the effect of its attack is "booked" (see [method CombatLogic.book_damage]) for later resolution.[br]
-## This process serves two primary purposes:[br]
-## 1. Emitting Signals for Pre-Resolution Effects:[br]
-##  - - Whenever an attack is booked, a signal is emitted to notify the system of the event.[br]
-##  - - This allows other game systems or mechanics (e.g., buffs, debuffs, or triggered abilities) to react to the attack.[br]
-##  - - These reactions can modify the attack's properties, such as damage or effects, before the attack is finalized and resolved.[br]
-## 2. Synchronizing Attack Resolution with Animations:[br]
-##  - - By delaying the execution of the attack until it is resolved, the system ensures that the gameplay logic is in sync with the visual animations.[br]
-##  - - This approach creates a cohesive player experience where damage or effects are applied at the precise moment they are visually communicated (e.g., when a sword strikes an enemy or a spell animation finishes).[br]
-
+## [CombatLogic] manages the actual combat flow: it tells if a specific action is allowed,
+## and manages combat-related values.
 
 @onready var main_system := get_parent() as CombatSystem
 

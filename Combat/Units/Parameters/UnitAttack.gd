@@ -2,6 +2,18 @@ extends Node
 class_name UnitAttack
 
 ## Represents attacks a unit can perform. 
+##
+## This node is the base for all [i]attacks[/i]. An [i]attack[/i] is an action a [Unit] can perform.
+## Units act when and only when they have an attack to perform. Even if an actual attack 
+## is not performed, units can not act until its their turn. And since turns are determined by
+## attacks, the concept of a [UnitAttack] represents an opportunity to act. [br] [br]
+##
+## [UnitAttack]s are attached directly to the [UnitParameters] node. No additional setup
+## is required: [UnitParameters] scans all child nodes and uses all [UnitAttack]s it can find.
+## [br] [br]
+##
+## [color=yellow]Note:[/color] this class is not intended to be overriden. Use composition instead.[br]
+## [b]See also:[/b] [CombatSystem], [Unit]
 
 ## Unit, to which this object is attached
 var unit: Unit
@@ -10,7 +22,7 @@ var unit: Unit
 ## If [code]true[/code], damage_multiplier is used as damage and not as multiplier
 @export var damage_override := false
 ## Damage type
-@export var type: EventBus.AttackType
+@export var type: GlobalDefs.AttackType
 ## Chance the attack won't be missed
 @export var accuracy: float = 0.9
 ## Number of units player will need to choose for a unit to perform this attack
@@ -45,6 +57,9 @@ var unit: Unit
 ## @experimental: currently not implemented
 @export var effect_override : Resource
 
+## This method is called by [UnitParameters] at the start of the combat. [br]
+## Note: [UnitParameters] will also be responsible for calling it for any attacks added during 
+## the battle. Currently not implemented.
 func initialize(u: Unit) -> void:
 	if target_validation == null:
 		print_debug("Target validation is empty! Unit: %s" % u.unit_name)

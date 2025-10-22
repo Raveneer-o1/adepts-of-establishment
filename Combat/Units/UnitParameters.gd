@@ -3,8 +3,8 @@ extends Node
 
 ## This class represents inner logic of a unit: its health, damage and abilities
 
-## Armor = 900 is the equivalent of .1 multiplier. In order for the damage to not be cut more than 10 times
-## armor is capped at this value
+## Armor = 900 is the equivalent of .1 multiplier. In order for the damage to not be 
+## cut more than 10 times armor is capped at this value
 const ARMOR_CAP = 900
 
 ## Max damage deviation. Note: actual deviation is maximum between
@@ -23,7 +23,7 @@ var attacks: Array[UnitAttack] = []
 
 @export var large_unit: bool = false
 
-@export var immunities: Array[EventBus.AttackType] = []
+@export var immunities: Array[GlobalDefs.AttackType] = []
 
 @export var attack_effect: Resource
 @export var other_effects: Array[Resource]
