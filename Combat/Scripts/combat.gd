@@ -98,8 +98,9 @@ var label_position: Vector2:
 var loaded_units: Dictionary = {}
 var highlighted_units: Array[UnitSpot] = []
 
-## Reference to the current active unit in combat
 var _current_unit: Unit
+## Reference to the current active unit in combat. The setter also manages 
+## [member active_unit_marker].
 var current_unit: Unit:
 	get:
 		return _current_unit
@@ -113,8 +114,9 @@ var current_unit: Unit:
 			active_unit_marker.visible = true
 			current_player = value.party.player
 
-## 11. What is the role of `current_unit` and `current_player` in managing turn flow?
 var _current_player: PlayerAPI
+## Reference to the current active player in combat. The setter also sets 
+## [member PlayerAPI.disabled] flags.
 var current_player: PlayerAPI:
 	get:
 		return _current_player
@@ -139,8 +141,8 @@ var timer: SceneTreeTimer
 @onready var left_party: Party = get_node("LeftParty")
 @onready var right_party: Party = get_node("RightParty")
 @onready var combat_logic: CombatLogic = get_node("CombatLogic")
-@onready var active_unit_marker := get_node("ActiveUnitMarker") as AnimatedSprite2D
-@onready var win_label: RichTextLabel = $"Win Label"
+@onready var active_unit_marker: AnimatedSprite2D = get_node("ActiveUnitMarker")
+@onready var win_label: RichTextLabel = get_node("Win Label")
 @onready var miniature_queue_manager: MiniatureQueueManager = \
 	$"../UI/ParentContainer/PanelContainer/HBoxContainer/Queue"
 

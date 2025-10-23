@@ -227,7 +227,6 @@ func initialize_variables() -> bool:
 	parent_unit = get_parent()
 	set_references()
 	check_parameters()
-	_override_parameters()
 	
 	if max_hp_override > 0:
 		max_hp = max_hp_override
@@ -265,10 +264,6 @@ func initialize_effects() -> void:
 func die() -> void:
 	dead = true
 	parent_unit.die()
-	
-	#for child in get_children():
-		#if child is AppliedEffect:
-			#child.queue_free()
 
 func set_references() -> void:
 	for child in get_children():
@@ -329,10 +324,6 @@ func apply_effect(
 func turn_start_reaction(_unit: Unit) -> void:
 	update_effects()
 
-## Override this function in derived classes to set unique parameters and/or effects
-func _override_parameters() -> void:
-	pass
-
 func take_direct_damage(dmg: int, randomize_damage: bool = false) -> int:
 	if randomize_damage:
 		var random_deviation: int = max(dmg * STANDART_FRACTIONAL_DAMAGE_DEVIATION, STANDART_DAMAGE_DEVIATION)
@@ -347,7 +338,10 @@ func take_damage(dmg: int, randomize_damage: bool = true) -> int:
 	@warning_ignore("narrowing_conversion")
 	dmg *= armor_multiplier
 	if randomize_damage:
-		var random_deviation: int = max(dmg * STANDART_FRACTIONAL_DAMAGE_DEVIATION, STANDART_DAMAGE_DEVIATION)
+		var random_deviation: int = max(
+			dmg * STANDART_FRACTIONAL_DAMAGE_DEVIATION, 
+			STANDART_DAMAGE_DEVIATION
+		)
 		dmg += randi_range(-random_deviation, random_deviation)
 	
 	# needs to be this way because hp is a property that does some more calculations

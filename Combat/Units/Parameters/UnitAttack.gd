@@ -35,17 +35,17 @@ var unit: Unit
 @export var evadable: bool = true
 
 ## [color=red]This field is required for each attack![/color][br]
-## Returns whether [code]target[/code] is a valid targert for the attack.[br]
-## NOTE: you need to attach a resource, not a script file
+## Determines whether any particular target is valid for the attack.[br]
+## [color=lightgreen]Note: you need to attach a resource, not a script file[/color]
 @export var target_validation: BaseValidation
 
 ## Returns list of auto-determined targets[br]
-## NOTE: if combined with [member damage_policy], pay attention to the order of added units[br]
-## NOTE: you need to attach a resource, not a script file
+## If combined with [member damage_policy], pay attention to the order of added units[br]
+## [color=lightgreen]Note: you need to attach a resource, not a script file[/color]
 @export var additional_targets: BaseAdditionalTargets
 
 ## If present, overrides [method Attack.resolve] and applies to all targets using their indexes[br]
-## NOTE: you need to attach a resource, not a script file
+## [color=lightgreen]Note: you need to attach a resource, not a script file[/color]
 @export var damage_policy: BasePolicy
 
 
@@ -58,8 +58,9 @@ var unit: Unit
 @export var effect_override : Resource
 
 ## This method is called by [UnitParameters] at the start of the combat. [br]
-## Note: [UnitParameters] will also be responsible for calling it for any attacks added during 
-## the battle. Currently not implemented.
+## Note: Currently not implemented, but [UnitParameters] will also be responsible 
+## for calling it for any attacks added during the battle.
+## You should not attempt to initialize the attack manually.
 func initialize(u: Unit) -> void:
 	if target_validation == null:
 		print_debug("Target validation is empty! Unit: %s" % u.unit_name)

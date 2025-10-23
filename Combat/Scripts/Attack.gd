@@ -90,7 +90,8 @@ var applying_effects: Dictionary
 ## Overrides [method Attack.resolve] and applies to all targets using their indexes
 var damage_policy: BasePolicy
 
-## this foild is used be sime effect e.g. to redirect targets
+## Unlike [UnitAttack], this class does not perform any validation by dafault.
+## This field is used by some effects (e.g. to redirect targets).
 var validation: BaseValidation
 
 var tags: Array[StringName] = []

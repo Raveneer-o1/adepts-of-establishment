@@ -279,15 +279,15 @@ var DATABASE := {
 		Damage = 25, # int
 		HP = 100, # int
 		Armor = 0, # int
-		Immunities = [ # Array[EventBus.AttackType]
-			EventBus.AttackType.Physical,
-			EventBus.AttackType.Elemental
+		Immunities = [ # Array[GlobalDefs.AttackType]
+			GlobalDefs.AttackType.Physical,
+			GlobalDefs.AttackType.Elemental
 		],
 		Attacks = [ # Array[Dictionary]
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Physical, # GlobalDefs.AttackType
 				Accuracy = 0.8, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 40, # int
@@ -307,7 +307,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Physical, # GlobalDefs.AttackType
 				Accuracy = 0.8, # float
 				TargetsNeeded = 1, #int
 				Initiative = 40, # int
@@ -324,7 +324,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.33,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Physical,
+				Type = GlobalDefs.AttackType.Physical,
 				Accuracy = 0.82,
 				TargetsNeeded = 1,
 				Initiative = 45,
@@ -341,7 +341,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Physical,
+				Type = GlobalDefs.AttackType.Physical,
 				Accuracy = 0.8,
 				TargetsNeeded = 1,
 				Initiative = 40,
@@ -358,7 +358,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Physical,
+				Type = GlobalDefs.AttackType.Physical,
 				Accuracy = 0.875,
 				TargetsNeeded = 2,
 				Initiative = 45,
@@ -375,7 +375,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.5,
 				DamageOverride = false,
-				Type = EventBus.AttackType.None,
+				Type = GlobalDefs.AttackType.None,
 				Accuracy = 0.85,
 				TargetsNeeded = 1,
 				Initiative = 40,
@@ -392,7 +392,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Physical,
+				Type = GlobalDefs.AttackType.Physical,
 				Accuracy = 0.85,
 				TargetsNeeded = 1,
 				Initiative = 40,
@@ -409,7 +409,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 0.6,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Physical,
+				Type = GlobalDefs.AttackType.Physical,
 				Accuracy = 0.9,
 				TargetsNeeded = 1,
 				Initiative = 70,
@@ -418,7 +418,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 0.9,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Physical,
+				Type = GlobalDefs.AttackType.Physical,
 				Accuracy = 0.85,
 				TargetsNeeded = 1,
 				Initiative = 40,
@@ -435,7 +435,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Physical,
+				Type = GlobalDefs.AttackType.Physical,
 				Accuracy = 0.9,
 				TargetsNeeded = 2,
 				Initiative = 40,
@@ -452,7 +452,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
-				Type = EventBus.AttackType.None,
+				Type = GlobalDefs.AttackType.None,
 				Accuracy = 0.8,
 				TargetsNeeded = 1,
 				Initiative = 40,
@@ -472,7 +472,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Physical,
+				Type = GlobalDefs.AttackType.Physical,
 				Accuracy = 0.85,
 				TargetsNeeded = 1,
 				Initiative = 40,
@@ -489,7 +489,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 0.6,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Physical,
+				Type = GlobalDefs.AttackType.Physical,
 				Accuracy = 0.9,
 				TargetsNeeded = 1,
 				Initiative = 70,
@@ -498,7 +498,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 0.9,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Physical,
+				Type = GlobalDefs.AttackType.Physical,
 				Accuracy = 0.85,
 				TargetsNeeded = 1,
 				Initiative = 45,
@@ -515,7 +515,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 0.6,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Physical,
+				Type = GlobalDefs.AttackType.Physical,
 				Accuracy = 0.9,
 				TargetsNeeded = 1,
 				Initiative = 70,
@@ -524,7 +524,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 0.9,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Physical,
+				Type = GlobalDefs.AttackType.Physical,
 				Accuracy = 0.86,
 				TargetsNeeded = 1,
 				Initiative = 45,
@@ -541,7 +541,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Elemental,
+				Type = GlobalDefs.AttackType.Elemental,
 				Accuracy = 0.9,
 				TargetsNeeded = 1,
 				Initiative = 30,
@@ -558,7 +558,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Elemental,
+				Type = GlobalDefs.AttackType.Elemental,
 				Accuracy = 0.8,
 				TargetsNeeded = 1,
 				Initiative = 30,
@@ -578,7 +578,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Elemental,
+				Type = GlobalDefs.AttackType.Elemental,
 				Accuracy = 0.8,
 				TargetsNeeded = 1,
 				Initiative = 60,
@@ -599,7 +599,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Elemental,
+				Type = GlobalDefs.AttackType.Elemental,
 				Accuracy = 0.8,
 				TargetsNeeded = 1,
 				Initiative = 30,
@@ -618,7 +618,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Elemental,
+				Type = GlobalDefs.AttackType.Elemental,
 				Accuracy = 0.85,
 				TargetsNeeded = 2,
 				Initiative = 60,
@@ -639,7 +639,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Elemental,
+				Type = GlobalDefs.AttackType.Elemental,
 				Accuracy = 0.81,
 				TargetsNeeded = 1,
 				Initiative = 40,
@@ -658,7 +658,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Elemental,
+				Type = GlobalDefs.AttackType.Elemental,
 				Accuracy = 0.82,
 				TargetsNeeded = 1,
 				Initiative = 40,
@@ -677,7 +677,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Mind,
+				Type = GlobalDefs.AttackType.Mind,
 				Accuracy = 0.9,
 				TargetsNeeded = 1,
 				Initiative = 40,
@@ -695,7 +695,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Elemental,
+				Type = GlobalDefs.AttackType.Elemental,
 				Accuracy = 0.84,
 				TargetsNeeded = 1,
 				Initiative = 30,
@@ -714,7 +714,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Physical,
+				Type = GlobalDefs.AttackType.Physical,
 				Accuracy = 0.75,
 				TargetsNeeded = 1,
 				Initiative = 50,
@@ -731,7 +731,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Physical,
+				Type = GlobalDefs.AttackType.Physical,
 				Accuracy = 0.8,
 				TargetsNeeded = 1,
 				Initiative = 50,
@@ -748,7 +748,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 0.5,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Physical,
+				Type = GlobalDefs.AttackType.Physical,
 				Accuracy = 0.8,
 				TargetsNeeded = 1,
 				Initiative = 60,
@@ -757,7 +757,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 0.5,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Physical,
+				Type = GlobalDefs.AttackType.Physical,
 				Accuracy = 0.8,
 				TargetsNeeded = 1,
 				Initiative = 40,
@@ -774,7 +774,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Physical,
+				Type = GlobalDefs.AttackType.Physical,
 				Accuracy = 0.85,
 				TargetsNeeded = 1,
 				Initiative = 70,
@@ -784,7 +784,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Physical,
+				Type = GlobalDefs.AttackType.Physical,
 				Accuracy = 0.85,
 				TargetsNeeded = 1,
 				Initiative = 40,
@@ -794,7 +794,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Physical,
+				Type = GlobalDefs.AttackType.Physical,
 				Accuracy = 0.85,
 				TargetsNeeded = 1,
 				Initiative = 20,
@@ -812,7 +812,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Physical,
+				Type = GlobalDefs.AttackType.Physical,
 				Accuracy = 0.8,
 				TargetsNeeded = 1,
 				Initiative = 60,
@@ -821,7 +821,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Physical,
+				Type = GlobalDefs.AttackType.Physical,
 				Accuracy = 0.9,
 				TargetsNeeded = 1,
 				Initiative = 40,
@@ -838,7 +838,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Life,
+				Type = GlobalDefs.AttackType.Life,
 				Accuracy = 1.0,
 				TargetsNeeded = 1,
 				Initiative = 20,
@@ -855,7 +855,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Life,
+				Type = GlobalDefs.AttackType.Life,
 				Accuracy = 1.0,
 				TargetsNeeded = 1,
 				Initiative = 20,
@@ -873,7 +873,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Life,
+				Type = GlobalDefs.AttackType.Life,
 				Accuracy = 1.0,
 				TargetsNeeded = 1,
 				Initiative = 20,
@@ -890,7 +890,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Life,
+				Type = GlobalDefs.AttackType.Life,
 				Accuracy = 1.0,
 				TargetsNeeded = 1,
 				Initiative = 20,
@@ -908,7 +908,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Life,
+				Type = GlobalDefs.AttackType.Life,
 				Accuracy = 1.0,
 				TargetsNeeded = 1,
 				Initiative = 20,
@@ -925,7 +925,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Life,
+				Type = GlobalDefs.AttackType.Life,
 				Accuracy = 1.0,
 				TargetsNeeded = 1,
 				Initiative = 20,
@@ -943,7 +943,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Life,
+				Type = GlobalDefs.AttackType.Life,
 				Accuracy = 1.0,
 				TargetsNeeded = 1,
 				Initiative = 20,
@@ -958,13 +958,13 @@ var DATABASE := {
 		HP = 100,
 		Armor = 0,
 		Immunities = [
-			EventBus.AttackType.Elemental
+			GlobalDefs.AttackType.Elemental
 		],
 		Attacks = [
 			{
 				DamageMultiplier = 1.0,
 				DamageOverride = false,
-				Type = EventBus.AttackType.Elemental,
+				Type = GlobalDefs.AttackType.Elemental,
 				Accuracy = 1.0,
 				TargetsNeeded = 1,
 				Initiative = 60,
@@ -983,7 +983,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Physical, # GlobalDefs.AttackType
 				Accuracy = 0.8, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 40, # int
@@ -1000,13 +1000,13 @@ var DATABASE := {
 		HP = 120, # int
 		Armor = 0, # int
 		Immunities = [
-			EventBus.AttackType.Life
+			GlobalDefs.AttackType.Life
 		],
 		Attacks = [ # Array[Dictionary]
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Physical, # GlobalDefs.AttackType
 				Accuracy = 0.8, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 40, # int
@@ -1023,13 +1023,13 @@ var DATABASE := {
 		HP = 150, # int
 		Armor = 0, # int
 		Immunities = [
-			EventBus.AttackType.Life
+			GlobalDefs.AttackType.Life
 		],
 		Attacks = [ # Array[Dictionary]
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Physical, # GlobalDefs.AttackType
 				Accuracy = 0.8, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 40, # int
@@ -1046,13 +1046,13 @@ var DATABASE := {
 		HP = 165, # int
 		Armor = 0, # int
 		Immunities = [
-			EventBus.AttackType.Life
+			GlobalDefs.AttackType.Life
 		],
 		Attacks = [ # Array[Dictionary]
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Physical, # GlobalDefs.AttackType
 				Accuracy = 0.8, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 40, # int
@@ -1069,13 +1069,13 @@ var DATABASE := {
 		HP = 180, # int
 		Armor = 0, # int
 		Immunities = [
-			EventBus.AttackType.Life
+			GlobalDefs.AttackType.Life
 		],
 		Attacks = [ # Array[Dictionary]
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Physical, # GlobalDefs.AttackType
 				Accuracy = 0.85, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 40, # int
@@ -1092,13 +1092,13 @@ var DATABASE := {
 		HP = 180, # int
 		Armor = 0, # int
 		Immunities = [
-			EventBus.AttackType.Life
+			GlobalDefs.AttackType.Life
 		],
 		Attacks = [ # Array[Dictionary]
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Physical, # GlobalDefs.AttackType
 				Accuracy = 0.8, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 40, # int
@@ -1119,7 +1119,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Physical, # GlobalDefs.AttackType
 				Accuracy = 0.8, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 40, # int
@@ -1140,7 +1140,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Physical, # GlobalDefs.AttackType
 				Accuracy = 0.8, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 40, # int
@@ -1161,7 +1161,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Physical, # GlobalDefs.AttackType
 				Accuracy = 0.8, # float [0, 1]
 				TargetsNeeded = 2, # int
 				Initiative = 40, # int
@@ -1182,7 +1182,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Elemental, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Elemental, # GlobalDefs.AttackType
 				Accuracy = 0.8, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 40, # int
@@ -1203,7 +1203,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Elemental, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Elemental, # GlobalDefs.AttackType
 				Accuracy = 0.8, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 40, # int
@@ -1224,7 +1224,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Elemental, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Elemental, # GlobalDefs.AttackType
 				Accuracy = 0.8, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 40, # int
@@ -1245,7 +1245,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Mind, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Mind, # GlobalDefs.AttackType
 				Accuracy = 0.8, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 40, # int
@@ -1266,7 +1266,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Mind, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Mind, # GlobalDefs.AttackType
 				Accuracy = 0.8, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 40, # int
@@ -1287,7 +1287,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Elemental, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Elemental, # GlobalDefs.AttackType
 				Accuracy = 0.8, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 50, # int
@@ -1304,13 +1304,13 @@ var DATABASE := {
 		HP = 120, # int
 		Armor = 20, # int
 		Immunities = [
-			EventBus.AttackType.Life
+			GlobalDefs.AttackType.Life
 		],
 		Attacks = [ # Array[Dictionary]
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Life, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Life, # GlobalDefs.AttackType
 				Accuracy = 0.8, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 50, # int
@@ -1327,13 +1327,13 @@ var DATABASE := {
 		HP = 150, # int
 		Armor = 30, # int
 		Immunities = [
-			EventBus.AttackType.Life
+			GlobalDefs.AttackType.Life
 		],
 		Attacks = [ # Array[Dictionary]
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Life, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Life, # GlobalDefs.AttackType
 				Accuracy = 0.8, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 50, # int
@@ -1350,13 +1350,13 @@ var DATABASE := {
 		HP = 150, # int
 		Armor = 30, # int
 		Immunities = [
-			EventBus.AttackType.Life
+			GlobalDefs.AttackType.Life
 		],
 		Attacks = [ # Array[Dictionary]
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Physical, # GlobalDefs.AttackType
 				Accuracy = 0.9, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 50, # int
@@ -1373,13 +1373,13 @@ var DATABASE := {
 		HP = 105, # int
 		Armor = 10, # int
 		Immunities = [
-			EventBus.AttackType.Life
+			GlobalDefs.AttackType.Life
 		],
 		Attacks = [ # Array[Dictionary]
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Elemental, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Elemental, # GlobalDefs.AttackType
 				Accuracy = 0.83, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 40, # int
@@ -1397,13 +1397,13 @@ var DATABASE := {
 		HP = 125, # int
 		Armor = 15, # int
 		Immunities = [
-			EventBus.AttackType.Life
+			GlobalDefs.AttackType.Life
 		],
 		Attacks = [ # Array[Dictionary]
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Elemental, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Elemental, # GlobalDefs.AttackType
 				Accuracy = 0.85, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 40, # int
@@ -1425,7 +1425,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 0.0, # float
 				DamageOverride = true, # bool
-				Type = EventBus.AttackType.Mind, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Mind, # GlobalDefs.AttackType
 				Accuracy = 0.5, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 40, # int
@@ -1446,7 +1446,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 0.0, # float
 				DamageOverride = true, # bool
-				Type = EventBus.AttackType.Mind, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Mind, # GlobalDefs.AttackType
 				Accuracy = 0.6, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 40, # int
@@ -1463,13 +1463,13 @@ var DATABASE := {
 		HP = 125, # int
 		Armor = 120, # int
 		Immunities = [
-			EventBus.AttackType.Mind
+			GlobalDefs.AttackType.Mind
 		],
 		Attacks = [ # Array[Dictionary]
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Mind, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Mind, # GlobalDefs.AttackType
 				Accuracy = 0.6, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 40, # int
@@ -1486,13 +1486,13 @@ var DATABASE := {
 		HP = 125, # int
 		Armor = 120, # int
 		Immunities = [
-			EventBus.AttackType.Mind
+			GlobalDefs.AttackType.Mind
 		],
 		Attacks = [ # Array[Dictionary]
 			{
 				DamageMultiplier = 0.0, # float
 				DamageOverride = true, # bool
-				Type = EventBus.AttackType.Mind, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Mind, # GlobalDefs.AttackType
 				Accuracy = 0.5, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 40, # int
@@ -1509,13 +1509,13 @@ var DATABASE := {
 		HP = 140, # int
 		Armor = 140, # int
 		Immunities = [
-			EventBus.AttackType.Mind
+			GlobalDefs.AttackType.Mind
 		],
 		Attacks = [ # Array[Dictionary]
 			{
 				DamageMultiplier = 0.0, # float
 				DamageOverride = true, # bool
-				Type = EventBus.AttackType.Mind, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Mind, # GlobalDefs.AttackType
 				Accuracy = 0.72, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 40, # int
@@ -1532,13 +1532,13 @@ var DATABASE := {
 		HP = 155, # int
 		Armor = 150, # int
 		Immunities = [
-			EventBus.AttackType.Mind
+			GlobalDefs.AttackType.Mind
 		],
 		Attacks = [ # Array[Dictionary]
 			{
 				DamageMultiplier = 0.0, # float
 				DamageOverride = true, # bool
-				Type = EventBus.AttackType.Mind, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Mind, # GlobalDefs.AttackType
 				Accuracy = 0.55, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 40, # int
@@ -1556,13 +1556,13 @@ var DATABASE := {
 		HP = 200, # int
 		Armor = 15, # int
 		#Immunities = [
-			#EventBus.AttackType.Mind
+			#GlobalDefs.AttackType.Mind
 		#],
 		Attacks = [ # Array[Dictionary]
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Physical, # GlobalDefs.AttackType
 				Accuracy = 0.8, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 30, # int
@@ -1579,13 +1579,13 @@ var DATABASE := {
 		HP = 235, # int
 		Armor = 25, # int
 		#Immunities = [
-			#EventBus.AttackType.Mind
+			#GlobalDefs.AttackType.Mind
 		#],
 		Attacks = [ # Array[Dictionary]
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Physical, # GlobalDefs.AttackType
 				Accuracy = 0.82, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 30, # int
@@ -1602,13 +1602,13 @@ var DATABASE := {
 		HP = 260, # int
 		Armor = 35, # int
 		#Immunities = [
-			#EventBus.AttackType.Mind
+			#GlobalDefs.AttackType.Mind
 		#],
 		Attacks = [ # Array[Dictionary]
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Elemental, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Elemental, # GlobalDefs.AttackType
 				Accuracy = 0.85, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 30, # int
@@ -1625,13 +1625,13 @@ var DATABASE := {
 		HP = 280, # int
 		Armor = 45, # int
 		Immunities = [
-			EventBus.AttackType.Life
+			GlobalDefs.AttackType.Life
 		],
 		Attacks = [ # Array[Dictionary]
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Elemental, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Elemental, # GlobalDefs.AttackType
 				Accuracy = 0.875, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 30, # int
@@ -1648,13 +1648,13 @@ var DATABASE := {
 		HP = 300, # int
 		Armor = 55, # int
 		Immunities = [
-			EventBus.AttackType.Life
+			GlobalDefs.AttackType.Life
 		],
 		Attacks = [ # Array[Dictionary]
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Elemental, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Elemental, # GlobalDefs.AttackType
 				Accuracy = 0.9, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 30, # int
@@ -1674,7 +1674,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Physical, # GlobalDefs.AttackType
 				Accuracy = 0.85, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 40, # int
@@ -1694,7 +1694,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Physical, # GlobalDefs.AttackType
 				Accuracy = 0.9, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 40, # int
@@ -1716,7 +1716,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Physical, # GlobalDefs.AttackType
 				Accuracy = 0.75, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 30, # int
@@ -1736,7 +1736,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Physical, # GlobalDefs.AttackType
 				Accuracy = 0.8, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 35, # int
@@ -1756,7 +1756,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Physical, # GlobalDefs.AttackType
 				Accuracy = 0.8, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 40, # int
@@ -1776,7 +1776,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Physical, # GlobalDefs.AttackType
 				Accuracy = 0.8, # float [0, 1]
 				TargetsNeeded = 2, # int
 				Initiative = 35, # int
@@ -1796,7 +1796,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Physical, # GlobalDefs.AttackType
 				Accuracy = 0.85, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 35, # int
@@ -1816,7 +1816,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Physical, # GlobalDefs.AttackType
 				Accuracy = 0.88, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 55, # int
@@ -1836,7 +1836,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Physical, # GlobalDefs.AttackType
 				Accuracy = 0.88, # float [0, 1]
 				TargetsNeeded = 1, # int
 				Initiative = 55, # int
@@ -1856,7 +1856,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Physical, # GlobalDefs.AttackType
 				Accuracy = 0.9, # float [0, 1]
 				TargetsNeeded = 2, # int
 				Initiative = 55, # int
@@ -1876,7 +1876,7 @@ var DATABASE := {
 			{
 				DamageMultiplier = 1.0, # float
 				DamageOverride = false, # bool
-				Type = EventBus.AttackType.Physical, # EventBus.AttackType
+				Type = GlobalDefs.AttackType.Physical, # GlobalDefs.AttackType
 				Accuracy = 0.95, # float [0, 1]
 				TargetsNeeded = 2, # int
 				Initiative = 65, # int
