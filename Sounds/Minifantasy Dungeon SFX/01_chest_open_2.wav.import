@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cihgj7g2o1344"
+path="res://.godot/imported/01_chest_open_2.wav-3ed5da64ed354694570a81148b35c538.sample"
+
+[deps]
+
+source_file="res://Sounds/Minifantasy Dungeon SFX/01_chest_open_2.wav"
+dest_files=["res://.godot/imported/01_chest_open_2.wav-3ed5da64ed354694570a81148b35c538.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

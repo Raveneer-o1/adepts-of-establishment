@@ -57,7 +57,7 @@ const SKIP_DELAY = 0.4
 @onready var animation_handle: UnitAnimationsHandle = get_node("AnimationHandle")
 @onready var spot: UnitSpot = get_parent()
 @onready var effect_icons_container: HBoxContainer = $EffectIconsContainer
-
+@onready var sound_player: SoundPlayer = $SoundPlayer
 
 #region Variables
 
@@ -228,18 +228,22 @@ func finalize_attack() -> void:
 	if attack_to_finalize.type != GlobalDefs.AttackType.None and \
 			parameters.immunities.has(attack_to_finalize.type):
 		system.display_text_near_unit(self, "Immunity")
+		sound_player.play_immunity_sound()
 		return
 	
+	if shielded_attacks.has(
+			attack_to_finalize.original if attack_to_finalize.original else attack_to_finalize
+		):
+			system.display_text_near_unit(self, "Shield!")
+			sound_player.play_shield_sound()
+			return
+		
 	var chance: float = randf()
 	
 	if attack_to_finalize.accuracy < chance:
 		system.display_text_near_unit(self, "Miss!")
 		EventBus.attack_missed.emit(self, attack_to_finalize)
-		return
-	
-	if shielded_attacks.has(attack_to_finalize):
-		system.display_text_near_unit(self, "Shield!")
-		#EventBus.attack_shieled.emit(self, attack_to_finalize)
+		sound_player.play_miss_sound()
 		return
 	
 	if attack_to_finalize.evadable:
@@ -249,6 +253,7 @@ func finalize_attack() -> void:
 		if parameters.evasion > chance:
 			EventBus.attack_evaded.emit(self, attack_to_finalize)
 			system.display_text_near_unit(self, "Evaded!")
+			sound_player.play_evade_sound()
 			return
 	
 	# apply effects if any are present
@@ -260,9 +265,11 @@ func finalize_attack() -> void:
 			)
 	
 	var damage_to_take: int = \
-			attack_to_finalize.damages[spot] if attack_to_finalize.damages.has(spot) \
-			else attack_to_finalize.default_damage
+		attack_to_finalize.damages[spot] if attack_to_finalize.damages.has(spot) \
+		else attack_to_finalize.default_damage
 	var damage_taken: int = take_damage(damage_to_take)
+	if damage_taken > 0: sound_player.play_damage_sound()
+	
 	if attack_to_finalize.original:
 		attack_to_finalize.original.applied_damage += damage_taken;
 	else:
@@ -380,11 +387,11 @@ func _force_arbitrary_attack(target: Unit, attack: UnitAttack) -> Attack:
 ## Forces a unit to perform the specified [param attack] on [param target],
 ## bypassing target validation and the normal attack order.[br][br]
 ## If [param native_attack] is set to [code]true[/code]:[br]
-## * The unit will only attack if [param attack] is one of its own attacks.[br]
-## * [param attack] is removed from the attack queue.[br]
+## * The unit will only attack if [param attack] is one of its own attacks or [code]null[/code].[br]
 ## * If [param attack] is [code]null[/code], the unit uses its closest available attack, if any.[br][br]
+## * Performed attack is removed from the attack queue.[br]
 ## If [param native_attack] is set to [code]false[/code], the attack is performed "out of nowhere,"
-## meaning it is not removed from any unit's list and is not removed from the queue.
+## meaning it is not removed from any lists and is not removed from the queue.
 ## If [param attack] is [code]null[/code], the unit uses a copy of its closest available attack.
 func force_attack(target: Unit, native_attack: bool = true, attack: UnitAttack = null) -> void:
 	var atk: Attack = null
@@ -402,6 +409,7 @@ func force_attack(target: Unit, native_attack: bool = true, attack: UnitAttack =
 	
 	atk.tags.append(&"forced")
 	
+	sound_player.play_attack_sound()
 	animation_handle.play_attack_animation()
 	system.combat_logic.book_damage(atk)
 
@@ -411,6 +419,7 @@ func start_attacking() -> void:
 		return
 	defence_stance = false
 	animation_handle.play_attack_animation()
+	sound_player.play_attack_sound()
 	
 	var attack: Attack = create_attack(current_attack, chosen_spots.duplicate())
 	

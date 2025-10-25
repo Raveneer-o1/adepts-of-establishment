@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://7i00r1q8mdlb"
+path="res://.godot/imported/10_human_special_atk_1.wav-26f9b2b49008a598c74538a9e71d830b.sample"
+
+[deps]
+
+source_file="res://Sounds/Minifantasy Dungeon SFX/10_human_special_atk_1.wav"
+dest_files=["res://.godot/imported/10_human_special_atk_1.wav-26f9b2b49008a598c74538a9e71d830b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

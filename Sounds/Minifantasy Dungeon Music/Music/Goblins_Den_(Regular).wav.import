@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b2yepagfq0mh2"
+path="res://.godot/imported/Goblins_Den_(Regular).wav-7e06a1b881e78b6918f0703322878c9b.sample"
+
+[deps]
+
+source_file="res://Sounds/Minifantasy Dungeon Music/Music/Goblins_Den_(Regular).wav"
+dest_files=["res://.godot/imported/Goblins_Den_(Regular).wav-7e06a1b881e78b6918f0703322878c9b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

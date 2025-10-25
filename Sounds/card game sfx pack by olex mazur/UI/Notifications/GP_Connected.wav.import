@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://hjncvep2fjmi"
+path="res://.godot/imported/GP_Connected.wav-af14abb5f1050bd36bcc8fdc35b9d44b.sample"
+
+[deps]
+
+source_file="res://Sounds/card game sfx pack by olex mazur/UI/Notifications/GP_Connected.wav"
+dest_files=["res://.godot/imported/GP_Connected.wav-af14abb5f1050bd36bcc8fdc35b9d44b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bpmifyluimo2v"
+path="res://.godot/imported/05_door_open_2.mp3-04bdc0dcfdcc3b9e1e815a91317b1e04.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Minifantasy Dungeon SFX/05_door_open_2.mp3"
+dest_files=["res://.godot/imported/05_door_open_2.mp3-04bdc0dcfdcc3b9e1e815a91317b1e04.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

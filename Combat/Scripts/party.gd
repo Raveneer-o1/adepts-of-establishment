@@ -42,7 +42,7 @@ func check_if_empty() -> bool:
 func get_units_at_positions(positions: Array[int], include_nulls: bool = true) -> Array[Unit]:
 	var result: Array[Unit] = []
 	for i in positions:
-		if i < 0 or i > units.size():
+		if i < 0 or i >= units.size():
 			if include_nulls: result.append(null)
 			continue
 		

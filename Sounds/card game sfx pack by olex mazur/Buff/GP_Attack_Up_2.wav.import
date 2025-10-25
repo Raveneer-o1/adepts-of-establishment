@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cxti7sw334cs7"
+path="res://.godot/imported/GP_Attack_Up_2.wav-f08d7417f93b2644aa3f7ceeff54d77e.sample"
+
+[deps]
+
+source_file="res://Sounds/card game sfx pack by olex mazur/Buff/GP_Attack_Up_2.wav"
+dest_files=["res://.godot/imported/GP_Attack_Up_2.wav-f08d7417f93b2644aa3f7ceeff54d77e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

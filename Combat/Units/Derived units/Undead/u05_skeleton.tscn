@@ -143,6 +143,7 @@ frames_to_emit = Array[int]([4])
 [node name="UnitParameters" parent="." index="1"]
 level = 3
 base_paramaters = SubResource("Resource_b51no")
+immunities = Array[int]([3])
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
 script = ExtResource("5_7e62a")

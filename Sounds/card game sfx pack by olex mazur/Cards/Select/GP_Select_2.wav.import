@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://jvgoieju0yo4"
+path="res://.godot/imported/GP_Select_2.wav-db068d45a1618de21f0604c610b3473c.sample"
+
+[deps]
+
+source_file="res://Sounds/card game sfx pack by olex mazur/Cards/Select/GP_Select_2.wav"
+dest_files=["res://.godot/imported/GP_Select_2.wav-db068d45a1618de21f0604c610b3473c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

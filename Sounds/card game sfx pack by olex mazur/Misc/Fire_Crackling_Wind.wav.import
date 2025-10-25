@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://buua5f2bxx1jb"
+path="res://.godot/imported/Fire_Crackling_Wind.wav-17da3e1ac82d2c34e98f14d2657c1b4d.sample"
+
+[deps]
+
+source_file="res://Sounds/card game sfx pack by olex mazur/Misc/Fire_Crackling_Wind.wav"
+dest_files=["res://.godot/imported/Fire_Crackling_Wind.wav-17da3e1ac82d2c34e98f14d2657c1b4d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

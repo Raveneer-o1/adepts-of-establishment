@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://jda6ps4d3gx5"
+path="res://.godot/imported/UI_Metal_2.wav-a13f46fa2f4cdb7e57ee141a479dd47a.sample"
+
+[deps]
+
+source_file="res://Sounds/card game sfx pack by olex mazur/UI/UI_Metal_2.wav"
+dest_files=["res://.godot/imported/UI_Metal_2.wav-a13f46fa2f4cdb7e57ee141a479dd47a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
