@@ -73,8 +73,10 @@ const TIME_TO_END = 2.5
 @export var right_player: PlayerAPI
 
 
-## Offsets for a label placement. If you use random positioning, labels are
-## too often very close to each other and become unreadable
+## Predefined positions for label placement to prevent overlap.[br]
+## Using random positioning often results in labels being too close, making them unreadable.[br]
+## This array is shuffled at game start. 
+## Use the getter [member label_position] to retrieve positions sequentially.
 var label_positions : Array[Vector2] = [
 	Vector2(0.0, _DISTANCE_TO_LABEL),
 	Vector2(0.0, -_DISTANCE_TO_LABEL),
@@ -89,13 +91,14 @@ var label_positions : Array[Vector2] = [
 var label_positions_length: int = label_positions.size()
 var current_label_position: int = 0
 
+## This getter advances [member current_label_position] and returns the next 
+## position from [member label_positions]
 var label_position: Vector2:
 	get:
 		current_label_position += 1
 		current_label_position = current_label_position % label_positions_length
 		return label_positions[current_label_position]
 
-## Loaded unit resources and highlighted units
 var loaded_units: Dictionary = {}
 var highlighted_units: Array[UnitSpot] = []
 
@@ -156,19 +159,10 @@ func check_winner(_unit: Unit = null) -> void:
 	var right_empty := right_party.check_if_empty()
 	if left_empty and right_empty:
 		win_label.text = WIN_LABEL_LINE % "Tie!"
-		#combat_logic.end_battle()
-		#start_end_countdown()
-		#return
 	elif left_empty:
 		win_label.text = WIN_LABEL_LINE % "Right wins!"
-		#combat_logic.end_battle()
-		#start_end_countdown()
-		#return
 	elif right_empty:
 		win_label.text = WIN_LABEL_LINE % "Left wins!"
-		#combat_logic.end_battle()
-		#start_end_countdown()
-		#return
 	else:
 		return
 	combat_logic.end_battle()
@@ -361,20 +355,19 @@ func _ready() -> void:
 
 #region Utilities
 
-## Clears [signal EventBus.attack_concluded] connections. This is needed to clear the
-## effects that rely on the attack conclusion
+## Clears connections from [signal EventBus.attack_concluded] and 
+## [signal EventBus.attack_animation_finished].
+## This ensures effects disconnect from these signals and prevents unwanted trigger accumulation.
+## Allows effect design without manual connection cleanup.
 func clear_emittings(unit: Unit) -> void:
 	for d: Dictionary in EventBus.attack_concluded.get_connections():
 		var c: Callable = d.callable
 		EventBus.attack_concluded.disconnect(c)
-		#print_debug(c.get_method())
 	EventBus.attack_concluded.connect(clear_emittings)
 	
 	for d: Dictionary in EventBus.attack_animation_finished.get_connections():
 		var c: Callable = d.callable
 		EventBus.attack_animation_finished.disconnect(c)
-		#print_debug(c.get_method())
-	#print_debug("=======")
 	EventBus.attack_animation_finished.connect(check_finished_animation)
 
 func find_targets_for_attack(attack: UnitAttack) -> Array[UnitSpot]:

@@ -83,8 +83,12 @@ func set_queue() -> void:
 
 
 func check_dead_unit(unit: Unit) -> void:
+	if not unit.parameters.dead: return
 	var attacks_to_remove: Array[UnitAttack] = []
 	
+	# Iterate through attacks_queue instead of unit.attacks_for_this_round for robustness:
+	# attacks_for_this_round could theoretically be out of sync with attacks_queue
+	# (e.g., when adding a new attack to the unit)
 	for attack in attacks_queue:
 		if attack != null and \
 				attack.unit == unit:

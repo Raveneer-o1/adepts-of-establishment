@@ -63,7 +63,7 @@ const ICONS := preload("res://Arts/icons.png")
 
 ## When [member stackable] is [code]true[/code], defines the maximum stack count:[br]
 ## [b]-1[/b]: Unlimited stacks[br]
-## [b]0[/b]: [color=red]WARNING[/color] Effect becomes impossible to apply[br]
+## [b]0[/b]: [color=yellow]Warning[/color]: Effect becomes impossible to apply[br]
 ## [b]>0[/b]: Exact maximum simultaneous instances[br]
 @export var stack_limit: int = -1
 

@@ -77,6 +77,11 @@ var targets: Array[Unit]:
 		return result
 var effect: Resource
 
+## Number of targets selected by the player. Used for animation synchronization.[br]
+## The first [b]targets_chosen[/b] damage numbers will display as [signal EventBus.attack_reached]
+## signals are emitted, while all other effects are applied simultaneously with the last finalization.
+var targets_chosen: int = 1
+
 var evadable: bool
 
 ## Dictionary containing elements in the format: <effect_name: String, params: Variant>[br]
@@ -86,7 +91,10 @@ var evadable: bool
 ## within the respective effect class.
 var applying_effects: Dictionary
 
-## Function with a signature [codeblock](attacker: Unit, target: Unit, index: int, finalize: bool) -> void[/codeblock]
+## Function with a signature
+## [codeblock]
+## (attacker: Unit, target: Unit, index: int, finalize: bool) -> void
+## [/codeblock]
 ## Overrides [method Attack.resolve] and applies to all targets using their indexes
 var damage_policy: BasePolicy
 
@@ -112,7 +120,8 @@ func resolve(finalize: bool = false) -> void:
 	var i := 1
 	for target in targets:
 		target.resolve_attack(self, i, finalize)
-		i += 1
+		if i < targets_chosen:
+			i += 1
 
 func set_parameters(attack: UnitAttack) -> void:
 	damage_policy = attack.damage_policy
@@ -135,6 +144,7 @@ func duplicate() -> Attack:
 	if applying_effects:
 		result.applying_effects = applying_effects
 	result.original = original if original else self
+	result.targets_chosen = targets_chosen
 	return result
 
 func __init_via_Attack(attack: Attack) -> void:
@@ -144,6 +154,7 @@ func __init_via_Attack(attack: Attack) -> void:
 	evadable = attack.evadable
 	effect = attack.effect
 	validation = attack.validation
+	targets_chosen = attack.targets_chosen
 
 func __init_via_UnitAttack(_unit_attack: UnitAttack, eff: Resource) -> void:
 	type = _unit_attack.type
@@ -151,6 +162,7 @@ func __init_via_UnitAttack(_unit_attack: UnitAttack, eff: Resource) -> void:
 	accuracy = _unit_attack.accuracy
 	evadable = _unit_attack.evadable
 	validation = _unit_attack.target_validation
+	targets_chosen = _unit_attack.targets_needed
 	
 	if _unit_attack.effect_override:
 		effect = _unit_attack.effect_override
