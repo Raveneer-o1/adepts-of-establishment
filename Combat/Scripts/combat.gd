@@ -46,6 +46,7 @@ extends Node2D
 
 # Temporary label scene for displaying text near units
 const TEMP_LABEL = preload("res://Combat/Scenes/TempLabel.tscn")
+
 const _DISTANCE_TO_LABEL = 45.0
 const SQRT_2 = sqrt(2.0)
 const UNIT_SPOT = preload("res://Combat/Scenes/unit_spot.tscn")
@@ -361,6 +362,8 @@ func _ready() -> void:
 
 #region Utilities
 
+## Clears [signal EventBus.attack_concluded] connections. This is needed to clear the
+## effects that rely on the attack conclusion
 func clear_emittings(unit: Unit) -> void:
 	for c: Dictionary in EventBus.attack_concluded.get_connections():
 		EventBus.attack_concluded.disconnect(c.callable)
@@ -370,7 +373,7 @@ func find_targets_for_attack(attack: UnitAttack) -> Array[UnitSpot]:
 	if attack == null:
 		return []
 	if not attack.target_validation:
-		print_debug("Trying to address empty target!")
+		print_debug("Trying to address empty target validation!")
 		return []
 	
 	var result: Array[UnitSpot] = []
@@ -384,7 +387,6 @@ func find_targets_for_attack(attack: UnitAttack) -> Array[UnitSpot]:
 	
 	return result
 
-## 18. What is the difference between `find_targets_for_attack()` and `find_avaliable_targets()`?
 func find_avaliable_targets(unit: Unit = current_unit) -> Array[UnitSpot]:
 	if unit == null:
 		return []
@@ -400,7 +402,7 @@ func end_scene() -> void:
 		get_tree().change_scene_to_packed(EventBus.packed_menu)
 
 
-## Starts a timer for [member CombatSystem.TIME_TO_END] seconds.
+## Starts a timer for [member TIME_TO_END] seconds.
 ## On timeout loads menu scene.
 func start_end_countdown() -> void:
 	if timer != null:

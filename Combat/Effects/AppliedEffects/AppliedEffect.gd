@@ -6,7 +6,7 @@ class_name AppliedEffect
 ##
 ## Note: [AppliedEffect] references can become invalid at any time since these are non-deterministic objects.
 ## This even applies to applying new effects. Some effects (like cure) call [code]queue_free()[/code] 
-## on themselves in [method _apply_effect] [br]
+## on themselves in [method initialize] [br]
 ## This node attaches directly to a unit's [UnitParameters] node. Remove it using either: [br]
 ## - [method lift_effect] for normal removal [br]
 ## - [code]queue_free()[/code] to remove without triggering associated effects [br]
@@ -70,18 +70,16 @@ const ICONS := preload("res://Arts/icons.png")
 ## The unit to which this effect is attached.
 var target_unit: Unit
 
-## Stores pairs of signals an assosiated functions. Intended to be overridden is the derived classes
+## Stores pairs of signals and assosiated functions. Intended to be overridden is the derived classes
 var _signal_function_pairs: Dictionary
 
 func _get_description() -> String:
 	return description
 
-## Called when the effect is applied to a unit.
 func _apply_effect(params: Variant) -> void:
 	# Override this method in derived classes to define the effect's behavior when applied.
 	pass
 
-## Internal cleanup when the effect is removed.
 func _remove_effect() -> void:
 	pass
 

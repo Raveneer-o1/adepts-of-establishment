@@ -197,7 +197,6 @@ func initialize_effects() -> void:
 func end_battle() -> void:
 	if not battle_in_progress:
 		return
-	#main_system.check_winner()
 	print("The battle is over!")
 	main_system.win_label.visible = true
 	battle_in_progress = false
@@ -214,9 +213,10 @@ func book_damage(attack: Attack, emit: bool = true) -> void:
 	if emit:
 		EventBus.attack_booked.emit(attack)
 	
-	##  If the attack has an associated effect, instantiate it and apply it to the target.
 	if attack.effect == null:
 		return
+	
+	# If the attack has an associated effect, instantiate it and apply it to the target.
 	for target in attack.targets:
 		var effect_object := attack.effect.instantiate() as TemporaryEffect
 		target.add_child(effect_object)
@@ -255,7 +255,6 @@ func resolve_closest_attack(unit: Unit) -> void:
 			attack = a
 			break
 	if attack == null:
-		#print_debug(unit.unit_name + " doesn't have booked attacks!")
 		return
 	resolve_attack(attack)
 #endregion
