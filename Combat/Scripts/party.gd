@@ -36,18 +36,22 @@ func check_if_empty() -> bool:
 			return false
 	return true
 
-## Returns references to units at specified positions.
-## - Empty spaces and dead units are skipped.
-## - Out-of-bounds positions return null.
+## Returns references to units at specified [params positions]. [br]
+## - Empty spaces and dead units are skipped. [br]
+## - Out-of-bounds positions return null if [param include_nulls] is [code]true[/code].
 func get_units_at_positions(positions: Array[int], include_nulls: bool = true) -> Array[Unit]:
 	var result: Array[Unit] = []
 	for i in positions:
-		if i >= 0 and i < units.size():
-			if units[i] != null and not units[i].parameters.dead:
-				result.append(units[i])
-		else:
-			if include_nulls:
-				result.append(null)
+		if i < 0 or i > units.size():
+			if include_nulls: result.append(null)
+			continue
+		
+		if not units[i]: continue
+		if units[i].parameters.dead: continue
+		if units[i] in result: continue
+		
+		result.append(units[i])
+	
 	return result
 
 func get_adjacent_units(pos: int) -> Array[Unit]:

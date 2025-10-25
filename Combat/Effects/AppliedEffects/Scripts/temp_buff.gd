@@ -60,41 +60,39 @@ func apply_modifier() -> void:
 				return roundi(float(value) * multiplier + strength)
 	)
 
-# Attempts to initialize the effect's parameters from a dictionary
-# returns if initialization was succsessful
+## Attempts to initialize the effect's parameters from a dictionary
+## returns if initialization was succsessful
 func try_init_params(params: Variant) -> bool:
-	if params is Dictionary:
-		# Check and initialize "parameter" if present
-		var p : StringName = &"parameter"
-		if params.has(p):
-			if PARAMETERS_NAMES.has(params[p]):
-				_parameter = params[p]
-			else:
-				# Log a debug message if an unknown parameter is provided
-				print_debug("Unknown parameter '%s' for 'temporary buff' effect." % params[p])
-				return false
-		
-		# Check and initialize "turns" if present
-		p = &"turns"
-		if params.has(p):
-			turns = params[p]
-		
-		# Check and initialize "strength" if present
-		p = &"strength"
-		if params.has(p):
-			strength = params[p]
-		
-		# Check and initialize "multiplier" if present
-		p = &"multiplier"
-		if params.has(p):
-			multiplier = params[p]
-		
-		
-	else:
-		# Log a debug message if the input is not a Dictionary
+	if params is not Dictionary:
 		print_debug("Invalid parameter for 'temporary buff' effect. \
 				Expected Dictionary, found %s!" % type_string(typeof(params)))
 		return false
+	
+	# Check and initialize "parameter" if present
+	var p : StringName = &"parameter"
+	if params.has(p):
+		if PARAMETERS_NAMES.has(params[p]):
+			_parameter = params[p]
+		else:
+			# Log a debug message if an unknown parameter is provided
+			print_debug("Unknown parameter '%s' for 'temporary buff' effect." % params[p])
+			print_stack()
+			return false
+	
+	# Check and initialize "turns" if present
+	p = &"turns"
+	if params.has(p):
+		turns = params[p]
+	
+	# Check and initialize "strength" if present
+	p = &"strength"
+	if params.has(p):
+		strength = params[p]
+	
+	# Check and initialize "multiplier" if present
+	p = &"multiplier"
+	if params.has(p):
+		multiplier = params[p]
 	
 	return true
 

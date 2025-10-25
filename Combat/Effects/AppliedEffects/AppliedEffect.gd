@@ -161,7 +161,7 @@ func initialize(params: Variant = null) -> void:
 		if target_unit.parameters.have_effect(effect_name, self):
 			queue_free()
 			return
-		
+	
 	# Stackable effect handling: Enforce maximum instance limit
 	else:
 		# Count existing instances of this effect (excluding current pending instance)
@@ -171,7 +171,6 @@ func initialize(params: Variant = null) -> void:
 		if stack_limit != -1 and effect_count >= stack_limit:
 			queue_free()
 			return
-	
 	
 	_apply_effect(params)
 	connect_callables()

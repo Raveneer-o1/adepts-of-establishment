@@ -17,7 +17,7 @@ func trigger_effect(unit: Unit, attack: Attack) -> void:
 		return
 	
 	var params: Dictionary = {
-		"parameter": &"base_damage",
+		"parameter": &"Attack",
 		"turns": turns,
 		"multiplier": buff
 	}

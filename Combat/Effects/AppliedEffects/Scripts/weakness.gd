@@ -24,8 +24,10 @@ func _apply_effect(params: Variant) -> void:
 			damage_decrease = params[1]
 		else:
 			print_debug("Invalid number parameter for a '%s' effect. Expected 2, found %d!" % [effect_name, params.size()])
+			print_stack()
 	else:
 		print_debug("Invalid parameter for a '%s' effect. Expected array, found %s!" % [ effect_name, type_string(typeof(params)) ] )
+		print_stack()
 	
 	if turns <= 0:
 		lift_effect()
@@ -33,9 +35,8 @@ func _apply_effect(params: Variant) -> void:
 	
 	_signal_function_pairs[EventBus.turn_started] = count_turn
 	
-	
 	target_unit.parameters.add_modifier(
-		"base_damage",
+		&"base_damage",
 		self, 
 		func (damage: int) -> int:
 			return damage - damage_decrease)
