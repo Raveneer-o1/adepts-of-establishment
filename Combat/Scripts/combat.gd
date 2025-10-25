@@ -311,7 +311,6 @@ func check_refs_validity() -> bool:
 		print_debug("Right player is not found!")
 		are_refs_valid = false
 	
-	
 	return are_refs_valid
 
 func initialize_variables() -> void:
@@ -365,9 +364,18 @@ func _ready() -> void:
 ## Clears [signal EventBus.attack_concluded] connections. This is needed to clear the
 ## effects that rely on the attack conclusion
 func clear_emittings(unit: Unit) -> void:
-	for c: Dictionary in EventBus.attack_concluded.get_connections():
-		EventBus.attack_concluded.disconnect(c.callable)
+	for d: Dictionary in EventBus.attack_concluded.get_connections():
+		var c: Callable = d.callable
+		EventBus.attack_concluded.disconnect(c)
+		#print_debug(c.get_method())
 	EventBus.attack_concluded.connect(clear_emittings)
+	
+	for d: Dictionary in EventBus.attack_animation_finished.get_connections():
+		var c: Callable = d.callable
+		EventBus.attack_animation_finished.disconnect(c)
+		#print_debug(c.get_method())
+	#print_debug("=======")
+	EventBus.attack_animation_finished.connect(check_finished_animation)
 
 func find_targets_for_attack(attack: UnitAttack) -> Array[UnitSpot]:
 	if attack == null:

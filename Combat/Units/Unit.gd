@@ -144,7 +144,7 @@ func initialize_variables() -> bool:
 	EventBus.turn_ended.connect(clean_effects)
 	EventBus.round_started.connect(arrange_attacks_and_set_next)
 	EventBus.attack_reached.connect(check_taking_damage)
-	EventBus.attack_animation_finished.connect(finalize_all_attacks)
+	#EventBus.attack_animation_finished.connect(finalize_all_attacks)
 	
 	initialized = true
 	return true
@@ -211,7 +211,7 @@ func skip_attack(message: String = "", color: Color = Color.WHITE) -> void:
 
 
 ## Applies damages from all taking_damage_attacks
-func finalize_all_attacks(_unit: Unit) -> void:
+func finalize_all_attacks() -> void:
 	while taking_damage_attacks.size() > 0:
 		finalize_attack()
 	taking_damage_delays.clear()
