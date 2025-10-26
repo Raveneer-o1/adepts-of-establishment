@@ -1,0 +1,661 @@
+graph LR
+classDef desc fill:#0000,stroke:#0000,stroke-width:0px;
+classDef subgraphnode fill:#000,stroke:#81B1DB
+subgraph Empire
+    subgraph Warriors
+        direction TB
+        subgraph Squire
+            Squire_d("
+            Standard melee unit.
+            Normal hp and attack, no special effects
+            "):::desc
+        end
+        
+        %% Level 2
+        subgraph Knight
+            Knight_d("
+            increased armor
+            taunt
+            "):::desc
+        end
+        subgraph Witch_Hunter
+            Witch_Hunter_d("
+            increased evasion
+            "):::desc
+        end
+
+        %% Level 3
+        subgraph Knight_Master
+            Knight_Master_d("
+            increased armor x2
+            taunt
+            once every three rounds can force all adjacent enemies to attack this unit;
+            this inceases significantly inceases armor
+            "):::desc
+        end
+        subgraph Horseman
+            Horseman_d("
+            increased armor
+            two turns: the first with increased initiative
+            if standing in the back line, can move to an empty front position to attack
+            "):::desc
+        end
+        
+        subgraph Inquisitor
+            Inquisitor_d("
+            increased evasion
+            damage type *'None'* (no immunities or shields)
+            "):::desc
+        end
+        subgraph Samurai
+            Samurai_d("
+            increased evasion x2
+            double attack
+            "):::desc
+        end
+
+        %% Level 4
+        subgraph Royal_Cavalier
+            Royal_Cavalier_d("
+            increased armor
+            three turns: the first with increased initiative
+            if standing in the back line, can move to an empty front position to attack
+            when this unit moves, its evasion is inceased by 50%
+            "):::desc
+        end
+        subgraph Angel_Knight
+            Angel_Knight_d("
+            increased armor x2
+            taunt
+            heals nearby allies at the start of its turn
+            two turns
+            once every two rounds can force all enemies to attack this unit;
+            this inceases significantly inceases armor
+            the first damage that would kill this unit, leaves it with 1 HP instead
+            "):::desc
+        end
+        
+        subgraph Grand_Inquisitor
+            Grand_Inquisitor_d("
+            increased evasion
+            damage type *'None'* (no immunities or shields)
+            retaliation upon getting a debuff
+            "):::desc
+        end
+        subgraph Blade_Saint
+            Blade_Saint_d("
+            increased evasion x3
+            double attack
+            each hit increases damage, resets when attack is missed or evaded
+            "):::desc
+        end
+
+        %% Level 5
+        subgraph Paladin
+            Paladin_d("
+            increased armor
+            three turns: the first with increased initiative
+            evasion buff aura
+            if standing in the back line, can move to an empty front position to attack
+            when this unit moves, its evasion is inceased by 50%
+            "):::desc
+        end
+ 
+
+        Squire --> Knight["Knight"]
+        Knight --> Knight_Master["Knight Master"]
+        Knight_Master --> Angel_Knight["Angel Knight"]
+        Knight --> Horseman["Horseman"]
+        Horseman --> Royal_Cavalier["Royal Cavalier"]
+        Royal_Cavalier --> Paladin["Paladin"]
+
+        Squire --> Witch_Hunter["Witch hunter"]
+        Witch_Hunter --> Inquisitor["Inquisitor"]
+        Inquisitor --> Grand_Inquisitor["Grand Inquisitor"]
+        Witch_Hunter --> Samurai["Samurai"]
+        Samurai --> Blade_Saint["Blade Saint"]
+    end
+    subgraph Mages
+        direction TB
+        subgraph Apprentice
+            Apprentice_d("
+            Standard mage.
+            Weak damage to any target.
+            "):::desc
+        end
+
+        %% Level 2
+        subgraph Elementalist
+            Elementalist_d("
+            Can summon an elemental
+            "):::desc
+        end
+        subgraph Mage
+            Mage_d("
+            standard
+            "):::desc
+        end
+
+        %% Level 3
+        subgraph Wizard
+            Wizard_d("
+            increased damage
+            also hits adjacent units
+            "):::desc
+        end
+        subgraph Ritualist
+            Ritualist_d("
+            double target attack: each can be either an empty spot for summoming or an ememy
+            "):::desc
+        end
+
+        %% Level 4
+        subgraph White_Mage
+            White_Mage_d("
+            increased damage
+            also hits adjacent units
+            has three shields, can trigger a shield to blockan attack directed at adjacent ally
+            "):::desc
+        end
+
+        %% Level 5
+        subgraph Keeper_of_Knowledge
+            Keeper_of_Knowledge_d("
+            increased damage
+            hits the entire party
+            "):::desc
+        end
+        subgraph Arcanist
+            Arcanist_d("
+            increased damage x2
+            also hits adjacent units
+            has four shields, can trigger a shield to blockan attack directed at adjacent ally
+            deals elemental damage back to the attacker
+            "):::desc
+        end
+
+
+         Apprentice --> Elementalist["Elementalist"]
+         Elementalist --> Ritualist["Ritualist"]
+         Apprentice --> Mage["Mage"]
+         Mage --> Wizard["Wizard"]
+         Wizard --> White_Mage["White Mage"]
+         White_Mage --> Keeper_of_Knowledge["Keeper of Knowledge"]
+         White_Mage --> Arcanist["Arcanist"]
+    end
+    subgraph Archers
+        direction TB
+        subgraph Archer
+            Archer_d("
+            Stadard archer.
+            Strong attack to a single target.
+            The attack can be partially or fully blocked by shields of units in front of the target.
+            "):::desc
+        end
+
+        %% Level 2
+        subgraph Marksman
+            Marksman_d("
+            increased accuracu, slightly decreased damage
+            "):::desc
+        end
+
+        %% Level 3
+        subgraph Scout
+            Scout_d("
+            increased accuracy
+            has three attacks per round
+            "):::desc
+        end
+        subgraph Assassin
+            Assassin_d("
+            significantly increased damage, applies poison
+            increased evasion
+            normal accuracy
+            decreased health
+            decreased armor
+            "):::desc
+        end
+
+        %% Level 4
+        subgraph Imperial_Ranger
+            Imperial_Ranger_d("
+            increased accuracy
+            has five attacks per round
+            can use one attack to assist an ally
+            "):::desc
+        end
+
+
+        Archer --> Marksman["Marksman"]
+        Marksman --> Assassin["Assassin"]
+        Marksman --> Scout["Scout"]
+        Scout --> Imperial_Ranger["Imperial Ranger"]
+    end
+    subgraph Special
+        direction TB
+        subgraph Acolyte
+            Acolyte_d("
+            Healer.
+            weak restoration on a single target
+            "):::desc
+        end
+
+        %% Level 2
+        subgraph Cleric
+            Cleric_d("
+            weak restoration on a target plus adjacent units
+            "):::desc
+        end
+        subgraph Priest
+            Priest_d("
+            Moderate healing of a single target plus removing one negative effect
+            "):::desc
+        end
+
+        %% Level 3
+        subgraph Matriarch
+            Matriarch_d("
+            moderate restoration on the entire party and slight buff to accuracy
+            "):::desc
+        end
+        subgraph Imperial_priest
+            Imperial_priest_d("
+            significant healing on a single targt, full cure
+            "):::desc
+        end
+
+        %% Level 4
+        subgraph Prophetess
+            Prophetess_d("
+            significant healing of the entire party
+            buff to accuracy and evasion and lift one effect
+            "):::desc
+        end
+        subgraph Hierophant
+            Hierophant_d("
+            enormous healing of a single target
+            can perform resurrection instead (once per battle but the unit is revived with full hp)
+            "):::desc
+        end
+
+
+        Acolyte --> Cleric
+        Cleric --> Matriarch["Matriarch"]
+        Matriarch --> Prophetess["Prophetess"]
+        Acolyte --> Priest["Priest"]
+        Priest --> Imperial_priest["Imperial priest"]
+        Imperial_priest --> Hierophant["Hierophant"]   
+    end
+end
+subgraph Undead
+    subgraph UndeadWarriors
+        direction TB
+        subgraph Warrior
+            Warrior_d("
+            basic warrior.
+            this unit is not undead yet, it serves necropolis as a living.
+            decreased hp, decreased evasion
+            slightly increased damage
+            "):::desc
+        end
+        
+        %% Level 2
+        subgraph Zombie
+            Zombie_d("
+            significantly decreased damage and evasion.
+            significantly increased hp.
+            minor self-heal at the start of the unit's turn
+            "):::desc
+        end
+        subgraph Templar
+            Templar_d("
+            Living servants of the Necropolis.
+            Elemental shield.
+            Gets a random buff if affected by a debuff.
+            "):::desc
+        end
+        
+        %% Level 3
+        subgraph Phantom_warrior
+            Phantom_warrior_d("
+            decreased hp
+            incrreased evasion
+            can become immaterial gaining immunity to physical attack for one round
+            "):::desc
+        end
+        subgraph Skeleton
+            Skeleton_d("
+            minor self-heal at the start of the unit's turn
+            each time this unit is resurrected, it revives with increased stats
+            can not block archer attacks aimed at the back line
+            "):::desc
+        end
+        subgraph Fallen_inquisitor
+            Fallen_inquisitor_d("
+            Living servants of the Necropolis.
+            Elemental shield.
+            Negates the first debuff aimed at this unit
+            Gets a random buff for each applied debuff.
+            "):::desc
+        end
+        
+        %% Level 4
+        subgraph Skeleton_warrior
+            Skeleton_warrior_d("
+            self-heal at the start of the unit's turn
+            each time this unit is resurrected, it revives with increased stats
+            upon death can summon a regular Skeleton on a random spot
+            can not block archer attacks aimed at the back line
+            "):::desc
+        end
+        subgraph Dark_lord
+            Dark_lord_d("
+            Living servants of the Necropolis.
+            Elemental immunity.
+            Negates the first debuff aimed at this unit
+            Gets a random buff for each applied debuff.
+            silences targets on attack
+            "):::desc
+        end
+        
+        %% Level 5
+        subgraph Skeleton_champion
+            Skeleton_champion_d("
+            moderate self-heal at the start of the unit's turn
+            each time this unit is resurrected, it revives with increased stats
+            upon death can summon a regular Skeleton on a random spot
+            has only half the chance to block archer attacks aimed at the back line
+            "):::desc
+        end
+
+        Warrior --> Zombie["Zombie"]
+        Zombie --> Phantom_warrior["Phantom warrior"]
+        Zombie --> Skeleton["Skeleton"]
+        Skeleton --> Skeleton_warrior["Skeleton warrior"]
+        Skeleton_warrior --> Skeleton_champion["Skeleton champion"]
+        Warrior --> Templar["Templar"]
+        Templar --> Fallen_inquisitor["Fallen inquisitor"]
+        Fallen_inquisitor --> Dark_lord["Dark lord"]
+    end
+
+    subgraph UndeadMages
+        direction TB
+        subgraph Death_Acolyte
+            Death_Acolyte_d("
+            Regular mage.
+            Weak damage to a single target
+            "):::desc
+        end
+        
+        %% Level 2
+        subgraph Necromancer
+            Necromancer_d("
+            weak damage to a singular target or resurretion
+            each resurrection damages this unit
+            number of resurrectoins is unlimited
+            "):::desc
+        end
+        subgraph Dark_Mage
+            Dark_Mage_d("
+            increased damage to a target and adjacent units
+            "):::desc
+        end
+        
+        %% Level 3
+        subgraph Lich
+            Lich_d("
+            normal damage to a singular target or resurretion
+            each resurrection damages this unit slightly
+            number of resurrectoins is unlimited
+            has two attacks per round
+            "):::desc
+        end
+        subgraph Vampire
+            Vampire_d("
+            noraml damage to a single target
+            portion of the damage is restored as hp
+            "):::desc
+        end
+        subgraph Wraith
+            Wraith_d("
+            increased damage to a target and adjacent units
+            has a chance to apply a significant debuff
+            "):::desc
+        end
+        
+        %% Level 4
+        subgraph Archlich
+            Archlich_d("
+            normal damage to a singular target or resurretion
+            each resurrection damages this unit slightly
+            number of resurrectoins is unlimited
+            has two attacks per round
+            passive debuff to all enemy units 
+            "):::desc
+        end
+        subgraph Elder_vampire
+            Elder_vampire_d("
+            noraml damage to a single target
+            portion of the damage is restored as hp
+            attacks apply significant debuff to accuracy
+            "):::desc
+        end
+        subgraph Herald_of_Death
+            Herald_of_Death_d("
+            increased damage to a target and adjacent units
+            attacks apply a significant debuff
+            "):::desc
+        end
+        
+        %% Level 5
+        subgraph Vampire_Lord
+            Vampire_Lord_d("
+            noraml damage to a single target
+            portion of the damage is restored as hp
+            attacks apply significant debuff to accuracy
+            once per battle can make any unit (including itself) disappear for several turns and skip all attacks for this round
+            "):::desc
+        end
+        subgraph Blood_spawn
+            Blood_spawn_d("
+            melee unit
+            heavy damage to a single target
+            portion of the damage is restored as hp
+            has a debuff aure that affects allies as well as enemies
+            "):::desc
+        end
+
+        Death_Acolyte --> Necromancer["Necromancer"]
+        Necromancer --> Vampire["Vampire"]
+        Vampire --> Elder_vampire["Elder vampire"]
+        Elder_vampire --> Vampire_Lord["Vampire Lord"]
+        Elder_vampire --> Blood_spawn["Blood spawn"]
+        Necromancer --> Lich["Lich"]
+        Lich --> Archlich["Archlich"]
+        Death_Acolyte --> Dark_Mage["Dark Mage"]
+        Dark_Mage --> Wraith["Wraith"]
+        Wraith --> Herald_of_Death["Herald of Death"]
+    end
+
+    subgraph UndeadArchers
+        direction TB
+        subgraph Ghost
+            Ghost_d("
+            archer
+            vary low hp but significanlty increased evasion
+            paralyses single target with no damage
+            attack can be affected by units in the front line
+            "):::desc
+        end
+        
+        %% Level 2
+        subgraph Specter
+            Specter_d("
+            vary low hp but significanlty increased evasion
+            paralyses single target with weak damage
+            attack can be affected by units in the front line
+            has a chance of inflicting frosbite
+            "):::desc
+        end
+        
+        %% Level 3
+        subgraph Will_o_Wisp
+            Will_o_Wisp_d("
+            low damage but substantial debuff
+            "):::desc
+        end
+        subgraph Shadow
+            Shadow_d("
+            vary low hp but large evasion
+            paralyses a target and adjacent units with moderate damage
+            attack can be affected by units in the front line
+            "):::desc
+        end
+        
+        %% Level 4
+        subgraph Vision_of_Darkness
+            Vision_of_Darkness_d("
+            vary low hp but enormous evasion
+            paralyses a target and adjacent units with moderate damage
+            attack can be affected by units in the front line
+            "):::desc
+        end
+        subgraph The_eternal
+            The_eternal_d("
+            low damage but substantial debuff for the target and adjacent units
+            "):::desc
+        end
+
+
+        Ghost --> Specter["Specter"]
+        Specter --> Will_o_Wisp["Will-o’-Wisp"]
+        Will_o_Wisp --> The_eternal["The eternal"]
+        Specter --> Shadow["Shadow"]
+        Shadow --> Vision_of_Darkness["Vision of Darkness"]
+    end
+
+    subgraph UndeadSpecial
+        direction TB
+        subgraph Wyvern
+            Wyvern_d("
+            large unit
+            single target archer
+            stats scaled up for large size
+            "):::desc
+        end
+        
+        %% Level 2
+        subgraph Doomdrake
+            Doomdrake_d("
+            large unit
+            single target archer
+            stats scaled up for large size
+            inflicts poison
+            "):::desc
+        end
+        
+        %% Level 3
+        subgraph Gluttonous_Serpent
+            Gluttonous_Serpent_d("
+            large unit
+            single target melee
+            stats scaled up for large size
+            can heal upon killing an enemy
+            "):::desc
+        end
+        subgraph Dreadwyrm
+            Dreadwyrm_d("
+            large unit
+            single target archer
+            stats scaled up for large size
+            inflicts poison
+            applies strong debuff
+            "):::desc
+        end
+        
+        %% Level 4
+        subgraph The_Devourer
+            The_Devourer_d("
+            large unit
+            single target melee
+            stats scaled up for large size
+            "):::desc
+        end
+        subgraph Undying_Nighthunter
+            Undying_Nighthunter_d("
+            large unit
+            single target archer
+            stats scaled up for large size
+            applies strong debuff
+            can ignore shielding effects if the targer already attacked this round
+            can't be targeted by archers but can shield the entire back line
+            "):::desc
+        end
+        
+        %% Level 5
+        subgraph Dracolich
+            Dracolich_d("
+            large unit
+            single target archer
+            stats scaled up for large size
+            can ignore shielding effects if the targer already attacked this round
+            can't be targeted by archers but can shield the entire back line
+            reflects debuffs
+            "):::desc
+        end
+
+
+        Wyvern --> Doomdrake["Doomdrake"]
+        Doomdrake --> Gluttonous_Serpent["Gluttonous Serpent"]
+        Gluttonous_Serpent --> The_Devourer["The Devourer"]
+        Doomdrake --> Dreadwyrm["Dreadwyrm"]
+        Dreadwyrm --> Undying_Nighthunter["Undying Nighthunter"]
+        Undying_Nighthunter --> Dracolich["Dracolich"]
+        end
+end
+subgraph Dark_Forces
+    subgraph DarkWarriors
+        direction TB
+        Possessed --> Berserker
+        Berserker --> Shadow_bearer
+        Shadow_bearer --> Mad_slasher
+        Shadow_bearer --> Infernal_knight
+        Mad_slasher --> Chaotic_servant
+    end
+    subgraph DarkMages
+        direction TB
+        Cultist --> Warlock
+        Cultist --> Witch
+        Witch --> Twisted_prophet
+        Witch --> Doppelganger
+        Warlock --> Doppelganger
+        Warlock --> Demonologist
+        Demonologist --> Possesed
+    end
+    subgraph DarkArchers
+        direction TB
+        Crossbowmen --> Black_hand
+        Black_hand --> Chaos_seer
+        Black_hand --> Blasphomous_claw
+        Blasphomous_claw --> Butcher
+        Blasphomous_claw --> Corrupted_God
+    end
+    subgraph DarkSpecial
+        direction TB
+        Demon --> Warped_beast
+        Warped_beast --> Amalgam
+        Amalgam --> Tiamat
+        Demon --> Moloch
+        Moloch --> Infernal_commander
+        Infernal_commander --> Tiamat
+        Infernal_commander --> Abyssasl_devil
+        Abyssasl_devil --> Firelord
+        Moloch --> Burning_chaos
+        Demon --> Gargoyle
+        Gargoyle --> Runic_statue
+        Runic_statue --> Demonic_destroyer
+        Demonic_destroyer --> Doom_beacon
+        Demonic_destroyer --> Defiled_spirit
+    end
+end
