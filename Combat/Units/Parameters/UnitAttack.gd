@@ -57,12 +57,6 @@ var unit: Unit
 ## @experimental: currently not implemented
 @export var effect_override : Resource
 
-## List of audio effects available for this attack.
-## One effect is randomly selected from this list.
-## This array is populated with all child [AudioStreamPlayer] 
-## nodes when this node enters the scene tree.
-@onready var audio_effects: Array[AudioStreamPlayer]
-
 ## This method is called by [UnitParameters] at the start of the combat. [br]
 ## Note: Currently not implemented, but [UnitParameters] will also be responsible 
 ## for calling it for any attacks added during the battle.
