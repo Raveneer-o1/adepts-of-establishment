@@ -1,0 +1,69 @@
+---
+title: Baseline parameters
+---
+flowchart LR
+    A(
+        Level 1
+        HP = 100
+        Damage = 30
+        Evasion = 0.05
+        Accuracy = 0.95
+    ) --> B(
+        Level 2
+        HP = 150
+        Damage = 45
+        Evasion = 0.05
+        Accuracy = 0.95
+    ) --> C(
+        Level 3
+        HP = 200
+        Damage = 60
+        Evasion = 0.05
+        Accuracy = 0.95
+    ) --> D(
+        Level 4
+        HP = 275
+        Damage = 80
+        Evasion = 0.05
+        Accuracy = 0.95
+    ) --> E(
+        Level 5
+        HP = 350
+        Damage = 100
+        Evasion = 0.05
+        Accuracy = 0.95
+    )
+
+    M1(
+        Melee
+        initiative = 40
+    ) --> M2(
+        Armor = 10
+    ) --> M3(
+        Armor = 20
+    ) --> M4(
+        Armor = 35
+    ) --> M5(
+        Armor = 50
+    )
+
+    A1(
+        Archer
+        initiative = 50
+        hp = hp / 2
+    ) --> A2(
+        Evasion = .1363
+    ) --> A3(
+        Evasion = .2082
+    ) --> A4(
+        Evasion = .2962
+    ) --> A5(
+        Evasion = .3666
+    )
+
+    G1(
+        Mage
+        initiative = 30
+        hp = hp / 2
+        dmg = dmg / 3
+    )
