@@ -243,7 +243,7 @@ func finalize_attack() -> void:
 	if attack_to_finalize.accuracy < chance:
 		system.display_text_near_unit(self, "Miss!")
 		EventBus.attack_missed.emit(self, attack_to_finalize)
-		sound_player.play_miss_sound()
+		# TODO: trigger miss sound of the attacker but only once
 		return
 	
 	if attack_to_finalize.evadable:
@@ -419,7 +419,7 @@ func start_attacking() -> void:
 		return
 	defence_stance = false
 	animation_handle.play_attack_animation()
-	sound_player.play_attack_sound()
+	#sound_player.play_attack_sound()
 	
 	var attack: Attack = create_attack(current_attack, chosen_spots.duplicate())
 	
@@ -543,9 +543,9 @@ func take_damage(dmg: int, message: String = "", text_color: Color = Color.TRANS
 			damage_color(damage_taken)
 	
 	system.display_text_near_unit(
-			self,
-			message,
-			color
+		self,
+		message,
+		color
 	)
 	return damage_taken
 

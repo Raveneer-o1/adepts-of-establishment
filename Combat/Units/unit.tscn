@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bjlsohg1p6wgl"]
+[gd_scene load_steps=14 format=3 uid="uid://bjlsohg1p6wgl"]
 
 [ext_resource type="Script" uid="uid://c1iiy0vvaw1jw" path="res://Combat/Units/Unit.gd" id="1_gk31f"]
 [ext_resource type="Script" uid="uid://bu4xv8t0akojp" path="res://Combat/Units/UnitAnimationsHandle.gd" id="2_gjndx"]
@@ -8,35 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://b0g2xysqat0bs" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/ValueBar_128x16.png" id="4_kjqm5"]
 [ext_resource type="Texture2D" uid="uid://d4hcy4nph4c5k" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/ValueRed_120x8.png" id="5_xgp68"]
 [ext_resource type="Script" uid="uid://cyunvlypb18dt" path="res://Combat/Units/SoundPlayer.gd" id="8_xrkt7"]
-[ext_resource type="AudioStream" uid="uid://3up3xko4aipd" path="res://Sounds/Impact Gore Sfx/Impact 1.wav" id="9_etr7c"]
-[ext_resource type="AudioStream" uid="uid://b7r3kee6rjmo4" path="res://Sounds/Impact Gore Sfx/Impact 2.wav" id="10_5kspu"]
-[ext_resource type="AudioStream" uid="uid://b8o5l8pxfg4my" path="res://Sounds/Impact Gore Sfx/Impact 3.wav" id="11_g3orr"]
-[ext_resource type="AudioStream" uid="uid://cucn7770e3ayy" path="res://Sounds/Impact Gore Sfx/Impact 4.wav" id="12_3dyo1"]
-[ext_resource type="AudioStream" uid="uid://b2kxyto2hwq4g" path="res://Sounds/Minifantasy Dungeon SFX/27_sword_miss_1.wav" id="13_5cfgy"]
-[ext_resource type="AudioStream" uid="uid://jjx4crj3vvo6" path="res://Sounds/Minifantasy Dungeon SFX/26_sword_hit_1.wav" id="13_kuong"]
-[ext_resource type="AudioStream" uid="uid://dfxj3ppvop3pb" path="res://Sounds/Minifantasy Dungeon SFX/26_sword_hit_2.wav" id="14_t5jqa"]
-[ext_resource type="AudioStream" uid="uid://dhnmwtvhk7cyt" path="res://Sounds/Minifantasy Dungeon SFX/27_sword_miss_2.wav" id="14_uboh3"]
-[ext_resource type="AudioStream" uid="uid://bp17gb60eejxb" path="res://Sounds/Minifantasy Dungeon SFX/27_sword_miss_3.wav" id="15_3l81o"]
-[ext_resource type="AudioStream" uid="uid://cfoq5h1xo1e6n" path="res://Sounds/Minifantasy Dungeon SFX/26_sword_hit_3.wav" id="15_ikoys"]
-[ext_resource type="AudioStream" uid="uid://6te6nusi62gj" path="res://Sounds/card game sfx pack by olex mazur/Damage/GP_Damage_8.wav" id="16_5xu1t"]
-[ext_resource type="AudioStream" uid="uid://bc5nrxd1d2xcr" path="res://Sounds/card game sfx pack by olex mazur/Damage/GP_Damage_9.wav" id="17_t2pca"]
-[ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/card game sfx pack by olex mazur/Debuff/GP_Armor_Down_1.wav" id="21_3w08o"]
-[ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/card game sfx pack by olex mazur/Debuff/GP_Armor_Down_2.wav" id="22_nsgkf"]
-[ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/card game sfx pack by olex mazur/Debuff/GP_Armor_Down_3.wav" id="23_u3q10"]
-[ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/card game sfx pack by olex mazur/Debuff/GP_Armor_Down_4.wav" id="24_ub5cg"]
-[ext_resource type="AudioStream" uid="uid://bu5wuv1abjup1" path="res://Sounds/card game sfx pack by olex mazur/Buff/GP_Armor_Up_1.wav" id="25_7ka4v"]
-[ext_resource type="AudioStream" uid="uid://dhvkf7isfcfmv" path="res://Sounds/card game sfx pack by olex mazur/Buff/GP_Armor_Up_2.wav" id="26_lpevm"]
-[ext_resource type="AudioStream" uid="uid://dmcxg00v3y8t0" path="res://Sounds/card game sfx pack by olex mazur/Buff/GP_Armor_Up_3.wav" id="27_tvll6"]
-[ext_resource type="AudioStream" uid="uid://dujnun2mpyww3" path="res://Sounds/card game sfx pack by olex mazur/Buff/GP_Armor_Up_4.wav" id="28_swpdm"]
-[ext_resource type="AudioStream" uid="uid://g50lfdbhl844" path="res://Sounds/card game sfx pack by olex mazur/Buff/GP_Attack_Up_1.wav" id="29_c5cp1"]
-[ext_resource type="AudioStream" uid="uid://cxti7sw334cs7" path="res://Sounds/card game sfx pack by olex mazur/Buff/GP_Attack_Up_2.wav" id="30_5e1xh"]
-[ext_resource type="AudioStream" uid="uid://bvq3qpcm8el2w" path="res://Sounds/card game sfx pack by olex mazur/Buff/GP_Attack_Up_3.wav" id="31_721un"]
-[ext_resource type="AudioStream" uid="uid://cf0dcorm7fttw" path="res://Sounds/Minifantasy Dungeon SFX/07_human_atk_sword_1.wav" id="32_721un"]
-[ext_resource type="AudioStream" uid="uid://dfxgi4evrwoo2" path="res://Sounds/Minifantasy Dungeon SFX/07_human_atk_sword_2.wav" id="33_sibwn"]
-[ext_resource type="AudioStream" uid="uid://b8vf7e6pijq8l" path="res://Sounds/Minifantasy Dungeon SFX/07_human_atk_sword_3.wav" id="34_hmyyy"]
-[ext_resource type="AudioStream" uid="uid://ehxhig55qsl4" path="res://Sounds/Minifantasy Dungeon SFX/17_orc_atk_sword_1.wav" id="35_5ncnc"]
-[ext_resource type="AudioStream" uid="uid://bra1xkk6bkegy" path="res://Sounds/Minifantasy Dungeon SFX/17_orc_atk_sword_2.wav" id="36_86qvn"]
-[ext_resource type="AudioStream" uid="uid://bfwxs6t3db4gc" path="res://Sounds/Minifantasy Dungeon SFX/17_orc_atk_sword_3.wav" id="37_dv05x"]
 
 [sub_resource type="Animation" id="Animation_t5xf5"]
 length = 0.001
@@ -189,142 +160,15 @@ script = ExtResource("8_xrkt7")
 
 [node name="Damage" type="Node" parent="SoundPlayer"]
 
-[node name="Damage_1" type="AudioStreamPlayer" parent="SoundPlayer/Damage"]
-stream = ExtResource("9_etr7c")
-volume_db = 10.0
-
-[node name="Damage_2" type="AudioStreamPlayer" parent="SoundPlayer/Damage"]
-stream = ExtResource("10_5kspu")
-volume_db = 10.0
-
-[node name="Damage_3" type="AudioStreamPlayer" parent="SoundPlayer/Damage"]
-stream = ExtResource("11_g3orr")
-volume_db = 10.0
-
-[node name="Damage_4" type="AudioStreamPlayer" parent="SoundPlayer/Damage"]
-stream = ExtResource("12_3dyo1")
-volume_db = 10.0
-
-[node name="Steel_1" type="AudioStreamPlayer" parent="SoundPlayer/Damage"]
-stream = ExtResource("13_kuong")
-volume_db = 10.0
-
-[node name="Steel_2" type="AudioStreamPlayer" parent="SoundPlayer/Damage"]
-stream = ExtResource("14_t5jqa")
-volume_db = 10.0
-
-[node name="Steel_3" type="AudioStreamPlayer" parent="SoundPlayer/Damage"]
-stream = ExtResource("15_ikoys")
-volume_db = 10.0
-
-[node name="Stone_1" type="AudioStreamPlayer" parent="SoundPlayer/Damage"]
-stream = ExtResource("16_5xu1t")
-volume_db = 10.0
-
-[node name="Stone_2" type="AudioStreamPlayer" parent="SoundPlayer/Damage"]
-stream = ExtResource("17_t2pca")
-volume_db = 10.0
-
 [node name="Miss" type="Node" parent="SoundPlayer"]
-
-[node name="Miss_1" type="AudioStreamPlayer" parent="SoundPlayer/Miss"]
-stream = ExtResource("13_5cfgy")
-volume_db = 10.0
-
-[node name="Miss_2" type="AudioStreamPlayer" parent="SoundPlayer/Miss"]
-stream = ExtResource("14_uboh3")
-volume_db = 10.0
-
-[node name="Miss_3" type="AudioStreamPlayer" parent="SoundPlayer/Miss"]
-stream = ExtResource("15_3l81o")
-volume_db = 10.0
 
 [node name="Evade" type="Node" parent="SoundPlayer"]
 
-[node name="Miss_1" type="AudioStreamPlayer" parent="SoundPlayer/Evade"]
-stream = ExtResource("13_5cfgy")
-volume_db = 10.0
-
-[node name="Miss_2" type="AudioStreamPlayer" parent="SoundPlayer/Evade"]
-stream = ExtResource("14_uboh3")
-volume_db = 10.0
-
-[node name="Miss_3" type="AudioStreamPlayer" parent="SoundPlayer/Evade"]
-stream = ExtResource("15_3l81o")
-volume_db = 10.0
-
 [node name="Immunity" type="Node" parent="SoundPlayer"]
-
-[node name="1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity"]
-stream = ExtResource("21_3w08o")
-volume_db = 10.0
-
-[node name="2" type="AudioStreamPlayer" parent="SoundPlayer/Immunity"]
-stream = ExtResource("22_nsgkf")
-volume_db = 10.0
-
-[node name="3" type="AudioStreamPlayer" parent="SoundPlayer/Immunity"]
-stream = ExtResource("23_u3q10")
-volume_db = 10.0
-
-[node name="4" type="AudioStreamPlayer" parent="SoundPlayer/Immunity"]
-stream = ExtResource("24_ub5cg")
 
 [node name="Shield" type="Node" parent="SoundPlayer"]
 
-[node name="GpArmorUp1" type="AudioStreamPlayer" parent="SoundPlayer/Shield"]
-stream = ExtResource("25_7ka4v")
-volume_db = 10.0
-
-[node name="GpArmorUp2" type="AudioStreamPlayer" parent="SoundPlayer/Shield"]
-stream = ExtResource("26_lpevm")
-volume_db = 10.0
-
-[node name="GpArmorUp3" type="AudioStreamPlayer" parent="SoundPlayer/Shield"]
-stream = ExtResource("27_tvll6")
-volume_db = 10.0
-
-[node name="GpArmorUp4" type="AudioStreamPlayer" parent="SoundPlayer/Shield"]
-stream = ExtResource("28_swpdm")
-volume_db = 10.0
-
-[node name="GpAttackUp1" type="AudioStreamPlayer" parent="SoundPlayer/Shield"]
-stream = ExtResource("29_c5cp1")
-volume_db = 10.0
-
-[node name="GpAttackUp2" type="AudioStreamPlayer" parent="SoundPlayer/Shield"]
-stream = ExtResource("30_5e1xh")
-volume_db = 10.0
-
-[node name="GpAttackUp3" type="AudioStreamPlayer" parent="SoundPlayer/Shield"]
-stream = ExtResource("31_721un")
-volume_db = 10.0
-
 [node name="Attack" type="Node" parent="SoundPlayer"]
-
-[node name="07HumanAtkSword1" type="AudioStreamPlayer" parent="SoundPlayer/Attack"]
-stream = ExtResource("32_721un")
-volume_db = 10.0
-
-[node name="07HumanAtkSword2" type="AudioStreamPlayer" parent="SoundPlayer/Attack"]
-stream = ExtResource("33_sibwn")
-volume_db = 10.0
-
-[node name="07HumanAtkSword3" type="AudioStreamPlayer" parent="SoundPlayer/Attack"]
-stream = ExtResource("34_hmyyy")
-volume_db = 10.0
-
-[node name="17OrcAtkSword1" type="AudioStreamPlayer" parent="SoundPlayer/Attack"]
-stream = ExtResource("35_5ncnc")
-volume_db = 10.0
-
-[node name="17OrcAtkSword2" type="AudioStreamPlayer" parent="SoundPlayer/Attack"]
-stream = ExtResource("36_86qvn")
-volume_db = 10.0
-
-[node name="17OrcAtkSword3" type="AudioStreamPlayer" parent="SoundPlayer/Attack"]
-stream = ExtResource("37_dv05x")
-volume_db = 10.0
 
 [connection signal="animation_finished" from="AnimationHandle" to="AnimationHandle" method="_on_animation_finished"]
 [connection signal="frame_changed" from="AnimationHandle" to="AnimationHandle" method="_on_frame_changed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://myudchej460j"]
+[gd_scene load_steps=42 format=3 uid="uid://myudchej460j"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_34hwq"]
 [ext_resource type="Texture2D" uid="uid://bqy4vj0v38yak" path="res://Arts/Empire units/samurai attack .png" id="2_i31ko"]
@@ -7,6 +7,21 @@
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_mc75p"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_ol2r7"]
 [ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="6_plv2k"]
+[ext_resource type="AudioStream" uid="uid://jjx4crj3vvo6" path="res://Sounds/using/Damage/Steel_1.wav" id="8_7bnht"]
+[ext_resource type="AudioStream" uid="uid://dfxj3ppvop3pb" path="res://Sounds/using/Damage/Steel_2.wav" id="9_40pmu"]
+[ext_resource type="AudioStream" uid="uid://cfoq5h1xo1e6n" path="res://Sounds/using/Damage/Steel_3.wav" id="10_j5rr7"]
+[ext_resource type="AudioStream" uid="uid://b2kxyto2hwq4g" path="res://Sounds/using/Miss/27_sword_miss_1.wav" id="11_cp3qd"]
+[ext_resource type="AudioStream" uid="uid://dhnmwtvhk7cyt" path="res://Sounds/using/Miss/27_sword_miss_2.wav" id="12_sm0qp"]
+[ext_resource type="AudioStream" uid="uid://bp17gb60eejxb" path="res://Sounds/using/Miss/27_sword_miss_3.wav" id="13_3cuma"]
+[ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="14_rr5j8"]
+[ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="15_gjgc0"]
+[ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="16_02oof"]
+[ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="17_3ow7c"]
+[ext_resource type="AudioStream" uid="uid://bu5wuv1abjup1" path="res://Sounds/using/Shield/Metal_hit_1.wav" id="18_v82hs"]
+[ext_resource type="AudioStream" uid="uid://dhvkf7isfcfmv" path="res://Sounds/using/Shield/Metal_hit_2.wav" id="19_amiba"]
+[ext_resource type="AudioStream" uid="uid://dmcxg00v3y8t0" path="res://Sounds/using/Shield/Metal_hit_3.wav" id="20_jyiiw"]
+[ext_resource type="AudioStream" uid="uid://dujnun2mpyww3" path="res://Sounds/using/Shield/Metal_hit_4.wav" id="21_qud3d"]
+[ext_resource type="AudioStream" uid="uid://bqbecapso0v0k" path="res://Sounds/using/Attack/Empire/Samurai attack.wav" id="22_arfam"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1eqkd"]
 atlas = ExtResource("2_i31ko")
@@ -144,9 +159,9 @@ animations = [{
 resource_local_to_scene = true
 script = ExtResource("4_mc75p")
 max_HP = 200
-base_damage = 40
-armor = 15
-evasion = 0.05
+base_damage = 60
+armor = 20
+evasion = 0.15
 
 [node name="Samurai" instance=ExtResource("1_34hwq")]
 unit_name = "Samurai"
@@ -159,6 +174,7 @@ sprite_frames = SubResource("SpriteFrames_qfxv1")
 animation = &"attack"
 autoplay = "default"
 frames_to_emit = Array[int]([6, 7])
+attack_sound_frame = 6
 
 [node name="UnitParameters" parent="." index="1"]
 level = 3
@@ -166,7 +182,64 @@ base_paramaters = SubResource("Resource_opdex")
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("5_ol2r7")
-accuracy = 0.8
+damage_multiplier = 0.5
 targets_needed = 2
 initiative = 40
 target_validation = ExtResource("6_plv2k")
+
+[node name="Steel1" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
+stream = ExtResource("8_7bnht")
+bus = &"Damage"
+
+[node name="Steel2" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="1"]
+stream = ExtResource("9_40pmu")
+bus = &"Damage"
+
+[node name="Steel3" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="2"]
+stream = ExtResource("10_j5rr7")
+bus = &"Damage"
+
+[node name="27SwordMiss1" type="AudioStreamPlayer" parent="SoundPlayer/Miss" index="0"]
+stream = ExtResource("11_cp3qd")
+
+[node name="27SwordMiss2" type="AudioStreamPlayer" parent="SoundPlayer/Miss" index="1"]
+stream = ExtResource("12_sm0qp")
+
+[node name="27SwordMiss3" type="AudioStreamPlayer" parent="SoundPlayer/Miss" index="2"]
+stream = ExtResource("13_3cuma")
+
+[node name="27SwordMiss1" type="AudioStreamPlayer" parent="SoundPlayer/Evade" index="0"]
+stream = ExtResource("11_cp3qd")
+
+[node name="27SwordMiss2" type="AudioStreamPlayer" parent="SoundPlayer/Evade" index="1"]
+stream = ExtResource("12_sm0qp")
+
+[node name="27SwordMiss3" type="AudioStreamPlayer" parent="SoundPlayer/Evade" index="2"]
+stream = ExtResource("13_3cuma")
+
+[node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
+stream = ExtResource("14_rr5j8")
+
+[node name="GpArmorDown2" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="1"]
+stream = ExtResource("15_gjgc0")
+
+[node name="GpArmorDown3" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="2"]
+stream = ExtResource("16_02oof")
+
+[node name="GpArmorDown4" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="3"]
+stream = ExtResource("17_3ow7c")
+
+[node name="MetalHit1" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
+stream = ExtResource("18_v82hs")
+
+[node name="MetalHit2" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="1"]
+stream = ExtResource("19_amiba")
+
+[node name="MetalHit3" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="2"]
+stream = ExtResource("20_jyiiw")
+
+[node name="MetalHit4" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="3"]
+stream = ExtResource("21_qud3d")
+
+[node name="SamuraiAttack" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
+stream = ExtResource("22_arfam")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://ces8ntf3a67x7"]
+[gd_scene load_steps=39 format=3 uid="uid://ces8ntf3a67x7"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_iyxx7"]
 [ext_resource type="Texture2D" uid="uid://wmydp6fhr4el" path="res://Arts/Empire units/inquisitor attack.png" id="2_ckwba"]
@@ -8,6 +8,18 @@
 [ext_resource type="PackedScene" uid="uid://b5btb6pxaufjw" path="res://Combat/Effects/AppliedEffects/Scenes/holy_wrath.tscn" id="5_txbsl"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_dn7kg"]
 [ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="7_7f3u0"]
+[ext_resource type="AudioStream" uid="uid://3up3xko4aipd" path="res://Sounds/using/Damage/Default_1.wav" id="9_yaaye"]
+[ext_resource type="AudioStream" uid="uid://b7r3kee6rjmo4" path="res://Sounds/using/Damage/Default_2.wav" id="10_nopjn"]
+[ext_resource type="AudioStream" uid="uid://b8o5l8pxfg4my" path="res://Sounds/using/Damage/Default_3.wav" id="11_0ycb0"]
+[ext_resource type="AudioStream" uid="uid://cucn7770e3ayy" path="res://Sounds/using/Damage/Default_4.wav" id="12_66mgp"]
+[ext_resource type="AudioStream" uid="uid://b2kxyto2hwq4g" path="res://Sounds/using/Miss/27_sword_miss_1.wav" id="13_mf8y6"]
+[ext_resource type="AudioStream" uid="uid://dhnmwtvhk7cyt" path="res://Sounds/using/Miss/27_sword_miss_2.wav" id="14_b2m7c"]
+[ext_resource type="AudioStream" uid="uid://bp17gb60eejxb" path="res://Sounds/using/Miss/27_sword_miss_3.wav" id="15_n2ran"]
+[ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="16_13y3b"]
+[ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="17_j3neg"]
+[ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="18_d0whi"]
+[ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="19_1rxxv"]
+[ext_resource type="AudioStream" uid="uid://djt0afoqdeayl" path="res://Sounds/using/Attack/Empire/Inquisitor attack.wav" id="20_3foe0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c7qjp"]
 atlas = ExtResource("2_ckwba")
@@ -139,8 +151,8 @@ resource_local_to_scene = true
 script = ExtResource("4_j3lff")
 max_HP = 200
 base_damage = 60
-armor = 25
-evasion = 0.04
+armor = 20
+evasion = 0.1
 
 [node name="Inquisitor" instance=ExtResource("1_iyxx7")]
 unit_name = "Inquisitor"
@@ -152,7 +164,10 @@ portrait_texture = ExtResource("2_qb4re")
 sprite_frames = SubResource("SpriteFrames_luotl")
 animation = &"attack"
 autoplay = "default"
+frame = 10
+frame_progress = 1.0
 frames_to_emit = Array[int]([7])
+attack_sound_frame = 6
 
 [node name="UnitParameters" parent="." index="1"]
 level = 3
@@ -163,6 +178,54 @@ base_paramaters = SubResource("Resource_4tkcb")
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
 script = ExtResource("6_dn7kg")
 type = 4
-accuracy = 0.82
-initiative = 45
+initiative = 40
 target_validation = ExtResource("7_7f3u0")
+
+[node name="Default1" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
+stream = ExtResource("9_yaaye")
+bus = &"Damage"
+
+[node name="Default2" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="1"]
+stream = ExtResource("10_nopjn")
+bus = &"Damage"
+
+[node name="Default3" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="2"]
+stream = ExtResource("11_0ycb0")
+bus = &"Damage"
+
+[node name="Default4" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="3"]
+stream = ExtResource("12_66mgp")
+bus = &"Damage"
+
+[node name="27SwordMiss1" type="AudioStreamPlayer" parent="SoundPlayer/Evade" index="0"]
+stream = ExtResource("13_mf8y6")
+
+[node name="27SwordMiss2" type="AudioStreamPlayer" parent="SoundPlayer/Evade" index="1"]
+stream = ExtResource("14_b2m7c")
+
+[node name="27SwordMiss3" type="AudioStreamPlayer" parent="SoundPlayer/Evade" index="2"]
+stream = ExtResource("15_n2ran")
+
+[node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
+stream = ExtResource("16_13y3b")
+
+[node name="GpArmorDown2" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="1"]
+stream = ExtResource("17_j3neg")
+
+[node name="GpArmorDown3" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="2"]
+stream = ExtResource("18_d0whi")
+
+[node name="GpArmorDown4" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="3"]
+stream = ExtResource("19_1rxxv")
+
+[node name="27SwordMiss1" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
+stream = ExtResource("13_mf8y6")
+
+[node name="27SwordMiss2" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="1"]
+stream = ExtResource("14_b2m7c")
+
+[node name="27SwordMiss3" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="2"]
+stream = ExtResource("15_n2ran")
+
+[node name="InquisitorAttack" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
+stream = ExtResource("20_3foe0")

@@ -24,7 +24,7 @@ var unit: Unit
 ## Damage type
 @export var type: GlobalDefs.AttackType
 ## Chance the attack won't be missed
-@export var accuracy: float = 0.9
+@export var accuracy: float = 0.95
 ## Number of units player will need to choose for a unit to perform this attack
 @export var targets_needed: int = 1
 ## Determines the order of attacks

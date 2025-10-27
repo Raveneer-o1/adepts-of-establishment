@@ -45,6 +45,7 @@ subgraph Empire
             Inquisitor_d("
             increased evasion
             damage type *'None'* (no immunities or shields)
+            negative effects have only half the potency
             "):::desc
         end
         subgraph Samurai
@@ -59,7 +60,7 @@ subgraph Empire
             Royal_Cavalier_d("
             increased armor
             three turns: the first with increased initiative
-            if standing in the back line, can move to an empty front position to attack
+            can move to an empty position to attack
             when this unit moves, its evasion is inceased by 50%
             "):::desc
         end
@@ -67,10 +68,10 @@ subgraph Empire
             Angel_Knight_d("
             increased armor x2
             taunt
-            heals nearby allies at the start of its turn
             two turns
             once every two rounds can force all enemies to attack this unit;
-            this inceases significantly inceases armor
+            this significantly inceases armor
+            heals nearby allies at the start of its turn
             the first damage that would kill this unit, leaves it with 1 HP instead
             "):::desc
         end
@@ -79,6 +80,7 @@ subgraph Empire
             Grand_Inquisitor_d("
             increased evasion
             damage type *'None'* (no immunities or shields)
+            immune to negative effects
             retaliation upon getting a debuff
             "):::desc
         end
@@ -93,11 +95,19 @@ subgraph Empire
         %% Level 5
         subgraph Paladin
             Paladin_d("
-            increased armor
+            increased armor x2
             three turns: the first with increased initiative
             evasion buff aura
-            if standing in the back line, can move to an empty front position to attack
+            can move to an empty position to attack
             when this unit moves, its evasion is inceased by 50%
+            "):::desc
+        end
+        subgraph Angel
+            Angel_d("
+            evasion buff aura
+            can purify *any* unit: lift all effects that unit has
+            heals nearby allies at the start of its turn
+            the first damage that would kill this unit, leaves it with 1 HP instead
             "):::desc
         end
  
@@ -108,6 +118,7 @@ subgraph Empire
         Knight --> Horseman["Horseman"]
         Horseman --> Royal_Cavalier["Royal Cavalier"]
         Royal_Cavalier --> Paladin["Paladin"]
+        Royal_Cavalier --> Angel
 
         Squire --> Witch_Hunter["Witch hunter"]
         Witch_Hunter --> Inquisitor["Inquisitor"]
@@ -154,7 +165,7 @@ subgraph Empire
             White_Mage_d("
             increased damage
             also hits adjacent units
-            has three shields, can trigger a shield to blockan attack directed at adjacent ally
+            has three shields, can trigger a shield to block an attack directed at adjacent ally
             "):::desc
         end
 
@@ -163,13 +174,14 @@ subgraph Empire
             Keeper_of_Knowledge_d("
             increased damage
             hits the entire party
+            can expose *any* unit: makes the armor equal to 0
             "):::desc
         end
         subgraph Arcanist
             Arcanist_d("
             increased damage x2
             also hits adjacent units
-            has four shields, can trigger a shield to blockan attack directed at adjacent ally
+            has four shields, can trigger a shield to block an attack directed at adjacent ally
             deals elemental damage back to the attacker
             "):::desc
         end

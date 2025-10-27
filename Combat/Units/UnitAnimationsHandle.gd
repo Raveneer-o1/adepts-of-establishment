@@ -8,6 +8,7 @@ class_name UnitAnimationsHandle extends AnimatedSprite2D
 @export var last_frame: int = -1
 
 @export var conclude_frame: int = -1
+@export var attack_sound_frame: int = 1
 
 var now_attacking: bool = false
 
@@ -99,6 +100,8 @@ func _on_frame_changed() -> void:
 		EventBus.attack_concluded.emit(parent_unit)
 	if last_frame > 0 and frame >= last_frame:
 		finish_attack()
+	if frame == attack_sound_frame:
+		parent_unit.sound_player.play_attack_sound()
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
