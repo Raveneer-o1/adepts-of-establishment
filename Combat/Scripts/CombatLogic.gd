@@ -210,10 +210,27 @@ func end_battle() -> void:
 
 #region Attack resolution and booking
 
-##  Books an attack for later resolution. This allows effects to modify the attack before it resolves.
-##  Emits a signal when an attack is booked, triggering any relevant effects.
+## Checks if the attack needs to be redirected due to shielding and changes it accordingly
+func check_shielding(attack: Attack) -> void:
+	if not attack: return
+	if &"shot" not in attack.tags:
+		return
+	for target: Unit in attack.targets:
+		if not target: continue
+		if target.parameters.large_unit: continue
+		var pos: int = target.party_position
+		if pos % 2 == 0: continue
+		var potential_shields: Array[Unit] = \
+			target.party.get_units_at_positions( [pos+1, pos-1], false )
+		for s in potential_shields:
+			s.attempt_shielding(attack, target)
+
+## Books an attack for later resolution. This allows effects to modify the attack before it resolves.
+## Emits a signal when an attack is booked, triggering any relevant effects.
 func book_damage(attack: Attack, emit: bool = true) -> void:
 	booked_attacks.append(attack)
+	check_shielding(attack)
+	
 	if emit:
 		EventBus.attack_booked.emit(attack)
 	

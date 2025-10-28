@@ -5,7 +5,7 @@ class_name Attack
 ## This class manages attacks tha are in the proccess of being performed.
 ## Each [Attack] does through a series of stages: [br]
 ## 1. [b]Target Validation[/b]: The player/AI selects valid targets based on attack rules
-## (see [UnitAttack.target_validation], class [BaseValidation]).[br]
+## (see [member UnitAttack.target_validation], class [BaseValidation]).[br]
 ## 2. [b]Attack Booking[/b]: An [Attack] instance is created and queued for resolution. This emits
 ## [signal EventBus.attack_booked].[br]
 ## 3. [b]Effect Application[/b]: Effects connected to [signal EventBus.attack_booked]
@@ -26,7 +26,8 @@ class_name Attack
 ##
 ## [b]See also:[/b] [CombatSystem], [UnitAttack], [Unit]
 
-var damages: Dictionary # <target: UnitSpotReference, damage: int>
+## <target: UnitSpotReference, damage: int>
+var damages: Dictionary 
 
 # if target can't be found in damages dictionary, this value will be used as damage
 var default_damage: int
@@ -132,6 +133,12 @@ func redirect_to(target_index: UnitSpotReference, target_unit:Unit) -> void:
 	damages.erase(target_index)
 	damages[new_index] = damage
 	redirected = true
+
+## Returns the first occurance of the [param target] in [member damages]
+func find_reference(target: UnitSpot) -> UnitSpotReference:
+	for t: UnitSpotReference in damages:
+		if t.spot == target: return t
+	return null
 
 ## Returnes a shallow copy of the object. All nested Array, Dictionary and Object elements are shared 
 ## with the original. Modifying them in one object will also affect them in the other.

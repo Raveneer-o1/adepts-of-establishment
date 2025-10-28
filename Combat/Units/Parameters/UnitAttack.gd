@@ -17,7 +17,8 @@ class_name UnitAttack
 
 ## Unit, to which this object is attached
 var unit: Unit
-## Multiplier to [member Unit.base_damage]
+## Multiplier to [member Unit.base_damage]. If [member damage_override] is set to 
+## [code]true[/code], this value is cast into int and used as damage instead.
 @export var damage_multiplier := 1.0
 ## If [code]true[/code], damage_multiplier is used as damage and not as multiplier
 @export var damage_override := false

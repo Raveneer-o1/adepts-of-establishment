@@ -20,7 +20,7 @@ extends Node2D
 ## When the unit attacks, [Attack] object is created.
 ## [Attack] is a class that represents attack in progress. It copies every relevant field
 ## from [UnitAttack] but is independent. When the [Attack] object is created,
-## [signal attack_reached] is emitted and all units trigger their relevant effects (if any).
+## [signal EventBus.attack_booked] is emitted and all units trigger their relevant effects (if any).
 ## These effects can change [Attack] object without changing the original [UnitAttack]
 ## (that's why there's two classes). [br] [br]
 ##
@@ -34,6 +34,20 @@ extends Node2D
 ## any effects. There are fields and methods like [method clean_effects] but they only handle
 ## visual representation, not the actual behavior or other logic. [br] [br]
 ##
+## [member unit_type] defines default behavior for different unit classes: [br]
+## - Melee units automatically gain [b]shield[/b] when assuming defense stance (see below) [br]
+## - Archer units automatically add the [code]&shot[/code] tag to their attacks [br]
+## - Mage units have no special behavior by default. Intended as long-range combatants
+##   with typically lower damage but without the archer's shield penalty since their
+##   attacks lack the [code]&shot[/code] tag [br]
+## [br]
+##
+## [b]Shielding[/b] is a mechanic that allows units in the front line to protect units in
+## the back. When a unit [i]shields[\i], every attack with a tag [code]&shot[\code] 
+## targeted at the unit behind has a chance of being redirected to the shielding unit.
+## This mechanic by itself does not reduce incoming damage but shielding effects are often 
+## coupled with armor increase. [br] [br]
+##
 ## [color=yellow]Note:[/color] This class is not intended to be overriden.
 ## Extend functionality through component nodes rather than inheritance.[br]
 ## [b]See also:[/b] [CombatSystem], [UnitAttack], [Attack]
@@ -46,8 +60,9 @@ const SKIP_DELAY = 0.4
 #region Export variables
 
 @export var unit_name: String
-## Type of a unit is primarily used by AI
-@export_enum("Healer", "Warrior", "Defender", "Buffer", "Debuffer", "Archer", "Mage") var unit_type: String
+## Unit type is used to define default behavior if it's not overriden elsewhere.
+## Note: any other field or effect has a priority over this ruleset.
+@export var unit_type: GlobalDefs.UnitType
 @export_multiline var brief_description: String
 @export_multiline var full_description: String
 @export var portrait_texture: Texture2D
@@ -113,6 +128,7 @@ var taking_damage_delays: Array[int] = []
 ## @experimental: This behavior is a legacy from Disciples and may be a subject to future changes.
 var defence_stance: bool = false
 
+
 ## Indicates if this unit is in the procces of skipping turn.
 ## Needed for the sync reasons: when the attack is to be skipped,
 ## the player won't be prompted to chose a target. Also, this flag makes the skipping attack
@@ -123,6 +139,7 @@ var skipping_turn: bool = false
 
 ## If [code]true[/code], unit doesn't leave corpse after death (the object is comletely deleted).
 var summoned_unit: bool = false
+
 #endregion
 
 #region API
@@ -357,6 +374,26 @@ func arrange_attacks_and_set_next() -> void:
 
 #region Combat actions
 
+func attempt_shielding(attack: Attack, unit: Unit) -> void:
+	if not parameters.shielding: return
+	if not unit: return
+	
+	if randf() > parameters.shielding_chance: return
+	
+	system.display_text_near_unit(self, "Shield!")
+	# if double shield attempt, split the damage
+	if &"shielded" in attack.tags:
+		attack.default_damage /= 2
+		for t:UnitSpotReference in attack.damages:
+			attack.damages[t] /= 2
+		attack.damages[UnitSpotReference.new(spot)] = attack.default_damage
+		return
+	
+	attack.tags.append(&"shielded")
+	var ref: UnitSpotReference = attack.find_reference(unit.spot)
+	if not ref: push_error("Unit not found in the attack dictionary!")
+	attack.redirect_to(ref, self)
+
 func _force_native_attack(target: Unit, attack: UnitAttack = null) -> Attack:
 	if attack == null:
 		attack = current_attack
@@ -408,6 +445,8 @@ func force_attack(target: Unit, native_attack: bool = true, attack: UnitAttack =
 		return
 	
 	atk.tags.append(&"forced")
+	if unit_type == GlobalDefs.UnitType.Archer:
+		atk.tags.append(&"shot")
 	
 	sound_player.play_attack_sound()
 	animation_handle.play_attack_animation()
@@ -418,10 +457,12 @@ func start_attacking() -> void:
 	if chosen_spots.is_empty():
 		return
 	defence_stance = false
+	parameters.shielding = false
 	animation_handle.play_attack_animation()
-	#sound_player.play_attack_sound()
 	
 	var attack: Attack = create_attack(current_attack, chosen_spots.duplicate())
+	if unit_type == GlobalDefs.UnitType.Archer:
+		attack.tags.append(&"shot")
 	
 	system.combat_logic.book_damage(attack)
 
@@ -431,6 +472,7 @@ func try_take_defense_stance() -> bool:
 	if now_attacking():
 		return false
 	defence_stance = true
+	if unit_type == GlobalDefs.UnitType.Melee: parameters.shielding = true
 	set_next_attack()
 	system.display_text_near_unit(self, "Defending")
 	return true

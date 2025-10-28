@@ -6,8 +6,7 @@ var stack: Array[Modifier]
 func get_effective_value(value) -> Variant:
 	if stack.is_empty():
 		return value
-	@warning_ignore("untyped_declaration")
-	var last_value = value
+	var last_value: Variant.Type = value
 	for modifier in stack:
 		if modifier.active:
 			last_value = modifier.influence.call(last_value)

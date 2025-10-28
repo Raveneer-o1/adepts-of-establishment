@@ -37,6 +37,8 @@ var attacks: Array[UnitAttack] = []
 @export var armor_override := -1
 ## Setting these parameters will override base parameters (use if you want to experiment but don't want to change the intended behaviour)
 @export var evasion_override := -1.0
+## Setting these parameters will override base parameters (use if you want to experiment but don't want to change the intended behaviour)
+@export var shielding_chance_override := -1.0
 
 
 ## Recalculates human-readable armor parameter into actual multiplier.
@@ -75,10 +77,34 @@ var underlying_HP: int = 1
 		base_paramaters.armor if base_paramaters != null else \
 		0
 
+@onready var underlying_shielding_chance: float = \
+		shielding_chance_override if shielding_chance_override > 0.0 else \
+		base_paramaters.shielding_chance if base_paramaters != null else \
+		0.0
+
+var underlying_shielding: bool = true
 
 #endregion
 
 #region Data broker
+
+var shielding: bool:
+	get:
+		const stat_name = &"shielding"
+		var underlying_value := underlying_shielding
+		if stats_modifiers.has(stat_name):
+			return (stats_modifiers[stat_name] as ModifierStack).get_effective_value(underlying_value)
+		return underlying_value
+	set(value):
+		underlying_shielding = value
+
+var shielding_chance: float:
+	get:
+		const stat_name = &"shielding_chance"
+		var underlying_value := underlying_shielding_chance
+		if stats_modifiers.has(stat_name):
+			return (stats_modifiers[stat_name] as ModifierStack).get_effective_value(underlying_value)
+		return underlying_value
 
 var max_hp: int:
 	get:

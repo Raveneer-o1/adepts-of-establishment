@@ -136,13 +136,13 @@ func place_units(list: Array[String]) -> void:
 			unit_spots[i - 1].active = false
 			unit_spots[i + 1].active = false
 
-## Returns the coordinates tp place a large unit.
+## Returns the coordinates to place a large unit.
 func get_large_unit_position(pos: int) -> Vector2:
 	var x: float = X_START_POSITION + X_OFFSET / 2
 	var y: float = Y_START_POSITION + Y_OFFSET * pos
 	return Vector2(x, y)
 
-## Returns the coordinates tp place a regular unit.
+## Returns the coordinates to place a regular unit.
 func get_unit_position(pos: int) -> Vector2:
 	var x: float = X_START_POSITION if pos % 2 != 0 else X_START_POSITION + X_OFFSET
 	var y: float = Y_START_POSITION + Y_OFFSET * pos

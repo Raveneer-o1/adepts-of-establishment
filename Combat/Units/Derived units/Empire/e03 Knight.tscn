@@ -131,7 +131,6 @@ evasion = 0.05
 
 [node name="Knight" instance=ExtResource("1_jylln")]
 unit_name = "Knight"
-unit_type = "Warrior"
 full_description = "Knights are the backbone of any noble army, embodying valor and discipline on the battlefield. Clad in sturdy armor and wielding weapons with practiced skill, they excel at defending their allies and striking down foes. Trained in the art of mounted and foot combat, they are versatile warriors capable of holding the line or leading a charge. Their unwavering resolve inspires those who fight beside them."
 portrait_texture = ExtResource("2_udn4r")
 
