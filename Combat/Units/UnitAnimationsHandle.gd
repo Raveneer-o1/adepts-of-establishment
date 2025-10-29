@@ -32,10 +32,6 @@ func play_attack_animation() -> void:
 	
 	now_attacking = true
 
-#func _process(delta: float) -> void:
-	#pass
-	#print(now_attacking)
-
 
 func play_damage_animation(message: String = "") -> void:
 	if message != "":
@@ -57,7 +53,7 @@ func play_heal_animation() -> void:
 	var anim_name := &"heal"
 	if sprite_frames.has_animation(anim_name):
 		play(anim_name)
-	else :
+	else:
 		(get_child(0) as AnimationPlayer).play(&"unit_standart_heal_animation")
 
 func finish_attack() -> void:

@@ -183,8 +183,7 @@ var dead: bool = false
 var parent_unit: Unit
 
 ## Contains all modifiers applied to a unit.
-## Elements should be pairs <stat_name: StringName, stack:ModifierStack>
-var stats_modifiers: Dictionary = {}
+var stats_modifiers: Dictionary[StringName, ModifierStack] = {}
 
 @onready var visual_bar := get_node("VisualBar") as TextureProgressBar
 

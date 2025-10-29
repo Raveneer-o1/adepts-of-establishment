@@ -99,7 +99,7 @@ var label_position: Vector2:
 		current_label_position = current_label_position % label_positions_length
 		return label_positions[current_label_position]
 
-var loaded_units: Dictionary = {}
+var loaded_units: Dictionary[String, Resource] = {}
 var highlighted_units: Array[UnitSpot] = []
 
 var _current_unit: Unit
@@ -247,9 +247,6 @@ func display_hints() -> void:
 		SHOW_HINTS_ALWAYS:
 			var avaliable_targets: Array[UnitSpot] = find_avaliable_targets()
 			for target in avaliable_targets:
-				#if unit == null or unit.parameters.dead:
-					#continue
-				#if avaliable_targets.has(unit.spot):
 				var marker: AnimatedSprite2D = unit_marker.instantiate()
 				displayed_hints.append(marker)
 				target.add_child(marker)
@@ -257,7 +254,7 @@ func display_hints() -> void:
 		SHOW_HINTS_ON_HOVER:
 			var avaliable_targets := find_avaliable_targets()
 			for spot in left_party.unit_spots + right_party.unit_spots:
-				if spot == null:# or spot.unit == null or spot.unit.parameters.dead:
+				if spot == null:
 					continue
 				var color: Color = Color.FIREBRICK
 				if avaliable_targets.has(spot):
@@ -336,8 +333,6 @@ func initialize_variables() -> void:
 	left_party.initialize_variables()
 	right_party.initialize_variables()
 	EventBus.attack_animation_finished.connect(check_finished_animation)
-	#EventBus.turn_started.connect(check_winner)
-	#EventBus.unit_died.connect(check_winner)
 	left_party_units = EventBus.left_units
 	right_party_units = EventBus.right_units
 	EventBus.attack_concluded.connect(clear_emittings)

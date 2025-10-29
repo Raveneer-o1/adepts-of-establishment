@@ -88,8 +88,7 @@ var system: CombatSystem
 ## And it may cause problems without this check.
 var initialized: bool = false
 
-## <TextureRect, AppliedEffect>
-var displayed_icons: Dictionary
+var displayed_icons: Dictionary[TextureRect, AppliedEffect]
 
 ## Position in the party. Even numbers represent fron line, odd numbers - back line.
 ## Position is also index of this unit in the [member Party.units]
@@ -134,7 +133,7 @@ var defence_stance: bool = false
 ## the player won't be prompted to chose a target. Also, this flag makes the skipping attack
 ## independent of the attack itself
 ## @experimental: This behavior is a legacy from Disciples and may be a subject to future changes.
-## For example, skipping sevral turns may be added as a feature or skipping a particular attack.
+## For example, skipping sevral turns or skipping a particular attack.
 var skipping_turn: bool = false
 
 ## If [code]true[/code], unit doesn't leave corpse after death (the object is comletely deleted).
@@ -161,7 +160,6 @@ func initialize_variables() -> bool:
 	EventBus.turn_ended.connect(clean_effects)
 	EventBus.round_started.connect(arrange_attacks_and_set_next)
 	EventBus.attack_reached.connect(check_taking_damage)
-	#EventBus.attack_animation_finished.connect(finalize_all_attacks)
 	
 	initialized = true
 	return true
@@ -180,10 +178,7 @@ func clean_effects(_unit: Unit = null) -> void:
 	for icon: TextureRect in _displayed_icons:
 		if is_instance_valid(_displayed_icons[icon]):
 			displayed_icons[icon] = _displayed_icons[icon]
-			if (_displayed_icons[icon] as AppliedEffect).silenced:
-				icon.visible = false
-			else:
-				icon.visible = true
+			icon.visible = not (_displayed_icons[icon] as AppliedEffect).silenced
 			continue
 		icon.queue_free()
 	
@@ -281,8 +276,9 @@ func finalize_attack() -> void:
 				attack_to_finalize.applying_effects[effect_name]
 			)
 	
+	var ref: UnitSpotReference = attack_to_finalize.find_reference(spot)
 	var damage_to_take: int = \
-		attack_to_finalize.damages[spot] if attack_to_finalize.damages.has(spot) \
+		attack_to_finalize.damages[ref] if attack_to_finalize.damages.has(ref) \
 		else attack_to_finalize.default_damage
 	var damage_taken: int = take_damage(damage_to_take)
 	if damage_taken > 0: sound_player.play_damage_sound()

@@ -16,13 +16,6 @@ var active: bool:
 			process_mode = PROCESS_MODE_INHERIT
 
 var unit: Unit
-#var unit: Unit:
-	#get:
-		#if is_instance_valid(_unit):
-			#return _unit
-		#return null
-	#set(value):
-		#_unit = value
 
 var system: CombatSystem
 

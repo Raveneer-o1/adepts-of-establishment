@@ -26,8 +26,7 @@ class_name Attack
 ##
 ## [b]See also:[/b] [CombatSystem], [UnitAttack], [Unit]
 
-## <target: UnitSpotReference, damage: int>
-var damages: Dictionary 
+var damages: Dictionary[UnitSpotReference, int]
 
 # if target can't be found in damages dictionary, this value will be used as damage
 var default_damage: int
@@ -84,12 +83,12 @@ var targets_chosen: int = 1
 
 var evadable: bool
 
-## Dictionary containing elements in the format: <effect_name: String, params: Variant>[br]
-## [code]effect_name[/code]: The name of a scene located in the folder 
-## [kbd]res://Combat/Effects/AppliedEffects/Scenes/[/kbd]. This is used by the game to dynamically load the effect.[br]
-## [code]params[/code]: A set of parameters passed to the effect. These are parsed and handled
+## [code]key[/code]: The name of a scene located in the folder 
+## [kbd]res://Combat/Effects/AppliedEffects/Scenes/[/kbd].
+## This is used by the game to dynamically load the effect.[br]
+## [code]value[/code]: A set of parameters passed to the effect. Parsed and handled
 ## within the respective effect class.
-var applying_effects: Dictionary
+var applying_effects: Dictionary[String, Variant.Type]
 
 ## Function with a signature
 ## [codeblock]
@@ -134,7 +133,7 @@ func redirect_to(target_index: UnitSpotReference, target_unit:Unit) -> void:
 	damages[new_index] = damage
 	redirected = true
 
-## Returns the first occurance of the [param target] in [member damages]
+## Returns the first reference to the [param target] in [member damages]
 func find_reference(target: UnitSpot) -> UnitSpotReference:
 	for t: UnitSpotReference in damages:
 		if t.spot == target: return t

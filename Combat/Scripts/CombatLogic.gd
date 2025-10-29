@@ -29,17 +29,12 @@ func _ready() -> void:
 
 #region Utilities
 
-# Sorts units by their initiative, highest first.
 func sorting_by_initiative(a: UnitAttack, b: UnitAttack) -> bool:
 	return b.initiative < a.initiative
 
-
-# Filters out null and dead units from a list.
 func filter_nulls(a: Unit) -> bool:
 	return a != null and not a.parameters.dead
 
-
-## Removes duplicate units from an array, maintaining the first occurrence.
 func filter_duplicates(arr: Array[Unit]) -> Array[Unit]:
 	var result: Array[Unit] = []
 	for u in arr:
@@ -67,13 +62,10 @@ func set_queue() -> void:
 	var units: Array[Unit] = left_units + right_units
 	units = filter_duplicates(units)
 	
-	
-	
 	attacks_queue = []
 	for unit in units:
 		unit.arrange_attacks()
 		attacks_queue.append_array(unit.attacks_for_this_round)
-		#print(unit.attacks_for_this_round)
 	
 	# Shuffle attacks to randomize attacks with same initiative
 	attacks_queue.shuffle()
@@ -112,7 +104,7 @@ func try_wait() -> bool:
 	return false
 
 
-## Begins a new combat round, resets the queue, and emits a round-started signal.
+## Begins a new combat round, resets the queue, and emits a [signal round_started]
 func start_round() -> void:
 	if not battle_in_progress:
 		return
@@ -123,7 +115,7 @@ func start_round() -> void:
 	EventBus.round_started.emit()
 
 
-##  Starts a turn for the next unit in the queue.
+## Starts a turn for the next unit in the queue.
 func start_turn(remove_miniature: bool = true) -> void:
 	if not battle_in_progress:
 		return
@@ -138,7 +130,7 @@ func start_turn(remove_miniature: bool = true) -> void:
 	
 	current_attack = null
 	
-	# trying to assign surrent_attack while there is entries in queue
+	# trying to assign current_attack while the queue in not empty
 	while attacks_queue.size() > 0:
 		# Skipping all dead references and dead units
 		# If we skip all entries,
@@ -183,21 +175,16 @@ func next_stage(remove_miniature: bool = true) -> void:
 		if main_system.current_unit == null:
 			end_battle()
 
-
-##  Initiates the battle by starting the first round and advancing the stage.
 func start_battle() -> void:
 	initialize_effects()
 	start_round()
 	next_stage()
-
 
 func initialize_effects() -> void:
 	for unit in main_system.left_party.units + main_system.right_party.units:
 		if unit != null:
 			unit.parameters.initialize_effects()
 
-
-##  Ends the battle and cleans up resources.
 func end_battle() -> void:
 	if not battle_in_progress:
 		return
@@ -219,7 +206,7 @@ func check_shielding(attack: Attack) -> void:
 		if not target: continue
 		if target.parameters.large_unit: continue
 		var pos: int = target.party_position
-		if pos % 2 == 0: continue
+		if pos % 2 == 0: continue  # only backline can be shielded
 		var potential_shields: Array[Unit] = \
 			target.party.get_units_at_positions( [pos+1, pos-1], false )
 		for s in potential_shields:
