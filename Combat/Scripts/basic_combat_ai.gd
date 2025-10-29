@@ -37,7 +37,7 @@ func evaluate_health(target: Unit, damage: float) -> float:
 		return HP_NORMALIZING_FACTOR
 	var hp_percentage: float = float(target.parameters.hp) / float(target.parameters.max_hp)
 	var evaluation: float = 1.0 - hp_percentage
-	if target.defence_stance:
+	if target.defense_stance:
 		evaluation /= 2.0
 	return evaluation * HP_NORMALIZING_FACTOR
 

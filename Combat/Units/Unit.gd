@@ -125,7 +125,7 @@ var taking_damage_delays: Array[int] = []
 ## Indicates if unit is in a defense stance. [br]
 ## This flag has only one job - to cut incoming damage in half.
 ## @experimental: This behavior is a legacy from Disciples and may be a subject to future changes.
-var defence_stance: bool = false
+var defense_stance: bool = false
 
 
 ## Indicates if this unit is in the procces of skipping turn.
@@ -336,7 +336,6 @@ var attack_setting: bool = true
 
 ## Assigns next current_attack if possible
 func set_next_attack() -> void:
-	#print(unit_name)
 	if not attack_setting:
 		attack_setting = true
 		return
@@ -387,7 +386,7 @@ func attempt_shielding(attack: Attack, unit: Unit) -> void:
 	
 	attack.tags.append(&"shielded")
 	var ref: UnitSpotReference = attack.find_reference(unit.spot)
-	if not ref: push_error("Unit not found in the attack dictionary!")
+	assert(ref, "Unit not found in the attack dictionary!")
 	attack.redirect_to(ref, self)
 
 func _force_native_attack(target: Unit, attack: UnitAttack = null) -> Attack:
@@ -396,8 +395,8 @@ func _force_native_attack(target: Unit, attack: UnitAttack = null) -> Attack:
 	if attack == null or \
 			not \
 			( \
-			attacks_for_this_round.has(attack) or \
-			current_attack == attack \
+				attacks_for_this_round.has(attack) or \
+				current_attack == attack \
 			):
 		return null
 	
@@ -452,7 +451,7 @@ func force_attack(target: Unit, native_attack: bool = true, attack: UnitAttack =
 func start_attacking() -> void:
 	if chosen_spots.is_empty():
 		return
-	defence_stance = false
+	defense_stance = false
 	parameters.shielding = false
 	animation_handle.play_attack_animation()
 	
@@ -462,12 +461,11 @@ func start_attacking() -> void:
 	
 	system.combat_logic.book_damage(attack)
 
-# TODO: standardize spelling to 'defense'
 ## Returns if it was possible and thereby the unit has taken defense stance
 func try_take_defense_stance() -> bool:
 	if now_attacking():
 		return false
-	defence_stance = true
+	defense_stance = true
 	if unit_type == GlobalDefs.UnitType.Melee: parameters.shielding = true
 	set_next_attack()
 	system.display_text_near_unit(self, "Defending")
@@ -567,7 +565,7 @@ func take_damage(dmg: int, message: String = "", text_color: Color = Color.TRANS
 		heal(-dmg)
 		return 0
 	
-	if defence_stance:
+	if defense_stance:
 		dmg /= 2
 	
 	var damage_taken := parameters.take_damage(dmg)
