@@ -29,16 +29,23 @@ var attacks: Array[UnitAttack] = []
 @export var other_effects: Array[Resource]
 
 @export_group("Override parameters")
-## Setting these parameters will override base parameters (use if you want to experiment but don't want to change the intended behaviour)
+## Setting these parameters will override base parameters (use if you want to experiment
+## but don't want to change the intended behavior)
 @export var max_hp_override: int = -1
-## Setting these parameters will override base parameters (use if you want to experiment but don't want to change the intended behaviour)
+## Setting these parameters will override base parameters (use if you want to experiment
+## but don't want to change the intended behavior)
 @export var base_damage_override: int = -1
-## Setting these parameters will override base parameters (use if you want to experiment but don't want to change the intended behaviour)
+## Setting these parameters will override base parameters (use if you want to experiment
+## but don't want to change the intended behavior)
 @export var armor_override := -1
-## Setting these parameters will override base parameters (use if you want to experiment but don't want to change the intended behaviour)
+## Setting these parameters will override base parameters (use if you want to experiment
+## but don't want to change the intended behavior)
 @export var evasion_override := -1.0
-## Setting these parameters will override base parameters (use if you want to experiment but don't want to change the intended behaviour)
+## Setting these parameters will override base parameters (use if you want to experiment
+## but don't want to change the intended behavior)
 @export var shielding_chance_override := -1.0
+## Setting these parameters will override base parameters (use if you want to experiment
+## but don't want to change the intended behavior)
 
 
 ## Recalculates human-readable armor parameter into actual multiplier.
@@ -46,7 +53,8 @@ var attacks: Array[UnitAttack] = []
 ## armor stat indefinitely but will see diminishing returns.
 ## Thus, it's possible to let players increase the stat as
 ## much as they want rather than cap it at a specific value.[br]
-## NOTE: Armor is still capped at [member UnitParameters.ARMOR_CAP], but that value is much harder to achieve.
+## Note: Armor is still capped at [member UnitParameters.ARMOR_CAP], but that value 
+## is much harder to achieve.
 var armor_multiplier: float:
 	get:
 		if armor >= ARMOR_CAP:
@@ -55,6 +63,7 @@ var armor_multiplier: float:
 
 #region Underlying values
 
+# Base HP value before applying any modifiers - stores the actual numerical value
 var underlying_HP: int = 1
 
 @onready var underlying_evasion: float = \
@@ -82,7 +91,7 @@ var underlying_HP: int = 1
 		base_paramaters.shielding_chance if base_paramaters != null else \
 		0.0
 
-var underlying_shielding: bool = true
+var underlying_shielding: bool = false
 
 #endregion
 
@@ -138,12 +147,13 @@ var evasion: float:
 			return (stats_modifiers[stat_name] as ModifierStack).get_effective_value(underlying_value)
 		return underlying_value
 
+# Intermediate property that applies modifiers to get effective HP value
+# Setting this value maintains the same HP ratio when max_HP modifiers are active
 var _hp: int:
 	get:
 		if stats_modifiers.has(&"max_HP"):
 			var ratio: float = float(underlying_HP) / float(underlying_max_HP)
-			@warning_ignore("narrowing_conversion")
-			return max_hp * ratio
+			return roundi(max_hp * ratio)
 		return underlying_HP
 	set(value):
 		if stats_modifiers.has(&"max_HP"):
@@ -152,6 +162,7 @@ var _hp: int:
 		else:
 			underlying_HP = value
 
+# Public interface for HP - clamps values to maximum and triggers death when reaching zero
 var hp: int:
 	get:
 		return _hp
@@ -190,7 +201,7 @@ var stats_modifiers: Dictionary[StringName, ModifierStack] = {}
 func count_effects(effect_name: StringName, except: AppliedEffect = null) -> int:
 	var result: int = 0
 	for child in get_children():
-		if not child is AppliedEffect:
+		if child is not AppliedEffect:
 			continue
 		if child == except:
 			continue
@@ -201,7 +212,7 @@ func count_effects(effect_name: StringName, except: AppliedEffect = null) -> int
 
 func have_effect(effect_name: StringName, except: AppliedEffect = null) -> bool:
 	for child in get_children():
-		if not child is AppliedEffect:
+		if child is not AppliedEffect:
 			continue
 		if child == except:
 			continue
@@ -252,13 +263,6 @@ func initialize_variables() -> bool:
 	parent_unit = get_parent()
 	set_references()
 	check_parameters()
-	
-	if max_hp_override > 0:
-		max_hp = max_hp_override
-	if base_damage_override >= 0:
-		base_damage = base_damage_override
-	if armor_override >= 0:
-		armor = armor_override
 	
 	hp = max_hp
 	update_visuals()
@@ -342,7 +346,7 @@ func apply_effect(
 	# Handle cases where the effect might self-remove immediately after initialization
 	# (e.g., one-time effects that complete their action in initialize())
 	if not is_instance_valid(child):
-		child = null  # Ensure reference is null if instance became invalid
+		child = null
 	
 	return child
 

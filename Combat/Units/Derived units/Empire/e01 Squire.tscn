@@ -167,15 +167,6 @@ stream = ExtResource("13_mwuur")
 [node name="27SwordMiss3" type="AudioStreamPlayer" parent="SoundPlayer/Miss" index="2"]
 stream = ExtResource("14_0u1fq")
 
-[node name="27SwordMiss1" type="AudioStreamPlayer" parent="SoundPlayer/Evade" index="0"]
-stream = ExtResource("12_eyq6h")
-
-[node name="27SwordMiss2" type="AudioStreamPlayer" parent="SoundPlayer/Evade" index="1"]
-stream = ExtResource("13_mwuur")
-
-[node name="27SwordMiss3" type="AudioStreamPlayer" parent="SoundPlayer/Evade" index="2"]
-stream = ExtResource("14_0u1fq")
-
 [node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
 stream = ExtResource("15_fspip")
 

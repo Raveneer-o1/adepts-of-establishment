@@ -156,7 +156,6 @@ evasion = 0.1
 
 [node name="Inquisitor" instance=ExtResource("1_iyxx7")]
 unit_name = "Inquisitor"
-unit_type = "Warrior"
 full_description = "Inquisitors are relentless hunters of heresy, wielding heavy maces to deliver unyielding punishment. Their attacks pierce through magical defenses, making them especially deadly against spellcasters and enchanted foes. Unshakable in their faith, they inspire their allies and bring fear to the corrupted. On the battlefield, an Inquisitor is a resolute force of righteousness, relentless in their pursuit of heretics and the unholy."
 portrait_texture = ExtResource("2_qb4re")
 
@@ -196,15 +195,6 @@ bus = &"Damage"
 [node name="Default4" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="3"]
 stream = ExtResource("12_66mgp")
 bus = &"Damage"
-
-[node name="27SwordMiss1" type="AudioStreamPlayer" parent="SoundPlayer/Evade" index="0"]
-stream = ExtResource("13_mf8y6")
-
-[node name="27SwordMiss2" type="AudioStreamPlayer" parent="SoundPlayer/Evade" index="1"]
-stream = ExtResource("14_b2m7c")
-
-[node name="27SwordMiss3" type="AudioStreamPlayer" parent="SoundPlayer/Evade" index="2"]
-stream = ExtResource("15_n2ran")
 
 [node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
 stream = ExtResource("16_13y3b")

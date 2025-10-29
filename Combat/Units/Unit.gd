@@ -255,7 +255,7 @@ func finalize_attack() -> void:
 	if attack_to_finalize.accuracy < chance:
 		system.display_text_near_unit(self, "Miss!")
 		EventBus.attack_missed.emit(self, attack_to_finalize)
-		# TODO: trigger miss sound of the attacker but only once
+		attack_to_finalize.attacker.sound_player.play_miss_sound()
 		return
 	
 	if attack_to_finalize.evadable:
