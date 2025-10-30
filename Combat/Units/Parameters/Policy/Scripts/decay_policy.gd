@@ -10,6 +10,15 @@ func _apply_policy(attack: Attack, index: int, finalize: bool) -> void:
 	var target := attack.targets[index]
 	var distance:int = Party.get_distance(first_position, target.party_position)
 	
-	@warning_ignore("narrowing_conversion") 
-	attack.damages[attack.target_references[index]] *= pow(decay_rate, distance)
-	target.resolve_attack(attack, index + 1, true)
+	var refs: Array[UnitSpotReference] = attack.target_references
+	
+	attack.damages[refs[index]] = roundi(
+		attack.damages[refs[index]] * pow(decay_rate, distance)
+	)
+	var delay := index if index < attack.targets_chosen else attack.targets_chosen - 1
+	print(delay)
+	target.resolve_attack(
+		attack, 
+		delay, 
+		true
+	)

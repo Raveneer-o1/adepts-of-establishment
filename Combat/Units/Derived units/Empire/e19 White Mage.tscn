@@ -155,7 +155,6 @@ decay_rate = 0.675
 
 [node name="White mage" instance=ExtResource("1_mbqb6")]
 unit_name = "White Mage"
-unit_type = "Mage"
 full_description = "The most powerful wizards are granted the title of White Mages. The storms they can summon on the battlefield can wipe out entire armies."
 
 [node name="AnimationHandle" parent="." index="0"]
@@ -172,9 +171,10 @@ attack_effect = ExtResource("5_dy55f")
 script = ExtResource("6_1cw50")
 type = 1
 accuracy = 0.85
+initiative = 70
 target_validation = ExtResource("7_hx30w")
 additional_targets = ExtResource("8_00kpc")
 damage_policy = SubResource("Resource_ck3w1")
-applying_effects = {
-"electified": [2, 10]
-}
+applying_effects = Dictionary[String, Variant]({
+"electrified": [2, 10]
+})

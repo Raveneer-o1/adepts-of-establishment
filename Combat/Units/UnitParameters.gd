@@ -170,7 +170,7 @@ var hp: int:
 		if value > max_hp:
 			value = max_hp
 		_hp = value
-		visual_bar.value = _hp
+		#visual_bar.value = _hp
 		if value <= 0:
 			die()
 #endregion
@@ -196,7 +196,6 @@ var parent_unit: Unit
 ## Contains all modifiers applied to a unit.
 var stats_modifiers: Dictionary[StringName, ModifierStack] = {}
 
-@onready var visual_bar := get_node("VisualBar") as TextureProgressBar
 
 func count_effects(effect_name: StringName, except: AppliedEffect = null) -> int:
 	var result: int = 0
@@ -265,18 +264,14 @@ func initialize_variables() -> bool:
 	check_parameters()
 	
 	hp = max_hp
-	update_visuals()
+	parent_unit.update_visuals()
 	
 	return initializtion_successful
 
 func update_effects() -> void:
 	for stack_name: String in stats_modifiers:
 		stats_modifiers[stack_name].clean()
-	update_visuals()
-
-func update_visuals() -> void:
-	visual_bar.max_value = max_hp
-	visual_bar.value = hp
+	parent_unit.update_visuals()
 
 var initialized: bool = false
 
@@ -287,12 +282,12 @@ func initialize_effects() -> void:
 	for child in get_children():
 		if child is AppliedEffect:
 			child.initialize()
-	update_visuals()
+	parent_unit.update_visuals()
 	EventBus.turn_started.connect(turn_start_reaction)
 
 func die() -> void:
 	dead = true
-	parent_unit.die()
+	#parent_unit.die()
 
 func set_references() -> void:
 	for child in get_children():
@@ -327,6 +322,7 @@ func apply_effect(
 	
 	var effect_path := "res://Combat/Effects/AppliedEffects/Scenes/%s.tscn" % effect_name
 	var res: Resource = load(effect_path)
+	
 	
 	if not res:
 		# Log debug warning if resource is missing
@@ -364,6 +360,9 @@ func take_direct_damage(dmg: int, randomize_damage: bool = false) -> int:
 
 
 func take_damage(dmg: int, randomize_damage: bool = true) -> int:
+	if parent_unit.defense_stance:
+		dmg /= 2
+		
 	@warning_ignore("narrowing_conversion")
 	dmg *= armor_multiplier
 	if randomize_damage:

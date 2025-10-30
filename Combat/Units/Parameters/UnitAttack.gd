@@ -50,9 +50,8 @@ var unit: Unit
 @export var damage_policy: BasePolicy
 
 
-## Dictionary containing elements in the format: <effect_name: String, params: Variant>[br]
 ## This element is passed to the [member Attack.applying_effects]
-@export var applying_effects : Dictionary
+@export var applying_effects : Dictionary[String, Variant]
 
 ## If set, attack will use this effect instead if unit's one
 ## @experimental: currently not implemented

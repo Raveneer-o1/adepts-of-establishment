@@ -73,6 +73,7 @@ const SKIP_DELAY = 0.4
 @onready var spot: UnitSpot = get_parent()
 @onready var effect_icons_container: HBoxContainer = $EffectIconsContainer
 @onready var sound_player: SoundPlayer = $SoundPlayer
+@onready var visual_bar := get_node("VisualBar") as TextureProgressBar
 
 #region Variables
 
@@ -81,6 +82,10 @@ var parameters: UnitParameters
 var party: Party
 var system: CombatSystem
 
+## Stores unit parameter snapshots taken during attack resolution for animation synchronization.
+## Since attacks resolve completely on the first [signal EventBus.attack_reached] emission,
+## these snapshots preserve intermediate states needed for sequenced visual effects.
+var parameter_snapshots: Array[UnitParametersSnapshot] = []
 
 ## flag is used during the initialization exclusively. 
 ## It's here to prevent calling error-prone functions before the object is fully initialized.
@@ -111,16 +116,6 @@ var chosen_spots: Array[UnitSpot] = []
 var current_attack: UnitAttack
 ## Attacks left to perform this round
 var attacks_for_this_round: Array[UnitAttack]
-
-
-## Alredy resolved attacks waiting to apply damage.
-## Damage is applied when [member EventBus.attack_reached] is emitted.
-## When [member EventBus.attack_finished] is emitted,
-## all attacks in this list are immediately finalized
-var taking_damage_attacks: Array[Attack] = []
-## Every time [member EventBus.attack_reached] is emitted, all delays in this list areredused by 1.
-## If the first element is 0, finalizes closest attack from [code]taking_damage_attacks[/code]
-var taking_damage_delays: Array[int] = []
 
 ## Indicates if unit is in a defense stance. [br]
 ## This flag has only one job - to cut incoming damage in half.
@@ -221,102 +216,92 @@ func skip_attack(message: String = "", color: Color = Color.WHITE) -> void:
 
 #region Recieving attacks
 
-
-## Applies damages from all taking_damage_attacks
-func finalize_all_attacks() -> void:
-	while taking_damage_attacks.size() > 0:
-		finalize_attack()
-	taking_damage_delays.clear()
-
-
 var shielded_attacks: Array[Attack] = []
 
-## Applies damage from the closest attack in taking_damage_attacks
+## Updates unit visuals using the most recent snapshot from [member parameter_snapshots].
+## Typically called automatically when [signal EventBus.attack_reached] is emitted.
 func finalize_attack() -> void:
-	if taking_damage_attacks.size() == 0:
-		return
-	var attack_to_finalize: Attack = taking_damage_attacks.pop_front()
+	if not parameter_snapshots: return
+	var snapshot: UnitParametersSnapshot = parameter_snapshots.pop_front()
+	if not snapshot: return
 	
-	if attack_to_finalize.type != GlobalDefs.AttackType.None and \
-			parameters.immunities.has(attack_to_finalize.type):
+	var last_hp: int = int(visual_bar.value)
+	var last_ratio: float = visual_bar.value / visual_bar.max_value
+	
+	var new_hp: int = snapshot.hp
+	var new_ratio: float = float(snapshot.hp) / float(snapshot.max_hp)
+	
+	if not is_equal_approx(new_ratio, last_ratio) and last_hp != new_hp:
+		display_damage(last_hp - new_hp, snapshot.message, snapshot.color)
+	
+	visual_bar.max_value = snapshot.max_hp
+	visual_bar.value = snapshot.hp
+	
+
+
+## Processes an attack against this unit, applying damage calculations immediately.
+## This method handles game logic but does not update visuals -
+## it calls [method schedule_damage] for visual sequencing.
+func resolve_attack(attack: Attack, delay: int = 0, finalize: bool = false) -> void:
+	if attack.type != GlobalDefs.AttackType.None and \
+			parameters.immunities.has(attack.type):
 		system.display_text_near_unit(self, "Immunity")
 		sound_player.play_immunity_sound()
 		return
 	
 	if shielded_attacks.has(
-			attack_to_finalize.original if attack_to_finalize.original else attack_to_finalize
+			attack.original if attack.original else attack
 		):
 			system.display_text_near_unit(self, "Shield!")
 			sound_player.play_shield_sound()
 			return
 		
-	var chance: float = randf()
 	
-	if attack_to_finalize.accuracy < chance:
+	if attack.accuracy < randf():
 		system.display_text_near_unit(self, "Miss!")
-		EventBus.attack_missed.emit(self, attack_to_finalize)
-		attack_to_finalize.attacker.sound_player.play_miss_sound()
+		EventBus.attack_missed.emit(self, attack)
+		attack.attacker.sound_player.play_miss_sound()
 		return
 	
-	if attack_to_finalize.evadable:
+	if attack.evadable:
 		# recalculate random number to remove any numerical connection with accuracy
-		chance = randf()
-		
-		if parameters.evasion > chance:
-			EventBus.attack_evaded.emit(self, attack_to_finalize)
+		if parameters.evasion > randf():
+			EventBus.attack_evaded.emit(self, attack)
 			system.display_text_near_unit(self, "Evaded!")
 			sound_player.play_evade_sound()
 			return
 	
 	# apply effects if any are present
-	if not attack_to_finalize.applying_effects.is_empty():
-		for effect_name: String in attack_to_finalize.applying_effects:
+	if not attack.applying_effects.is_empty():
+		for effect_name: String in attack.applying_effects:
 			parameters.apply_effect(
 				effect_name.to_lower(),
-				attack_to_finalize.applying_effects[effect_name]
+				attack.applying_effects[effect_name]
 			)
 	
-	var ref: UnitSpotReference = attack_to_finalize.find_reference(spot)
+	var ref: UnitSpotReference = attack.find_reference(spot)
 	var damage_to_take: int = \
-		attack_to_finalize.damages[ref] if attack_to_finalize.damages.has(ref) \
-		else attack_to_finalize.default_damage
-	var damage_taken: int = take_damage(damage_to_take)
+		attack.damages[ref] if attack.damages.has(ref) \
+		else attack.default_damage
+	var damage_taken: int = parameters.take_damage(damage_to_take)
 	if damage_taken > 0: sound_player.play_damage_sound()
 	
-	if attack_to_finalize.original:
-		attack_to_finalize.original.applied_damage += damage_taken;
+	if attack.original:
+		attack.original.applied_damage += damage_taken;
 	else:
-		attack_to_finalize.applied_damage += damage_taken;
+		attack.applied_damage += damage_taken;
 	
 	# if untit is dead after taking damage, it was killed by this attack
 	if parameters.dead:
-		EventBus.unit_killed.emit(self, attack_to_finalize.attacker)
-
-
-## Resolves an attack directed at this unit.
-func resolve_attack(attack: Attack, delay: int = 0, finalize: bool = false) -> void:
-	taking_damage_attacks.append(attack)
-	if finalize:
-		finalize_attack()
-		return
-	taking_damage_delays.append(delay)
+		EventBus.unit_killed.emit(self, attack.attacker)
+	
+	if finalize or delay <= 0: take_damage(damage_taken)
+	else: schedule_damage(damage_taken, delay)
 
 
 ## Called when [member EventBus.attack_reached] is emitted.
-## Checks if unit has any planned damages to take and applies attack effects if so
 func check_taking_damage(unit: Unit) -> void:
-	if taking_damage_attacks.size() == 0:
-		return
-	if unit != taking_damage_attacks[0].attacker:
-		return
-	if taking_damage_delays.size() == 0:
-		finalize_attack()
-		return
-	for i in range(taking_damage_delays.size()):
-		taking_damage_delays[i] -= 1
-	if taking_damage_delays[0] <= 0:
-		taking_damage_delays.remove_at(0)
-		finalize_attack()
+	finalize_attack()
 
 #endregion
 
@@ -515,8 +500,7 @@ func heal(value: int) -> int:
 		return 0
 	
 	var hp_healed: int = parameters.heal(value)
-	animation_handle.play_heal_animation()
-	system.display_text_near_unit(self, "+" + str(hp_healed), HEAL_COLOR)
+	display_heal(value)
 	return hp_healed
 
 
@@ -533,10 +517,12 @@ func damage_color(dmg: int) -> Color:
 	return MIN_DAMAGE_COLOR.lerp(MAX_DAMAGE_COLOR, damage_percentage)
 
 
-## Applies damage to the unit and triggers associated animations bypassing armor
+## Applies damage to the unit and triggers associated animations bypassing armor. [br]
+## For parameter reference see [method take_damage] [br]
+## [color=red]Warning:[/color] this method does not allow animation synchronization.
+## Use [method schedule_damage] instead.
 func take_direct_damage(dmg: int, message: String = "", text_color: Color = Color.TRANSPARENT) -> void:
-	if dmg <= 0:
-		return
+	if dmg <= 0: return
 	
 	var damage_taken := parameters.take_direct_damage(dmg)
 	animation_handle.play_damage_animation(message)
@@ -558,6 +544,8 @@ func take_direct_damage(dmg: int, message: String = "", text_color: Color = Colo
 ## [param message] is message that will be displayed near the number.[br]
 ## [param text_color] is color of the text. If left as Color.TRANSPARENT,
 ## color is detemined by calling [method damage_color].[br]
+## [color=red]Warning:[/color] this method does not allow animation synchronization.
+## Use [method schedule_damage] instead.
 func take_damage(dmg: int, message: String = "", text_color: Color = Color.TRANSPARENT) -> int:
 	if dmg == 0:
 		return 0
@@ -565,27 +553,61 @@ func take_damage(dmg: int, message: String = "", text_color: Color = Color.TRANS
 		heal(-dmg)
 		return 0
 	
-	if defense_stance:
-		dmg /= 2
-	
 	var damage_taken := parameters.take_damage(dmg)
-	animation_handle.play_damage_animation(message)
-	if message != "":
-		message += ": "
-	message += "-" + str(damage_taken)
+	display_damage(dmg, message, text_color)
+	return damage_taken
+
+## Schedules a damage entry in [member parameter_snapshots] for later visualization.
+## The damage will be finalized when [signal EventBus.attack_reached] is emitted, or
+## manually by calling [method finalize_attack]. Returns the damage taken.
+func schedule_damage(
+	dmg: int, 
+	delay: int, 
+	message: String = "", 
+	text_color: Color = Color.TRANSPARENT
+) -> int:
+	var damage_taken: int = parameters.take_damage(dmg)
 	
-	var color := text_color if \
-			text_color != Color.TRANSPARENT else \
-			damage_color(damage_taken)
+	while parameter_snapshots.size() < delay-1:
+		parameter_snapshots.append(null)  # add padding as delay
 	
-	system.display_text_near_unit(
-		self,
-		message,
-		color
+	parameter_snapshots.append(
+		UnitParametersSnapshot.new(parameters, message, text_color)
 	)
 	return damage_taken
 
-## Processes the unit's death.
+func display_heal(dmg: int, message: String = "", text_color: Color = Color.TRANSPARENT) -> void:
+	if dmg == 0: return
+	if dmg < 0: display_damage(-dmg, message, text_color)
+	
+	if message != "":
+		message += ": "
+	message += "+" + str(dmg)
+	
+	var color := text_color if \
+			text_color != Color.TRANSPARENT else \
+			HEAL_COLOR
+	
+	animation_handle.play_heal_animation()
+	system.display_text_near_unit(self, message, color)
+
+## Displays a damage number and triggers damage animation. [br]
+## If [param text_color] is not specified, color is determined by calling [method damage_color]
+func display_damage(dmg: int, message: String = "", text_color: Color = Color.TRANSPARENT) -> void:
+	if dmg == 0: return
+	if dmg < 0: display_heal(-dmg, message, text_color)
+	
+	if message != "":
+		message += ": "
+	message += "-" + str(dmg)
+	
+	var color := text_color if \
+			text_color != Color.TRANSPARENT else \
+			damage_color(dmg)
+	
+	animation_handle.play_damage_animation(message)
+	system.display_text_near_unit(self, message, color)
+
 func die() -> void:
 	if not initialized:
 		return
@@ -685,6 +707,12 @@ func display_next_text() -> void:
 #endregion
 
 
+func update_visuals() -> void:
+	visual_bar.max_value = parameters.max_hp
+	visual_bar.value = parameters.hp
+	parameter_snapshots.clear()
+	if parameters.dead: die()
+
 #region Utilities
 
 ## Creates an [Attack] object and returns it
@@ -743,3 +771,16 @@ func _process(delta: float) -> void:
 			text_displayed = false
 			text_displayed_time = TEXT_DISPLAYED_ABORT_INTERVAL
 			texts_to_display.clear()
+
+
+class UnitParametersSnapshot:
+	var hp: int
+	var max_hp: int
+	var message: String
+	var color: Color
+	#var dead: bool
+	func _init(params: UnitParameters, msg: String, col: Color) -> void:
+		hp = params.hp
+		max_hp = params.max_hp
+		message = msg
+		color = col

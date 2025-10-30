@@ -17,10 +17,6 @@ class_name Attack
 ## might want to delay the second damage number until the second hit actually connects).
 ## In this case, the unit will store the resolved attack
 ## but not finalize it until [signal EventBus.attack_reached] is emitted again.[br]
-## [color=lightgreen]Note: The unit's combat stats are currently modified inside
-## [method Unit.finalize_attack]. This is a temporary workaround. The intended design is
-## for this function to only handle visual updates, while the actual combat calculations
-## should happen during the resolution phase.[/color][br]
 ## 6. [b]Cleanup[/b]: The next attack from the [i]action queue[/i] is popped and moved to
 ## [member CombatLogic.current_attack].[br][br]
 ##
@@ -88,7 +84,7 @@ var evadable: bool
 ## This is used by the game to dynamically load the effect.[br]
 ## [code]value[/code]: A set of parameters passed to the effect. Parsed and handled
 ## within the respective effect class.
-var applying_effects: Dictionary[String, Variant.Type]
+var applying_effects: Dictionary[String, Variant]
 
 ## Function with a signature
 ## [codeblock]
