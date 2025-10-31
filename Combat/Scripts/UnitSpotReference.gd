@@ -1,4 +1,5 @@
 class_name UnitSpotReference
+extends RefCounted
 
 var spot: UnitSpot
 

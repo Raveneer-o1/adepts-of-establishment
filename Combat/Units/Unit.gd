@@ -250,7 +250,7 @@ func resolve_attack(attack: Attack, delay: int = 0, finalize: bool = false) -> v
 		return
 	
 	if shielded_attacks.has(
-			attack.original if attack.original else attack
+			attack.original.get_ref() if attack.original else attack
 		):
 			system.display_text_near_unit(self, "Shield!")
 			sound_player.play_shield_sound()
@@ -287,7 +287,7 @@ func resolve_attack(attack: Attack, delay: int = 0, finalize: bool = false) -> v
 	if damage_taken > 0: sound_player.play_damage_sound()
 	
 	if attack.original:
-		attack.original.applied_damage += damage_taken;
+		attack.original.get_ref().applied_damage += damage_taken;
 	else:
 		attack.applied_damage += damage_taken;
 	

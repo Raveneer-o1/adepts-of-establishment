@@ -1,4 +1,5 @@
 class_name Attack
+extends RefCounted
 
 ## Attack that is being performed
 ##
@@ -22,7 +23,8 @@ class_name Attack
 ##
 ## [b]See also:[/b] [CombatSystem], [UnitAttack], [Unit]
 
-var damages: Dictionary[UnitSpotReference, int]
+var damages: Dictionary[UnitSpotReference, int] = {}
+var target_references: Array[UnitSpotReference] = []
 
 # if target can't be found in damages dictionary, this value will be used as damage
 var default_damage: int
@@ -32,43 +34,23 @@ var redirected: bool = false
 var accuracy: float
 var type: GlobalDefs.AttackType
 var attacker: Unit
-var target_references: Array[UnitSpotReference]:
-	get:
-		var result: Array[UnitSpotReference] = []
-		@warning_ignore("untyped_declaration")
-		for key in damages.keys():
-			if key is UnitSpotReference:
-				result.append(key)
-			else:
-				print_debug(\
-					"Unexpected type in the targets of an Attack object! UnitSpotReference expected, but %s found!" \
-					% type_string( typeof(key) )
-				)
-		return result
 var target_spots: Array[UnitSpot]:
 	get:
 		var result: Array[UnitSpot] = []
-		@warning_ignore("untyped_declaration")
-		for key in damages.keys():
-			if key is UnitSpotReference:
-				result.append(key.spot)
-			else:
-				print_debug(\
-					"Unexpected type in the targets of an Attack object! UnitSpotReference expected, but %s found!" \
-					% type_string( typeof(key) )
-				)
+		for key: UnitSpotReference in target_references:
+			result.append(key.spot)
 		return result
 var targets: Array[Unit]:
-	set(value):
-		target_spots = []
-		for unit in value:
-			if unit != null:
-				target_spots.append(unit.spot)
+	#set(value):
+		#target_spots = []
+		#for unit in value:
+			#if unit != null:
+				#target_spots.append(unit.spot)
 	get:
 		var result : Array[Unit] = []
-		for spot in target_spots:
-			if spot.unit != null:
-				result.append(spot.unit)
+		for ref: UnitSpotReference in target_references:
+			if ref.spot and ref.spot.unit:
+				result.append(ref.spot.unit)
 		return result
 var effect: Resource
 
@@ -101,7 +83,7 @@ var tags: Array[StringName] = []
 
 var applied_damage: int = 0
 
-var original: Attack = null
+var original: WeakRef = null
 
 ## Calles [method Unit.resolve_attack] on each of its targets
 func resolve(finalize: bool = false) -> void:
@@ -122,16 +104,31 @@ func set_parameters(attack: UnitAttack) -> void:
 	damage_policy = attack.damage_policy
 	applying_effects = attack.applying_effects.duplicate()
 
-func redirect_to(target_index: UnitSpotReference, target_unit:Unit) -> void:
-	var damage: int = damages[target_index]
-	var new_index := UnitSpotReference.new(target_unit.spot)
-	damages.erase(target_index)
-	damages[new_index] = damage
+func redirect_to(target_ref: UnitSpotReference, target_unit:Unit) -> void:
+	var index: int = target_references.find(target_ref)
+	if index < 0: return
+	if target_ref not in damages:
+		push_error("'damages' dict does not contain reference while 'target_references' does!")
+		return
+	
+	var damage: int = damages[target_ref]
+	var new_ref := UnitSpotReference.new(target_unit.spot)
+	
+	target_references[index] = new_ref
+	damages.erase(target_ref)
+	damages[new_ref] = damage
 	redirected = true
 
 ## Returns the first reference to the [param target] in [member damages]
+func find_all_references(target: UnitSpot) -> Array[UnitSpotReference]:
+	var result: Array[UnitSpotReference] = []
+	for t: UnitSpotReference in target_references:
+		if t.spot == target: result.append(t)
+	return result
+
+## Returns the first reference to the [param target] in [member damages]
 func find_reference(target: UnitSpot) -> UnitSpotReference:
-	for t: UnitSpotReference in damages:
+	for t: UnitSpotReference in target_references:
 		if t.spot == target: return t
 	return null
 
@@ -140,11 +137,12 @@ func find_reference(target: UnitSpot) -> UnitSpotReference:
 func duplicate() -> Attack:
 	var result := Attack.new(self, target_spots, default_damage)
 	result.damages = damages
+	result.target_references = target_references
 	if damage_policy:
 		result.damage_policy = damage_policy
 	if applying_effects:
 		result.applying_effects = applying_effects
-	result.original = original if original else self
+	result.original = original if original else weakref(self)
 	result.targets_chosen = targets_chosen
 	return result
 
@@ -188,3 +186,4 @@ func _init(_param: Variant, _spots: Array[UnitSpot],
 	for spot: UnitSpot in _spots:
 		var ref: UnitSpotReference = UnitSpotReference.new(spot)
 		damages[ref] = dmg
+		target_references.append(ref)
