@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bkoge3ibwhgcc"]
+
+[ext_resource type="Script" uid="uid://bpuolsni184dm" path="res://Combat/Units/Parameters/Validation/Scripts/standard_mage_validity.gd" id="1_la75s"]
+
+[resource]
+script = ExtResource("1_la75s")

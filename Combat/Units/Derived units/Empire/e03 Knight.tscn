@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b4rbb5ligj1is" path="res://Arts/Empire units/knight idle .png" id="3_uphvs"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_f7s68"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_k3q6v"]
-[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="6_lycjm"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="6_lycjm"]
 [ext_resource type="PackedScene" uid="uid://b7l7e3cr20yw1" path="res://Combat/Effects/AppliedEffects/Scenes/taunt.tscn" id="8_1tpk0"]
 [ext_resource type="AudioStream" uid="uid://jjx4crj3vvo6" path="res://Sounds/using/Damage/Steel_1.wav" id="9_vxhco"]
 [ext_resource type="AudioStream" uid="uid://dfxj3ppvop3pb" path="res://Sounds/using/Damage/Steel_2.wav" id="10_7206k"]
@@ -151,7 +151,7 @@ script = ExtResource("5_k3q6v")
 initiative = 40
 target_validation = ExtResource("6_lycjm")
 
-[node name="Taunt" parent="UnitParameters" index="3" instance=ExtResource("8_1tpk0")]
+[node name="Taunt" parent="UnitParameters" index="2" instance=ExtResource("8_1tpk0")]
 chance_to_taunt = 1.0
 
 [node name="Steel1" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]

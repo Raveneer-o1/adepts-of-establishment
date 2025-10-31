@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dqmsdyslq5xbc" path="res://Arts/Empire units/samurai idle .png" id="3_26pc1"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_mc75p"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_ol2r7"]
-[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="6_plv2k"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="6_plv2k"]
 [ext_resource type="AudioStream" uid="uid://jjx4crj3vvo6" path="res://Sounds/using/Damage/Steel_1.wav" id="8_7bnht"]
 [ext_resource type="AudioStream" uid="uid://dfxj3ppvop3pb" path="res://Sounds/using/Damage/Steel_2.wav" id="9_40pmu"]
 [ext_resource type="AudioStream" uid="uid://cfoq5h1xo1e6n" path="res://Sounds/using/Damage/Steel_3.wav" id="10_j5rr7"]

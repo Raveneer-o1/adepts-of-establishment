@@ -22,7 +22,7 @@ func finish_death_animation() -> void:
 
 
 func play_death_animation() -> void:
-	(get_child(0) as AnimationPlayer).play(&"unit_standart_death_animation")
+	(get_child(0) as AnimationPlayer).play(&"unit_standard_death_animation")
 
 func play_attack_animation() -> void:
 	if animation != &"default":
@@ -47,14 +47,14 @@ func play_damage_animation(message: String = "") -> void:
 		play(anim_name)
 	else :
 		if not (get_child(0) as AnimationPlayer).is_playing():
-			(get_child(0) as AnimationPlayer).play(&"unit_standart_damage_animation")
+			(get_child(0) as AnimationPlayer).play(&"unit_standard_damage_animation")
 
 func play_heal_animation() -> void:
 	var anim_name := &"heal"
 	if sprite_frames.has_animation(anim_name):
 		play(anim_name)
 	else:
-		(get_child(0) as AnimationPlayer).play(&"unit_standart_heal_animation")
+		(get_child(0) as AnimationPlayer).play(&"unit_standard_heal_animation")
 
 func finish_attack() -> void:
 	now_attacking = false

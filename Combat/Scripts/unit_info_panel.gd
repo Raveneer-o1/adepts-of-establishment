@@ -22,6 +22,12 @@ const BRACKETS_ENCLOSURE = "(%s)"
 func attack_type_to_str(type: GlobalDefs.AttackType) -> String:
 	return GlobalDefs.AttackType.keys()[type]
 
+func get_accuracy_text(a: UnitAttack) -> String:
+	var val: float = a.accuracy_representation
+	if is_nan(val): return "0"
+	if is_inf(val): return "guaranteed"
+	return str(roundi(val))
+
 func fill_text_data(unit: Unit) -> void:
 	info.text = ""  # Clear short info text
 	full_info.text = ""  # Clear detailed info text
@@ -52,7 +58,7 @@ func fill_text_data(unit: Unit) -> void:
 		
 		# Append initiative, accuracy, and type info
 		initiative_text += str(a.initiative) + ", "
-		accuracy_text += str(a.accuracy) + ", "
+		accuracy_text += get_accuracy_text(a) + ", "
 		type_text += attack_type_to_str(a.type) + ", "
 		
 		# Collect effects applied by the attack

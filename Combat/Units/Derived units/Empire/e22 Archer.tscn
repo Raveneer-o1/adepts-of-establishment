@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://g0c3fesge8pw" path="res://Arts/Empire units/archer idle .png" id="3_c26eu"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_j46uk"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_jkb3r"]
-[ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standart_archer_validity.tres" id="6_xdj6d"]
+[ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standard_archer_validity.tres" id="6_xdj6d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xcvpq"]
 atlas = ExtResource("2_5paof")

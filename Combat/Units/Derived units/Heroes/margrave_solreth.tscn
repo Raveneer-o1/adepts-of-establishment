@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://c1xl325bckput" path="res://Arts/Heroes/hero08 Margrave Solreth idle.png" id="5_0l5ur"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="6_kkh7t"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="7_xbhph"]
-[ext_resource type="Resource" uid="uid://bkoge3ibwhgcc" path="res://Combat/Units/Parameters/Validation/standart_mage_validity.tres" id="8_rctsb"]
-[ext_resource type="Resource" uid="uid://cejkgjwk05uws" path="res://Combat/Units/Parameters/Additional targets/standart_mage_targets.tres" id="9_7kka3"]
+[ext_resource type="Resource" uid="uid://bkoge3ibwhgcc" path="res://Combat/Units/Parameters/Validation/standard_mage_validity.tres" id="8_rctsb"]
+[ext_resource type="Resource" uid="uid://cejkgjwk05uws" path="res://Combat/Units/Parameters/Additional targets/standard_mage_targets.tres" id="9_7kka3"]
 [ext_resource type="Resource" uid="uid://cxvfk7vgegqq2" path="res://Combat/Units/Parameters/Policy/decay_policy.tres" id="9_jtrqu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ym2s5"]

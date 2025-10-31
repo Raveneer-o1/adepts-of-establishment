@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://32erco7v1jx1" path="res://Arts/Heroes/hero03 sir Roland idle .png" id="5_nwgex"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="6_0f6sr"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="7_6a8eq"]
-[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="8_oo0s2"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="8_oo0s2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lw61y"]
 atlas = ExtResource("2_3r6cw")

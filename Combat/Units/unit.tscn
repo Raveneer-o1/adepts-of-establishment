@@ -37,7 +37,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_yce8f"]
-resource_name = "unit_standart_damage_animation"
+resource_name = "unit_standard_damage_animation"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -64,7 +64,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_lqbyk"]
-resource_name = "unit_standart_death_animation"
+resource_name = "unit_standard_death_animation"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -93,7 +93,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_e0237"]
-resource_name = "unit_standart_heal_animation"
+resource_name = "unit_standard_heal_animation"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -110,9 +110,9 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vl4j0"]
 _data = {
 &"RESET": SubResource("Animation_t5xf5"),
-&"unit_standart_damage_animation": SubResource("Animation_yce8f"),
-&"unit_standart_death_animation": SubResource("Animation_lqbyk"),
-&"unit_standart_heal_animation": SubResource("Animation_e0237")
+&"unit_standard_damage_animation": SubResource("Animation_yce8f"),
+&"unit_standard_death_animation": SubResource("Animation_lqbyk"),
+&"unit_standard_heal_animation": SubResource("Animation_e0237")
 }
 
 [node name="Unit" type="Node2D"]

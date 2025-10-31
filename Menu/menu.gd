@@ -60,7 +60,7 @@ func save_unit_composition() -> void:
 
 const PLAYER_CONTROLLER = 0
 const BASIC_AI_CONTROLLER = 1
-const STANDART_AI_CONTROLLER = 2
+const STANDARD_AI_CONTROLLER = 2
 
 func save_left_controller() -> void:
 	var items := item_list_left_controller.get_selected_items()
@@ -72,8 +72,8 @@ func save_left_controller() -> void:
 			EventBus.left_controller = load("res://Combat/Scenes/player_controller.tscn")
 		BASIC_AI_CONTROLLER:
 			EventBus.left_controller = load("res://Combat/Scenes/basic_combat_ai.tscn")
-		STANDART_AI_CONTROLLER:
-			EventBus.left_controller = load("res://Combat/Scenes/standart_combat_ai.tscn")
+		STANDARD_AI_CONTROLLER:
+			EventBus.left_controller = load("res://Combat/Scenes/standard_combat_ai.tscn")
 
 func save_right_controller() -> void:
 	var items := item_list_right_controller.get_selected_items()
@@ -85,8 +85,8 @@ func save_right_controller() -> void:
 			EventBus.right_controller = load("res://Combat/Scenes/player_controller.tscn")
 		BASIC_AI_CONTROLLER:
 			EventBus.right_controller = load("res://Combat/Scenes/basic_combat_ai.tscn")
-		STANDART_AI_CONTROLLER:
-			EventBus.right_controller = load("res://Combat/Scenes/standart_combat_ai.tscn")
+		STANDARD_AI_CONTROLLER:
+			EventBus.right_controller = load("res://Combat/Scenes/standard_combat_ai.tscn")
 
 
 func save_controllers() -> void:
@@ -145,5 +145,5 @@ func _on_clear_button_pressed() -> void:
 		panel.queue_free()
 
 func _ready() -> void:
-	item_list_left_controller.select(STANDART_AI_CONTROLLER)
+	item_list_left_controller.select(STANDARD_AI_CONTROLLER)
 	item_list_right_controller.select(PLAYER_CONTROLLER)

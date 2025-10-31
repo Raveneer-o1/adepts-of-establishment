@@ -41,11 +41,6 @@ var target_spots: Array[UnitSpot]:
 			result.append(key.spot)
 		return result
 var targets: Array[Unit]:
-	#set(value):
-		#target_spots = []
-		#for unit in value:
-			#if unit != null:
-				#target_spots.append(unit.spot)
 	get:
 		var result : Array[Unit] = []
 		for ref: UnitSpotReference in target_references:
@@ -87,13 +82,13 @@ var original: WeakRef = null
 
 ## Calles [method Unit.resolve_attack] on each of its targets
 func resolve(finalize: bool = false) -> void:
-	# if standart attack resolution if overridden
+	# if standard attack resolution if overridden
 	if damage_policy:
 		for i in range(target_spots.size()):
 			damage_policy.apply_policy(self.duplicate(), i, finalize)
 		return
 	
-	# standart attack resolution
+	# standard attack resolution
 	var i := 1
 	for target in targets:
 		target.resolve_attack(self, i, finalize)

@@ -1,6 +1,0 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dsaomlp8ev7ty"]
-
-[ext_resource type="Script" uid="uid://ckei0buc5qd1c" path="res://Combat/Units/Parameters/Validation/Scripts/standart_archer_validity.gd" id="1_8gqop"]
-
-[resource]
-script = ExtResource("1_8gqop")

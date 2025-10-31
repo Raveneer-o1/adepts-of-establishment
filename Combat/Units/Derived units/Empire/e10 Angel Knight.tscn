@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://j14go8w5ajjq" path="res://Combat/Effects/AppliedEffects/Scenes/damage_buff_aura.tscn" id="4_2ulgk"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_fmxe7"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_86cfn"]
-[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="7_0uj1v"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="7_0uj1v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5whir"]
 atlas = ExtResource("2_j41lp")

@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_mtitt"]
 [ext_resource type="PackedScene" uid="uid://dnxkr164m8hpp" path="res://Combat/Effects/AppliedEffects/Scenes/crafted_body.tscn" id="5_a3k2t"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_gonsu"]
-[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="8_1bqap"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="8_1bqap"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5xc6k"]
 atlas = ExtResource("2_k4rwu")

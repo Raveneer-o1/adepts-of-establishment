@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b3gssbgpd05vu" path="res://Combat/Effects/Scenes/assassin_clone.tscn" id="4_h3kiw"]
 [ext_resource type="PackedScene" uid="uid://drten8s54cfdq" path="res://Combat/Effects/AppliedEffects/Scenes/agility.tscn" id="6_nkknn"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="7_gd61f"]
-[ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standart_archer_validity.tres" id="8_vc7xq"]
+[ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standard_archer_validity.tres" id="8_vc7xq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eixpf"]
 atlas = ExtResource("2_2bipl")

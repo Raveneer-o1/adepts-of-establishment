@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_fyc4j"]
 [ext_resource type="PackedScene" uid="uid://cnl2vrahoavc6" path="res://Combat/Effects/Scenes/spiral_attack.tscn" id="4_idhnn"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_v1c5e"]
-[ext_resource type="Resource" uid="uid://bkoge3ibwhgcc" path="res://Combat/Units/Parameters/Validation/standart_mage_validity.tres" id="7_w8433"]
+[ext_resource type="Resource" uid="uid://bkoge3ibwhgcc" path="res://Combat/Units/Parameters/Validation/standard_mage_validity.tres" id="7_w8433"]
 [ext_resource type="Resource" uid="uid://bhe5cl2bujg8i" path="res://Combat/Units/Parameters/Additional targets/Splash.tres" id="8_xwvfk"]
 [ext_resource type="Resource" uid="uid://cxvfk7vgegqq2" path="res://Combat/Units/Parameters/Policy/decay_policy.tres" id="9_81ab4"]
 

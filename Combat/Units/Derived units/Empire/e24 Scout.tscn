@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_ptq6f"]
 [ext_resource type="PackedScene" uid="uid://cnlyt2k5jjchq" path="res://Combat/Effects/Scenes/target_throw.tscn" id="4_vlh87"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_fc8i6"]
-[ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standart_archer_validity.tres" id="7_l3bih"]
+[ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standard_archer_validity.tres" id="7_l3bih"]
 [ext_resource type="PackedScene" uid="uid://drten8s54cfdq" path="res://Combat/Effects/AppliedEffects/Scenes/agility.tscn" id="8_sss3p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e8vgm"]

@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_co076"]
 [ext_resource type="PackedScene" uid="uid://7vboji3lb2aa" path="res://Combat/Effects/Scenes/whisp_attack.tscn" id="4_gye3m"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_tko31"]
-[ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standart_archer_validity.tres" id="7_7imro"]
+[ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standard_archer_validity.tres" id="7_7imro"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ueq40"]
 atlas = ExtResource("2_1rynm")

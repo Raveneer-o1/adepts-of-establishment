@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_auocb"]
 [ext_resource type="PackedScene" uid="uid://cdicif6h0d041" path="res://Combat/Effects/Scenes/weak_heal.tscn" id="4_hx3ji"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_nb02p"]
-[ext_resource type="Resource" uid="uid://2rff7s5788qv" path="res://Combat/Units/Parameters/Validation/standart_healer_validity.tres" id="7_xbers"]
+[ext_resource type="Resource" uid="uid://2rff7s5788qv" path="res://Combat/Units/Parameters/Validation/standard_healer_validity.tres" id="7_xbers"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_37ad5"]
 atlas = ExtResource("2_uodg6")

@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b861bayrkpx0o" path="res://Arts/Generic/g01 orc chieftain idle .png" id="3_xhkvy"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_rcpxb"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_olqh7"]
-[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="6_aembs"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="6_aembs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_canxf"]
 atlas = ExtResource("2_nnypv")

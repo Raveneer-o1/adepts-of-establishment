@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cqi6uvygpbulg" path="res://Combat/Effects/Scenes/Undead_spider_effect.tscn" id="4_2tpcm"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_onv2w"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_f03p3"]
-[ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standart_archer_validity.tres" id="7_e144q"]
+[ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standard_archer_validity.tres" id="7_e144q"]
 [ext_resource type="Resource" uid="uid://bhe5cl2bujg8i" path="res://Combat/Units/Parameters/Additional targets/Splash.tres" id="8_2mes4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_extqq"]

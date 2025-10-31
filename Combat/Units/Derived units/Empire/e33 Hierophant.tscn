@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cvtcjsl55tqgq" path="res://Combat/Effects/Scenes/strong_heal.tscn" id="4_e1vxq"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_fbxf0"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_x7on8"]
-[ext_resource type="Resource" uid="uid://2rff7s5788qv" path="res://Combat/Units/Parameters/Validation/standart_healer_validity.tres" id="7_delep"]
+[ext_resource type="Resource" uid="uid://2rff7s5788qv" path="res://Combat/Units/Parameters/Validation/standard_healer_validity.tres" id="7_delep"]
 [ext_resource type="Resource" uid="uid://beulsq7x1px31" path="res://Combat/Units/Parameters/Validation/resurrection_validation.tres" id="7_umx74"]
 [ext_resource type="Resource" uid="uid://dk2b5c0qnptvr" path="res://Combat/Units/Parameters/Policy/resurrection_policy.tres" id="8_3owpt"]
 

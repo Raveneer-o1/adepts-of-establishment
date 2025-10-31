@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bm76kdukjl5ud" path="res://Arts/Undead units/u28 wyvern idle .png" id="3_v6we3"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_ai02h"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_1lqiu"]
-[ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standart_archer_validity.tres" id="6_d1jj8"]
+[ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standard_archer_validity.tres" id="6_d1jj8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oqaji"]
 atlas = ExtResource("2_yakh1")

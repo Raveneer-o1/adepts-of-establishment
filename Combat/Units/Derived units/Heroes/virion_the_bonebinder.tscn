@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="6_koco3"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="7_7rmoy"]
 [ext_resource type="PackedScene" uid="uid://bq8uh0qk7hl6c" path="res://Combat/Effects/heros' effects/Virion effect.tscn" id="7_6870d"]
-[ext_resource type="Resource" uid="uid://bkoge3ibwhgcc" path="res://Combat/Units/Parameters/Validation/standart_mage_validity.tres" id="8_tmdmh"]
+[ext_resource type="Resource" uid="uid://bkoge3ibwhgcc" path="res://Combat/Units/Parameters/Validation/standard_mage_validity.tres" id="8_tmdmh"]
 [ext_resource type="Resource" uid="uid://cxvfk7vgegqq2" path="res://Combat/Units/Parameters/Policy/decay_policy.tres" id="9_8kcmf"]
 [ext_resource type="Resource" uid="uid://bhe5cl2bujg8i" path="res://Combat/Units/Parameters/Additional targets/Splash.tres" id="9_xvpum"]
 

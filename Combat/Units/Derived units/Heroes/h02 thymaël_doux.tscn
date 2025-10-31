@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bqnftpq1tot0m" path="res://Arts/Heroes/hero02, Thymaël Doux idle .png" id="5_ld2x7"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="6_uhbs5"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="7_oeuho"]
-[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="8_sbb8u"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="8_sbb8u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6k6ui"]
 atlas = ExtResource("2_p7at1")

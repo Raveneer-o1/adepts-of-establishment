@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_h4fa4"]
 [ext_resource type="PackedScene" uid="uid://cvtcjsl55tqgq" path="res://Combat/Effects/Scenes/strong_heal.tscn" id="4_y4o6y"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_avec3"]
-[ext_resource type="Resource" uid="uid://2rff7s5788qv" path="res://Combat/Units/Parameters/Validation/standart_healer_validity.tres" id="7_ioare"]
+[ext_resource type="Resource" uid="uid://2rff7s5788qv" path="res://Combat/Units/Parameters/Validation/standard_healer_validity.tres" id="7_ioare"]
 [ext_resource type="Resource" uid="uid://cu702u3q22fx4" path="res://Combat/Units/Parameters/Additional targets/mass_heal_targets.tres" id="8_4ae8m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_unlus"]

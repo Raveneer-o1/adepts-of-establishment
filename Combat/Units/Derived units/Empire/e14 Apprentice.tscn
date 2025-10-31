@@ -6,8 +6,8 @@
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_bski4"]
 [ext_resource type="PackedScene" uid="uid://dvfxijlca63a7" path="res://Combat/Effects/Scenes/novice_lightning.tscn" id="5_8t08s"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_h66ux"]
-[ext_resource type="Resource" uid="uid://bkoge3ibwhgcc" path="res://Combat/Units/Parameters/Validation/standart_mage_validity.tres" id="7_tyh7c"]
-[ext_resource type="Resource" uid="uid://cejkgjwk05uws" path="res://Combat/Units/Parameters/Additional targets/standart_mage_targets.tres" id="8_oo0nm"]
+[ext_resource type="Resource" uid="uid://bkoge3ibwhgcc" path="res://Combat/Units/Parameters/Validation/standard_mage_validity.tres" id="7_tyh7c"]
+[ext_resource type="Resource" uid="uid://cejkgjwk05uws" path="res://Combat/Units/Parameters/Additional targets/standard_mage_targets.tres" id="8_oo0nm"]
 [ext_resource type="Resource" uid="uid://cxvfk7vgegqq2" path="res://Combat/Units/Parameters/Policy/decay_policy.tres" id="9_3531a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s0tsu"]

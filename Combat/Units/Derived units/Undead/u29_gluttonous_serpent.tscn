@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cm33nfqtorifs" path="res://Arts/Undead units/u32 Gluttonous serpent idle .png" id="3_lw716"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_gsme7"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_1scgy"]
-[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="6_j2236"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="6_j2236"]
 [ext_resource type="PackedScene" uid="uid://b1i0mf1877mfo" path="res://Combat/Effects/AppliedEffects/Scenes/shield.tscn" id="7_yrrec"]
 [ext_resource type="PackedScene" uid="uid://cpjv5cb5u6bt6" path="res://Combat/Effects/AppliedEffects/Scenes/devourer.tscn" id="8_ovriw"]
 

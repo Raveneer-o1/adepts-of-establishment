@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="5_wie3s"]
 [ext_resource type="PackedScene" uid="uid://thxi4t5byubf" path="res://Combat/Effects/heros' effects/bone_collector_effect.tscn" id="6_hhhol"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_pympk"]
-[ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standart_archer_validity.tres" id="7_0mn26"]
+[ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standard_archer_validity.tres" id="7_0mn26"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yggjw"]
 atlas = ExtResource("2_fsc52")

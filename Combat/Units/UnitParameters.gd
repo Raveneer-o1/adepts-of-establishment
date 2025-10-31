@@ -8,11 +8,11 @@ extends Node
 const ARMOR_CAP = 900
 
 ## Max damage deviation. Note: actual deviation is maximum between
-## [member STANDART_DAMAGE_DEVIATION] and [member STANDART_FRACTIONAL_DAMAGE_DEVIATION] * damage
-const STANDART_DAMAGE_DEVIATION = 5
+## [member STANDARD_DAMAGE_DEVIATION] and [member STANDARD_FRACTIONAL_DAMAGE_DEVIATION] * damage
+const STANDARD_DAMAGE_DEVIATION = 5
 ## Fraction of base damage that is used as max deviation. Note: actual deviation is maximum between
-## [member STANDART_DAMAGE_DEVIATION] and [member STANDART_FRACTIONAL_DAMAGE_DEVIATION] * damage
-const STANDART_FRACTIONAL_DAMAGE_DEVIATION = 0.1
+## [member STANDARD_DAMAGE_DEVIATION] and [member STANDARD_FRACTIONAL_DAMAGE_DEVIATION] * damage
+const STANDARD_FRACTIONAL_DAMAGE_DEVIATION = 0.1
 
 @export var level: int = 1
 
@@ -351,7 +351,7 @@ func turn_start_reaction(_unit: Unit) -> void:
 
 func take_direct_damage(dmg: int, randomize_damage: bool = false) -> int:
 	if randomize_damage:
-		var random_deviation: int = max(dmg * STANDART_FRACTIONAL_DAMAGE_DEVIATION, STANDART_DAMAGE_DEVIATION)
+		var random_deviation: int = max(dmg * STANDARD_FRACTIONAL_DAMAGE_DEVIATION, STANDARD_DAMAGE_DEVIATION)
 		dmg += randi_range(-random_deviation, random_deviation)
 	
 	var original_hp := hp
@@ -367,8 +367,8 @@ func take_damage(dmg: int, randomize_damage: bool = true) -> int:
 	dmg *= armor_multiplier
 	if randomize_damage:
 		var random_deviation: int = max(
-			dmg * STANDART_FRACTIONAL_DAMAGE_DEVIATION, 
-			STANDART_DAMAGE_DEVIATION
+			dmg * STANDARD_FRACTIONAL_DAMAGE_DEVIATION, 
+			STANDARD_DAMAGE_DEVIATION
 		)
 		dmg += randi_range(-random_deviation, random_deviation)
 	

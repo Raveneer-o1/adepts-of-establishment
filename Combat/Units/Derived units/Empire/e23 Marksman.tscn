@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dlgilkj0qx0nf" path="res://Arts/Empire units/Marksman idle .png" id="3_r5t8n"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_0pev8"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_6r3cf"]
-[ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standart_archer_validity.tres" id="6_ygvjo"]
+[ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standard_archer_validity.tres" id="6_ygvjo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a8ogo"]
 atlas = ExtResource("2_owiv2")

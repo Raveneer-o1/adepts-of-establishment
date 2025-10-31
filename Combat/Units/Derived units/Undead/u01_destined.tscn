@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ctrls0vq6tt6v" path="res://Arts/Undead units/u01 warrior idle .png" id="3_78kv8"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_efdty"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_tyvi1"]
-[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="6_n8qtq"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="6_n8qtq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3y5sv"]
 atlas = ExtResource("2_ovvav")

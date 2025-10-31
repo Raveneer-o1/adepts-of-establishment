@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dk6td4x3fw4h2" path="res://Arts/Empire units/horseman idle .png" id="3_rt307"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_porei"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_80t0n"]
-[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standart_melee_validity.tres" id="6_8uswv"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="6_8uswv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ufxv4"]
 atlas = ExtResource("2_6doph")

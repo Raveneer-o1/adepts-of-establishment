@@ -57,6 +57,26 @@ var unit: Unit
 ## @experimental: currently not implemented
 @export var effect_override : Resource
 
+## Returns a human-friendly accuracy representation rather than raw probabilities.
+## The idea is to never showing actual percentages to the player and avoid behind-the-scenes
+## number manipulation (as it's usually done to improve player perception). [br]
+## Conversion examples: [br]
+## 0.25 (25%) → 1.333333 [br]
+## 0.5 (50%) → 2.0 [br]
+## 0.75 (50%) → 4.0 [br]
+## 0.85 (85%) → 7.0 [br]
+## 0.9 (90%) → 10.0 [br]
+## 0.95 (95%) → 20.0 [br]
+## 0.975 (97.5%) → 40.0 [br]
+## 0.99 (99%) → 100.0 [br]
+## The formula essentially gives X for the phrase "unit will miss 1 in X attacks"
+var accuracy_representation: float:
+	get:
+		if is_zero_approx(accuracy): return NAN
+		var chance_to_miss: float = 1.0 - accuracy
+		if is_zero_approx(chance_to_miss): return INF
+		return 1.0 / chance_to_miss
+
 ## This method is called by [UnitParameters] at the start of the combat. [br]
 ## Note: Currently not implemented, but [UnitParameters] will also be responsible 
 ## for calling it for any attacks added during the battle.
