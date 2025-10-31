@@ -58,9 +58,10 @@ var unit: Unit
 @export var effect_override : Resource
 
 ## Returns a human-friendly accuracy representation rather than raw probabilities.
-## The idea is to never showing actual percentages to the player and avoid behind-the-scenes
+## The idea is to never show actual percentages to the player and avoid behind-the-scenes
 ## number manipulation (as it's usually done to improve player perception). [br]
-## Conversion examples: [br]
+## The formula essentially gives X for the phrase [b]"unit will miss 1 in X attacks"[/b].[br] [br]
+## [center][i]Conversion examples: [br]
 ## 0.25 (25%) → 1.333333 [br]
 ## 0.5 (50%) → 2.0 [br]
 ## 0.75 (50%) → 4.0 [br]
@@ -68,8 +69,7 @@ var unit: Unit
 ## 0.9 (90%) → 10.0 [br]
 ## 0.95 (95%) → 20.0 [br]
 ## 0.975 (97.5%) → 40.0 [br]
-## 0.99 (99%) → 100.0 [br]
-## The formula essentially gives X for the phrase "unit will miss 1 in X attacks"
+## 0.99 (99%) → 100.0 [/i] [/center]
 var accuracy_representation: float:
 	get:
 		if is_zero_approx(accuracy): return NAN

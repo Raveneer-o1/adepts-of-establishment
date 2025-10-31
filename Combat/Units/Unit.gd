@@ -162,7 +162,7 @@ func initialize_variables() -> bool:
 ## Clears references to objects that are used only once (e.g. Attacks)
 func clear_objects() -> void:
 	clean_effects()
-	shielded_attacks.clear()
+	warded_attacks.clear()
 
 ## Cleans applied effects: removes dead references, removes unapplied icons. [br]
 ## [param _unit] doesn't do anythig, it's only there to connect this method to signals
@@ -216,7 +216,7 @@ func skip_attack(message: String = "", color: Color = Color.WHITE) -> void:
 
 #region Recieving attacks
 
-var shielded_attacks: Array[Attack] = []
+var warded_attacks: Array[Attack] = []
 
 ## Updates unit visuals using the most recent snapshot from [member parameter_snapshots].
 ## Typically called automatically when [signal EventBus.attack_reached] is emitted.
@@ -242,14 +242,16 @@ func finalize_attack() -> void:
 ## Processes an attack against this unit, applying damage calculations immediately.
 ## This method handles game logic but does not update visuals -
 ## it calls [method schedule_damage] for visual sequencing.
-func resolve_attack(attack: Attack, delay: int = 0, finalize: bool = false) -> void:
+func resolve_attack(attack: Attack, damage: int, delay: int = 0, finalize: bool = false) -> void:
 	if attack.type != GlobalDefs.AttackType.None and \
 			parameters.immunities.has(attack.type):
 		system.display_text_near_unit(self, "Immunity")
 		sound_player.play_immunity_sound()
 		return
 	
-	if shielded_attacks.has(
+	# checking shield before miss/evade because warded_attacks is already filled 
+	# at this point and 'ward' effect is removed
+	if warded_attacks.has(
 			attack.original.get_ref() if attack.original else attack
 		):
 			system.display_text_near_unit(self, "Shield!")
@@ -279,11 +281,11 @@ func resolve_attack(attack: Attack, delay: int = 0, finalize: bool = false) -> v
 				attack.applying_effects[effect_name]
 			)
 	
-	var ref: UnitSpotReference = attack.find_reference(spot)
-	var damage_to_take: int = \
-		attack.damages[ref] if attack.damages.has(ref) \
-		else attack.default_damage
-	var damage_taken: int = parameters.take_damage(damage_to_take)
+	#var ref: UnitSpotReference = attack.find_reference(spot)
+	#var damage_to_take: int = \
+		#attack.damages[ref] if attack.damages.has(ref) \
+		#else attack.default_damage
+	var damage_taken: int = parameters.take_damage(damage)
 	if damage_taken > 0: sound_player.play_damage_sound()
 	
 	if attack.original:

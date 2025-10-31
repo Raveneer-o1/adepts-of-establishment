@@ -4,15 +4,15 @@ extends AppliedEffect
 
 
 func trigger_effect(attack: Attack) -> void:
-	if not attack.targets.has(target_unit):
-		return
-	
-	# Empty attack type is impossible to block
+	# 'None' attack type is impossible to block
 	if attack.type == GlobalDefs.AttackType.None:
 		return
 	
+	if not attack.targets.has(target_unit):
+		return
+	
 	if attack.type == damage_type:
-		target_unit.shielded_attacks.append(attack)
+		target_unit.warded_attacks.append(attack)
 		queue_free()
 
 func _get_description() -> String:

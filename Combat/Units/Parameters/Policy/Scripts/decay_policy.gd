@@ -16,7 +16,6 @@ func _apply_policy(attack: Attack, index: int, finalize: bool) -> void:
 		attack.damages[refs[index]] * pow(decay_rate, distance)
 	)
 	var delay := index if index < attack.targets_chosen else attack.targets_chosen - 1
-	print(delay)
 	target.resolve_attack(
 		attack, 
 		delay, 

@@ -90,8 +90,14 @@ func resolve(finalize: bool = false) -> void:
 	
 	# standard attack resolution
 	var i := 1
-	for target in targets:
-		target.resolve_attack(self, i, finalize)
+	for target in target_references:
+		if not ( \
+			target.spot and \
+			target.spot.unit and \
+			not target.spot.unit.parameters.dead \
+		): continue
+		var damage_to_take: int = damages[target] if damages.has(target) else default_damage
+		target.spot.unit.resolve_attack(self, damage_to_take, i, finalize)
 		if i < targets_chosen:
 			i += 1
 
