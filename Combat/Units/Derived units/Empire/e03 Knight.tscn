@@ -152,7 +152,8 @@ initiative = 40
 target_validation = ExtResource("6_lycjm")
 
 [node name="Taunt" parent="UnitParameters" index="2" instance=ExtResource("8_1tpk0")]
-chance_to_taunt = 1.0
+chance_to_taunt = 0.3
+description = "This unit will try to make enemies attack itself."
 
 [node name="Steel1" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("9_vxhco")

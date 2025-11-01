@@ -281,10 +281,6 @@ func resolve_attack(attack: Attack, damage: int, delay: int = 0, finalize: bool 
 				attack.applying_effects[effect_name]
 			)
 	
-	#var ref: UnitSpotReference = attack.find_reference(spot)
-	#var damage_to_take: int = \
-		#attack.damages[ref] if attack.damages.has(ref) \
-		#else attack.default_damage
 	var damage_taken: int = parameters.take_damage(damage)
 	if damage_taken > 0: sound_player.play_damage_sound()
 	
@@ -315,7 +311,7 @@ func finish_attacking() -> void:
 	reset_chosen_targets(self)
 	set_next_attack()
 	EventBus.attack_animation_finished.emit(self)
-	EventBus.attack_concluded.emit(self)
+	#EventBus.attack_concluded.emit(self)
 
 
 ## Set to false when you need to skip next call of [method set_next_attack]
@@ -372,9 +368,9 @@ func attempt_shielding(attack: Attack, unit: Unit) -> void:
 		return
 	
 	attack.tags.append(&"shielded")
-	var ref: UnitSpotReference = attack.find_reference(unit.spot)
-	assert(ref, "Unit not found in the attack dictionary!")
-	attack.redirect_to(ref, self)
+	#var ref: UnitSpotReference = attack.find_reference()
+	#assert(ref, "Unit not found in the attack dictionary!")
+	attack.redirect_all(unit.spot, spot)
 
 func _force_native_attack(target: Unit, attack: UnitAttack = null) -> Attack:
 	if attack == null:

@@ -70,8 +70,9 @@ const ICONS := preload("res://Arts/icons.png")
 ## The unit to which this effect is attached.
 var target_unit: Unit
 
-## Stores pairs of signals and assosiated functions. Intended to be overridden is the derived classes
-var _signal_function_pairs: Dictionary
+## Stores pairs of signals and assosiated functions.
+## Intended to be overridden in the derived classes.
+var _signal_function_pairs: Dictionary[Signal, Callable]
 
 func _get_description() -> String:
 	return description
@@ -106,7 +107,18 @@ func check_silence_countdown(unit: Unit) -> void:
 
 var silenced: bool = false
 
-func silence_effect(turns: int = -1) -> void:
+## Moves the node to a [kbd]SilencedEffects[/kbd] container and deactivates it by 
+## disconnecting all signals.
+## Use [method restore_effect] to restore the effect to its functional state. [br]
+## [param time] specifies automatic restoration after the given number of turns
+## (-1 for manual restoration only). [br]
+## If [param is_round] is [code]true[/code], [param time] is interpreted as round count 
+## instead of turns. [br]
+## Notes: [br]
+## - The [kbd]SilencedEffects[/kbd] container must be a sibling of this effect node [br]
+## - If [member silencable] is [code]false[/code], this method does nothing and returns immediately
+## - if [param time] is set to a negative value, [param is_round] is ignored
+func silence_effect(time: int = -1, is_round: bool = false) -> void:
 	if not silencable:
 		return
 	
@@ -121,9 +133,10 @@ func silence_effect(turns: int = -1) -> void:
 	silenced_storage.add_child(self)
 	
 	# connect timeout clock if necessary
-	if turns >= 0:
-		silenced_turns = turns
-		EventBus.turn_ended.connect(check_silence_countdown)
+	if time >= 0:
+		silenced_turns = time
+		if round: EventBus.round_ended.connect(check_silence_countdown)
+		else: EventBus.turn_ended.connect(check_silence_countdown)
 	
 	# disconnect callables
 	for signal_in_pairs: Signal in _signal_function_pairs:

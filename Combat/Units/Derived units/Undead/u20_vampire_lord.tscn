@@ -144,7 +144,7 @@ offset = Vector2(0, -8)
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_jg442")
 
-[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("5_mqc6w")
 type = 3
 accuracy = 0.9
@@ -153,6 +153,6 @@ target_validation = ExtResource("6_2bq5g")
 additional_targets = ExtResource("7_jj583")
 damage_policy = ExtResource("8_odjqq")
 
-[node name="Vampirism" parent="UnitParameters" index="3" instance=ExtResource("9_uy4hc")]
+[node name="Vampirism" parent="UnitParameters" index="2" instance=ExtResource("9_uy4hc")]
 heal = 0.65
 is_percentage = true

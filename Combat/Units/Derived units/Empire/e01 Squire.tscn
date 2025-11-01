@@ -143,7 +143,6 @@ base_paramaters = SubResource("Resource_cyq8r")
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("4_kpo1j")
-accuracy = 0.0
 initiative = 40
 target_validation = ExtResource("6_hjtyp")
 

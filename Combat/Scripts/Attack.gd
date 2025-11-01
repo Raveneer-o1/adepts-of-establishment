@@ -84,10 +84,14 @@ var original: WeakRef = null
 func resolve(finalize: bool = false) -> void:
 	# if standard attack resolution if overridden
 	if damage_policy:
-		for i in range(target_spots.size()):
-			damage_policy.apply_policy(self.duplicate(), i, finalize)
-		return
-	
+		#for i in range(target_spots.size()):
+		damage_policy.apply_policy(self, finalize)
+		EventBus.attack_resolved.emit(self)
+	else:
+		standard_resolution(finalize)
+		EventBus.attack_resolved.emit(self)
+
+func standard_resolution(finalize: bool = false) -> void:
 	# standard attack resolution
 	var i := 1
 	for target in target_references:
@@ -105,20 +109,22 @@ func set_parameters(attack: UnitAttack) -> void:
 	damage_policy = attack.damage_policy
 	applying_effects = attack.applying_effects.duplicate()
 
-func redirect_to(target_ref: UnitSpotReference, target_unit:Unit) -> void:
+func redirect_to(target_ref: UnitSpotReference, to:UnitSpot) -> void:
 	var index: int = target_references.find(target_ref)
 	if index < 0: return
-	if target_ref not in damages:
-		push_error("'damages' dict does not contain reference while 'target_references' does!")
-		return
 	
-	var damage: int = damages[target_ref]
-	var new_ref := UnitSpotReference.new(target_unit.spot)
+	var new_ref := UnitSpotReference.new(to)
 	
 	target_references[index] = new_ref
-	damages.erase(target_ref)
-	damages[new_ref] = damage
+	if target_ref in damages:
+		var damage: int = damages[target_ref]
+		damages.erase(target_ref)
+		damages[new_ref] = damage
 	redirected = true
+
+func redirect_all(target: UnitSpot, to: UnitSpot) -> void:
+	for t:UnitSpotReference in target_references:
+		if t.spot == target: redirect_to(t, to)
 
 ## Returns the first reference to the [param target] in [member damages]
 func find_all_references(target: UnitSpot) -> Array[UnitSpotReference]:

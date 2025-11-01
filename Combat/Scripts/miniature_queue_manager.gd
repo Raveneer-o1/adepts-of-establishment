@@ -5,7 +5,7 @@ const UNIT_MINIATURE = preload("res://Combat/Scenes/unit_in_queue.tscn")
 const MAX_MINIATURES_ON_SCREEN = 15
 
 var hidden_miniatures: Array
-var miniatures: Dictionary
+var miniatures: Dictionary[UnitAttack, UnitInQueue]
 
 func fill_queue(attacks_queue: Array[UnitAttack]) -> void:
 	for miniature in get_children():

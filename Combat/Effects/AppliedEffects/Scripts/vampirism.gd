@@ -13,15 +13,13 @@ func _get_description() -> String:
 			(str(int(heal * 100)) + "%% of damage as") if is_percentage \
 			else str( int(heal) )
 		)
-	
-
 
 func vampiric_heal(attack: Attack) ->void:
 	if attack.attacker == target_unit:
 		@warning_ignore("narrowing_conversion")
-		EventBus.attack_concluded.connect(
-			func(unit: Unit)->void:
-				if unit == target_unit:
+		EventBus.attack_resolved.connect(
+			func(a: Attack)->void:
+				if a.attacker == target_unit:
 					var val: int = heal * attack.applied_damage if is_percentage else heal
 					target_unit.heal(val)
 		)

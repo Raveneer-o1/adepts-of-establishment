@@ -2,22 +2,13 @@ extends BasePolicy
 
 @export var decay_rate : float = 0.5
 
-func _apply_policy(attack: Attack, index: int, finalize: bool) -> void:
-	if attack.target_spots[index].unit == null:
-		return
-	
+func _apply_policy(attack: Attack, finalize: bool) -> void:
 	var first_position: int = attack.targets[0].party_position
-	var target := attack.targets[index]
-	var distance:int = Party.get_distance(first_position, target.party_position)
-	
-	var refs: Array[UnitSpotReference] = attack.target_references
-	
-	attack.damages[refs[index]] = roundi(
-		attack.damages[refs[index]] * pow(decay_rate, distance)
-	)
-	var delay := index if index < attack.targets_chosen else attack.targets_chosen - 1
-	target.resolve_attack(
-		attack, 
-		delay, 
-		true
-	)
+	for target in attack.target_references:
+		if not target.spot: continue
+		var distance: int = Party.get_distance(first_position, target.spot.party_position)
+		var dmg: int = attack.damages[target] if attack.damages.has(target) else attack.default_damage
+		@warning_ignore("narrowing_conversion")
+		dmg *= pow(decay_rate, distance)
+		attack.damages[target] = dmg
+	attack.standard_resolution(true)

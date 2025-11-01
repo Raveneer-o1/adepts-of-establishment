@@ -31,7 +31,7 @@ func play_miss_sound() -> void:
 	if playing_miss_sound: return
 	if not miss_sounds: return
 	playing_miss_sound = true
-	EventBus.attack_concluded.connect(func(a: Unit)-> void: playing_miss_sound = false)
+	EventBus.attack_animation_finished.connect(func(a: Unit)-> void: playing_miss_sound = false)
 	miss_sounds.pick_random().play()
 
 func play_evade_sound() -> void:

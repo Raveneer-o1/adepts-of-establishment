@@ -182,6 +182,7 @@ func finish_attack() -> void:
 func check_finished_animation(unit: Unit) -> void:
 	if unit == current_unit:
 		finish_attack()
+	clear_emittings()
 
 ## Processes a click event on a unit
 func choose_unit(spot: UnitSpot) -> void:
@@ -264,6 +265,7 @@ func display_hints() -> void:
 
 ## Adds a vanishing message near a unit and starts the display process
 func display_text_near_unit(unit: Unit, text: String, color: Color = Color.WHITE) -> void:
+	# something will probably be here
 	unit.display_text_near_unit(text, color)
 
 
@@ -335,7 +337,7 @@ func initialize_variables() -> void:
 	EventBus.attack_animation_finished.connect(check_finished_animation)
 	left_party_units = EventBus.left_units
 	right_party_units = EventBus.right_units
-	EventBus.attack_concluded.connect(clear_emittings)
+	#EventBus.attack_animation_finished.connect(clear_emittings)
 
 func place_units() -> void:
 	right_party.place_units(right_party_units)
@@ -354,15 +356,12 @@ func _ready() -> void:
 ## [signal EventBus.attack_animation_finished].
 ## This ensures effects disconnect from these signals and prevents unwanted trigger accumulation.
 ## Allows effect design without manual connection cleanup.
-func clear_emittings(unit: Unit) -> void:
-	for d: Dictionary in EventBus.attack_concluded.get_connections():
-		var c: Callable = d.callable
-		EventBus.attack_concluded.disconnect(c)
-	EventBus.attack_concluded.connect(clear_emittings)
+func clear_emittings() -> void:
+	for d: Dictionary in EventBus.attack_resolved.get_connections():
+		EventBus.attack_resolved.disconnect(d.callable)
 	
 	for d: Dictionary in EventBus.attack_animation_finished.get_connections():
-		var c: Callable = d.callable
-		EventBus.attack_animation_finished.disconnect(c)
+		EventBus.attack_animation_finished.disconnect(d.callable)
 	EventBus.attack_animation_finished.connect(check_finished_animation)
 
 func find_targets_for_attack(attack: UnitAttack) -> Array[UnitSpot]:

@@ -1,10 +1,9 @@
 extends BasePolicy
 
-func apply_policy(attack: Attack, index: int, finalize: bool) -> void:
-	if attack.target_spots[index].unit != null:
-		return
-	var corpse_container: Node = attack.target_spots[index].corpse_container
-	if corpse_container.get_child_count() == 0:
-		return
-	
-	(corpse_container.get_child(0) as Unit).resurrect()
+func apply_policy(attack: Attack, finalize: bool) -> void:
+	for t in attack.target_references:
+		if not t.spot: continue
+		var corpse_container: Node = t.spot.corpse_container
+		if corpse_container.get_child_count() == 0:
+			return
+		(corpse_container.get_children().pick_random() as Unit).resurrect()
