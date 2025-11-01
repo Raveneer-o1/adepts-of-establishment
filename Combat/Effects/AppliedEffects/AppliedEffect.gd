@@ -4,8 +4,9 @@ class_name AppliedEffect
 ## Abstract class for unit effects like buffs or abilities.
 ## Designed to be modular and self-contained, with automatic cleanup when the effect ends.
 ##
-## Note: [AppliedEffect] references can become invalid at any time since these are non-deterministic objects.
-## This even applies to applying new effects. Some effects (like cure) call [code]queue_free()[/code] 
+## Note: [AppliedEffect] references can become invalid at any time. They should be considered
+## non-deterministic objects. This even applies to new effects: 
+## some effects (like cure) call [code]queue_free()[/code] 
 ## on themselves in [method initialize] [br]
 ## This node attaches directly to a unit's [UnitParameters] node. Remove it using either: [br]
 ## - [method lift_effect] for normal removal [br]
@@ -17,6 +18,7 @@ class_name AppliedEffect
 
 ## If [code]false[/code], [method silence_effect] doesn't block the effect.
 ## Note that you can still remove the effect with [code]queue_free()[/code]
+## or lift it with [method lift_effect]
 @export var silencable: bool = true
 
 @export var color_start: Color = Color.BURLYWOOD
@@ -75,13 +77,21 @@ var target_unit: Unit
 var _signal_function_pairs: Dictionary[Signal, Callable]
 
 func _get_description() -> String:
+	# Override this method in derived classes to define custom description
 	return description
 
 func _apply_effect(params: Variant) -> void:
-	# Override this method in derived classes to define the effect's behavior when applied.
+	# Override this method in derived classes to implement the effect's application logic.
+	# Do not connect to signals manually - this is handled automatically via the 
+	# _signal_function_pairs dictionary.
+	# For one-time effects, remove them here using queue_free().
+	# See the "Cure" effect implementation as a reference example.
 	pass
 
 func _remove_effect() -> void:
+	# Override this method in derived classes to define custom behavior when the effect is removed.
+	# Note: This method is only called when the effect is explicitly lifted using lift_effect().
+	# It cannot catch queue_free() calls and should not be used for memory management purposes.
 	pass
 
 ## Call to manually remove the effect (e.g., if cured or expired).
@@ -181,7 +191,7 @@ func initialize(params: Variant = null) -> void:
 		var effect_count: int = target_unit.parameters.count_effects(effect_name, self)
 		
 		# Remove this instance if stack limit reached
-		if stack_limit != -1 and effect_count >= stack_limit:
+		if stack_limit >= 0 and effect_count >= stack_limit:
 			queue_free()
 			return
 	

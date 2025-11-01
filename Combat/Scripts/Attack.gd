@@ -82,17 +82,13 @@ var original: WeakRef = null
 
 ## Calles [method Unit.resolve_attack] on each of its targets
 func resolve(finalize: bool = false) -> void:
-	# if standard attack resolution if overridden
 	if damage_policy:
-		#for i in range(target_spots.size()):
 		damage_policy.apply_policy(self, finalize)
-		EventBus.attack_resolved.emit(self)
 	else:
 		standard_resolution(finalize)
-		EventBus.attack_resolved.emit(self)
+	EventBus.attack_resolved.emit(self)
 
 func standard_resolution(finalize: bool = false) -> void:
-	# standard attack resolution
 	var i := 1
 	for target in target_references:
 		if not ( \

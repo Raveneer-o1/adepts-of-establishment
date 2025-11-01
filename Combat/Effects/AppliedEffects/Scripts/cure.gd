@@ -1,17 +1,16 @@
 extends AppliedEffect
-class_name CureEffect
 
 @export var display_text: String = "Cured"
 
 ## Called when the effect is applied to a unit.
 func _apply_effect(params: Variant) -> void:
 	for child in target_unit.parameters.get_children():
-		if not child is AppliedEffect:
+		if child is not AppliedEffect:
 			continue
 		
-		# This souldn't be necessary but in case necative_effect flag
+		# This souldn't be necessary but in case negative_effect flag
 		# happens to mistakenly be set to true, we prevent self-lifting
-		if child is CureEffect:
+		if child == self:
 			continue
 		
 		if (child as AppliedEffect).negative_effect:

@@ -2,6 +2,7 @@ extends AppliedEffect
 
 @export var turns: int = -1
 
+# store the effects silenced by this particular silence
 var silenced_effects: Array[AppliedEffect] = []
 
 ## Called when the effect is applied to a unit.

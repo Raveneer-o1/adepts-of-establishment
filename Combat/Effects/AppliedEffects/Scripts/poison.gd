@@ -15,7 +15,7 @@ func deal_damage(unit: Unit) -> void:
 	if turns <= 0:
 		lift_effect()
 
-## Called when the effect is applied to a unit.
+# Called when the effect is applied to a unit.
 func _apply_effect(params: Variant) -> void:
 	if params is Array:
 		damage_pet_turn = params[0]
