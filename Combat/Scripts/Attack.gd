@@ -66,28 +66,35 @@ var evadable: bool
 ## within the respective effect class.
 var applying_effects: Dictionary[String, Variant]
 
-## Function with a signature
+## If present, overrides [method Attack.resolve] and applies to all targets. [br]
+## Unlike [member validation] and [member additional_targets], this field is copied from
+## the original [UnitAttack] object and can be dynamically redefined. [br]
+## [method BasePolicy.apply_policy] is a function with the signature:
 ## [codeblock]
-## (attacker: Unit, target: Unit, index: int, finalize: bool) -> void
+## # if finalize is true, visuals will be displayed immediately
+## func apply_policy(attack: Attack, finalize: bool) -> void
 ## [/codeblock]
-## Overrides [method Attack.resolve] and applies to all targets using their indexes
 var damage_policy: BasePolicy
 
+## Reference to the original [UnitAttack] object
 var unit_attack: UnitAttack
 
-## Unlike [UnitAttack], this class does not perform any validation by dafault.
-## This field is used by some effects (e.g. to redirect targets).
+## Unlike [UnitAttack], [Attack] objects do not perform validation by default.
+## This field is available for cases where validation is needed
+## (e.g., redirecting attacks to valid targets)
 var validation: BaseValidation:
 	get: return unit_attack.target_validation
 
 var additional_targets: BaseAdditionalTargets:
 	get: return unit_attack.additional_targets
 
+## Tags provide a flexible way to assign and check attack properties. Tags are not 
+## automatically processed by the system, but they offer a convenient method for tracking
+## various attack attributes. For example, see the [i]shielding[/i] mechanic and the 
+## [code]&"shot"[/code] tag (documentation in the [Unit] class).
 var tags: Array[StringName] = []
 
 var applied_damage: int = 0
-
-var original: WeakRef = null
 
 ## Calles [method Unit.resolve_attack] on each of its targets
 func resolve(finalize: bool = false) -> void:
@@ -160,20 +167,6 @@ func find_reference(target: UnitSpot) -> UnitSpotReference:
 func is_primary_target(target: UnitSpot) -> bool:
 	var pos := target_spots.find(target)
 	return pos >= 0 and pos < targets_chosen
-
-## Returnes a shallow copy of the object. All nested Array, Dictionary and Object elements are shared 
-## with the original. Modifying them in one object will also affect them in the other.
-func duplicate() -> Attack:
-	var result := Attack.new(self, target_spots, default_damage)
-	result.damages = damages
-	result.target_references = target_references
-	if damage_policy:
-		result.damage_policy = damage_policy
-	if applying_effects:
-		result.applying_effects = applying_effects
-	result.original = original if original else weakref(self)
-	result.targets_chosen = targets_chosen
-	return result
 
 func __init_via_Attack(attack: Attack) -> void:
 	type = attack.type

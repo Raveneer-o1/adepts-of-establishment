@@ -250,9 +250,7 @@ func resolve_attack(attack: Attack, damage: int, delay: int = 0, finalize: bool 
 	
 	# checking shield before miss/evade because warded_attacks is already filled 
 	# at this point and 'ward' effect is removed
-	if warded_attacks.has(
-			attack.original.get_ref() if attack.original else attack
-		):
+	if warded_attacks.has(attack):
 			system.display_text_near_unit(self, "Shield!")
 			sound_player.play_shield_sound()
 			return
@@ -283,10 +281,7 @@ func resolve_attack(attack: Attack, damage: int, delay: int = 0, finalize: bool 
 	var damage_taken: int = parameters.take_damage(damage)
 	if damage_taken > 0: sound_player.play_damage_sound()
 	
-	if attack.original:
-		attack.original.get_ref().applied_damage += damage_taken;
-	else:
-		attack.applied_damage += damage_taken;
+	attack.applied_damage += damage_taken;
 	
 	# if untit is dead after taking damage, it was killed by this attack
 	if parameters.dead:

@@ -1,10 +1,10 @@
 extends Node
 
-# Unit type is used to determine default behavior in certain situations
+## Unit type is used to determine default behavior in certain situations
 enum UnitType{
-	## When a melee unit assumes a defense stance, at automatically [i]shields[\i] (see [Unit])
+	## When a melee unit assumes a defense stance, it automatically [i]shields[/i] (see [Unit])
 	Melee,
-	## Unit automatically adds [code]&shot[\code] tag to its attacks
+	## Unit automatically adds [code]&"shot"[/code] tag to its attacks
 	Archer,
 	## No special effects
 	Mage
