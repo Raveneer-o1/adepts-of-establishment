@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c0ko2lgcngrdp"]
+
+[ext_resource type="Script" uid="uid://ckxl4t24xjf8i" path="res://Combat/Units/Parameters/Policy/Scripts/test_policy.gd" id="1_bf6pv"]
+
+[resource]
+script = ExtResource("1_bf6pv")

@@ -4,8 +4,8 @@ class_name AppliedEffect
 ## Abstract class for unit effects like buffs or abilities.
 ## Designed to be modular and self-contained, with automatic cleanup when the effect ends.
 ##
-## Note: [AppliedEffect] references can become invalid at any time. They should be considered
-## non-deterministic objects. This even applies to new effects: 
+## [AppliedEffect]s should be considered non-deterministic objects. 
+## References can become invalid at any time. This even applies to new effects: 
 ## some effects (like cure) call [code]queue_free()[/code] 
 ## on themselves in [method initialize] [br]
 ## This node attaches directly to a unit's [UnitParameters] node. Remove it using either: [br]

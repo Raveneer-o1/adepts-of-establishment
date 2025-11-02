@@ -3,8 +3,8 @@ extends RefCounted
 
 ## Attack that is being performed
 ##
-## This class manages attacks tha are in the proccess of being performed.
-## Each [Attack] does through a series of stages: [br]
+## This class manages attacks in the proccess of being performed.
+## Each [Attack] goes through a series of stages: [br]
 ## 1. [b]Target Validation[/b]: The player/AI selects valid targets based on attack rules
 ## (see [member UnitAttack.target_validation], class [BaseValidation]).[br]
 ## 2. [b]Attack Booking[/b]: An [Attack] instance is created and queued for resolution. This emits
@@ -16,8 +16,11 @@ extends RefCounted
 ## 5. [b]Finalization[/b]: In some cases, it might be necessary to delay the visual
 ## representation of the attack results (e.g., when there are two active frames, you
 ## might want to delay the second damage number until the second hit actually connects).
-## In this case, the unit will store the resolved attack
-## but not finalize it until [signal EventBus.attack_reached] is emitted again.[br]
+## In this case, the unit will store the parameters (see [member Unit.parameter_snapshots])
+## needed to represent the intermidiate states but not update the visuals until
+## [signal EventBus.attack_reached] is emitted again.[br]
+## [color=lightyellow]Note: actual parameters are updated as soon as the attack is resolved,
+## the delay if purely visual.[/color][br]
 ## 6. [b]Cleanup[/b]: The next attack from the [i]action queue[/i] is popped and moved to
 ## [member CombatLogic.current_attack].[br][br]
 ##

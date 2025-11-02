@@ -55,7 +55,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pd7vp")
 }, {
-"duration": 1.0,
+"duration": 1.5,
 "texture": SubResource("AtlasTexture_xbvyc")
 }, {
 "duration": 1.0,
@@ -109,6 +109,8 @@ portrait_texture = ExtResource("2_0dxqj")
 sprite_frames = SubResource("SpriteFrames_k4p10")
 animation = &"attack"
 autoplay = "default"
+frame = 4
+frame_progress = 1.0
 frames_to_emit = Array[int]([2])
 
 [node name="UnitParameters" parent="." index="1"]
@@ -116,15 +118,11 @@ level = 3
 base_paramaters = SubResource("Resource_sy5jc")
 large_unit = true
 
-[node name="VisualBar" parent="UnitParameters" index="0"]
-offset_left = -31.0
-offset_right = 29.0
-
-[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("5_34qfr")
 accuracy = 0.9
 initiative = 40
 target_validation = ExtResource("6_67hnq")
 
-[node name="Devourer" parent="UnitParameters" index="3" instance=ExtResource("6_moql6")]
+[node name="Devourer" parent="UnitParameters" index="2" instance=ExtResource("6_moql6")]
 health_restore = 60

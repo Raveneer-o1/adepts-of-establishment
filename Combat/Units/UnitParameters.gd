@@ -228,13 +228,15 @@ func clean_modifiers() -> void:
 ## Adds a new modifier to the stack for the specified [param stat].[br]
 ## The first addition of a stat creates its stack.[br]
 ## [param influence] should be a function with signature [code]func(int) -> int[/code]
-## that takes the previous value and returns the modified value.[br]
+## that takes the previous value and returns the modified value.[br][br]
 ## Predefined modifiers:[br]
 ## [code]"max_HP"[/code][br]
 ## [code]"armor"[/code][br]
 ## [code]"base_damage"[/code][br]
 ## [code]"evasion"[/code][br]
-## [br][br]Custom stat names can be added but must be explicitly handled.
+## [code]"shielding_chance"[/code][br]
+## [code]"shielding"[/code][br]
+## [br]Custom stat names can be added but must be explicitly handled.
 func add_modifier(stat: StringName, effect: AppliedEffect, influence: Callable) -> void:
 	if not stats_modifiers.has(stat):
 		stats_modifiers[stat] = ModifierStack.new()
@@ -298,6 +300,8 @@ func set_references() -> void:
 		attack.initialize(parent_unit)
 
 func check_parameters() -> void:
+	# initializtion_successful is false at the start
+	if not base_paramaters:  return
 	# TODO: write check_parameters() function
 	initializtion_successful = true
 

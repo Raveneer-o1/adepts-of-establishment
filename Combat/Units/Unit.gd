@@ -25,8 +25,8 @@ extends Node2D
 ## (that's why there's two classes). [br] [br]
 ##
 ## After the signal is emitted and all effects are applied, the attack is resolved by [Unit] object.
-## This means populating [member taking_damage_attacks] and [member taking_damage_delays] as necessary.
-## This is to sync animations: when the animation reaches active frame, [method finilize_attack]
+## This means populating [member parameter_snapshots] as necessary. This is done to sync animations:
+## when the animation reaches active frame, [method finilize_attack]
 ## is called on a unit and the values are updated. 
 ## As a safeguard, at the end of the animation [method finalize_all_attacks] is also called. [br] [br]
 ##
@@ -43,7 +43,7 @@ extends Node2D
 ## [br]
 ##
 ## [b]Shielding[/b] is a mechanic that allows units in the front line to protect units in
-## the back. When a unit [i]shields[\i], every attack with a tag [code]&shot[\code] 
+## the back. When a unit [i]shields[/i], every attack with a tag [code]&shot[/code] 
 ## targeted at the unit behind has a chance of being redirected to the shielding unit.
 ## This mechanic by itself does not reduce incoming damage but shielding effects are often 
 ## coupled with armor increase. [br] [br]
@@ -87,7 +87,7 @@ var system: CombatSystem
 ## these snapshots preserve intermediate states needed for sequenced visual effects.
 var parameter_snapshots: Array[UnitParametersSnapshot] = []
 
-## flag is used during the initialization exclusively. 
+## This flag is used during the initialization exclusively. 
 ## It's here to prevent calling error-prone functions before the object is fully initialized.
 ## This is required because sometimes units are added during the combat.
 ## And it may cause problems without this check.
@@ -122,13 +122,12 @@ var attacks_for_this_round: Array[UnitAttack]
 ## @experimental: This behavior is a legacy from Disciples and may be a subject to future changes.
 var defense_stance: bool = false
 
-
+## @experimental: This behavior is a legacy from Disciples and may be a subject to future changes.
 ## Indicates if this unit is in the procces of skipping turn.
 ## Needed for the sync reasons: when the attack is to be skipped,
 ## the player won't be prompted to chose a target. Also, this flag makes the skipping attack
-## independent of the attack itself
-## @experimental: This behavior is a legacy from Disciples and may be a subject to future changes.
-## For example, skipping sevral turns or skipping a particular attack.
+## independent of the attack itself. [br]
+## Potential features: skipping sevral turns or skipping a particular attack.
 var skipping_turn: bool = false
 
 ## If [code]true[/code], unit doesn't leave corpse after death (the object is comletely deleted).
@@ -473,7 +472,6 @@ func resurrect() -> void:
 	if sp is UnitSpot:
 		if spot.unit != null:
 			return
-		spot = sp
 	else:
 		print_debug("Trying to resurrect a unit that doesn't have a UnitSpot as a grandparent!")
 		return
@@ -482,7 +480,7 @@ func resurrect() -> void:
 	
 	parameters.underlying_HP = 1
 	parameters.dead = false
-	spot.assign_unit(self)
+	sp.assign_unit(self)
 	visible = true
 	animation_handle.play(&"default")
 	

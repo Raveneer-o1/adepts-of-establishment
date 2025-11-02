@@ -47,6 +47,7 @@ func reset_highlight() -> void:
 	external_highlight.visible = false
 
 func assign_unit(u: Unit) -> void:
+	if not u: return
 	if unit != null:
 		print_debug("Trying to add unit on top of already existing one!")
 		return
@@ -55,11 +56,21 @@ func assign_unit(u: Unit) -> void:
 	if not unit.initialize_variables():
 		unit.queue_free()
 		return
+	unit.spot = self
 	unit.party_position = party_position
 	party.units[party_position] = unit
 
 func add_unit(loaded_unit: Resource) -> void:
 	assign_unit(loaded_unit.instantiate())
+
+func release_unit() -> void:
+	if not unit:
+		print_debug("Trying release unit from empty spot!")
+		return
+	unit.party_position = -1
+	party.units[party_position] = null
+	remove_child(unit)
+	unit = null
 
 func click() -> void:
 	EventBus.spot_clicked.emit(self)

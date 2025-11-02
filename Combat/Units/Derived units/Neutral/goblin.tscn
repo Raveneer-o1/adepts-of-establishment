@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bbn7oowueyb2d"]
+[gd_scene load_steps=22 format=3 uid="uid://bbn7oowueyb2d"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_3oyoe"]
 [ext_resource type="Texture2D" uid="uid://bgihi2b2t55ff" path="res://Arts/Generic/g02 goblin attack .png" id="2_d5iwd"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_3oi2l"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_k20xa"]
 [ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standard_archer_validity.tres" id="6_o14sr"]
+[ext_resource type="Resource" uid="uid://dyqjw4ij7ibxo" path="res://Combat/Units/Parameters/Validation/test_validity.tres" id="6_xvvac"]
+[ext_resource type="Resource" uid="uid://c0ko2lgcngrdp" path="res://Combat/Units/Parameters/Policy/test_policy.tres" id="7_6cb4i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v8s1w"]
 atlas = ExtResource("2_d5iwd")
@@ -105,7 +107,6 @@ base_damage = 30
 
 [node name="Goblin" instance=ExtResource("1_3oyoe")]
 unit_name = "Goblin"
-unit_type = "Archer"
 full_description = "Goblin Archers are small but surprisingly deadly, using their agility to stay out of reach while raining arrows on their enemies. Though their aim can be erratic, their sheer numbers often compensate for individual accuracy. They are often deployed as harassers, chipping away at enemy forces from a safe distance."
 
 [node name="AnimationHandle" parent="." index="0"]
@@ -116,13 +117,14 @@ autoplay = "default"
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_k20xa")
 
-[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("5_k20xa")
-initiative = 10
-target_validation = ExtResource("6_o14sr")
+initiative = 100
+target_validation = ExtResource("6_xvvac")
+damage_policy = ExtResource("7_6cb4i")
 metadata/_custom_type_script = "uid://c5u15vrtdf7kf"
 
-[node name="UnitAttack2" type="Node" parent="UnitParameters" index="3"]
+[node name="UnitAttack2" type="Node" parent="UnitParameters" index="2"]
 script = ExtResource("5_k20xa")
 initiative = 40
 target_validation = ExtResource("6_o14sr")

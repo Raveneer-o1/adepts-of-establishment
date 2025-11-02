@@ -65,6 +65,14 @@ const TIME_TO_END = 2.5
 @export var left_party_units: Array[String]
 @export var right_party_units: Array[String]
 
+## Contains a dictionary of baseline unit parameters for reference purposes.
+## Not used for unit initialization and does not trigger validation failures when stats differ.
+## This is intentional - units often have modified stats (e.g., from global buffs),
+## making comparison to default values irrelevant.
+## Use this database when "dry" baseline stats are needed. [br]
+## [color=yellow]Note:[/color] Do not populate this database manually - use the 
+## dedicated script in the [i]UnitStatsManager/[/i] directory.
+## @experimental: Currently not implemented
 @export var unit_parameters_database: Resource
 
 @export var unit_marker: Resource
@@ -220,6 +228,48 @@ func try_taking_defense_stance() -> bool:
 func start_attacking_chosen_targets() -> void:
 	current_unit.start_attacking()
 
+
+## Attempts to move [param unit] to the specified position [param pos], 
+## swapping with any unit already there.
+## Returns [code]true[/code] if the move was successful, [code]false[/code] otherwise. [br]
+## If the target position is occupied, the units will swap places. For non-swapping movement,
+## use [method try_moving_unit] instead.
+func try_swapping_units(unit: Unit, pos: int) -> bool:
+	if not unit: return false
+	if pos < 0 or pos >= Party.MAX_UNITS_NUMBER: return false
+	var party: Party = unit.party
+	
+	var old_pos: int = unit.spot.party_position
+	unit.spot.release_unit()
+	var another_unit: Unit = null
+	
+	if party.units[pos]:
+		another_unit = party.units[pos]
+		party.unit_spots[pos].release_unit()
+	
+	party.unit_spots[pos].assign_unit(unit)
+	EventBus.unit_moved.emit(unit, old_pos)
+	if another_unit:
+		party.unit_spots[old_pos].assign_unit(another_unit)
+		EventBus.unit_moved.emit(another_unit, pos)
+	return false
+
+## Attempts to move [param unit] to the specified position [param pos].
+## Returns [code]true[/code] if the move was successful, [code]false[/code] otherwise. [br]
+## If the target position is occupied, the move will fail. For swapping behavior,
+## use [method try_swapping_units] instead.
+func try_moving_unit(unit: Unit, pos: int) -> bool:
+	if not unit: return false
+	if pos < 0 or pos >= Party.MAX_UNITS_NUMBER: return false
+	var party: Party = unit.party
+	if party.units[pos]: return false
+	
+	var old_pos: int = unit.spot.party_position
+	unit.spot.release_unit()
+	party.unit_spots[pos].assign_unit(unit)
+	EventBus.unit_moved.emit(unit, old_pos)
+	return true
+
 #region UI utilities
 
 func remove_miniature(atk: UnitAttack) -> void:
@@ -337,7 +387,6 @@ func initialize_variables() -> void:
 	EventBus.attack_animation_finished.connect(check_finished_animation)
 	left_party_units = EventBus.left_units
 	right_party_units = EventBus.right_units
-	#EventBus.attack_animation_finished.connect(clear_emittings)
 
 func place_units() -> void:
 	right_party.place_units(right_party_units)
@@ -426,7 +475,8 @@ func _on_target_hunts_button_pressed() -> void:
 			new_text = "Always"
 		SHOW_HINTS_ON_HOVER:
 			new_text = "Auto"
-	$"../UI/ParentContainer/PanelContainer/HBoxContainer/TargetHintsContainer/TargetHintsButton".text = new_text
+	$"../UI/ParentContainer/PanelContainer/HBoxContainer/TargetHintsContainer/TargetHintsButton"\
+		.text = new_text
 	display_hints()
 
 

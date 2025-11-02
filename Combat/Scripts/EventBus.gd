@@ -40,12 +40,12 @@ var packed_menu: PackedScene
 ## This signal is diconnected from everything except [method CombatLogic.check_finished_animation] 
 ## at the end of each turn.
 @warning_ignore("unused_signal") signal attack_animation_finished(unit: Unit)
-## This signal is diconnected from everything except [method CombatSystem.clear_emittings] 
-## at the end of each turn.
+## This signal is diconnected from everything at the end of each turn.
 @warning_ignore("unused_signal") signal attack_resolved(attack: Attack)
 @warning_ignore("unused_signal") signal unit_died(unit: Unit)
 @warning_ignore("unused_signal") signal unit_revived(unit: Unit)
 @warning_ignore("unused_signal") signal unit_killed(unit: Unit, killer: Unit)
+@warning_ignore("unused_signal") signal unit_moved(unit: Unit, old_pos: int)
 @warning_ignore("unused_signal") signal unit_description_requested(unit: Unit)
 @warning_ignore("unused_signal") signal effect_applied(effect: AppliedEffect)
 @warning_ignore("unused_signal") signal effect_lifted(effect: AppliedEffect)
