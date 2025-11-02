@@ -73,9 +73,15 @@ var applying_effects: Dictionary[String, Variant]
 ## Overrides [method Attack.resolve] and applies to all targets using their indexes
 var damage_policy: BasePolicy
 
+var unit_attack: UnitAttack
+
 ## Unlike [UnitAttack], this class does not perform any validation by dafault.
 ## This field is used by some effects (e.g. to redirect targets).
-var validation: BaseValidation
+var validation: BaseValidation:
+	get: return unit_attack.target_validation
+
+var additional_targets: BaseAdditionalTargets:
+	get: return unit_attack.additional_targets
 
 var tags: Array[StringName] = []
 
@@ -125,6 +131,19 @@ func redirect_all(target: UnitSpot, to: UnitSpot) -> void:
 	for t:UnitSpotReference in target_references:
 		if t.spot == target: redirect_to(t, to)
 
+## Redirects the attack as if given spot was the original target.
+## This allows to correctly redirect more complex attacks e.g. with splash effects.
+func deep_redirect(to: UnitSpot) -> void:
+	target_references.clear()
+	for i in range(targets_chosen):
+		target_references.append( UnitSpotReference.new(to) )
+	#damages.clear()
+	#targets_chosen = target_references.size()
+	if additional_targets:
+		var additional := additional_targets.find_additional_targets(attacker, target_spots)
+		for a in additional:
+			target_references.append( UnitSpotReference.new(a) )
+
 ## Returns the first reference to the [param target] in [member damages]
 func find_all_references(target: UnitSpot) -> Array[UnitSpotReference]:
 	var result: Array[UnitSpotReference] = []
@@ -137,6 +156,10 @@ func find_reference(target: UnitSpot) -> UnitSpotReference:
 	for t: UnitSpotReference in target_references:
 		if t.spot == target: return t
 	return null
+
+func is_primary_target(target: UnitSpot) -> bool:
+	var pos := target_spots.find(target)
+	return pos >= 0 and pos < targets_chosen
 
 ## Returnes a shallow copy of the object. All nested Array, Dictionary and Object elements are shared 
 ## with the original. Modifying them in one object will also affect them in the other.
@@ -166,7 +189,7 @@ func __init_via_UnitAttack(_unit_attack: UnitAttack, eff: Resource) -> void:
 	attacker = _unit_attack.unit
 	accuracy = _unit_attack.accuracy
 	evadable = _unit_attack.evadable
-	validation = _unit_attack.target_validation
+	unit_attack = _unit_attack
 	targets_chosen = _unit_attack.targets_needed
 	
 	if _unit_attack.effect_override:

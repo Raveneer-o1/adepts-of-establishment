@@ -305,47 +305,37 @@ func display_text_near_unit_async(unit: Unit, text: String, color: Color = Color
 
 ## Adds a vanishing message near a unit and starts the display process
 func display_text_near_unit(unit: Unit, text: String, color: Color = Color.WHITE) -> void:
-	# Create a new text object and add it to the queue
 	var text_to_display: DisplayedText = DisplayedText.new(unit, text, color)
 	texts_to_display.append(text_to_display)
 	
-	# Start the display process if no text is currently being displayed
 	if not text_displayed:
 		text_displayed = true
 		get_tree().create_timer(FIRST_TEXT_DISPLAYED_INTERVAL).\
 				timeout.connect(display_next_text)
 
-## Displays a text label near the given unit. It's not recommended to use this method,
+## Displays a text label near the given unit. It's not recommended to use this method directly,
 ## because it's possible to print too much text on the screen at the same time
 func _display_text_near_unit(d_text: DisplayedText) -> void:
-	text_displayed = true  # Mark text as being displayed
-	text_displayed_time = TEXT_DISPLAYED_ABORT_INTERVAL  # Reset abort timer
+	text_displayed = true
+	text_displayed_time = TEXT_DISPLAYED_ABORT_INTERVAL 
 	
-	# Define label offset and create a temporary label
 	var offset := label_position
 	var lbl: Label = TEMP_LABEL.instantiate()
-	d_text.unit.add_child(lbl) # Attach the label as a child to the unit
+	d_text.unit.add_child(lbl)
 	
-	# Set label properties (text, position, color)
 	lbl.text = d_text.text
 	lbl.set_begin(d_text.unit.global_position + offset)
 	lbl.modulate = d_text.color
 
-#func display_next_text_out() -> void:
-	#display_next_text()
-
 ## Displays the next queued text and handles overlap between units
 func display_next_text() -> void:
-	# If no text is queued, reset display flags and timer
 	if texts_to_display.is_empty():
 		text_displayed = false
 		text_displayed_time = TEXT_DISPLAYED_ABORT_INTERVAL
 		return
 	
-	# Display the next text in the queue
 	var next_text: DisplayedText = texts_to_display.pop_front()
 	_display_text_near_unit(next_text)
-	
 	
 	# Schedule the next text display
 	get_tree().create_timer(TEXT_DISPLAYED_INTERVAL). \
