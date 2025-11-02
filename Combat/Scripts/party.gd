@@ -108,7 +108,7 @@ func place_units(list: Array[String]) -> void:
 		return
 	
 	var i := -1
-	for s in list:
+	for s: String in list:
 		i += 1
 		if s.is_empty():
 			continue
@@ -121,7 +121,7 @@ func place_units(list: Array[String]) -> void:
 			continue
 		unit_spots[i].add_unit(loaded_unit)
 		if units[i] == null:
-			print_debug("Unit is not registered!")
+			print_debug("Unit '%s' is not registered!" % s)
 			continue
 		#units[i].party_position = i
 		if units[i].parameters.large_unit:
@@ -155,4 +155,4 @@ func initialize_variables() -> void:
 
 ## Returns number of hexes between two positions
 static func get_distance(pos1: int, pos2: int) -> int:
-	return ceili(abs(pos1 - pos2) / 2.0)
+	return abs(pos1 - pos2) / 2

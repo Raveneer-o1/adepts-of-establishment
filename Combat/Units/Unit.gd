@@ -617,92 +617,6 @@ func die() -> void:
 #endregion
 
 
-#region Display text
-
-
-## Interval for the first text to be displayed after triggering
-const FIRST_TEXT_DISPLAYED_INTERVAL = 0.1
-## Default interval between consecutive text displays
-const TEXT_DISPLAYED_INTERVAL = 0.55
-## Interval after which text display process is aborted
-const TEXT_DISPLAYED_ABORT_INTERVAL = TEXT_DISPLAYED_INTERVAL * 2
-
-## Tracks whether any text was recently displayed
-var text_displayed: bool = false
-## Timer for how long text display has been active or idle
-var text_displayed_time: float = TEXT_DISPLAYED_ABORT_INTERVAL
-
-
-## A class representing text to be displayed near a unit
-class DisplayedText:
-	var unit: Unit
-	var text: String
-	var color: Color = Color.WHITE
-	
-	func _init(u: Unit, t: String, c: Color = Color.WHITE) -> void:
-		unit = u
-		text = t
-		color = c
-
-
-## Queue of texts to be displayed, each associated with a specific unit
-var texts_to_display: Array[DisplayedText] = []
-
-
-## Adds a vanishing message near a unit and starts the display process
-func display_text_near_unit(text: String, color: Color = Color.WHITE) -> void:
-	# Create a new text object and add it to the queue
-	var text_to_display: DisplayedText = DisplayedText.new(self, text, color)
-	texts_to_display.append(text_to_display)
-	
-	# Start the display process if no text is currently being displayed
-	if not text_displayed:
-		text_displayed = true
-		get_tree().create_timer(FIRST_TEXT_DISPLAYED_INTERVAL).\
-				timeout.connect(display_next_text)
-
-
-
-## Displays a text label near the given unit. It's not recommended to use this method,
-## because it's possible to print too much text on the screen at the same time
-func _display_text_near_unit(d_text: DisplayedText) -> void:
-	text_displayed = true  # Mark text as being displayed
-	text_displayed_time = TEXT_DISPLAYED_ABORT_INTERVAL  # Reset abort timer
-	
-	# Define label offset and create a temporary label
-	var offset := system.label_position
-	var lbl: Label = system.TEMP_LABEL.instantiate()
-	d_text.unit.add_child(lbl) # Attach the label as a child to the unit
-	
-	# Set label properties (text, position, color)
-	lbl.text = d_text.text
-	lbl.set_begin(d_text.unit.global_position + offset)
-	lbl.modulate = d_text.color
-
-func display_next_text_out() -> void:
-	display_next_text()
-
-## Displays the next queued text and handles overlap between units
-func display_next_text() -> void:
-	# If no text is queued, reset display flags and timer
-	if texts_to_display.is_empty():
-		text_displayed = false
-		text_displayed_time = TEXT_DISPLAYED_ABORT_INTERVAL
-		return
-	
-	# Display the next text in the queue
-	var next_text: DisplayedText = texts_to_display.pop_front()
-	_display_text_near_unit(next_text)
-	
-	
-	# Schedule the next text display
-	get_tree().create_timer(TEXT_DISPLAYED_INTERVAL). \
-			timeout.connect(display_next_text_out)
-
-
-#endregion
-
-
 func update_visuals() -> void:
 	visual_bar.max_value = parameters.max_hp
 	visual_bar.value = parameters.hp
@@ -758,15 +672,6 @@ func visualize_death() -> void:
 
 #endregion
 
-
-func _process(delta: float) -> void:
-	if text_displayed:
-		text_displayed_time -= delta
-		if text_displayed_time <= 0:
-			print_debug("Interval missed on unit %s! Aborting display interval..." % unit_name)
-			text_displayed = false
-			text_displayed_time = TEXT_DISPLAYED_ABORT_INTERVAL
-			texts_to_display.clear()
 
 
 class UnitParametersSnapshot:

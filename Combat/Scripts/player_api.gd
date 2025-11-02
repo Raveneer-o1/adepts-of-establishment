@@ -10,7 +10,7 @@ class_name PlayerAPI
 ## signal emition allows the stack to be reset if the battle is played between two AIs
 const ACTION_DELAY = 0.15
 
-# Intended to be used by an AI. The cobtroller script connects to
+# Intended to be used by an AI. The controller script connects to
 # this signal rather than global EventBus
 signal _turn_started(unit: Unit)
 
