@@ -181,6 +181,7 @@ func clean_effects(_unit: Unit = null) -> void:
 
 ## Attempts to register a target for attack. Returns success or failure.
 func give_target(_spot: UnitSpot) -> bool:
+	if parameters.dead: return false
 	if current_attack == null:
 		if attacks_for_this_round.is_empty():
 			return false
@@ -495,8 +496,8 @@ func heal(value: int) -> int:
 	return hp_healed
 
 
-const MIN_DAMAGE_COLOR = Color.WEB_MAROON
-const MAX_DAMAGE_COLOR = Color.RED
+const MIN_DAMAGE_COLOR = Color(0.7, 0.7, 1.0)
+const MAX_DAMAGE_COLOR = Color(1.0, 0.1, 0.1)
 const HEAL_COLOR = Color.LIME_GREEN
 
 

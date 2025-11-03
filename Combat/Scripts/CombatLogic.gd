@@ -143,10 +143,13 @@ func start_turn(remove_miniature: bool = true) -> void:
 				not current_attack.can_be_performed():
 			continue
 		
-		#Setting current unit
-		main_system.current_unit = current_attack.unit
-		EventBus.turn_started.emit(main_system.current_unit)
+		assert(current_attack.unit != null, "unit field of a current_attack is empty!")
+		EventBus.turn_started.emit(current_attack.unit)
 		
+		if current_attack.unit.parameters.dead:
+			continue
+		
+		main_system.current_unit = current_attack.unit
 		if main_system.current_unit.skipping_turn:
 			return
 		
@@ -156,13 +159,15 @@ func start_turn(remove_miniature: bool = true) -> void:
 
 
 
-##  Advances the combat flow to the next stage.
-##  Starts a new turn or round, or ends the battle if no units are left to act.
+## Advances the combat flow to the next stage.
+## Starts a new turn or round, or ends the battle if no units are left to act.
 func next_stage(remove_miniature: bool = true) -> void:
 	if not battle_in_progress:
 		return
 	
 	main_system.check_winner()
+	if not battle_in_progress:
+		return
 	
 	start_turn(remove_miniature)
 	# if start_turn didn't set current_unit, there's no units left in queue
