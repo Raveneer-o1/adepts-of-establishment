@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://d3v4hhqcmpw7w"]
+
+[ext_resource type="Script" uid="uid://ckiiagnnj1yao" path="res://Combat/Units/Parameters/Additional targets/Scripts/Double_attack.gd" id="1_rpj2e"]
+
+[resource]
+script = ExtResource("1_rpj2e")
