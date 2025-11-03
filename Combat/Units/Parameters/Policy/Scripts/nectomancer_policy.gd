@@ -4,6 +4,7 @@ extends BasePolicy
 @export var resurrection_with_percent_hp: float = -1.0
 
 func _apply_policy(attack: Attack, finalize: bool) -> void:
+	if not attack.targets: return
 	var first_position: int = attack.targets[0].party_position
 	var new_refs: Array[UnitSpotReference] = []
 	for t: UnitSpotReference in attack.target_references:

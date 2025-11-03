@@ -139,16 +139,16 @@ func start_turn(remove_miniature: bool = true) -> void:
 			attacks_queue.remove_at(0)
 			continue
 		current_attack = attacks_queue.pop_front()
-		if current_attack == null or \
-				not current_attack.can_be_performed():
+		if current_attack == null:
 			continue
 		
 		assert(current_attack.unit != null, "unit field of a current_attack is empty!")
 		EventBus.turn_started.emit(current_attack.unit)
 		
-		if current_attack.unit.parameters.dead:
+		if not current_attack.can_be_performed():
 			continue
 		
+		current_attack.make_current()
 		main_system.current_unit = current_attack.unit
 		if main_system.current_unit.skipping_turn:
 			return

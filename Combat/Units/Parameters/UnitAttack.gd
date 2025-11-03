@@ -60,7 +60,9 @@ var unit: Unit
 ## Returns a human-friendly accuracy representation rather than raw probabilities.
 ## The idea is to never show actual percentages to the player and avoid behind-the-scenes
 ## number manipulation (as it's usually done to improve player perception). [br]
-## The formula essentially gives X for the phrase [b]"unit will miss 1 in X attacks"[/b].[br] [br]
+## The formula essentially gives X for the phrase [b]"unit will miss 1 in X attacks"[/b]. [br]
+## Returns NAN if accuracy is 0.0 (guaranteed miss) [br]
+## Returns INF if accuracy is 1.0 (guaranteed hit) [br] [br]
 ## [center][i]Conversion examples: [br]
 ## 0.25 (25%) → 1.333333 [br]
 ## 0.5 (50%) → 2.0 [br]
@@ -95,3 +97,17 @@ func can_be_performed() -> bool:
 	if unit.current_attack == self:
 		return true
 	return unit.attacks_for_this_round.has(self)
+
+## Swaps this attack with [member Unit.current_attack].
+## The unit's attack list doesn't account for initiative and random shuffling, so the
+## performed attack may differ from the one in [member CombatLogic.attacks_queue].
+## Call this method before constructing an attack to avoid that.
+func make_current() -> void:
+	if not unit: return
+	if unit.parameters.dead: return
+	if unit.current_attack == self: return
+	var prev_atk: UnitAttack = unit.current_attack
+	var pos := unit.attacks_for_this_round.find(self)
+	if pos < 0: return
+	unit.attacks_for_this_round[pos] = prev_atk
+	unit.current_attack = self
