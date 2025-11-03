@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dhhsdgyipwxan" path="res://Arts/Placeholders/Grand inquisitor.jpg" id="2_7ao73"]
 [ext_resource type="Texture2D" uid="uid://clo4s23fyrcjk" path="res://Arts/Empire units/Grand inquisitor idle  (1).png" id="2_rp3ci"]
 [ext_resource type="Texture2D" uid="uid://24uqtg5835jc" path="res://Arts/Empire units/Grand inquisitor attack.png" id="2_s1fcq"]
-[ext_resource type="PackedScene" uid="uid://cjtnm7lly4yca" path="res://Combat/Effects/AppliedEffects/Scenes/HP_buff_aura.tscn" id="4_b4oav"]
+[ext_resource type="PackedScene" uid="uid://cjtnm7lly4yca" path="res://Combat/Effects/AppliedEffects/Scenes/hp_buff_aura.tscn" id="4_b4oav"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_t8wm6"]
 [ext_resource type="PackedScene" uid="uid://b5btb6pxaufjw" path="res://Combat/Effects/AppliedEffects/Scenes/holy_wrath.tscn" id="6_m8s5i"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="7_vm3kd"]

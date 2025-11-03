@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://ces8ntf3a67x7"]
+[gd_scene load_steps=40 format=3 uid="uid://ces8ntf3a67x7"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_iyxx7"]
 [ext_resource type="Texture2D" uid="uid://wmydp6fhr4el" path="res://Arts/Empire units/inquisitor attack.png" id="2_ckwba"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b5btb6pxaufjw" path="res://Combat/Effects/AppliedEffects/Scenes/holy_wrath.tscn" id="5_txbsl"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_dn7kg"]
 [ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="7_7f3u0"]
+[ext_resource type="PackedScene" uid="uid://ctt0fnpade4bd" path="res://Combat/Effects/AppliedEffects/Scenes/retaliation_on_debuff.tscn" id="8_nopjn"]
 [ext_resource type="AudioStream" uid="uid://3up3xko4aipd" path="res://Sounds/using/Damage/Default_1.wav" id="9_yaaye"]
 [ext_resource type="AudioStream" uid="uid://b7r3kee6rjmo4" path="res://Sounds/using/Damage/Default_2.wav" id="10_nopjn"]
 [ext_resource type="AudioStream" uid="uid://b8o5l8pxfg4my" path="res://Sounds/using/Damage/Default_3.wav" id="11_0ycb0"]
@@ -172,13 +173,15 @@ attack_sound_frame = 6
 level = 3
 base_paramaters = SubResource("Resource_4tkcb")
 
-[node name="Holy wrath" parent="UnitParameters" index="1" instance=ExtResource("5_txbsl")]
-
-[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("6_dn7kg")
 type = 4
 initiative = 40
 target_validation = ExtResource("7_7f3u0")
+
+[node name="RetaliationOnDebuff" parent="UnitParameters" index="2" instance=ExtResource("8_nopjn")]
+
+[node name="Holy wrath" parent="UnitParameters" index="3" instance=ExtResource("5_txbsl")]
 
 [node name="Default1" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("9_yaaye")

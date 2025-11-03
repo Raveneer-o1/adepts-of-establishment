@@ -84,6 +84,7 @@ func _apply_effect(params: Variant) -> void:
 	# Override this method in derived classes to implement the effect's application logic.
 	# Do not connect to signals manually - this is handled automatically via the 
 	# _signal_function_pairs dictionary.
+	
 	# For one-time effects, remove them here using queue_free().
 	# See the "Cure" effect implementation as a reference example.
 	pass
@@ -104,8 +105,8 @@ func lift_effect() -> void:
 	
 	EventBus.effect_lifted.emit(self)
 	_remove_effect()
-	queue_free()
 	target_unit.clean_effects()
+	queue_free()
 
 var silenced_turns: int = -1
 
@@ -156,6 +157,10 @@ func silence_effect(time: int = -1, is_round: bool = false) -> void:
 
 func restore_effect() -> void:
 	var silenced_effects_node : Node = get_parent()
+	if not silenced_effects_node or \
+		not silenced_effects_node.get_parent() is UnitParameters:
+			push_error("Trying to restore effect that doesn't have a UnitParameters node as a grandparent!")
+			return
 	silenced_effects_node.remove_child(self)
 	silenced_effects_node.get_parent().add_child(self)
 	
@@ -178,16 +183,14 @@ func initialize(params: Variant = null) -> void:
 		queue_free()
 		return
 	
-	# Non-stackable effect handling: Remove this instance if the target already has the effect
 	if not stackable:
-		# Check if effect exists on unit (excluding this instance which is being added)
+		# second agrument excluds this instance which is being added
 		if target_unit.parameters.have_effect(effect_name, self):
 			queue_free()
 			return
 	
-	# Stackable effect handling: Enforce maximum instance limit
 	else:
-		# Count existing instances of this effect (excluding current pending instance)
+		# second agrument excluds this instance which is being added
 		var effect_count: int = target_unit.parameters.count_effects(effect_name, self)
 		
 		# Remove this instance if stack limit reached

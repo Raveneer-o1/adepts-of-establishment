@@ -60,7 +60,7 @@ var targets_chosen: int = 1
 var evadable: bool
 
 ## [code]key[/code]: The name of a scene located in the folder 
-## [kbd]res://Combat/Effects/AppliedEffects/Scenes/[/kbd].
+## [kbd]res://Combat/Effects/AppliedEffects/Scenes/[/kbd]. Case insensitive.
 ## This is used by the game to dynamically load the effect.[br]
 ## [code]value[/code]: A set of parameters passed to the effect. Parsed and handled
 ## within the respective effect class.
@@ -139,7 +139,7 @@ func redirect_all(target: UnitSpot, to: UnitSpot) -> void:
 		if t.spot == target: redirect_to(t, to)
 
 ## Redirects the attack as if given spot was the original target.
-## This allows to correctly redirect more complex attacks e.g. with splash effects.
+## This allows to correctly redirect more complex attacks (e.g. with splash effects).
 func deep_redirect(to: UnitSpot) -> void:
 	target_references.clear()
 	for i in range(targets_chosen):
@@ -201,11 +201,12 @@ func _init(_param: Variant, _spots: Array[UnitSpot],
 			"Invalid data type passed to Attack constructor! UnitAttack or Attack expected but %s found!"\
 			% type_string( typeof(_param) )
 		)
+		return
 	
-	target_spots = _spots
+	#target_spots = _spots
 	default_damage = dmg
 	
 	for spot: UnitSpot in _spots:
 		var ref: UnitSpotReference = UnitSpotReference.new(spot)
-		damages[ref] = dmg
+		#damages[ref] = dmg
 		target_references.append(ref)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://myudchej460j"]
+[gd_scene load_steps=43 format=3 uid="uid://myudchej460j"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_34hwq"]
 [ext_resource type="Texture2D" uid="uid://bqy4vj0v38yak" path="res://Arts/Empire units/samurai attack .png" id="2_i31ko"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_ol2r7"]
 [ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="6_plv2k"]
 [ext_resource type="AudioStream" uid="uid://jjx4crj3vvo6" path="res://Sounds/using/Damage/Steel_1.wav" id="8_7bnht"]
+[ext_resource type="Resource" uid="uid://d3v4hhqcmpw7w" path="res://Combat/Units/Parameters/Additional targets/Double_attack.tres" id="8_40pmu"]
 [ext_resource type="AudioStream" uid="uid://dfxj3ppvop3pb" path="res://Sounds/using/Damage/Steel_2.wav" id="9_40pmu"]
 [ext_resource type="AudioStream" uid="uid://cfoq5h1xo1e6n" path="res://Sounds/using/Damage/Steel_3.wav" id="10_j5rr7"]
 [ext_resource type="AudioStream" uid="uid://b2kxyto2hwq4g" path="res://Sounds/using/Miss/27_sword_miss_1.wav" id="11_cp3qd"]
@@ -182,9 +183,9 @@ base_paramaters = SubResource("Resource_opdex")
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("5_ol2r7")
 damage_multiplier = 0.5
-targets_needed = 2
 initiative = 40
 target_validation = ExtResource("6_plv2k")
+additional_targets = ExtResource("8_40pmu")
 
 [node name="Steel1" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("8_7bnht")

@@ -300,8 +300,15 @@ class DisplayedText:
 var texts_to_display: Array[DisplayedText] = []
 
 func display_text_near_unit_async(unit: Unit, text: String, color: Color = Color.WHITE) -> void:
-	var text_to_display: DisplayedText = DisplayedText.new(unit, text, color)
-	_display_text_near_unit(text_to_display)
+	#var text_to_display: DisplayedText = DisplayedText.new(unit, text, color)
+	#_display_text_near_unit(text_to_display)
+	var offset := label_position
+	var lbl: Label = TEMP_LABEL.instantiate()
+	unit.add_child(lbl)
+	
+	lbl.text = text
+	lbl.set_begin(unit.global_position + offset)
+	lbl.modulate = color
 
 ## Adds a vanishing message near a unit and starts the display process
 func display_text_near_unit(unit: Unit, text: String, color: Color = Color.WHITE) -> void:

@@ -9,10 +9,10 @@ var parameter: StringName:
 		return PARAMETERS_NAMES[_parameter]
 
 # Mapping of display names to their corresponding internal parameter names
-const PARAMETERS_NAMES = {
-	"Health" = "max_HP",
-	"Attack" = "base_damage",
-	"Armor" = "armor",
+const PARAMETERS_NAMES: Dictionary[StringName, StringName] = {
+	"Health" = &"max_HP",
+	"Attack" = &"base_damage",
+	"Armor" = &"armor",
 }
 
 # Number of turns the effect will last
@@ -26,20 +26,17 @@ var multiplier: float = 1.0
 
 # Constructs a description string for the effect, including parameter modifications
 func _get_description() -> String:
-	var text_increase: String = description  # Base description text
+	var text_increase: String = description
 	
-	if multiplier > 1.0:
-		# If the multiplier is greater than 1, include percentage increase
+	if not is_equal_approx(multiplier, 1.0):
 		text_increase += " percent"
 		
-		# Include flat increase if applicable
 		if strength != 0:
 			text_increase += " plus %d"
-			text_increase = text_increase % [_parameter, round((multiplier - 1) * 100), strength]
+			text_increase = text_increase % [_parameter, roundi((multiplier - 1) * 100), strength]
 		else:
-			text_increase = text_increase % [_parameter, round((multiplier - 1) * 100)]
+			text_increase = text_increase % [_parameter, roundi((multiplier - 1) * 100)]
 	else:
-		# If no multiplier, only include flat increase
 		text_increase = text_increase % [_parameter, strength]
 	
 	return text_increase
@@ -68,28 +65,22 @@ func try_init_params(params: Variant) -> bool:
 				Expected Dictionary, found %s!" % type_string(typeof(params)))
 		return false
 	
-	# Check and initialize "parameter" if present
 	var p : StringName = &"parameter"
 	if params.has(p):
 		if PARAMETERS_NAMES.has(params[p]):
 			_parameter = params[p]
 		else:
-			# Log a debug message if an unknown parameter is provided
 			print_debug("Unknown parameter '%s' for 'temporary buff' effect." % params[p])
-			print_stack()
 			return false
 	
-	# Check and initialize "turns" if present
 	p = &"turns"
 	if params.has(p):
 		turns = params[p]
 	
-	# Check and initialize "strength" if present
 	p = &"strength"
 	if params.has(p):
 		strength = params[p]
 	
-	# Check and initialize "multiplier" if present
 	p = &"multiplier"
 	if params.has(p):
 		multiplier = params[p]
@@ -98,7 +89,6 @@ func try_init_params(params: Variant) -> bool:
 
 # Called when the effect is applied to a unit
 func _apply_effect(params: Variant) -> void:
-	# Attempt to initialize parameters; remove effect if initialization fails
 	if not try_init_params(params):
 		queue_free()
 		return
@@ -108,8 +98,7 @@ func _apply_effect(params: Variant) -> void:
 		queue_free()
 		return
 	
-	# Apply the parameter modifier to the target unit
 	apply_modifier()
 	
-	# Connect to the event bus to handle turn-based decrement of the effect duration
-	_signal_function_pairs[EventBus.turn_started] = count_turn
+	if turns > 0:
+		_signal_function_pairs[EventBus.turn_started] = count_turn

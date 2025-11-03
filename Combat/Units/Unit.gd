@@ -278,7 +278,9 @@ func resolve_attack(attack: Attack, damage: int, delay: int = 0, finalize: bool 
 				attack.applying_effects[effect_name]
 			)
 	
-	var damage_taken: int = parameters.take_damage(damage)
+	var damage_taken: int = \
+		take_damage(damage) if finalize or delay <= 0 else \
+		schedule_damage(damage, delay)
 	if damage_taken > 0: sound_player.play_damage_sound()
 	
 	attack.applied_damage += damage_taken;
@@ -287,8 +289,6 @@ func resolve_attack(attack: Attack, damage: int, delay: int = 0, finalize: bool 
 	if parameters.dead:
 		EventBus.unit_killed.emit(self, attack.attacker)
 	
-	if finalize or delay <= 0: take_damage(damage_taken)
-	else: schedule_damage(damage_taken, delay)
 
 
 ## Called when [member EventBus.attack_reached] is emitted.

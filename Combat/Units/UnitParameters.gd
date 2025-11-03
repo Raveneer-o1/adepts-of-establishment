@@ -313,10 +313,10 @@ func check_parameters() -> void:
 ## [param params]: Data passed to the effect's initialization method.
 ## Type and format depend on the specific effect.[br]
 ## [param force_stackability] defines if [member AppliedEffect.stackable] should
-## be overridden with [param override_stackability].
+## be overridden with [param override_stackability].[br]
 ## Returns: The instantiated [AppliedEffect] node, or [code]null[/code] if the effect was immediately 
-##  removed (e.g., some one-time effects like cure effects might self-destruct after application). [br]
-##  Returns [code]null[/code] and prints a debug warning if the effect scene isn't found.
+## removed (e.g., some one-time effects like cure effects might self-destruct after application). [br]
+## Returns [code]null[/code] and prints a debug warning if the effect scene isn't found.
 func apply_effect(
 		effect_name: String, 
 		params: Variant, 
@@ -326,14 +326,10 @@ func apply_effect(
 	
 	var effect_path := "res://Combat/Effects/AppliedEffects/Scenes/%s.tscn" % effect_name
 	var res: Resource = load(effect_path)
-	
-	
 	if not res:
-		# Log debug warning if resource is missing
 		print_debug("Effect '%s' not found at path: %s" % [effect_name, effect_path])
 		return null
 	
-	# Instantiate the effect scene and add to the scene tree
 	var child: AppliedEffect = res.instantiate()
 	add_child(child)
 	
@@ -345,9 +341,10 @@ func apply_effect(
 	
 	# Handle cases where the effect might self-remove immediately after initialization
 	# (e.g., one-time effects that complete their action in initialize())
-	if not is_instance_valid(child):
+	if not is_instance_valid(child) or child.is_queued_for_deletion():
 		child = null
 	
+	if child: EventBus.effect_applied.emit(child)
 	return child
 
 func turn_start_reaction(_unit: Unit) -> void:
