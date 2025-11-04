@@ -243,7 +243,7 @@ func try_swapping_units(unit: Unit, pos: int) -> bool:
 	unit.spot.release_unit()
 	var another_unit: Unit = null
 	
-	if party.units[pos]:
+	if party.unitsrelease_unit[pos]:
 		another_unit = party.units[pos]
 		party.unit_spots[pos].release_unit()
 	
@@ -505,7 +505,7 @@ func find_targets_for_attack(attack: UnitAttack) -> Array[UnitSpot]:
 	for spot in all_unit_spots:
 		if spot == null:
 			continue
-		if attack.target_validation._validate_target(attack.unit, spot):
+		if attack.target_validation.validate_target(attack.unit, spot):
 			result.append(spot)
 	
 	return result

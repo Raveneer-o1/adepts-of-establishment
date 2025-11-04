@@ -1,0 +1,39 @@
+extends BasePolicy
+
+## Indicates period in rounds between using the ability
+@export var period: int = 3
+
+var cooldown: int = 0
+var can_use_ability: bool:
+	get: return cooldown <= 0
+
+func use_ability(attack: Attack) -> void:
+	EventBus.round_ended.connect(count_cooldown)
+	cooldown = period
+	for t in attack.attacker.system.find_targets_for_attack(attack.unit_attack):
+		if t.unit and t.unit.party != attack.attacker.party:
+			t.unit.parameters.apply_effect(
+				"forced_attack",
+				[attack.attacker.spot],
+				true,
+				true
+			)
+
+func count_cooldown() -> void:
+	if cooldown > 0:
+		cooldown -= 1
+		return
+	if EventBus.round_ended.is_connected(count_cooldown):
+		EventBus.round_ended.disconnect(count_cooldown)
+
+func _apply_policy(attack: Attack, finalize: bool) -> void:
+	# Override this method in derived classes to implement custom attack resolution logic.
+	# Called once within Attack.resolve() and expected to fully resolve the attack.
+	# For policies that only modify damage values without changing behavior,
+	# set attack.damages dictionary and call attack.standard_resolution()
+	var self_ref: UnitSpotReference = attack.find_reference(attack.attacker.spot)
+	if not self_ref:
+		attack.standard_resolution()
+		return
+	if cooldown > 0: return
+	use_ability(attack)

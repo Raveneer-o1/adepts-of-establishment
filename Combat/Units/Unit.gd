@@ -188,7 +188,7 @@ func give_target(_spot: UnitSpot) -> bool:
 		set_next_attack()
 	if chosen_spots.size() >= current_attack.targets_needed:
 		return false
-	var is_target_valid: bool = current_attack.target_validation._validate_target(self, _spot)
+	var is_target_valid: bool = current_attack.target_validation.validate_target(self, _spot)
 	if not is_target_valid:
 		return false
 	chosen_spots.append(_spot)

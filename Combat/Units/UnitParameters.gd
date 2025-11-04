@@ -172,7 +172,7 @@ var hp: int:
 		_hp = value
 		#visual_bar.value = _hp
 		if value <= 0:
-			die()
+			dead = true
 #endregion
 
 var hp_percentage: float:
@@ -287,8 +287,8 @@ func initialize_effects() -> void:
 	parent_unit.update_visuals()
 	EventBus.turn_started.connect(turn_start_reaction)
 
-func die() -> void:
-	dead = true
+#func die() -> void:
+	#dead = true
 	#parent_unit.die()
 
 func set_references() -> void:

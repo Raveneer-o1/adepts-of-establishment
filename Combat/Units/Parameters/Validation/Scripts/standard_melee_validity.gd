@@ -1,24 +1,25 @@
 extends BaseValidation
 
-func _validate_target(attacker: Unit, target_spot: UnitSpot) -> bool:
-	if attacker == null or target_spot == null or target_spot.unit == null:
+func validate_position_pair(attacker_spot: UnitSpot, target_spot: UnitSpot) -> bool:
+	if attacker_spot == null or \
+		target_spot == null or \
+		target_spot.unit == null:
 		return false
 	if target_spot.unit.parameters.dead:
 		return false
-		
 	# if units are in the same party, we don't attack
-	if attacker.party.units.has(target_spot.unit):
+	if attacker_spot.party == target_spot.party:
 		return false
 	
 	var target := target_spot.unit
-	var pos := attacker.party_position
+	var pos := attacker_spot.party_position
 	var targets : Array[Unit]
 	# step of 2 indicates adjacent units *see Party class documentation*
 	var step: int = 2
 	
-	if attacker.parameters.large_unit and pos % 2 != 0:
+	if attacker_spot.unit and attacker_spot.unit.parameters.large_unit and pos % 2 != 0:
 		step = 1
-		targets = attacker.party.other_party.get_units_at_positions(
+		targets = attacker_spot.party.other_party.get_units_at_positions(
 			[pos - step, pos + step],
 			false
 		)
@@ -31,7 +32,7 @@ func _validate_target(attacker: Unit, target_spot: UnitSpot) -> bool:
 		# even position indicates front line
 		if pos % 2 == 0:
 			# check position in front and adjacent positions
-			targets = attacker.party.other_party.get_units_at_positions(
+			targets = attacker_spot.party.other_party.get_units_at_positions(
 				[pos - step, pos, pos + step],
 				false
 			)
@@ -43,7 +44,7 @@ func _validate_target(attacker: Unit, target_spot: UnitSpot) -> bool:
 		
 		# odd position indicates back line
 		else:
-			if not attacker.party.front_line_is_empty():
+			if not attacker_spot.party.front_line_is_empty():
 				return false
 			# set new pos to check front line first
 			step = -1
@@ -54,7 +55,7 @@ func _validate_target(attacker: Unit, target_spot: UnitSpot) -> bool:
 	while in_bounds:
 		step += 2
 		
-		targets = attacker.party.other_party.get_units_at_positions([pos - step, pos + step])
+		targets = attacker_spot.party.other_party.get_units_at_positions([pos - step, pos + step])
 		if targets.has(target):
 			return true
 		
@@ -63,7 +64,7 @@ func _validate_target(attacker: Unit, target_spot: UnitSpot) -> bool:
 			if u != null:
 				return false
 		
-		# if get_units_at_positions() returned 2 nulls, we're completely out of bouns
+		# if get_units_at_positions() returned 2 nulls, we're completely out of bounds
 		if targets.size() == 2:
 			in_bounds = false
 	
@@ -76,7 +77,7 @@ func _validate_target(attacker: Unit, target_spot: UnitSpot) -> bool:
 	# odd position indicates back line
 	else:
 		step = 2
-		targets = attacker.party.other_party.get_units_at_positions([pos - step, pos, pos + step])
+		targets = attacker_spot.party.other_party.get_units_at_positions([pos - step, pos, pos + step])
 		if targets.has(target):
 			return true
 		
@@ -89,7 +90,7 @@ func _validate_target(attacker: Unit, target_spot: UnitSpot) -> bool:
 	
 	in_bounds = true
 	while in_bounds:
-		targets = attacker.party.other_party.get_units_at_positions([pos - step, pos + step])
+		targets = attacker_spot.party.other_party.get_units_at_positions([pos - step, pos + step])
 		if targets.has(target):
 			return true
 		

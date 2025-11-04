@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cwj46eiihpgsb"]
+
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="1_l1rn1"]
+[ext_resource type="Script" uid="uid://d1pkidogg6jse" path="res://Combat/Units/Parameters/Validation/Scripts/melee_with_move_validation.gd" id="2_4cv4i"]
+
+[resource]
+script = ExtResource("2_4cv4i")
+melee_validation = ExtResource("1_l1rn1")

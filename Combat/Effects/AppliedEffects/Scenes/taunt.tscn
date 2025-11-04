@@ -6,4 +6,4 @@
 script = ExtResource("1_hkkfj")
 effect_name = "Taunt"
 icon_index = 7
-description = "This unit will try to make other units attack itself if it can be a valid target for them."
+description = "This unit will try to make other units attack itself."

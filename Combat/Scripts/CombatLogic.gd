@@ -258,7 +258,6 @@ func resolve_and_finalize_all_attacks() -> void:
 		const FINALIZE_ATTACK := true
 		attack.resolve(FINALIZE_ATTACK)
 	
-	# if some units have taking_damage_attacks queued, finilize that as well
 	for unit in main_system.left_party.units + main_system.right_party.units:
 		if is_instance_valid(unit) and unit:
 			unit.update_visuals()

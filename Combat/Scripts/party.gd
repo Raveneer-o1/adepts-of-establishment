@@ -156,3 +156,6 @@ func initialize_variables() -> void:
 ## Returns number of hexes between two positions
 static func get_distance(pos1: int, pos2: int) -> int:
 	return abs(pos1 - pos2) / 2
+
+static func is_front_line(pos: int) -> bool:
+	return pos % 2 == 0

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://br1m16vpy1c3e"]
+
+[ext_resource type="Script" uid="uid://ckxu7v2xue5kh" path="res://Combat/Effects/AppliedEffects/Scripts/forced_attack.gd" id="1_p2d38"]
+
+[node name="ForcedAttack" type="Node"]
+script = ExtResource("1_p2d38")
+silencable = false
+effect_name = "Provoked attack"
+negative_effect = true
+description = "This unit can't choose targets for its next %d attacks"

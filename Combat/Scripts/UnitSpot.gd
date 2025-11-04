@@ -65,9 +65,10 @@ func add_unit(loaded_unit: Resource) -> void:
 
 func release_unit() -> void:
 	if not unit:
-		print_debug("Trying release unit from empty spot!")
+		print_debug("Trying to release unit from empty spot!")
 		return
 	unit.party_position = -1
+	unit.spot = null
 	party.units[party_position] = null
 	remove_child(unit)
 	unit = null

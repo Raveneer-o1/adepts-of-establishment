@@ -141,6 +141,7 @@ func redirect_all(target: UnitSpot, to: UnitSpot) -> void:
 ## Redirects the attack as if given spot was the original target.
 ## This allows to correctly redirect more complex attacks (e.g. with splash effects).
 func deep_redirect(to: UnitSpot) -> void:
+	redirected = true
 	target_references.clear()
 	for i in range(targets_chosen):
 		target_references.append( UnitSpotReference.new(to) )
@@ -158,7 +159,8 @@ func find_all_references(target: UnitSpot) -> Array[UnitSpotReference]:
 		if t.spot == target: result.append(t)
 	return result
 
-## Returns the first reference to the [param target] in [member damages]
+## Returns the first reference to the [param target] in [member target_references].
+## Returns null if there is none
 func find_reference(target: UnitSpot) -> UnitSpotReference:
 	for t: UnitSpotReference in target_references:
 		if t.spot == target: return t
