@@ -3,4 +3,5 @@
 [ext_resource type="Script" uid="uid://ck75djo8w44fg" path="res://Combat/Units/Parameters/Policy/Scripts/provoke_valid_targets_policy.gd" id="1_wbvmh"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_wbvmh")

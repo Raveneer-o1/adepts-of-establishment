@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b6mbuny3k21my"
+path="res://.godot/imported/Angel knight attack.wav-8232a98f2edf5164e9c73cdb6adbcc86.sample"
+
+[deps]
+
+source_file="res://Sounds/using/Attack/Empire/Angel knight attack.wav"
+dest_files=["res://.godot/imported/Angel knight attack.wav-8232a98f2edf5164e9c73cdb6adbcc86.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

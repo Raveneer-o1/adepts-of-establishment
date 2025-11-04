@@ -49,13 +49,17 @@ var unit: Unit
 ## [color=lightgreen]Note: you need to attach a resource, not a script file[/color]
 @export var damage_policy: BasePolicy
 
-
 ## This element is passed to the [member Attack.applying_effects]
 @export var applying_effects : Dictionary[String, Variant]
 
 ## If set, attack will use this effect instead if unit's one
 ## @experimental: currently not implemented
 @export var effect_override : Resource
+
+## If not empty, this text is displayed to the player as the unit's ability description.
+## Use this to explain unique attack policies, target selection rules,
+## and automatic additional targets.
+@export_multiline var description: String = ""
 
 ## Returns a human-friendly accuracy representation rather than raw probabilities.
 ## The idea is to never show actual percentages to the player and avoid behind-the-scenes

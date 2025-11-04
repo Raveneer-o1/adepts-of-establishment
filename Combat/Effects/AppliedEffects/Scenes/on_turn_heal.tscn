@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bme5xumq2ngf2"]
+
+[ext_resource type="Script" uid="uid://blee2kcbs7rhc" path="res://Combat/Effects/AppliedEffects/Scripts/on_turn_heal.gd" id="1_80ip8"]
+
+[node name="OnTurnHeal" type="Node"]
+script = ExtResource("1_80ip8")
+effect_name = "Healing aura"
+icon_index = 9
+description = "At the start of its turn, this unit heals all adjacent allies by %d"

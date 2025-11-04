@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ced22fhud2mcw"
+path="res://.godot/imported/Grand Inquisitor attack.wav-1b6f2157695a5a3045ed4db1a4378e73.sample"
+
+[deps]
+
+source_file="res://Sounds/using/Attack/Empire/Grand Inquisitor attack.wav"
+dest_files=["res://.godot/imported/Grand Inquisitor attack.wav-1b6f2157695a5a3045ed4db1a4378e73.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

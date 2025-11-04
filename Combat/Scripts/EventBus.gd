@@ -49,3 +49,4 @@ var packed_menu: PackedScene
 @warning_ignore("unused_signal") signal unit_description_requested(unit: Unit)
 @warning_ignore("unused_signal") signal effect_applied(effect: AppliedEffect)
 @warning_ignore("unused_signal") signal effect_lifted(effect: AppliedEffect)
+@warning_ignore("unused_signal") signal damage_taken(unit: Unit, dmg: int)

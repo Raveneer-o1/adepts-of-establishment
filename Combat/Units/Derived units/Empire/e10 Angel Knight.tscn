@@ -1,13 +1,27 @@
-[gd_scene load_steps=34 format=3 uid="uid://bjc7d7g3ses0e"]
+[gd_scene load_steps=49 format=3 uid="uid://bjc7d7g3ses0e"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_ktuuv"]
 [ext_resource type="Texture2D" uid="uid://lno0n5fcsi4v" path="res://Arts/Empire units/angel knight attack .png" id="2_j41lp"]
 [ext_resource type="Texture2D" uid="uid://d1d6ed0n31n0m" path="res://Arts/Placeholders/Angel knight.jpg" id="2_mn635"]
 [ext_resource type="Texture2D" uid="uid://cihokcoa4syjt" path="res://Arts/Empire units/angel knight idle .png" id="3_kq1jr"]
-[ext_resource type="PackedScene" uid="uid://j14go8w5ajjq" path="res://Combat/Effects/AppliedEffects/Scenes/damage_buff_aura.tscn" id="4_2ulgk"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_fmxe7"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_86cfn"]
-[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="7_0uj1v"]
+[ext_resource type="Resource" uid="uid://bi8ttsckdonmo" path="res://Combat/Units/Parameters/Validation/melee_with_self.tres" id="7_q6cur"]
+[ext_resource type="Script" uid="uid://ck75djo8w44fg" path="res://Combat/Units/Parameters/Policy/Scripts/provoke_valid_targets_policy.gd" id="8_q6cur"]
+[ext_resource type="PackedScene" uid="uid://0tk2rx2g08gt" path="res://Combat/Effects/AppliedEffects/Scenes/cheat_death.tscn" id="9_5c7t2"]
+[ext_resource type="AudioStream" uid="uid://jjx4crj3vvo6" path="res://Sounds/using/Damage/Steel_1.wav" id="10_3hwln"]
+[ext_resource type="AudioStream" uid="uid://b6mbuny3k21my" path="res://Sounds/using/Attack/Empire/Angel knight attack.wav" id="10_14k38"]
+[ext_resource type="PackedScene" uid="uid://b7l7e3cr20yw1" path="res://Combat/Effects/AppliedEffects/Scenes/taunt.tscn" id="10_ynn5b"]
+[ext_resource type="PackedScene" uid="uid://bme5xumq2ngf2" path="res://Combat/Effects/AppliedEffects/Scenes/on_turn_heal.tscn" id="11_abvld"]
+[ext_resource type="AudioStream" uid="uid://dfxj3ppvop3pb" path="res://Sounds/using/Damage/Steel_2.wav" id="11_hk3gm"]
+[ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="13_bsk3t"]
+[ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="14_ynn5b"]
+[ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="15_abvld"]
+[ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="16_ny83s"]
+[ext_resource type="AudioStream" uid="uid://bu5wuv1abjup1" path="res://Sounds/using/Shield/Metal_hit_1.wav" id="17_13mxw"]
+[ext_resource type="AudioStream" uid="uid://dhvkf7isfcfmv" path="res://Sounds/using/Shield/Metal_hit_2.wav" id="18_rcaux"]
+[ext_resource type="AudioStream" uid="uid://dmcxg00v3y8t0" path="res://Sounds/using/Shield/Metal_hit_3.wav" id="19_wiq37"]
+[ext_resource type="AudioStream" uid="uid://dujnun2mpyww3" path="res://Sounds/using/Shield/Metal_hit_4.wav" id="20_04k8n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5whir"]
 atlas = ExtResource("2_j41lp")
@@ -186,12 +200,19 @@ animations = [{
 [sub_resource type="Resource" id="Resource_q2oq7"]
 resource_local_to_scene = true
 script = ExtResource("4_fmxe7")
-max_HP = 100
-base_damage = 30
+max_HP = 275
+base_damage = 80
+armor = 80
+shielding_chance = 0.85
+
+[sub_resource type="Resource" id="Resource_5c7t2"]
+resource_local_to_scene = true
+script = ExtResource("8_q6cur")
+period = 2
+damage_reduction = 0.4
 
 [node name="AngelKinght" instance=ExtResource("1_ktuuv")]
 unit_name = "Angel Knight"
-unit_type = "Warrior"
 full_description = "Angel Knights are celestial warriors clad in radiant armor, wielding swords blessed with divine power. Their strikes are swift and unerring, cutting through darkness and doubt with righteous precision. With their holy aura, they inspire nearby allies, enhancing their offensive capabilities."
 portrait_texture = ExtResource("2_mn635")
 
@@ -202,15 +223,66 @@ autoplay = "default"
 offset = Vector2(0, -8)
 frames_to_emit = Array[int]([11])
 last_frame = 13
+attack_sound_frame = 10
 
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_q2oq7")
 
-[node name="Damage buff Aura" parent="UnitParameters" index="1" instance=ExtResource("4_2ulgk")]
-damage_increase = 7
-
-[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("6_86cfn")
-accuracy = 0.87
+damage_multiplier = 0.5
 initiative = 40
-target_validation = ExtResource("7_0uj1v")
+target_validation = ExtResource("7_q6cur")
+damage_policy = SubResource("Resource_5c7t2")
+description = "This unit can provoke all avaliable targets to attack itself (once every two turns)."
+
+[node name="UnitAttack2" type="Node" parent="UnitParameters" index="2"]
+script = ExtResource("6_86cfn")
+damage_multiplier = 0.5
+initiative = 30
+target_validation = ExtResource("7_q6cur")
+damage_policy = SubResource("Resource_5c7t2")
+
+[node name="CheatDeath" parent="UnitParameters" index="3" instance=ExtResource("9_5c7t2")]
+message = "Divine intervention!"
+liftable = false
+silencable = false
+
+[node name="Taunt" parent="UnitParameters" index="4" instance=ExtResource("10_ynn5b")]
+chance_to_taunt = 0.5
+damage_reduction_during_taunting = 0.55
+
+[node name="OnTurnHeal" parent="UnitParameters" index="5" instance=ExtResource("11_abvld")]
+
+[node name="Steel1" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
+stream = ExtResource("10_3hwln")
+
+[node name="Steel2" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="1"]
+stream = ExtResource("11_hk3gm")
+
+[node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
+stream = ExtResource("13_bsk3t")
+
+[node name="GpArmorDown2" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="1"]
+stream = ExtResource("14_ynn5b")
+
+[node name="GpArmorDown3" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="2"]
+stream = ExtResource("15_abvld")
+
+[node name="GpArmorDown4" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="3"]
+stream = ExtResource("16_ny83s")
+
+[node name="MetalHit1" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
+stream = ExtResource("17_13mxw")
+
+[node name="MetalHit2" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="1"]
+stream = ExtResource("18_rcaux")
+
+[node name="MetalHit3" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="2"]
+stream = ExtResource("19_wiq37")
+
+[node name="MetalHit4" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="3"]
+stream = ExtResource("20_04k8n")
+
+[node name="AngelKnightAttack" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
+stream = ExtResource("10_14k38")

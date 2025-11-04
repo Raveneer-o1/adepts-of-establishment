@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://pflh07f22p8k"]
+[gd_scene load_steps=43 format=3 uid="uid://pflh07f22p8k"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_f361o"]
 [ext_resource type="Texture2D" uid="uid://bukkwx22lxebi" path="res://Arts/Placeholders/Knight master.jpg" id="2_f4ity"]
@@ -9,6 +9,19 @@
 [ext_resource type="Resource" uid="uid://bi8ttsckdonmo" path="res://Combat/Units/Parameters/Validation/melee_with_self.tres" id="7_qiqwx"]
 [ext_resource type="PackedScene" uid="uid://b7l7e3cr20yw1" path="res://Combat/Effects/AppliedEffects/Scenes/taunt.tscn" id="8_d6vlj"]
 [ext_resource type="Resource" uid="uid://tktdkb7tedbd" path="res://Combat/Units/Parameters/Policy/provoke_valid_targets_policy.tres" id="8_qiqwx"]
+[ext_resource type="AudioStream" uid="uid://jjx4crj3vvo6" path="res://Sounds/using/Damage/Steel_1.wav" id="10_lnedi"]
+[ext_resource type="AudioStream" uid="uid://dfxj3ppvop3pb" path="res://Sounds/using/Damage/Steel_2.wav" id="11_ot2vb"]
+[ext_resource type="AudioStream" uid="uid://b2kxyto2hwq4g" path="res://Sounds/using/Miss/27_sword_miss_1.wav" id="12_oxbhf"]
+[ext_resource type="AudioStream" uid="uid://dhnmwtvhk7cyt" path="res://Sounds/using/Miss/27_sword_miss_2.wav" id="13_0af15"]
+[ext_resource type="AudioStream" uid="uid://bp17gb60eejxb" path="res://Sounds/using/Miss/27_sword_miss_3.wav" id="14_a418k"]
+[ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="15_e8g2j"]
+[ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="16_enb2v"]
+[ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="17_mwy3i"]
+[ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="18_l1u1k"]
+[ext_resource type="AudioStream" uid="uid://g50lfdbhl844" path="res://Sounds/using/Shield/Metal_clash_1.wav" id="19_ys32p"]
+[ext_resource type="AudioStream" uid="uid://cxti7sw334cs7" path="res://Sounds/using/Shield/Metal_clash_2.wav" id="20_v4ece"]
+[ext_resource type="AudioStream" uid="uid://bvq3qpcm8el2w" path="res://Sounds/using/Shield/Metal_clash_3.wav" id="21_vh5if"]
+[ext_resource type="AudioStream" uid="uid://b5vo71rl05j0" path="res://Sounds/using/Attack/Empire/Knight Master attack.wav" id="22_hitfc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gilfk"]
 atlas = ExtResource("2_g7vf6")
@@ -154,7 +167,7 @@ resource_local_to_scene = true
 script = ExtResource("4_ks2vf")
 max_HP = 200
 base_damage = 60
-armor = 45
+armor = 50
 
 [node name="Knight master" instance=ExtResource("1_f361o")]
 unit_name = "Knight Master"
@@ -167,18 +180,57 @@ animation = &"attack"
 autoplay = "default"
 offset = Vector2(8, 0)
 frames_to_emit = Array[int]([5])
+attack_sound_frame = 5
 
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_qli5x")
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("5_8np7n")
-damage_multiplier = 1.5
-accuracy = 0.84
-initiative = 45
+initiative = 40
 target_validation = ExtResource("7_qiqwx")
 damage_policy = ExtResource("8_qiqwx")
+description = "This unit can provoke all avaliable targets to attack itself (once every three turns)."
 
 [node name="Taunt" parent="UnitParameters" index="2" instance=ExtResource("8_d6vlj")]
 chance_to_taunt = 0.4
 damage_reduction_during_taunting = 0.65
+
+[node name="Steel1" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
+stream = ExtResource("10_lnedi")
+
+[node name="Steel2" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="1"]
+stream = ExtResource("11_ot2vb")
+
+[node name="27SwordMiss1" type="AudioStreamPlayer" parent="SoundPlayer/Miss" index="0"]
+stream = ExtResource("12_oxbhf")
+
+[node name="27SwordMiss2" type="AudioStreamPlayer" parent="SoundPlayer/Miss" index="1"]
+stream = ExtResource("13_0af15")
+
+[node name="27SwordMiss3" type="AudioStreamPlayer" parent="SoundPlayer/Miss" index="2"]
+stream = ExtResource("14_a418k")
+
+[node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
+stream = ExtResource("15_e8g2j")
+
+[node name="GpArmorDown2" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="1"]
+stream = ExtResource("16_enb2v")
+
+[node name="GpArmorDown3" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="2"]
+stream = ExtResource("17_mwy3i")
+
+[node name="GpArmorDown4" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="3"]
+stream = ExtResource("18_l1u1k")
+
+[node name="MetalClash1" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
+stream = ExtResource("19_ys32p")
+
+[node name="MetalClash2" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="1"]
+stream = ExtResource("20_v4ece")
+
+[node name="MetalClash3" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="2"]
+stream = ExtResource("21_vh5if")
+
+[node name="KnightMasterAttack" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
+stream = ExtResource("22_hitfc")

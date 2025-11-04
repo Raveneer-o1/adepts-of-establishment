@@ -1,6 +1,7 @@
 extends AppliedEffect
 
 @export var message: String = "Provoked"
+@export var damage_reduction: float = 1.0
 
 var targets: Array[UnitSpot] = []
 var number_of_attacks: int:
@@ -12,7 +13,16 @@ func _get_description() -> String:
 
 func check_trigger(attack: Attack) -> void:
 	if attack.attacker != target_unit: return
-	attack.deep_redirect(targets.pop_front())
+	var redirect_to: UnitSpot = targets.pop_front()
+	attack.deep_redirect(redirect_to)
+	var rto_refs: Array[UnitSpotReference] = attack.find_all_references(redirect_to)
+	for rto_ref in rto_refs:
+		if attack.damages.has(rto_ref):
+			@warning_ignore("narrowing_conversion")
+			attack.damages[rto_ref] *= damage_reduction
+		else:
+			attack.damages[rto_ref] = roundi(attack.default_damage * damage_reduction)
+	
 	attack.attacker.system.display_text_near_unit_async(attack.attacker, message, color_effect)
 	
 	if not targets: queue_free()

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://0tk2rx2g08gt"]
+
+[ext_resource type="Script" uid="uid://bbf2cyn4mgpsi" path="res://Combat/Effects/AppliedEffects/Scripts/cheat_death.gd" id="1_n25b7"]
+
+[node name="CheatDeath" type="Node"]
+script = ExtResource("1_n25b7")
+color_effect = Color(0.45399994, 0.37, 1, 1)
+effect_name = "Cheat death"
+icon_index = 15
+description = "When this unit's health drops below 0, it is set to %d instead  (triggers: %d)"

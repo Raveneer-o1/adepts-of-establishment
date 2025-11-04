@@ -2,6 +2,7 @@ extends BasePolicy
 
 ## Indicates period in rounds between using the ability
 @export var period: int = 3
+@export var damage_reduction: float = 0.5
 
 var cooldown: int = 0
 var can_use_ability: bool:
@@ -10,6 +11,7 @@ var can_use_ability: bool:
 func use_ability(attack: Attack) -> void:
 	EventBus.round_ended.connect(count_cooldown)
 	cooldown = period
+	attack.attacker.parameters.shielding = true
 	for t in attack.attacker.system.find_targets_for_attack(attack.unit_attack):
 		if t.unit and t.unit.party != attack.attacker.party:
 			t.unit.parameters.apply_effect(
@@ -17,7 +19,7 @@ func use_ability(attack: Attack) -> void:
 				[attack.attacker.spot],
 				true,
 				true
-			)
+			).damage_reduction = damage_reduction
 
 func count_cooldown() -> void:
 	if cooldown > 0:

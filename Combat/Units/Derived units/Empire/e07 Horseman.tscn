@@ -189,6 +189,7 @@ accuracy = 0.85
 initiative = 70
 target_validation = ExtResource("9_wvbow")
 damage_policy = ExtResource("8_bguh3")
+description = "This unit can move to attack."
 
 [node name="UnitAttack2" type="Node" parent="UnitParameters" index="2"]
 script = ExtResource("5_80t0n")

@@ -376,7 +376,9 @@ func take_damage(dmg: int, randomize_damage: bool = true) -> int:
 	# needs to be this way because hp is a property that does some more calculations
 	var original_hp := hp
 	hp -= dmg
-	return original_hp - hp
+	var taken_dmg := original_hp - hp
+	EventBus.damage_taken.emit(parent_unit, taken_dmg)
+	return taken_dmg
 
 
 func heal(value: int) -> int:

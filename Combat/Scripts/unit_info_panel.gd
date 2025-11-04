@@ -99,9 +99,18 @@ func fill_text_data(unit: Unit) -> void:
 			accuracy_text + \
 			initiative_text + \
 			type_text + \
-			applied_effect_text + \
-			DESCRIOTION_LINE % unit.full_description
+			applied_effect_text
 	)
+	
+	var ability_text: String = ""
+	for a in unit.parameters.attacks:
+		if a.description != "":
+			ability_text += "\n%s\n" % a.description
+	if ability_text != "":
+		full_info.append_text(DESCRIOTION_LINE % ability_text)
+	
+	full_info.append_text(DESCRIOTION_LINE % unit.full_description)
+	
 	info.text = hp_text + unit.brief_description
 
 
@@ -118,7 +127,6 @@ func populate_panel_with_info(unit: Unit) -> void:
 	
 	replace_portrait(unit.portrait_texture)
 	
-	# Set panel visibility
 	visible = true
 
 
