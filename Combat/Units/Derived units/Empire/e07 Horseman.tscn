@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bc38vqrm2krpb"]
+[gd_scene load_steps=47 format=3 uid="uid://bc38vqrm2krpb"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_w7nds"]
 [ext_resource type="Texture2D" uid="uid://bs3l3ol0rvl3q" path="res://Arts/Placeholders/Horseman.jpg" id="2_1mg5r"]
@@ -7,7 +7,23 @@
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_porei"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_80t0n"]
 [ext_resource type="Resource" uid="uid://dlf7j7tgyj0ih" path="res://Combat/Units/Parameters/Policy/melee_with_move_policy.tres" id="8_bguh3"]
+[ext_resource type="AudioStream" uid="uid://3up3xko4aipd" path="res://Sounds/using/Damage/Default_1.wav" id="9_heck5"]
+[ext_resource type="AudioStream" uid="uid://f7vuol36ahf8" path="res://Sounds/using/other/horse-neigh-390297.mp3" id="9_ocaj6"]
 [ext_resource type="Resource" uid="uid://cwj46eiihpgsb" path="res://Combat/Units/Parameters/Validation/melee_with_move.tres" id="9_wvbow"]
+[ext_resource type="AudioStream" uid="uid://b7r3kee6rjmo4" path="res://Sounds/using/Damage/Default_2.wav" id="10_opiad"]
+[ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="10_q1h0i"]
+[ext_resource type="AudioStream" uid="uid://b8o5l8pxfg4my" path="res://Sounds/using/Damage/Default_3.wav" id="11_a7txe"]
+[ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="11_c3fty"]
+[ext_resource type="AudioStream" uid="uid://cucn7770e3ayy" path="res://Sounds/using/Damage/Default_4.wav" id="12_5cmom"]
+[ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="12_ympgp"]
+[ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="13_0posf"]
+[ext_resource type="AudioStream" uid="uid://jjx4crj3vvo6" path="res://Sounds/using/Damage/Steel_1.wav" id="13_4kk3f"]
+[ext_resource type="AudioStream" uid="uid://g50lfdbhl844" path="res://Sounds/using/Shield/Metal_clash_1.wav" id="14_673ac"]
+[ext_resource type="AudioStream" uid="uid://dfxj3ppvop3pb" path="res://Sounds/using/Damage/Steel_2.wav" id="14_gwo1y"]
+[ext_resource type="AudioStream" uid="uid://cxti7sw334cs7" path="res://Sounds/using/Shield/Metal_clash_2.wav" id="15_3i5v8"]
+[ext_resource type="AudioStream" uid="uid://cfoq5h1xo1e6n" path="res://Sounds/using/Damage/Steel_3.wav" id="15_ionu1"]
+[ext_resource type="AudioStream" uid="uid://bvq3qpcm8el2w" path="res://Sounds/using/Shield/Metal_clash_3.wav" id="16_heck5"]
+[ext_resource type="AudioStream" uid="uid://odffv4rewv7h" path="res://Sounds/using/Attack/Empire/Horseman attack.wav" id="17_opiad"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ufxv4"]
 atlas = ExtResource("2_6doph")
@@ -165,8 +181,9 @@ animations = [{
 [sub_resource type="Resource" id="Resource_o2474"]
 resource_local_to_scene = true
 script = ExtResource("4_porei")
-max_HP = 100
-base_damage = 30
+max_HP = 200
+base_damage = 60
+armor = 35
 
 [node name="Horseman" instance=ExtResource("1_w7nds")]
 unit_name = "Horseman"
@@ -178,14 +195,15 @@ sprite_frames = SubResource("SpriteFrames_ddpld")
 animation = &"attack"
 autoplay = "default"
 frames_to_emit = Array[int]([4])
+attack_sound_frame = 4
 
 [node name="UnitParameters" parent="." index="1"]
+level = 3
 base_paramaters = SubResource("Resource_o2474")
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("5_80t0n")
-damage_multiplier = 0.6
-accuracy = 0.85
+damage_multiplier = 0.4
 initiative = 70
 target_validation = ExtResource("9_wvbow")
 damage_policy = ExtResource("8_bguh3")
@@ -193,8 +211,56 @@ description = "This unit can move to attack."
 
 [node name="UnitAttack2" type="Node" parent="UnitParameters" index="2"]
 script = ExtResource("5_80t0n")
-damage_multiplier = 0.9
-accuracy = 0.82
+damage_multiplier = 0.6
 initiative = 40
 target_validation = ExtResource("9_wvbow")
 damage_policy = ExtResource("8_bguh3")
+
+[node name="Default1" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
+stream = ExtResource("9_heck5")
+
+[node name="Default2" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="1"]
+stream = ExtResource("10_opiad")
+
+[node name="Default3" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="2"]
+stream = ExtResource("11_a7txe")
+
+[node name="Default4" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="3"]
+stream = ExtResource("12_5cmom")
+
+[node name="Steel1" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="4"]
+stream = ExtResource("13_4kk3f")
+
+[node name="Steel2" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="5"]
+stream = ExtResource("14_gwo1y")
+
+[node name="Steel3" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="6"]
+stream = ExtResource("15_ionu1")
+
+[node name="HorseNeigh390297" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="7"]
+stream = ExtResource("9_ocaj6")
+bus = &"Damage"
+
+[node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
+stream = ExtResource("10_q1h0i")
+
+[node name="GpArmorDown2" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="1"]
+stream = ExtResource("11_c3fty")
+
+[node name="GpArmorDown3" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="2"]
+stream = ExtResource("12_ympgp")
+
+[node name="GpArmorDown4" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="3"]
+stream = ExtResource("13_0posf")
+
+[node name="MetalClash1" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
+stream = ExtResource("14_673ac")
+
+[node name="MetalClash2" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="1"]
+stream = ExtResource("15_3i5v8")
+
+[node name="MetalClash3" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="2"]
+stream = ExtResource("16_heck5")
+
+[node name="HorsemanAttack" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
+stream = ExtResource("17_opiad")

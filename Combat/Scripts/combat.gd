@@ -519,6 +519,9 @@ func find_avaliable_targets(unit: Unit = current_unit) -> Array[UnitSpot]:
 ## Loads menu scene as current one. If [member EventBus.packed_menu] is empty,
 ## loads new scene from [code]"res://Menu/Scenes/menu.tscn"[/code]
 func end_scene() -> void:
+	queue_free()
+	#print("On exit:")
+	#print_orphan_nodes()
 	if EventBus.packed_menu == null:
 		get_tree().change_scene_to_file("res://Menu/Scenes/menu.tscn")
 	else:
@@ -570,3 +573,7 @@ func _process(delta: float) -> void:
 			text_displayed = false
 			text_displayed_time = TEXT_DISPLAYED_ABORT_INTERVAL
 			texts_to_display.clear()
+
+
+func _on_button_debug_pressed() -> void:
+	print_orphan_nodes()

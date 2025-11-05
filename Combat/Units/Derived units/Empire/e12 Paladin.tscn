@@ -1,12 +1,31 @@
-[gd_scene load_steps=28 format=3 uid="uid://chwmireeop57v"]
+[gd_scene load_steps=48 format=3 uid="uid://chwmireeop57v"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_v252y"]
 [ext_resource type="Texture2D" uid="uid://8rxcuhro2ji3" path="res://Arts/Empire units/Defender of Faith attack .png" id="2_m0rao"]
 [ext_resource type="Texture2D" uid="uid://dkvu558ho6w8r" path="res://Arts/Empire units/Defender of Faith idle .png" id="3_v31eh"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_gsene"]
-[ext_resource type="PackedScene" uid="uid://chpw2oyl5kpky" path="res://Combat/Effects/AppliedEffects/Scenes/armor_buff_aura.tscn" id="4_sgewg"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_3s88y"]
 [ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="7_63rex"]
+[ext_resource type="Script" uid="uid://d1pkidogg6jse" path="res://Combat/Units/Parameters/Validation/Scripts/melee_with_move_validation.gd" id="7_bb4no"]
+[ext_resource type="AudioStream" uid="uid://csescniiodbk2" path="res://Sounds/using/other/neighing-of-a-horse-154724.mp3" id="8_pvlno"]
+[ext_resource type="Resource" uid="uid://dlf7j7tgyj0ih" path="res://Combat/Units/Parameters/Policy/melee_with_move_policy.tres" id="8_x5w7n"]
+[ext_resource type="AudioStream" uid="uid://jjx4crj3vvo6" path="res://Sounds/using/Damage/Steel_1.wav" id="9_ta7nu"]
+[ext_resource type="PackedScene" uid="uid://c3u0bes2cjvpl" path="res://Combat/Effects/AppliedEffects/Scenes/on_move_evasion_up.tscn" id="9_x5w7n"]
+[ext_resource type="AudioStream" uid="uid://dfxj3ppvop3pb" path="res://Sounds/using/Damage/Steel_2.wav" id="10_045xp"]
+[ext_resource type="PackedScene" uid="uid://j14go8w5ajjq" path="res://Combat/Effects/AppliedEffects/Scenes/damage_buff_aura.tscn" id="10_olqwa"]
+[ext_resource type="AudioStream" uid="uid://cfoq5h1xo1e6n" path="res://Sounds/using/Damage/Steel_3.wav" id="11_x5w7n"]
+[ext_resource type="AudioStream" uid="uid://b2kxyto2hwq4g" path="res://Sounds/using/Miss/27_sword_miss_1.wav" id="12_olqwa"]
+[ext_resource type="AudioStream" uid="uid://dhnmwtvhk7cyt" path="res://Sounds/using/Miss/27_sword_miss_2.wav" id="13_bb4no"]
+[ext_resource type="AudioStream" uid="uid://bp17gb60eejxb" path="res://Sounds/using/Miss/27_sword_miss_3.wav" id="14_rww7o"]
+[ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="15_5o613"]
+[ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="16_3y1vt"]
+[ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="17_m6d7d"]
+[ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="18_eowd3"]
+[ext_resource type="AudioStream" uid="uid://bu5wuv1abjup1" path="res://Sounds/using/Shield/Metal_hit_1.wav" id="19_udlqn"]
+[ext_resource type="AudioStream" uid="uid://dhvkf7isfcfmv" path="res://Sounds/using/Shield/Metal_hit_2.wav" id="20_xq6a2"]
+[ext_resource type="AudioStream" uid="uid://dmcxg00v3y8t0" path="res://Sounds/using/Shield/Metal_hit_3.wav" id="21_xo23m"]
+[ext_resource type="AudioStream" uid="uid://dujnun2mpyww3" path="res://Sounds/using/Shield/Metal_hit_4.wav" id="22_lbq16"]
+[ext_resource type="AudioStream" uid="uid://doq4apjkdl4am" path="res://Sounds/using/Attack/Empire/Witch Hunter attack.wav" id="23_ta7nu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xphl8"]
 atlas = ExtResource("2_m0rao")
@@ -150,13 +169,18 @@ animations = [{
 [sub_resource type="Resource" id="Resource_hq0gf"]
 resource_local_to_scene = true
 script = ExtResource("4_gsene")
-max_HP = 200
-base_damage = 75
-armor = 60
+max_HP = 350
+base_damage = 100
+armor = 70
+shielding_chance = 0.8
+
+[sub_resource type="Resource" id="Resource_rww7o"]
+script = ExtResource("7_bb4no")
+melee_validation = ExtResource("7_63rex")
+max_move = 2
 
 [node name="Unit" instance=ExtResource("1_v252y")]
 unit_name = "Paladin"
-unit_type = "Defender"
 full_description = "Paladins are elite horsemen sworn to the king's service, their presence a testament to the kingdom's might. Mounted on powerful steeds clad in ornate armor, they charge into battle with unmatched speed and force, devastating enemy lines. Their discipline and training allow them to perform precision maneuvers, bolstering the effectiveness of allied forces."
 
 [node name="AnimationHandle" parent="." index="0"]
@@ -164,23 +188,92 @@ sprite_frames = SubResource("SpriteFrames_2d011")
 animation = &"attack"
 autoplay = "default"
 offset = Vector2(8, 0)
-frames_to_emit = Array[int]([5])
+frames_to_emit = Array[int]([6])
+attack_sound_frame = 4
 
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_hq0gf")
 
-[node name="Armor buff (aura)" parent="UnitParameters" index="1" instance=ExtResource("4_sgewg")]
-armor_increase = 10
-
-[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("6_3s88y")
-damage_multiplier = 0.65
-accuracy = 0.88
+damage_multiplier = 0.4
 initiative = 70
-target_validation = ExtResource("7_63rex")
+target_validation = SubResource("Resource_rww7o")
+damage_policy = ExtResource("8_x5w7n")
+description = "This unit can move to attack."
 
-[node name="UnitAttack2" type="Node" parent="UnitParameters" index="3"]
+[node name="UnitAttack2" type="Node" parent="UnitParameters" index="2"]
 script = ExtResource("6_3s88y")
-accuracy = 0.9
+damage_multiplier = 0.5
 initiative = 40
-target_validation = ExtResource("7_63rex")
+target_validation = SubResource("Resource_rww7o")
+damage_policy = ExtResource("8_x5w7n")
+description = "This unit can move to attack."
+
+[node name="UnitAttack3" type="Node" parent="UnitParameters" index="3"]
+script = ExtResource("6_3s88y")
+damage_multiplier = 0.4
+initiative = 30
+target_validation = SubResource("Resource_rww7o")
+damage_policy = ExtResource("8_x5w7n")
+description = "This unit can move to attack."
+
+[node name="OnMoveEvasionUp" parent="UnitParameters" index="4" instance=ExtResource("9_x5w7n")]
+buff = 1.7
+turns = 3
+
+[node name="Damage buff Aura" parent="UnitParameters" index="5" instance=ExtResource("10_olqwa")]
+damage_increase = 40
+
+[node name="NeighingOfAHorse154724" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
+stream = ExtResource("8_pvlno")
+bus = &"Damage"
+
+[node name="Steel1" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="1"]
+stream = ExtResource("9_ta7nu")
+bus = &"Damage"
+
+[node name="Steel2" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="2"]
+stream = ExtResource("10_045xp")
+bus = &"Damage"
+
+[node name="Steel3" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="3"]
+stream = ExtResource("11_x5w7n")
+bus = &"Damage"
+
+[node name="27SwordMiss1" type="AudioStreamPlayer" parent="SoundPlayer/Miss" index="0"]
+stream = ExtResource("12_olqwa")
+
+[node name="27SwordMiss2" type="AudioStreamPlayer" parent="SoundPlayer/Miss" index="1"]
+stream = ExtResource("13_bb4no")
+
+[node name="27SwordMiss3" type="AudioStreamPlayer" parent="SoundPlayer/Miss" index="2"]
+stream = ExtResource("14_rww7o")
+
+[node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
+stream = ExtResource("15_5o613")
+
+[node name="GpArmorDown2" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="1"]
+stream = ExtResource("16_3y1vt")
+
+[node name="GpArmorDown3" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="2"]
+stream = ExtResource("17_m6d7d")
+
+[node name="GpArmorDown4" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="3"]
+stream = ExtResource("18_eowd3")
+
+[node name="MetalHit1" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
+stream = ExtResource("19_udlqn")
+
+[node name="MetalHit2" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="1"]
+stream = ExtResource("20_xq6a2")
+
+[node name="MetalHit3" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="2"]
+stream = ExtResource("21_xo23m")
+
+[node name="MetalHit4" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="3"]
+stream = ExtResource("22_lbq16")
+
+[node name="WitchHunterAttack" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
+stream = ExtResource("23_ta7nu")
+pitch_scale = 0.6

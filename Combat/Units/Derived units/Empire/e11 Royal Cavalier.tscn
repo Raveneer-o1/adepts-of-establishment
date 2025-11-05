@@ -1,11 +1,30 @@
-[gd_scene load_steps=25 format=3 uid="uid://bb7xobbcumx1x"]
+[gd_scene load_steps=44 format=3 uid="uid://bb7xobbcumx1x"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_atu73"]
 [ext_resource type="Texture2D" uid="uid://cjx47768wmvsj" path="res://Arts/Empire units/royal cavalier attack .png" id="2_54rgk"]
 [ext_resource type="Texture2D" uid="uid://dyqemxeff2s2j" path="res://Arts/Empire units/royal cavalier idle .png" id="3_1wlrl"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_kgaai"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_ksxxa"]
-[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="6_3ie0m"]
+[ext_resource type="Resource" uid="uid://cwj46eiihpgsb" path="res://Combat/Units/Parameters/Validation/melee_with_move.tres" id="6_gqn05"]
+[ext_resource type="Resource" uid="uid://dlf7j7tgyj0ih" path="res://Combat/Units/Parameters/Policy/melee_with_move_policy.tres" id="7_ru8kw"]
+[ext_resource type="PackedScene" uid="uid://c3u0bes2cjvpl" path="res://Combat/Effects/AppliedEffects/Scenes/on_move_evasion_up.tscn" id="8_oyp3v"]
+[ext_resource type="AudioStream" uid="uid://b8o5l8pxfg4my" path="res://Sounds/using/Damage/Default_3.wav" id="9_ct4gt"]
+[ext_resource type="AudioStream" uid="uid://cucn7770e3ayy" path="res://Sounds/using/Damage/Default_4.wav" id="10_mfi4u"]
+[ext_resource type="AudioStream" uid="uid://jjx4crj3vvo6" path="res://Sounds/using/Damage/Steel_1.wav" id="11_8fomc"]
+[ext_resource type="AudioStream" uid="uid://dfxj3ppvop3pb" path="res://Sounds/using/Damage/Steel_2.wav" id="12_61ubg"]
+[ext_resource type="AudioStream" uid="uid://cfoq5h1xo1e6n" path="res://Sounds/using/Damage/Steel_3.wav" id="13_30snd"]
+[ext_resource type="AudioStream" uid="uid://12buyib0lnt2" path="res://Sounds/using/other/horse-neigh-261131.mp3" id="14_p1l5p"]
+[ext_resource type="AudioStream" uid="uid://b2kxyto2hwq4g" path="res://Sounds/using/Miss/27_sword_miss_1.wav" id="15_jwkcf"]
+[ext_resource type="AudioStream" uid="uid://dhnmwtvhk7cyt" path="res://Sounds/using/Miss/27_sword_miss_2.wav" id="16_1rm57"]
+[ext_resource type="AudioStream" uid="uid://bp17gb60eejxb" path="res://Sounds/using/Miss/27_sword_miss_3.wav" id="17_1pm3o"]
+[ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="18_5tn64"]
+[ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="19_8bhnt"]
+[ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="20_yehdy"]
+[ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="21_sdc3m"]
+[ext_resource type="AudioStream" uid="uid://g50lfdbhl844" path="res://Sounds/using/Shield/Metal_clash_1.wav" id="22_sqlrt"]
+[ext_resource type="AudioStream" uid="uid://cxti7sw334cs7" path="res://Sounds/using/Shield/Metal_clash_2.wav" id="23_tmjnk"]
+[ext_resource type="AudioStream" uid="uid://bvq3qpcm8el2w" path="res://Sounds/using/Shield/Metal_clash_3.wav" id="24_s7dgq"]
+[ext_resource type="AudioStream" uid="uid://dcybavmgc4r6y" path="res://Sounds/using/Attack/Empire/Royal Cavalier attack.wav" id="25_8lj6f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ltm0u"]
 atlas = ExtResource("2_54rgk")
@@ -135,12 +154,12 @@ animations = [{
 [sub_resource type="Resource" id="Resource_plr1t"]
 resource_local_to_scene = true
 script = ExtResource("4_kgaai")
-max_HP = 100
-base_damage = 30
+max_HP = 275
+base_damage = 80
+armor = 50
 
 [node name="Unit" instance=ExtResource("1_atu73")]
 unit_name = "Royal Cavalier"
-unit_type = "Defender"
 full_description = "Royal Cavaliers are the backbone of the kingdom's mounted forces, blending power and precision. Equipped with finely crafted lances and sturdy armor, they excel at breaking enemy formations with calculated charges. Their training and discipline ensure they remain steadfast under pressure, offering reliable strength on the battlefield"
 
 [node name="AnimationHandle" parent="." index="0"]
@@ -149,20 +168,89 @@ animation = &"attack"
 autoplay = "default"
 offset = Vector2(8, 0)
 frames_to_emit = Array[int]([4])
+attack_sound_frame = 3
 
 [node name="UnitParameters" parent="." index="1"]
+level = 4
 base_paramaters = SubResource("Resource_plr1t")
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("5_ksxxa")
-damage_multiplier = 0.6
-accuracy = 0.85
-initiative = 70
-target_validation = ExtResource("6_3ie0m")
+damage_multiplier = 0.5
+initiative = 60
+target_validation = ExtResource("6_gqn05")
+damage_policy = ExtResource("7_ru8kw")
+description = "This unit can move to attack."
 
 [node name="UnitAttack2" type="Node" parent="UnitParameters" index="2"]
 script = ExtResource("5_ksxxa")
-damage_multiplier = 0.9
-accuracy = 0.88
+damage_multiplier = 0.4
 initiative = 40
-target_validation = ExtResource("6_3ie0m")
+target_validation = ExtResource("6_gqn05")
+damage_policy = ExtResource("7_ru8kw")
+
+[node name="UnitAttack3" type="Node" parent="UnitParameters" index="3"]
+script = ExtResource("5_ksxxa")
+damage_multiplier = 0.3
+initiative = 35
+target_validation = ExtResource("6_gqn05")
+damage_policy = ExtResource("7_ru8kw")
+
+[node name="OnMoveEvasionUp" parent="UnitParameters" index="4" instance=ExtResource("8_oyp3v")]
+
+[node name="Default3" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
+stream = ExtResource("9_ct4gt")
+bus = &"Damage"
+
+[node name="Default4" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="1"]
+stream = ExtResource("10_mfi4u")
+bus = &"Damage"
+
+[node name="Steel1" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="2"]
+stream = ExtResource("11_8fomc")
+bus = &"Damage"
+
+[node name="Steel2" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="3"]
+stream = ExtResource("12_61ubg")
+bus = &"Damage"
+
+[node name="Steel3" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="4"]
+stream = ExtResource("13_30snd")
+bus = &"Damage"
+
+[node name="HorseNeigh261131" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="5"]
+stream = ExtResource("14_p1l5p")
+bus = &"Damage"
+
+[node name="27SwordMiss1" type="AudioStreamPlayer" parent="SoundPlayer/Miss" index="0"]
+stream = ExtResource("15_jwkcf")
+
+[node name="27SwordMiss2" type="AudioStreamPlayer" parent="SoundPlayer/Miss" index="1"]
+stream = ExtResource("16_1rm57")
+
+[node name="27SwordMiss3" type="AudioStreamPlayer" parent="SoundPlayer/Miss" index="2"]
+stream = ExtResource("17_1pm3o")
+
+[node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
+stream = ExtResource("18_5tn64")
+
+[node name="GpArmorDown2" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="1"]
+stream = ExtResource("19_8bhnt")
+
+[node name="GpArmorDown3" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="2"]
+stream = ExtResource("20_yehdy")
+
+[node name="GpArmorDown4" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="3"]
+stream = ExtResource("21_sdc3m")
+
+[node name="MetalClash1" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
+stream = ExtResource("22_sqlrt")
+
+[node name="MetalClash2" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="1"]
+stream = ExtResource("23_tmjnk")
+
+[node name="MetalClash3" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="2"]
+stream = ExtResource("24_s7dgq")
+
+[node name="RoyalCavalierAttack" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
+stream = ExtResource("25_8lj6f")

@@ -226,6 +226,7 @@ last_frame = 13
 attack_sound_frame = 10
 
 [node name="UnitParameters" parent="." index="1"]
+level = 4
 base_paramaters = SubResource("Resource_q2oq7")
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]

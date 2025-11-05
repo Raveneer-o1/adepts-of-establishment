@@ -183,6 +183,7 @@ frames_to_emit = Array[int]([5])
 attack_sound_frame = 5
 
 [node name="UnitParameters" parent="." index="1"]
+level = 3
 base_paramaters = SubResource("Resource_qli5x")
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]

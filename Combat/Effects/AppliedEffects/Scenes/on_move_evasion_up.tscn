@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3u0bes2cjvpl"]
+
+[ext_resource type="Script" uid="uid://b45buxn165qx1" path="res://Combat/Effects/AppliedEffects/Scripts/on_move_evasion_up.gd" id="1_pxkey"]
+
+[node name="OnMoveEvasionUp" type="Node"]
+script = ExtResource("1_pxkey")
+effect_name = "Giddy up"
+icon_index = 3
+description = "When this unit moves, its evasion increases"

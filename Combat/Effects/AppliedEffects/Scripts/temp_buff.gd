@@ -13,6 +13,8 @@ const PARAMETERS_NAMES: Dictionary[StringName, StringName] = {
 	"Health" = &"max_HP",
 	"Attack" = &"base_damage",
 	"Armor" = &"armor",
+	"Evasion" = &"evasion",
+	"Shielding chance" = &"shielding_chance",
 }
 
 # Number of turns the effect will last
@@ -24,7 +26,6 @@ var strength: int = 0
 # Multiplier for the parameter (optional)
 var multiplier: float = 1.0
 
-# Constructs a description string for the effect, including parameter modifications
 func _get_description() -> String:
 	var text_increase: String = description
 	
@@ -41,21 +42,28 @@ func _get_description() -> String:
 	
 	return text_increase
 
-# Reduces the number of remaining turns and removes the effect when expired
 func count_turn(unit: Unit) -> void:
 	if unit == target_unit and turns > 0:
 		turns -= 1
 		if turns == 0:
 			lift_effect()
 
-# Applies the parameter modifier to the target unit
 func apply_modifier() -> void:
-	target_unit.parameters.add_modifier(
-			parameter,
-			self,
-			func (value: int) -> int:
-				return roundi(float(value) * multiplier + strength)
-	)
+	var param := parameter
+	if param == &"evasion" or param == &"shielding_chance":
+		target_unit.parameters.add_modifier(
+				param,
+				self,
+				func (value: float) -> float:
+					return value * multiplier + float(strength)
+		)
+	else:
+		target_unit.parameters.add_modifier(
+				param,
+				self,
+				func (value: int) -> int:
+					return roundi(float(value) * multiplier + strength)
+		)
 
 ## Attempts to initialize the effect's parameters from a dictionary
 ## returns if initialization was succsessful

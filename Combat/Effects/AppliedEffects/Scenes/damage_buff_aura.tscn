@@ -7,5 +7,5 @@
 script = ExtResource("2_1nx6l")
 damage_increase = 5
 effect_name = "Damage buff Aura"
-icon_index = 9
+icon_index = 11
 description = "Increases base damage of adjacent units by %d"

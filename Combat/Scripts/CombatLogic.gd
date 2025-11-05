@@ -56,7 +56,6 @@ func remove_attack_from_queue(attack: UnitAttack) -> void:
 
 ## Sets up the attack queue for the current round and resets atacks for each unit.
 func set_queue() -> void:
-	# Combine units from both parties, filter out nulls and dead units, then remove duplicates.
 	var left_units: Array[Unit] = main_system.left_party.units.filter(filter_nulls)
 	var right_units: Array[Unit] = main_system.right_party.units.filter(filter_nulls)
 	var units: Array[Unit] = left_units + right_units
@@ -76,7 +75,6 @@ func set_queue() -> void:
 
 func check_dead_unit(unit: Unit) -> void:
 	if not unit.parameters.dead: return
-	var attacks_to_remove: Array[UnitAttack] = []
 	
 	# Iterate through attacks_queue instead of unit.attacks_for_this_round for robustness:
 	# attacks_for_this_round could theoretically be out of sync with attacks_queue
@@ -84,10 +82,7 @@ func check_dead_unit(unit: Unit) -> void:
 	for attack in attacks_queue:
 		if attack != null and \
 				attack.unit == unit:
-			attacks_to_remove.append(attack)
-	
-	for attack in attacks_to_remove:
-		remove_attack_from_queue(attack)
+			remove_attack_from_queue(attack)
 	
 	if unit == main_system.current_unit:
 		next_stage()
@@ -193,6 +188,8 @@ func initialize_effects() -> void:
 func end_battle() -> void:
 	if not battle_in_progress:
 		return
+	#print("Orphans:")
+	#print_orphan_nodes()
 	print("The battle is over!")
 	main_system.win_label.visible = true
 	battle_in_progress = false

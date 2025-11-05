@@ -8,3 +8,4 @@ script = ExtResource("2_vwa1h")
 effect_name = "Temporary"
 icon_index = 5
 description = "Increases %s by %d"
+stackable = true
