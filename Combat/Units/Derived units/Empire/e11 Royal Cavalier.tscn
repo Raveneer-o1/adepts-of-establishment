@@ -1,7 +1,8 @@
-[gd_scene load_steps=44 format=3 uid="uid://bb7xobbcumx1x"]
+[gd_scene load_steps=45 format=3 uid="uid://bb7xobbcumx1x"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_atu73"]
 [ext_resource type="Texture2D" uid="uid://cjx47768wmvsj" path="res://Arts/Empire units/royal cavalier attack .png" id="2_54rgk"]
+[ext_resource type="Texture2D" uid="uid://dr7osc6etg4oj" path="res://Arts/Placeholders/Royal cavalier.jpg" id="2_mfi4u"]
 [ext_resource type="Texture2D" uid="uid://dyqemxeff2s2j" path="res://Arts/Empire units/royal cavalier idle .png" id="3_1wlrl"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_kgaai"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_ksxxa"]
@@ -161,6 +162,7 @@ armor = 50
 [node name="Unit" instance=ExtResource("1_atu73")]
 unit_name = "Royal Cavalier"
 full_description = "Royal Cavaliers are the backbone of the kingdom's mounted forces, blending power and precision. Equipped with finely crafted lances and sturdy armor, they excel at breaking enemy formations with calculated charges. Their training and discipline ensure they remain steadfast under pressure, offering reliable strength on the battlefield"
+portrait_texture = ExtResource("2_mfi4u")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_3qdau")

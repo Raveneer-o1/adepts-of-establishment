@@ -1,6 +1,7 @@
-[gd_scene load_steps=48 format=3 uid="uid://chwmireeop57v"]
+[gd_scene load_steps=49 format=3 uid="uid://chwmireeop57v"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_v252y"]
+[ext_resource type="Texture2D" uid="uid://d2twbl0lwlb0d" path="res://Arts/Placeholders/Paladin.jpg" id="2_bb4no"]
 [ext_resource type="Texture2D" uid="uid://8rxcuhro2ji3" path="res://Arts/Empire units/Defender of Faith attack .png" id="2_m0rao"]
 [ext_resource type="Texture2D" uid="uid://dkvu558ho6w8r" path="res://Arts/Empire units/Defender of Faith idle .png" id="3_v31eh"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_gsene"]
@@ -182,6 +183,7 @@ max_move = 2
 [node name="Unit" instance=ExtResource("1_v252y")]
 unit_name = "Paladin"
 full_description = "Paladins are elite horsemen sworn to the king's service, their presence a testament to the kingdom's might. Mounted on powerful steeds clad in ornate armor, they charge into battle with unmatched speed and force, devastating enemy lines. Their discipline and training allow them to perform precision maneuvers, bolstering the effectiveness of allied forces."
+portrait_texture = ExtResource("2_bb4no")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_2d011")

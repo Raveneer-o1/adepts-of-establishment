@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bkgd75ppe6uv0"]
+[gd_scene load_steps=31 format=3 uid="uid://bkgd75ppe6uv0"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_mbqb6"]
 [ext_resource type="Texture2D" uid="uid://cuix8vdx6us1h" path="res://Arts/Empire units/white Mage attack .png" id="2_xltu8"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://bkoge3ibwhgcc" path="res://Combat/Units/Parameters/Validation/standard_mage_validity.tres" id="7_hx30w"]
 [ext_resource type="Resource" uid="uid://cejkgjwk05uws" path="res://Combat/Units/Parameters/Additional targets/standard_mage_targets.tres" id="8_00kpc"]
 [ext_resource type="Script" uid="uid://5qgohskr1g6s" path="res://Combat/Units/Parameters/Policy/Scripts/decay_policy.gd" id="9_l6lkl"]
+[ext_resource type="Texture2D" uid="uid://dg775sg6vv364" path="res://Arts/Placeholders/White mage.jpg" id="10_t48w5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_atoj6"]
 atlas = ExtResource("2_xltu8")
@@ -178,3 +179,4 @@ damage_policy = SubResource("Resource_ck3w1")
 applying_effects = Dictionary[String, Variant]({
 "electrified": [2, 10]
 })
+effect_override = ExtResource("10_t48w5")

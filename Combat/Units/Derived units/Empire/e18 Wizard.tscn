@@ -1,7 +1,7 @@
 [gd_scene load_steps=27 format=3 uid="uid://1rl6dm844fpl"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_ve23n"]
-[ext_resource type="Texture2D" uid="uid://cxwgyu3q7x5j4" path="res://Arts/Placeholders/Wizard.jpg" id="2_r2nux"]
+[ext_resource type="Texture2D" uid="uid://cb70rcr845fe7" path="res://Arts/Placeholders/Wizard.jpg" id="2_r2nux"]
 [ext_resource type="Texture2D" uid="uid://byu24fd4nedmf" path="res://Arts/Empire units/wizard  attack .png" id="2_xmxyf"]
 [ext_resource type="Texture2D" uid="uid://otn2ysi3b0j1" path="res://Arts/Empire units/wizard idle .png" id="3_bsups"]
 [ext_resource type="PackedScene" uid="uid://djw732rkcoqi0" path="res://Combat/Effects/Scenes/mid_lightning.tscn" id="4_1dpwb"]
@@ -129,7 +129,6 @@ decay_rate = 0.6
 
 [node name="Wizard" instance=ExtResource("1_ve23n")]
 unit_name = "Wizard"
-unit_type = "Mage"
 full_description = "Wizards are masters of advanced arcane arts, capable of reshaping the battlefield with devastating spells and area control. Their ability to manipulate energy allows them to strike multiple enemies or weaken their defenses with precision."
 portrait_texture = ExtResource("2_r2nux")
 

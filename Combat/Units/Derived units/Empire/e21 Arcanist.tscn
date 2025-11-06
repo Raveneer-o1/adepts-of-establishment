@@ -1,7 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://duh7llp4hbfkx"]
+[gd_scene load_steps=25 format=3 uid="uid://duh7llp4hbfkx"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_insub"]
 [ext_resource type="Texture2D" uid="uid://c3anqse1cnpqu" path="res://Arts/Empire units/Arcanist attack  (1).png" id="2_plg4p"]
+[ext_resource type="Texture2D" uid="uid://taw0yoxl7k38" path="res://Arts/Placeholders/Arcanist.jpg" id="2_qovuj"]
 [ext_resource type="Texture2D" uid="uid://cn17qdspnulne" path="res://Arts/Empire units/Arcanist idle .png" id="3_50umb"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_aurst"]
 [ext_resource type="PackedScene" uid="uid://7xdms7uje677" path="res://Combat/Effects/Scenes/strong_lightning.tscn" id="5_ugj4y"]
@@ -114,8 +115,8 @@ decay_rate = 0.55
 
 [node name="Arcanist" instance=ExtResource("1_insub")]
 unit_name = "Arcanist"
-unit_type = "Mage"
 full_description = "Arcanists are the pinnacle of arcane mastery, wielding devastating spells that reshape the battlefield. Their magic transcends the ordinary, unraveling enemy formations and wreaking havoc with immense elemental power. While physically fragile, their unparalleled command of destructive forces makes them a cornerstone of any strategy that seeks to overwhelm foes with raw magical might."
+portrait_texture = ExtResource("2_qovuj")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_dp0yl")
@@ -135,6 +136,6 @@ accuracy = 0.85
 target_validation = ExtResource("7_vengn")
 additional_targets = ExtResource("8_bdu3l")
 damage_policy = SubResource("Resource_qbj8a")
-applying_effects = {
+applying_effects = Dictionary[String, Variant]({
 "electrified": [3, 18]
-}
+})

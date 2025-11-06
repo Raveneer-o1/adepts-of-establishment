@@ -1,7 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://c4awr0jje6oes"]
+[gd_scene load_steps=26 format=3 uid="uid://c4awr0jje6oes"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_eigsw"]
 [ext_resource type="Texture2D" uid="uid://67hiykooll2a" path="res://Arts/Empire units/imperial Ranger idle .png" id="2_7fncv"]
+[ext_resource type="Texture2D" uid="uid://lwx6236xpbve" path="res://Arts/Placeholders/Imperial ranger.jpg" id="2_l3nsv"]
 [ext_resource type="Texture2D" uid="uid://5ito27eakju8" path="res://Arts/Empire units/imperial Ranger attack .png" id="2_yf6ig"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_rlipv"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_e08dh"]
@@ -129,8 +130,8 @@ armor = 20
 
 [node name="Imperial ranger" instance=ExtResource("1_eigsw")]
 unit_name = "Imperial Ranger"
-unit_type = "Archer"
 full_description = "The elite among archers, Imperial Rangers are masters of the bow and forest warfare. With unparalleled accuracy and exceptional survival skills, they can track and eliminate enemies from the shadows. Their arrows are often enhanced with specialized tips, capable of piercing even the strongest defenses."
+portrait_texture = ExtResource("2_l3nsv")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_issnm")

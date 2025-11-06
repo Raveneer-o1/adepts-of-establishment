@@ -1,7 +1,8 @@
-[gd_scene load_steps=35 format=3 uid="uid://dq7l1aj4psenm"]
+[gd_scene load_steps=36 format=3 uid="uid://dq7l1aj4psenm"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_65je8"]
 [ext_resource type="Texture2D" uid="uid://cpkd3cvehefh4" path="res://Arts/Empire units/Scout attack .png" id="2_dtgb5"]
+[ext_resource type="Texture2D" uid="uid://bvcxy42evytn5" path="res://Arts/Placeholders/Scout.jpg" id="2_s7q1u"]
 [ext_resource type="Texture2D" uid="uid://d20ho4xfcw5ci" path="res://Arts/Empire units/Scout idle .png" id="3_o6itt"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_ptq6f"]
 [ext_resource type="PackedScene" uid="uid://cnlyt2k5jjchq" path="res://Combat/Effects/Scenes/target_throw.tscn" id="4_vlh87"]
@@ -199,8 +200,8 @@ armor = 20
 
 [node name="Scout" instance=ExtResource("1_65je8")]
 unit_name = "Scout"
-unit_type = "Archer"
 full_description = "Scouts are nimble and resourceful, blending speed with precision. They excel at quick strikes and harassing enemy formations. Their agility allows them to avoid direct confrontation, making them invaluable for reconnaissance and flanking maneuvers in tactical skirmishes."
+portrait_texture = ExtResource("2_s7q1u")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_p7ee3")
@@ -217,9 +218,9 @@ script = ExtResource("6_fc8i6")
 accuracy = 0.8
 initiative = 50
 target_validation = ExtResource("7_l3bih")
-applying_effects = {
+applying_effects = Dictionary[String, Variant]({
 "vulnerability": [1, 30]
-}
+})
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
 script = ExtResource("6_fc8i6")

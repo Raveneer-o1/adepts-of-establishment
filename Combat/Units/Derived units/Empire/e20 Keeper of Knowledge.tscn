@@ -1,7 +1,8 @@
-[gd_scene load_steps=31 format=3 uid="uid://iivctuuj3ka0"]
+[gd_scene load_steps=32 format=3 uid="uid://iivctuuj3ka0"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_l0il6"]
 [ext_resource type="Texture2D" uid="uid://5an6rmba7r0h" path="res://Arts/Empire units/lorekeeper attack .png" id="2_5ekka"]
+[ext_resource type="Texture2D" uid="uid://chi1jlb6u040y" path="res://Arts/Placeholders/Keeper of knowledge.jpg" id="2_h15l5"]
 [ext_resource type="Texture2D" uid="uid://bdq7chaoac7kg" path="res://Arts/Empire units/lorekeeper idle .png" id="3_a8snf"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_ulrri"]
 [ext_resource type="PackedScene" uid="uid://c7bbto2q5jen7" path="res://Combat/Effects/Scenes/ritual_attack.tscn" id="5_da6yy"]
@@ -163,8 +164,8 @@ decay_rate = 0.8
 
 [node name="Keeper of Knowledge" instance=ExtResource("1_l0il6")]
 unit_name = "Keeper of Knowledge"
-unit_type = "Mage"
 full_description = "The Keeper of Knowledge is both a scholar and a mage, delving into ancient tomes to uncover secrets lost to time. They channel this wisdom into powerful spells that disrupt enemies and empower allies. Masters of manipulation, they can alter the flow of battle with their insight, ensuring their allies have every advantage while their enemies falter under the weight of forgotten truths."
+portrait_texture = ExtResource("2_h15l5")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_srdpg")
@@ -181,6 +182,6 @@ accuracy = 0.85
 target_validation = ExtResource("7_7nc8a")
 additional_targets = ExtResource("8_6yi6d")
 damage_policy = SubResource("Resource_6ey57")
-applying_effects = {
+applying_effects = Dictionary[String, Variant]({
 "vulnerability": [2, 25]
-}
+})

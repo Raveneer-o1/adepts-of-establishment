@@ -1,6 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://b2cco7yp1owg6"]
+[gd_scene load_steps=24 format=3 uid="uid://b2cco7yp1owg6"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_qktib"]
+[ext_resource type="Texture2D" uid="uid://ckdsn5q7gfq5q" path="res://Arts/Placeholders/Mage.jpg" id="2_p2es4"]
 [ext_resource type="Texture2D" uid="uid://cl0heaqd4pul5" path="res://Arts/Empire units/Mage attack .png" id="2_rubtw"]
 [ext_resource type="Texture2D" uid="uid://do3smis1u70i" path="res://Arts/Empire units/Mage idle .png" id="3_hnq6f"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_w74yc"]
@@ -105,8 +106,8 @@ script = ExtResource("9_ijl56")
 
 [node name="Mage" instance=ExtResource("1_qktib")]
 unit_name = "Mage"
-unit_type = "Mage"
 full_description = "Mages are practitioners of refined arcane knowledge, capable of channeling powerful spells to damage foes. However, their focus on spellcasting leaves them physically vulnerable, relying on careful positioning and team support to maximize their potential."
+portrait_texture = ExtResource("2_p2es4")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_ovbu2")
