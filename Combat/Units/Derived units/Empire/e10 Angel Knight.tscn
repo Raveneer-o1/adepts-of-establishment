@@ -245,9 +245,10 @@ target_validation = ExtResource("7_q6cur")
 damage_policy = SubResource("Resource_5c7t2")
 
 [node name="CheatDeath" parent="UnitParameters" index="3" instance=ExtResource("9_5c7t2")]
-message = "Divine intervention!"
+message = "Intervention!"
 liftable = false
 silencable = false
+effect_name = "Divine nature"
 
 [node name="Taunt" parent="UnitParameters" index="4" instance=ExtResource("10_ynn5b")]
 chance_to_taunt = 0.5

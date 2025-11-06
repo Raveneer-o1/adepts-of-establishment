@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dfb8a8lhxhbxv"]
+[gd_scene load_steps=40 format=3 uid="uid://dfb8a8lhxhbxv"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_ghq34"]
 [ext_resource type="Texture2D" uid="uid://dgrhklu28433n" path="res://Arts/Placeholders/Angel.jpg" id="2_cyr52"]
@@ -6,8 +6,20 @@
 [ext_resource type="Texture2D" uid="uid://c13lxcntcy7nn" path="res://Arts/Empire units/angel idle .png" id="3_kot7h"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_53ols"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_4cpgb"]
-[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="6_frmgx"]
 [ext_resource type="PackedScene" uid="uid://chpw2oyl5kpky" path="res://Combat/Effects/AppliedEffects/Scenes/armor_buff_aura.tscn" id="7_fqy2s"]
+[ext_resource type="Resource" uid="uid://brc057x45ipra" path="res://Combat/Units/Parameters/Validation/any_unit.tres" id="7_s2143"]
+[ext_resource type="Resource" uid="uid://b2x7yegiro3mn" path="res://Combat/Units/Parameters/Policy/purify_policy.tres" id="8_s2143"]
+[ext_resource type="PackedScene" uid="uid://0tk2rx2g08gt" path="res://Combat/Effects/AppliedEffects/Scenes/cheat_death.tscn" id="9_88jsi"]
+[ext_resource type="AudioStream" uid="uid://3up3xko4aipd" path="res://Sounds/using/Damage/Default_1.wav" id="11_5upr8"]
+[ext_resource type="AudioStream" uid="uid://b7r3kee6rjmo4" path="res://Sounds/using/Damage/Default_2.wav" id="12_17etj"]
+[ext_resource type="AudioStream" uid="uid://b8o5l8pxfg4my" path="res://Sounds/using/Damage/Default_3.wav" id="13_d2346"]
+[ext_resource type="AudioStream" uid="uid://cucn7770e3ayy" path="res://Sounds/using/Damage/Default_4.wav" id="14_mgmsh"]
+[ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="15_5vdeb"]
+[ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="16_a583h"]
+[ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="17_4osep"]
+[ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="18_rsa02"]
+[ext_resource type="AudioStream" uid="uid://djt0afoqdeayl" path="res://Sounds/using/Attack/Empire/Inquisitor attack.wav" id="19_gcojm"]
+[ext_resource type="AudioStream" uid="uid://3mm640cgs4il" path="res://Sounds/using/Attack/Empire/Angel attack.wav" id="20_274g1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d74xw"]
 atlas = ExtResource("2_j3ymb")
@@ -144,13 +156,12 @@ animations = [{
 [sub_resource type="Resource" id="Resource_ohcak"]
 resource_local_to_scene = true
 script = ExtResource("4_53ols")
-max_HP = 250
+max_HP = 350
 base_damage = 100
-armor = 20
+armor = 50
 
 [node name="Angel" instance=ExtResource("1_ghq34")]
 unit_name = "Angel"
-unit_type = "Warrior"
 full_description = "Angels are divine warriors, manifestations of the heavens' will on the battlefield. With radiant wings and a sword imbued with holy power, they strike down the wicked with unrelenting precision. Their very presence bolsters the morale of allies, while their aura of purity weakens the resolve of foes. Angels are a testament to the faith and righteousness of those they protect, serving as both guardians and instruments of judgment."
 portrait_texture = ExtResource("2_cyr52")
 
@@ -160,16 +171,61 @@ animation = &"attack"
 autoplay = "default"
 offset = Vector2(0, -16)
 frames_to_emit = Array[int]([8])
+attack_sound_frame = 7
 
 [node name="UnitParameters" parent="." index="1"]
+level = 5
 base_paramaters = SubResource("Resource_ohcak")
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("5_4cpgb")
 type = 1
-accuracy = 0.85
-initiative = 35
-target_validation = ExtResource("6_frmgx")
+initiative = 40
+target_validation = ExtResource("7_s2143")
+damage_policy = ExtResource("8_s2143")
+description = "Can purify any unit: lift all effects that unit has."
 
 [node name="Armor buff (aura)" parent="UnitParameters" index="2" instance=ExtResource("7_fqy2s")]
-armor_increase = 20
+armor_increase = 30
+
+[node name="CheatDeath" parent="UnitParameters" index="3" instance=ExtResource("9_88jsi")]
+message = "Intervention!"
+liftable = false
+silencable = false
+effect_name = "Divine nature"
+
+[node name="Default1" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
+stream = ExtResource("11_5upr8")
+bus = &"Damage"
+
+[node name="Default2" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="1"]
+stream = ExtResource("12_17etj")
+bus = &"Damage"
+
+[node name="Default3" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="2"]
+stream = ExtResource("13_d2346")
+bus = &"Damage"
+
+[node name="Default4" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="3"]
+stream = ExtResource("14_mgmsh")
+bus = &"Damage"
+
+[node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
+stream = ExtResource("15_5vdeb")
+
+[node name="GpArmorDown2" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="1"]
+stream = ExtResource("16_a583h")
+
+[node name="GpArmorDown3" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="2"]
+stream = ExtResource("17_4osep")
+
+[node name="GpArmorDown4" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="3"]
+stream = ExtResource("18_rsa02")
+
+[node name="InquisitorAttack" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
+stream = ExtResource("19_gcojm")
+volume_db = 2.0
+pitch_scale = 1.85
+
+[node name="AngelAttack" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
+stream = ExtResource("20_274g1")

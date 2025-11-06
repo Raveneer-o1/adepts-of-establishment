@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://by4gl2w846stm"]
+
+[ext_resource type="Script" uid="uid://c2fl54wfdnk3u" path="res://Combat/Effects/AppliedEffects/Scripts/negative_effect_immune.gd" id="1_ppve7"]
+
+[node name="NegativeEffectImmune" type="Node"]
+script = ExtResource("1_ppve7")
+color_effect = Color(1, 1, 0.76, 1)
+effect_name = "Purity"
+icon_index = 12
+description = "This unit is immune to negative effects"

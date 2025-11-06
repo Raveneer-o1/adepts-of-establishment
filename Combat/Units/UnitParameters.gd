@@ -196,6 +196,12 @@ var parent_unit: Unit
 ## Contains all modifiers applied to a unit.
 var stats_modifiers: Dictionary[StringName, ModifierStack] = {}
 
+func get_all_effects() -> Array[AppliedEffect]:
+	var result: Array[AppliedEffect] = []
+	for child in get_children():
+		if child is AppliedEffect:
+			result.append(child)
+	return result
 
 func count_effects(effect_name: StringName, except: AppliedEffect = null) -> int:
 	var result: int = 0
@@ -286,10 +292,6 @@ func initialize_effects() -> void:
 			child.initialize()
 	parent_unit.update_visuals()
 	EventBus.turn_started.connect(turn_start_reaction)
-
-#func die() -> void:
-	#dead = true
-	#parent_unit.die()
 
 func set_references() -> void:
 	for child in get_children():
