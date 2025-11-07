@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://5sfmkse524k"
-path="res://.godot/imported/GP_Heal_1.wav-edd52310f3bba55533144de620cba962.sample"
+path="res://.godot/imported/Hierophant.wav-1aa7513cb6f14fee7ae9441ae9301db9.sample"
 
 [deps]
 
-source_file="res://Sounds/card game sfx pack by olex mazur/Buff/GP_Heal_1.wav"
-dest_files=["res://.godot/imported/GP_Heal_1.wav-edd52310f3bba55533144de620cba962.sample"]
+source_file="res://Sounds/using/Attack/Empire/Hierophant.wav"
+dest_files=["res://.godot/imported/Hierophant.wav-1aa7513cb6f14fee7ae9441ae9301db9.sample"]
 
 [params]
 

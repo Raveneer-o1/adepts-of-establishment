@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dbt4h65o0m8t6"
+path="res://.godot/imported/oof 5.wav-d8ff45d98d2e49fa9dcc340c5783ebcf.sample"
+
+[deps]
+
+source_file="res://Sounds/using/Damage/oof 5.wav"
+dest_files=["res://.godot/imported/oof 5.wav-d8ff45d98d2e49fa9dcc340c5783ebcf.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ctvmpn1mp3kp"
+path="res://.godot/imported/ceramic statue breaking 5.wav-dfeab3763a263deec3824a0536bcd4ab.sample"
+
+[deps]
+
+source_file="res://Sounds/using/Death/ceramic statue breaking 5.wav"
+dest_files=["res://.godot/imported/ceramic statue breaking 5.wav-dfeab3763a263deec3824a0536bcd4ab.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

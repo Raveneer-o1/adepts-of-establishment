@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dyvbe6w1ymxve"]
+[gd_scene load_steps=53 format=3 uid="uid://dyvbe6w1ymxve"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_pd60s"]
 [ext_resource type="Texture2D" uid="uid://dhhsdgyipwxan" path="res://Arts/Placeholders/Grand inquisitor.jpg" id="2_7ao73"]
@@ -23,6 +23,14 @@
 [ext_resource type="AudioStream" uid="uid://cxti7sw334cs7" path="res://Sounds/using/Shield/Metal_clash_2.wav" id="19_ml6ld"]
 [ext_resource type="AudioStream" uid="uid://bvq3qpcm8el2w" path="res://Sounds/using/Shield/Metal_clash_3.wav" id="20_45xu4"]
 [ext_resource type="AudioStream" uid="uid://ced22fhud2mcw" path="res://Sounds/using/Attack/Empire/Grand Inquisitor attack.wav" id="21_1r8kc"]
+[ext_resource type="AudioStream" uid="uid://57uq8ddrqmg0" path="res://Sounds/using/Heal/GP_Turbo_Select_1.wav" id="24_8falb"]
+[ext_resource type="AudioStream" uid="uid://bcae4mab3j5u" path="res://Sounds/using/Death/body fall 12.wav" id="24_kspaw"]
+[ext_resource type="AudioStream" uid="uid://bvxxsyhcv73oo" path="res://Sounds/using/Heal/GP_Turbo_Select_2.wav" id="25_7iaes"]
+[ext_resource type="AudioStream" uid="uid://ble86orlqio7s" path="res://Sounds/using/Death/body hit with grunt 1.wav" id="25_ml6ld"]
+[ext_resource type="AudioStream" uid="uid://bdpingiq3vatc" path="res://Sounds/using/Death/body hit with grunt 2.wav" id="26_45xu4"]
+[ext_resource type="AudioStream" uid="uid://befag54021wep" path="res://Sounds/using/Heal/GP_Turbo_Select_3.wav" id="26_mpti5"]
+[ext_resource type="AudioStream" uid="uid://cpx2q3qkd8dab" path="res://Sounds/using/Death/body hit with grunt 3.wav" id="27_1r8kc"]
+[ext_resource type="AudioStream" uid="uid://dsge1pqh4ihjr" path="res://Sounds/using/Heal/GP_Turbo_Select_4.wav" id="27_2hd4w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gbmv1"]
 atlas = ExtResource("2_s1fcq")
@@ -245,3 +253,27 @@ stream = ExtResource("20_45xu4")
 
 [node name="GrandInquisitorAttack" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
 stream = ExtResource("21_1r8kc")
+
+[node name="GpTurboSelect1" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]
+stream = ExtResource("24_8falb")
+
+[node name="GpTurboSelect2" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="1"]
+stream = ExtResource("25_7iaes")
+
+[node name="GpTurboSelect3" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="2"]
+stream = ExtResource("26_mpti5")
+
+[node name="GpTurboSelect4" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="3"]
+stream = ExtResource("27_2hd4w")
+
+[node name="BodyFall12" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="0"]
+stream = ExtResource("24_kspaw")
+
+[node name="BodyHitWithGrunt1" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="1"]
+stream = ExtResource("25_ml6ld")
+
+[node name="BodyHitWithGrunt2" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="2"]
+stream = ExtResource("26_45xu4")
+
+[node name="BodyHitWithGrunt3" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="3"]
+stream = ExtResource("27_1r8kc")

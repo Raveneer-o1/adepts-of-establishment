@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dfb8a8lhxhbxv"]
+[gd_scene load_steps=47 format=3 uid="uid://dfb8a8lhxhbxv"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_ghq34"]
 [ext_resource type="Texture2D" uid="uid://dgrhklu28433n" path="res://Arts/Placeholders/Angel.jpg" id="2_cyr52"]
@@ -20,6 +20,13 @@
 [ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="18_rsa02"]
 [ext_resource type="AudioStream" uid="uid://djt0afoqdeayl" path="res://Sounds/using/Attack/Empire/Inquisitor attack.wav" id="19_gcojm"]
 [ext_resource type="AudioStream" uid="uid://3mm640cgs4il" path="res://Sounds/using/Attack/Empire/Angel attack.wav" id="20_274g1"]
+[ext_resource type="AudioStream" uid="uid://57uq8ddrqmg0" path="res://Sounds/using/Heal/GP_Turbo_Select_1.wav" id="21_5vdeb"]
+[ext_resource type="AudioStream" uid="uid://bvxxsyhcv73oo" path="res://Sounds/using/Heal/GP_Turbo_Select_2.wav" id="22_a583h"]
+[ext_resource type="AudioStream" uid="uid://befag54021wep" path="res://Sounds/using/Heal/GP_Turbo_Select_3.wav" id="23_4osep"]
+[ext_resource type="AudioStream" uid="uid://dsge1pqh4ihjr" path="res://Sounds/using/Heal/GP_Turbo_Select_4.wav" id="24_rsa02"]
+[ext_resource type="AudioStream" uid="uid://dxiivr6txaweh" path="res://Sounds/using/Death/body fall 3.wav" id="25_rsa02"]
+[ext_resource type="AudioStream" uid="uid://bfaxc8l3qk67k" path="res://Sounds/using/Death/body fall 6.wav" id="26_gcojm"]
+[ext_resource type="AudioStream" uid="uid://bcae4mab3j5u" path="res://Sounds/using/Death/body fall 12.wav" id="27_274g1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d74xw"]
 atlas = ExtResource("2_j3ymb")
@@ -196,19 +203,15 @@ effect_name = "Divine nature"
 
 [node name="Default1" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("11_5upr8")
-bus = &"Damage"
 
 [node name="Default2" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="1"]
 stream = ExtResource("12_17etj")
-bus = &"Damage"
 
 [node name="Default3" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="2"]
 stream = ExtResource("13_d2346")
-bus = &"Damage"
 
 [node name="Default4" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="3"]
 stream = ExtResource("14_mgmsh")
-bus = &"Damage"
 
 [node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
 stream = ExtResource("15_5vdeb")
@@ -229,3 +232,24 @@ pitch_scale = 1.85
 
 [node name="AngelAttack" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
 stream = ExtResource("20_274g1")
+
+[node name="GpTurboSelect1" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]
+stream = ExtResource("21_5vdeb")
+
+[node name="GpTurboSelect2" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="1"]
+stream = ExtResource("22_a583h")
+
+[node name="GpTurboSelect3" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="2"]
+stream = ExtResource("23_4osep")
+
+[node name="GpTurboSelect4" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="3"]
+stream = ExtResource("24_rsa02")
+
+[node name="BodyFall3" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="0"]
+stream = ExtResource("25_rsa02")
+
+[node name="BodyFall6" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="1"]
+stream = ExtResource("26_gcojm")
+
+[node name="BodyFall12" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="2"]
+stream = ExtResource("27_274g1")

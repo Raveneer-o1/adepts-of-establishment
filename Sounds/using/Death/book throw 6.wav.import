@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c4v54s8ggd5sq"
+path="res://.godot/imported/book throw 6.wav-35e3d59758a33d717b3632b0dc36c596.sample"
+
+[deps]
+
+source_file="res://Sounds/using/Death/book throw 6.wav"
+dest_files=["res://.godot/imported/book throw 6.wav-35e3d59758a33d717b3632b0dc36c596.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://bc38vqrm2krpb"]
+[gd_scene load_steps=55 format=3 uid="uid://bc38vqrm2krpb"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_w7nds"]
 [ext_resource type="Texture2D" uid="uid://bs3l3ol0rvl3q" path="res://Arts/Placeholders/Horseman.jpg" id="2_1mg5r"]
@@ -24,6 +24,14 @@
 [ext_resource type="AudioStream" uid="uid://cfoq5h1xo1e6n" path="res://Sounds/using/Damage/Steel_3.wav" id="15_ionu1"]
 [ext_resource type="AudioStream" uid="uid://bvq3qpcm8el2w" path="res://Sounds/using/Shield/Metal_clash_3.wav" id="16_heck5"]
 [ext_resource type="AudioStream" uid="uid://odffv4rewv7h" path="res://Sounds/using/Attack/Empire/Horseman attack.wav" id="17_opiad"]
+[ext_resource type="AudioStream" uid="uid://bcae4mab3j5u" path="res://Sounds/using/Death/body fall 12.wav" id="25_4kk3f"]
+[ext_resource type="AudioStream" uid="uid://57uq8ddrqmg0" path="res://Sounds/using/Heal/GP_Turbo_Select_1.wav" id="25_63cxs"]
+[ext_resource type="AudioStream" uid="uid://ble86orlqio7s" path="res://Sounds/using/Death/body hit with grunt 1.wav" id="26_gwo1y"]
+[ext_resource type="AudioStream" uid="uid://bvxxsyhcv73oo" path="res://Sounds/using/Heal/GP_Turbo_Select_2.wav" id="26_xwsb3"]
+[ext_resource type="AudioStream" uid="uid://befag54021wep" path="res://Sounds/using/Heal/GP_Turbo_Select_3.wav" id="27_31j8l"]
+[ext_resource type="AudioStream" uid="uid://bdpingiq3vatc" path="res://Sounds/using/Death/body hit with grunt 2.wav" id="27_ionu1"]
+[ext_resource type="AudioStream" uid="uid://cpx2q3qkd8dab" path="res://Sounds/using/Death/body hit with grunt 3.wav" id="28_ra8q2"]
+[ext_resource type="AudioStream" uid="uid://dsge1pqh4ihjr" path="res://Sounds/using/Heal/GP_Turbo_Select_4.wav" id="28_viidb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ufxv4"]
 atlas = ExtResource("2_6doph")
@@ -239,7 +247,6 @@ stream = ExtResource("15_ionu1")
 
 [node name="HorseNeigh390297" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="7"]
 stream = ExtResource("9_ocaj6")
-bus = &"Damage"
 
 [node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
 stream = ExtResource("10_q1h0i")
@@ -264,3 +271,27 @@ stream = ExtResource("16_heck5")
 
 [node name="HorsemanAttack" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
 stream = ExtResource("17_opiad")
+
+[node name="GpTurboSelect1" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]
+stream = ExtResource("25_63cxs")
+
+[node name="GpTurboSelect2" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="1"]
+stream = ExtResource("26_xwsb3")
+
+[node name="GpTurboSelect3" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="2"]
+stream = ExtResource("27_31j8l")
+
+[node name="GpTurboSelect4" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="3"]
+stream = ExtResource("28_viidb")
+
+[node name="BodyFall12" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="0"]
+stream = ExtResource("25_4kk3f")
+
+[node name="BodyHitWithGrunt1" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="1"]
+stream = ExtResource("26_gwo1y")
+
+[node name="BodyHitWithGrunt2" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="2"]
+stream = ExtResource("27_ionu1")
+
+[node name="BodyHitWithGrunt3" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="3"]
+stream = ExtResource("28_ra8q2")

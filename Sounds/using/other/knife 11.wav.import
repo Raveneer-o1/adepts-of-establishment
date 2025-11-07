@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://7pekbup1m1q6"
+path="res://.godot/imported/knife 11.wav-c95eca0015a61f347bb1c54cb336bdb0.sample"
+
+[deps]
+
+source_file="res://Sounds/using/other/knife 11.wav"
+dest_files=["res://.godot/imported/knife 11.wav-c95eca0015a61f347bb1c54cb336bdb0.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

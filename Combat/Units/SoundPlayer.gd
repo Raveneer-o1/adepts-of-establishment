@@ -9,6 +9,8 @@ var evade_sounds: Array[AudioStreamPlayer]
 var immunity_sounds: Array[AudioStreamPlayer]
 var shield_sounds: Array[AudioStreamPlayer]
 var attack_sounds: Array[AudioStreamPlayer]
+var heal_sounds: Array[AudioStreamPlayer]
+var death_sounds: Array[AudioStreamPlayer]
 
 # Utility array for batch population of arrays in a single loop.
 # Each element is an array with two elements: target array and source node
@@ -19,11 +21,17 @@ var attack_sounds: Array[AudioStreamPlayer]
 	[immunity_sounds, $Immunity],
 	[shield_sounds, $Shield],
 	[attack_sounds, $Attack],
+	[heal_sounds, $Heal],
+	[death_sounds, $Death],
 ]
 
-func play_damage_sound() -> void:
+const SOUND_FACTOR = 2.0
+
+func play_damage_sound(factor: float = 1.0) -> void:
 	if not damage_sounds: return
-	damage_sounds.pick_random().play()
+	var player: AudioStreamPlayer = damage_sounds.pick_random()
+	player.volume_db = factor * SOUND_FACTOR
+	player.play()
 
 var playing_miss_sound: bool = false
 
@@ -49,6 +57,16 @@ func play_immunity_sound() -> void:
 func play_attack_sound() -> void:
 	if not attack_sounds: return
 	attack_sounds.pick_random().play()
+
+func play_heal_sound(factor: float = 1.0) -> void:
+	if not heal_sounds: return
+	var player: AudioStreamPlayer = heal_sounds.pick_random()
+	player.volume_db = factor * SOUND_FACTOR
+	player.play()
+
+func play_death_sound() -> void:
+	if not death_sounds: return
+	death_sounds.pick_random().play()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

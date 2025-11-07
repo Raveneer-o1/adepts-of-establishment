@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://bjc7d7g3ses0e"]
+[gd_scene load_steps=56 format=3 uid="uid://bjc7d7g3ses0e"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_ktuuv"]
 [ext_resource type="Texture2D" uid="uid://lno0n5fcsi4v" path="res://Arts/Empire units/angel knight attack .png" id="2_j41lp"]
@@ -22,6 +22,13 @@
 [ext_resource type="AudioStream" uid="uid://dhvkf7isfcfmv" path="res://Sounds/using/Shield/Metal_hit_2.wav" id="18_rcaux"]
 [ext_resource type="AudioStream" uid="uid://dmcxg00v3y8t0" path="res://Sounds/using/Shield/Metal_hit_3.wav" id="19_wiq37"]
 [ext_resource type="AudioStream" uid="uid://dujnun2mpyww3" path="res://Sounds/using/Shield/Metal_hit_4.wav" id="20_04k8n"]
+[ext_resource type="AudioStream" uid="uid://57uq8ddrqmg0" path="res://Sounds/using/Heal/GP_Turbo_Select_1.wav" id="23_1ymhj"]
+[ext_resource type="AudioStream" uid="uid://dxiivr6txaweh" path="res://Sounds/using/Death/body fall 3.wav" id="23_rcaux"]
+[ext_resource type="AudioStream" uid="uid://bvxxsyhcv73oo" path="res://Sounds/using/Heal/GP_Turbo_Select_2.wav" id="24_fvn0p"]
+[ext_resource type="AudioStream" uid="uid://bfaxc8l3qk67k" path="res://Sounds/using/Death/body fall 6.wav" id="24_wiq37"]
+[ext_resource type="AudioStream" uid="uid://bcae4mab3j5u" path="res://Sounds/using/Death/body fall 12.wav" id="25_04k8n"]
+[ext_resource type="AudioStream" uid="uid://befag54021wep" path="res://Sounds/using/Heal/GP_Turbo_Select_3.wav" id="25_a1hi2"]
+[ext_resource type="AudioStream" uid="uid://dsge1pqh4ihjr" path="res://Sounds/using/Heal/GP_Turbo_Select_4.wav" id="26_qfati"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5whir"]
 atlas = ExtResource("2_j41lp")
@@ -288,3 +295,24 @@ stream = ExtResource("20_04k8n")
 
 [node name="AngelKnightAttack" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
 stream = ExtResource("10_14k38")
+
+[node name="GpTurboSelect1" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]
+stream = ExtResource("23_1ymhj")
+
+[node name="GpTurboSelect2" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="1"]
+stream = ExtResource("24_fvn0p")
+
+[node name="GpTurboSelect3" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="2"]
+stream = ExtResource("25_a1hi2")
+
+[node name="GpTurboSelect4" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="3"]
+stream = ExtResource("26_qfati")
+
+[node name="BodyFall3" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="0"]
+stream = ExtResource("23_rcaux")
+
+[node name="BodyFall6" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="1"]
+stream = ExtResource("24_wiq37")
+
+[node name="BodyFall12" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="2"]
+stream = ExtResource("25_04k8n")

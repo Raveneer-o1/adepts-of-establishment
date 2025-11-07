@@ -56,6 +56,10 @@ const EFFECT_ICONS_SCALE = 0.75
 ## Delay in seconds between proccesing skip turn and procceding to the next stage
 const SKIP_DELAY = 0.4
 
+const MIN_DAMAGE_SOUND = 0.15
+const MAX_DAMAGE_SOUND = 1.7
+const HP_LOST_FOR_MAX_SOUND = 0.4
+const _SOUND_MULTIPLIER = MAX_DAMAGE_SOUND / HP_LOST_FOR_MAX_SOUND
 
 #region Export variables
 
@@ -286,7 +290,20 @@ func resolve_attack(attack: Attack, damage: int, delay: int = 0, finalize: bool 
 	var damage_taken: int = \
 		take_damage(damage) if finalize or delay <= 0 else \
 		schedule_damage(damage, delay)
-	if damage_taken > 0: sound_player.play_damage_sound()
+	if damage_taken > 0: sound_player.play_damage_sound(
+			clampf(
+				(float(damage_taken) / float(parameters.hp)) * _SOUND_MULTIPLIER,
+				MIN_DAMAGE_SOUND,
+				MAX_DAMAGE_SOUND
+			)
+		)
+	elif damage_taken < 0: sound_player.play_heal_sound(
+			clampf(
+				(absf(damage_taken) / float(parameters.hp)) * _SOUND_MULTIPLIER,
+				MIN_DAMAGE_SOUND,
+				MAX_DAMAGE_SOUND
+			)
+		)
 	
 	attack.applied_damage += damage_taken;
 	

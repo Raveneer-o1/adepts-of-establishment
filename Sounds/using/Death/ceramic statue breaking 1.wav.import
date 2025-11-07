@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dbtk4kuhueui4"
+path="res://.godot/imported/ceramic statue breaking 1.wav-827735aba0e66611fc4a3f8243a93a84.sample"
+
+[deps]
+
+source_file="res://Sounds/using/Death/ceramic statue breaking 1.wav"
+dest_files=["res://.godot/imported/ceramic statue breaking 1.wav-827735aba0e66611fc4a3f8243a93a84.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

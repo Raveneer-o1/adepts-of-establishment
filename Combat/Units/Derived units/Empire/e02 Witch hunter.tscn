@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dexm8kl4f5lry"]
+[gd_scene load_steps=45 format=3 uid="uid://dexm8kl4f5lry"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_f4fct"]
 [ext_resource type="Texture2D" uid="uid://bsp70xth2gcy0" path="res://Arts/Placeholders/Witch hunter.jpg" id="2_1j3rb"]
@@ -22,6 +22,14 @@
 [ext_resource type="AudioStream" uid="uid://cxti7sw334cs7" path="res://Sounds/using/Shield/Metal_clash_2.wav" id="20_0a17u"]
 [ext_resource type="AudioStream" uid="uid://bvq3qpcm8el2w" path="res://Sounds/using/Shield/Metal_clash_3.wav" id="21_bhp25"]
 [ext_resource type="AudioStream" uid="uid://doq4apjkdl4am" path="res://Sounds/using/Attack/Empire/Witch Hunter attack.wav" id="22_wusdw"]
+[ext_resource type="AudioStream" uid="uid://57uq8ddrqmg0" path="res://Sounds/using/Heal/GP_Turbo_Select_1.wav" id="23_lea2p"]
+[ext_resource type="AudioStream" uid="uid://bcae4mab3j5u" path="res://Sounds/using/Death/body fall 12.wav" id="23_nh4q6"]
+[ext_resource type="AudioStream" uid="uid://bvxxsyhcv73oo" path="res://Sounds/using/Heal/GP_Turbo_Select_2.wav" id="24_btquv"]
+[ext_resource type="AudioStream" uid="uid://ble86orlqio7s" path="res://Sounds/using/Death/body hit with grunt 1.wav" id="24_og317"]
+[ext_resource type="AudioStream" uid="uid://bdpingiq3vatc" path="res://Sounds/using/Death/body hit with grunt 2.wav" id="25_0aewj"]
+[ext_resource type="AudioStream" uid="uid://befag54021wep" path="res://Sounds/using/Heal/GP_Turbo_Select_3.wav" id="25_ee0e3"]
+[ext_resource type="AudioStream" uid="uid://dsge1pqh4ihjr" path="res://Sounds/using/Heal/GP_Turbo_Select_4.wav" id="26_0a17u"]
+[ext_resource type="AudioStream" uid="uid://cpx2q3qkd8dab" path="res://Sounds/using/Death/body hit with grunt 3.wav" id="26_3lwfl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gii6h"]
 atlas = ExtResource("2_l5amp")
@@ -153,19 +161,15 @@ target_validation = ExtResource("7_q5wki")
 
 [node name="Default1" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("8_tehd6")
-bus = &"Damage"
 
 [node name="Default2" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="1"]
 stream = ExtResource("9_wusdw")
-bus = &"Damage"
 
 [node name="Default3" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="2"]
 stream = ExtResource("10_g0kae")
-bus = &"Damage"
 
 [node name="Default4" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="3"]
 stream = ExtResource("11_07xdd")
-bus = &"Damage"
 
 [node name="27SwordMiss1" type="AudioStreamPlayer" parent="SoundPlayer/Miss" index="0"]
 stream = ExtResource("12_uoy0r")
@@ -199,3 +203,27 @@ stream = ExtResource("21_bhp25")
 
 [node name="WitchHunterAttack" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
 stream = ExtResource("22_wusdw")
+
+[node name="GpTurboSelect1" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]
+stream = ExtResource("23_lea2p")
+
+[node name="GpTurboSelect2" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="1"]
+stream = ExtResource("24_btquv")
+
+[node name="GpTurboSelect3" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="2"]
+stream = ExtResource("25_ee0e3")
+
+[node name="GpTurboSelect4" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="3"]
+stream = ExtResource("26_0a17u")
+
+[node name="BodyFall12" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="0"]
+stream = ExtResource("23_nh4q6")
+
+[node name="BodyHitWithGrunt1" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="1"]
+stream = ExtResource("24_og317")
+
+[node name="BodyHitWithGrunt2" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="2"]
+stream = ExtResource("25_0aewj")
+
+[node name="BodyHitWithGrunt3" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="3"]
+stream = ExtResource("26_3lwfl")

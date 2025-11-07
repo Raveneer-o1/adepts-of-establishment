@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://ch3kmc8o8pjub"]
+[gd_scene load_steps=53 format=3 uid="uid://ch3kmc8o8pjub"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_v0wje"]
 [ext_resource type="Texture2D" uid="uid://dpykcc7skhylh" path="res://Arts/Empire units/sword saint attack.png" id="2_gvero"]
@@ -20,6 +20,10 @@
 [ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="17_ox3fc"]
 [ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="18_6b70o"]
 [ext_resource type="AudioStream" uid="uid://dx22yaqpqwslw" path="res://Sounds/using/Attack/Empire/Blade Saint attack.wav" id="19_v6xb4"]
+[ext_resource type="AudioStream" uid="uid://bcae4mab3j5u" path="res://Sounds/using/Death/body fall 12.wav" id="21_xtbt7"]
+[ext_resource type="AudioStream" uid="uid://ble86orlqio7s" path="res://Sounds/using/Death/body hit with grunt 1.wav" id="22_slavy"]
+[ext_resource type="AudioStream" uid="uid://bdpingiq3vatc" path="res://Sounds/using/Death/body hit with grunt 2.wav" id="23_ag6ib"]
+[ext_resource type="AudioStream" uid="uid://cpx2q3qkd8dab" path="res://Sounds/using/Death/body hit with grunt 3.wav" id="24_ui3oq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wy2xa"]
 atlas = ExtResource("2_gvero")
@@ -291,3 +295,15 @@ stream = ExtResource("18_6b70o")
 stream = ExtResource("19_v6xb4")
 volume_db = 10.0
 pitch_scale = 0.8
+
+[node name="BodyFall12" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="0"]
+stream = ExtResource("21_xtbt7")
+
+[node name="BodyHitWithGrunt1" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="1"]
+stream = ExtResource("22_slavy")
+
+[node name="BodyHitWithGrunt2" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="2"]
+stream = ExtResource("23_ag6ib")
+
+[node name="BodyHitWithGrunt3" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="3"]
+stream = ExtResource("24_ui3oq")

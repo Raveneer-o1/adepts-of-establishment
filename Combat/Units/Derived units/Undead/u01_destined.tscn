@@ -112,6 +112,5 @@ base_paramaters = SubResource("Resource_vwiay")
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("5_tyvi1")
-accuracy = 0.7
 initiative = 35
 target_validation = ExtResource("6_n8qtq")
