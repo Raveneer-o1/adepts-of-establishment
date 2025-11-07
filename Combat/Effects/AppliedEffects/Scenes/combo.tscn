@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4wkcerrm5dot"]
+
+[ext_resource type="Script" uid="uid://duvnjkxxnre8y" path="res://Combat/Effects/AppliedEffects/Scripts/combo.gd" id="1_aux3v"]
+
+[node name="Combo" type="Node"]
+script = ExtResource("1_aux3v")
+effect_name = "Combo"
+icon_index = 11
+description = "Each successful hit increases the damage of the next hit. Resets on a missed or evaded attack."

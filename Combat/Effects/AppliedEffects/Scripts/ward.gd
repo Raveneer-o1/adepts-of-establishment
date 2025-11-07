@@ -4,6 +4,9 @@ extends AppliedEffect
 
 
 func trigger_effect(attack: Attack) -> void:
+	# double attacks and attacks with multiple copies of the same target will still
+	# be blocked fully: this is intentional
+	if is_queued_for_deletion(): return
 	# 'None' attack type is impossible to block
 	if attack.type == GlobalDefs.AttackType.None:
 		return

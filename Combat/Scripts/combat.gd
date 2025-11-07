@@ -234,19 +234,22 @@ func start_attacking_chosen_targets() -> void:
 ## Returns [code]true[/code] if the move was successful, [code]false[/code] otherwise. [br]
 ## If the target position is occupied, the units will swap places. For non-swapping movement,
 ## use [method try_moving_unit] instead.
+## @experimental: large units are not supported. Method will return false.
 func try_swapping_units(unit: Unit, pos: int) -> bool:
 	if not unit: return false
+	if unit.parameters.large_unit: return false
 	if pos < 0 or pos >= Party.MAX_UNITS_NUMBER: return false
 	var party: Party = unit.party
 	
-	var old_pos: int = unit.spot.party_position
-	unit.spot.release_unit()
 	var another_unit: Unit = null
-	
 	if party.unitsrelease_unit[pos]:
 		another_unit = party.units[pos]
+		if another_unit.parameters.large_unit: return false
 		party.unit_spots[pos].release_unit()
 	
+	var old_pos: int = unit.spot.party_position
+	unit.spot.release_unit()
+		
 	party.unit_spots[pos].assign_unit(unit)
 	EventBus.unit_moved.emit(unit, old_pos)
 	if another_unit:
@@ -258,8 +261,10 @@ func try_swapping_units(unit: Unit, pos: int) -> bool:
 ## Returns [code]true[/code] if the move was successful, [code]false[/code] otherwise. [br]
 ## If the target position is occupied, the move will fail. For swapping behavior,
 ## use [method try_swapping_units] instead.
+## @experimental: large units are not supported. Method will return false.
 func try_moving_unit(unit: Unit, pos: int) -> bool:
 	if not unit: return false
+	if unit.parameters.large_unit: return false
 	if pos < 0 or pos >= Party.MAX_UNITS_NUMBER: return false
 	var party: Party = unit.party
 	if party.units[pos]: return false
@@ -485,8 +490,8 @@ func _ready() -> void:
 ## This ensures effects disconnect from these signals and prevents unwanted trigger accumulation.
 ## Allows effect design without manual connection cleanup.
 func clear_emittings() -> void:
-	for d: Dictionary in EventBus.attack_resolved.get_connections():
-		EventBus.attack_resolved.disconnect(d.callable)
+	for d: Dictionary in EventBus.attack_resolved_trigger.get_connections():
+		EventBus.attack_resolved_trigger.disconnect(d.callable)
 	
 	for d: Dictionary in EventBus.attack_animation_finished.get_connections():
 		EventBus.attack_animation_finished.disconnect(d.callable)

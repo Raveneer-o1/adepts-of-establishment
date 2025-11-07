@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dx22yaqpqwslw"
-path="res://.godot/imported/Sword Saint attack.wav-a168289b3fa25f34bf52449f3c4e3ca5.sample"
+path="res://.godot/imported/Blade Saint attack.wav-9019464a2fba595431654d37a136a469.sample"
 
 [deps]
 
-source_file="res://Sounds/using/Attack/Empire/Sword Saint attack.wav"
-dest_files=["res://.godot/imported/Sword Saint attack.wav-a168289b3fa25f34bf52449f3c4e3ca5.sample"]
+source_file="res://Sounds/using/Attack/Empire/Blade Saint attack.wav"
+dest_files=["res://.godot/imported/Blade Saint attack.wav-9019464a2fba595431654d37a136a469.sample"]
 
 [params]
 

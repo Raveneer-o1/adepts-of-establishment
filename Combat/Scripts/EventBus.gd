@@ -4,23 +4,23 @@ var left_controller : Resource
 var right_controller : Resource
 
 var left_units: Array[String] = [
-		"res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn",
-		"res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn",
-		"res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn",
-		"res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn",
-		"res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn",
-		"res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn",
-		"res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn",
+	"res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn",
+	"res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn",
+	"res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn",
+	"res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn",
+	"res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn",
+	"res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn",
+	"res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn",
 ]
 var right_units: Array[String] = [
-		"res://Combat/Units/Derived units/Empire/e33 Hierophant.tscn",
-		"res://Combat/Units/Derived units/Empire/e33 Hierophant.tscn",
-		"res://Combat/Units/Derived units/Empire/e33 Hierophant.tscn",
-		"res://Combat/Units/Derived units/Empire/e33 Hierophant.tscn",
-		"res://Combat/Units/Derived units/Empire/e33 Hierophant.tscn",
-		"res://Combat/Units/Derived units/Empire/e33 Hierophant.tscn",
-		"res://Combat/Units/Derived units/Empire/e33 Hierophant.tscn",
-		]
+	"res://Combat/Units/Derived units/Empire/e33 Hierophant.tscn",
+	"res://Combat/Units/Derived units/Empire/e33 Hierophant.tscn",
+	"res://Combat/Units/Derived units/Empire/e33 Hierophant.tscn",
+	"res://Combat/Units/Derived units/Empire/e33 Hierophant.tscn",
+	"res://Combat/Units/Derived units/Empire/e33 Hierophant.tscn",
+	"res://Combat/Units/Derived units/Empire/e33 Hierophant.tscn",
+	"res://Combat/Units/Derived units/Empire/e33 Hierophant.tscn",
+]
 
 var packed_menu: PackedScene
 
@@ -40,7 +40,11 @@ var packed_menu: PackedScene
 ## This signal is diconnected from everything except [method CombatLogic.check_finished_animation] 
 ## at the end of each turn.
 @warning_ignore("unused_signal") signal attack_animation_finished(unit: Unit)
-## This signal is diconnected from everything at the end of each turn.
+## This signal is automatically disconnected from all receivers at the end of each turn.
+## For persistent connections, use [signal attack_resolved] instead.
+@warning_ignore("unused_signal") signal attack_resolved_trigger(attack: Attack)
+## Unlike [signal attack_resolved_trigger], this signal maintains connections.
+## Avoid using this signal for one-time effects that require manual cleanup.
 @warning_ignore("unused_signal") signal attack_resolved(attack: Attack)
 @warning_ignore("unused_signal") signal unit_died(unit: Unit)
 @warning_ignore("unused_signal") signal unit_revived(unit: Unit)
