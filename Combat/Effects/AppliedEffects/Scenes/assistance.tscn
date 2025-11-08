@@ -8,4 +8,4 @@ script = ExtResource("2_uqyki")
 chance = 0.5
 effect_name = "Assistance"
 icon_index = 14
-description = "When another ally attacks, this unis has a %d%% chance of attacking the same target (unit uses its closest attack)"
+description = "When another ally attacks, this unis has a %d percent chance of attacking the same target (unit uses its closest attack)"

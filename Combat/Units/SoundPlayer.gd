@@ -12,8 +12,8 @@ var attack_sounds: Array[AudioStreamPlayer]
 var heal_sounds: Array[AudioStreamPlayer]
 var death_sounds: Array[AudioStreamPlayer]
 
-const MIN_DAMAGE_SOUND = 0.15
-const MAX_DAMAGE_SOUND = 1.7
+const MIN_DAMAGE_SOUND = 0.7
+const MAX_DAMAGE_SOUND = 3.5
 const HP_LOST_FOR_MAX_SOUND = 0.4
 const _SOUND_MULTIPLIER = MAX_DAMAGE_SOUND / HP_LOST_FOR_MAX_SOUND
 
@@ -30,12 +30,16 @@ const _SOUND_MULTIPLIER = MAX_DAMAGE_SOUND / HP_LOST_FOR_MAX_SOUND
 	[death_sounds, $Death],
 ]
 
-const SOUND_FACTOR = 2.0
+const SOUND_FACTOR = 1.0
 
 func play_damage_sound(factor: float = 1.0) -> void:
 	if not damage_sounds: return
 	var player: AudioStreamPlayer = damage_sounds.pick_random()
-	player.volume_db = factor * SOUND_FACTOR
+	player.volume_linear = clampf(
+		factor * SOUND_FACTOR,
+		MIN_DAMAGE_SOUND,
+		MAX_DAMAGE_SOUND
+	)
 	player.play()
 
 var playing_miss_sound: bool = false
@@ -61,12 +65,18 @@ func play_immunity_sound() -> void:
 
 func play_attack_sound() -> void:
 	if not attack_sounds: return
+	print((get_parent() as Unit).unit_name)
+	print_stack()
 	attack_sounds.pick_random().play()
 
 func play_heal_sound(factor: float = 1.0) -> void:
 	if not heal_sounds: return
 	var player: AudioStreamPlayer = heal_sounds.pick_random()
-	player.volume_db = factor * SOUND_FACTOR
+	player.volume_linear = clampf(
+		factor * SOUND_FACTOR,
+		MIN_DAMAGE_SOUND,
+		MAX_DAMAGE_SOUND
+	)
 	player.play()
 
 func play_death_sound() -> void:

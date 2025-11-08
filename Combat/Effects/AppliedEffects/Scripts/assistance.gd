@@ -7,7 +7,6 @@ extends AppliedEffect
 func _get_description() -> String:
 	var percent: int = (round(chance * 100) if chance > 0.0 \
 			else 0) if chance < 1.0 else 100
-	#print(percent)
 	return description % percent
 
 func check_trigger(attack: Attack) -> void:
@@ -27,7 +26,7 @@ func check_trigger(attack: Attack) -> void:
 	if chance < randf():
 		return
 	
-	#print_debug("Triggered assistance on the attack of %s" % attack.attacker.unit_name)
+	print_debug("Triggered assistance on the attack of %s" % attack.attacker.unit_name)
 	
 	target_unit.force_attack(target)
 

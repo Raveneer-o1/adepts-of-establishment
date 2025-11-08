@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dt8hid61d8p5k"
-path="res://.godot/imported/crashing through debris 3.wav-2e768b75b56ed3e6abb4935c6a770575.sample"
+path="res://.godot/imported/skeleton2.wav-478c35a23e2703a349aa460b1783ae76.sample"
 
 [deps]
 
-source_file="res://Sounds/using/Damage/crashing through debris 3.wav"
-dest_files=["res://.godot/imported/crashing through debris 3.wav-2e768b75b56ed3e6abb4935c6a770575.sample"]
+source_file="res://Sounds/using/Damage/skeleton2.wav"
+dest_files=["res://.godot/imported/skeleton2.wav-478c35a23e2703a349aa460b1783ae76.sample"]
 
 [params]
 

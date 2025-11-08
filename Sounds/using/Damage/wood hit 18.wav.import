@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://duep8rde5owsr"
+path="res://.godot/imported/wood hit 18.wav-9403aac44f0af34d0c1da3770e6d0f51.sample"
+
+[deps]
+
+source_file="res://Sounds/using/Damage/wood hit 18.wav"
+dest_files=["res://.godot/imported/wood hit 18.wav-9403aac44f0af34d0c1da3770e6d0f51.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

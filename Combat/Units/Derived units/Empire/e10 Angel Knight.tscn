@@ -239,6 +239,7 @@ base_paramaters = SubResource("Resource_q2oq7")
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("6_86cfn")
 damage_multiplier = 0.5
+type = 1
 initiative = 40
 target_validation = ExtResource("7_q6cur")
 damage_policy = SubResource("Resource_5c7t2")
@@ -247,6 +248,7 @@ description = "This unit can provoke all avaliable targets to attack itself (onc
 [node name="UnitAttack2" type="Node" parent="UnitParameters" index="2"]
 script = ExtResource("6_86cfn")
 damage_multiplier = 0.5
+type = 1
 initiative = 30
 target_validation = ExtResource("7_q6cur")
 damage_policy = SubResource("Resource_5c7t2")

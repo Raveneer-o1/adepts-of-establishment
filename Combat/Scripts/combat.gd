@@ -525,8 +525,6 @@ func find_avaliable_targets(unit: Unit = current_unit) -> Array[UnitSpot]:
 ## loads new scene from [code]"res://Menu/Scenes/menu.tscn"[/code]
 func end_scene() -> void:
 	queue_free()
-	#print("On exit:")
-	#print_orphan_nodes()
 	if EventBus.packed_menu == null:
 		get_tree().change_scene_to_file("res://Menu/Scenes/menu.tscn")
 	else:

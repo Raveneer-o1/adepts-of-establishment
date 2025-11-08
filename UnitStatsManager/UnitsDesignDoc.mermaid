@@ -105,7 +105,7 @@ subgraph Empire
         subgraph Angel
             Angel_d("
             evasion buff aura
-            can purify *any* unit: lift all effects that unit has
+            can purify *any* unit: lift all effects that unit has; purification is stronger than silence because it can't be restored 
             heals nearby allies at the start of its turn
             the first damage that would kill this unit, leaves it with 1 HP instead
             "):::desc
@@ -138,34 +138,39 @@ subgraph Empire
         %% Level 2
         subgraph Elementalist
             Elementalist_d("
-            Can summon an elemental
+            Can summon an elemental or attack
             "):::desc
         end
         subgraph Mage
             Mage_d("
-            standard
+            Once per battle: can place a shield on any ally.
+            The shield increases armor but breakes upon recieving damage
             "):::desc
         end
 
         %% Level 3
         subgraph Wizard
             Wizard_d("
-            increased damage
             also hits adjacent units
+            Once every three turns: can place a stronger shield on any ally.
+            The shield increases armor but breakes upon recieving damage
             "):::desc
         end
         subgraph Ritualist
             Ritualist_d("
             double target attack: each can be either an empty spot for summoming or an ememy
+            deals bonus damage against targets with applied neagative effects
             "):::desc
         end
 
         %% Level 4
         subgraph White_Mage
             White_Mage_d("
-            increased damage
             also hits adjacent units
-            has three shields, can trigger a shield to block an attack directed at adjacent ally
+            can place a stronger shield on any ally.
+            The shield increases armor but breakes upon recieving damage
+            two times per battle can apply a shield to an ally that is being attacked
+            when assuming defense stance, this chance increases
             "):::desc
         end
 
@@ -173,16 +178,20 @@ subgraph Empire
         subgraph Keeper_of_Knowledge
             Keeper_of_Knowledge_d("
             increased damage
-            hits the entire party
+            decreased hp
+            hits only one target
+            can change type of the attack (except **None**) if the target is immune to **Elemental**.
             can expose *any* unit: makes the armor equal to 0
             "):::desc
         end
         subgraph Arcanist
             Arcanist_d("
-            increased damage x2
             also hits adjacent units
-            has four shields, can trigger a shield to block an attack directed at adjacent ally
-            deals elemental damage back to the attacker
+            can place a stronger shield on any ally.
+            The shield increases armor but breakes upon recieving damage
+            two times per battle can apply a shield to an ally that is being attacked
+            when assuming defense stance, this chance increases
+            when attacked, deals elemental damage back to the attacker
             "):::desc
         end
 
@@ -643,7 +652,7 @@ subgraph Dark_Forces
         Witch --> Doppelganger
         Warlock --> Doppelganger
         Warlock --> Demonologist
-        Demonologist --> Possesed
+        Demonologist --> Anointed
     end
     subgraph DarkArchers
         direction TB
@@ -651,7 +660,7 @@ subgraph Dark_Forces
         Black_hand --> Chaos_seer
         Black_hand --> Blasphomous_claw
         Blasphomous_claw --> Butcher
-        Blasphomous_claw --> Corrupted_God
+        Blasphomous_claw --> Corrupted_Saint
     end
     subgraph DarkSpecial
         direction TB

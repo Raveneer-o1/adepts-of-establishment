@@ -9,7 +9,7 @@ class_name UnitInfoPanel
 const HP_LINE = "HP: %d/%d\n"
 const DAMAGE_LINE = "Damage: %d (%s)\n"
 const ARMOR_LINE = "Armor: %d\n"
-const EVASION_LINE = "Evasion: %.2f\n"
+const EVASION_LINE = "Evasion: %d\n"
 const ACCURACY_LINE = "Accuracy: %s\n"
 const INITIATIVE_LINE = "Initiative: %s\n"
 const TYPE_LINE = "Type: %s\n"
@@ -19,14 +19,18 @@ const DESCRIOTION_LINE = "\n\n---\n%s"
 const BRACKETS_ENCLOSURE = "(%s)"
 
 # Converts an attack type enum value into a human-readable string.
-func attack_type_to_str(type: GlobalDefs.AttackType) -> String:
+static func attack_type_to_str(type: GlobalDefs.AttackType) -> String:
 	return GlobalDefs.AttackType.keys()[type]
 
-func get_accuracy_text(a: UnitAttack) -> String:
+static func get_accuracy_text(a: UnitAttack) -> String:
 	var val: float = a.accuracy_representation
 	if is_nan(val): return "0"
 	if is_inf(val): return "guaranteed"
 	return str(roundi(val))
+
+static func get_evasion_text(u: Unit) -> String:
+	var val: int = roundi(u.parameters.evasion_represetation * 100)
+	return EVASION_LINE % val
 
 func fill_text_data(unit: Unit) -> void:
 	info.text = ""  # Clear short info text
@@ -35,7 +39,7 @@ func fill_text_data(unit: Unit) -> void:
 	# Format unit attributes for display
 	var hp_text: String = HP_LINE % [unit.parameters.hp, unit.parameters.max_hp]
 	var armor_text := ARMOR_LINE % unit.parameters.armor
-	var evasion_text := EVASION_LINE % unit.parameters.evasion
+	var evasion_text := get_evasion_text(unit)
 	var damage_text: String = ""
 	var type_text: String = ""
 	var initiative_text: String = ""
@@ -113,11 +117,9 @@ func fill_text_data(unit: Unit) -> void:
 	
 	info.text = hp_text + unit.brief_description
 
-
 func replace_portrait(texture: Texture2D) -> void:
 	if texture != null:
 		portrait.texture = texture
-
 
 ## Populates the UI panel with formatted unit information.
 ## Displays HP, armor, base damage, and details of each attack
@@ -129,11 +131,8 @@ func populate_panel_with_info(unit: Unit) -> void:
 	
 	visible = true
 
-
-
 func _ready() -> void:
 	get_node("/root/EventBus").unit_description_requested.connect(populate_panel_with_info)
-
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:

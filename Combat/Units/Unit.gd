@@ -252,11 +252,11 @@ func resolve_attack(attack: Attack, damage: int, delay: int = 0, finalize: bool 
 	# checking shield before miss/evade because warded_attacks is already filled 
 	# at this point and 'ward' effect is removed
 	if warded_attacks.has(attack):
-			system.display_text_near_unit(self, "Ward!")
-			sound_player.play_shield_sound()
-			attack.tags.append(&"warded")
-			return
-		
+		system.display_text_near_unit(self, "Ward!")
+		sound_player.play_shield_sound()
+		attack.tags.append(&"warded")
+		return
+	
 	
 	if attack.accuracy < randf():
 		system.display_text_near_unit(self, "Miss!")
@@ -423,7 +423,6 @@ func force_attack(target: Unit, native_attack: bool = true, attack: UnitAttack =
 	if unit_type == GlobalDefs.UnitType.Archer:
 		atk.tags.append(&"shot")
 	
-	sound_player.play_attack_sound()
 	animation_handle.play_attack_animation()
 	system.combat_logic.book_damage(atk)
 
@@ -584,6 +583,7 @@ func display_heal(dmg: int, message: String = "", text_color: Color = Color.TRAN
 	
 	animation_handle.play_heal_animation()
 	system.display_text_near_unit(self, message, color)
+	update_visuals()
 
 ## Displays a damage number and triggers damage animation. [br]
 ## If [param text_color] is not specified, color is determined by calling [method damage_color]
@@ -621,6 +621,7 @@ func die() -> void:
 
 
 func update_visuals() -> void:
+	if death_visualized: return
 	visual_bar.max_value = parameters.max_hp
 	visual_bar.value = parameters.hp
 	parameter_snapshots.clear()

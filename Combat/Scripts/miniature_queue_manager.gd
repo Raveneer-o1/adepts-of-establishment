@@ -2,7 +2,7 @@ extends HBoxContainer
 class_name MiniatureQueueManager
 
 const UNIT_MINIATURE = preload("res://Combat/Scenes/unit_in_queue.tscn")
-const MAX_MINIATURES_ON_SCREEN = 15
+const MAX_MINIATURES_ON_SCREEN = 12
 
 var hidden_miniatures: Array
 var miniatures: Dictionary[UnitAttack, UnitInQueue]
