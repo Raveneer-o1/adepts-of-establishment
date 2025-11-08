@@ -12,6 +12,11 @@ var attack_sounds: Array[AudioStreamPlayer]
 var heal_sounds: Array[AudioStreamPlayer]
 var death_sounds: Array[AudioStreamPlayer]
 
+const MIN_DAMAGE_SOUND = 0.15
+const MAX_DAMAGE_SOUND = 1.7
+const HP_LOST_FOR_MAX_SOUND = 0.4
+const _SOUND_MULTIPLIER = MAX_DAMAGE_SOUND / HP_LOST_FOR_MAX_SOUND
+
 # Utility array for batch population of arrays in a single loop.
 # Each element is an array with two elements: target array and source node
 @onready var _containers: Array[Array] = [

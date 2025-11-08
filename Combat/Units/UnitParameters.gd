@@ -379,11 +379,41 @@ func take_damage(dmg: int, randomize_damage: bool = true) -> int:
 	var original_hp := hp
 	hp -= dmg
 	var taken_dmg := original_hp - hp
+	
 	EventBus.damage_taken.emit(parent_unit, taken_dmg)
+	if taken_dmg > 0: parent_unit.sound_player.play_damage_sound(
+			clampf(
+				(float(taken_dmg) / float(hp)) * parent_unit.sound_player._SOUND_MULTIPLIER,
+				parent_unit.sound_player.MIN_DAMAGE_SOUND,
+				parent_unit.sound_player.MAX_DAMAGE_SOUND
+			)
+		)
+	elif taken_dmg < 0: parent_unit.sound_player.play_heal_sound(
+			clampf(
+				(absf(taken_dmg) / float(hp)) * parent_unit.sound_player._SOUND_MULTIPLIER,
+				parent_unit.sound_player.MIN_DAMAGE_SOUND,
+				parent_unit.sound_player.MAX_DAMAGE_SOUND
+			)
+		)
 	return taken_dmg
 
 
 func heal(value: int) -> int:
 	var original_hp: int = hp
 	hp += value
-	return hp - original_hp
+	var healed_hp := hp - original_hp
+	if healed_hp > 0: parent_unit.sound_player.play_heal_sound(
+			clampf(
+				(float(healed_hp) / float(hp)) * parent_unit.sound_player._SOUND_MULTIPLIER,
+				parent_unit.sound_player.MIN_DAMAGE_SOUND,
+				parent_unit.sound_player.MAX_DAMAGE_SOUND
+			)
+		)
+	elif healed_hp < 0: parent_unit.sound_player.play_damage_sound(
+			clampf(
+				(absf(healed_hp) / float(hp)) * parent_unit.sound_player._SOUND_MULTIPLIER,
+				parent_unit.sound_player.MIN_DAMAGE_SOUND,
+				parent_unit.sound_player.MAX_DAMAGE_SOUND
+			)
+		)
+	return healed_hp
