@@ -126,7 +126,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_vl4j0")
 }
 
-[node name="UnitParameters" type="Node2D" parent="."]
+[node name="UnitParameters" type="Node" parent="."]
 script = ExtResource("2_mnflt")
 base_paramaters = ExtResource("4_hdmy1")
 

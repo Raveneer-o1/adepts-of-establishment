@@ -33,10 +33,9 @@ static func get_evasion_text(u: Unit) -> String:
 	return EVASION_LINE % val
 
 func fill_text_data(unit: Unit) -> void:
-	info.text = ""  # Clear short info text
-	full_info.text = ""  # Clear detailed info text
+	info.text = ""
+	full_info.text = ""
 	
-	# Format unit attributes for display
 	var hp_text: String = HP_LINE % [unit.parameters.hp, unit.parameters.max_hp]
 	var armor_text := ARMOR_LINE % unit.parameters.armor
 	var evasion_text := get_evasion_text(unit)
@@ -47,25 +46,20 @@ func fill_text_data(unit: Unit) -> void:
 	var effect_text: String = ""
 	var applied_effect_text: String = ""
 	
-	# Process each attack to generate detailed info
 	for a in unit.parameters.attacks:
-		# Calculate attack damage, accounting for overrides and multipliers
 		@warning_ignore("narrowing_conversion") 
 		var dmg: int = a.damage_multiplier if a.damage_override else \
 				a.damage_multiplier * unit.parameters.base_damage
 		
-		# Format damage and target count
 		if a.targets_needed == 1:
 			damage_text += str(dmg) + ", "
 		else:
 			damage_text += str(dmg) + " x%d, " % a.targets_needed
 		
-		# Append initiative, accuracy, and type info
 		initiative_text += str(a.initiative) + ", "
 		accuracy_text += get_accuracy_text(a) + ", "
 		type_text += attack_type_to_str(a.type) + ", "
 		
-		# Collect effects applied by the attack
 		var local_effect_list: String = ""
 		for effect: String in a.applying_effects:
 			local_effect_list += effect + ", "
@@ -73,21 +67,18 @@ func fill_text_data(unit: Unit) -> void:
 				if local_effect_list != "" else "-"
 	
 	for effect in unit.parameters.get_children():
-		if not effect is AppliedEffect:
+		if effect is not AppliedEffect:
 			continue
 		applied_effect_text += APPLIED_EFFECT_LINE % [
 			(effect as AppliedEffect).effect_name,
 			(effect as AppliedEffect)._get_description()
 		]
 	
-	# Trim trailing commas from text fields
 	initiative_text = initiative_text.trim_suffix(", ")
 	damage_text = damage_text.trim_suffix(", ")
 	type_text = type_text.trim_suffix(", ")
 	accuracy_text = accuracy_text.trim_suffix(", ")
-	#effect_text = effect_text.trim_suffix(", ")
 	
-	# Finalize formatted text for detailed info
 	damage_text = DAMAGE_LINE % [unit.parameters.base_damage, damage_text]
 	accuracy_text = ACCURACY_LINE % accuracy_text
 	initiative_text = INITIATIVE_LINE % initiative_text

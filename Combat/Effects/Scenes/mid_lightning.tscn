@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://djw732rkcoqi0"]
+[gd_scene load_steps=21 format=3 uid="uid://djw732rkcoqi0"]
 
 [ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/Scenes/abstract_effect.tscn" id="1_m8xg3"]
 [ext_resource type="Texture2D" uid="uid://dpyfdnjp2jn57" path="res://Arts/Empire units/white Mage attack effect .png" id="2_dq6kb"]
+[ext_resource type="AudioStream" uid="uid://cp4qguapca0ru" path="res://Sounds/using/other/Thunder.wav" id="3_ngp08"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_33en2"]
 atlas = ExtResource("2_dq6kb")
@@ -127,3 +128,7 @@ animations = [{
 sprite_frames = SubResource("SpriteFrames_75on5")
 autoplay = "default"
 offset = Vector2(0, -16)
+sound_delay = 7
+
+[node name="Thunder" type="AudioStreamPlayer" parent="." index="0"]
+stream = ExtResource("3_ngp08")

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cp3iyjr0g7wyj"
+path="res://.godot/imported/EM_FIRE_CAST_02.wav-f32d1723e2a3dbbf2b7c81b6d0e79d6f.sample"
+
+[deps]
+
+source_file="res://Sounds/using/Fire Attacks - WAV Files/EM_FIRE_CAST_02.wav"
+dest_files=["res://.godot/imported/EM_FIRE_CAST_02.wav-f32d1723e2a3dbbf2b7c81b6d0e79d6f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

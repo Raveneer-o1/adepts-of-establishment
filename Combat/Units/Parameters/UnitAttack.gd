@@ -65,8 +65,8 @@ var unit: Unit
 ## The idea is to never show actual percentages to the player and avoid behind-the-scenes
 ## number manipulation (as it's usually done to improve player perception). [br]
 ## The formula essentially gives X for the phrase [b]"unit will miss 1 in X attacks"[/b]. [br]
-## Returns NAN if accuracy is 0.0 (guaranteed miss) [br]
-## Returns INF if accuracy is 1.0 (guaranteed hit) [br] [br]
+## Returns [code]NAN[/code] if accuracy is 0.0 (guaranteed miss) [br]
+## Returns [code]INF[/code] if accuracy is 1.0 (guaranteed hit) [br] [br]
 ## [center][i]Conversion examples: [br]
 ## 0.25 (25%) → 1.333333 [br]
 ## 0.5 (50%) → 2.0 [br]
@@ -75,7 +75,8 @@ var unit: Unit
 ## 0.9 (90%) → 10.0 [br]
 ## 0.95 (95%) → 20.0 [br]
 ## 0.975 (97.5%) → 40.0 [br]
-## 0.99 (99%) → 100.0 [/i] [/center]
+## 0.99 (99%) → 100.0 [br]
+## 0.995 (99.5%) → 199.999... [/i] [/center]
 var accuracy_representation: float:
 	get:
 		if is_zero_approx(accuracy): return NAN

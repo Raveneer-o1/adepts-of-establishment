@@ -226,7 +226,6 @@ func book_damage(attack: Attack, emit: bool = true) -> void:
 	if attack.effect == null:
 		return
 	
-	# If the attack has an associated effect, instantiate it and apply it to the target.
 	for target in attack.targets:
 		var effect_object := attack.effect.instantiate() as TemporaryEffect
 		target.add_child(effect_object)

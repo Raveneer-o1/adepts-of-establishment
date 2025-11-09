@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://duh7llp4hbfkx"]
+[gd_scene load_steps=45 format=3 uid="uid://duh7llp4hbfkx"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_insub"]
 [ext_resource type="Texture2D" uid="uid://c3anqse1cnpqu" path="res://Arts/Empire units/Arcanist attack  (1).png" id="2_plg4p"]
@@ -8,8 +8,27 @@
 [ext_resource type="PackedScene" uid="uid://7xdms7uje677" path="res://Combat/Effects/Scenes/strong_lightning.tscn" id="5_ugj4y"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_vhgmw"]
 [ext_resource type="Resource" uid="uid://bkoge3ibwhgcc" path="res://Combat/Units/Parameters/Validation/standard_mage_validity.tres" id="7_vengn"]
-[ext_resource type="Resource" uid="uid://cejkgjwk05uws" path="res://Combat/Units/Parameters/Additional targets/standard_mage_targets.tres" id="8_bdu3l"]
+[ext_resource type="Resource" uid="uid://brc057x45ipra" path="res://Combat/Units/Parameters/Validation/any_unit.tres" id="8_0byqf"]
+[ext_resource type="Resource" uid="uid://bhe5cl2bujg8i" path="res://Combat/Units/Parameters/Additional targets/Splash.tres" id="9_0jddn"]
 [ext_resource type="Script" uid="uid://5qgohskr1g6s" path="res://Combat/Units/Parameters/Policy/Scripts/decay_policy.gd" id="9_mfdws"]
+[ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="11_0byqf"]
+[ext_resource type="Script" uid="uid://ckke14dwjpicd" path="res://Combat/Units/Parameters/Policy/Scripts/applying_shield_policy.gd" id="11_0jddn"]
+[ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="12_0jddn"]
+[ext_resource type="PackedScene" uid="uid://3acaeiikm4d" path="res://Combat/Effects/AppliedEffects/Scenes/protect_on_attack.tscn" id="12_1qqvb"]
+[ext_resource type="PackedScene" uid="uid://ub4bxscpfxtd" path="res://Combat/Effects/AppliedEffects/Scenes/retaliation.tscn" id="13_bpv5l"]
+[ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="13_pq6fs"]
+[ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="14_xbk8a"]
+[ext_resource type="AudioStream" uid="uid://bx4vjemunixkb" path="res://Sounds/using/Shield/arrow hitting shield.mp3" id="15_1qqvb"]
+[ext_resource type="AudioStream" uid="uid://b8vtnjngd6h3j" path="res://Sounds/using/magical crack.wav" id="15_bpv5l"]
+[ext_resource type="AudioStream" uid="uid://bsoo3g10yl8a1" path="res://Sounds/using/ice impact.wav" id="16_154fn"]
+[ext_resource type="AudioStream" uid="uid://cgn1wev71bwre" path="res://Sounds/using/Attack/Empire/Arcanist attack.wav" id="16_bpv5l"]
+[ext_resource type="AudioStream" uid="uid://57uq8ddrqmg0" path="res://Sounds/using/Heal/GP_Turbo_Select_1.wav" id="17_154fn"]
+[ext_resource type="AudioStream" uid="uid://bvxxsyhcv73oo" path="res://Sounds/using/Heal/GP_Turbo_Select_2.wav" id="18_8s5at"]
+[ext_resource type="AudioStream" uid="uid://befag54021wep" path="res://Sounds/using/Heal/GP_Turbo_Select_3.wav" id="19_dua8g"]
+[ext_resource type="AudioStream" uid="uid://dsge1pqh4ihjr" path="res://Sounds/using/Heal/GP_Turbo_Select_4.wav" id="20_pftxh"]
+[ext_resource type="AudioStream" uid="uid://dxiivr6txaweh" path="res://Sounds/using/Death/body fall 3.wav" id="21_1jo5n"]
+[ext_resource type="AudioStream" uid="uid://bfaxc8l3qk67k" path="res://Sounds/using/Death/body fall 6.wav" id="22_ebvp5"]
+[ext_resource type="AudioStream" uid="uid://bcae4mab3j5u" path="res://Sounds/using/Death/body fall 12.wav" id="23_y0pbu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ahtw0"]
 atlas = ExtResource("2_plg4p")
@@ -104,17 +123,24 @@ animations = [{
 [sub_resource type="Resource" id="Resource_pkonn"]
 resource_local_to_scene = true
 script = ExtResource("4_aurst")
-max_HP = 220
+max_HP = 200
 base_damage = 80
-armor = 35
+armor = 15
 
-[sub_resource type="Resource" id="Resource_qbj8a"]
+[sub_resource type="Resource" id="Resource_pq6fs"]
 resource_local_to_scene = true
 script = ExtResource("9_mfdws")
-decay_rate = 0.55
+decay_rate = 0.8
+
+[sub_resource type="Resource" id="Resource_xbk8a"]
+script = ExtResource("11_0jddn")
+durability = 100
+percent_blocked = 0.75
+default_policy = SubResource("Resource_pq6fs")
 
 [node name="Arcanist" instance=ExtResource("1_insub")]
 unit_name = "Arcanist"
+unit_type = 2
 full_description = "Arcanists are the pinnacle of arcane mastery, wielding devastating spells that reshape the battlefield. Their magic transcends the ordinary, unraveling enemy formations and wreaking havoc with immense elemental power. While physically fragile, their unparalleled command of destructive forces makes them a cornerstone of any strategy that seeks to overwhelm foes with raw magical might."
 portrait_texture = ExtResource("2_qovuj")
 
@@ -123,6 +149,7 @@ sprite_frames = SubResource("SpriteFrames_dp0yl")
 animation = &"attack"
 autoplay = "default"
 offset = Vector2(0, -8)
+attack_sound_frame = 3
 
 [node name="UnitParameters" parent="." index="1"]
 level = 5
@@ -133,9 +160,71 @@ attack_effect = ExtResource("5_ugj4y")
 script = ExtResource("6_vhgmw")
 type = 1
 accuracy = 0.85
-target_validation = ExtResource("7_vengn")
-additional_targets = ExtResource("8_bdu3l")
-damage_policy = SubResource("Resource_qbj8a")
+target_validation = ExtResource("8_0byqf")
+additional_targets = ExtResource("9_0jddn")
+damage_policy = SubResource("Resource_xbk8a")
 applying_effects = Dictionary[String, Variant]({
 "electrified": [3, 18]
 })
+
+[node name="ProtectOnAttack" parent="UnitParameters" index="2" instance=ExtResource("12_1qqvb")]
+
+[node name="Retaliation" parent="UnitParameters" index="3" node_paths=PackedStringArray("attack_on_retaliation") instance=ExtResource("13_bpv5l")]
+damage = 30
+attack_on_retaliation = NodePath("UnitAttack")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters/Retaliation" index="1"]
+script = ExtResource("6_vhgmw")
+type = 1
+accuracy = 1.0
+evadable = false
+target_validation = ExtResource("7_vengn")
+metadata/_custom_type_script = "uid://c5u15vrtdf7kf"
+
+[node name="MagicalCrack" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
+stream = ExtResource("15_bpv5l")
+volume_db = -1.0
+
+[node name="IceImpact" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="1"]
+stream = ExtResource("16_154fn")
+volume_db = -1.0
+pitch_scale = 2.5
+
+[node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
+stream = ExtResource("11_0byqf")
+
+[node name="GpArmorDown2" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="1"]
+stream = ExtResource("12_0jddn")
+
+[node name="GpArmorDown3" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="2"]
+stream = ExtResource("13_pq6fs")
+
+[node name="GpArmorDown4" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="3"]
+stream = ExtResource("14_xbk8a")
+
+[node name="ArrowHittingShield" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
+stream = ExtResource("15_1qqvb")
+
+[node name="ArcanistAttack" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
+stream = ExtResource("16_bpv5l")
+
+[node name="GpTurboSelect1" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]
+stream = ExtResource("17_154fn")
+
+[node name="GpTurboSelect2" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="1"]
+stream = ExtResource("18_8s5at")
+
+[node name="GpTurboSelect3" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="2"]
+stream = ExtResource("19_dua8g")
+
+[node name="GpTurboSelect4" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="3"]
+stream = ExtResource("20_pftxh")
+
+[node name="BodyFall3" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="0"]
+stream = ExtResource("21_1jo5n")
+
+[node name="BodyFall6" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="1"]
+stream = ExtResource("22_ebvp5")
+
+[node name="BodyFall12" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="2"]
+stream = ExtResource("23_y0pbu")

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bfktxxkxxhc8"
+path="res://.godot/imported/rpg arrow miss.mp3-8265a350e2e76aa46ab8e8257fef7d0d.mp3str"
+
+[deps]
+
+source_file="res://Sounds/using/rpg arrow miss.mp3"
+dest_files=["res://.godot/imported/rpg arrow miss.mp3-8265a350e2e76aa46ab8e8257fef7d0d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

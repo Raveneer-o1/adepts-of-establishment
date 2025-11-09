@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cv0d1ko7ydvf8"
+path="res://.godot/imported/poof in cloud.mp3-9a13d3353e5063e51b4f62c3b561b7c6.mp3str"
+
+[deps]
+
+source_file="res://Sounds/using/poof in cloud.mp3"
+dest_files=["res://.godot/imported/poof in cloud.mp3-9a13d3353e5063e51b4f62c3b561b7c6.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

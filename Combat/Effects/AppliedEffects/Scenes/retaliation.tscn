@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ub4bxscpfxtd"]
+
+[ext_resource type="Script" uid="uid://bw2hhvkoyty8j" path="res://Combat/Effects/AppliedEffects/Scripts/retaliation.gd" id="1_mcppw"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="2_6tmkl"]
+
+[node name="Retaliation" type="Node" node_paths=PackedStringArray("attack_on_retaliation")]
+script = ExtResource("1_mcppw")
+attack_on_retaliation = NodePath("ReturnedAttack")
+effect_name = "Retaliation"
+description = "This unit deals %d damage back to the attacker"
+
+[node name="ReturnedAttack" type="Node" parent="."]
+script = ExtResource("2_6tmkl")
+accuracy = 1.0
+evadable = false
+metadata/_custom_type_script = "uid://c5u15vrtdf7kf"

@@ -147,6 +147,19 @@ var evasion: float:
 			return (stats_modifiers[stat_name] as ModifierStack).get_effective_value(underlying_value)
 		return underlying_value
 
+## Returns a human-friendly evasion representation rather than raw probabilities.
+## The idea is to never show actual percentages to the player and avoid behind-the-scenes
+## number manipulation (as it's usually done to improve player perception). [br]
+## Returns [code]0.0[/code] if evasion is 0.0 (can not evade) [br]
+## Returns [code]INF[/code] if evasion is 1.0 (guaranteed evasion) [br] [br]
+## [center][i]
+## Conversion examples: [br]
+## 0.05 (5%) → 0.052631 [br]
+## 0.1 (10%) → 0.111111 [br]
+## 0.2 (20%) → 0.25 [br]
+## 0.3 (30%) → 0.428571 [br]
+## 0.5 (50%) → 1.0
+## [/i][/center]
 var evasion_represetation: float:
 	get:
 		var ev := evasion

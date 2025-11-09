@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dg37h4dy6u4y0"
+path="res://.godot/imported/Mage attack.wav-758e6c29d4bbcd8a04f1072675ca44ac.sample"
+
+[deps]
+
+source_file="res://Sounds/using/Attack/Empire/Mage attack.wav"
+dest_files=["res://.godot/imported/Mage attack.wav-758e6c29d4bbcd8a04f1072675ca44ac.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

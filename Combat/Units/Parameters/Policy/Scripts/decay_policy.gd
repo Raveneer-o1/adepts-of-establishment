@@ -1,6 +1,6 @@
 extends BasePolicy
 
-@export var decay_rate : float = 0.5
+@export var decay_rate : float = 0.7
 
 func _apply_policy(attack: Attack, finalize: bool) -> void:
 	var first_position: int = attack.targets[0].party_position

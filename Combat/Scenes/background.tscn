@@ -1354,20 +1354,20 @@ bus = &"Ambient"
 
 [node name="Wind01" type="AudioStreamPlayer" parent="AmbientSoundPlayer/Wind"]
 stream = ExtResource("6_5xufw")
-volume_db = -6.0
+volume_db = -10.0
 bus = &"Ambient"
 
 [node name="Wind02" type="AudioStreamPlayer" parent="AmbientSoundPlayer/Wind"]
 stream = ExtResource("7_42d77")
-volume_db = -6.0
+volume_db = -10.0
 bus = &"Ambient"
 
 [node name="Wind03" type="AudioStreamPlayer" parent="AmbientSoundPlayer/Wind"]
 stream = ExtResource("8_72cgw")
-volume_db = -6.0
+volume_db = -10.0
 bus = &"Ambient"
 
 [node name="Wind04" type="AudioStreamPlayer" parent="AmbientSoundPlayer/Wind"]
 stream = ExtResource("9_oebsh")
-volume_db = -6.0
+volume_db = -10.0
 bus = &"Ambient"

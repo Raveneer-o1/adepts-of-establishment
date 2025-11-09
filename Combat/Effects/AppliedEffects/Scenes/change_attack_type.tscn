@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdpfgljbh8edv"]
+
+[ext_resource type="Script" uid="uid://bwt80ocvi1fng" path="res://Combat/Effects/AppliedEffects/Scripts/change_attack_type.gd" id="1_cm3by"]
+
+[node name="ChangeAttackType" type="Node"]
+script = ExtResource("1_cm3by")
+color_effect = Color(1.5979409e-05, 0.41365835, 0.8797294, 1)
+effect_name = "Adaptability"
+icon_index = 19
+description = "This unit will change damage type if its target is immune to the main one"

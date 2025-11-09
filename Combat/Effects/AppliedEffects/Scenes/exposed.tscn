@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://6rc46kn85ih7"]
+
+[ext_resource type="Script" uid="uid://bbo1njbo7fpkx" path="res://Combat/Effects/AppliedEffects/Scripts/exposed.gd" id="1_sg4r4"]
+
+[node name="Exposed" type="Node"]
+script = ExtResource("1_sg4r4")
+effect_name = "Exposed"
+icon_index = 13
+negative_effect = true
+description = "This unit's armor has been set to 0"

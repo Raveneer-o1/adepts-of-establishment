@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2l6k15q8i1pi"]
+
+[ext_resource type="Script" uid="uid://0kdvtf1xfokm" path="res://Combat/Effects/AppliedEffects/Scripts/breakable_shield.gd" id="1_dsipl"]
+
+[node name="BreakableShield" type="Node"]
+script = ExtResource("1_dsipl")
+effect_name = "Shield"
+icon_index = 4

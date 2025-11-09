@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dtpreelo84btg"]
+
+[ext_resource type="Resource" uid="uid://cxvfk7vgegqq2" path="res://Combat/Units/Parameters/Policy/decay_policy.tres" id="1_g5ygi"]
+[ext_resource type="Script" uid="uid://ckke14dwjpicd" path="res://Combat/Units/Parameters/Policy/Scripts/applying_shield_policy.gd" id="1_vdwnx"]
+
+[resource]
+script = ExtResource("1_vdwnx")
+default_policy = ExtResource("1_g5ygi")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cym0kgm6smmss"]
+[gd_scene load_steps=36 format=3 uid="uid://cym0kgm6smmss"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_nifrr"]
 [ext_resource type="Texture2D" uid="uid://sc0d8fqujvac" path="res://Arts/Empire units/ritualist idle .png" id="2_ejkvf"]
@@ -10,6 +10,20 @@
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="7_gaxcy"]
 [ext_resource type="Resource" uid="uid://cfrijbj5w6tub" path="res://Combat/Units/Parameters/Validation/elementalist_validity.tres" id="8_gc5xf"]
 [ext_resource type="Resource" uid="uid://bix5hc43n2tpi" path="res://Combat/Units/Parameters/Policy/elementalist_policy.tres" id="9_1v8eb"]
+[ext_resource type="AudioStream" uid="uid://3up3xko4aipd" path="res://Sounds/using/Damage/Default_1.wav" id="11_7knwt"]
+[ext_resource type="AudioStream" uid="uid://b7r3kee6rjmo4" path="res://Sounds/using/Damage/Default_2.wav" id="12_fauyc"]
+[ext_resource type="AudioStream" uid="uid://b8o5l8pxfg4my" path="res://Sounds/using/Damage/Default_3.wav" id="13_5h0qq"]
+[ext_resource type="AudioStream" uid="uid://cucn7770e3ayy" path="res://Sounds/using/Damage/Default_4.wav" id="14_7buaq"]
+[ext_resource type="AudioStream" uid="uid://bf8t66vq04yox" path="res://Sounds/using/magic dispell.wav" id="15_dsm58"]
+[ext_resource type="AudioStream" uid="uid://bx4vjemunixkb" path="res://Sounds/using/Shield/arrow hitting shield.mp3" id="16_pb7vh"]
+[ext_resource type="AudioStream" uid="uid://dg37h4dy6u4y0" path="res://Sounds/using/Attack/Empire/Mage attack.wav" id="17_v07ru"]
+[ext_resource type="AudioStream" uid="uid://57uq8ddrqmg0" path="res://Sounds/using/Heal/GP_Turbo_Select_1.wav" id="18_ajk2m"]
+[ext_resource type="AudioStream" uid="uid://bvxxsyhcv73oo" path="res://Sounds/using/Heal/GP_Turbo_Select_2.wav" id="19_4vkbt"]
+[ext_resource type="AudioStream" uid="uid://befag54021wep" path="res://Sounds/using/Heal/GP_Turbo_Select_3.wav" id="20_5yuaf"]
+[ext_resource type="AudioStream" uid="uid://dsge1pqh4ihjr" path="res://Sounds/using/Heal/GP_Turbo_Select_4.wav" id="21_ffndv"]
+[ext_resource type="AudioStream" uid="uid://dxiivr6txaweh" path="res://Sounds/using/Death/body fall 3.wav" id="22_xdb0c"]
+[ext_resource type="AudioStream" uid="uid://bfaxc8l3qk67k" path="res://Sounds/using/Death/body fall 6.wav" id="23_v8kmw"]
+[ext_resource type="AudioStream" uid="uid://bcae4mab3j5u" path="res://Sounds/using/Death/body fall 12.wav" id="24_g76ea"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_41kl6"]
 atlas = ExtResource("2_ejkvf")
@@ -90,12 +104,12 @@ animations = [{
 [sub_resource type="Resource" id="Resource_xbh0f"]
 resource_local_to_scene = true
 script = ExtResource("4_fdnoa")
-max_HP = 165
-base_damage = 70
-armor = 20
+max_HP = 120
+base_damage = 45
 
 [node name="Ritualist" instance=ExtResource("1_nifrr")]
 unit_name = "Ritualist"
+unit_type = 2
 full_description = "Ritualists delve into ancient and forbidden rites, channeling their energy to summon otherworldly beings or cast powerful curses. Their unique strength lies in their ability to turn the tide of battle by conjuring allies from empty spaces on the battlefield."
 portrait_texture = ExtResource("2_uayg2")
 
@@ -103,16 +117,61 @@ portrait_texture = ExtResource("2_uayg2")
 sprite_frames = SubResource("SpriteFrames_onolp")
 animation = &"attack"
 autoplay = "default"
+attack_sound_frame = 2
 
 [node name="UnitParameters" parent="." index="1"]
+level = 3
 base_paramaters = SubResource("Resource_xbh0f")
 attack_effect = ExtResource("4_v7wvv")
 other_effects = Array[Resource]([ExtResource("5_aix4f")])
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("7_gaxcy")
+damage_multiplier = 0.6
 type = 1
-accuracy = 0.8
 targets_needed = 2
+initiative = 30
 target_validation = ExtResource("8_gc5xf")
 damage_policy = ExtResource("9_1v8eb")
+
+[node name="Default1" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
+stream = ExtResource("11_7knwt")
+
+[node name="Default2" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="1"]
+stream = ExtResource("12_fauyc")
+
+[node name="Default3" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="2"]
+stream = ExtResource("13_5h0qq")
+
+[node name="Default4" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="3"]
+stream = ExtResource("14_7buaq")
+
+[node name="MagicDispell" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
+stream = ExtResource("15_dsm58")
+
+[node name="ArrowHittingShield" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
+stream = ExtResource("16_pb7vh")
+
+[node name="MageAttack" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
+stream = ExtResource("17_v07ru")
+
+[node name="GpTurboSelect1" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]
+stream = ExtResource("18_ajk2m")
+
+[node name="GpTurboSelect2" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="1"]
+stream = ExtResource("19_4vkbt")
+
+[node name="GpTurboSelect3" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="2"]
+stream = ExtResource("20_5yuaf")
+
+[node name="GpTurboSelect4" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="3"]
+stream = ExtResource("21_ffndv")
+
+[node name="BodyFall3" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="0"]
+stream = ExtResource("22_xdb0c")
+
+[node name="BodyFall6" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="1"]
+stream = ExtResource("23_v8kmw")
+
+[node name="BodyFall12" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="2"]
+stream = ExtResource("24_g76ea")

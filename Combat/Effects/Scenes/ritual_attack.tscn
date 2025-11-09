@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://c7bbto2q5jen7"]
+[gd_scene load_steps=21 format=3 uid="uid://c7bbto2q5jen7"]
 
 [ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/Scenes/abstract_effect.tscn" id="1_8cibi"]
 [ext_resource type="Texture2D" uid="uid://n31bcqjon06y" path="res://Arts/Empire units/ritualist attack effect .png" id="2_5jfho"]
+[ext_resource type="AudioStream" uid="uid://ba06fykmsvv7q" path="res://Sounds/using/elemental bang.mp3" id="3_kjyut"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o1qfs"]
 atlas = ExtResource("2_5jfho")
@@ -126,3 +127,7 @@ animations = [{
 [node name="Effect" instance=ExtResource("1_8cibi")]
 sprite_frames = SubResource("SpriteFrames_y7w1x")
 autoplay = "default"
+sound_delay = 6
+
+[node name="ElementalBang" type="AudioStreamPlayer" parent="." index="0"]
+stream = ExtResource("3_kjyut")

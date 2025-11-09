@@ -65,8 +65,6 @@ func play_immunity_sound() -> void:
 
 func play_attack_sound() -> void:
 	if not attack_sounds: return
-	print((get_parent() as Unit).unit_name)
-	print_stack()
 	attack_sounds.pick_random().play()
 
 func play_heal_sound(factor: float = 1.0) -> void:

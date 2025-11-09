@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c4iqcbslnawmf"]
+[gd_scene load_steps=39 format=3 uid="uid://c4iqcbslnawmf"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_0p7og"]
 [ext_resource type="Texture2D" uid="uid://5d3rv8k52on3" path="res://Arts/Empire units/apprentice attack .png" id="2_4fg6x"]
@@ -8,8 +8,23 @@
 [ext_resource type="PackedScene" uid="uid://dvfxijlca63a7" path="res://Combat/Effects/Scenes/novice_lightning.tscn" id="5_8t08s"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_h66ux"]
 [ext_resource type="Resource" uid="uid://bkoge3ibwhgcc" path="res://Combat/Units/Parameters/Validation/standard_mage_validity.tres" id="7_tyh7c"]
-[ext_resource type="Resource" uid="uid://cejkgjwk05uws" path="res://Combat/Units/Parameters/Additional targets/standard_mage_targets.tres" id="8_oo0nm"]
-[ext_resource type="Resource" uid="uid://cxvfk7vgegqq2" path="res://Combat/Units/Parameters/Policy/decay_policy.tres" id="9_3531a"]
+[ext_resource type="AudioStream" uid="uid://qmofu8pdkuol" path="res://Sounds/using/Damage/oof 2.wav" id="11_5qyeu"]
+[ext_resource type="AudioStream" uid="uid://b8o5l8pxfg4my" path="res://Sounds/using/Damage/Default_3.wav" id="12_4wsb7"]
+[ext_resource type="AudioStream" uid="uid://b7eq0rfqqthfn" path="res://Sounds/using/Damage/fish 16.wav" id="13_5h0pn"]
+[ext_resource type="AudioStream" uid="uid://b033n7a1ewl3n" path="res://Sounds/using/Damage/oof 12.wav" id="14_w1pbv"]
+[ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="15_0psix"]
+[ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="16_06w5q"]
+[ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="17_wum3n"]
+[ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="18_yfulq"]
+[ext_resource type="AudioStream" uid="uid://bx4vjemunixkb" path="res://Sounds/using/Shield/arrow hitting shield.mp3" id="19_qukf7"]
+[ext_resource type="AudioStream" uid="uid://dg37h4dy6u4y0" path="res://Sounds/using/Attack/Empire/Mage attack.wav" id="20_4wsb7"]
+[ext_resource type="AudioStream" uid="uid://57uq8ddrqmg0" path="res://Sounds/using/Heal/GP_Turbo_Select_1.wav" id="20_cg85d"]
+[ext_resource type="AudioStream" uid="uid://bvxxsyhcv73oo" path="res://Sounds/using/Heal/GP_Turbo_Select_2.wav" id="21_tirgh"]
+[ext_resource type="AudioStream" uid="uid://befag54021wep" path="res://Sounds/using/Heal/GP_Turbo_Select_3.wav" id="22_bvyex"]
+[ext_resource type="AudioStream" uid="uid://dsge1pqh4ihjr" path="res://Sounds/using/Heal/GP_Turbo_Select_4.wav" id="23_3su6b"]
+[ext_resource type="AudioStream" uid="uid://ble86orlqio7s" path="res://Sounds/using/Death/body hit with grunt 1.wav" id="24_g1fdt"]
+[ext_resource type="AudioStream" uid="uid://bdpingiq3vatc" path="res://Sounds/using/Death/body hit with grunt 2.wav" id="25_jgifg"]
+[ext_resource type="AudioStream" uid="uid://cpx2q3qkd8dab" path="res://Sounds/using/Death/body hit with grunt 3.wav" id="26_fuhcd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s0tsu"]
 atlas = ExtResource("2_4fg6x")
@@ -104,11 +119,12 @@ animations = [{
 [sub_resource type="Resource" id="Resource_hssg6"]
 resource_local_to_scene = true
 script = ExtResource("4_bski4")
-max_HP = 70
-base_damage = 25
+max_HP = 50
+base_damage = 20
 
 [node name="Unit" instance=ExtResource("1_0p7og")]
 unit_name = "Apprentice"
+unit_type = 2
 full_description = "Apprentices are fledgling mages taking their first steps into the arcane arts. Though their spells are simple and lack refinement, they can still unleash bursts of magical energy capable of turning the tide in smaller skirmishes. While fragile and inexperienced, they show great potential, embodying the raw promise of power yet to be mastered."
 portrait_texture = ExtResource("2_4nbyg")
 
@@ -116,6 +132,7 @@ portrait_texture = ExtResource("2_4nbyg")
 sprite_frames = SubResource("SpriteFrames_lwt6u")
 animation = &"attack"
 autoplay = "default"
+attack_sound_frame = 4
 
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_hssg6")
@@ -124,8 +141,58 @@ attack_effect = ExtResource("5_8t08s")
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("6_h66ux")
 type = 1
-accuracy = 0.7
+accuracy = 0.9
 initiative = 30
 target_validation = ExtResource("7_tyh7c")
-additional_targets = ExtResource("8_oo0nm")
-damage_policy = ExtResource("9_3531a")
+
+[node name="Oof2" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
+stream = ExtResource("11_5qyeu")
+
+[node name="Default3" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="1"]
+stream = ExtResource("12_4wsb7")
+
+[node name="Fish16" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="2"]
+stream = ExtResource("13_5h0pn")
+
+[node name="Oof12" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="3"]
+stream = ExtResource("14_w1pbv")
+
+[node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
+stream = ExtResource("15_0psix")
+
+[node name="GpArmorDown2" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="1"]
+stream = ExtResource("16_06w5q")
+
+[node name="GpArmorDown3" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="2"]
+stream = ExtResource("17_wum3n")
+
+[node name="GpArmorDown4" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="3"]
+stream = ExtResource("18_yfulq")
+
+[node name="ArrowHittingShield" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
+stream = ExtResource("19_qukf7")
+
+[node name="MageAttack" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
+stream = ExtResource("20_4wsb7")
+volume_db = 5.0
+
+[node name="GpTurboSelect1" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]
+stream = ExtResource("20_cg85d")
+
+[node name="GpTurboSelect2" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="1"]
+stream = ExtResource("21_tirgh")
+
+[node name="GpTurboSelect3" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="2"]
+stream = ExtResource("22_bvyex")
+
+[node name="GpTurboSelect4" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="3"]
+stream = ExtResource("23_3su6b")
+
+[node name="BodyHitWithGrunt1" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="0"]
+stream = ExtResource("24_g1fdt")
+
+[node name="BodyHitWithGrunt2" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="1"]
+stream = ExtResource("25_jgifg")
+
+[node name="BodyHitWithGrunt3" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="2"]
+stream = ExtResource("26_fuhcd")

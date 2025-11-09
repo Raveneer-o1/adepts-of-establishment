@@ -73,7 +73,7 @@ const ICONS := preload("res://Arts/icons.png")
 var target_unit: Unit
 
 ## Stores pairs of signals and assosiated functions.
-## Intended to be overridden in the derived classes.
+## Intended to be populated by the derived classes.
 var _signal_function_pairs: Dictionary[Signal, Callable]
 
 func _get_description() -> String:

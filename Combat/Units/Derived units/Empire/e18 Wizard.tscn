@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://1rl6dm844fpl"]
+[gd_scene load_steps=44 format=3 uid="uid://1rl6dm844fpl"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_ve23n"]
 [ext_resource type="Texture2D" uid="uid://cb70rcr845fe7" path="res://Arts/Placeholders/Wizard.jpg" id="2_r2nux"]
@@ -7,9 +7,27 @@
 [ext_resource type="PackedScene" uid="uid://djw732rkcoqi0" path="res://Combat/Effects/Scenes/mid_lightning.tscn" id="4_1dpwb"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_44tnw"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_8c3a3"]
-[ext_resource type="Resource" uid="uid://bkoge3ibwhgcc" path="res://Combat/Units/Parameters/Validation/standard_mage_validity.tres" id="7_336xa"]
-[ext_resource type="Script" uid="uid://5qgohskr1g6s" path="res://Combat/Units/Parameters/Policy/Scripts/decay_policy.gd" id="7_q8bur"]
-[ext_resource type="Resource" uid="uid://cejkgjwk05uws" path="res://Combat/Units/Parameters/Additional targets/standard_mage_targets.tres" id="8_nccyd"]
+[ext_resource type="Resource" uid="uid://brc057x45ipra" path="res://Combat/Units/Parameters/Validation/any_unit.tres" id="8_foq2d"]
+[ext_resource type="Resource" uid="uid://bhe5cl2bujg8i" path="res://Combat/Units/Parameters/Additional targets/Splash.tres" id="9_foq2d"]
+[ext_resource type="Resource" uid="uid://dtpreelo84btg" path="res://Combat/Units/Parameters/Policy/applying_shield_policy.tres" id="10_foq2d"]
+[ext_resource type="AudioStream" uid="uid://b7r3kee6rjmo4" path="res://Sounds/using/Damage/Default_2.wav" id="11_foq2d"]
+[ext_resource type="AudioStream" uid="uid://b8o5l8pxfg4my" path="res://Sounds/using/Damage/Default_3.wav" id="12_0mqb4"]
+[ext_resource type="AudioStream" uid="uid://cucn7770e3ayy" path="res://Sounds/using/Damage/Default_4.wav" id="13_dv381"]
+[ext_resource type="AudioStream" uid="uid://cawi1edgjsy0" path="res://Sounds/using/Damage/oof 7.wav" id="14_rnwv7"]
+[ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="15_do4qi"]
+[ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="16_7n54v"]
+[ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="17_8vry6"]
+[ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="18_cak70"]
+[ext_resource type="AudioStream" uid="uid://bx4vjemunixkb" path="res://Sounds/using/Shield/arrow hitting shield.mp3" id="19_7p2qy"]
+[ext_resource type="AudioStream" uid="uid://demspgeyebtu6" path="res://Sounds/using/protego.mp3" id="20_ys0kv"]
+[ext_resource type="AudioStream" uid="uid://c4abjt48wol6t" path="res://Sounds/using/other/Eerie.wav" id="21_63ydp"]
+[ext_resource type="AudioStream" uid="uid://57uq8ddrqmg0" path="res://Sounds/using/Heal/GP_Turbo_Select_1.wav" id="22_gsflc"]
+[ext_resource type="AudioStream" uid="uid://bvxxsyhcv73oo" path="res://Sounds/using/Heal/GP_Turbo_Select_2.wav" id="23_setqf"]
+[ext_resource type="AudioStream" uid="uid://befag54021wep" path="res://Sounds/using/Heal/GP_Turbo_Select_3.wav" id="24_504ut"]
+[ext_resource type="AudioStream" uid="uid://dsge1pqh4ihjr" path="res://Sounds/using/Heal/GP_Turbo_Select_4.wav" id="25_asdfc"]
+[ext_resource type="AudioStream" uid="uid://dxiivr6txaweh" path="res://Sounds/using/Death/body fall 3.wav" id="26_1c1o0"]
+[ext_resource type="AudioStream" uid="uid://bfaxc8l3qk67k" path="res://Sounds/using/Death/body fall 6.wav" id="27_ith38"]
+[ext_resource type="AudioStream" uid="uid://bcae4mab3j5u" path="res://Sounds/using/Death/body fall 12.wav" id="28_27wf8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_12f2u"]
 atlas = ExtResource("2_xmxyf")
@@ -118,17 +136,12 @@ animations = [{
 [sub_resource type="Resource" id="Resource_e25ko"]
 resource_local_to_scene = true
 script = ExtResource("4_44tnw")
-max_HP = 165
-base_damage = 60
-armor = 23
-
-[sub_resource type="Resource" id="Resource_mgjo6"]
-resource_local_to_scene = true
-script = ExtResource("7_q8bur")
-decay_rate = 0.6
+max_HP = 110
+base_damage = 45
 
 [node name="Wizard" instance=ExtResource("1_ve23n")]
 unit_name = "Wizard"
+unit_type = 2
 full_description = "Wizards are masters of advanced arcane arts, capable of reshaping the battlefield with devastating spells and area control. Their ability to manipulate energy allows them to strike multiple enemies or weaken their defenses with precision."
 portrait_texture = ExtResource("2_r2nux")
 
@@ -136,16 +149,74 @@ portrait_texture = ExtResource("2_r2nux")
 sprite_frames = SubResource("SpriteFrames_oavhr")
 animation = &"attack"
 autoplay = "default"
+attack_sound_frame = 3
 
 [node name="UnitParameters" parent="." index="1"]
+level = 3
 base_paramaters = SubResource("Resource_e25ko")
 attack_effect = ExtResource("4_1dpwb")
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("6_8c3a3")
+damage_multiplier = 0.85
 type = 1
-accuracy = 0.78
 initiative = 30
-target_validation = ExtResource("7_336xa")
-additional_targets = ExtResource("8_nccyd")
-damage_policy = SubResource("Resource_mgjo6")
+target_validation = ExtResource("8_foq2d")
+additional_targets = ExtResource("9_foq2d")
+damage_policy = ExtResource("10_foq2d")
+description = "This unit can apply a weak shield to an ally"
+
+[node name="Default2" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
+stream = ExtResource("11_foq2d")
+
+[node name="Default3" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="1"]
+stream = ExtResource("12_0mqb4")
+
+[node name="Default4" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="2"]
+stream = ExtResource("13_dv381")
+
+[node name="Oof7" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="3"]
+stream = ExtResource("14_rnwv7")
+
+[node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
+stream = ExtResource("15_do4qi")
+
+[node name="GpArmorDown2" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="1"]
+stream = ExtResource("16_7n54v")
+
+[node name="GpArmorDown3" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="2"]
+stream = ExtResource("17_8vry6")
+
+[node name="GpArmorDown4" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="3"]
+stream = ExtResource("18_cak70")
+
+[node name="ArrowHittingShield" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
+stream = ExtResource("19_7p2qy")
+
+[node name="Protego" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="1"]
+stream = ExtResource("20_ys0kv")
+
+[node name="WizardAttack" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
+stream = ExtResource("21_63ydp")
+volume_db = 10.0
+
+[node name="GpTurboSelect1" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]
+stream = ExtResource("22_gsflc")
+
+[node name="GpTurboSelect2" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="1"]
+stream = ExtResource("23_setqf")
+
+[node name="GpTurboSelect3" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="2"]
+stream = ExtResource("24_504ut")
+
+[node name="GpTurboSelect4" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="3"]
+stream = ExtResource("25_asdfc")
+
+[node name="BodyFall3" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="0"]
+stream = ExtResource("26_1c1o0")
+
+[node name="BodyFall6" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="1"]
+stream = ExtResource("27_ith38")
+
+[node name="BodyFall12" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="2"]
+stream = ExtResource("28_27wf8")

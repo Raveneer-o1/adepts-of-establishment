@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bit78176xambc"]
+[gd_scene load_steps=34 format=3 uid="uid://bit78176xambc"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_8bfir"]
 [ext_resource type="Texture2D" uid="uid://6jj45kplnwsc" path="res://Arts/Empire units/elemental attack .png" id="2_wfcjt"]
@@ -6,6 +6,17 @@
 [ext_resource type="Texture2D" uid="uid://pnn418fkviek" path="res://Arts/Empire units/elemental idle .png" id="3_dsoog"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_dakjd"]
 [ext_resource type="PackedScene" uid="uid://n106oxapxy1v" path="res://Combat/Effects/Scenes/medium_wind.tscn" id="4_nay0k"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="7_6bnhw"]
+[ext_resource type="AudioStream" uid="uid://cv0d1ko7ydvf8" path="res://Sounds/using/poof in cloud.mp3" id="7_iykxo"]
+[ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standard_archer_validity.tres" id="8_axxaw"]
+[ext_resource type="AudioStream" uid="uid://dkehm8jupfwc2" path="res://Sounds/using/air shuffle.wav" id="8_p5grj"]
+[ext_resource type="AudioStream" uid="uid://6t2c0vlv5v8l" path="res://Sounds/using/puff of smoke.wav" id="9_6bnhw"]
+[ext_resource type="AudioStream" uid="uid://gjwgebgqnn2b" path="res://Sounds/using/air blast.wav" id="10_axxaw"]
+[ext_resource type="AudioStream" uid="uid://57uq8ddrqmg0" path="res://Sounds/using/Heal/GP_Turbo_Select_1.wav" id="11_yawfx"]
+[ext_resource type="AudioStream" uid="uid://bvxxsyhcv73oo" path="res://Sounds/using/Heal/GP_Turbo_Select_2.wav" id="12_22fl4"]
+[ext_resource type="AudioStream" uid="uid://befag54021wep" path="res://Sounds/using/Heal/GP_Turbo_Select_3.wav" id="13_0bmdq"]
+[ext_resource type="AudioStream" uid="uid://dsge1pqh4ihjr" path="res://Sounds/using/Heal/GP_Turbo_Select_4.wav" id="14_vo4ax"]
+[ext_resource type="AudioStream" uid="uid://bf8t66vq04yox" path="res://Sounds/using/magic dispell.wav" id="15_og21y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_srrfl"]
 atlas = ExtResource("2_wfcjt")
@@ -123,17 +134,62 @@ resource_local_to_scene = true
 script = ExtResource("4_dakjd")
 max_HP = 100
 base_damage = 30
+evasion = 0.1
 
 [node name="Elemental" instance=ExtResource("1_8bfir")]
 unit_name = "Elemental"
-unit_type = "Warrior"
+unit_type = 2
 portrait_texture = ExtResource("2_x1sii")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_qguhu")
 animation = &"attack"
 autoplay = "default"
+attack_sound_frame = 3
 
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_eejty")
+immunities = Array[int]([1])
 attack_effect = ExtResource("4_nay0k")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("7_6bnhw")
+type = 1
+initiative = 40
+target_validation = ExtResource("8_axxaw")
+metadata/_custom_type_script = "uid://c5u15vrtdf7kf"
+
+[node name="PoofInCloud" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
+stream = ExtResource("7_iykxo")
+volume_db = 10.0
+
+[node name="AirShuffle" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="1"]
+stream = ExtResource("8_p5grj")
+volume_db = 10.0
+
+[node name="PuffOfSmoke" type="AudioStreamPlayer" parent="SoundPlayer/Evade" index="0"]
+stream = ExtResource("9_6bnhw")
+
+[node name="PuffOfSmoke" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
+stream = ExtResource("9_6bnhw")
+
+[node name="PuffOfSmoke" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
+stream = ExtResource("9_6bnhw")
+
+[node name="AirBlast" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
+stream = ExtResource("10_axxaw")
+
+[node name="GpTurboSelect1" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]
+stream = ExtResource("11_yawfx")
+
+[node name="GpTurboSelect2" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="1"]
+stream = ExtResource("12_22fl4")
+
+[node name="GpTurboSelect3" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="2"]
+stream = ExtResource("13_0bmdq")
+
+[node name="GpTurboSelect4" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="3"]
+stream = ExtResource("14_vo4ax")
+
+[node name="MagicDispell" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="0"]
+stream = ExtResource("15_og21y")

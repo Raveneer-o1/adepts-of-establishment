@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://3acaeiikm4d"]
+
+[ext_resource type="Script" uid="uid://cqe88dwnk73lq" path="res://Combat/Effects/AppliedEffects/Scripts/protect_on_attack.gd" id="1_73tb6"]
+
+[node name="ProtectOnAttack" type="Node"]
+script = ExtResource("1_73tb6")
+effect_name = "Defender"
+description = "This unit will try to protect adjacent units with a shield when they are attacked."

@@ -7,7 +7,7 @@ class_name UnitAnimationsHandle extends AnimatedSprite2D
 ## After this frame all attacks are resolved and player can act
 @export var last_frame: int = -1
 
-@export var conclude_frame: int = -1
+#@export var conclude_frame: int = -1
 @export var attack_sound_frame: int = 1
 
 var now_attacking: bool = false
@@ -92,8 +92,6 @@ func _on_frame_changed() -> void:
 		return
 	if frames_to_emit.has(frame):
 		EventBus.attack_reached.emit(parent_unit)
-	if conclude_frame > 0 and frame == conclude_frame:
-		EventBus.attack_concluded.emit(parent_unit)
 	if last_frame > 0 and frame >= last_frame:
 		finish_attack()
 	if frame == attack_sound_frame:
