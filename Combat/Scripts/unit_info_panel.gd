@@ -62,7 +62,7 @@ func fill_text_data(unit: Unit) -> void:
 		
 		var local_effect_list: String = ""
 		for effect: String in a.applying_effects:
-			local_effect_list += effect + ", "
+			local_effect_list += effect.to_snake_case().replace("_", " ") + ", "
 		effect_text += BRACKETS_ENCLOSURE % local_effect_list.trim_suffix(", ") \
 				if local_effect_list != "" else "-"
 	

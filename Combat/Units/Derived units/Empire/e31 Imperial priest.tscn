@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://yhsyg68w5uf3"]
+[gd_scene load_steps=41 format=3 uid="uid://yhsyg68w5uf3"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_wpfih"]
 [ext_resource type="Texture2D" uid="uid://d4kd22gjmt85s" path="res://Arts/Empire units/clergyman attack .png" id="2_fwl8a"]
@@ -8,6 +8,23 @@
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_lnkbd"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_idslg"]
 [ext_resource type="Resource" uid="uid://2rff7s5788qv" path="res://Combat/Units/Parameters/Validation/standard_healer_validity.tres" id="7_5etr8"]
+[ext_resource type="AudioStream" uid="uid://3up3xko4aipd" path="res://Sounds/using/Damage/Default_1.wav" id="9_adea6"]
+[ext_resource type="AudioStream" uid="uid://b7r3kee6rjmo4" path="res://Sounds/using/Damage/Default_2.wav" id="10_hlifx"]
+[ext_resource type="AudioStream" uid="uid://b8o5l8pxfg4my" path="res://Sounds/using/Damage/Default_3.wav" id="11_3xhjv"]
+[ext_resource type="AudioStream" uid="uid://cucn7770e3ayy" path="res://Sounds/using/Damage/Default_4.wav" id="12_ntotl"]
+[ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="13_qcbnn"]
+[ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="14_x1dga"]
+[ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="15_udpet"]
+[ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="16_k831v"]
+[ext_resource type="AudioStream" uid="uid://bbngje7751rc2" path="res://Sounds/using/Shield/fencing hit 25.wav" id="17_5p8of"]
+[ext_resource type="AudioStream" uid="uid://dtm23j02rh6wv" path="res://Sounds/using/Attack/Empire/heal short.wav" id="18_3oloj"]
+[ext_resource type="AudioStream" uid="uid://57uq8ddrqmg0" path="res://Sounds/using/Heal/GP_Turbo_Select_1.wav" id="19_vqkrl"]
+[ext_resource type="AudioStream" uid="uid://bvxxsyhcv73oo" path="res://Sounds/using/Heal/GP_Turbo_Select_2.wav" id="20_vk0i4"]
+[ext_resource type="AudioStream" uid="uid://befag54021wep" path="res://Sounds/using/Heal/GP_Turbo_Select_3.wav" id="21_5cgfj"]
+[ext_resource type="AudioStream" uid="uid://dsge1pqh4ihjr" path="res://Sounds/using/Heal/GP_Turbo_Select_4.wav" id="22_rqhua"]
+[ext_resource type="AudioStream" uid="uid://dxiivr6txaweh" path="res://Sounds/using/Death/body fall 3.wav" id="23_8h7qn"]
+[ext_resource type="AudioStream" uid="uid://bfaxc8l3qk67k" path="res://Sounds/using/Death/body fall 6.wav" id="24_unebh"]
+[ext_resource type="AudioStream" uid="uid://bcae4mab3j5u" path="res://Sounds/using/Death/body fall 12.wav" id="25_uwjgs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rmtc7"]
 atlas = ExtResource("2_fwl8a")
@@ -116,13 +133,12 @@ animations = [{
 [sub_resource type="Resource" id="Resource_7qa5e"]
 resource_local_to_scene = true
 script = ExtResource("4_lnkbd")
-max_HP = 160
-base_damage = -60
-armor = 10
+max_HP = 150
+base_damage = 60
 
 [node name="Clergyman" instance=ExtResource("1_wpfih")]
 unit_name = "Imperial priest"
-unit_type = "Healer"
+unit_type = 3
 full_description = "Clergymen are stalwart defenders of faith and life, wielding potent healing magic to sustain their allies. Their unwavering devotion allows them to keep even gravely wounded warriors in the fray. They are a cornerstone of any formation, ensuring the survival of their party's strongest fighters."
 portrait_texture = ExtResource("2_v4rxq")
 
@@ -132,15 +148,69 @@ animation = &"attack"
 autoplay = "default"
 
 [node name="UnitParameters" parent="." index="1"]
+level = 3
 base_paramaters = SubResource("Resource_7qa5e")
 attack_effect = ExtResource("4_lf87e")
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("6_idslg")
+is_heal = true
 type = 3
-accuracy = 1.2
+accuracy = 1.0
 initiative = 10
+evadable = false
 target_validation = ExtResource("7_5etr8")
-applying_effects = {
+applying_effects = Dictionary[String, Variant]({
 "cure": null
-}
+})
+
+[node name="Default1" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
+stream = ExtResource("9_adea6")
+
+[node name="Default2" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="1"]
+stream = ExtResource("10_hlifx")
+
+[node name="Default3" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="2"]
+stream = ExtResource("11_3xhjv")
+
+[node name="Default4" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="3"]
+stream = ExtResource("12_ntotl")
+
+[node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
+stream = ExtResource("13_qcbnn")
+
+[node name="GpArmorDown2" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="1"]
+stream = ExtResource("14_x1dga")
+
+[node name="GpArmorDown3" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="2"]
+stream = ExtResource("15_udpet")
+
+[node name="GpArmorDown4" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="3"]
+stream = ExtResource("16_k831v")
+
+[node name="FencingHit25" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
+stream = ExtResource("17_5p8of")
+
+[node name="HealShort" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
+stream = ExtResource("18_3oloj")
+
+[node name="GpTurboSelect1" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]
+stream = ExtResource("19_vqkrl")
+
+[node name="GpTurboSelect2" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="1"]
+stream = ExtResource("20_vk0i4")
+
+[node name="GpTurboSelect3" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="2"]
+stream = ExtResource("21_5cgfj")
+
+[node name="GpTurboSelect4" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="3"]
+stream = ExtResource("22_rqhua")
+
+[node name="BodyFall3" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="0"]
+stream = ExtResource("23_8h7qn")
+
+[node name="BodyFall6" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="1"]
+stream = ExtResource("24_unebh")
+
+[node name="BodyFall12" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="2"]
+stream = ExtResource("25_uwjgs")

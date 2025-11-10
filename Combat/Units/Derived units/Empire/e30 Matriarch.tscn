@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://jlqcu2psmrph"]
+[gd_scene load_steps=40 format=3 uid="uid://jlqcu2psmrph"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_eiqlo"]
 [ext_resource type="Texture2D" uid="uid://demcuxubrkf3c" path="res://Arts/Placeholders/Matriarch.jpg" id="2_2p06v"]
@@ -9,6 +9,23 @@
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_i11c4"]
 [ext_resource type="Resource" uid="uid://2rff7s5788qv" path="res://Combat/Units/Parameters/Validation/standard_healer_validity.tres" id="7_vjttj"]
 [ext_resource type="Resource" uid="uid://cu702u3q22fx4" path="res://Combat/Units/Parameters/Additional targets/mass_heal_targets.tres" id="8_luoci"]
+[ext_resource type="AudioStream" uid="uid://3up3xko4aipd" path="res://Sounds/using/Damage/Default_1.wav" id="10_4uqj6"]
+[ext_resource type="AudioStream" uid="uid://b7r3kee6rjmo4" path="res://Sounds/using/Damage/Default_2.wav" id="11_ucn2q"]
+[ext_resource type="AudioStream" uid="uid://b8o5l8pxfg4my" path="res://Sounds/using/Damage/Default_3.wav" id="12_rclgx"]
+[ext_resource type="AudioStream" uid="uid://cucn7770e3ayy" path="res://Sounds/using/Damage/Default_4.wav" id="13_ui5lj"]
+[ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="14_1udxo"]
+[ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="15_isghf"]
+[ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="16_dtm37"]
+[ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="17_8d3jm"]
+[ext_resource type="AudioStream" uid="uid://bbngje7751rc2" path="res://Sounds/using/Shield/fencing hit 25.wav" id="18_tgeyo"]
+[ext_resource type="AudioStream" uid="uid://dh5ue13awilfm" path="res://Sounds/using/Attack/Empire/healing.wav" id="19_l5w5a"]
+[ext_resource type="AudioStream" uid="uid://57uq8ddrqmg0" path="res://Sounds/using/Heal/GP_Turbo_Select_1.wav" id="20_pdi46"]
+[ext_resource type="AudioStream" uid="uid://bvxxsyhcv73oo" path="res://Sounds/using/Heal/GP_Turbo_Select_2.wav" id="21_1xcow"]
+[ext_resource type="AudioStream" uid="uid://befag54021wep" path="res://Sounds/using/Heal/GP_Turbo_Select_3.wav" id="22_d73vs"]
+[ext_resource type="AudioStream" uid="uid://dsge1pqh4ihjr" path="res://Sounds/using/Heal/GP_Turbo_Select_4.wav" id="23_2sq5n"]
+[ext_resource type="AudioStream" uid="uid://dxiivr6txaweh" path="res://Sounds/using/Death/body fall 3.wav" id="24_ka3sb"]
+[ext_resource type="AudioStream" uid="uid://bfaxc8l3qk67k" path="res://Sounds/using/Death/body fall 6.wav" id="25_4jv0u"]
+[ext_resource type="AudioStream" uid="uid://bcae4mab3j5u" path="res://Sounds/using/Death/body fall 12.wav" id="26_gwgdu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b6u8f"]
 atlas = ExtResource("2_cwyp3")
@@ -104,12 +121,11 @@ animations = [{
 resource_local_to_scene = true
 script = ExtResource("4_fpf5w")
 max_HP = 150
-base_damage = -45
-armor = 10
+base_damage = 45
 
 [node name="Matriarch" instance=ExtResource("1_eiqlo")]
 unit_name = "Matriarch"
-unit_type = "Healer"
+unit_type = 3
 full_description = "Matriarchs are pillars of divine strength, safeguarding the vitality of their entire party. Their healing magic envelops all allies, keeping them resilient against the relentless tides of war. Their presence fosters unity and endurance among their comrades."
 portrait_texture = ExtResource("2_2p06v")
 
@@ -126,11 +142,66 @@ attack_effect = ExtResource("4_leg74")
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("6_i11c4")
+is_heal = true
 type = 3
-accuracy = 1.5
+accuracy = 1.0
 initiative = 10
+evadable = false
 target_validation = ExtResource("7_vjttj")
 additional_targets = ExtResource("8_luoci")
-applying_effects = {
+applying_effects = Dictionary[String, Variant]({
 "random_buff": [1, 5, 1.1]
-}
+})
+
+[node name="Default1" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
+stream = ExtResource("10_4uqj6")
+
+[node name="Default2" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="1"]
+stream = ExtResource("11_ucn2q")
+
+[node name="Default3" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="2"]
+stream = ExtResource("12_rclgx")
+
+[node name="Default4" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="3"]
+stream = ExtResource("13_ui5lj")
+
+[node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
+stream = ExtResource("14_1udxo")
+
+[node name="GpArmorDown2" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="1"]
+stream = ExtResource("15_isghf")
+
+[node name="GpArmorDown3" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="2"]
+stream = ExtResource("16_dtm37")
+
+[node name="GpArmorDown4" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="3"]
+stream = ExtResource("17_8d3jm")
+
+[node name="FencingHit25" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
+stream = ExtResource("18_tgeyo")
+
+[node name="Healing" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
+stream = ExtResource("19_l5w5a")
+volume_db = 15.0
+pitch_scale = 0.8
+
+[node name="GpTurboSelect1" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]
+stream = ExtResource("20_pdi46")
+
+[node name="GpTurboSelect2" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="1"]
+stream = ExtResource("21_1xcow")
+
+[node name="GpTurboSelect3" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="2"]
+stream = ExtResource("22_d73vs")
+
+[node name="GpTurboSelect4" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="3"]
+stream = ExtResource("23_2sq5n")
+
+[node name="BodyFall3" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="0"]
+stream = ExtResource("24_ka3sb")
+
+[node name="BodyFall6" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="1"]
+stream = ExtResource("25_4jv0u")
+
+[node name="BodyFall12" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="2"]
+stream = ExtResource("26_gwgdu")

@@ -14,7 +14,7 @@ func _apply_effect(params: Variant) -> void:
 	for unit in affected_units:
 		unit.display_effect_icon(ICONS.get_layer_data(BUFF_ICON_INDEX), self)
 		unit.parameters.add_modifier(
-				"damage", 
+				&"base_damage", 
 				self, 
 				func(damage: int) -> int: return damage + damage_increase
 		)

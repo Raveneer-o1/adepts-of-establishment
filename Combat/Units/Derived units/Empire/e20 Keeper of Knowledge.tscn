@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://iivctuuj3ka0"]
+[gd_scene load_steps=49 format=3 uid="uid://iivctuuj3ka0"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_l0il6"]
 [ext_resource type="Texture2D" uid="uid://5an6rmba7r0h" path="res://Arts/Empire units/lorekeeper attack .png" id="2_5ekka"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c7bbto2q5jen7" path="res://Combat/Effects/Scenes/ritual_attack.tscn" id="5_da6yy"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_srl5f"]
 [ext_resource type="Resource" uid="uid://brc057x45ipra" path="res://Combat/Units/Parameters/Validation/any_unit.tres" id="8_t7ba4"]
+[ext_resource type="Resource" uid="uid://bn1oo2w6a34b1" path="res://Combat/Units/Parameters/Policy/filter_allies_policy.tres" id="9_mtq8q"]
 [ext_resource type="PackedScene" uid="uid://bdpfgljbh8edv" path="res://Combat/Effects/AppliedEffects/Scenes/change_attack_type.tscn" id="9_t7ba4"]
 [ext_resource type="AudioStream" uid="uid://3up3xko4aipd" path="res://Sounds/using/Damage/Default_1.wav" id="11_mtq8q"]
 [ext_resource type="AudioStream" uid="uid://b7r3kee6rjmo4" path="res://Sounds/using/Damage/Default_2.wav" id="12_su1fu"]
@@ -24,9 +25,9 @@
 [ext_resource type="AudioStream" uid="uid://bvxxsyhcv73oo" path="res://Sounds/using/Heal/GP_Turbo_Select_2.wav" id="23_mfc5i"]
 [ext_resource type="AudioStream" uid="uid://befag54021wep" path="res://Sounds/using/Heal/GP_Turbo_Select_3.wav" id="24_4dyhx"]
 [ext_resource type="AudioStream" uid="uid://dsge1pqh4ihjr" path="res://Sounds/using/Heal/GP_Turbo_Select_4.wav" id="25_gnqi3"]
-[ext_resource type="AudioStream" uid="uid://dxiivr6txaweh" path="res://Sounds/using/Death/body fall 3.wav" id="26_7uq6b"]
-[ext_resource type="AudioStream" uid="uid://bfaxc8l3qk67k" path="res://Sounds/using/Death/body fall 6.wav" id="27_7hcho"]
-[ext_resource type="AudioStream" uid="uid://bcae4mab3j5u" path="res://Sounds/using/Death/body fall 12.wav" id="28_ixccu"]
+[ext_resource type="AudioStream" uid="uid://cxxr8oerj3ebr" path="res://Sounds/using/Death/book throw 3.wav" id="26_mtq8q"]
+[ext_resource type="AudioStream" uid="uid://c4v54s8ggd5sq" path="res://Sounds/using/Death/book throw 6.wav" id="27_su1fu"]
+[ext_resource type="AudioStream" uid="uid://cbfdgcbcdvgwd" path="res://Sounds/using/Death/book throw 7.wav" id="28_5li1y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6lyh5"]
 atlas = ExtResource("2_5ekka")
@@ -194,6 +195,7 @@ script = ExtResource("6_srl5f")
 type = 1
 initiative = 30
 target_validation = ExtResource("8_t7ba4")
+damage_policy = ExtResource("9_mtq8q")
 applying_effects = Dictionary[String, Variant]({
 "exposed": 2
 })
@@ -249,11 +251,11 @@ stream = ExtResource("24_4dyhx")
 [node name="GpTurboSelect4" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="3"]
 stream = ExtResource("25_gnqi3")
 
-[node name="BodyFall3" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="0"]
-stream = ExtResource("26_7uq6b")
+[node name="BookThrow3" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="0"]
+stream = ExtResource("26_mtq8q")
 
-[node name="BodyFall6" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="1"]
-stream = ExtResource("27_7hcho")
+[node name="BookThrow6" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="1"]
+stream = ExtResource("27_su1fu")
 
-[node name="BodyFall12" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="2"]
-stream = ExtResource("28_ixccu")
+[node name="BookThrow7" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="2"]
+stream = ExtResource("28_5li1y")

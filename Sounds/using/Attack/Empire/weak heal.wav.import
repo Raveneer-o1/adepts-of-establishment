@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://mnigd26u7r22"
+path="res://.godot/imported/weak heal.wav-9971d418bdef173e05afeb2bc5ffe279.sample"
+
+[deps]
+
+source_file="res://Sounds/using/Attack/Empire/weak heal.wav"
+dest_files=["res://.godot/imported/weak heal.wav-9971d418bdef173e05afeb2bc5ffe279.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
