@@ -94,6 +94,8 @@ var additional_targets: BaseAdditionalTargets:
 ## [code]&"shot"[/code] tag (documentation in the [Unit] class).
 var tags: Array[StringName] = []
 
+var is_heal: bool
+
 var applied_damage: int = 0
 
 ## Calles [method Unit.resolve_attack] on each of its targets
@@ -187,6 +189,7 @@ func __init_via_UnitAttack(_unit_attack: UnitAttack, eff: Resource) -> void:
 	evadable = _unit_attack.evadable
 	unit_attack = _unit_attack
 	targets_chosen = _unit_attack.targets_needed
+	is_heal = _unit_attack.is_heal
 	
 	if _unit_attack.effect_override:
 		effect = _unit_attack.effect_override

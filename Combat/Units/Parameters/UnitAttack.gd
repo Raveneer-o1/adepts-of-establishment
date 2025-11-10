@@ -22,6 +22,8 @@ var unit: Unit
 @export var damage_multiplier := 1.0
 ## If [code]true[/code], damage_multiplier is used as damage and not as multiplier
 @export var damage_override := false
+## if [code]true[/code], heals the target instead of applying damage
+@export var is_heal: bool = false
 ## Damage type
 @export var type: GlobalDefs.AttackType
 ## Chance the attack won't be missed

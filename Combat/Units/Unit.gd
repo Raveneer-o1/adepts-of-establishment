@@ -280,9 +280,13 @@ func resolve_attack(attack: Attack, damage: int, delay: int = 0, finalize: bool 
 			attack.applying_effects[effect_name]
 		)
 	
-	var damage_taken: int = \
-		take_damage(damage) if finalize else \
-		schedule_damage(damage, delay)
+	var damage_taken: int = (
+			heal(damage) if finalize else \
+			schedule_heal(damage, delay)
+		) if attack.is_heal else(
+			take_damage(damage) if finalize else \
+			schedule_damage(damage, delay)
+		)
 	
 	attack.applied_damage += damage_taken;
 	
@@ -490,7 +494,7 @@ func resurrect() -> void:
 ## Returns the actual amount of health restored (may differ from the provided value
 ## due to effects, randomization, or other modifiers). [br]
 ## Negative values deal damage instead - returns zero in this case.
-func heal(value: int) -> int:
+func heal(value: int, message: String = "") -> int:
 	if value == 0:
 		return 0
 	if value < 0:
@@ -500,6 +504,22 @@ func heal(value: int) -> int:
 	var hp_healed: int = parameters.heal(value)
 	display_heal(value)
 	return hp_healed
+
+func schedule_heal(
+	value: int, 
+	delay: int, 
+	message: String = "", 
+) -> int:
+	if delay <= 0: return heal(value, message)
+	var healed: int = parameters.heal(value)
+	
+	while parameter_snapshots.size() < delay-1:
+		parameter_snapshots.append(null)  # add padding as delay
+	
+	parameter_snapshots.append(
+		UnitParametersSnapshot.new(parameters, message, HEAL_COLOR)
+	)
+	return healed
 
 
 const MIN_DAMAGE_COLOR = Color(0.7, 0.7, 1.0)
