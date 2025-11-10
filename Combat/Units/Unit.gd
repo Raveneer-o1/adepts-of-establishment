@@ -60,7 +60,7 @@ const SKIP_DELAY = 0.4
 
 @export var unit_name: String
 ## Unit type is used to define default behavior if it's not overriden elsewhere.
-## Note: any other field or effect has a priority over this ruleset.
+## Note: any other field or effect shoud have a priority over this ruleset.
 @export var unit_type: GlobalDefs.UnitType
 @export_multiline var brief_description: String
 @export_multiline var full_description: String
@@ -274,21 +274,19 @@ func resolve_attack(attack: Attack, damage: int, delay: int = 0, finalize: bool 
 			attack.tags.append(&"evaded")
 			return
 	
-	# apply effects if any are present
-	if not attack.applying_effects.is_empty():
-		for effect_name: String in attack.applying_effects:
-			parameters.apply_effect(
-				effect_name.to_lower(),
-				attack.applying_effects[effect_name]
-			)
+	for effect_name: String in attack.applying_effects:
+		parameters.apply_effect(
+			effect_name.to_lower(),
+			attack.applying_effects[effect_name]
+		)
 	
 	var damage_taken: int = \
-		take_damage(damage) if finalize or delay <= 0 else \
+		take_damage(damage) if finalize else \
 		schedule_damage(damage, delay)
 	
 	attack.applied_damage += damage_taken;
 	
-	# if untit is dead after taking damage, it was killed by this attack
+	# if unit is dead after taking damage, it was killed by this attack
 	if parameters.dead:
 		EventBus.unit_killed.emit(self, attack.attacker)
 	
@@ -470,7 +468,7 @@ func resurrect() -> void:
 		if spot.unit != null:
 			return
 	else:
-		print_debug("Trying to resurrect a unit that doesn't have a UnitSpot as a grandparent!")
+		push_error("Trying to revive a unit that doesn't have a UnitSpot as a grandparent!")
 		return
 	
 	get_parent().remove_child(self)
@@ -479,12 +477,16 @@ func resurrect() -> void:
 	parameters.dead = false
 	sp.assign_unit(self)
 	visible = true
+	death_visualized = false
 	animation_handle.play(&"default")
 	
-	system.display_text_near_unit(self, "Resurrected!")
+	system.display_text_near_unit(self, "Revived!")
 	EventBus.unit_revived.emit(self)
 
-## Restores health to the unit and triggers associated animations.
+## Restores health to the unit and plays associated animations and sounds. [br]
+## Returns the actual amount of health restored (may differ from the provided value
+## due to effects, randomization, or other modifiers). [br]
+## Negative values deal damage instead - returns zero in this case.
 func heal(value: int) -> int:
 	if value == 0:
 		return 0
@@ -503,7 +505,7 @@ const HEAL_COLOR = Color.LIME_GREEN
 
 
 ## Returnes interpolated color between [member MIN_DAMAGE_COLOR] and [member MAX_DAMAGE_COLOR]
-## with the factor of damage dealt as a percentage of total helth
+## with the factor of damage dealt as a percentage of total health
 func damage_color(dmg: int) -> Color:
 	var damage_percentage: float = float(dmg) / float(parameters.max_hp)
 	damage_percentage = clampf(damage_percentage, 0.0, 1.0)
@@ -512,8 +514,7 @@ func damage_color(dmg: int) -> Color:
 
 ## Applies damage to the unit and triggers associated animations bypassing armor. [br]
 ## For parameter reference see [method take_damage] [br]
-## [color=red]Warning:[/color] this method does not allow animation synchronization.
-## Use [method schedule_damage] instead.
+## [color=pink]Warning:[/color] this method does not allow animation synchronization.
 func take_direct_damage(dmg: int, message: String = "", text_color: Color = Color.TRANSPARENT) -> void:
 	if dmg <= 0: return
 	
@@ -537,6 +538,8 @@ func take_direct_damage(dmg: int, message: String = "", text_color: Color = Colo
 ## [param message] is message that will be displayed near the number.[br]
 ## [param text_color] is color of the text. If left as Color.TRANSPARENT,
 ## color is detemined by calling [method damage_color].[br]
+## Returns: the actual amount of health lost (may differ from the provided
+## value due to effects, randomization, or other modifiers). [br]
 ## [color=red]Warning:[/color] this method does not allow animation synchronization.
 ## Use [method schedule_damage] instead.
 func take_damage(dmg: int, message: String = "", text_color: Color = Color.TRANSPARENT) -> int:
@@ -547,18 +550,46 @@ func take_damage(dmg: int, message: String = "", text_color: Color = Color.TRANS
 		return 0
 	
 	var damage_taken := parameters.take_damage(dmg)
-	display_damage(dmg, message, text_color)
+	display_damage(damage_taken, message, text_color)
 	return damage_taken
 
+## [b]Returns:[/b] the actual amount of health lost (may differ from the provided
+## value due to effects, randomization, or other modifiers).[br][br]
 ## Schedules a damage entry in [member parameter_snapshots] for later visualization.
 ## The damage will be finalized when [signal EventBus.attack_reached] is emitted, or
-## manually by calling [method finalize_attack]. Returns the damage taken.
+## manually by calling [method finalize_attack].[br]
+## [param dmg] is damage that is to be taken by unit.[br]
+## [param delay]: Number of [signal EventBus.attack_reached] triggers before 
+## visualizing the damage. [color=yellow]Note:[/color] Count starts at 1 - value
+## of zero triggers animation immediately.[br]
+## [param message] is message that will be displayed near the number.[br]
+## [param text_color] is color of the text. If left as Color.TRANSPARENT,
+## color is detemined by calling [method damage_color].[br][br]
+## Example sequence:
+## [codeblock]
+## unit.schedule_damage(10, 1) # Health reduced by ~10 internally, no visual change yet
+## unit.schedule_damage(20, 2) # Health reduced by ~30 internally, no visual change yet
+## [/codeblock]
+## [codeblock]
+## EventBus.attack_reached.emit(unit) # Visuals update to show ~10 damage
+## EventBus.attack_reached.emit(unit) # Visuals update to show ~30 total damage
+## [/codeblock]
+## Manual delay calculation is unnecessary - the snapshot is appended to the end of
+## [member parameter_snapshots]. Padding is automatically added if needed to achieve
+## the requested delay, but if the list is already longer, it's simply appended.[br]
+## This example produces identical results to the previous one:
+## [codeblock]
+## unit.schedule_damage(10, 1)
+## unit.schedule_damage(20, 1) # No need to increment delay for sequential damage
+## # unit.schedule_damage(30, 0) # Avoid 0 delay - triggers immediate visualization
+## [/codeblock]
 func schedule_damage(
 	dmg: int, 
 	delay: int, 
 	message: String = "", 
 	text_color: Color = Color.TRANSPARENT
 ) -> int:
+	if delay <= 0: return take_damage(dmg, message, text_color)
 	var damage_taken: int = parameters.take_damage(dmg)
 	
 	while parameter_snapshots.size() < delay-1:
