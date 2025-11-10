@@ -212,7 +212,8 @@ func check_shielding(attack: Attack) -> void:
 		var potential_shields: Array[Unit] = \
 			target.party.get_units_at_positions( [pos+1, pos-1], false )
 		for s in potential_shields:
-			s.attempt_shielding(attack, target)
+			if s.parameters.shielding or target.unit_type == GlobalDefs.UnitType.Support:
+				s.attempt_shielding(attack, target)
 
 ## Books an attack for later resolution. This allows effects to modify the attack before it resolves.
 ## Emits a signal when an attack is booked, triggering any relevant effects.

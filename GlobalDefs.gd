@@ -7,7 +7,9 @@ enum UnitType{
 	## Unit automatically adds [code]&"shot"[/code] tag to its attacks
 	Archer,
 	## No special effects
-	Mage
+	Mage,
+	## Support units can be [i]shielded[/i] by others even if that unit is not [i]shielding[/i]
+	Support,
 }
 
 ## Defines the type of attack or damage, which determines synergies, 

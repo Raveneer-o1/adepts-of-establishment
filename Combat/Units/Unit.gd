@@ -347,11 +347,14 @@ func arrange_attacks_and_set_next() -> void:
 
 #region Combat actions
 
+## @experimental: if [member UnitParameters.shielding] is set to [code]false[/code],
+## the chance is cut in half
 func attempt_shielding(attack: Attack, unit: Unit) -> void:
-	if not parameters.shielding: return
 	if not unit: return
+	var chance := parameters.shielding_chance if parameters.shielding else \
+		parameters.shielding_chance / 2
 	
-	if randf() > parameters.shielding_chance: return
+	if randf() > chance: return
 	
 	system.display_text_near_unit(self, "Shield!")
 	# if double shield attempt, split the damage
