@@ -105,7 +105,7 @@ func resolve(finalize: bool = false) -> void:
 	else:
 		standard_resolution(finalize)
 	EventBus.attack_resolved.emit(self)
-	EventBus.attack_resolved_trigger.emit(self)
+	#EventBus.attack_resolved_trigger.emit(self)
 
 func standard_resolution(finalize: bool = false) -> void:
 	var i := 1

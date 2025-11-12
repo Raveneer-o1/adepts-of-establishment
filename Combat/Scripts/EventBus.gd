@@ -42,9 +42,10 @@ var packed_menu: PackedScene
 @warning_ignore("unused_signal") signal attack_animation_finished(unit: Unit)
 ## This signal is automatically disconnected from all receivers at the end of each turn.
 ## For persistent connections, use [signal attack_resolved] instead.
+## @deprecated: use [method Object.call_deferred] instead
 @warning_ignore("unused_signal") signal attack_resolved_trigger(attack: Attack)
-## Unlike [signal attack_resolved_trigger], this signal maintains connections.
-## Avoid using this signal for one-time effects that require manual cleanup.
+## This signal maintains connections.
+## Avoid using it for one-time effects that require manual cleanup.
 @warning_ignore("unused_signal") signal attack_resolved(attack: Attack)
 @warning_ignore("unused_signal") signal unit_died(unit: Unit)
 @warning_ignore("unused_signal") signal unit_revived(unit: Unit)

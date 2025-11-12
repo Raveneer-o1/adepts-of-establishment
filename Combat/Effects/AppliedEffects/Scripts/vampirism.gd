@@ -14,17 +14,16 @@ func _get_description() -> String:
 			else str( int(heal) )
 		)
 
+func apply_heal(a: Attack)->void:
+	@warning_ignore("narrowing_conversion")
+	var val: int = (heal * a.applied_damage) if is_percentage else heal
+	target_unit.heal(val)
+
 func vampiric_heal(attack: Attack) ->void:
 	if attack.attacker == target_unit:
-		@warning_ignore("narrowing_conversion")
-		EventBus.attack_resolved_trigger.connect(
-			func(a: Attack)->void:
-				if a.attacker == target_unit:
-					var val: int = heal * attack.applied_damage if is_percentage else heal
-					target_unit.heal(val)
-		)
+		self.call_deferred(&"apply_heal", attack)
 
 ## Called when the effect is applied to a unit.
 func _apply_effect(params: Variant) -> void:
-	_signal_function_pairs[EventBus.attack_booked] = vampiric_heal
+	_signal_function_pairs[EventBus.attack_resolved] = vampiric_heal
 	

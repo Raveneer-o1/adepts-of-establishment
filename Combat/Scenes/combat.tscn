@@ -72,6 +72,7 @@ animations = [{
 }]
 
 [node name="Combat" type="Node2D" node_paths=PackedStringArray("left_player", "right_player")]
+position = Vector2(0, 1)
 script = ExtResource("1_y8ty4")
 unit_marker = ExtResource("3_tn6ox")
 left_player = NodePath("Left Player API")

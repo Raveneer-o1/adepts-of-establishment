@@ -493,7 +493,9 @@ func resurrect() -> void:
 ## Restores health to the unit and plays associated animations and sounds. [br]
 ## Returns the actual amount of health restored (may differ from the provided value
 ## due to effects, randomization, or other modifiers). [br]
-## Negative values deal damage instead - returns zero in this case.
+## Negative values deal damage instead - returns zero in this case.[br]
+## [color=red]Warning:[/color] this method does not allow animation synchronization.
+## Use [method schedule_heal] instead.
 func heal(value: int, message: String = "") -> int:
 	if value == 0:
 		return 0
@@ -502,7 +504,7 @@ func heal(value: int, message: String = "") -> int:
 		return 0
 	
 	var hp_healed: int = parameters.heal(value)
-	display_heal(value)
+	display_heal(hp_healed, message)
 	return hp_healed
 
 func schedule_heal(
