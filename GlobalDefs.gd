@@ -30,3 +30,23 @@ enum AttackType {
 	## and those that should not based on attack type.[/color]
 	None
 }
+
+# List of all avaliable factions.
+# Note: this should include all factions, not only playable ones
+enum Faction {
+	## Playable faction (humans)
+	Empire,
+	## Playable faction (undead)
+	Necropolis,
+	## Playable faction (demons)
+	DarkForces,
+	## Playable faction (elves and dwarves)
+	NaturePact,
+	
+	Pirates,
+	Bandits,
+	Greenskin,
+	
+	## For player-defined factions and factions defined in add-ons
+	Custom,
+}

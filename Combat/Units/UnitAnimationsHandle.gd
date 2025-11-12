@@ -4,10 +4,11 @@ class_name UnitAnimationsHandle extends AnimatedSprite2D
 
 @export var frames_to_emit: Array[int] = []
 
-## After this frame all attacks are resolved and player can act
+## All attacks are finalized after this frame number, allowing player input
+## before animations complete. [br]
+## Value of -1 indicates attacks will finalize only after their animations finish completely.
 @export var last_frame: int = -1
 
-#@export var conclude_frame: int = -1
 @export var attack_sound_frame: int = 1
 
 var now_attacking: bool = false

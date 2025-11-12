@@ -60,8 +60,10 @@ const SKIP_DELAY = 0.4
 
 @export var unit_name: String
 ## Unit type is used to define default behavior if it's not overriden elsewhere.
-## Note: any other field or effect shoud have a priority over this ruleset.
+## Note: any other field or effect should have a priority over this ruleset.
 @export var unit_type: GlobalDefs.UnitType
+## @experimental: currently does not have any impact
+@export var faction: GlobalDefs.Faction
 @export_multiline var brief_description: String
 @export_multiline var full_description: String
 @export var portrait_texture: Texture2D
