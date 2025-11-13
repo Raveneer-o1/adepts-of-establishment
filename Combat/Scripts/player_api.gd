@@ -1,14 +1,15 @@
 extends Node
 class_name PlayerAPI
 
-## This class serves as API for AI interactions with the combat system.
+## This class serves as API for player and AI interactions with the combat system.
 ##
 ## When the combat system requests an input, it calles this class
 ## and any calles to the combat system done through this class.
 
+## Only relevant for AI. [br]
 ## Delay between two consecutive actions. This makes combat flow more natural and by delaying
 ## signal emition allows the stack to be reset if the battle is played between two AIs
-const ACTION_DELAY = 0.15
+const ACTION_DELAY = 0.5
 
 # Intended to be used by an AI. The controller script connects to
 # this signal rather than global EventBus

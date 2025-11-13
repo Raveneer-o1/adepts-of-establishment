@@ -18,7 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="16_0wfhh"]
 [ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="17_8x7b8"]
 [ext_resource type="AudioStream" uid="uid://bbngje7751rc2" path="res://Sounds/using/Shield/fencing hit 25.wav" id="18_y84iw"]
-[ext_resource type="AudioStream" uid="uid://ct7fconf5f2pi" path="res://Sounds/using/Attack/arrow23333333333333333.mp3" id="19_g6cns"]
+[ext_resource type="AudioStream" uid="uid://ct7fconf5f2pi" path="res://Sounds/using/Attack/Arrow.mp3" id="19_g6cns"]
 [ext_resource type="AudioStream" uid="uid://57uq8ddrqmg0" path="res://Sounds/using/Heal/GP_Turbo_Select_1.wav" id="20_1gy1m"]
 [ext_resource type="AudioStream" uid="uid://bvxxsyhcv73oo" path="res://Sounds/using/Heal/GP_Turbo_Select_2.wav" id="21_ufitq"]
 [ext_resource type="AudioStream" uid="uid://befag54021wep" path="res://Sounds/using/Heal/GP_Turbo_Select_3.wav" id="22_77tcn"]

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckdu4wsv4o0d5"]
+
+[ext_resource type="Script" uid="uid://dsa6qbe5lr3r2" path="res://Combat/Effects/AppliedEffects/Scripts/random_retaliation_on_debuff.gd" id="1_dsosb"]
+
+[node name="RetaliationOnDebuff" type="Node"]
+script = ExtResource("1_dsosb")
+color_effect = Color(0.7010479, 0.4293788, 0.45004576, 1)
+effect_name = "Twisted will"
+icon_index = 10
+description = "When this unit recieves debuff, it increases random stat."
