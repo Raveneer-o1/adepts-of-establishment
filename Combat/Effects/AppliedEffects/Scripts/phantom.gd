@@ -21,11 +21,12 @@ func _apply_effect(params: Variant) -> void:
 	if params is GlobalDefs.AttackType:
 		type = params
 	if params is Array:
-		for p: Variant in params:
-			if p is int:
-				turns = p
-			if p is GlobalDefs.AttackType:
-				type = p
+		if params.size() != 2:
+			push_error("Unexpected numer of parameters! Need 2, got %d" % params.size())
+			queue_free()
+			return
+		type = params[0]
+		turns = params[1]
 	
 	if turns == 0:
 		queue_free()
