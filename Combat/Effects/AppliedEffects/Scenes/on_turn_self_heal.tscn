@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cm1oq3au6bkmk"]
+
+[ext_resource type="Script" uid="uid://6ppl2jwbniqn" path="res://Combat/Effects/AppliedEffects/Scripts/on_turn_self_heal.gd" id="1_nsapl"]
+
+[node name="OnTurnHeal" type="Node"]
+script = ExtResource("1_nsapl")
+color_effect = Color(5.7756904e-07, 0.7761564, 0.1897335, 1)
+effect_name = "Regeneration"
+icon_index = 3
+description = "At the start of its turn, this unit restores %d health"
+stackable = true

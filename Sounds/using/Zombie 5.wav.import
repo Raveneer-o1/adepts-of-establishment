@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://iressnjsyou7"
+path="res://.godot/imported/Zombie 5.wav-16fe5c0f41d0d3b10b83e4957b0da5e9.sample"
+
+[deps]
+
+source_file="res://Sounds/using/Zombie 5.wav"
+dest_files=["res://.godot/imported/Zombie 5.wav-16fe5c0f41d0d3b10b83e4957b0da5e9.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=true
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

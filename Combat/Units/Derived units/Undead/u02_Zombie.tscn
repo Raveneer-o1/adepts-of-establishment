@@ -1,11 +1,24 @@
-[gd_scene load_steps=19 format=3 uid="uid://b0eba27hxcu2e"]
+[gd_scene load_steps=32 format=3 uid="uid://b0eba27hxcu2e"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_4th5g"]
 [ext_resource type="Texture2D" uid="uid://dnu1i5aj7sqs8" path="res://Arts/Undead units/u05 zombie attack  (1).png" id="2_trhnh"]
+[ext_resource type="Texture2D" uid="uid://bpbx1r0p386fn" path="res://Arts/Placeholders/Zombie.jpg" id="2_umogf"]
 [ext_resource type="Texture2D" uid="uid://oassqke0wxdy" path="res://Arts/Undead units/u05 zombie idle .png" id="3_3ikqb"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_3lo8i"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_2hxtx"]
 [ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="6_7pxa0"]
+[ext_resource type="PackedScene" uid="uid://cm1oq3au6bkmk" path="res://Combat/Effects/AppliedEffects/Scenes/on_turn_self_heal.tscn" id="7_5uls6"]
+[ext_resource type="AudioStream" uid="uid://cvskja6iwrdy" path="res://Sounds/using/Attack/Undead/Zombie attack.wav" id="7_fd22a"]
+[ext_resource type="AudioStream" uid="uid://ud2enk040rd8" path="res://Sounds/using/Heal/Undead/heal 1.wav" id="8_hgqb3"]
+[ext_resource type="AudioStream" uid="uid://ci47o2lv1qjam" path="res://Sounds/using/Zombie 6.wav" id="8_ms20f"]
+[ext_resource type="AudioStream" uid="uid://b7opuqbnm6svt" path="res://Sounds/using/Heal/Undead/heal 2.wav" id="9_2xqd1"]
+[ext_resource type="AudioStream" uid="uid://nidcq0783clm" path="res://Sounds/using/Zombie 7.wav" id="9_5uls6"]
+[ext_resource type="AudioStream" uid="uid://dcecpjy6tsybc" path="res://Sounds/using/Damage/Undead/Zombie 1.wav" id="10_njkc6"]
+[ext_resource type="AudioStream" uid="uid://cq616wql24wd1" path="res://Sounds/using/Zombie 2.wav" id="10_umogf"]
+[ext_resource type="AudioStream" uid="uid://t0c8dbnasa4u" path="res://Sounds/using/zombie female groan.wav" id="11_2xqd1"]
+[ext_resource type="AudioStream" uid="uid://iressnjsyou7" path="res://Sounds/using/Zombie 5.wav" id="11_f1ern"]
+[ext_resource type="AudioStream" uid="uid://c6nqbbyvejkh8" path="res://Sounds/using/Zombie 4.wav" id="13_54a2b"]
+[ext_resource type="AudioStream" uid="uid://ck046tmvw6v5d" path="res://Sounds/using/Zombie 3.wav" id="14_tfj68"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_msrv3"]
 atlas = ExtResource("2_trhnh")
@@ -70,7 +83,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack",
-"speed": 5.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -87,19 +100,23 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 3.0
 }]
 
 [sub_resource type="Resource" id="Resource_182fl"]
 resource_local_to_scene = true
 script = ExtResource("4_3lo8i")
-max_HP = 180
-base_damage = 42
-armor = 10
+max_HP = 200
+base_damage = 35
+armor = 15
+evasion = 0.025
+shielding_chance = 0.8
 
 [node name="Zombie" instance=ExtResource("1_4th5g")]
 unit_name = "Zombie"
+faction = 1
 full_description = "Zombies are the reanimated corpses of the recently deceased, brought back to life through dark magic. Slow and uncoordinated, they rely on their overwhelming resilience to survive attacks that would fell most living warriors. Though lacking in intelligence, their sheer persistence makes them a constant threat on the battlefield."
+portrait_texture = ExtResource("2_umogf")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_x5s0m")
@@ -108,11 +125,48 @@ autoplay = "default"
 frames_to_emit = Array[int]([2])
 
 [node name="UnitParameters" parent="." index="1"]
+level = 2
 base_paramaters = SubResource("Resource_182fl")
-immunities = Array[int]([3])
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("5_2hxtx")
-accuracy = 0.75
 initiative = 30
 target_validation = ExtResource("6_7pxa0")
+
+[node name="OnTurnHeal" parent="UnitParameters" index="2" instance=ExtResource("7_5uls6")]
+color_effect = Color(0.65128255, 0.44675976, 0.34491652, 1)
+
+[node name="Zombie" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
+stream = ExtResource("10_njkc6")
+
+[node name="Zombie6" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="1"]
+stream = ExtResource("8_ms20f")
+
+[node name="Zombie7" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="2"]
+stream = ExtResource("9_5uls6")
+
+[node name="Zombie2" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
+stream = ExtResource("10_umogf")
+
+[node name="Zombie5" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="1"]
+stream = ExtResource("11_f1ern")
+
+[node name="ZombieAttack" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
+stream = ExtResource("7_fd22a")
+
+[node name="Zombie4" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="1"]
+stream = ExtResource("13_54a2b")
+volume_db = -5.0
+
+[node name="Zombie3" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="2"]
+stream = ExtResource("14_tfj68")
+volume_db = -3.0
+
+[node name="Heal1" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]
+stream = ExtResource("8_hgqb3")
+
+[node name="Heal2" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="1"]
+stream = ExtResource("9_2xqd1")
+
+[node name="ZombieFemaleGroan" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="0"]
+stream = ExtResource("11_2xqd1")

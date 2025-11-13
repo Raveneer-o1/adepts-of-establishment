@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://bf8wof2u2utkl"
-path="res://.godot/imported/skeleton.wav-e3976bd21ccdb28bbb3613b1b81992bd.sample"
+uid="uid://b7opuqbnm6svt"
+path="res://.godot/imported/heal 2.wav-bb0fcde2a4220e669c80cb3ba2edcec2.sample"
 
 [deps]
 
-source_file="res://Sounds/using/Damage/skeleton.wav"
-dest_files=["res://.godot/imported/skeleton.wav-e3976bd21ccdb28bbb3613b1b81992bd.sample"]
+source_file="res://Sounds/using/Heal/Undead/heal 2.wav"
+dest_files=["res://.godot/imported/heal 2.wav-bb0fcde2a4220e669c80cb3ba2edcec2.sample"]
 
 [params]
 

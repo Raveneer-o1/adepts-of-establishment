@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dcecpjy6tsybc"
+path="res://.godot/imported/Zombie 1.wav-d987734e3b0550f7823aa4a07230feff.sample"
+
+[deps]
+
+source_file="res://Sounds/using/Damage/Undead/Zombie 1.wav"
+dest_files=["res://.godot/imported/Zombie 1.wav-d987734e3b0550f7823aa4a07230feff.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

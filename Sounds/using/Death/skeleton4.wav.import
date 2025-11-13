@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cah64hulklncu"
-path="res://.godot/imported/skeleton4.wav-c31bae817e5d2db92f5cf8db753bcf36.sample"
+path="res://.godot/imported/skeleton4.wav-4ed5df993d2bffbbb057a17c9cd15e83.sample"
 
 [deps]
 
-source_file="res://Sounds/using/Damage/skeleton4.wav"
-dest_files=["res://.godot/imported/skeleton4.wav-c31bae817e5d2db92f5cf8db753bcf36.sample"]
+source_file="res://Sounds/using/Death/skeleton4.wav"
+dest_files=["res://.godot/imported/skeleton4.wav-4ed5df993d2bffbbb057a17c9cd15e83.sample"]
 
 [params]
 

@@ -140,7 +140,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vpers")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack 2",
 "speed": 5.0
 }, {
@@ -188,11 +188,10 @@ armor = 65
 
 [node name="Knight Champion" instance=ExtResource("1_br7ob")]
 unit_name = "Knight Champion"
-unit_type = "Defender"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_6f5fm")
-animation = &"attack"
+animation = &"attack 2"
 autoplay = "default"
 offset = Vector2(8, 0)
 frames_to_emit = Array[int]([3])

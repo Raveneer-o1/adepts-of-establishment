@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cb84o5ukeamvu"]
+
+[ext_resource type="Script" uid="uid://dc32xp6auvtql" path="res://Combat/Effects/AppliedEffects/Scripts/phantom.gd" id="1_wdi2a"]
+
+[node name="Protection" type="Node"]
+script = ExtResource("1_wdi2a")
+effect_name = "Protection"
+icon_index = 12
+description = "This unit is immune to the damage type [i]%s[/i]"

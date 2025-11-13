@@ -9,7 +9,7 @@ class_name UnitInfoPanel
 const HP_LINE = "HP: %d/%d\n"
 const DAMAGE_LINE = "Damage: %d (%s)\n"
 const ARMOR_LINE = "Armor: %d\n"
-const EVASION_LINE = "Evasion: %d\n"
+const EVASION_LINE = "Evasion: %s\n"
 const ACCURACY_LINE = "Accuracy: %s\n"
 const INITIATIVE_LINE = "Initiative: %s\n"
 const TYPE_LINE = "Type: %s\n"
@@ -29,8 +29,12 @@ static func get_accuracy_text(a: UnitAttack) -> String:
 	return str(roundi(val))
 
 static func get_evasion_text(u: Unit) -> String:
-	var val: int = roundi(u.parameters.evasion_represetation * 100)
-	return EVASION_LINE % val
+	var val: float = u.parameters.evasion_represetation
+	var s: String = ""
+	if is_nan(val): s = "0"
+	elif is_inf(val): s = "Guaranteed"
+	else: s = str(int(val * 100.0))
+	return EVASION_LINE % s
 
 func fill_text_data(unit: Unit) -> void:
 	info.text = ""

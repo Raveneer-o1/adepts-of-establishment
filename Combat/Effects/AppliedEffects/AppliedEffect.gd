@@ -7,7 +7,13 @@ class_name AppliedEffect
 ## [AppliedEffect]s should be considered non-deterministic objects. 
 ## References can become invalid at any time. This even applies to new effects: 
 ## some effects (like cure) call [code]queue_free()[/code] 
-## on themselves in [method initialize] [br]
+## on themselves in [method initialize]. [br]
+## [color=lightgreen]Note:[/color] [code]queue_free()[/code] schedules deletion at frame end,
+## not immediately. This means: (i) reference validity need only be checked once per call chain,
+## and (ii) use [method Object.is_queued_for_deletion] to verify pending deletion status. [br]
+## This is also the reason why [code]free()[/code] should [b]not[/b] be used with this object:
+## Some of the game logic verifies validity only once and would break if the object was
+## suddenly freed. [br][br]
 ## This node attaches directly to a unit's [UnitParameters] node. Remove it using either: [br]
 ## - [method lift_effect] for normal removal [br]
 ## - [code]queue_free()[/code] to remove without triggering associated effects [br]
@@ -24,7 +30,6 @@ class_name AppliedEffect
 @export var color_start: Color = Color.BURLYWOOD
 @export var color_effect: Color = Color.YELLOW
 @export var color_end: Color = Color.WHITE
-
 
 const ICONS := preload("res://Arts/icons.png")
 

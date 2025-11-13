@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cpryts6svhgga"
+path="res://.godot/imported/Destined attack.ogg-f787bbe154b08956bc57a51f6d2ec977.oggvorbisstr"
+
+[deps]
+
+source_file="res://Sounds/using/Attack/Undead/Destined attack.ogg"
+dest_files=["res://.godot/imported/Destined attack.ogg-f787bbe154b08956bc57a51f6d2ec977.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

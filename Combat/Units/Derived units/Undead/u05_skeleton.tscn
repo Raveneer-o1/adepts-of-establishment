@@ -77,7 +77,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_uau5m")
 }, {
-"duration": 1.0,
+"duration": 0.75,
 "texture": SubResource("AtlasTexture_0pjsh")
 }, {
 "duration": 1.0,
@@ -129,7 +129,6 @@ armor = 10
 
 [node name="Skeleton" instance=ExtResource("1_frigw")]
 unit_name = "Skeleton"
-unit_type = "Warrior"
 full_description = "Skeletons are the quintessential soldiers of the undead, reassembled from the bones of the dead. While they lack the sophistication of living warriors, their undying loyalty and endless stamina make them reliable infantry. Armed with a variety of weapons, they form the backbone of the Necropolis's armies, marching tirelessly to their master's commands."
 portrait_texture = ExtResource("2_7f057")
 
@@ -137,6 +136,8 @@ portrait_texture = ExtResource("2_7f057")
 sprite_frames = SubResource("SpriteFrames_5p842")
 animation = &"attack"
 autoplay = "default"
+frame = 7
+frame_progress = 1.0
 offset = Vector2(8, 0)
 frames_to_emit = Array[int]([4])
 
@@ -145,13 +146,13 @@ level = 3
 base_paramaters = SubResource("Resource_b51no")
 immunities = Array[int]([3])
 
-[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("5_7e62a")
 accuracy = 0.82
 initiative = 40
 target_validation = ExtResource("6_ksd4k")
 
-[node name="Crafted body" parent="UnitParameters" index="3" instance=ExtResource("7_mknrn")]
+[node name="Crafted body" parent="UnitParameters" index="2" instance=ExtResource("7_mknrn")]
 buff_parameters = {
 "armor": 5,
 "base_damage": 5,

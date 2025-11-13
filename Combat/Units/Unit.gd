@@ -498,7 +498,7 @@ func resurrect() -> void:
 ## Negative values deal damage instead - returns zero in this case.[br]
 ## [color=red]Warning:[/color] this method does not allow animation synchronization.
 ## Use [method schedule_heal] instead.
-func heal(value: int, message: String = "") -> int:
+func heal(value: int, message: String = "", text_color: Color = Color.TRANSPARENT) -> int:
 	if value == 0:
 		return 0
 	if value < 0:
@@ -506,7 +506,7 @@ func heal(value: int, message: String = "") -> int:
 		return 0
 	
 	var hp_healed: int = parameters.heal(value)
-	display_heal(hp_healed, message)
+	display_heal(hp_healed, message, text_color)
 	return hp_healed
 
 func schedule_heal(

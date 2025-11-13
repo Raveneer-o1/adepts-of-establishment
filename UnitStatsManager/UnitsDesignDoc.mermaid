@@ -312,7 +312,7 @@ end
 subgraph Undead
     subgraph UndeadWarriors
         direction TB
-        subgraph Warrior
+        subgraph Destined
             Warrior_d("
             basic warrior.
             this unit is not undead yet, it serves necropolis as a living.
@@ -327,6 +327,7 @@ subgraph Undead
             significantly decreased damage and evasion.
             significantly increased hp.
             minor self-heal at the start of the unit's turn
+            improved scaling with level (this is a unit that makes sense to keep without evolving)
             "):::desc
         end
         subgraph Templar

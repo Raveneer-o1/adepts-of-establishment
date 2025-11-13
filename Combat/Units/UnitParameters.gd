@@ -18,12 +18,15 @@ const STANDARD_FRACTIONAL_DAMAGE_DEVIATION = 0.1
 
 @export var base_paramaters: BaseParameters
 
-
 var attacks: Array[UnitAttack] = []
 
 @export var large_unit: bool = false
 
-@export var immunities: Array[GlobalDefs.AttackType] = []
+## Base immunities that are intended to remain unmodified under normal circumstances.
+## The intended design is to modify immunities only by adding entries to
+## [member stats_modifiers], though this convention is not strictly enforced - 
+## the list can be modified dynamically if required.
+@export var underlying_immunities: Array[GlobalDefs.AttackType] = []
 
 @export var attack_effect: Resource
 @export var other_effects: Array[Resource]
@@ -97,6 +100,16 @@ var underlying_shielding: bool = false
 
 #region Data broker
 
+## Unlike other data broker fields, this property returns a shallow copy of the
+## base value with modifications applied from the associated [ModifierStack].
+var immunities: Array[GlobalDefs.AttackType]:
+	get:
+		const stat_name = &"immunity"
+		var underlying_value := underlying_immunities.duplicate()
+		if stats_modifiers.has(stat_name):
+			return (stats_modifiers[stat_name] as ModifierStack).get_effective_value(underlying_value)
+		return underlying_value
+
 var shielding: bool:
 	get:
 		const stat_name = &"shielding"
@@ -163,7 +176,7 @@ var evasion: float:
 var evasion_represetation: float:
 	get:
 		var ev := evasion
-		if is_equal_approx(ev, 1.0): return INF
+		if ev >= 1.0: return INF
 		return ev / (1.0 - ev)
 
 # Intermediate property that applies modifiers to get effective HP value
@@ -189,7 +202,6 @@ var hp: int:
 		if value > max_hp:
 			value = max_hp
 		_hp = value
-		#visual_bar.value = _hp
 		if value <= 0:
 			dead = true
 #endregion
@@ -246,13 +258,12 @@ func have_effect(effect_name: StringName, except: AppliedEffect = null) -> bool:
 	return false
 
 func clean_modifiers() -> void:
-	@warning_ignore("untyped_declaration")
-	for modifier in stats_modifiers.values():
-		(modifier as ModifierStack).clean()
+	for modifier: ModifierStack in stats_modifiers.values():
+		modifier.clean()
 
 ## Adds a new modifier to the stack for the specified [param stat].[br]
 ## The first addition of a stat creates its stack.[br]
-## [param influence] should be a function with signature [code]func(int) -> int[/code]
+## [param influence] should be a function
 ## that takes the previous value and returns the modified value.[br][br]
 ## Predefined modifiers:[br]
 ## [code]"max_HP"[/code][br]
@@ -261,6 +272,7 @@ func clean_modifiers() -> void:
 ## [code]"evasion"[/code][br]
 ## [code]"shielding_chance"[/code][br]
 ## [code]"shielding"[/code][br]
+## [code]"immunity"[/code][br]
 ## [br]Custom stat names can be added but must be explicitly handled.
 func add_modifier(stat: StringName, effect: AppliedEffect, influence: Callable) -> void:
 	if not stats_modifiers.has(stat):
@@ -281,7 +293,7 @@ func get_full_damage() -> int:
 	var result: float = 0.0
 	for attack in attacks:
 		result += get_actual_damage(attack) * attack.accuracy * attack.targets_needed
-	return round(result)
+	return roundi(result)
 
 var initializtion_successful: bool = false
 
@@ -348,7 +360,7 @@ func apply_effect(
 	var effect_path := "res://Combat/Effects/AppliedEffects/Scenes/%s.tscn" % effect_name
 	var res: Resource = load(effect_path)
 	if not res:
-		print_debug("Effect '%s' not found at path: %s" % [effect_name, effect_path])
+		push_error("Effect '%s' not found at path: %s" % [effect_name, effect_path])
 		return null
 	
 	var child: AppliedEffect = res.instantiate()
@@ -426,9 +438,9 @@ func heal(value: int) -> int:
 	hp += value
 	var healed_hp := hp - original_hp
 	if healed_hp > 0: parent_unit.sound_player.play_heal_sound(
-			(float(healed_hp) / float(hp)) * parent_unit.sound_player._SOUND_MULTIPLIER
+			( float(healed_hp) / float(hp) ) * parent_unit.sound_player._SOUND_MULTIPLIER
 		)
 	elif healed_hp < 0: parent_unit.sound_player.play_damage_sound(
-			(absf(healed_hp) / float(hp)) * parent_unit.sound_player._SOUND_MULTIPLIER
+			( absf(healed_hp / float(hp)) ) * parent_unit.sound_player._SOUND_MULTIPLIER
 		)
 	return healed_hp

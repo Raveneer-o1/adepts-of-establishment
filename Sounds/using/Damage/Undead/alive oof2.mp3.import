@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b44ilmq36kjf8"
+path="res://.godot/imported/alive oof2.mp3-227fada51fd707bc0137776777151914.mp3str"
+
+[deps]
+
+source_file="res://Sounds/using/Damage/Undead/alive oof2.mp3"
+dest_files=["res://.godot/imported/alive oof2.mp3-227fada51fd707bc0137776777151914.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

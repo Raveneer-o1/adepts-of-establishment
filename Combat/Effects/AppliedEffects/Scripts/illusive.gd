@@ -19,10 +19,12 @@ func _get_description() -> String:
 		return description % other_stat_buff
 	return description % ("Evasion[/b] and [b]" + other_stat_buff)
 
-func check_trigger(target: Unit, attack: Attack) -> void:
-	if target != target_unit:
-		return
-	
+func check_trigger(attack: Attack) -> void:
+	if target_unit not in attack.targets: return
+	if attack.tags.has(&"missed") or attack.tags.has(&"evaded"):
+		self.call_deferred(&"apply")
+
+func apply() -> void:
 	var inceases_evsion: bool = not is_equal_approx(evasion_buff, 0.000)
 	var increases_other_param: bool = other_stat_buff != ""
 	
@@ -31,19 +33,18 @@ func check_trigger(target: Unit, attack: Attack) -> void:
 	if increases_other_param:
 		var params: Dictionary = {
 			"parameter" = other_stat_buff,
-			"turns" = -1, # -1 indicates unlimited duration
+			"turns" = -1,
 			"strength" = other_stat_buff_strength,
 			"multiplier" = other_stat_buff_multiplier,
 		}
 		var buff: AppliedEffect = target_unit.parameters.apply_effect(
 			"temporary_buff", 
 			params, 
-			true, # force stackability
-			true # force to stack effect
+			true,  # force stackability
+			true   # override stackability
 		)
 		if buff:
 			evasion_buff_controlling_effect = buff
-	# end of if statement
 	
 	if inceases_evsion:
 		target_unit.parameters.add_modifier(
@@ -54,4 +55,4 @@ func check_trigger(target: Unit, attack: Attack) -> void:
 
 ## Called when the effect is applied to a unit.
 func _apply_effect(params: Variant) -> void:
-	_signal_function_pairs[EventBus.attack_missed] = check_trigger
+	_signal_function_pairs[EventBus.attack_resolved] = check_trigger

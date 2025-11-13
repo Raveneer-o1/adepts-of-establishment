@@ -35,6 +35,12 @@ window/size/viewport_width=1600
 window/size/viewport_height=900
 window/snap/snap_2d_transforms_to_pixel=false
 
+[importer_defaults]
+
+wav={
+&"edit/normalize": true
+}
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

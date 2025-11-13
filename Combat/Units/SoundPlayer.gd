@@ -13,7 +13,7 @@ var heal_sounds: Array[AudioStreamPlayer]
 var death_sounds: Array[AudioStreamPlayer]
 
 const MIN_DAMAGE_SOUND = 0.7
-const MAX_DAMAGE_SOUND = 3.5
+const MAX_DAMAGE_SOUND = 1.5
 const HP_LOST_FOR_MAX_SOUND = 0.4
 const _SOUND_MULTIPLIER = MAX_DAMAGE_SOUND / HP_LOST_FOR_MAX_SOUND
 

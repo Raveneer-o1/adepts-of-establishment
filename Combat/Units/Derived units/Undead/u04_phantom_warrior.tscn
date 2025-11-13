@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cqqivpoythkv"]
+[gd_scene load_steps=33 format=3 uid="uid://cqqivpoythkv"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_g7wac"]
 [ext_resource type="Texture2D" uid="uid://rxmhnbb0o5w1" path="res://Arts/Placeholders/Skeleton hero.jpg" id="2_5g80a"]
@@ -8,6 +8,17 @@
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_b6hx8"]
 [ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="6_1vihk"]
 [ext_resource type="PackedScene" uid="uid://baen1w1a16rc7" path="res://Combat/Effects/AppliedEffects/Scenes/illusive.tscn" id="7_g2u3k"]
+[ext_resource type="PackedScene" uid="uid://cb84o5ukeamvu" path="res://Combat/Effects/AppliedEffects/Scenes/Phantom.tscn" id="9_4a8ga"]
+[ext_resource type="AudioStream" uid="uid://i6bja4p08ldu" path="res://Sounds/using/Damage/Undead/phantom warrior.wav" id="10_d4c5e"]
+[ext_resource type="AudioStream" uid="uid://dbdb8tlqberuq" path="res://Sounds/using/Damage/Undead/PhantomWarror 2.wav" id="11_pdd6m"]
+[ext_resource type="AudioStream" uid="uid://n66k04l3ybaj" path="res://Sounds/using/Ghost woosh 2.wav" id="12_x6hmv"]
+[ext_resource type="AudioStream" uid="uid://cq47n8yncltu1" path="res://Sounds/using/Ghost woosh.wav" id="13_mrj1m"]
+[ext_resource type="AudioStream" uid="uid://cxwvv1ig0hfvt" path="res://Sounds/using/Ghostly sound.wav" id="14_6gvs7"]
+[ext_resource type="AudioStream" uid="uid://dhh33agkccv4v" path="res://Sounds/using/Damage/fish 7.wav" id="15_7j3pb"]
+[ext_resource type="AudioStream" uid="uid://b7eq0rfqqthfn" path="res://Sounds/using/Damage/fish 16.wav" id="16_00eix"]
+[ext_resource type="AudioStream" uid="uid://ckjpt02skg1wl" path="res://Sounds/using/Attack/Undead/PhantomWarrior.wav" id="17_p7eyy"]
+[ext_resource type="AudioStream" uid="uid://ud2enk040rd8" path="res://Sounds/using/Heal/Undead/heal 1.wav" id="18_a5g0e"]
+[ext_resource type="AudioStream" uid="uid://b7opuqbnm6svt" path="res://Sounds/using/Heal/Undead/heal 2.wav" id="19_5mcg2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ajw3c"]
 atlas = ExtResource("2_qmjum")
@@ -102,14 +113,14 @@ animations = [{
 [sub_resource type="Resource" id="Resource_gom41"]
 resource_local_to_scene = true
 script = ExtResource("4_yl5id")
-max_HP = 150
+max_HP = 180
 base_damage = 45
 armor = 10
-evasion = 0.05
+evasion = 0.1
 
 [node name="Phantom Warrior" instance=ExtResource("1_g7wac")]
 unit_name = "Phantom Warrior"
-unit_type = "Warrior"
+faction = 1
 full_description = "Phantom Warriors are spectral remnants of fallen soldiers, bound to the will of the Necropolis. They drift across the battlefield, their incorporeal forms allowing them to evade physical attacks. Armed with ghostly weapons, they deliver chilling strikes that sap the vitality of their foes, leaving them weakened and vulnerable."
 portrait_texture = ExtResource("2_5g80a")
 
@@ -119,10 +130,12 @@ animation = &"attack"
 autoplay = "default"
 offset = Vector2(8, 0)
 frames_to_emit = Array[int]([5])
+attack_sound_frame = 5
 
 [node name="UnitParameters" parent="." index="1"]
+level = 3
 base_paramaters = SubResource("Resource_gom41")
-immunities = Array[int]([3])
+underlying_immunities = Array[int]([3])
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("5_b6hx8")
@@ -132,7 +145,40 @@ initiative = 40
 target_validation = ExtResource("6_1vihk")
 
 [node name="Illusive" parent="UnitParameters" index="2" instance=ExtResource("7_g2u3k")]
-evasion_buff = 0.01
+evasion_buff = 0.03
 other_stat_buff = "Attack"
 other_stat_buff_strength = 10
 liftable = false
+
+[node name="Protection" parent="UnitParameters" index="3" instance=ExtResource("9_4a8ga")]
+effect_name = "Phantom"
+
+[node name="PhantomWarrior" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
+stream = ExtResource("10_d4c5e")
+
+[node name="PhantomWarror2" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="1"]
+stream = ExtResource("11_pdd6m")
+
+[node name="GhostWoosh2" type="AudioStreamPlayer" parent="SoundPlayer/Evade" index="0"]
+stream = ExtResource("12_x6hmv")
+
+[node name="GhostWoosh" type="AudioStreamPlayer" parent="SoundPlayer/Evade" index="1"]
+stream = ExtResource("13_mrj1m")
+
+[node name="GhostlySound" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
+stream = ExtResource("14_6gvs7")
+
+[node name="Fish7" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
+stream = ExtResource("15_7j3pb")
+
+[node name="Fish16" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="1"]
+stream = ExtResource("16_00eix")
+
+[node name="PhantomWarrior" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
+stream = ExtResource("17_p7eyy")
+
+[node name="Heal1" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]
+stream = ExtResource("18_a5g0e")
+
+[node name="Heal2" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="1"]
+stream = ExtResource("19_5mcg2")

@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dt8hid61d8p5k"
-path="res://.godot/imported/skeleton2.wav-478c35a23e2703a349aa460b1783ae76.sample"
+path="res://.godot/imported/skeleton2.wav-91d37216778e53e462029275ec0b6556.sample"
 
 [deps]
 
-source_file="res://Sounds/using/Damage/skeleton2.wav"
-dest_files=["res://.godot/imported/skeleton2.wav-478c35a23e2703a349aa460b1783ae76.sample"]
+source_file="res://Sounds/using/Death/skeleton2.wav"
+dest_files=["res://.godot/imported/skeleton2.wav-91d37216778e53e462029275ec0b6556.sample"]
 
 [params]
 
