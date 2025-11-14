@@ -60,8 +60,10 @@ func assign_unit(u: Unit) -> void:
 	unit.party_position = party_position
 	party.units[party_position] = unit
 
-func add_unit(loaded_unit: Resource) -> void:
-	assign_unit(loaded_unit.instantiate())
+func add_unit(loaded_unit: Resource) -> Unit:
+	var u: Unit = loaded_unit.instantiate()
+	assign_unit(u)
+	return u
 
 func release_unit() -> void:
 	if not unit:

@@ -139,6 +139,7 @@ evasion = 0.1
 [node name="Elemental" instance=ExtResource("1_8bfir")]
 unit_name = "Elemental"
 unit_type = 2
+faction = 4
 portrait_texture = ExtResource("2_x1sii")
 
 [node name="AnimationHandle" parent="." index="0"]
@@ -149,7 +150,6 @@ attack_sound_frame = 3
 
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_eejty")
-immunities = Array[int]([1])
 attack_effect = ExtResource("4_nay0k")
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]

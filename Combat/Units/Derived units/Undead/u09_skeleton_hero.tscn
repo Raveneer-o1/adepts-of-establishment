@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://vtklf4i1s3e"]
+[gd_scene load_steps=45 format=3 uid="uid://vtklf4i1s3e"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_f4ptt"]
 [ext_resource type="Texture2D" uid="uid://c3lwnj2mhgie1" path="res://Arts/Undead units/u10 skeleton hero attack .png" id="2_n2bpl"]
@@ -9,6 +9,24 @@
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_so8y8"]
 [ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="7_m5q7x"]
 [ext_resource type="PackedScene" uid="uid://cxt0p01rq72n1" path="res://Combat/Effects/AppliedEffects/Scenes/vampirism.tscn" id="7_ncqux"]
+[ext_resource type="PackedScene" uid="uid://cm1oq3au6bkmk" path="res://Combat/Effects/AppliedEffects/Scenes/on_turn_self_heal.tscn" id="10_nflqt"]
+[ext_resource type="PackedScene" uid="uid://deobw600snyj2" path="res://Combat/Effects/AppliedEffects/Scenes/on_death_summon.tscn" id="11_gkgxq"]
+[ext_resource type="AudioStream" uid="uid://bf8wof2u2utkl" path="res://Sounds/using/Damage/Undead/skeleton.wav" id="11_pvp1a"]
+[ext_resource type="AudioStream" uid="uid://dnx7qjaosq2rb" path="res://Sounds/using/Damage/skeleton3.wav" id="12_e0klf"]
+[ext_resource type="PackedScene" uid="uid://cyfiyiae3d4a3" path="res://Combat/Units/Derived units/Undead/u05_skeleton.tscn" id="12_v3ge7"]
+[ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="13_y50va"]
+[ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="14_gkgxq"]
+[ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="15_v3ge7"]
+[ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="16_li7s5"]
+[ext_resource type="AudioStream" uid="uid://cxti7sw334cs7" path="res://Sounds/using/Shield/Metal_clash_2.wav" id="17_8dt7h"]
+[ext_resource type="AudioStream" uid="uid://bvq3qpcm8el2w" path="res://Sounds/using/Shield/Metal_clash_3.wav" id="18_eqcy1"]
+[ext_resource type="AudioStream" uid="uid://bu5wuv1abjup1" path="res://Sounds/using/Shield/Metal_hit_1.wav" id="19_jrkky"]
+[ext_resource type="AudioStream" uid="uid://dhvkf7isfcfmv" path="res://Sounds/using/Shield/Metal_hit_2.wav" id="20_lttiu"]
+[ext_resource type="AudioStream" uid="uid://cx3amx7lg7oef" path="res://Sounds/using/Attack/Undead/Skeleton hero.wav" id="21_e0klf"]
+[ext_resource type="AudioStream" uid="uid://ud2enk040rd8" path="res://Sounds/using/Heal/Undead/heal 1.wav" id="21_wpr3r"]
+[ext_resource type="AudioStream" uid="uid://b7opuqbnm6svt" path="res://Sounds/using/Heal/Undead/heal 2.wav" id="22_3h26g"]
+[ext_resource type="AudioStream" uid="uid://dt8hid61d8p5k" path="res://Sounds/using/Death/skeleton2.wav" id="23_r1drp"]
+[ext_resource type="AudioStream" uid="uid://cah64hulklncu" path="res://Sounds/using/Death/skeleton4.wav" id="24_yuppo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_82ji2"]
 atlas = ExtResource("2_n2bpl")
@@ -131,13 +149,14 @@ animations = [{
 [sub_resource type="Resource" id="Resource_qsnad"]
 resource_local_to_scene = true
 script = ExtResource("4_mblbc")
-max_HP = 220
-base_damage = 70
-armor = 35
+max_HP = 350
+base_damage = 100
+armor = 50
+shielding_chance = 0.3
 
 [node name="Skeleton Hero" instance=ExtResource("1_f4ptt")]
 unit_name = "Skeleton Hero"
-unit_type = "Warrior"
+faction = 1
 full_description = "Skeleton Heroes are the pinnacle of necromantic reanimation, resurrected from the remains of legendary champions of old. Their undying forms retain the combat expertise they mastered in life, now enhanced by unholy power. Leading the armies of the Necropolis with a mix of tactical brilliance and raw strength, they are a force to be reckoned with, feared by both the living and the dead."
 portrait_texture = ExtResource("2_tryhr")
 
@@ -145,20 +164,87 @@ portrait_texture = ExtResource("2_tryhr")
 sprite_frames = SubResource("SpriteFrames_l7w6p")
 animation = &"attack"
 autoplay = "default"
+frame = 10
+frame_progress = 1.0
 offset = Vector2(8, 0)
 frames_to_emit = Array[int]([4, 9])
+attack_sound_frame = 4
 
 [node name="UnitParameters" parent="." index="1"]
 level = 5
 base_paramaters = SubResource("Resource_qsnad")
 
-[node name="Crafted body" parent="UnitParameters" index="2" instance=ExtResource("5_2w0yc")]
+[node name="Crafted body" parent="UnitParameters" index="1" instance=ExtResource("5_2w0yc")]
 
-[node name="UnitAttack" type="Node" parent="UnitParameters" index="3"]
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
 script = ExtResource("6_so8y8")
-accuracy = 0.8
 initiative = 40
 target_validation = ExtResource("7_m5q7x")
 
-[node name="Vampirism" parent="UnitParameters" index="4" instance=ExtResource("7_ncqux")]
+[node name="Vampirism" parent="UnitParameters" index="3" instance=ExtResource("7_ncqux")]
 heal = 20.0
+effect_name = "Grave caress"
+icon_index = 11
+
+[node name="OnTurnHeal" parent="UnitParameters" index="4" instance=ExtResource("10_nflqt")]
+heal = 30
+color_effect = Color(0.6509804, 0.44705883, 0.34509805, 1)
+
+[node name="OnDeathSummon" parent="UnitParameters" index="5" instance=ExtResource("11_gkgxq")]
+summon = ExtResource("12_v3ge7")
+unit_name = "Skeleton"
+effects = Dictionary[String, Variant]({
+"reanimation": {
+&"armor": 5,
+&"base_damage": 10,
+&"evasion": 0.005,
+&"max_HP": 15
+}
+})
+effect_name = "Crypt spirit"
+icon_index = 16
+
+[node name="Skeleton" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
+stream = ExtResource("11_pvp1a")
+
+[node name="Skeleton3" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="1"]
+stream = ExtResource("12_e0klf")
+
+[node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
+stream = ExtResource("13_y50va")
+
+[node name="GpArmorDown2" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="1"]
+stream = ExtResource("14_gkgxq")
+
+[node name="GpArmorDown3" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="2"]
+stream = ExtResource("15_v3ge7")
+
+[node name="GpArmorDown4" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="3"]
+stream = ExtResource("16_li7s5")
+
+[node name="MetalClash2" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
+stream = ExtResource("17_8dt7h")
+
+[node name="MetalClash3" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="1"]
+stream = ExtResource("18_eqcy1")
+
+[node name="MetalHit1" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="2"]
+stream = ExtResource("19_jrkky")
+
+[node name="MetalHit2" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="3"]
+stream = ExtResource("20_lttiu")
+
+[node name="SkeletonHero" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
+stream = ExtResource("21_e0klf")
+
+[node name="Heal1" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]
+stream = ExtResource("21_wpr3r")
+
+[node name="Heal2" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="1"]
+stream = ExtResource("22_3h26g")
+
+[node name="Skeleton2" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="0"]
+stream = ExtResource("23_r1drp")
+
+[node name="Skeleton4" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="1"]
+stream = ExtResource("24_yuppo")

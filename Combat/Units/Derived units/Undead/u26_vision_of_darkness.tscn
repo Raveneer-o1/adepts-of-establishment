@@ -202,12 +202,12 @@ level = 4
 base_paramaters = SubResource("Resource_00pkl")
 attack_effect = ExtResource("4_vagcr")
 
-[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("6_dvqmr")
 accuracy = 0.685
 initiative = 25
 target_validation = ExtResource("7_1atva")
 additional_targets = ExtResource("8_wnb78")
-applying_effects = {
+applying_effects = Dictionary[String, Variant]({
 "paralysis": [0.85, 2]
-}
+})

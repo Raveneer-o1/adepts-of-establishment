@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dfoepv37rvpcx"]
+[gd_scene load_steps=42 format=3 uid="uid://dfoepv37rvpcx"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_v36aa"]
 [ext_resource type="Texture2D" uid="uid://u2qmyni5kqnr" path="res://Arts/Undead units/u17 fallen inquisitor attack .png" id="2_rc34i"]
@@ -8,6 +8,26 @@
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_pu3wl"]
 [ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="6_nnhx0"]
 [ext_resource type="PackedScene" uid="uid://b1i0mf1877mfo" path="res://Combat/Effects/AppliedEffects/Scenes/ward.tscn" id="7_u3byy"]
+[ext_resource type="PackedScene" uid="uid://ckdu4wsv4o0d5" path="res://Combat/Effects/AppliedEffects/Scenes/random_retaliation_on_debuff.tscn" id="9_cq81d"]
+[ext_resource type="PackedScene" uid="uid://dbg780vyw2pbs" path="res://Combat/Effects/AppliedEffects/Scenes/negative_effect_negate.tscn" id="10_61uc6"]
+[ext_resource type="AudioStream" uid="uid://b44ilmq36kjf8" path="res://Sounds/using/Damage/Undead/alive oof2.mp3" id="10_tki5d"]
+[ext_resource type="AudioStream" uid="uid://co37i2182sveg" path="res://Sounds/using/Damage/Undead/alive oof3.mp3" id="11_61uc6"]
+[ext_resource type="AudioStream" uid="uid://fixlifhtutv4" path="res://Sounds/using/Damage/Undead/alive_oof.wav" id="12_kbw8j"]
+[ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="13_p4wf5"]
+[ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="14_8nnto"]
+[ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="15_tcita"]
+[ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="16_4mtow"]
+[ext_resource type="AudioStream" uid="uid://g50lfdbhl844" path="res://Sounds/using/Shield/Metal_clash_1.wav" id="17_dug1c"]
+[ext_resource type="AudioStream" uid="uid://cxti7sw334cs7" path="res://Sounds/using/Shield/Metal_clash_2.wav" id="18_45fad"]
+[ext_resource type="AudioStream" uid="uid://bvq3qpcm8el2w" path="res://Sounds/using/Shield/Metal_clash_3.wav" id="19_1v2ul"]
+[ext_resource type="AudioStream" uid="uid://b5vo71rl05j0" path="res://Sounds/using/Attack/Empire/Knight Master attack.wav" id="20_gi2r5"]
+[ext_resource type="AudioStream" uid="uid://57uq8ddrqmg0" path="res://Sounds/using/Heal/GP_Turbo_Select_1.wav" id="21_pfcnu"]
+[ext_resource type="AudioStream" uid="uid://bvxxsyhcv73oo" path="res://Sounds/using/Heal/GP_Turbo_Select_2.wav" id="22_h5oap"]
+[ext_resource type="AudioStream" uid="uid://befag54021wep" path="res://Sounds/using/Heal/GP_Turbo_Select_3.wav" id="23_v0xf4"]
+[ext_resource type="AudioStream" uid="uid://dsge1pqh4ihjr" path="res://Sounds/using/Heal/GP_Turbo_Select_4.wav" id="24_u4npc"]
+[ext_resource type="AudioStream" uid="uid://dxiivr6txaweh" path="res://Sounds/using/Death/body fall 3.wav" id="25_3skue"]
+[ext_resource type="AudioStream" uid="uid://bfaxc8l3qk67k" path="res://Sounds/using/Death/body fall 6.wav" id="26_3a577"]
+[ext_resource type="AudioStream" uid="uid://bcae4mab3j5u" path="res://Sounds/using/Death/body fall 12.wav" id="27_1vys0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wcb3u"]
 atlas = ExtResource("2_rc34i")
@@ -102,13 +122,13 @@ animations = [{
 [sub_resource type="Resource" id="Resource_p5egi"]
 resource_local_to_scene = true
 script = ExtResource("4_a5d6o")
-max_HP = 180
-base_damage = 50
+max_HP = 200
+base_damage = 60
 armor = 20
 
 [node name="Fallen Inquisitor" instance=ExtResource("1_v36aa")]
 unit_name = "Fallen Inquisitor"
-unit_type = "Warrior"
+faction = 1
 full_description = "Once holy warriors, Fallen Inquisitors were corrupted by the Necropolis's dark power. Now they wield their former knowledge of divine magic against the living, combining brutal melee combat with devastating unholy spells. Their tragic fall from grace is reflected in their fierce hatred for their former brethren, making them relentless in battle."
 portrait_texture = ExtResource("2_wxjrt")
 
@@ -116,20 +136,85 @@ portrait_texture = ExtResource("2_wxjrt")
 sprite_frames = SubResource("SpriteFrames_0omuv")
 animation = &"attack"
 autoplay = "default"
+frame = 6
+frame_progress = 1.0
 offset = Vector2(8, -8)
 frames_to_emit = Array[int]([5])
+attack_sound_frame = 5
 
 [node name="UnitParameters" parent="." index="1"]
 level = 3
 base_paramaters = SubResource("Resource_p5egi")
 
-[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("5_pu3wl")
-accuracy = 0.84
+type = 1
 initiative = 40
 target_validation = ExtResource("6_nnhx0")
-applying_effects = {
+applying_effects = Dictionary[String, Variant]({
 "silence": 0
-}
+})
 
-[node name="Shield" parent="UnitParameters" index="3" instance=ExtResource("7_u3byy")]
+[node name="Shield" parent="UnitParameters" index="2" instance=ExtResource("7_u3byy")]
+
+[node name="RandomRetaliationOnDebuff" parent="UnitParameters" index="3" instance=ExtResource("9_cq81d")]
+turns = 4
+multiplier = 1.25
+
+[node name="NegativeEffectNegate" parent="UnitParameters" index="4" instance=ExtResource("10_61uc6")]
+effect_name = "Denial"
+icon_index = 4
+
+[node name="AliveOof2" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
+stream = ExtResource("10_tki5d")
+
+[node name="AliveOof3" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="1"]
+stream = ExtResource("11_61uc6")
+
+[node name="AliveOof" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="2"]
+stream = ExtResource("12_kbw8j")
+
+[node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
+stream = ExtResource("13_p4wf5")
+
+[node name="GpArmorDown2" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="1"]
+stream = ExtResource("14_8nnto")
+
+[node name="GpArmorDown3" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="2"]
+stream = ExtResource("15_tcita")
+
+[node name="GpArmorDown4" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="3"]
+stream = ExtResource("16_4mtow")
+
+[node name="MetalClash1" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
+stream = ExtResource("17_dug1c")
+
+[node name="MetalClash2" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="1"]
+stream = ExtResource("18_45fad")
+
+[node name="MetalClash3" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="2"]
+stream = ExtResource("19_1v2ul")
+
+[node name="KnightMasterAttack" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
+stream = ExtResource("20_gi2r5")
+
+[node name="GpTurboSelect1" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]
+stream = ExtResource("21_pfcnu")
+
+[node name="GpTurboSelect2" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="1"]
+stream = ExtResource("22_h5oap")
+
+[node name="GpTurboSelect3" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="2"]
+stream = ExtResource("23_v0xf4")
+
+[node name="GpTurboSelect4" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="3"]
+stream = ExtResource("24_u4npc")
+
+[node name="BodyFall3" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="0"]
+stream = ExtResource("25_3skue")
+
+[node name="BodyFall6" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="1"]
+stream = ExtResource("26_3a577")
+
+[node name="BodyFall12" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="2"]
+stream = ExtResource("27_1vys0")

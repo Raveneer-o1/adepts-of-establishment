@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://deobw600snyj2"]
+
+[ext_resource type="Script" uid="uid://d1bdpxyth0728" path="res://Combat/Effects/AppliedEffects/Scripts/on_death_summon.gd" id="1_byvx1"]
+
+[node name="OnDeathSummon" type="Node"]
+script = ExtResource("1_byvx1")
+description = "Upon death this unit summons [b]%s[/b] on a random spot"

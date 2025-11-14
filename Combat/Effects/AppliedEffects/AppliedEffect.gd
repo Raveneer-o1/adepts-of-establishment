@@ -137,6 +137,7 @@ var silenced: bool = false
 func silence_effect(time: int = -1, is_round: bool = false) -> void:
 	if not silencable:
 		return
+	if silenced: return
 	
 	var silenced_storage := get_parent().find_child("SilencedEffects", false)
 	if not silenced_storage:
@@ -158,14 +159,19 @@ func silence_effect(time: int = -1, is_round: bool = false) -> void:
 	for signal_in_pairs: Signal in _signal_function_pairs:
 		if signal_in_pairs.is_connected(_signal_function_pairs[signal_in_pairs]):
 			signal_in_pairs.disconnect(_signal_function_pairs[signal_in_pairs])
-	
 
+## Restores the effect to its functional state by reconnecting signals and moving
+## it back to its original parent.
+## Safe to call multiple times - subsequent calls will have no additional effect.
 func restore_effect() -> void:
+	if not silenced: return
 	var silenced_effects_node : Node = get_parent()
 	if not silenced_effects_node or \
 		not silenced_effects_node.get_parent() is UnitParameters:
 			push_error("Trying to restore effect that doesn't have a UnitParameters node as a grandparent!")
 			return
+	if EventBus.round_ended.is_connected(check_silence_countdown):
+		EventBus.round_ended.disconnect(check_silence_countdown)
 	silenced_effects_node.remove_child(self)
 	silenced_effects_node.get_parent().add_child(self)
 	

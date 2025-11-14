@@ -160,7 +160,7 @@ script = ExtResource("6_dtok8")
 initiative = 40
 target_validation = ExtResource("7_apbbl")
 
-[node name="RetaliationOnDebuff" parent="UnitParameters" index="3" instance=ExtResource("9_tx5x0")]
+[node name="RandomRetaliationOnDebuff" parent="UnitParameters" index="3" instance=ExtResource("9_tx5x0")]
 
 [node name="AliveOof2" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("9_hnouu")

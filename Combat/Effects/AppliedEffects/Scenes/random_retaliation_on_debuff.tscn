@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dsa6qbe5lr3r2" path="res://Combat/Effects/AppliedEffects/Scripts/random_retaliation_on_debuff.gd" id="1_dsosb"]
 
-[node name="RetaliationOnDebuff" type="Node"]
+[node name="RandomRetaliationOnDebuff" type="Node"]
 script = ExtResource("1_dsosb")
 color_effect = Color(0.7010479, 0.4293788, 0.45004576, 1)
 effect_name = "Twisted will"

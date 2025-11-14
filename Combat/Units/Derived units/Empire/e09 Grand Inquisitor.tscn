@@ -201,7 +201,6 @@ attack_sound_frame = 5
 [node name="UnitParameters" parent="." index="1"]
 level = 4
 base_paramaters = SubResource("Resource_xsxvu")
-immunities = Array[int]([2])
 
 [node name="HP buff (aura)" parent="UnitParameters" index="1" instance=ExtResource("4_b4oav")]
 
@@ -211,7 +210,7 @@ liftable = false
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="3"]
 script = ExtResource("7_vm3kd")
 damage_multiplier = 0.85
-accuracy = 0.85
+type = 4
 initiative = 40
 target_validation = ExtResource("8_8fbn8")
 additional_targets = ExtResource("9_juih1")

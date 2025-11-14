@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbg780vyw2pbs"]
+
+[ext_resource type="Script" uid="uid://d4fgkfjqi4at8" path="res://Combat/Effects/AppliedEffects/Scripts/negative_effect_negate.gd" id="1_o6osc"]
+
+[node name="NegativeEffectNegate" type="Node"]
+script = ExtResource("1_o6osc")
+message = "Negation"
+color_effect = Color(1, 1, 0.76, 1)
+effect_name = "Purity"
+icon_index = 4
+description = "This unit is resistant to negative effects"

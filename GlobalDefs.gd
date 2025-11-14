@@ -43,6 +43,7 @@ enum Faction {
 	## Playable faction (elves and dwarves)
 	NaturePact,
 	
+	Neutral,
 	Pirates,
 	Bandits,
 	Greenskin,

@@ -250,6 +250,7 @@ base_paramaters = SubResource("Resource_s6twm")
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("5_g7cjh")
+damage_multiplier = 0.65
 accuracy = 0.975
 targets_needed = 2
 initiative = 40
