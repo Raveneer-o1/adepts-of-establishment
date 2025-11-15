@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://spjq0l177qvv"]
+
+[ext_resource type="Script" uid="uid://dyrtggdg2hw7q" path="res://Combat/Effects/AppliedEffects/Scripts/clumsiness.gd" id="1_4bcil"]
+
+[node name="Clumsiness" type="Node"]
+script = ExtResource("1_4bcil")
+effect_name = "Clumsiness"
+icon_index = 18
+negative_effect = true
+description = "This unit's evasion is decreased"

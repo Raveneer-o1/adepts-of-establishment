@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://7yjytk5wsox"]
+
+[ext_resource type="Script" uid="uid://dsjp2wlkib0x1" path="res://Combat/Units/Parameters/Policy/Scripts/disappear_policy.gd" id="1_1pg3v"]
+
+[resource]
+script = ExtResource("1_1pg3v")

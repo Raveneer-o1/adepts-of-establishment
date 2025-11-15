@@ -152,6 +152,7 @@ frames_to_emit = Array[int]([6])
 [node name="UnitParameters" parent="." index="1"]
 level = 3
 base_paramaters = SubResource("Resource_gwtjp")
+underlying_immunities = Array[int]([3])
 
 [node name="Vampirism" parent="UnitParameters" index="1" instance=ExtResource("5_6e8ga")]
 heal = 0.4
@@ -161,7 +162,7 @@ silencable = false
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
 script = ExtResource("6_fp4jo")
-accuracy = 0.8
+type = 3
 initiative = 40
 target_validation = ExtResource("7_vvuxm")
 

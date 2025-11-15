@@ -17,7 +17,9 @@ func _apply_effect(params: Variant) -> void:
 	# See the "Cure" effect implementation as a reference example.
 	if params is not Array:
 		push_error("Unxepected type passed to %s! Expected Array, got %s" % \
-			[effect_name, type_string(typeof(params))])
+			[effect_name, type_string(typeof(params))]
+		)
+		queue_free()
 		return
 	_signal_function_pairs[EventBus.attack_booked] = check_trigger
 

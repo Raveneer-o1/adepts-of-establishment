@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://c4wmjlxgojxgm"]
+[gd_scene load_steps=45 format=3 uid="uid://c4wmjlxgojxgm"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_7kl12"]
 [ext_resource type="Texture2D" uid="uid://cuni5j4njr66u" path="res://Arts/Placeholders/Vampire lord (2).jpg" id="2_8nuui"]
@@ -8,9 +8,11 @@
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_mqc6w"]
 [ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standard_archer_validity.tres" id="6_2bq5g"]
 [ext_resource type="Resource" uid="uid://bhe5cl2bujg8i" path="res://Combat/Units/Parameters/Additional targets/Splash.tres" id="7_jj583"]
-[ext_resource type="Resource" uid="uid://cxvfk7vgegqq2" path="res://Combat/Units/Parameters/Policy/decay_policy.tres" id="8_odjqq"]
+[ext_resource type="Script" uid="uid://5qgohskr1g6s" path="res://Combat/Units/Parameters/Policy/Scripts/decay_policy.gd" id="9_djqap"]
 [ext_resource type="PackedScene" uid="uid://cxt0p01rq72n1" path="res://Combat/Effects/AppliedEffects/Scenes/vampirism.tscn" id="9_uy4hc"]
+[ext_resource type="Resource" uid="uid://brc057x45ipra" path="res://Combat/Units/Parameters/Validation/any_unit.tres" id="10_n62fs"]
 [ext_resource type="AudioStream" uid="uid://dhh33agkccv4v" path="res://Sounds/using/Damage/fish 7.wav" id="11_djqap"]
+[ext_resource type="Resource" uid="uid://7yjytk5wsox" path="res://Combat/Units/Parameters/Policy/disappear_policy.tres" id="11_euwrh"]
 [ext_resource type="AudioStream" uid="uid://b7eq0rfqqthfn" path="res://Sounds/using/Damage/fish 16.wav" id="12_n62fs"]
 [ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="13_euwrh"]
 [ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="14_6qjtl"]
@@ -143,6 +145,10 @@ script = ExtResource("4_v6g03")
 max_HP = 285
 base_damage = 75
 
+[sub_resource type="Resource" id="Resource_n62fs"]
+resource_local_to_scene = true
+script = ExtResource("9_djqap")
+
 [node name="Vampire Lord" instance=ExtResource("1_7kl12")]
 unit_name = "Vampire Lord"
 unit_type = 2
@@ -162,19 +168,30 @@ frames_to_emit = Array[int]([6])
 [node name="UnitParameters" parent="." index="1"]
 level = 5
 base_paramaters = SubResource("Resource_jg442")
+underlying_immunities = Array[int]([3])
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("5_mqc6w")
 type = 3
-accuracy = 0.9
 initiative = 45
 target_validation = ExtResource("6_2bq5g")
 additional_targets = ExtResource("7_jj583")
-damage_policy = ExtResource("8_odjqq")
+damage_policy = SubResource("Resource_n62fs")
+applying_effects = Dictionary[String, Variant]({
+"clumsiness": [0.07, 2]
+})
+description = "Also hits adjacent targets"
+
+[node name="Disappear" type="Node" parent="UnitParameters/UnitAttack" index="0"]
+script = ExtResource("5_mqc6w")
+target_validation = ExtResource("10_n62fs")
+damage_policy = ExtResource("11_euwrh")
+metadata/_custom_type_script = "uid://c5u15vrtdf7kf"
 
 [node name="Vampirism" parent="UnitParameters" index="2" instance=ExtResource("9_uy4hc")]
 heal = 0.65
 is_percentage = true
+liftable = false
 
 [node name="Fish7" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("11_djqap")

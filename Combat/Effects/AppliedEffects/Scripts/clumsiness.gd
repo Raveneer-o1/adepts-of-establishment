@@ -1,0 +1,37 @@
+extends AppliedEffect
+
+@export var evasion_decrease: float = 0.0
+@export var turns: int = 1
+
+func _get_description() -> String:
+	if turns > 0:
+		return description + " for %d turns" % turns
+	return description
+
+func check_turn(u: Unit) -> void:
+	if is_queued_for_deletion(): return
+	if u != target_unit: return
+	turns -= 1
+	if turns <= 0: lift_effect()
+
+func _apply_effect(params: Variant) -> void:
+	if params is Array:
+		if params.size() != 2:
+			push_error("Unxepected number of arguments passed to %s! Expected 2, got %d" % \
+				[effect_name, params.size()]
+			)
+			queue_free()
+			return
+		evasion_decrease = params[0]
+		turns = params[1]
+	if turns == 0:
+		lift_effect()
+		return
+	target_unit.parameters.add_modifier(
+		&"evasion",
+		self,
+		func (v: float) -> float:
+			return v - evasion_decrease
+	)
+	if turns > 0:
+		_signal_function_pairs[EventBus.turn_started] = check_turn

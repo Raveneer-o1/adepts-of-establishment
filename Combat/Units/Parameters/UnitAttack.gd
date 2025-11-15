@@ -12,7 +12,15 @@ class_name UnitAttack
 ## is required: [UnitParameters] scans all child nodes and uses all [UnitAttack]s it can find.
 ## [br] [br]
 ##
-## [color=yellow]Note:[/color] this class is not intended to be overriden. Use composition instead.[br]
+## [UnitAttack] node can have any number of other [UnitAttack] nodes as children.
+## The main [UnitAttack] and all its children form a single action set: 
+## the player can choose any one of these actions to perform as an attack.
+## Typically, these alternative actions aren't conventional attacks but special abilities,
+## still implemented as [UnitAttack] class instances with custom [member damage_policy]
+## for the desired behavior (see the [i]Vampire Lord[/i] unit as an example). [br][br]
+##
+## [color=yellow]Note:[/color] this class is not intended to be overriden.
+## Use composition instead.[br]
 ## [b]See also:[/b] [CombatSystem], [Unit]
 
 ## Unit, to which this object is attached
