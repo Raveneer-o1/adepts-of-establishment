@@ -113,8 +113,19 @@ var chosen_targets: Array[Unit]:
 ## List of spots player or AI have chosen.
 var chosen_spots: Array[UnitSpot] = []
 
+var _current_attack: UnitAttack
+var alternative_action_index: int = 0
+
 ## Attack that will be performed next
-var current_attack: UnitAttack
+var current_attack: UnitAttack:
+	get:
+		if alternative_action_index <= 0: return _current_attack
+		if _current_attack.get_child_count() < alternative_action_index: return _current_attack
+		return _current_attack.get_children()[alternative_action_index - 1]
+	set(value):
+		_current_attack = value
+		alternative_action_index = 0
+
 ## Attacks left to perform this round
 var attacks_for_this_round: Array[UnitAttack]
 
@@ -133,6 +144,8 @@ var skipping_turn: bool = false
 
 ## If [code]true[/code], unit doesn't leave corpse after death (the object is comletely deleted).
 var summoned_unit: bool = false
+
+var active: bool = false
 
 #endregion
 
@@ -212,6 +225,15 @@ func skip_attack(message: String = "", color: Color = Color.WHITE) -> void:
 			skipping_turn = false
 	)
 
+func try_switch_action() -> bool:
+	if not current_attack: return false
+	var possible_action_count := _current_attack.get_child_count()
+	if possible_action_count == 0: return false
+	alternative_action_index += 1
+	if alternative_action_index > possible_action_count:
+		alternative_action_index = 0
+	chosen_spots.clear()
+	return true
 
 #endregion
 
@@ -372,8 +394,6 @@ func attempt_shielding(attack: Attack, unit: Unit) -> void:
 		return
 	
 	attack.tags.append(&"shielded")
-	#var ref: UnitSpotReference = attack.find_reference()
-	#assert(ref, "Unit not found in the attack dictionary!")
 	attack.redirect_all(unit.spot, spot)
 
 func _force_native_attack(target: Unit, attack: UnitAttack = null) -> Attack:
@@ -470,6 +490,21 @@ func try_waiting() -> bool:
 #endregion
 
 #region Combat interactions
+
+## Hides the unit and disables all interactions. To reactivate, use
+## [method UnitSpot.assign_unit] on the spot where this unit should be placed
+## upon reactivation. [br][br]
+## [color=red]Warning:[/color] This method makes the [Unit] object an orphan without
+## preserving any references to it! The caller is responsible for storing a reference
+## to the deactivated unit and either reactivating it later or freeing the memory.
+func deactivate() -> void:
+	active = false
+	if spot: spot.release_unit()
+	system.combat_logic.remove_unit_from_queue(self)
+
+func activate() -> void:
+	if active: return
+	active = true
 
 func resurrect() -> void:
 	var sp := get_parent().get_parent()
@@ -676,7 +711,6 @@ func die() -> void:
 	death_visualized = true
 
 #endregion
-
 
 func update_visuals() -> void:
 	if death_visualized: return

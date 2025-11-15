@@ -577,6 +577,6 @@ func _process(delta: float) -> void:
 			text_displayed_time = TEXT_DISPLAYED_ABORT_INTERVAL
 			texts_to_display.clear()
 
-
-func _on_button_debug_pressed() -> void:
-	print_orphan_nodes()
+func _on_button_switch_action_pressed() -> void:
+	if not current_unit.try_switch_action():
+		print("unable to switch!")

@@ -78,9 +78,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("5_nndeq")
 
-[node name="ButtonDebug" type="Button" parent="UI/ParentContainer/PanelContainer/HBoxContainer"]
+[node name="ButtonSwitchAction" type="Button" parent="UI/ParentContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
-text = "Print orphans"
+text = "Switch action"
 
 [node name="ButtonDefense" type="Button" parent="UI/ParentContainer/PanelContainer/HBoxContainer"]
 custom_minimum_size = Vector2(75, 75)
@@ -123,7 +123,7 @@ bbcode_enabled = true
 text = "Round: [font_size=25]1[/font_size]"
 script = ExtResource("5_835jq")
 
-[connection signal="pressed" from="UI/ParentContainer/PanelContainer/HBoxContainer/ButtonDebug" to="Combat" method="_on_button_debug_pressed"]
+[connection signal="pressed" from="UI/ParentContainer/PanelContainer/HBoxContainer/ButtonSwitchAction" to="Combat" method="_on_button_switch_action_pressed"]
 [connection signal="pressed" from="UI/ParentContainer/PanelContainer/HBoxContainer/ButtonDefense" to="Combat" method="_on_button_defense_pressed"]
 [connection signal="pressed" from="UI/ParentContainer/PanelContainer/HBoxContainer/ButtonWait" to="Combat" method="_on_button_wait_pressed"]
 [connection signal="pressed" from="UI/ParentContainer/PanelContainer/HBoxContainer/TargetHintsContainer/TargetHintsButton" to="Combat" method="_on_target_hunts_button_pressed"]

@@ -72,9 +72,8 @@ func set_queue() -> void:
 	
 	main_system.fill_miniatures_queue()
 
-
-func check_dead_unit(unit: Unit) -> void:
-	if not unit.parameters.dead: return
+func remove_unit_from_queue(unit: Unit) -> void:
+	if not unit: return
 	
 	# Iterate through attacks_queue instead of unit.attacks_for_this_round for robustness:
 	# attacks_for_this_round could theoretically be out of sync with attacks_queue
@@ -83,7 +82,10 @@ func check_dead_unit(unit: Unit) -> void:
 		if attack != null and \
 				attack.unit == unit:
 			remove_attack_from_queue(attack)
-	
+
+func check_dead_unit(unit: Unit) -> void:
+	if not unit.parameters.dead: return
+	remove_unit_from_queue(unit)
 	if unit == main_system.current_unit:
 		next_stage()
 

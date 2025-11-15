@@ -49,7 +49,7 @@ func reset_highlight() -> void:
 func assign_unit(u: Unit) -> void:
 	if not u: return
 	if unit != null:
-		print_debug("Trying to add unit on top of already existing one!")
+		push_error("Trying to add unit on top of already existing one!")
 		return
 	unit = u
 	add_child(unit)
@@ -59,6 +59,7 @@ func assign_unit(u: Unit) -> void:
 	unit.spot = self
 	unit.party_position = party_position
 	party.units[party_position] = unit
+	unit.activate()
 
 func add_unit(loaded_unit: Resource) -> Unit:
 	var u: Unit = loaded_unit.instantiate()
