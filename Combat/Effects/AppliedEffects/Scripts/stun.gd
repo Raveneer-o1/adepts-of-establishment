@@ -23,6 +23,11 @@ func skip_turn(unit: Unit) -> void:
 	
 	target_unit.skip_attack(message_skip, color_effect)
 
+func visualize_paralysis() -> void:
+	if is_queued_for_deletion(): return
+	target_unit.system.display_text_near_unit(target_unit, message_start, color_start)
+	target_unit.animation_handle.pause()
+
 ## Called when the effect is applied to a unit.
 func _apply_effect(params: Variant) -> void:
 	if params is Array:
@@ -30,14 +35,19 @@ func _apply_effect(params: Variant) -> void:
 			chance_to_be_lifted = params[0]
 			turns = params[1]
 		else:
-			print_debug("Invalid number parameter for a stun effect. Expected 2, found %d!" % params.size())
+			push_error(
+				"Invalid number parameter for a stun effect. Expected 2, found %d!" % \
+				params.size()
+			)
 	else:
-		print_debug("Invalid parameter for a stun effect. Expected Array, found %s!" % type_string(typeof(params)))
+		push_error(
+			"Invalid parameter for a stun effect. Expected Array, found %s!" % \
+			type_string(typeof(params))
+		)
 	if turns <= 0:
 		queue_free()
 		return
-	target_unit.system.display_text_near_unit(target_unit, message_start, color_start)
-	target_unit.animation_handle.pause()
 	
 	_signal_function_pairs[EventBus.turn_started] = skip_turn
 	
+	call_deferred(&"visualize_paralysis")
