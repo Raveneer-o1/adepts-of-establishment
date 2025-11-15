@@ -27,7 +27,7 @@ extends RefCounted
 ## [b]See also:[/b] [CombatSystem], [UnitAttack], [Unit]
 
 ## Values in this dictionary override [member default_damage] for specific targets. [br]
-## Note: If a UnitSpotReference exists in this dictionary but not in
+## [b]Note:[/b] If a specific key exists in this dictionary but not in
 ## [member target_references], it will be ignored.
 var damages: Dictionary[UnitSpotReference, int] = {}
 var target_references: Array[UnitSpotReference] = []
@@ -158,7 +158,8 @@ func deep_redirect(to: UnitSpot) -> void:
 		for a in additional:
 			target_references.append( UnitSpotReference.new(a) )
 
-## Returns the first reference to the [param target] in [member damages]
+## Returns the list of all references to the [param target] in [member target_references].
+## Returns an empty list if there is none.
 func find_all_references(target: UnitSpot) -> Array[UnitSpotReference]:
 	var result: Array[UnitSpotReference] = []
 	for t: UnitSpotReference in target_references:
@@ -166,24 +167,16 @@ func find_all_references(target: UnitSpot) -> Array[UnitSpotReference]:
 	return result
 
 ## Returns the first reference to the [param target] in [member target_references].
-## Returns null if there is none
+## Returns [code]null[/code] if there is none.
 func find_reference(target: UnitSpot) -> UnitSpotReference:
 	for t: UnitSpotReference in target_references:
 		if t.spot == target: return t
 	return null
 
+## Returns if [param target] was chosen by a player.
 func is_primary_target(target: UnitSpot) -> bool:
 	var pos := target_spots.find(target)
 	return pos >= 0 and pos < targets_chosen
-
-#func __init_via_Attack(attack: Attack) -> void:
-	#type = attack.type
-	#attacker = attack.attacker
-	#accuracy = attack.accuracy
-	#evadable = attack.evadable
-	#effect = attack.effect
-	#validation = attack.validation
-	#targets_chosen = attack.targets_chosen
 
 func __init_via_UnitAttack(_unit_attack: UnitAttack, eff: Resource) -> void:
 	type = _unit_attack.type

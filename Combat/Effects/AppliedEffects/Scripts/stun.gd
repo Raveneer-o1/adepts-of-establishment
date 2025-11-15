@@ -47,7 +47,5 @@ func _apply_effect(params: Variant) -> void:
 	if turns <= 0:
 		queue_free()
 		return
-	
 	_signal_function_pairs[EventBus.turn_started] = skip_turn
-	
 	call_deferred(&"visualize_paralysis")

@@ -185,12 +185,12 @@ func finish_attack() -> void:
 	highlighted_units.clear()
 	combat_logic.next_stage()
 
-## Called when an attack is finished
+## Called when an attack is finished.[br]
 ## Checks if the attack was of an active unit and triggers attack resolution if it was
 func check_finished_animation(unit: Unit) -> void:
 	if unit == current_unit:
 		finish_attack()
-	clear_emittings()
+		clear_emittings()
 
 ## Processes a click event on a unit
 func choose_unit(spot: UnitSpot) -> void:
@@ -259,8 +259,8 @@ func try_swapping_units(unit: Unit, pos: int) -> bool:
 
 ## Attempts to move [param unit] to the specified position [param pos].
 ## Returns [code]true[/code] if the move was successful, [code]false[/code] otherwise. [br]
-## If the target position is occupied, the move will fail. For swapping behavior,
-## use [method try_swapping_units] instead.
+## If the target position is occupied, method returns [code]false[/code].
+## For swapping behavior, use [method try_swapping_units] instead.
 ## @experimental: large units are not supported. Method will return false.
 func try_moving_unit(unit: Unit, pos: int) -> bool:
 	if not unit: return false
@@ -276,7 +276,6 @@ func try_moving_unit(unit: Unit, pos: int) -> bool:
 	return true
 
 #region Display text
-
 
 ## Interval for the first text to be displayed after triggering
 const FIRST_TEXT_DISPLAYED_INTERVAL = 0.01
@@ -304,9 +303,8 @@ class DisplayedText:
 ## Queue of texts to be displayed, each associated with a specific unit
 var texts_to_display: Array[DisplayedText] = []
 
+## Adds a vanishing message near a unit bypassing the display process
 func display_text_near_unit_async(unit: Unit, text: String, color: Color = Color.WHITE) -> void:
-	#var text_to_display: DisplayedText = DisplayedText.new(unit, text, color)
-	#_display_text_near_unit(text_to_display)
 	var offset := label_position
 	var lbl: Label = TEMP_LABEL.instantiate()
 	unit.add_child(lbl)
@@ -325,8 +323,8 @@ func display_text_near_unit(unit: Unit, text: String, color: Color = Color.WHITE
 		get_tree().create_timer(FIRST_TEXT_DISPLAYED_INTERVAL).\
 				timeout.connect(display_next_text)
 
-## Displays a text label near the given unit. It's not recommended to use this method directly,
-## because it's possible to print too much text on the screen at the same time
+# Displays a text label near the given unit. It's not recommended to use this method directly,
+# because it's possible to print too much text on the screen at the same time
 func _display_text_near_unit(d_text: DisplayedText) -> void:
 	text_displayed = true
 	text_displayed_time = TEXT_DISPLAYED_ABORT_INTERVAL 
@@ -396,12 +394,6 @@ func display_hints() -> void:
 				if avaliable_targets.has(spot):
 					color = Color.FOREST_GREEN
 				spot.area_2d.get_node("HighlightAnimation").modulate = color
-
-
-#func display_text_near_unit(unit: Unit, text: String, color: Color = Color.WHITE) -> void:
-	# something will probably be here
-	#unit.display_text_near_unit(text, color)
-
 
 #endregion
 
@@ -485,8 +477,7 @@ func _ready() -> void:
 
 #region Utilities
 
-## Clears connections from [signal EventBus.attack_concluded] and 
-## [signal EventBus.attack_animation_finished].
+## Clears connections from [signal EventBus.attack_animation_finished].
 ## This ensures effects disconnect from these signals and prevents unwanted trigger accumulation.
 ## Allows effect design without manual connection cleanup.
 func clear_emittings() -> void:

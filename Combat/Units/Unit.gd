@@ -40,6 +40,7 @@ extends Node2D
 ## - Mage units have no special behavior by default. Intended as long-range combatants
 ##   with typically lower damage but without the archer's shield penalty since their
 ##   attacks lack the [code]&shot[/code] tag [br]
+## - Support units can be shielded even by units that are not currently [i]shielding[/i][br]
 ## [br]
 ##
 ## [b]Shielding[/b] is a mechanic that allows units in the front line to protect units in
@@ -374,8 +375,7 @@ func arrange_attacks_and_set_next() -> void:
 
 #region Combat actions
 
-## @experimental: if [member UnitParameters.shielding] is set to [code]false[/code],
-## the chance is cut in half
+## @experimental: if [member UnitParameters.shielding] is set to [code]false[/code], the chance is cut in half
 func attempt_shielding(attack: Attack, unit: Unit) -> void:
 	if not unit: return
 	var chance := parameters.shielding_chance if parameters.shielding else \
@@ -426,8 +426,8 @@ func _force_arbitrary_attack(target: Unit, attack: UnitAttack) -> Attack:
 ## bypassing target validation and the normal attack order.[br][br]
 ## If [param native_attack] is set to [code]true[/code]:[br]
 ## * The unit will only attack if [param attack] is one of its own attacks or [code]null[/code].[br]
-## * If [param attack] is [code]null[/code], the unit uses its closest available attack, if any.[br][br]
-## * Performed attack is removed from the attack queue.[br]
+## * If [param attack] is [code]null[/code], the unit uses its closest available attack, if any.[br]
+## * Performed attack is removed from the attack queue.[br][br]
 ## If [param native_attack] is set to [code]false[/code], the attack is performed "out of nowhere,"
 ## meaning it is not removed from any lists and is not removed from the queue.
 ## If [param attack] is [code]null[/code], the unit uses a copy of its closest available attack.
@@ -505,6 +505,9 @@ func deactivate() -> void:
 	if spot: spot.release_unit()
 	system.combat_logic.remove_unit_from_queue(self)
 
+## Equivalent to setting [member active] to [code]true[/code].[br]
+## Do not call this method directly - use [method UnitSpot.assign_unit]
+## on the target spot where this unit should be placed during reactivation.
 func activate() -> void:
 	if active: return
 	active = true
@@ -547,6 +550,11 @@ func heal(value: int, message: String = "", text_color: Color = Color.TRANSPAREN
 	display_heal(hp_healed, message, text_color)
 	return hp_healed
 
+## [b]Returns:[/b] the actual amount of health restored (may differ from the provided
+## value due to effects, randomization, or other modifiers).[br]
+## Negative values deal damage instead - returns zero in this case.[br][br]
+## Schedules an entry in [member parameter_snapshots] for later visualization.
+## See [method schedule_damage] for reference.
 func schedule_heal(
 	value: int, 
 	delay: int, 
@@ -578,7 +586,7 @@ func damage_color(dmg: int) -> Color:
 
 
 ## Applies damage to the unit and triggers associated animations bypassing armor. [br]
-## For parameter reference see [method take_damage] [br]
+## For argument reference see [method take_damage] [br]
 ## [color=pink]Warning:[/color] this method does not allow animation synchronization.
 func take_direct_damage(dmg: int, message: String = "", text_color: Color = Color.TRANSPARENT) -> void:
 	if dmg <= 0: return
@@ -619,7 +627,8 @@ func take_damage(dmg: int, message: String = "", text_color: Color = Color.TRANS
 	return damage_taken
 
 ## [b]Returns:[/b] the actual amount of health lost (may differ from the provided
-## value due to effects, randomization, or other modifiers).[br][br]
+## value due to effects, randomization, or other modifiers).[br]
+## Negative values heal instead - returns zero in this case.[br][br]
 ## Schedules a damage entry in [member parameter_snapshots] for later visualization.
 ## The damage will be finalized when [signal EventBus.attack_reached] is emitted, or
 ## manually by calling [method finalize_attack].[br]
