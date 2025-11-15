@@ -2,10 +2,10 @@ extends AppliedEffect
 
 
 @export var buff_parameters := {
-	"max_HP" = 15,
-	"armor" = 5,
-	"base_damage" = 10,
-	"evasion" = 0.005
+	"max_HP" = 30,
+	"armor" = 10,
+	"base_damage" = 20,
+	"evasion" = 0.01
 }
 
 func check_trigger(unit: Unit) -> void:

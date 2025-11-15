@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dfs7pvexbq8o"]
+[gd_scene load_steps=39 format=3 uid="uid://dfs7pvexbq8o"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_nnejl"]
 [ext_resource type="Texture2D" uid="uid://dpnbjltuc2ibj" path="res://Arts/Placeholders/Vampire.jpg" id="2_ahyrf"]
@@ -8,6 +8,21 @@
 [ext_resource type="PackedScene" uid="uid://cxt0p01rq72n1" path="res://Combat/Effects/AppliedEffects/Scenes/vampirism.tscn" id="5_6e8ga"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_fp4jo"]
 [ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standard_archer_validity.tres" id="7_vvuxm"]
+[ext_resource type="AudioStream" uid="uid://dhh33agkccv4v" path="res://Sounds/using/Damage/fish 7.wav" id="9_5o2o3"]
+[ext_resource type="AudioStream" uid="uid://b7eq0rfqqthfn" path="res://Sounds/using/Damage/fish 16.wav" id="10_qv1fk"]
+[ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="11_kx1vv"]
+[ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="12_i5cxv"]
+[ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="13_liwdm"]
+[ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="14_ya38m"]
+[ext_resource type="AudioStream" uid="uid://bx4vjemunixkb" path="res://Sounds/using/Shield/arrow hitting shield.mp3" id="15_x2jdt"]
+[ext_resource type="AudioStream" uid="uid://dbubxwukmuv0m" path="res://Sounds/using/Attack/Undead/Vampire attack.wav" id="16_liwdm"]
+[ext_resource type="AudioStream" uid="uid://ttr6657br8p7" path="res://Sounds/using/Liquid sound.wav" id="16_wfoef"]
+[ext_resource type="AudioStream" uid="uid://bq11rwahfdp2i" path="res://Sounds/using/heartbeat 2.wav" id="17_oe1d2"]
+[ext_resource type="AudioStream" uid="uid://b1gghlgrei6if" path="res://Sounds/using/heartbeat 3.wav" id="18_vd2j3"]
+[ext_resource type="AudioStream" uid="uid://c38xuxtchxn55" path="res://Sounds/using/heartbeat 4.wav" id="19_k088w"]
+[ext_resource type="AudioStream" uid="uid://dxiivr6txaweh" path="res://Sounds/using/Death/body fall 3.wav" id="21_ya38m"]
+[ext_resource type="AudioStream" uid="uid://bfaxc8l3qk67k" path="res://Sounds/using/Death/body fall 6.wav" id="22_x2jdt"]
+[ext_resource type="AudioStream" uid="uid://bcae4mab3j5u" path="res://Sounds/using/Death/body fall 12.wav" id="23_wfoef"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_trfii"]
 atlas = ExtResource("2_hms6t")
@@ -116,14 +131,13 @@ animations = [{
 [sub_resource type="Resource" id="Resource_gwtjp"]
 resource_local_to_scene = true
 script = ExtResource("4_6owde")
-max_HP = 200
-base_damage = 50
-armor = 5
-evasion = 0.01
+max_HP = 150
+base_damage = 40
 
 [node name="Vampire" instance=ExtResource("1_nnejl")]
 unit_name = "Vampire"
-unit_type = "Archer"
+unit_type = 2
+faction = 1
 full_description = "Vampires are necromancers who dared to perform the blood ritual, a dark rite that grants immortality at a terrible cost. Empowered by the forbidden magic coursing through their veins, they possess unmatched agility and ferocity in combat. Their vampiric bite drains the lifeforce of their enemies, fueling their insatiable hunger while sustaining their undead existence."
 portrait_texture = ExtResource("2_ahyrf")
 
@@ -131,19 +145,67 @@ portrait_texture = ExtResource("2_ahyrf")
 sprite_frames = SubResource("SpriteFrames_1gf0x")
 animation = &"attack"
 autoplay = "default"
+frame = 8
+frame_progress = 1.0
 frames_to_emit = Array[int]([6])
 
 [node name="UnitParameters" parent="." index="1"]
+level = 3
 base_paramaters = SubResource("Resource_gwtjp")
 
-[node name="Vampirism" parent="UnitParameters" index="2" instance=ExtResource("5_6e8ga")]
+[node name="Vampirism" parent="UnitParameters" index="1" instance=ExtResource("5_6e8ga")]
 heal = 0.4
 is_percentage = true
 liftable = false
 silencable = false
 
-[node name="UnitAttack" type="Node" parent="UnitParameters" index="3"]
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
 script = ExtResource("6_fp4jo")
 accuracy = 0.8
 initiative = 40
 target_validation = ExtResource("7_vvuxm")
+
+[node name="Fish7" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
+stream = ExtResource("9_5o2o3")
+
+[node name="Fish16" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="1"]
+stream = ExtResource("10_qv1fk")
+
+[node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
+stream = ExtResource("11_kx1vv")
+
+[node name="GpArmorDown2" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="1"]
+stream = ExtResource("12_i5cxv")
+
+[node name="GpArmorDown3" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="2"]
+stream = ExtResource("13_liwdm")
+
+[node name="GpArmorDown4" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="3"]
+stream = ExtResource("14_ya38m")
+
+[node name="ArrowHittingShield" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
+stream = ExtResource("15_x2jdt")
+
+[node name="VampireAttack" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
+stream = ExtResource("16_liwdm")
+
+[node name="LiquidSound" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]
+stream = ExtResource("16_wfoef")
+
+[node name="Heartbeat2" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="1"]
+stream = ExtResource("17_oe1d2")
+
+[node name="Heartbeat3" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="2"]
+stream = ExtResource("18_vd2j3")
+
+[node name="Heartbeat4" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="3"]
+stream = ExtResource("19_k088w")
+
+[node name="BodyFall3" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="0"]
+stream = ExtResource("21_ya38m")
+
+[node name="BodyFall6" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="1"]
+stream = ExtResource("22_x2jdt")
+
+[node name="BodyFall12" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="2"]
+stream = ExtResource("23_wfoef")

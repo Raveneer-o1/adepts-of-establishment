@@ -92,6 +92,8 @@ evasion = 0.07
 
 [node name="Ghost" instance=ExtResource("1_ste1w")]
 unit_name = "Ghost"
+unit_type = 1
+faction = 1
 full_description = "Ghosts are the lingering spirits of the dead, cursed to wander the mortal realm. Though their spectral forms are fragile, they are immune to physical attacks, making them tricky opponents. Their chilling presence weakens the resolve of their enemies, while their attacks drain the vitality of the living leaving them paralyzed."
 portrait_texture = ExtResource("2_axmat")
 
@@ -103,12 +105,12 @@ autoplay = "default"
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_du1ct")
 
-[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("5_b52pm")
 type = 2
 accuracy = 0.65
 initiative = 25
 target_validation = ExtResource("6_0ndwb")
-applying_effects = {
+applying_effects = Dictionary[String, Variant]({
 "paralysis": [1.0, 1]
-}
+})

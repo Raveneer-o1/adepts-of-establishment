@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://jcge4l3lj63w"]
+[gd_scene load_steps=14 format=3 uid="uid://jcge4l3lj63w"]
 
 [ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/Scenes/abstract_effect.tscn" id="1_fpms6"]
 [ext_resource type="Texture2D" uid="uid://r0kwqsr3ocnl" path="res://Arts/Undead units/u19 lich effect .png" id="2_ji6nv"]
+[ext_resource type="AudioStream" uid="uid://bq20wsr413lsy" path="res://Sounds/using/Attack/Undead/Lich effect.wav" id="3_jdudr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7cc2v"]
 atlas = ExtResource("2_ji6nv")
@@ -45,6 +46,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7cc2v")
 }, {
+"duration": 4.5,
+"texture": null
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jfnc5")
 }, {
@@ -71,9 +75,14 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 5.0
+"speed": 8.0
 }]
 
 [node name="Effect" instance=ExtResource("1_fpms6")]
 sprite_frames = SubResource("SpriteFrames_jipqn")
 autoplay = "default"
+sound_delay = 2
+
+[node name="LichEffect" type="AudioStreamPlayer" parent="." index="0"]
+stream = ExtResource("3_jdudr")
+volume_db = -10.0

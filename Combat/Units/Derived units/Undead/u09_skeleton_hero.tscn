@@ -175,6 +175,12 @@ level = 5
 base_paramaters = SubResource("Resource_qsnad")
 
 [node name="Crafted body" parent="UnitParameters" index="1" instance=ExtResource("5_2w0yc")]
+buff_parameters = {
+&"armor": 20,
+&"base_damage": 30,
+&"evasion": 0.02,
+&"max_HP": 70
+}
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
 script = ExtResource("6_so8y8")

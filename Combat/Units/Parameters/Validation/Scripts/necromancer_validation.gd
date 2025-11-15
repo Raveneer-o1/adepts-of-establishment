@@ -10,5 +10,6 @@ func validate_target(attacker: Unit, target_spot: UnitSpot) -> bool:
 			return false
 		if target_spot.corpse_container.get_child_count() == 0:
 			return false
+		return true
 	
-	return true
+	return target_spot.unit != null

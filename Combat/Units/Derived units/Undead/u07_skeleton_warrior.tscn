@@ -171,10 +171,10 @@ base_paramaters = SubResource("Resource_0i66v")
 
 [node name="Crafted body" parent="UnitParameters" index="1" instance=ExtResource("5_a3k2t")]
 buff_parameters = {
-&"armor": 5,
-&"base_damage": 10,
-&"evasion": 0.005,
-&"max_HP": 20
+&"armor": 15,
+&"base_damage": 30,
+&"evasion": 0.015,
+&"max_HP": 50
 }
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]

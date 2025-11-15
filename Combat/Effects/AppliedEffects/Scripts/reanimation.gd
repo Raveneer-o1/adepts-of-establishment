@@ -16,7 +16,8 @@ func _apply_effect(params: Variant) -> void:
 	if params is Dictionary:
 		buff_parameters = params
 	for parameter: String in buff_parameters:
-		var function := func (val: int) -> int: return val + buff_parameters[parameter]
+		#print(parameter + ": " + str(buff_parameters[parameter]))
+		var function := func (val: Variant) -> Variant: return val + buff_parameters[parameter]
 		target_unit.parameters.add_modifier(
 			parameter, 
 			self,

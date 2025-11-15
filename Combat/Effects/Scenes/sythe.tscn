@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bq5fuvt6gwhs6"]
+[gd_scene load_steps=12 format=3 uid="uid://bq5fuvt6gwhs6"]
 
 [ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/Scenes/abstract_effect.tscn" id="1_uvtxy"]
 [ext_resource type="Texture2D" uid="uid://d8mkcqnn1qvd" path="res://Arts/Undead units/u21 archlich effect .png" id="2_c8dp7"]
+[ext_resource type="AudioStream" uid="uid://c14sv5la8ry2e" path="res://Sounds/using/Wind slash.wav" id="3_1ndu3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lxu0k"]
 atlas = ExtResource("2_c8dp7")
@@ -34,7 +35,7 @@ region = Rect2(0, 192, 32, 32)
 [sub_resource type="SpriteFrames" id="SpriteFrames_6tnhi"]
 animations = [{
 "frames": [{
-"duration": 4.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_lxu0k")
 }, {
 "duration": 4.0,
@@ -66,4 +67,11 @@ animations = [{
 [node name="Effect" instance=ExtResource("1_uvtxy")]
 sprite_frames = SubResource("SpriteFrames_6tnhi")
 autoplay = "default"
-offset = Vector2(-16, 0)
+frame = 7
+frame_progress = 1.0
+offset = Vector2(-8, 0)
+sound_delay = 3
+
+[node name="WindSlash" type="AudioStreamPlayer" parent="." index="0"]
+stream = ExtResource("3_1ndu3")
+volume_db = -10.0

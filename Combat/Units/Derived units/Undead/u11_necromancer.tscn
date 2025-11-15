@@ -1,14 +1,30 @@
-[gd_scene load_steps=24 format=3 uid="uid://1xjofqtit2aj"]
+[gd_scene load_steps=41 format=3 uid="uid://1xjofqtit2aj"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_tcv8q"]
 [ext_resource type="Texture2D" uid="uid://dx47i00lvfvoa" path="res://Arts/Undead units/u23 necromancer attack .png" id="2_0chdl"]
+[ext_resource type="Texture2D" uid="uid://dkar2ja0n1he4" path="res://Arts/Placeholders/Necromancer.jpg" id="2_0m3ru"]
 [ext_resource type="Texture2D" uid="uid://k3hv7kx0p26j" path="res://Arts/Undead units/u23 necromancer idle .png" id="3_itfo3"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_4j4yj"]
 [ext_resource type="PackedScene" uid="uid://n7w0136buyjd" path="res://Combat/Effects/Scenes/circle_attack.tscn" id="4_npxus"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_fqff2"]
 [ext_resource type="Resource" uid="uid://davbg4egq6lu0" path="res://Combat/Units/Parameters/Validation/necromancer_validity.tres" id="7_0xeya"]
-[ext_resource type="Resource" uid="uid://bhe5cl2bujg8i" path="res://Combat/Units/Parameters/Additional targets/Splash.tres" id="8_ww20x"]
-[ext_resource type="Resource" uid="uid://cbtn2lhkxm7ql" path="res://Combat/Units/Parameters/Policy/necromancer_policy.tres" id="9_h5bv1"]
+[ext_resource type="Script" uid="uid://cvqtmnxwg7i3l" path="res://Combat/Units/Parameters/Policy/Scripts/nectomancer_policy.gd" id="8_e7ln6"]
+[ext_resource type="AudioStream" uid="uid://b44ilmq36kjf8" path="res://Sounds/using/Damage/Undead/alive oof2.mp3" id="10_0m3ru"]
+[ext_resource type="AudioStream" uid="uid://co37i2182sveg" path="res://Sounds/using/Damage/Undead/alive oof3.mp3" id="11_htry4"]
+[ext_resource type="AudioStream" uid="uid://fixlifhtutv4" path="res://Sounds/using/Damage/Undead/alive_oof.wav" id="12_n22i0"]
+[ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="13_ptanb"]
+[ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="14_8eanh"]
+[ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="15_0710p"]
+[ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="16_on4wt"]
+[ext_resource type="AudioStream" uid="uid://bx4vjemunixkb" path="res://Sounds/using/Shield/arrow hitting shield.mp3" id="17_ytp1h"]
+[ext_resource type="AudioStream" uid="uid://b8vtnjngd6h3j" path="res://Sounds/using/magical crack.wav" id="18_pan8g"]
+[ext_resource type="AudioStream" uid="uid://57uq8ddrqmg0" path="res://Sounds/using/Heal/GP_Turbo_Select_1.wav" id="19_t4d4b"]
+[ext_resource type="AudioStream" uid="uid://bvxxsyhcv73oo" path="res://Sounds/using/Heal/GP_Turbo_Select_2.wav" id="20_7ivpr"]
+[ext_resource type="AudioStream" uid="uid://befag54021wep" path="res://Sounds/using/Heal/GP_Turbo_Select_3.wav" id="21_trimw"]
+[ext_resource type="AudioStream" uid="uid://dsge1pqh4ihjr" path="res://Sounds/using/Heal/GP_Turbo_Select_4.wav" id="22_2m1ph"]
+[ext_resource type="AudioStream" uid="uid://bdpingiq3vatc" path="res://Sounds/using/Death/body hit with grunt 2.wav" id="23_v0ioe"]
+[ext_resource type="AudioStream" uid="uid://bcae4mab3j5u" path="res://Sounds/using/Death/body fall 12.wav" id="24_wiswy"]
+[ext_resource type="AudioStream" uid="uid://ble86orlqio7s" path="res://Sounds/using/Death/body hit with grunt 1.wav" id="25_34uis"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6puoe"]
 atlas = ExtResource("2_0chdl")
@@ -110,27 +126,87 @@ animations = [{
 [sub_resource type="Resource" id="Resource_jtalj"]
 resource_local_to_scene = true
 script = ExtResource("4_4j4yj")
-max_HP = 90
-base_damage = 40
-armor = 5
+max_HP = 75
+base_damage = 30
+
+[sub_resource type="Resource" id="Resource_0m3ru"]
+script = ExtResource("8_e7ln6")
+resurrection_with_percent_hp = 0.6
 
 [node name="Necromancer" instance=ExtResource("1_tcv8q")]
 unit_name = "Necromancer"
+unit_type = 2
+faction = 1
 full_description = "Necromancers are skilled manipulators of life and death, capable of raising undead with their spells. They command dark energies to weaken foes and bolster allies. Despite their mortal vulnerability, their mastery of death makes them a cornerstone of the Necropolis's power."
+portrait_texture = ExtResource("2_0m3ru")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_yumoh")
+animation = &"attack"
 autoplay = "default"
+frame = 5
+frame_progress = 1.0
+attack_sound_frame = 3
 
 [node name="UnitParameters" parent="." index="1"]
 level = 2
 base_paramaters = SubResource("Resource_jtalj")
 attack_effect = ExtResource("4_npxus")
 
-[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("6_fqff2")
-accuracy = 0.785
+accuracy = 0.85
 initiative = 30
 target_validation = ExtResource("7_0xeya")
-additional_targets = ExtResource("8_ww20x")
-damage_policy = ExtResource("9_h5bv1")
+damage_policy = SubResource("Resource_0m3ru")
+
+[node name="AliveOof2" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
+stream = ExtResource("10_0m3ru")
+
+[node name="AliveOof3" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="1"]
+stream = ExtResource("11_htry4")
+
+[node name="AliveOof" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="2"]
+stream = ExtResource("12_n22i0")
+
+[node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
+stream = ExtResource("13_ptanb")
+
+[node name="GpArmorDown2" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="1"]
+stream = ExtResource("14_8eanh")
+
+[node name="GpArmorDown3" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="2"]
+stream = ExtResource("15_0710p")
+
+[node name="GpArmorDown4" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="3"]
+stream = ExtResource("16_on4wt")
+
+[node name="ArrowHittingShield" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
+stream = ExtResource("17_ytp1h")
+
+[node name="MagicalCrack" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
+stream = ExtResource("18_pan8g")
+
+[node name="GpTurboSelect1" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]
+stream = ExtResource("19_t4d4b")
+
+[node name="GpTurboSelect2" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="1"]
+stream = ExtResource("20_7ivpr")
+
+[node name="GpTurboSelect3" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="2"]
+stream = ExtResource("21_trimw")
+
+[node name="GpTurboSelect4" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="3"]
+stream = ExtResource("22_2m1ph")
+
+[node name="BodyHitWithGrunt2" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="0"]
+stream = ExtResource("23_v0ioe")
+
+[node name="BodyFall6" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="1"]
+stream = ExtResource("23_v0ioe")
+
+[node name="BodyFall12" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="2"]
+stream = ExtResource("24_wiswy")
+
+[node name="BodyHitWithGrunt1" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="3"]
+stream = ExtResource("25_34uis")

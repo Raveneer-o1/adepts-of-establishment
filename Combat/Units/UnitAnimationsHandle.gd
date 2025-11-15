@@ -30,7 +30,8 @@ func play_attack_animation() -> void:
 		next_animation = &"attack"
 		return
 	play(&"attack")
-	
+	if attack_sound_frame == 0:
+		parent_unit.sound_player.play_attack_sound()
 	now_attacking = true
 
 
@@ -95,7 +96,7 @@ func _on_frame_changed() -> void:
 		EventBus.attack_reached.emit(parent_unit)
 	if last_frame > 0 and frame >= last_frame:
 		finish_attack()
-	if frame == attack_sound_frame:
+	if frame == attack_sound_frame and attack_sound_frame > 0:
 		parent_unit.sound_player.play_attack_sound()
 
 

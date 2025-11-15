@@ -103,6 +103,8 @@ evasion = 0.12
 
 [node name="Shadow" instance=ExtResource("1_u1jip")]
 unit_name = "Shadow"
+unit_type = 1
+faction = 1
 full_description = "Shadow's very essence a manifestation of fear and despair. They attack by engulfing their targets in a cold, suffocating void, sapping their strength and will. Difficult to detect and harder to fight, Shadows excel at ambushing their prey and disrupting enemy formations."
 portrait_texture = ExtResource("2_0opmo")
 
@@ -113,15 +115,14 @@ autoplay = "default"
 [node name="UnitParameters" parent="." index="1"]
 level = 3
 base_paramaters = SubResource("Resource_cbcbq")
-immunities = Array[int]([2, 3])
 attack_effect = ExtResource("4_2tpcm")
 
-[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("6_f03p3")
 accuracy = 0.65
 initiative = 25
 target_validation = ExtResource("7_e144q")
 additional_targets = ExtResource("8_2mes4")
-applying_effects = {
+applying_effects = Dictionary[String, Variant]({
 "paralysis": [0.9, 2]
-}
+})

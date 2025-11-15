@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d36kmn7x631q4"
+path="res://.godot/imported/Wraith attack.wav-033bf2e0f2e8834858dc4b319023ab49.sample"
+
+[deps]
+
+source_file="res://Sounds/using/Attack/Undead/Wraith attack.wav"
+dest_files=["res://.godot/imported/Wraith attack.wav-033bf2e0f2e8834858dc4b319023ab49.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=true
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

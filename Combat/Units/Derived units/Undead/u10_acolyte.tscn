@@ -1,14 +1,30 @@
-[gd_scene load_steps=23 format=3 uid="uid://c5vikx0bd5g7m"]
+[gd_scene load_steps=39 format=3 uid="uid://c5vikx0bd5g7m"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_jcdtv"]
 [ext_resource type="Texture2D" uid="uid://c7tle1v0onk8t" path="res://Arts/Undead units/u22 acolyte v2 attack .png" id="2_hxb6d"]
+[ext_resource type="Texture2D" uid="uid://lahxnrkew1ut" path="res://Arts/Placeholders/Death acolyte.jpg" id="2_ow6vu"]
 [ext_resource type="Texture2D" uid="uid://c4ubm7wj42ihg" path="res://Arts/Undead units/u22 acolyte v2 idle .png" id="3_peot3"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_fyc4j"]
 [ext_resource type="PackedScene" uid="uid://cnl2vrahoavc6" path="res://Combat/Effects/Scenes/spiral_attack.tscn" id="4_idhnn"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_v1c5e"]
-[ext_resource type="Resource" uid="uid://bkoge3ibwhgcc" path="res://Combat/Units/Parameters/Validation/standard_mage_validity.tres" id="7_w8433"]
-[ext_resource type="Resource" uid="uid://bhe5cl2bujg8i" path="res://Combat/Units/Parameters/Additional targets/Splash.tres" id="8_xwvfk"]
-[ext_resource type="Resource" uid="uid://cxvfk7vgegqq2" path="res://Combat/Units/Parameters/Policy/decay_policy.tres" id="9_81ab4"]
+[ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standard_archer_validity.tres" id="7_yx8qq"]
+[ext_resource type="AudioStream" uid="uid://3up3xko4aipd" path="res://Sounds/using/Damage/Default_1.wav" id="10_jhhvs"]
+[ext_resource type="AudioStream" uid="uid://b7r3kee6rjmo4" path="res://Sounds/using/Damage/Default_2.wav" id="11_01o7m"]
+[ext_resource type="AudioStream" uid="uid://b8o5l8pxfg4my" path="res://Sounds/using/Damage/Default_3.wav" id="12_o5ij4"]
+[ext_resource type="AudioStream" uid="uid://cucn7770e3ayy" path="res://Sounds/using/Damage/Default_4.wav" id="13_mrocr"]
+[ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="14_ne5hp"]
+[ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="15_ul7ol"]
+[ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="16_e7p35"]
+[ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="17_p8ear"]
+[ext_resource type="AudioStream" uid="uid://bx4vjemunixkb" path="res://Sounds/using/Shield/arrow hitting shield.mp3" id="18_tdo2g"]
+[ext_resource type="AudioStream" uid="uid://0mf05m0ppgpr" path="res://Sounds/using/Attack/generic spell.wav" id="19_pc5tr"]
+[ext_resource type="AudioStream" uid="uid://57uq8ddrqmg0" path="res://Sounds/using/Heal/GP_Turbo_Select_1.wav" id="20_wqycx"]
+[ext_resource type="AudioStream" uid="uid://bvxxsyhcv73oo" path="res://Sounds/using/Heal/GP_Turbo_Select_2.wav" id="21_vqhn2"]
+[ext_resource type="AudioStream" uid="uid://befag54021wep" path="res://Sounds/using/Heal/GP_Turbo_Select_3.wav" id="22_dofv3"]
+[ext_resource type="AudioStream" uid="uid://dsge1pqh4ihjr" path="res://Sounds/using/Heal/GP_Turbo_Select_4.wav" id="23_uj3o2"]
+[ext_resource type="AudioStream" uid="uid://ble86orlqio7s" path="res://Sounds/using/Death/body hit with grunt 1.wav" id="24_68eeu"]
+[ext_resource type="AudioStream" uid="uid://bdpingiq3vatc" path="res://Sounds/using/Death/body hit with grunt 2.wav" id="25_5frlj"]
+[ext_resource type="AudioStream" uid="uid://cpx2q3qkd8dab" path="res://Sounds/using/Death/body hit with grunt 3.wav" id="26_if3hi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lldai"]
 atlas = ExtResource("2_hxb6d")
@@ -103,27 +119,84 @@ animations = [{
 [sub_resource type="Resource" id="Resource_k7mdc"]
 resource_local_to_scene = true
 script = ExtResource("4_fyc4j")
-max_HP = 70
-base_damage = 25
+max_HP = 50
+base_damage = 15
+evasion = 0.045
 
 [node name="Death Acolyte" instance=ExtResource("1_jcdtv")]
 unit_name = "Death Acolyte"
+unit_type = 2
+faction = 1
 full_description = "Acolytes are novice practitioners of necromancy, drawn to the allure of death's secrets. Though their abilities are limited, they can channel minor curses to aid their allies. With time and guidance, these fledgling necromancers can evolve into powerful wielders of dark magic."
+portrait_texture = ExtResource("2_ow6vu")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_garf3")
 animation = &"attack"
 autoplay = "default"
+frame = 6
+frame_progress = 1.0
 frames_to_emit = Array[int]([5])
+attack_sound_frame = 2
 
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_k7mdc")
 attack_effect = ExtResource("4_idhnn")
 
-[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("6_v1c5e")
-accuracy = 0.77
+type = 1
+accuracy = 0.9
 initiative = 35
-target_validation = ExtResource("7_w8433")
-additional_targets = ExtResource("8_xwvfk")
-damage_policy = ExtResource("9_81ab4")
+target_validation = ExtResource("7_yx8qq")
+
+[node name="Default1" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
+stream = ExtResource("10_jhhvs")
+
+[node name="Default2" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="1"]
+stream = ExtResource("11_01o7m")
+
+[node name="Default3" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="2"]
+stream = ExtResource("12_o5ij4")
+
+[node name="Default4" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="3"]
+stream = ExtResource("13_mrocr")
+
+[node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
+stream = ExtResource("14_ne5hp")
+
+[node name="GpArmorDown2" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="1"]
+stream = ExtResource("15_ul7ol")
+
+[node name="GpArmorDown3" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="2"]
+stream = ExtResource("16_e7p35")
+
+[node name="GpArmorDown4" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="3"]
+stream = ExtResource("17_p8ear")
+
+[node name="ArrowHittingShield" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
+stream = ExtResource("18_tdo2g")
+
+[node name="GenericSpell" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
+stream = ExtResource("19_pc5tr")
+
+[node name="GpTurboSelect1" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]
+stream = ExtResource("20_wqycx")
+
+[node name="GpTurboSelect2" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="1"]
+stream = ExtResource("21_vqhn2")
+
+[node name="GpTurboSelect3" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="2"]
+stream = ExtResource("22_dofv3")
+
+[node name="GpTurboSelect4" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="3"]
+stream = ExtResource("23_uj3o2")
+
+[node name="BodyHitWithGrunt1" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="0"]
+stream = ExtResource("24_68eeu")
+
+[node name="BodyHitWithGrunt2" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="1"]
+stream = ExtResource("25_5frlj")
+
+[node name="BodyHitWithGrunt3" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="2"]
+stream = ExtResource("26_if3hi")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://c4wmjlxgojxgm"]
+[gd_scene load_steps=42 format=3 uid="uid://c4wmjlxgojxgm"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_7kl12"]
 [ext_resource type="Texture2D" uid="uid://cuni5j4njr66u" path="res://Arts/Placeholders/Vampire lord (2).jpg" id="2_8nuui"]
@@ -10,6 +10,21 @@
 [ext_resource type="Resource" uid="uid://bhe5cl2bujg8i" path="res://Combat/Units/Parameters/Additional targets/Splash.tres" id="7_jj583"]
 [ext_resource type="Resource" uid="uid://cxvfk7vgegqq2" path="res://Combat/Units/Parameters/Policy/decay_policy.tres" id="8_odjqq"]
 [ext_resource type="PackedScene" uid="uid://cxt0p01rq72n1" path="res://Combat/Effects/AppliedEffects/Scenes/vampirism.tscn" id="9_uy4hc"]
+[ext_resource type="AudioStream" uid="uid://dhh33agkccv4v" path="res://Sounds/using/Damage/fish 7.wav" id="11_djqap"]
+[ext_resource type="AudioStream" uid="uid://b7eq0rfqqthfn" path="res://Sounds/using/Damage/fish 16.wav" id="12_n62fs"]
+[ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="13_euwrh"]
+[ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="14_6qjtl"]
+[ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="15_x1454"]
+[ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="16_n8gwq"]
+[ext_resource type="AudioStream" uid="uid://bx4vjemunixkb" path="res://Sounds/using/Shield/arrow hitting shield.mp3" id="17_ncjr0"]
+[ext_resource type="AudioStream" uid="uid://cyoafdxqw85yb" path="res://Sounds/using/Attack/Undead/Vampire lord.wav" id="18_tl2sn"]
+[ext_resource type="AudioStream" uid="uid://ttr6657br8p7" path="res://Sounds/using/Liquid sound.wav" id="19_utc4v"]
+[ext_resource type="AudioStream" uid="uid://bq11rwahfdp2i" path="res://Sounds/using/heartbeat 2.wav" id="20_w0a56"]
+[ext_resource type="AudioStream" uid="uid://b1gghlgrei6if" path="res://Sounds/using/heartbeat 3.wav" id="21_x7bpt"]
+[ext_resource type="AudioStream" uid="uid://c38xuxtchxn55" path="res://Sounds/using/heartbeat 4.wav" id="22_5ulay"]
+[ext_resource type="AudioStream" uid="uid://dxiivr6txaweh" path="res://Sounds/using/Death/body fall 3.wav" id="23_5h0kf"]
+[ext_resource type="AudioStream" uid="uid://bfaxc8l3qk67k" path="res://Sounds/using/Death/body fall 6.wav" id="24_a0q2q"]
+[ext_resource type="AudioStream" uid="uid://bcae4mab3j5u" path="res://Sounds/using/Death/body fall 12.wav" id="25_wd0m3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_arw44"]
 atlas = ExtResource("2_fcnea")
@@ -125,13 +140,13 @@ animations = [{
 [sub_resource type="Resource" id="Resource_jg442"]
 resource_local_to_scene = true
 script = ExtResource("4_v6g03")
-max_HP = 230
+max_HP = 285
 base_damage = 75
-armor = 20
-evasion = 0.03
 
 [node name="Vampire Lord" instance=ExtResource("1_7kl12")]
 unit_name = "Vampire Lord"
+unit_type = 2
+faction = 1
 full_description = "Vampire Lords are the supreme rulers of their kind, commanding legions of undead and wielding unparalleled mastery over blood magic. Their regal presence belies their monstrous strength and cunning intellect, making them both inspiring leaders and fearsome warriors. With centuries of experience and an insatiable hunger for power, Vampire Lords are the ultimate embodiment of the Necropolis's dark ambition."
 portrait_texture = ExtResource("2_8nuui")
 
@@ -139,9 +154,13 @@ portrait_texture = ExtResource("2_8nuui")
 sprite_frames = SubResource("SpriteFrames_qo2wt")
 animation = &"attack"
 autoplay = "default"
+frame = 9
+frame_progress = 1.0
 offset = Vector2(0, -8)
+frames_to_emit = Array[int]([6])
 
 [node name="UnitParameters" parent="." index="1"]
+level = 5
 base_paramaters = SubResource("Resource_jg442")
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
@@ -156,3 +175,52 @@ damage_policy = ExtResource("8_odjqq")
 [node name="Vampirism" parent="UnitParameters" index="2" instance=ExtResource("9_uy4hc")]
 heal = 0.65
 is_percentage = true
+
+[node name="Fish7" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
+stream = ExtResource("11_djqap")
+
+[node name="Fish16" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="1"]
+stream = ExtResource("12_n62fs")
+
+[node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
+stream = ExtResource("13_euwrh")
+
+[node name="GpArmorDown2" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="1"]
+stream = ExtResource("14_6qjtl")
+
+[node name="GpArmorDown3" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="2"]
+stream = ExtResource("15_x1454")
+
+[node name="GpArmorDown4" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="3"]
+stream = ExtResource("16_n8gwq")
+
+[node name="ArrowHittingShield" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
+stream = ExtResource("17_ncjr0")
+
+[node name="VampireLord" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
+stream = ExtResource("18_tl2sn")
+
+[node name="LiquidSound" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]
+stream = ExtResource("19_utc4v")
+volume_db = -5.0
+
+[node name="Heartbeat2" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="1"]
+stream = ExtResource("20_w0a56")
+volume_db = -5.0
+
+[node name="Heartbeat3" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="2"]
+stream = ExtResource("21_x7bpt")
+volume_db = -5.0
+
+[node name="Heartbeat4" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="3"]
+stream = ExtResource("22_5ulay")
+volume_db = -5.0
+
+[node name="BodyFall3" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="0"]
+stream = ExtResource("23_5h0kf")
+
+[node name="BodyFall6" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="1"]
+stream = ExtResource("24_a0q2q")
+
+[node name="BodyFall12" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="2"]
+stream = ExtResource("25_wd0m3")

@@ -187,6 +187,8 @@ evasion = 0.135
 
 [node name="Vision of Darkness" instance=ExtResource("1_8j244")]
 unit_name = "Vision of Darkness"
+unit_type = 1
+faction = 1
 full_description = "The Vision of Darkness is an eldritch apparition that embodies the deepest fears of the living. It projects illusions to disorient and terrify enemies, making them vulnerable to other undead forces. With its commanding aura and mind-twisting abilities, the Vision of Darkness is both a psychological and magical powerhouse on the battlefield."
 portrait_texture = ExtResource("2_auyjr")
 

@@ -166,12 +166,6 @@ initiative = 40
 target_validation = ExtResource("6_ksd4k")
 
 [node name="Crafted body" parent="UnitParameters" index="2" instance=ExtResource("7_mknrn")]
-buff_parameters = {
-"armor": 5,
-"base_damage": 5,
-"evasion": 0.005,
-"max_HP": 15
-}
 liftable = false
 silencable = false
 

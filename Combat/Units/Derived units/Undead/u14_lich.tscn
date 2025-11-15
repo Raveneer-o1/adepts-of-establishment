@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dgj6r83d15wkr"]
+[gd_scene load_steps=36 format=3 uid="uid://dgj6r83d15wkr"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_ufroq"]
 [ext_resource type="Texture2D" uid="uid://33b0j1wp4u1p" path="res://Arts/Undead units/u19 lich attack .png" id="2_f8uy4"]
@@ -10,6 +10,18 @@
 [ext_resource type="Resource" uid="uid://davbg4egq6lu0" path="res://Combat/Units/Parameters/Validation/necromancer_validity.tres" id="7_hhcyq"]
 [ext_resource type="Resource" uid="uid://bhe5cl2bujg8i" path="res://Combat/Units/Parameters/Additional targets/Splash.tres" id="7_t8k3m"]
 [ext_resource type="Script" uid="uid://cvqtmnxwg7i3l" path="res://Combat/Units/Parameters/Policy/Scripts/nectomancer_policy.gd" id="9_3no2e"]
+[ext_resource type="AudioStream" uid="uid://bf8wof2u2utkl" path="res://Sounds/using/Damage/Undead/skeleton.wav" id="11_bd22n"]
+[ext_resource type="AudioStream" uid="uid://dnx7qjaosq2rb" path="res://Sounds/using/Damage/skeleton3.wav" id="12_cx1bt"]
+[ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="13_uophg"]
+[ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="14_50eqy"]
+[ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="15_arqml"]
+[ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="16_bxkpy"]
+[ext_resource type="AudioStream" uid="uid://bx4vjemunixkb" path="res://Sounds/using/Shield/arrow hitting shield.mp3" id="17_s3b1n"]
+[ext_resource type="AudioStream" uid="uid://b24gqx7vihq4j" path="res://Sounds/using/magical whoosh.mp3" id="18_2yqp1"]
+[ext_resource type="AudioStream" uid="uid://ud2enk040rd8" path="res://Sounds/using/Heal/Undead/heal 1.wav" id="19_ob0el"]
+[ext_resource type="AudioStream" uid="uid://b7opuqbnm6svt" path="res://Sounds/using/Heal/Undead/heal 2.wav" id="20_h6301"]
+[ext_resource type="AudioStream" uid="uid://dt8hid61d8p5k" path="res://Sounds/using/Death/skeleton2.wav" id="21_ml1r0"]
+[ext_resource type="AudioStream" uid="uid://cah64hulklncu" path="res://Sounds/using/Death/skeleton4.wav" id="22_otl4i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hkj31"]
 atlas = ExtResource("2_f8uy4")
@@ -97,16 +109,16 @@ animations = [{
 [sub_resource type="Resource" id="Resource_nkml3"]
 resource_local_to_scene = true
 script = ExtResource("4_vyg4y")
-max_HP = 180
+max_HP = 100
 base_damage = 40
-armor = 10
 
 [sub_resource type="Resource" id="Resource_4gd0u"]
 script = ExtResource("9_3no2e")
-decay_rate = 0.55
 
 [node name="Lich" instance=ExtResource("1_ufroq")]
 unit_name = "Lich"
+unit_type = 2
+faction = 1
 full_description = "Liches are necromancers who have transcended mortality by binding their souls to phylacteries. These skeletal sorcerers wield immense magical power, unleashing devastating curses and summoning hordes of undead with ease. Their cold intellect and timeless experience make them formidable adversaries and invaluable strategists."
 portrait_texture = ExtResource("2_jn4dx")
 
@@ -114,14 +126,17 @@ portrait_texture = ExtResource("2_jn4dx")
 sprite_frames = SubResource("SpriteFrames_sip5u")
 animation = &"attack"
 autoplay = "default"
+frame = 5
+frame_progress = 1.0
+frames_to_emit = Array[int]([3])
+attack_sound_frame = 2
 
 [node name="UnitParameters" parent="." index="1"]
 level = 3
 base_paramaters = SubResource("Resource_nkml3")
-immunities = Array[int]([3])
 attack_effect = ExtResource("4_bbbue")
 
-[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("6_vg25s")
 accuracy = 0.85
 targets_needed = 2
@@ -129,3 +144,40 @@ initiative = 30
 target_validation = ExtResource("7_hhcyq")
 additional_targets = ExtResource("7_t8k3m")
 damage_policy = SubResource("Resource_4gd0u")
+
+[node name="Skeleton" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
+stream = ExtResource("11_bd22n")
+
+[node name="Skeleton3" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="1"]
+stream = ExtResource("12_cx1bt")
+
+[node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
+stream = ExtResource("13_uophg")
+
+[node name="GpArmorDown2" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="1"]
+stream = ExtResource("14_50eqy")
+
+[node name="GpArmorDown3" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="2"]
+stream = ExtResource("15_arqml")
+
+[node name="GpArmorDown4" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="3"]
+stream = ExtResource("16_bxkpy")
+
+[node name="ArrowHittingShield" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
+stream = ExtResource("17_s3b1n")
+
+[node name="MagicalWhoosh" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
+stream = ExtResource("18_2yqp1")
+volume_db = -5.0
+
+[node name="Heal1" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]
+stream = ExtResource("19_ob0el")
+
+[node name="Heal2" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="1"]
+stream = ExtResource("20_h6301")
+
+[node name="Skeleton2" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="0"]
+stream = ExtResource("21_ml1r0")
+
+[node name="Skeleton4" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="1"]
+stream = ExtResource("22_otl4i")

@@ -3,7 +3,7 @@ extends Node
 var ambient_audio_list: Array[AudioStreamPlayer] = []
 
 func _ready() -> void:
-	if OS.is_debug_build(): return
+	#if OS.is_debug_build(): return
 	for child in get_children():
 		if child is AudioStreamPlayer:
 			ambient_audio_list.append(child)

@@ -37,6 +37,9 @@ var unit: Unit
 ## during resolution but attack can still be missed.
 @export var evadable: bool = true
 
+## This list of tags is copied and appended to the [Attack] object when created.
+@export var tags: Array[StringName]
+
 ## [color=red]This field is required for each attack![/color][br]
 ## Determines whether any particular target is valid for the attack.[br]
 ## [color=lightgreen]Note: you need to attach a resource, not a script file[/color]
