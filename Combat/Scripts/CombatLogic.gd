@@ -142,13 +142,14 @@ func start_turn(remove_miniature: bool = true) -> void:
 		assert(current_attack.unit != null, "unit field of a current_attack is empty!")
 		EventBus.turn_started.emit(current_attack.unit)
 		
-		if not current_attack.can_be_performed():
-			continue
-		
 		current_attack.make_current()
 		main_system.current_unit = current_attack.unit
+		
 		if main_system.current_unit.skipping_turn:
 			return
+		
+		if not current_attack.can_be_performed():
+			continue
 		
 		main_system.display_hints()
 		main_system.current_player.start_turn()

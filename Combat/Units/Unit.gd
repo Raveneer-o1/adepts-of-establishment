@@ -220,8 +220,8 @@ func skip_attack(message: String = "", color: Color = Color.WHITE) -> void:
 	
 	var signal_next_stage := get_tree().create_timer(SKIP_DELAY).timeout
 	signal_next_stage.connect(system.combat_logic.next_stage)
-	EventBus.turn_ended.connect(
-		func(_unit: Unit) -> void:
+	signal_next_stage.connect(
+		func() -> void:
 			skipping_turn = false
 	)
 
@@ -232,7 +232,7 @@ func try_switch_action() -> bool:
 	alternative_action_index += 1
 	if alternative_action_index > possible_action_count:
 		alternative_action_index = 0
-	chosen_spots.clear()
+	reset_chosen_targets(self)
 	return true
 
 #endregion
@@ -355,7 +355,6 @@ func set_next_attack() -> void:
 ## The argument here serves only to filter signal emits that could be triggered by other units
 func reset_chosen_targets(_unit: Unit) -> void:
 	if _unit == self:
-		chosen_targets = []
 		chosen_spots.clear()
 
 
