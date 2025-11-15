@@ -3,7 +3,7 @@ extends RefCounted
 
 ## Attack that is being performed
 ##
-## This class manages attacks in the proccess of being performed.
+## This class represents attacks in the proccess of being performed.
 ## Each [Attack] goes through a series of stages: [br]
 ## 1. [b]Target Validation[/b]: The player/AI selects valid targets based on attack rules
 ## (see [member UnitAttack.target_validation], class [BaseValidation]).[br]
@@ -26,6 +26,9 @@ extends RefCounted
 ##
 ## [b]See also:[/b] [CombatSystem], [UnitAttack], [Unit]
 
+## Values in this dictionary override [member default_damage] for specific targets. [br]
+## Note: If a UnitSpotReference exists in this dictionary but not in
+## [member target_references], it will be ignored.
 var damages: Dictionary[UnitSpotReference, int] = {}
 var target_references: Array[UnitSpotReference] = []
 
@@ -173,14 +176,14 @@ func is_primary_target(target: UnitSpot) -> bool:
 	var pos := target_spots.find(target)
 	return pos >= 0 and pos < targets_chosen
 
-func __init_via_Attack(attack: Attack) -> void:
-	type = attack.type
-	attacker = attack.attacker
-	accuracy = attack.accuracy
-	evadable = attack.evadable
-	effect = attack.effect
-	validation = attack.validation
-	targets_chosen = attack.targets_chosen
+#func __init_via_Attack(attack: Attack) -> void:
+	#type = attack.type
+	#attacker = attack.attacker
+	#accuracy = attack.accuracy
+	#evadable = attack.evadable
+	#effect = attack.effect
+	#validation = attack.validation
+	#targets_chosen = attack.targets_chosen
 
 func __init_via_UnitAttack(_unit_attack: UnitAttack, eff: Resource) -> void:
 	type = _unit_attack.type
@@ -190,29 +193,19 @@ func __init_via_UnitAttack(_unit_attack: UnitAttack, eff: Resource) -> void:
 	unit_attack = _unit_attack
 	targets_chosen = _unit_attack.targets_needed
 	is_heal = _unit_attack.is_heal
+	tags.append_array(_unit_attack.tags)
 	
 	if _unit_attack.effect_override:
 		effect = _unit_attack.effect_override
 	else:
 		effect = eff
 
-func _init(_param: Variant, _spots: Array[UnitSpot],
+func _init(_unit_attack: UnitAttack, _spots: Array[UnitSpot],
 		dmg: int, eff: Resource = null) -> void:
-	if _param is UnitAttack:
-		__init_via_UnitAttack(_param, eff)
-	elif _param is Attack:
-		__init_via_Attack(_param)
-	else:
-		push_error(
-			"Invalid data type passed to Attack constructor! UnitAttack or Attack expected but %s found!"\
-			% type_string( typeof(_param) )
-		)
-		return
+	__init_via_UnitAttack(_unit_attack, eff)
 	
-	#target_spots = _spots
 	default_damage = dmg
 	
 	for spot: UnitSpot in _spots:
 		var ref: UnitSpotReference = UnitSpotReference.new(spot)
-		#damages[ref] = dmg
 		target_references.append(ref)
