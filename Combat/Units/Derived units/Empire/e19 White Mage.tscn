@@ -191,6 +191,7 @@ attack_sound_frame = 3
 level = 4
 base_paramaters = SubResource("Resource_yyujt")
 attack_effect = ExtResource("5_dy55f")
+base_damage_override = 10
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("6_1cw50")

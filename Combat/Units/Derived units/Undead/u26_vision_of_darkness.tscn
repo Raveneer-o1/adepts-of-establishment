@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cqa7pi3fgdon4"]
+[gd_scene load_steps=46 format=3 uid="uid://cqa7pi3fgdon4"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_8j244"]
 [ext_resource type="Texture2D" uid="uid://w6i5ipie2wwd" path="res://Arts/Placeholders/Vision of darkness.jpg" id="2_auyjr"]
@@ -9,6 +9,18 @@
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_dvqmr"]
 [ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standard_archer_validity.tres" id="7_1atva"]
 [ext_resource type="Resource" uid="uid://bhe5cl2bujg8i" path="res://Combat/Units/Parameters/Additional targets/Splash.tres" id="8_wnb78"]
+[ext_resource type="AudioStream" uid="uid://5uphfn5dwfgy" path="res://Sounds/using/Ghost damage.wav" id="10_ovnl3"]
+[ext_resource type="AudioStream" uid="uid://c38luq66ny6b7" path="res://Sounds/using/Ghost/Ghost_Damage.wav" id="11_rqqrj"]
+[ext_resource type="AudioStream" uid="uid://4vjgxk2agvic" path="res://Sounds/using/Ghost/Ghost_Attack.wav" id="12_7rxv7"]
+[ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="13_k8bf3"]
+[ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="14_86nsu"]
+[ext_resource type="AudioStream" uid="uid://c412wtqkglem2" path="res://Sounds/using/Ghost/Ghost_Emerge.wav" id="15_jnxwf"]
+[ext_resource type="AudioStream" uid="uid://dd55xpy0y2hfv" path="res://Sounds/using/Miss/swoosh 1.wav" id="16_fjp6j"]
+[ext_resource type="AudioStream" uid="uid://3lv6h775rt8a" path="res://Sounds/using/Miss/swoosh 2.wav" id="17_tlv0l"]
+[ext_resource type="AudioStream" uid="uid://b5jjnqadueny8" path="res://Sounds/using/Ghost/Ghost_Death.wav" id="18_a4eh4"]
+[ext_resource type="AudioStream" uid="uid://ud2enk040rd8" path="res://Sounds/using/Heal/Undead/heal 1.wav" id="19_loqrw"]
+[ext_resource type="AudioStream" uid="uid://b7opuqbnm6svt" path="res://Sounds/using/Heal/Undead/heal 2.wav" id="20_ma354"]
+[ext_resource type="AudioStream" uid="uid://bdqv7tmh7ys10" path="res://Sounds/using/Wind sound.wav" id="21_qq5nu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_54nk2"]
 atlas = ExtResource("2_c0ip2")
@@ -180,10 +192,9 @@ animations = [{
 [sub_resource type="Resource" id="Resource_00pkl"]
 resource_local_to_scene = true
 script = ExtResource("4_op4sp")
-max_HP = 180
-base_damage = 40
-armor = 10
-evasion = 0.135
+max_HP = 150
+base_damage = 25
+evasion = 0.2
 
 [node name="Vision of Darkness" instance=ExtResource("1_8j244")]
 unit_name = "Vision of Darkness"
@@ -202,6 +213,7 @@ last_frame = 12
 [node name="UnitParameters" parent="." index="1"]
 level = 4
 base_paramaters = SubResource("Resource_00pkl")
+underlying_immunities = Array[int]([3])
 attack_effect = ExtResource("4_vagcr")
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
@@ -211,5 +223,44 @@ initiative = 25
 target_validation = ExtResource("7_1atva")
 additional_targets = ExtResource("8_wnb78")
 applying_effects = Dictionary[String, Variant]({
-"paralysis": [0.85, 2]
+"paralysis": [0.9, 1]
 })
+
+[node name="GhostDamage" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
+stream = ExtResource("10_ovnl3")
+
+[node name="GhostDamage2" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="1"]
+stream = ExtResource("11_rqqrj")
+
+[node name="GhostAttack" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="2"]
+stream = ExtResource("12_7rxv7")
+
+[node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
+stream = ExtResource("13_k8bf3")
+
+[node name="GpArmorDown3" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="1"]
+stream = ExtResource("14_86nsu")
+
+[node name="GhostEmerge" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="2"]
+stream = ExtResource("15_jnxwf")
+
+[node name="Swoosh1" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
+stream = ExtResource("16_fjp6j")
+
+[node name="Swoosh2" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="1"]
+stream = ExtResource("17_tlv0l")
+
+[node name="GhostEmerge" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="2"]
+stream = ExtResource("15_jnxwf")
+
+[node name="GhostDeath" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
+stream = ExtResource("18_a4eh4")
+
+[node name="Heal1" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]
+stream = ExtResource("19_loqrw")
+
+[node name="Heal2" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="1"]
+stream = ExtResource("20_ma354")
+
+[node name="WindSound" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="0"]
+stream = ExtResource("21_qq5nu")

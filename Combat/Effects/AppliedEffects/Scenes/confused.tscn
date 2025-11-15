@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://da5mt5mhyagg0"]
+
+[ext_resource type="Script" uid="uid://dmgoi3plg1q5u" path="res://Combat/Effects/AppliedEffects/Scripts/confused.gd" id="1_6jph2"]
+
+[node name="Confused" type="Node"]
+script = ExtResource("1_6jph2")
+color_effect = Color(0.79119164, 0.36904508, 0.8852046, 1)
+effect_name = "Confused"
+icon_index = 18
+negative_effect = true
+description = "Unit's attacks have a chance to be redirected to random targets"

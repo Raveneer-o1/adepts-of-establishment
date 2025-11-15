@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bhj16k1esibkv"
+path="res://.godot/imported/Sparkle woosh.wav-4406f3a818ec1c32362bf7029ff446a6.sample"
+
+[deps]
+
+source_file="res://Sounds/using/Sparkle woosh.wav"
+dest_files=["res://.godot/imported/Sparkle woosh.wav-4406f3a818ec1c32362bf7029ff446a6.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=true
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

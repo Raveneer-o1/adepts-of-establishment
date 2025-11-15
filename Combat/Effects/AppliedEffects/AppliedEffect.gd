@@ -14,6 +14,7 @@ class_name AppliedEffect
 ## This is also the reason why [code]free()[/code] should [b]not[/b] be used with this object:
 ## Some of the game logic verifies validity only once and would break if the object was
 ## suddenly freed. [br][br]
+##
 ## This node attaches directly to a unit's [UnitParameters] node. Remove it using either: [br]
 ## - [method lift_effect] for normal removal [br]
 ## - [code]queue_free()[/code] to remove without triggering associated effects [br]
@@ -115,11 +116,14 @@ func lift_effect() -> void:
 
 var silenced_turns: int = -1
 
+func silence_count() -> void:
+	silenced_turns -= 1
+	if silenced_turns <= 0:
+		restore_effect()
+
 func check_silence_countdown(unit: Unit) -> void:
 	if unit == target_unit:
-		if silenced_turns <= 0:
-			restore_effect()
-		silenced_turns -= 1
+		silence_count()
 
 var silenced: bool = false
 
@@ -152,7 +156,7 @@ func silence_effect(time: int = -1, is_round: bool = false) -> void:
 	# connect timeout clock if necessary
 	if time >= 0:
 		silenced_turns = time
-		if round: EventBus.round_ended.connect(check_silence_countdown)
+		if round: EventBus.round_ended.connect(silence_count)
 		else: EventBus.turn_ended.connect(check_silence_countdown)
 	
 	# disconnect callables

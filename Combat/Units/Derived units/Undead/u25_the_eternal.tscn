@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b82ediua8s2v2"]
+[gd_scene load_steps=39 format=3 uid="uid://b82ediua8s2v2"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_rnn02"]
 [ext_resource type="Texture2D" uid="uid://dh0hubbdo55y4" path="res://Arts/Undead units/u26 The Eternal attack .png" id="2_47vol"]
@@ -8,6 +8,22 @@
 [ext_resource type="PackedScene" uid="uid://bem6bxlown8bm" path="res://Combat/Effects/Scenes/The_eternal_effect.tscn" id="4_dn35n"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_7uruf"]
 [ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standard_archer_validity.tres" id="7_qmbg8"]
+[ext_resource type="AudioStream" uid="uid://b4plhkfe67tfi" path="res://Sounds/using/Attack/Undead/eldritch-11.wav" id="9_36x7r"]
+[ext_resource type="AudioStream" uid="uid://66vnbu86ewsq" path="res://Sounds/using/Attack/Undead/eldritch-13.wav" id="10_epw1e"]
+[ext_resource type="AudioStream" uid="uid://b21tc5djcl27y" path="res://Sounds/using/Attack/Undead/eldritch-7.wav" id="11_6543w"]
+[ext_resource type="AudioStream" uid="uid://bd6fv261twbpu" path="res://Sounds/using/Attack/Undead/eldritch-8.wav" id="12_k7x0g"]
+[ext_resource type="AudioStream" uid="uid://cbxw3w7u2vj5s" path="res://Sounds/using/Attack/Undead/eldritch-5.wav" id="13_y4tjq"]
+[ext_resource type="AudioStream" uid="uid://ckpyd00fnn5g1" path="res://Sounds/using/Attack/Undead/eldritch-6.wav" id="14_8lrad"]
+[ext_resource type="AudioStream" uid="uid://3nos7drcqgkw" path="res://Sounds/using/Attack/Undead/eldritch-10.wav" id="15_juxb3"]
+[ext_resource type="AudioStream" uid="uid://crv72yrf1pojx" path="res://Sounds/using/Attack/Undead/eldritch-12.wav" id="16_3br3h"]
+[ext_resource type="AudioStream" uid="uid://c0vwveu20ea48" path="res://Sounds/using/Attack/Undead/eldritch-9.wav" id="17_g4m5s"]
+[ext_resource type="AudioStream" uid="uid://bae7faudnq11s" path="res://Sounds/using/Attack/Undead/eldritch-2.wav" id="18_85l5c"]
+[ext_resource type="AudioStream" uid="uid://57uq8ddrqmg0" path="res://Sounds/using/Heal/GP_Turbo_Select_1.wav" id="19_pfljn"]
+[ext_resource type="AudioStream" uid="uid://bvxxsyhcv73oo" path="res://Sounds/using/Heal/GP_Turbo_Select_2.wav" id="20_7e3ud"]
+[ext_resource type="AudioStream" uid="uid://befag54021wep" path="res://Sounds/using/Heal/GP_Turbo_Select_3.wav" id="21_4o865"]
+[ext_resource type="AudioStream" uid="uid://dsge1pqh4ihjr" path="res://Sounds/using/Heal/GP_Turbo_Select_4.wav" id="22_ut8fu"]
+[ext_resource type="AudioStream" uid="uid://cbs3khbn5sv4j" path="res://Sounds/using/Attack/Undead/eldritch-3.wav" id="23_rl5ii"]
+[ext_resource type="AudioStream" uid="uid://b23mdvvxdypqd" path="res://Sounds/using/Attack/Undead/eldritch-4.wav" id="24_5yctb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jw05b"]
 atlas = ExtResource("2_47vol")
@@ -109,9 +125,9 @@ animations = [{
 [sub_resource type="Resource" id="Resource_ls1tn"]
 resource_local_to_scene = true
 script = ExtResource("4_ayyqw")
-max_HP = 100
-base_damage = 30
-evasion = 0.1
+max_HP = 180
+base_damage = 40
+evasion = 0.2
 
 [node name="The Eternal" instance=ExtResource("1_rnn02")]
 unit_name = "The Eternal"
@@ -125,17 +141,78 @@ sprite_frames = SubResource("SpriteFrames_ui7m8")
 autoplay = "default"
 
 [node name="UnitParameters" parent="." index="1"]
+level = 4
 base_paramaters = SubResource("Resource_ls1tn")
+underlying_immunities = Array[int]([1])
 attack_effect = ExtResource("4_dn35n")
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("6_7uruf")
 type = 1
-accuracy = 0.725
 initiative = 35
 tags = Array[StringName]([&"shot"])
 target_validation = ExtResource("7_qmbg8")
 applying_effects = Dictionary[String, Variant]({
-"burn": [2, 40],
-"paralysis": [0.8, 1]
+"burn": [1, 25],
+"confused": [3, 0.65]
 })
+
+[node name="Eldritch11" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
+stream = ExtResource("9_36x7r")
+volume_db = -10.0
+
+[node name="Eldritch13" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="1"]
+stream = ExtResource("10_epw1e")
+volume_db = -10.0
+
+[node name="Eldritch7" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
+stream = ExtResource("11_6543w")
+volume_db = -10.0
+
+[node name="Eldritch8" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="1"]
+stream = ExtResource("12_k7x0g")
+volume_db = -10.0
+
+[node name="Eldritch5" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
+stream = ExtResource("13_y4tjq")
+volume_db = -10.0
+
+[node name="Eldritch6" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="1"]
+stream = ExtResource("14_8lrad")
+volume_db = -10.0
+
+[node name="Eldritch10" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
+stream = ExtResource("15_juxb3")
+volume_db = -10.0
+
+[node name="Eldritch12" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="1"]
+stream = ExtResource("16_3br3h")
+volume_db = -10.0
+
+[node name="Eldritch9" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="2"]
+stream = ExtResource("17_g4m5s")
+volume_db = -10.0
+
+[node name="Eldritch2" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="3"]
+stream = ExtResource("18_85l5c")
+volume_db = -10.0
+
+[node name="GpTurboSelect1" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]
+stream = ExtResource("19_pfljn")
+
+[node name="GpTurboSelect2" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="1"]
+stream = ExtResource("20_7e3ud")
+
+[node name="GpTurboSelect3" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="2"]
+stream = ExtResource("21_4o865")
+
+[node name="GpTurboSelect4" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="3"]
+stream = ExtResource("22_ut8fu")
+
+[node name="Eldritch3" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="0"]
+stream = ExtResource("23_rl5ii")
+volume_db = -10.0
+
+[node name="Eldritch4" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="1"]
+stream = ExtResource("24_5yctb")
+volume_db = -10.0

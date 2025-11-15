@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://u8otmak588vr"
+path="res://.godot/imported/Shadow damage.wav-949fd49a29c5380a1e27588b72785ae8.sample"
+
+[deps]
+
+source_file="res://Sounds/using/Shadow damage.wav"
+dest_files=["res://.godot/imported/Shadow damage.wav-949fd49a29c5380a1e27588b72785ae8.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=true
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

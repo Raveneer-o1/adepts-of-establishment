@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://5uphfn5dwfgy"
+path="res://.godot/imported/Ghost damage.wav-3d73bf9a3324e45f0a84ec1262c5f105.sample"
+
+[deps]
+
+source_file="res://Sounds/using/Ghost damage.wav"
+dest_files=["res://.godot/imported/Ghost damage.wav-3d73bf9a3324e45f0a84ec1262c5f105.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=true
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://d3c7npnpxkrt4"]
+[gd_scene load_steps=37 format=3 uid="uid://d3c7npnpxkrt4"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_27vee"]
 [ext_resource type="Texture2D" uid="uid://bbaimy1tm8hob" path="res://Arts/Undead units/u20 will-o-wisp attack .png" id="2_1rynm"]
@@ -8,6 +8,17 @@
 [ext_resource type="PackedScene" uid="uid://7vboji3lb2aa" path="res://Combat/Effects/Scenes/whisp_attack.tscn" id="4_gye3m"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_tko31"]
 [ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standard_archer_validity.tres" id="7_7imro"]
+[ext_resource type="AudioStream" uid="uid://bhj16k1esibkv" path="res://Sounds/using/Sparkle woosh.wav" id="9_h6qso"]
+[ext_resource type="AudioStream" uid="uid://bvtqbrbsl61wq" path="res://Sounds/using/Light fire.wav" id="10_xu74e"]
+[ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="11_idbrb"]
+[ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="12_jrti4"]
+[ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="13_i0ac2"]
+[ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="14_c3x4e"]
+[ext_resource type="AudioStream" uid="uid://cupnrj455qfid" path="res://Sounds/using/Sparkle fade out.wav" id="15_rngdi"]
+[ext_resource type="AudioStream" uid="uid://57uq8ddrqmg0" path="res://Sounds/using/Heal/GP_Turbo_Select_1.wav" id="16_625qg"]
+[ext_resource type="AudioStream" uid="uid://bvxxsyhcv73oo" path="res://Sounds/using/Heal/GP_Turbo_Select_2.wav" id="17_jh43w"]
+[ext_resource type="AudioStream" uid="uid://befag54021wep" path="res://Sounds/using/Heal/GP_Turbo_Select_3.wav" id="18_hdhut"]
+[ext_resource type="AudioStream" uid="uid://dsge1pqh4ihjr" path="res://Sounds/using/Heal/GP_Turbo_Select_4.wav" id="19_tmc63"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ueq40"]
 atlas = ExtResource("2_1rynm")
@@ -131,9 +142,8 @@ animations = [{
 resource_local_to_scene = true
 script = ExtResource("4_co076")
 max_HP = 140
-base_damage = 35
-armor = 5
-evasion = 0.085
+base_damage = 30
+evasion = 0.15
 
 [node name="Will-o’-Wisp" instance=ExtResource("1_27vee")]
 unit_name = "Will-o’-Wisp"
@@ -144,20 +154,62 @@ portrait_texture = ExtResource("2_7liif")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_wuv4d")
+animation = &"attack"
 autoplay = "default"
+frame = 10
+frame_progress = 1.0
+attack_sound_frame = 4
 
 [node name="UnitParameters" parent="." index="1"]
+level = 3
 base_paramaters = SubResource("Resource_6wtdo")
+underlying_immunities = Array[int]([1])
 attack_effect = ExtResource("4_gye3m")
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("6_tko31")
 type = 1
-accuracy = 0.7
+accuracy = 0.9
 initiative = 30
 tags = Array[StringName]([&"shot"])
 target_validation = ExtResource("7_7imro")
 applying_effects = Dictionary[String, Variant]({
 "burn": [1, 25],
-"paralysis": [0.9, 1]
+"confused": [2, 0.5]
 })
+
+[node name="SparkleWoosh" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
+stream = ExtResource("9_h6qso")
+
+[node name="LightFire" type="AudioStreamPlayer" parent="SoundPlayer/Evade" index="0"]
+stream = ExtResource("10_xu74e")
+
+[node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
+stream = ExtResource("11_idbrb")
+
+[node name="GpArmorDown2" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="1"]
+stream = ExtResource("12_jrti4")
+
+[node name="GpArmorDown3" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="2"]
+stream = ExtResource("13_i0ac2")
+
+[node name="GpArmorDown4" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="3"]
+stream = ExtResource("14_c3x4e")
+
+[node name="LightFire" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
+stream = ExtResource("10_xu74e")
+
+[node name="SparkleFadeOut" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
+stream = ExtResource("15_rngdi")
+
+[node name="GpTurboSelect1" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]
+stream = ExtResource("16_625qg")
+
+[node name="GpTurboSelect2" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="1"]
+stream = ExtResource("17_jh43w")
+
+[node name="GpTurboSelect3" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="2"]
+stream = ExtResource("18_hdhut")
+
+[node name="GpTurboSelect4" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="3"]
+stream = ExtResource("19_tmc63")
