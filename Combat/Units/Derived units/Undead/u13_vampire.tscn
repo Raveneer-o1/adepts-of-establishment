@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dfs7pvexbq8o"]
+[gd_scene load_steps=40 format=3 uid="uid://dfs7pvexbq8o"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_nnejl"]
 [ext_resource type="Texture2D" uid="uid://dpnbjltuc2ibj" path="res://Arts/Placeholders/Vampire.jpg" id="2_ahyrf"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_fp4jo"]
 [ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standard_archer_validity.tres" id="7_vvuxm"]
 [ext_resource type="AudioStream" uid="uid://dhh33agkccv4v" path="res://Sounds/using/Damage/fish 7.wav" id="9_5o2o3"]
+[ext_resource type="PackedScene" uid="uid://b1i0mf1877mfo" path="res://Combat/Effects/AppliedEffects/Scenes/ward.tscn" id="9_ya38m"]
 [ext_resource type="AudioStream" uid="uid://b7eq0rfqqthfn" path="res://Sounds/using/Damage/fish 16.wav" id="10_qv1fk"]
 [ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="11_kx1vv"]
 [ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="12_i5cxv"]
@@ -152,7 +153,6 @@ frames_to_emit = Array[int]([6])
 [node name="UnitParameters" parent="." index="1"]
 level = 3
 base_paramaters = SubResource("Resource_gwtjp")
-underlying_immunities = Array[int]([3])
 
 [node name="Vampirism" parent="UnitParameters" index="1" instance=ExtResource("5_6e8ga")]
 heal = 0.4
@@ -165,6 +165,9 @@ script = ExtResource("6_fp4jo")
 type = 3
 initiative = 40
 target_validation = ExtResource("7_vvuxm")
+
+[node name="Ward" parent="UnitParameters" index="3" instance=ExtResource("9_ya38m")]
+damage_type = 3
 
 [node name="Fish7" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("9_5o2o3")

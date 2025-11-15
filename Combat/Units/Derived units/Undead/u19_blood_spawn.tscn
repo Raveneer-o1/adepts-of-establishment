@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://qd1eeef07rkl"]
+[gd_scene load_steps=43 format=3 uid="uid://qd1eeef07rkl"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_kf05b"]
 [ext_resource type="Texture2D" uid="uid://bkixqf8n8tigy" path="res://Arts/Placeholders/Blood spawn.jpg" id="2_fa30q"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cxt0p01rq72n1" path="res://Combat/Effects/AppliedEffects/Scenes/vampirism.tscn" id="7_r3gra"]
 [ext_resource type="PackedScene" uid="uid://dk7ouduwwj4wg" path="res://Combat/Effects/AppliedEffects/Scenes/fear_aura.tscn" id="8_86h8w"]
 [ext_resource type="AudioStream" uid="uid://3up3xko4aipd" path="res://Sounds/using/Damage/Default_1.wav" id="10_a04fy"]
+[ext_resource type="PackedScene" uid="uid://b1i0mf1877mfo" path="res://Combat/Effects/AppliedEffects/Scenes/ward.tscn" id="10_ako8j"]
 [ext_resource type="AudioStream" uid="uid://b7r3kee6rjmo4" path="res://Sounds/using/Damage/Default_2.wav" id="11_ako8j"]
 [ext_resource type="AudioStream" uid="uid://b8o5l8pxfg4my" path="res://Sounds/using/Damage/Default_3.wav" id="12_dm2if"]
 [ext_resource type="AudioStream" uid="uid://cucn7770e3ayy" path="res://Sounds/using/Damage/Default_4.wav" id="13_wehp0"]
@@ -177,8 +178,11 @@ is_percentage = true
 
 [node name="Fear aura" parent="UnitParameters" index="3" instance=ExtResource("8_86h8w")]
 evasion_decrease = 0.05
-liftable = false
-silencable = false
+description = "Decreases evasion of ALL adjacent units"
+
+[node name="Ward" parent="UnitParameters" index="4" instance=ExtResource("10_ako8j")]
+damage_type = 3
+triggers = 2
 
 [node name="Default1" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("10_a04fy")

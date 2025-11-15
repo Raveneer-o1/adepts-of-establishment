@@ -4,10 +4,6 @@ extends AppliedEffect
 
 const DEBUFF_ICON_INDEX = 6
 
-func _get_description() -> String:
-	return description % evasion_decrease
-
-## Called when the effect is applied to a unit.
 func _apply_effect(params: Variant) -> void:
 	var pos := target_unit.party_position
 	var affected_units := \
@@ -28,6 +24,6 @@ func _apply_effect(params: Variant) -> void:
 		affected_unit.parameters.add_modifier(
 			&"evasion", 
 			self, 
-			func(val: int) -> int: return val - int(evasion_decrease)
+			func(val: float) -> float: return val - evasion_decrease
 		)
 		affected_unit.display_effect_icon(ICONS.get_layer_data(DEBUFF_ICON_INDEX), self)

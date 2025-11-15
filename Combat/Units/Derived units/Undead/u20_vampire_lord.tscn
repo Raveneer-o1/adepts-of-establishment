@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://c4wmjlxgojxgm"]
+[gd_scene load_steps=46 format=3 uid="uid://c4wmjlxgojxgm"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_7kl12"]
 [ext_resource type="Texture2D" uid="uid://cuni5j4njr66u" path="res://Arts/Placeholders/Vampire lord (2).jpg" id="2_8nuui"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://dhh33agkccv4v" path="res://Sounds/using/Damage/fish 7.wav" id="11_djqap"]
 [ext_resource type="Resource" uid="uid://7yjytk5wsox" path="res://Combat/Units/Parameters/Policy/disappear_policy.tres" id="11_euwrh"]
 [ext_resource type="AudioStream" uid="uid://b7eq0rfqqthfn" path="res://Sounds/using/Damage/fish 16.wav" id="12_n62fs"]
+[ext_resource type="PackedScene" uid="uid://b1i0mf1877mfo" path="res://Combat/Effects/AppliedEffects/Scenes/ward.tscn" id="13_6qjtl"]
 [ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="13_euwrh"]
 [ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="14_6qjtl"]
 [ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="15_x1454"]
@@ -168,7 +169,6 @@ frames_to_emit = Array[int]([6])
 [node name="UnitParameters" parent="." index="1"]
 level = 5
 base_paramaters = SubResource("Resource_jg442")
-underlying_immunities = Array[int]([3])
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("5_mqc6w")
@@ -178,9 +178,11 @@ target_validation = ExtResource("6_2bq5g")
 additional_targets = ExtResource("7_jj583")
 damage_policy = SubResource("Resource_n62fs")
 applying_effects = Dictionary[String, Variant]({
-"clumsiness": [0.07, 2]
+"clumsiness": [0.05, 2],
+"vulnerability": [3, 10]
 })
-description = "Also hits adjacent targets"
+description = "Also hits adjacent targets.
+Applies [b]clumsiness[/b] and [b]vulnerability[/b]."
 
 [node name="Disappear" type="Node" parent="UnitParameters/UnitAttack" index="0"]
 script = ExtResource("5_mqc6w")
@@ -192,6 +194,10 @@ metadata/_custom_type_script = "uid://c5u15vrtdf7kf"
 heal = 0.65
 is_percentage = true
 liftable = false
+
+[node name="Shield" parent="UnitParameters" index="3" instance=ExtResource("13_6qjtl")]
+damage_type = 3
+triggers = 2
 
 [node name="Fish7" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("11_djqap")

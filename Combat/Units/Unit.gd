@@ -494,9 +494,13 @@ func try_waiting() -> bool:
 ## Hides the unit and disables all interactions. To reactivate, use
 ## [method UnitSpot.assign_unit] on the spot where this unit should be placed
 ## upon reactivation. [br][br]
-## [color=red]Warning:[/color] This method makes the [Unit] object an orphan without
-## preserving any references to it! The caller is responsible for storing a reference
-## to the deactivated unit and either reactivating it later or freeing the memory.
+## [color=red]Warning: This method makes the [Unit] object an [i]orphan*[/i] without
+## reserving any references to it![/color][br]
+## The caller is responsible for storing a reference
+## to the deactivated unit and either reactivating it later or freeing the memory.[br]
+## *An [i]orphan[/i] is a node outside the [SceneTree]. Creating orphans without
+## maintaining references causes memory leaks since Godot's garbage collector
+## does not handle [Node] objects.
 func deactivate() -> void:
 	active = false
 	if spot: spot.release_unit()

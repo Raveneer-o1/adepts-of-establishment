@@ -5,6 +5,6 @@
 [node name="Clumsiness" type="Node"]
 script = ExtResource("1_4bcil")
 effect_name = "Clumsiness"
-icon_index = 18
+icon_index = 6
 negative_effect = true
 description = "This unit's evasion is decreased"

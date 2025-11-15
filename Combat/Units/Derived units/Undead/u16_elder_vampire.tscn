@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dubag27s7x4c3"]
+[gd_scene load_steps=43 format=3 uid="uid://dubag27s7x4c3"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_r3u27"]
 [ext_resource type="Texture2D" uid="uid://dmanqh82akg16" path="res://Arts/Undead units/u15 elder vampire attack .png" id="2_o7r33"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://5qgohskr1g6s" path="res://Combat/Units/Parameters/Policy/Scripts/decay_policy.gd" id="9_yvh38"]
 [ext_resource type="AudioStream" uid="uid://b7eq0rfqqthfn" path="res://Sounds/using/Damage/fish 16.wav" id="10_tujwa"]
 [ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="11_f78et"]
+[ext_resource type="PackedScene" uid="uid://b1i0mf1877mfo" path="res://Combat/Effects/AppliedEffects/Scenes/ward.tscn" id="11_yvh38"]
 [ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="12_yvh38"]
 [ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="13_5sbny"]
 [ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="14_hgoaa"]
@@ -169,12 +170,16 @@ damage_policy = SubResource("Resource_5sbny")
 applying_effects = Dictionary[String, Variant]({
 "clumsiness": [0.05, 2]
 })
-description = "Also hits adjacent targets"
+description = "Also hits adjacent targets.
+Applies [b]clumsiness[/b]."
 
 [node name="Vampirism" parent="UnitParameters" index="2" instance=ExtResource("9_tujwa")]
 heal = 0.6
 is_percentage = true
 liftable = false
+
+[node name="Ward" parent="UnitParameters" index="3" instance=ExtResource("11_yvh38")]
+damage_type = 3
 
 [node name="Fish7" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("9_t7wfa")

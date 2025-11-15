@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cwsljqsiow8li" path="res://Combat/Effects/AppliedEffects/Scripts/ward.gd" id="1_iw7rj"]
 
-[node name="Shield" type="Node"]
+[node name="Ward" type="Node"]
 script = ExtResource("1_iw7rj")
 effect_name = "Ward"
 icon_index = 4

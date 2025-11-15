@@ -458,9 +458,9 @@ subgraph Undead
         end
         subgraph Elder_vampire
             Elder_vampire_d("
-            noraml damage to a single target
+            noraml damage to a target and adjacent units
             portion of the damage is restored as hp
-            attacks apply significant debuff to accuracy
+            attacks apply debuff to accuracy
             "):::desc
         end
         subgraph Herald_of_Death
@@ -473,7 +473,7 @@ subgraph Undead
         %% Level 5
         subgraph Vampire_Lord
             Vampire_Lord_d("
-            noraml damage to a single target
+            noraml damage to a target and adjacent units
             portion of the damage is restored as hp
             attacks apply significant debuff to accuracy
             once per battle can make any unit (including itself) disappear for several turns and skip all attacks for this round
