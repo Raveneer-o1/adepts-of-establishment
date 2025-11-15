@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bjf64unkm13v7"]
+[gd_scene load_steps=47 format=3 uid="uid://bjf64unkm13v7"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_sqfu4"]
 [ext_resource type="Texture2D" uid="uid://crjcndu0pbsro" path="res://Arts/Placeholders/Herald of death.jpg" id="2_bsj1p"]
@@ -11,6 +11,8 @@
 [ext_resource type="Resource" uid="uid://bhe5cl2bujg8i" path="res://Combat/Units/Parameters/Additional targets/Splash.tres" id="8_076jq"]
 [ext_resource type="AudioStream" uid="uid://dothlhacu7pkl" path="res://Sounds/using/Damage/Undead/Herald of death damage.wav" id="9_t8mhr"]
 [ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="10_bsj1p"]
+[ext_resource type="Script" uid="uid://5qgohskr1g6s" path="res://Combat/Units/Parameters/Policy/Scripts/decay_policy.gd" id="10_nx2ry"]
+[ext_resource type="PackedScene" uid="uid://b1i0mf1877mfo" path="res://Combat/Effects/AppliedEffects/Scenes/ward.tscn" id="10_wgph8"]
 [ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="11_wgph8"]
 [ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="12_nx2ry"]
 [ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="13_4fa37"]
@@ -193,6 +195,10 @@ script = ExtResource("4_mp57r")
 max_HP = 180
 base_damage = 60
 
+[sub_resource type="Resource" id="Resource_4fa37"]
+resource_local_to_scene = true
+script = ExtResource("10_nx2ry")
+
 [node name="Herald of Death" instance=ExtResource("1_sqfu4")]
 unit_name = "Herald of Death"
 unit_type = 2
@@ -213,14 +219,25 @@ attack_sound_frame = 0
 [node name="UnitParameters" parent="." index="1"]
 level = 4
 base_paramaters = SubResource("Resource_rkstj")
+underlying_immunities = Array[int]([3])
 attack_effect = ExtResource("4_uyepk")
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("6_j8oql")
-accuracy = 0.9
+type = 1
 initiative = 40
 target_validation = ExtResource("7_mwbfh")
 additional_targets = ExtResource("8_076jq")
+damage_policy = SubResource("Resource_4fa37")
+applying_effects = Dictionary[String, Variant]({
+"weakness": [2, 30]
+})
+description = "Also hits adjacent targets.
+Attacks apply [b]weakness[/b]."
+
+[node name="Ward" parent="UnitParameters" index="2" instance=ExtResource("10_wgph8")]
+damage_type = 0
+triggers = 2
 
 [node name="HeraldOfDeathDamage" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("9_t8mhr")

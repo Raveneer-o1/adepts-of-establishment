@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dgj6r83d15wkr"]
+[gd_scene load_steps=35 format=3 uid="uid://dgj6r83d15wkr"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_ufroq"]
 [ext_resource type="Texture2D" uid="uid://33b0j1wp4u1p" path="res://Arts/Undead units/u19 lich attack .png" id="2_f8uy4"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_vyg4y"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_vg25s"]
 [ext_resource type="Resource" uid="uid://davbg4egq6lu0" path="res://Combat/Units/Parameters/Validation/necromancer_validity.tres" id="7_hhcyq"]
-[ext_resource type="Resource" uid="uid://bhe5cl2bujg8i" path="res://Combat/Units/Parameters/Additional targets/Splash.tres" id="7_t8k3m"]
 [ext_resource type="Script" uid="uid://cvqtmnxwg7i3l" path="res://Combat/Units/Parameters/Policy/Scripts/nectomancer_policy.gd" id="9_3no2e"]
 [ext_resource type="AudioStream" uid="uid://bf8wof2u2utkl" path="res://Sounds/using/Damage/Undead/skeleton.wav" id="11_bd22n"]
 [ext_resource type="AudioStream" uid="uid://dnx7qjaosq2rb" path="res://Sounds/using/Damage/skeleton3.wav" id="12_cx1bt"]
@@ -109,11 +108,13 @@ animations = [{
 [sub_resource type="Resource" id="Resource_nkml3"]
 resource_local_to_scene = true
 script = ExtResource("4_vyg4y")
-max_HP = 100
+max_HP = 85
 base_damage = 40
 
 [sub_resource type="Resource" id="Resource_4gd0u"]
 script = ExtResource("9_3no2e")
+resurrection_with_percent_hp = 0.7
+resurrection_cost = 25
 
 [node name="Lich" instance=ExtResource("1_ufroq")]
 unit_name = "Lich"
@@ -134,15 +135,24 @@ attack_sound_frame = 2
 [node name="UnitParameters" parent="." index="1"]
 level = 3
 base_paramaters = SubResource("Resource_nkml3")
+underlying_immunities = Array[int]([3])
 attack_effect = ExtResource("4_bbbue")
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("6_vg25s")
-accuracy = 0.85
-targets_needed = 2
+damage_multiplier = 0.6
+type = 1
 initiative = 30
 target_validation = ExtResource("7_hhcyq")
-additional_targets = ExtResource("7_t8k3m")
+damage_policy = SubResource("Resource_4gd0u")
+description = "This unit can resurrect instead of attacking."
+
+[node name="UnitAttack2" type="Node" parent="UnitParameters" index="2"]
+script = ExtResource("6_vg25s")
+damage_multiplier = 0.4
+type = 1
+initiative = 25
+target_validation = ExtResource("7_hhcyq")
 damage_policy = SubResource("Resource_4gd0u")
 
 [node name="Skeleton" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]

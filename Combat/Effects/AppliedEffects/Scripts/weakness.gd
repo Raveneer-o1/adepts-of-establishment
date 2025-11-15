@@ -23,11 +23,15 @@ func _apply_effect(params: Variant) -> void:
 			turns = params[0]
 			damage_decrease = params[1]
 		else:
-			print_debug("Invalid number parameter for a '%s' effect. Expected 2, found %d!" % [effect_name, params.size()])
-			print_stack()
+			push_error(
+				"Invalid number parameter for a '%s' effect. Expected 2, found %d!" % \
+				[effect_name, params.size()]
+			)
 	else:
-		print_debug("Invalid parameter for a '%s' effect. Expected array, found %s!" % [ effect_name, type_string(typeof(params)) ] )
-		print_stack()
+		push_error(
+			"Invalid parameter for a '%s' effect. Expected array, found %s!" % \
+			[ effect_name, type_string(typeof(params)) ] 
+		)
 	
 	if turns <= 0:
 		lift_effect()

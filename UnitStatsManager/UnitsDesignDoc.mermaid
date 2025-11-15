@@ -427,6 +427,7 @@ subgraph Undead
         %% Level 3
         subgraph Lich
             Lich_d("
+            reduced health
             normal damage to a singular target or resurretion
             each resurrection damages this unit slightly
             number of resurrectoins is unlimited
@@ -449,11 +450,11 @@ subgraph Undead
         %% Level 4
         subgraph Archlich
             Archlich_d("
+            reduced health
             normal damage to a singular target or resurretion
             each resurrection damages this unit slightly
             number of resurrectoins is unlimited
-            has two attacks per round
-            passive debuff to all enemy units 
+            has two attacks with two targets per round
             "):::desc
         end
         subgraph Elder_vampire
