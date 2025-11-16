@@ -113,6 +113,8 @@ func _check_immunity(ref: UnitSpotReference) -> bool:
 	unit.sound_player.play_immunity_sound()
 	tags.append(&"immuned")
 	
+	# Using null references instead of erase() to preserve the original order
+	# Primarily maintains first entry indices for the is_primary_target() method
 	var i := target_references.find(ref)
 	target_references[i] = null
 	return true
@@ -127,6 +129,8 @@ func _check_miss(ref: UnitSpotReference) -> bool:
 	attacker.sound_player.play_miss_sound()
 	tags.append(&"missed")
 	
+	# Using null references instead of erase() to preserve the original order
+	# Primarily maintains first entry indices for the is_primary_target() method
 	var i := target_references.find(ref)
 	target_references[i] = null
 	return true
@@ -140,6 +144,8 @@ func _check_ward(ref: UnitSpotReference) -> bool:
 	unit.sound_player.play_shield_sound()
 	tags.append(&"warded")
 	
+	# Using null references instead of erase() to preserve the original order
+	# Primarily maintains first entry indices for the is_primary_target() method
 	var i := target_references.find(ref)
 	target_references[i] = null
 	return true
@@ -153,12 +159,14 @@ func filter_targets() -> void:
 		if not unit: continue
 		if _check_immunity(ref): continue
 		# Check shield before miss/evade because warded_attacks is populated
-		# at this point and 'ward' effect removal has occurred
+		# at this point and 'ward' effect is removed
 		if _check_ward(ref): continue
 		if _check_miss(ref): continue
 		# Evasion is handled within the unit's resolution logic
 
-## Calles [method Unit.resolve_attack] on each of its targets
+## Filters out immune, warded, and missed targets, then resolves the attack.
+## Applies [member damage_policy] if defined, otherwise calls [method Unit.resolve_attack]
+## on each remaining valid target.
 func resolve(finalize: bool = false) -> void:
 	filter_targets()
 	if damage_policy:
@@ -166,7 +174,6 @@ func resolve(finalize: bool = false) -> void:
 	else:
 		standard_resolution(finalize)
 	EventBus.attack_resolved.emit(self)
-	#EventBus.attack_resolved_trigger.emit(self)
 
 func standard_resolution(finalize: bool = false) -> void:
 	var i := 1
