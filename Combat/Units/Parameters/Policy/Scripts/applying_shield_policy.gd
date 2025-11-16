@@ -23,6 +23,7 @@ func _apply_policy(attack: Attack, finalize: bool) -> void:
 	var new_refs: Array[UnitSpotReference] = []
 	print(attack.target_references.size())
 	for ref in attack.target_references:
+		if not ref: continue
 		if ref.spot.party == attack.attacker.party:
 			if attack.is_primary_target(ref.spot):
 				give_sheild(ref.spot.unit)

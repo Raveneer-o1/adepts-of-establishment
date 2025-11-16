@@ -267,37 +267,12 @@ func finalize_attack() -> void:
 ## This method handles game logic but does not update visuals -
 ## it calls [method schedule_damage] for visual sequencing.
 func resolve_attack(attack: Attack, damage: int, delay: int = 0, finalize: bool = false) -> void:
-	if attack.type != GlobalDefs.AttackType.None and \
-			parameters.immunities.has(attack.type):
-		system.display_text_near_unit(self, "Immunity")
-		sound_player.play_immunity_sound()
-		attack.tags.append(&"immuned")
+	if attack.evadable and parameters.evasion > randf():
+		EventBus.attack_evaded.emit(self, attack)
+		system.display_text_near_unit(self, "Evaded!")
+		sound_player.play_evade_sound()
+		attack.tags.append(&"evaded")
 		return
-	
-	# checking shield before miss/evade because warded_attacks is already filled 
-	# at this point and 'ward' effect is removed
-	if warded_attacks.has(attack):
-		system.display_text_near_unit(self, "Ward!")
-		sound_player.play_shield_sound()
-		attack.tags.append(&"warded")
-		return
-	
-	
-	if attack.accuracy < randf():
-		system.display_text_near_unit(self, "Miss!")
-		EventBus.attack_missed.emit(self, attack)
-		attack.attacker.sound_player.play_miss_sound()
-		attack.tags.append(&"missed")
-		return
-	
-	if attack.evadable:
-		# recalculate random number to remove any numerical connection with accuracy
-		if parameters.evasion > randf():
-			EventBus.attack_evaded.emit(self, attack)
-			system.display_text_near_unit(self, "Evaded!")
-			sound_player.play_evade_sound()
-			attack.tags.append(&"evaded")
-			return
 	
 	for effect_name: String in attack.applying_effects:
 		parameters.apply_effect(

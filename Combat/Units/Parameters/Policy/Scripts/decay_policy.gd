@@ -3,8 +3,10 @@ extends BasePolicy
 @export var decay_rate : float = 0.7
 
 func _apply_policy(attack: Attack, finalize: bool) -> void:
+	if not attack.targets: return
 	var first_position: int = attack.targets[0].party_position
 	for target in attack.target_references:
+		if not target: continue
 		if not target.spot: continue
 		var distance: int = Party.get_distance(first_position, target.spot.party_position)
 		var dmg: int = attack.damages[target] if attack.damages.has(target) else attack.default_damage

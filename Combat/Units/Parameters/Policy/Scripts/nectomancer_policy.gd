@@ -12,6 +12,7 @@ func _apply_policy(attack: Attack, finalize: bool) -> void:
 	var first_position: int = attack.target_references[0].spot.party_position
 	var new_refs: Array[UnitSpotReference] = []
 	for t: UnitSpotReference in attack.target_references:
+		if not t: continue
 		if not t.spot: continue
 		
 		# resurrecting

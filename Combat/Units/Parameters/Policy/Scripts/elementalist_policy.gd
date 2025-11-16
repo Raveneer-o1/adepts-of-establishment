@@ -3,6 +3,7 @@ extends BasePolicy
 func _apply_policy(attack: Attack, finalize: bool) -> void:
 	var new_refs: Array[UnitSpotReference] = []
 	for t: UnitSpotReference in attack.target_references:
+		if not t: continue
 		if not t.spot: continue
 		# no need to check for vacancy because any policy should work with what it has
 		# also, UnitSpot.add_unit() checks for invalid attempts

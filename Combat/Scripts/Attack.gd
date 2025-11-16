@@ -43,13 +43,15 @@ var attacker: Unit
 var target_spots: Array[UnitSpot]:
 	get:
 		var result: Array[UnitSpot] = []
-		for key: UnitSpotReference in target_references:
-			result.append(key.spot)
+		for ref: UnitSpotReference in target_references:
+			if not ref: continue
+			result.append(ref.spot)
 		return result
 var targets: Array[Unit]:
 	get:
 		var result : Array[Unit] = []
 		for ref: UnitSpotReference in target_references:
+			if not ref: continue
 			if ref.spot and ref.spot.unit:
 				result.append(ref.spot.unit)
 		return result
@@ -101,8 +103,64 @@ var is_heal: bool
 
 var applied_damage: int = 0
 
+func _check_immunity(ref: UnitSpotReference) -> bool:
+	var unit := ref.spot.unit
+	if not unit: return false
+	if type == GlobalDefs.AttackType.None: return false
+	if type not in unit.parameters.immunities: return false
+	
+	ref.spot.system.display_text_near_unit(unit, "Immunity")
+	unit.sound_player.play_immunity_sound()
+	tags.append(&"immuned")
+	
+	var i := target_references.find(ref)
+	target_references[i] = null
+	return true
+
+func _check_miss(ref: UnitSpotReference) -> bool:
+	var unit := ref.spot.unit
+	if not unit: return false
+	if accuracy > randf(): return false
+	
+	unit.system.display_text_near_unit(unit, "Miss!")
+	EventBus.attack_missed.emit(unit, self)
+	attacker.sound_player.play_miss_sound()
+	tags.append(&"missed")
+	
+	var i := target_references.find(ref)
+	target_references[i] = null
+	return true
+
+func _check_ward(ref: UnitSpotReference) -> bool:
+	var unit := ref.spot.unit
+	if not unit: return false
+	if self not in unit.warded_attacks: return false
+	
+	unit.system.display_text_near_unit(unit, "Ward!")
+	unit.sound_player.play_shield_sound()
+	tags.append(&"warded")
+	
+	var i := target_references.find(ref)
+	target_references[i] = null
+	return true
+
+## Filters targets by removing immune units and calculating misses based on accuracy.
+## Processes each target reference to determine validity before damage application.
+func filter_targets() -> void:
+	var refs := target_references
+	for ref in refs:
+		var unit := ref.spot.unit
+		if not unit: continue
+		if _check_immunity(ref): continue
+		# Check shield before miss/evade because warded_attacks is populated
+		# at this point and 'ward' effect removal has occurred
+		if _check_ward(ref): continue
+		if _check_miss(ref): continue
+		# Evasion is handled within the unit's resolution logic
+
 ## Calles [method Unit.resolve_attack] on each of its targets
 func resolve(finalize: bool = false) -> void:
+	filter_targets()
 	if damage_policy:
 		damage_policy.apply_policy(self, finalize)
 	else:
@@ -113,10 +171,11 @@ func resolve(finalize: bool = false) -> void:
 func standard_resolution(finalize: bool = false) -> void:
 	var i := 1
 	for target in target_references:
-		if not ( \
-			target.spot and \
-			target.spot.unit and \
-			not target.spot.unit.parameters.dead \
+		if ( \
+			not target or \
+			not target.spot or \
+			not target.spot.unit or \
+			target.spot.unit.parameters.dead \
 		): continue
 		var damage_to_take: int = damages[target] if damages.has(target) else default_damage
 		target.spot.unit.resolve_attack(self, damage_to_take, i, finalize)

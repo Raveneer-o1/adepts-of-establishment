@@ -186,6 +186,9 @@ Applies [b]clumsiness[/b] and [b]vulnerability[/b]."
 
 [node name="Disappear" type="Node" parent="UnitParameters/UnitAttack" index="0"]
 script = ExtResource("5_mqc6w")
+type = 2
+accuracy = 1.0
+evadable = false
 target_validation = ExtResource("10_n62fs")
 damage_policy = ExtResource("11_euwrh")
 metadata/_custom_type_script = "uid://c5u15vrtdf7kf"

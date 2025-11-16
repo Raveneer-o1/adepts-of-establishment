@@ -5,6 +5,7 @@ extends BasePolicy
 func _apply_policy(attack: Attack, finalize: bool) -> void:
 	var new_refs := attack.target_references.duplicate()
 	for t in attack.target_references:
+		if not t: continue
 		if melee_validation.validate_target(attack.attacker, t.spot): continue
 		var valid_spots := []
 		for s: UnitSpot in attack.attacker.party.unit_spots:

@@ -108,6 +108,8 @@ func initialize(u: Unit) -> void:
 		print_debug("Target validation is empty! Unit: %s" % u.unit_name)
 		queue_free()
 	unit = u
+	for c: UnitAttack in get_children():
+		c.initialize(u)
 
 func can_be_performed() -> bool:
 	if unit == null:

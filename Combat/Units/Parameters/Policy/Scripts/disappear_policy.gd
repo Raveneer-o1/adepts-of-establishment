@@ -23,6 +23,7 @@ func check_turn(u: Unit) -> void:
 func _apply_policy(attack: Attack, finalize: bool) -> void:
 	if unit: return
 	for ref in attack.target_references:
+		if not ref: continue
 		var u := ref.spot.unit
 		if not u: continue
 		unit = u

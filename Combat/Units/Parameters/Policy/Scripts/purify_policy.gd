@@ -11,6 +11,7 @@ func _apply_policy(attack: Attack, finalize: bool) -> void:
 	var new_refs: Array[UnitSpotReference] = []
 	var units_to_purify: Array[Unit] = []
 	for ref in attack.target_references:
+		if not ref: continue
 		if not ref.spot: continue
 		if ref.spot.party == attack.attacker.party:
 			purify(ref.spot.unit)
