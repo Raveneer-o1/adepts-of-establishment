@@ -1,10 +1,11 @@
 extends Node2D
 class_name UnitSpot
 
-## A spot for a unit.
+## Represents a single position on the battlefield that can contain a unit.
 ##
-## Each [UnitSpot] object has a fixed place of a battlefield and contains one or zero [Unit]s,
-## a list of corpses inside a [member corpse_container].
+## Each UnitSpot has a fixed battlefield position and may contain one [Unit].
+## Includes a corpse container for storing fallen units as children and
+## an Area2D with collision detection for handling mouse interactions.
 
 var active: bool:
 	get:

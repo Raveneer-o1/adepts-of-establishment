@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://b8yan7skrudpm"]
+[gd_scene load_steps=36 format=3 uid="uid://b8yan7skrudpm"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_7leqj"]
 [ext_resource type="Texture2D" uid="uid://vlpfby3hjx8k" path="res://Arts/Placeholders/Devourer.jpg" id="2_0dxqj"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_34qfr"]
 [ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="6_67hnq"]
 [ext_resource type="PackedScene" uid="uid://cpjv5cb5u6bt6" path="res://Combat/Effects/AppliedEffects/Scenes/devourer.tscn" id="6_moql6"]
+[ext_resource type="PackedScene" uid="uid://b1i0mf1877mfo" path="res://Combat/Effects/AppliedEffects/Scenes/ward.tscn" id="9_u1ghu"]
 [ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="9_wglim"]
 [ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="10_u1ghu"]
 [ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="11_6vnrr"]
@@ -140,7 +141,10 @@ initiative = 40
 target_validation = ExtResource("6_67hnq")
 
 [node name="Devourer" parent="UnitParameters" index="2" instance=ExtResource("6_moql6")]
-health_restore = 60
+health_restore = 200
+
+[node name="Ward" parent="UnitParameters" index="3" instance=ExtResource("9_u1ghu")]
+damage_type = 3
 
 [node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
 stream = ExtResource("9_wglim")

@@ -13,7 +13,7 @@ func check_trigger(a: Attack) -> void:
 	if is_queued_for_deletion(): return
 	if a.attacker != target_unit: return
 	if not a.target_references: return
-	if chance < randf(): return
+	if GlobalDefs.rand_roll(chance, target_unit.party.other_party): return
 	target_unit.system.display_text_near_unit_async(
 		target_unit,
 		message,

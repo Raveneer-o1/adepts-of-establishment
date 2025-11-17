@@ -17,7 +17,7 @@ func skip_turn(unit: Unit) -> void:
 		return
 	
 	turns -= 1
-	if turns <= 0 and randf() <= chance_to_be_lifted:
+	if turns <= 0 and GlobalDefs.rand_roll(chance_to_be_lifted, target_unit.party):
 		target_unit.animation_handle.play()
 		lift_effect()
 	

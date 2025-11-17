@@ -15,7 +15,7 @@ func check_trigger(a: Attack) -> void:
 	var protected_units := target_unit.party.get_adjacent_units(target_unit.party_position)
 	var attacked_units := a.targets
 	for u in protected_units:
-		if u in attacked_units and randf() < block_chance:
+		if u in attacked_units and GlobalDefs.rand_roll(block_chance, target_unit.party):
 			give_sheild(u)
 	if shields_left == 0:
 		lift_effect()

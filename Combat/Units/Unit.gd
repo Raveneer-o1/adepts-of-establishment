@@ -267,7 +267,7 @@ func finalize_attack() -> void:
 ## This method handles game logic but does not update visuals -
 ## it calls [method schedule_damage] for visual sequencing.
 func resolve_attack(attack: Attack, damage: int, delay: int = 0, finalize: bool = false) -> void:
-	if attack.evadable and parameters.evasion > randf():
+	if attack.evadable and GlobalDefs.rand_roll(parameters.evasion, party):
 		EventBus.attack_evaded.emit(self, attack)
 		system.display_text_near_unit(self, "Evaded!")
 		sound_player.play_evade_sound()
@@ -356,7 +356,7 @@ func attempt_shielding(attack: Attack, unit: Unit) -> void:
 	var chance := parameters.shielding_chance if parameters.shielding else \
 		parameters.shielding_chance / 2
 	
-	if randf() > chance: return
+	if not GlobalDefs.rand_roll(chance, party): return
 	
 	system.display_text_near_unit(self, "Shield!")
 	# if double shield attempt, split the damage

@@ -23,7 +23,7 @@ func check_trigger(attack: Attack) -> void:
 		return
 	
 	# if random check didn't pass, return
-	if chance < randf():
+	if not GlobalDefs.rand_roll(chance, target_unit.party):
 		return
 	
 	print_debug("Triggered assistance on the attack of %s" % attack.attacker.unit_name)

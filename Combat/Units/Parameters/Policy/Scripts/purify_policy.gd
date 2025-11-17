@@ -18,7 +18,7 @@ func _apply_policy(attack: Attack, finalize: bool) -> void:
 			continue
 		if not melee_validity or melee_validity.validate_target(attack.attacker, ref.spot):
 			new_refs.append(ref)
-			if randf() < chance_to_purify_enemy:
+			if GlobalDefs.rand_roll(chance_to_purify_enemy):
 				units_to_purify.append(ref.spot.unit)
 		else:
 			units_to_purify.append(ref.spot.unit)

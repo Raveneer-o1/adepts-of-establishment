@@ -51,3 +51,43 @@ enum Faction {
 	## For player-defined factions and factions defined in add-ons
 	Custom,
 }
+
+var rolls_statistic: Dictionary[Party, int]
+
+func _increase_roll_statistics(party: Party) -> void:
+	if party in rolls_statistic:
+		rolls_statistic[party] += 1
+	else:
+		rolls_statistic[party] = 1
+
+## Returns [code]true[/code] or [code]false[/code] based on the specified
+## probability [param chance] and records statistics. [br][br]
+## [param benefits]: The party that benefits from a positive outcome ([b]true[/b] result).
+## Leave null for neutral rolls where no statistics should be recorded. [br][br]
+## By default, chance values outside the [code](0.0, 1.0)[/code] range are not recorded in statistics.
+## Set [param force_statistic_recording] to [b]true[/b] to record the
+## outcome regardless of chance value.
+func rand_roll(
+	chance: float,
+	benefits: Party = null,
+	force_statistic_recording: bool = false
+) -> bool:
+	if is_zero_approx(chance):
+		if force_statistic_recording and benefits != null:
+			_increase_roll_statistics(benefits.other_party)
+		return false
+	if chance < 0.0:
+		push_error("Negative probablity!")
+		if force_statistic_recording and benefits != null:
+			_increase_roll_statistics(benefits.other_party)
+		return false
+	if chance >= 1.0: 
+		if force_statistic_recording and benefits != null:
+			_increase_roll_statistics(benefits)
+		return true
+	
+	var did_pass := chance > randf()
+	if benefits:
+		var party := benefits if did_pass else benefits.other_party
+		_increase_roll_statistics(party)
+	return did_pass

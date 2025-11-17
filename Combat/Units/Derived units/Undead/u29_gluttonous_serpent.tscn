@@ -142,6 +142,7 @@ target_validation = ExtResource("6_j2236")
 damage_type = 3
 
 [node name="Devourer" parent="UnitParameters" index="3" instance=ExtResource("8_ovriw")]
+health_restore = 100
 
 [node name="DragonDamage" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("10_oiqlk")

@@ -134,7 +134,10 @@ portrait_texture = ExtResource("2_r53jd")
 sprite_frames = SubResource("SpriteFrames_hdqac")
 animation = &"attack"
 autoplay = "default"
+frame = 6
+frame_progress = 1.0
 offset = Vector2(8, 0)
+attack_sound_frame = 2
 
 [node name="UnitParameters" parent="." index="1"]
 level = 2
@@ -149,6 +152,9 @@ silencable = false
 script = ExtResource("6_a55j1")
 initiative = 35
 target_validation = ExtResource("7_h4uqg")
+applying_effects = Dictionary[String, Variant]({
+"Poison": [20, 2]
+})
 
 [node name="DragonDamage" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("9_cr71n")

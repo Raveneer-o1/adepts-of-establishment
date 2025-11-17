@@ -16,7 +16,7 @@ func check_trigger(attack: Attack) -> void:
 		return
 	if attack.is_primary_target(target_unit.spot):
 		return
-	if randf() > chance_to_taunt:
+	if not GlobalDefs.rand_roll(chance_to_taunt, target_unit.party):
 		return
 	
 	attack.deep_redirect(target_unit.spot)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://1hu3f7g1ei2k"]
+[gd_scene load_steps=43 format=3 uid="uid://1hu3f7g1ei2k"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_d17v1"]
 [ext_resource type="Texture2D" uid="uid://ba03cnoc6gyfb" path="res://Arts/Placeholders/Undying nighthunter.jpg" id="2_5hg6d"]
@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://bhe5cl2bujg8i" path="res://Combat/Units/Parameters/Additional targets/Splash.tres" id="7_ke8ww"]
 [ext_resource type="Resource" uid="uid://cxvfk7vgegqq2" path="res://Combat/Units/Parameters/Policy/decay_policy.tres" id="8_2bjgu"]
 [ext_resource type="AudioStream" uid="uid://n4gyfjjtmdb8" path="res://Sounds/using/Damage/Dragon damage.wav" id="10_ivp3e"]
+[ext_resource type="PackedScene" uid="uid://b1i0mf1877mfo" path="res://Combat/Effects/AppliedEffects/Scenes/ward.tscn" id="10_ypvfv"]
 [ext_resource type="AudioStream" uid="uid://c52bsfg2fuuhh" path="res://Sounds/using/Ghost/Behemoth/Behemoth_Attack.wav" id="11_j6uym"]
 [ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="12_ypvfv"]
 [ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="13_hdnlu"]
@@ -174,6 +175,10 @@ target_validation = ExtResource("6_pyoen")
 additional_targets = ExtResource("7_ke8ww")
 damage_policy = ExtResource("8_2bjgu")
 
+[node name="Ward" parent="UnitParameters" index="2" instance=ExtResource("10_ypvfv")]
+damage_type = 3
+triggers = 2
+
 [node name="DragonDamage" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("10_ivp3e")
 
@@ -200,6 +205,7 @@ stream = ExtResource("17_fawph")
 
 [node name="UndyingNighthunder" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
 stream = ExtResource("18_j6uym")
+volume_db = 3.0
 
 [node name="GpTurboSelect1" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]
 stream = ExtResource("18_vodhg")

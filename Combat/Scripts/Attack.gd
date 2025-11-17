@@ -122,7 +122,7 @@ func _check_immunity(ref: UnitSpotReference) -> bool:
 func _check_miss(ref: UnitSpotReference) -> bool:
 	var unit := ref.spot.unit
 	if not unit: return false
-	if accuracy > randf(): return false
+	if GlobalDefs.rand_roll(accuracy, unit.party): return false
 	
 	unit.system.display_text_near_unit(unit, "Miss!")
 	EventBus.attack_missed.emit(unit, self)
