@@ -1,12 +1,29 @@
-[gd_scene load_steps=21 format=3 uid="uid://c7fw6vrje4vcu"]
+[gd_scene load_steps=38 format=3 uid="uid://c7fw6vrje4vcu"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_i1163"]
 [ext_resource type="Texture2D" uid="uid://dtdwq2u2vvrj1" path="res://Arts/Undead units/u29 doomdrake attack .png" id="2_b78kq"]
+[ext_resource type="Texture2D" uid="uid://cygt1ttr4fu2e" path="res://Arts/Placeholders/Doomdrake.jpg" id="2_r53jd"]
 [ext_resource type="Texture2D" uid="uid://dugp5vcx1f86y" path="res://Arts/Undead units/u29 doomdrake idle .png" id="3_j74lj"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_b6sio"]
 [ext_resource type="PackedScene" uid="uid://b1i0mf1877mfo" path="res://Combat/Effects/AppliedEffects/Scenes/ward.tscn" id="5_oslu2"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_a55j1"]
 [ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standard_archer_validity.tres" id="7_h4uqg"]
+[ext_resource type="AudioStream" uid="uid://n4gyfjjtmdb8" path="res://Sounds/using/Damage/Dragon damage.wav" id="9_cr71n"]
+[ext_resource type="AudioStream" uid="uid://c52bsfg2fuuhh" path="res://Sounds/using/Ghost/Behemoth/Behemoth_Attack.wav" id="10_my1gc"]
+[ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="11_ws3vq"]
+[ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="12_uc8do"]
+[ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="13_oxie8"]
+[ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="14_thrt5"]
+[ext_resource type="AudioStream" uid="uid://bc5nrxd1d2xcr" path="res://Sounds/using/Damage/Stone_1.wav" id="15_c3jeb"]
+[ext_resource type="AudioStream" uid="uid://6te6nusi62gj" path="res://Sounds/using/Damage/Stone_2.wav" id="16_2htwe"]
+[ext_resource type="AudioStream" uid="uid://hsux1m4mc6c4" path="res://Sounds/using/Ghost/Dragon/Dragon_Attack.wav" id="17_xjvk7"]
+[ext_resource type="AudioStream" uid="uid://57uq8ddrqmg0" path="res://Sounds/using/Heal/GP_Turbo_Select_1.wav" id="18_l0lof"]
+[ext_resource type="AudioStream" uid="uid://bvxxsyhcv73oo" path="res://Sounds/using/Heal/GP_Turbo_Select_2.wav" id="19_3mp2s"]
+[ext_resource type="AudioStream" uid="uid://befag54021wep" path="res://Sounds/using/Heal/GP_Turbo_Select_3.wav" id="20_xxl03"]
+[ext_resource type="AudioStream" uid="uid://dsge1pqh4ihjr" path="res://Sounds/using/Heal/GP_Turbo_Select_4.wav" id="21_ojrqe"]
+[ext_resource type="AudioStream" uid="uid://dxiivr6txaweh" path="res://Sounds/using/Death/body fall 3.wav" id="22_fyslh"]
+[ext_resource type="AudioStream" uid="uid://bfaxc8l3qk67k" path="res://Sounds/using/Death/body fall 6.wav" id="23_bkqoh"]
+[ext_resource type="AudioStream" uid="uid://bcae4mab3j5u" path="res://Sounds/using/Death/body fall 12.wav" id="24_oh4b4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gtcrj"]
 atlas = ExtResource("2_b78kq")
@@ -101,17 +118,21 @@ animations = [{
 [sub_resource type="Resource" id="Resource_qum13"]
 resource_local_to_scene = true
 script = ExtResource("4_b6sio")
-max_HP = 300
+max_HP = 450
 base_damage = 65
-armor = 15
-evasion = 0.008
+armor = 10
+evasion = 0.005
 
 [node name="Doomdrake" instance=ExtResource("1_i1163")]
 unit_name = "Doomdrake"
+unit_type = 1
+faction = 1
 full_description = "A wyvern that succumbs to the influence of the Necropolis transforms into a Doomdrake. These beasts consume the fallen on the battlefield, growing stronger and more twisted with each kill. They are brutal shock troops, relentless in their charge and devastating in their bite, embodying the death they now serve."
+portrait_texture = ExtResource("2_r53jd")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_hdqac")
+animation = &"attack"
 autoplay = "default"
 offset = Vector2(8, 0)
 
@@ -120,16 +141,60 @@ level = 2
 base_paramaters = SubResource("Resource_qum13")
 large_unit = true
 
-[node name="VisualBar" parent="UnitParameters" index="0"]
-offset_left = -31.0
-offset_right = 29.0
-
-[node name="Shield" parent="UnitParameters" index="2" instance=ExtResource("5_oslu2")]
+[node name="Shield" parent="UnitParameters" index="1" instance=ExtResource("5_oslu2")]
 damage_type = 3
 silencable = false
 
-[node name="UnitAttack" type="Node" parent="UnitParameters" index="3"]
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
 script = ExtResource("6_a55j1")
-accuracy = 0.82
 initiative = 35
 target_validation = ExtResource("7_h4uqg")
+
+[node name="DragonDamage" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
+stream = ExtResource("9_cr71n")
+
+[node name="BehemothAttack" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="1"]
+stream = ExtResource("10_my1gc")
+
+[node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
+stream = ExtResource("11_ws3vq")
+
+[node name="GpArmorDown2" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="1"]
+stream = ExtResource("12_uc8do")
+
+[node name="GpArmorDown3" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="2"]
+stream = ExtResource("13_oxie8")
+
+[node name="GpArmorDown4" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="3"]
+stream = ExtResource("14_thrt5")
+
+[node name="Stone1" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
+stream = ExtResource("15_c3jeb")
+
+[node name="Stone2" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="1"]
+stream = ExtResource("16_2htwe")
+
+[node name="DragonAttack" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
+stream = ExtResource("17_xjvk7")
+pitch_scale = 2.0
+
+[node name="GpTurboSelect1" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]
+stream = ExtResource("18_l0lof")
+
+[node name="GpTurboSelect2" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="1"]
+stream = ExtResource("19_3mp2s")
+
+[node name="GpTurboSelect3" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="2"]
+stream = ExtResource("20_xxl03")
+
+[node name="GpTurboSelect4" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="3"]
+stream = ExtResource("21_ojrqe")
+
+[node name="BodyFall3" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="0"]
+stream = ExtResource("22_fyslh")
+
+[node name="BodyFall6" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="1"]
+stream = ExtResource("23_bkqoh")
+
+[node name="BodyFall12" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="2"]
+stream = ExtResource("24_oh4b4")

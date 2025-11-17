@@ -64,6 +64,8 @@ func assign_unit(u: Unit) -> void:
 func add_unit(loaded_unit: Resource) -> Unit:
 	var u: Unit = loaded_unit.instantiate()
 	assign_unit(u)
+	if u.is_queued_for_deletion():
+		return null
 	return u
 
 func release_unit() -> void:

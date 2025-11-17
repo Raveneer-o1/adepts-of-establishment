@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bs5j34llrk1jo"]
+[gd_scene load_steps=37 format=3 uid="uid://bs5j34llrk1jo"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_lj8lh"]
 [ext_resource type="Texture2D" uid="uid://ccfg3ixtfl1o2" path="res://Arts/Placeholders/Wyvern.jpg" id="2_q1e14"]
@@ -7,6 +7,22 @@
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_ai02h"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_1lqiu"]
 [ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standard_archer_validity.tres" id="6_d1jj8"]
+[ext_resource type="AudioStream" uid="uid://n4gyfjjtmdb8" path="res://Sounds/using/Damage/Dragon damage.wav" id="8_oulpm"]
+[ext_resource type="AudioStream" uid="uid://c52bsfg2fuuhh" path="res://Sounds/using/Ghost/Behemoth/Behemoth_Attack.wav" id="9_xq75i"]
+[ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="10_sdim6"]
+[ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="11_h6n5l"]
+[ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="12_brilw"]
+[ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="13_v3iq1"]
+[ext_resource type="AudioStream" uid="uid://bc5nrxd1d2xcr" path="res://Sounds/using/Damage/Stone_1.wav" id="14_jamue"]
+[ext_resource type="AudioStream" uid="uid://6te6nusi62gj" path="res://Sounds/using/Damage/Stone_2.wav" id="15_ukqbq"]
+[ext_resource type="AudioStream" uid="uid://cy7hngfl6ab6m" path="res://Sounds/using/Ghost/Dragon/Dragon_Step.wav" id="16_lc2ep"]
+[ext_resource type="AudioStream" uid="uid://57uq8ddrqmg0" path="res://Sounds/using/Heal/GP_Turbo_Select_1.wav" id="17_7y8go"]
+[ext_resource type="AudioStream" uid="uid://bvxxsyhcv73oo" path="res://Sounds/using/Heal/GP_Turbo_Select_2.wav" id="18_jgrpn"]
+[ext_resource type="AudioStream" uid="uid://befag54021wep" path="res://Sounds/using/Heal/GP_Turbo_Select_3.wav" id="19_u5utb"]
+[ext_resource type="AudioStream" uid="uid://dsge1pqh4ihjr" path="res://Sounds/using/Heal/GP_Turbo_Select_4.wav" id="20_sreq3"]
+[ext_resource type="AudioStream" uid="uid://dxiivr6txaweh" path="res://Sounds/using/Death/body fall 3.wav" id="21_okhgn"]
+[ext_resource type="AudioStream" uid="uid://bfaxc8l3qk67k" path="res://Sounds/using/Death/body fall 6.wav" id="22_hifvo"]
+[ext_resource type="AudioStream" uid="uid://bcae4mab3j5u" path="res://Sounds/using/Death/body fall 12.wav" id="23_cmse7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oqaji"]
 atlas = ExtResource("2_yakh1")
@@ -101,33 +117,79 @@ animations = [{
 [sub_resource type="Resource" id="Resource_5c60v"]
 resource_local_to_scene = true
 script = ExtResource("4_ai02h")
-max_HP = 220
+max_HP = 300
 base_damage = 50
-armor = 10
 evasion = 0.005
 
 [node name="Wyvern" instance=ExtResource("1_lj8lh")]
 unit_name = "Wyvern"
-unit_type = "Defender"
+unit_type = 1
+faction = 1
 full_description = "Wyverns are the earthbound cousins of dragons, stripped of the freedom of flight. Their bitterness over this difference drives them to seek power, often turning to the God of Death for strength and vengeance. While physically imposing, wyverns lack the majesty of true dragons, channeling their rage into ferocious attacks."
 portrait_texture = ExtResource("2_q1e14")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_0dpmh")
+animation = &"attack"
 autoplay = "default"
 offset = Vector2(12, 0)
+attack_sound_frame = 2
 
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_5c60v")
 large_unit = true
 
-[node name="VisualBar" parent="UnitParameters" index="0"]
-offset_left = -31.0
-offset_right = 29.0
-
-[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("5_1lqiu")
 type = 1
-accuracy = 0.8
 initiative = 35
 target_validation = ExtResource("6_d1jj8")
+
+[node name="DragonDamage" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
+stream = ExtResource("8_oulpm")
+
+[node name="BehemothAttack" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="1"]
+stream = ExtResource("9_xq75i")
+
+[node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
+stream = ExtResource("10_sdim6")
+
+[node name="GpArmorDown2" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="1"]
+stream = ExtResource("11_h6n5l")
+
+[node name="GpArmorDown3" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="2"]
+stream = ExtResource("12_brilw")
+
+[node name="GpArmorDown4" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="3"]
+stream = ExtResource("13_v3iq1")
+
+[node name="Stone1" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
+stream = ExtResource("14_jamue")
+
+[node name="Stone2" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="1"]
+stream = ExtResource("15_ukqbq")
+
+[node name="DragonStep" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
+stream = ExtResource("16_lc2ep")
+pitch_scale = 2.0
+
+[node name="GpTurboSelect1" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]
+stream = ExtResource("17_7y8go")
+
+[node name="GpTurboSelect2" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="1"]
+stream = ExtResource("18_jgrpn")
+
+[node name="GpTurboSelect3" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="2"]
+stream = ExtResource("19_u5utb")
+
+[node name="GpTurboSelect4" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="3"]
+stream = ExtResource("20_sreq3")
+
+[node name="BodyFall3" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="0"]
+stream = ExtResource("21_okhgn")
+
+[node name="BodyFall6" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="1"]
+stream = ExtResource("22_hifvo")
+
+[node name="BodyFall12" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="2"]
+stream = ExtResource("23_cmse7")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://enny5k73ap16"]
+[gd_scene load_steps=37 format=3 uid="uid://enny5k73ap16"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_nautt"]
 [ext_resource type="Texture2D" uid="uid://cmtfvykppw6do" path="res://Arts/Placeholders/Gluttonous serpent.jpg" id="2_hpxbw"]
@@ -9,6 +9,21 @@
 [ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="6_j2236"]
 [ext_resource type="PackedScene" uid="uid://b1i0mf1877mfo" path="res://Combat/Effects/AppliedEffects/Scenes/ward.tscn" id="7_yrrec"]
 [ext_resource type="PackedScene" uid="uid://cpjv5cb5u6bt6" path="res://Combat/Effects/AppliedEffects/Scenes/devourer.tscn" id="8_ovriw"]
+[ext_resource type="AudioStream" uid="uid://n4gyfjjtmdb8" path="res://Sounds/using/Damage/Dragon damage.wav" id="10_oiqlk"]
+[ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="11_p8l1d"]
+[ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="12_tyf7n"]
+[ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="13_osyqf"]
+[ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="14_wwy4j"]
+[ext_resource type="AudioStream" uid="uid://bc5nrxd1d2xcr" path="res://Sounds/using/Damage/Stone_1.wav" id="15_ba2kb"]
+[ext_resource type="AudioStream" uid="uid://6te6nusi62gj" path="res://Sounds/using/Damage/Stone_2.wav" id="16_eu13p"]
+[ext_resource type="AudioStream" uid="uid://ci44far0cf72v" path="res://Sounds/using/Attack/Undead/SerpentBeast_Hiss.wav" id="17_f4rs2"]
+[ext_resource type="AudioStream" uid="uid://57uq8ddrqmg0" path="res://Sounds/using/Heal/GP_Turbo_Select_1.wav" id="18_lo1ha"]
+[ext_resource type="AudioStream" uid="uid://bvxxsyhcv73oo" path="res://Sounds/using/Heal/GP_Turbo_Select_2.wav" id="19_2fpot"]
+[ext_resource type="AudioStream" uid="uid://befag54021wep" path="res://Sounds/using/Heal/GP_Turbo_Select_3.wav" id="20_eqhfl"]
+[ext_resource type="AudioStream" uid="uid://dsge1pqh4ihjr" path="res://Sounds/using/Heal/GP_Turbo_Select_4.wav" id="21_vyphc"]
+[ext_resource type="AudioStream" uid="uid://dxiivr6txaweh" path="res://Sounds/using/Death/body fall 3.wav" id="22_eo72i"]
+[ext_resource type="AudioStream" uid="uid://bfaxc8l3qk67k" path="res://Sounds/using/Death/body fall 6.wav" id="23_6l23e"]
+[ext_resource type="AudioStream" uid="uid://bcae4mab3j5u" path="res://Sounds/using/Death/body fall 12.wav" id="24_otq6i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k21gp"]
 atlas = ExtResource("2_jb0i1")
@@ -96,11 +111,13 @@ animations = [{
 [sub_resource type="Resource" id="Resource_lxohp"]
 resource_local_to_scene = true
 script = ExtResource("4_gsme7")
-max_HP = 100
-base_damage = 30
+max_HP = 600
+base_damage = 120
+armor = 20
 
 [node name="Gluttonous Serpent" instance=ExtResource("1_nautt")]
 unit_name = "Gluttonous Serpent"
+faction = 1
 full_description = "The Gluttonous Serpent is a grotesque creature that has abandoned all thought for insatiable hunger. With an elongated, serpentine body and jaws capable of consuming multiple foes, it leaves destruction in its wake. Though mindless, its appetite makes it an overwhelming force that overwhelms through sheer persistence."
 portrait_texture = ExtResource("2_hpxbw")
 
@@ -112,20 +129,61 @@ offset = Vector2(8, 0)
 frames_to_emit = Array[int]([3])
 
 [node name="UnitParameters" parent="." index="1"]
+level = 3
 base_paramaters = SubResource("Resource_lxohp")
 large_unit = true
 
-[node name="VisualBar" parent="UnitParameters" index="0"]
-offset_left = -31.0
-offset_right = 29.0
-
-[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("5_1scgy")
-accuracy = 0.85
 initiative = 35
 target_validation = ExtResource("6_j2236")
 
-[node name="Shield" parent="UnitParameters" index="3" instance=ExtResource("7_yrrec")]
+[node name="Shield" parent="UnitParameters" index="2" instance=ExtResource("7_yrrec")]
 damage_type = 3
 
-[node name="Devourer" parent="UnitParameters" index="4" instance=ExtResource("8_ovriw")]
+[node name="Devourer" parent="UnitParameters" index="3" instance=ExtResource("8_ovriw")]
+
+[node name="DragonDamage" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
+stream = ExtResource("10_oiqlk")
+
+[node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
+stream = ExtResource("11_p8l1d")
+
+[node name="GpArmorDown2" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="1"]
+stream = ExtResource("12_tyf7n")
+
+[node name="GpArmorDown3" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="2"]
+stream = ExtResource("13_osyqf")
+
+[node name="GpArmorDown4" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="3"]
+stream = ExtResource("14_wwy4j")
+
+[node name="Stone1" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
+stream = ExtResource("15_ba2kb")
+
+[node name="Stone2" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="1"]
+stream = ExtResource("16_eu13p")
+
+[node name="SerpentBeastHiss" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
+stream = ExtResource("17_f4rs2")
+
+[node name="GpTurboSelect1" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]
+stream = ExtResource("18_lo1ha")
+
+[node name="GpTurboSelect2" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="1"]
+stream = ExtResource("19_2fpot")
+
+[node name="GpTurboSelect3" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="2"]
+stream = ExtResource("20_eqhfl")
+
+[node name="GpTurboSelect4" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="3"]
+stream = ExtResource("21_vyphc")
+
+[node name="BodyFall3" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="0"]
+stream = ExtResource("22_eo72i")
+
+[node name="BodyFall6" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="1"]
+stream = ExtResource("23_6l23e")
+
+[node name="BodyFall12" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="2"]
+stream = ExtResource("24_otq6i")

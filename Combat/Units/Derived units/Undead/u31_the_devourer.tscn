@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b8yan7skrudpm"]
+[gd_scene load_steps=35 format=3 uid="uid://b8yan7skrudpm"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_7leqj"]
 [ext_resource type="Texture2D" uid="uid://vlpfby3hjx8k" path="res://Arts/Placeholders/Devourer.jpg" id="2_0dxqj"]
@@ -8,6 +8,20 @@
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_34qfr"]
 [ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="6_67hnq"]
 [ext_resource type="PackedScene" uid="uid://cpjv5cb5u6bt6" path="res://Combat/Effects/AppliedEffects/Scenes/devourer.tscn" id="6_moql6"]
+[ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="9_wglim"]
+[ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="10_u1ghu"]
+[ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="11_6vnrr"]
+[ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="12_gp7xo"]
+[ext_resource type="AudioStream" uid="uid://bc5nrxd1d2xcr" path="res://Sounds/using/Damage/Stone_1.wav" id="13_ymhmr"]
+[ext_resource type="AudioStream" uid="uid://6te6nusi62gj" path="res://Sounds/using/Damage/Stone_2.wav" id="14_l75ox"]
+[ext_resource type="AudioStream" uid="uid://caws1exstvn4b" path="res://Sounds/using/Attack/Undead/The Devourer.wav" id="15_x67wi"]
+[ext_resource type="AudioStream" uid="uid://57uq8ddrqmg0" path="res://Sounds/using/Heal/GP_Turbo_Select_1.wav" id="16_87krp"]
+[ext_resource type="AudioStream" uid="uid://bvxxsyhcv73oo" path="res://Sounds/using/Heal/GP_Turbo_Select_2.wav" id="17_gw45x"]
+[ext_resource type="AudioStream" uid="uid://befag54021wep" path="res://Sounds/using/Heal/GP_Turbo_Select_3.wav" id="18_ncahc"]
+[ext_resource type="AudioStream" uid="uid://dsge1pqh4ihjr" path="res://Sounds/using/Heal/GP_Turbo_Select_4.wav" id="19_5jaly"]
+[ext_resource type="AudioStream" uid="uid://dxiivr6txaweh" path="res://Sounds/using/Death/body fall 3.wav" id="20_s1tg5"]
+[ext_resource type="AudioStream" uid="uid://bfaxc8l3qk67k" path="res://Sounds/using/Death/body fall 6.wav" id="21_efk13"]
+[ext_resource type="AudioStream" uid="uid://bcae4mab3j5u" path="res://Sounds/using/Death/body fall 12.wav" id="22_2i30p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pd7vp"]
 atlas = ExtResource("2_eynx3")
@@ -95,13 +109,14 @@ animations = [{
 [sub_resource type="Resource" id="Resource_sy5jc"]
 resource_local_to_scene = true
 script = ExtResource("4_njdrb")
-max_HP = 380
-base_damage = 90
-armor = 30
-evasion = 0.015
+max_HP = 800
+base_damage = 240
+armor = 35
+evasion = 0.1
 
 [node name="The Devourer" instance=ExtResource("1_7leqj")]
 unit_name = "The Devourer"
+faction = 1
 full_description = "The Devourer is a monstrous snake-like creature, bloated with the power of countless consumed souls. Its sheer size and overwhelming strength make it an unstoppable force, crushing enemies under its bulk. Its feeding frenzy is unending, spreading despair and destruction across the battlefield."
 portrait_texture = ExtResource("2_0dxqj")
 
@@ -112,17 +127,59 @@ autoplay = "default"
 frame = 4
 frame_progress = 1.0
 frames_to_emit = Array[int]([2])
+attack_sound_frame = 0
 
 [node name="UnitParameters" parent="." index="1"]
-level = 3
+level = 4
 base_paramaters = SubResource("Resource_sy5jc")
 large_unit = true
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("5_34qfr")
-accuracy = 0.9
 initiative = 40
 target_validation = ExtResource("6_67hnq")
 
 [node name="Devourer" parent="UnitParameters" index="2" instance=ExtResource("6_moql6")]
 health_restore = 60
+
+[node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
+stream = ExtResource("9_wglim")
+
+[node name="GpArmorDown2" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="1"]
+stream = ExtResource("10_u1ghu")
+
+[node name="GpArmorDown3" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="2"]
+stream = ExtResource("11_6vnrr")
+
+[node name="GpArmorDown4" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="3"]
+stream = ExtResource("12_gp7xo")
+
+[node name="Stone1" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
+stream = ExtResource("13_ymhmr")
+
+[node name="Stone2" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="1"]
+stream = ExtResource("14_l75ox")
+
+[node name="TheDevourer" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
+stream = ExtResource("15_x67wi")
+
+[node name="GpTurboSelect1" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]
+stream = ExtResource("16_87krp")
+
+[node name="GpTurboSelect2" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="1"]
+stream = ExtResource("17_gw45x")
+
+[node name="GpTurboSelect3" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="2"]
+stream = ExtResource("18_ncahc")
+
+[node name="GpTurboSelect4" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="3"]
+stream = ExtResource("19_5jaly")
+
+[node name="BodyFall3" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="0"]
+stream = ExtResource("20_s1tg5")
+
+[node name="BodyFall6" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="1"]
+stream = ExtResource("21_efk13")
+
+[node name="BodyFall12" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="2"]
+stream = ExtResource("22_2i30p")

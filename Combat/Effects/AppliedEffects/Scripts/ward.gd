@@ -21,7 +21,7 @@ func check_trigger(attack: Attack) -> void:
 			lift_effect()
 
 func _get_description() -> String:
-	return description % str(GlobalDefs.AttackType.keys()[damage_type])
+	return description % [triggers, str(GlobalDefs.AttackType.keys()[damage_type])]
 
 func _apply_effect(params: Variant) -> void:
 	_signal_function_pairs[EventBus.attack_booked] = check_trigger

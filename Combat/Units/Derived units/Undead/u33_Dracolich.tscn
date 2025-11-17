@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dr3gv7u8esdos"]
+[gd_scene load_steps=43 format=3 uid="uid://dr3gv7u8esdos"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_7w0k8"]
 [ext_resource type="Texture2D" uid="uid://bkx33l0ydgt7f" path="res://Arts/Placeholders/Dracolich.jpg" id="2_hxxnl"]
@@ -10,6 +10,19 @@
 [ext_resource type="Resource" uid="uid://bhe5cl2bujg8i" path="res://Combat/Units/Parameters/Additional targets/Splash.tres" id="7_3y3de"]
 [ext_resource type="Resource" uid="uid://cxvfk7vgegqq2" path="res://Combat/Units/Parameters/Policy/decay_policy.tres" id="8_eim5n"]
 [ext_resource type="PackedScene" uid="uid://baen1w1a16rc7" path="res://Combat/Effects/AppliedEffects/Scenes/illusive.tscn" id="9_bn470"]
+[ext_resource type="AudioStream" uid="uid://cj1h3ubs1t1qw" path="res://Sounds/using/Damage/Undead/dracolich.wav" id="11_iap7j"]
+[ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="12_mmwji"]
+[ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="13_0rbhl"]
+[ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="14_2vvf7"]
+[ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="15_i4so8"]
+[ext_resource type="AudioStream" uid="uid://bc5nrxd1d2xcr" path="res://Sounds/using/Damage/Stone_1.wav" id="16_yaacp"]
+[ext_resource type="AudioStream" uid="uid://6te6nusi62gj" path="res://Sounds/using/Damage/Stone_2.wav" id="17_g6sim"]
+[ext_resource type="AudioStream" uid="uid://ud2enk040rd8" path="res://Sounds/using/Heal/Undead/heal 1.wav" id="18_73umq"]
+[ext_resource type="AudioStream" uid="uid://dvd4ptq1owkvf" path="res://Sounds/using/Attack/Undead/Dracolich.wav" id="18_mmwji"]
+[ext_resource type="AudioStream" uid="uid://b7opuqbnm6svt" path="res://Sounds/using/Heal/Undead/heal 2.wav" id="19_cp2af"]
+[ext_resource type="AudioStream" uid="uid://dxiivr6txaweh" path="res://Sounds/using/Death/body fall 3.wav" id="20_u38e0"]
+[ext_resource type="AudioStream" uid="uid://bfaxc8l3qk67k" path="res://Sounds/using/Death/body fall 6.wav" id="21_ritk3"]
+[ext_resource type="AudioStream" uid="uid://bcae4mab3j5u" path="res://Sounds/using/Death/body fall 12.wav" id="22_xyv60"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_niwnx"]
 atlas = ExtResource("2_l7hsi")
@@ -146,19 +159,24 @@ animations = [{
 [sub_resource type="Resource" id="Resource_u3rrr"]
 resource_local_to_scene = true
 script = ExtResource("4_xokj1")
-max_HP = 500
-base_damage = 110
-armor = 35
+max_HP = 1000
+base_damage = 200
+armor = 50
 evasion = 0.01
 
 [node name="Dracolich" instance=ExtResource("1_7w0k8")]
 unit_name = "Dracolich"
-unit_type = "Archer"
+unit_type = 1
+faction = 1
+full_description = "The pinnacle of undead draconic evolution. The Dracolich is an intelligent lich-dragon whose very presence decays the living. It commands legions of the dead and wields a breath of pure entropy, making it the ultimate instrument of oblivion."
 portrait_texture = ExtResource("2_hxxnl")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_mwnha")
+animation = &"attack"
 autoplay = "default"
+frame = 12
+frame_progress = 1.0
 offset = Vector2(10, -9)
 frames_to_emit = Array[int]([9])
 
@@ -166,22 +184,55 @@ frames_to_emit = Array[int]([9])
 level = 5
 base_paramaters = SubResource("Resource_u3rrr")
 large_unit = true
-immunities = Array[int]([3])
+underlying_immunities = Array[int]([3])
 
-[node name="VisualBar" parent="UnitParameters" index="0"]
-offset_left = -31.0
-offset_top = 17.0
-offset_right = 29.0
-
-[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("5_isf4p")
 type = 1
-accuracy = 0.885
 initiative = 35
 target_validation = ExtResource("6_lnypc")
 additional_targets = ExtResource("7_3y3de")
 damage_policy = ExtResource("8_eim5n")
 
-[node name="Illusive" parent="UnitParameters" index="3" instance=ExtResource("9_bn470")]
+[node name="Illusive" parent="UnitParameters" index="2" instance=ExtResource("9_bn470")]
 other_stat_buff = "Attack"
 other_stat_buff_strength = 15
+
+[node name="Dracolich" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
+stream = ExtResource("11_iap7j")
+
+[node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
+stream = ExtResource("12_mmwji")
+
+[node name="GpArmorDown2" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="1"]
+stream = ExtResource("13_0rbhl")
+
+[node name="GpArmorDown3" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="2"]
+stream = ExtResource("14_2vvf7")
+
+[node name="GpArmorDown4" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="3"]
+stream = ExtResource("15_i4so8")
+
+[node name="Stone1" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
+stream = ExtResource("16_yaacp")
+
+[node name="Stone2" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="1"]
+stream = ExtResource("17_g6sim")
+
+[node name="Dracolich" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
+stream = ExtResource("18_mmwji")
+
+[node name="Heal1" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]
+stream = ExtResource("18_73umq")
+
+[node name="Heal2" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="1"]
+stream = ExtResource("19_cp2af")
+
+[node name="BodyFall3" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="0"]
+stream = ExtResource("20_u38e0")
+
+[node name="BodyFall6" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="1"]
+stream = ExtResource("21_ritk3")
+
+[node name="BodyFall12" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="2"]
+stream = ExtResource("22_xyv60")
