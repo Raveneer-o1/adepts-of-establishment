@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c206w02r0oseq"]
+
+[ext_resource type="Script" uid="uid://xpoufcqxqsj6" path="res://Combat/Units/Parameters/Additional targets/Scripts/entire_line.gd" id="1_siu3s"]
+
+[resource]
+script = ExtResource("1_siu3s")

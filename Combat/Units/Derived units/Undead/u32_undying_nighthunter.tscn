@@ -7,8 +7,8 @@
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_kq7e2"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_qcd0c"]
 [ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standard_archer_validity.tres" id="6_pyoen"]
-[ext_resource type="Resource" uid="uid://bhe5cl2bujg8i" path="res://Combat/Units/Parameters/Additional targets/Splash.tres" id="7_ke8ww"]
 [ext_resource type="Resource" uid="uid://cxvfk7vgegqq2" path="res://Combat/Units/Parameters/Policy/decay_policy.tres" id="8_2bjgu"]
+[ext_resource type="Resource" uid="uid://c206w02r0oseq" path="res://Combat/Units/Parameters/Additional targets/entire_line.tres" id="8_ypvfv"]
 [ext_resource type="AudioStream" uid="uid://n4gyfjjtmdb8" path="res://Sounds/using/Damage/Dragon damage.wav" id="10_ivp3e"]
 [ext_resource type="PackedScene" uid="uid://b1i0mf1877mfo" path="res://Combat/Effects/AppliedEffects/Scenes/ward.tscn" id="10_ypvfv"]
 [ext_resource type="AudioStream" uid="uid://c52bsfg2fuuhh" path="res://Sounds/using/Ghost/Behemoth/Behemoth_Attack.wav" id="11_j6uym"]
@@ -169,15 +169,21 @@ large_unit = true
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("5_qcd0c")
+damage_multiplier = 0.7
 type = 1
 initiative = 35
 target_validation = ExtResource("6_pyoen")
-additional_targets = ExtResource("7_ke8ww")
+additional_targets = ExtResource("8_ypvfv")
 damage_policy = ExtResource("8_2bjgu")
+applying_effects = Dictionary[String, Variant]({
+"only_to_type": [2, "weakness", [3, 35]]
+})
+description = "Applies [b]weakness[/b] to mages."
 
 [node name="Ward" parent="UnitParameters" index="2" instance=ExtResource("10_ypvfv")]
 damage_type = 3
 triggers = 2
+silencable = false
 
 [node name="DragonDamage" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("10_ivp3e")

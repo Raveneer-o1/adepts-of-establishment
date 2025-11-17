@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://lp5nm4k2qgbv"]
+
+[ext_resource type="Script" uid="uid://8fwdple47au1" path="res://Combat/Effects/AppliedEffects/Scripts/death_curse.gd" id="1_umqcq"]
+
+[node name="DeathCurse" type="Node"]
+script = ExtResource("1_umqcq")
+color_effect = Color(0, 0, 0, 1)
+effect_name = "Death curse"
+icon_index = 16
+description = "Deals %d damage at the start of unit's turn. Stacks indefinitely."
+stackable = true

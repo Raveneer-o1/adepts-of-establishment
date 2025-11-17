@@ -163,7 +163,6 @@ stream = ExtResource("18_65408")
 
 [node name="Healing" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
 stream = ExtResource("19_o8br7")
-volume_db = 10.0
 
 [node name="GpTurboSelect1" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]
 stream = ExtResource("20_yyrgc")

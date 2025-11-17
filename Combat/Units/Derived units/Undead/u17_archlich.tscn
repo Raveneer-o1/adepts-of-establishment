@@ -188,6 +188,9 @@ targets_needed = 2
 initiative = 30
 target_validation = ExtResource("7_466vw")
 damage_policy = SubResource("Resource_avfpn")
+applying_effects = Dictionary[String, Variant]({
+"death_curse": [-1, 10]
+})
 description = "This unit can resurrect instead of attacking."
 
 [node name="UnitAttack2" type="Node" parent="UnitParameters" index="2"]
@@ -198,6 +201,9 @@ targets_needed = 2
 initiative = 30
 target_validation = ExtResource("7_466vw")
 damage_policy = ExtResource("9_7xkoy")
+applying_effects = Dictionary[String, Variant]({
+"death_curse": [-1, 10]
+})
 
 [node name="Skeleton" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("11_i7f8t")

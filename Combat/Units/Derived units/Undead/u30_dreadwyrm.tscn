@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bp1r2pdt68e7t"]
+[gd_scene load_steps=44 format=3 uid="uid://bp1r2pdt68e7t"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_23at2"]
 [ext_resource type="Texture2D" uid="uid://ehjmefd3goaw" path="res://Arts/Undead units/u30 dreadwyrm attack .png" id="2_ai7dd"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_asghm"]
 [ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standard_archer_validity.tres" id="6_15ntb"]
 [ext_resource type="PackedScene" uid="uid://b1i0mf1877mfo" path="res://Combat/Effects/AppliedEffects/Scenes/ward.tscn" id="7_3uj7m"]
+[ext_resource type="Resource" uid="uid://c206w02r0oseq" path="res://Combat/Units/Parameters/Additional targets/entire_line.tres" id="8_if3kt"]
 [ext_resource type="AudioStream" uid="uid://n4gyfjjtmdb8" path="res://Sounds/using/Damage/Dragon damage.wav" id="9_7u2xc"]
 [ext_resource type="AudioStream" uid="uid://c52bsfg2fuuhh" path="res://Sounds/using/Ghost/Behemoth/Behemoth_Attack.wav" id="10_if3kt"]
 [ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="11_7dj1g"]
@@ -179,9 +180,12 @@ large_unit = true
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("5_asghm")
+damage_multiplier = 0.5
 type = 1
 initiative = 35
 target_validation = ExtResource("6_15ntb")
+additional_targets = ExtResource("8_if3kt")
+description = "Also damages targets behind and in front of the main target"
 
 [node name="Shield" parent="UnitParameters" index="2" instance=ExtResource("7_3uj7m")]
 damage_type = 3

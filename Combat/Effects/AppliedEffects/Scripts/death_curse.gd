@@ -1,15 +1,20 @@
 extends AppliedEffect
 
+@export var message: String = "Death curse"
+
 @export var turns: int = -1
+@export var damage: int = 10
 
 func _get_description() -> String:
 	# Override this method in derived classes to define custom description
 	if turns > 0:
 		return description + " for %d turns" % turns
-	return description
+	return description % damage
 
-func check_trigger(a: Attack) -> void:
+func check_trigger(u: Unit) -> void:
 	if is_queued_for_deletion(): return
+	if u != target_unit: return
+	u.take_direct_damage(damage, message, color_effect)
 
 func count_turn(u: Unit) -> void:
 	if is_queued_for_deletion(): return
@@ -18,12 +23,6 @@ func count_turn(u: Unit) -> void:
 	if turns <= 0: lift_effect()
 
 func _apply_effect(params: Variant) -> void:
-	# Override this method in derived classes to implement the effect's application logic.
-	# Do not connect to signals manually - this is handled automatically via the 
-	# _signal_function_pairs dictionary.
-	
-	# For one-time effects, remove them here using queue_free().
-	# See the "Cure" effect implementation as a reference example.
 	const arg_number = 2
 	if params is Array:
 		if params.size() != arg_number:
@@ -33,16 +32,17 @@ func _apply_effect(params: Variant) -> void:
 			queue_free()
 			return
 		turns = params[0]
-		# param = params[1]
+		damage = params[1]
 	if turns == 0:
 		lift_effect()
 		return
-	_signal_function_pairs[EventBus.attack_booked] = check_trigger
+	
+	var eff := target_unit.parameters.find_effect(effect_name, self)
+	if eff:
+		eff.damage += damage
+		queue_free()
+		return
+	
+	_signal_function_pairs[EventBus.turn_started] = check_trigger
 	if turns > 0:
 		_signal_function_pairs[EventBus.turn_ended] = count_turn
-
-func _remove_effect() -> void:
-	# Override this method in derived classes to define custom behavior when the effect is removed.
-	# Note: This method is only called when the effect is explicitly lifted using lift_effect().
-	# It cannot catch queue_free() calls and should not be used for memory management purposes.
-	pass

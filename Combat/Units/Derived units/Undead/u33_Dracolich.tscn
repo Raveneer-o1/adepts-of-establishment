@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://dr3gv7u8esdos"]
+[gd_scene load_steps=42 format=3 uid="uid://dr3gv7u8esdos"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_7w0k8"]
 [ext_resource type="Texture2D" uid="uid://bkx33l0ydgt7f" path="res://Arts/Placeholders/Dracolich.jpg" id="2_hxxnl"]
@@ -7,9 +7,8 @@
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_xokj1"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_isf4p"]
 [ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standard_archer_validity.tres" id="6_lnypc"]
-[ext_resource type="Resource" uid="uid://bhe5cl2bujg8i" path="res://Combat/Units/Parameters/Additional targets/Splash.tres" id="7_3y3de"]
 [ext_resource type="Resource" uid="uid://cxvfk7vgegqq2" path="res://Combat/Units/Parameters/Policy/decay_policy.tres" id="8_eim5n"]
-[ext_resource type="PackedScene" uid="uid://baen1w1a16rc7" path="res://Combat/Effects/AppliedEffects/Scenes/illusive.tscn" id="9_bn470"]
+[ext_resource type="Resource" uid="uid://c206w02r0oseq" path="res://Combat/Units/Parameters/Additional targets/entire_line.tres" id="8_mmwji"]
 [ext_resource type="AudioStream" uid="uid://cj1h3ubs1t1qw" path="res://Sounds/using/Damage/Undead/dracolich.wav" id="11_iap7j"]
 [ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="12_mmwji"]
 [ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="13_0rbhl"]
@@ -188,15 +187,16 @@ underlying_immunities = Array[int]([3])
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("5_isf4p")
+damage_multiplier = 0.8
 type = 1
 initiative = 35
 target_validation = ExtResource("6_lnypc")
-additional_targets = ExtResource("7_3y3de")
+additional_targets = ExtResource("8_mmwji")
 damage_policy = ExtResource("8_eim5n")
-
-[node name="Illusive" parent="UnitParameters" index="2" instance=ExtResource("9_bn470")]
-other_stat_buff = "Attack"
-other_stat_buff_strength = 15
+applying_effects = Dictionary[String, Variant]({
+"death_curse": [-1, 10],
+"only_to_type": [2, "weakness", [3, 35]]
+})
 
 [node name="Dracolich" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("11_iap7j")

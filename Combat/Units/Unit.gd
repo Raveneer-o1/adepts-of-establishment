@@ -267,7 +267,7 @@ func finalize_attack() -> void:
 ## This method handles game logic but does not update visuals -
 ## it calls [method schedule_damage] for visual sequencing.
 func resolve_attack(attack: Attack, damage: int, delay: int = 0, finalize: bool = false) -> void:
-	if attack.evadable and GlobalDefs.rand_roll(parameters.evasion, party):
+	if attack.evadable and GlobalDefs.rand_roll(clampf(parameters.evasion, 0.0, 1.0), party):
 		EventBus.attack_evaded.emit(self, attack)
 		system.display_text_near_unit(self, "Evaded!")
 		sound_player.play_evade_sound()

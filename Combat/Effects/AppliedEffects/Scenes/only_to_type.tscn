@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcje0h1ilt6li"]
+
+[ext_resource type="Script" uid="uid://fi70marxpgeg" path="res://Combat/Effects/AppliedEffects/Scripts/only_to_type.gd" id="1_7gysg"]
+
+[node name="OnlyToType" type="Node"]
+script = ExtResource("1_7gysg")
+liftable = false
+silencable = false
+icon_index = -1
+description = "OnlyToType"

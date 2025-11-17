@@ -182,7 +182,6 @@ stream = ExtResource("18_tgeyo")
 
 [node name="Healing" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
 stream = ExtResource("19_l5w5a")
-volume_db = 15.0
 pitch_scale = 0.8
 
 [node name="GpTurboSelect1" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]

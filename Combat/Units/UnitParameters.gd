@@ -257,6 +257,18 @@ func have_effect(effect_name: StringName, except: AppliedEffect = null) -> bool:
 			return true
 	return false
 
+## Returns the fiesr instance of the [param effect_name] or [code]null[/code]
+func find_effect(effect_name: StringName, except: AppliedEffect = null) -> AppliedEffect:
+	for child in get_children():
+		if child is not AppliedEffect:
+			continue
+		if child == except:
+			continue
+		
+		if (child as AppliedEffect).effect_name == effect_name:
+			return child
+	return null
+
 func clean_modifiers() -> void:
 	for modifier: ModifierStack in stats_modifiers.values():
 		modifier.clean()

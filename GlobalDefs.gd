@@ -70,7 +70,7 @@ func _increase_roll_statistics(party: Party) -> void:
 func rand_roll(
 	chance: float,
 	benefits: Party = null,
-	force_statistic_recording: bool = false
+	force_statistic_recording: bool = false,
 ) -> bool:
 	if is_zero_approx(chance):
 		if force_statistic_recording and benefits != null:

@@ -103,6 +103,16 @@ var is_heal: bool
 
 var applied_damage: int = 0
 
+var preserved_first_target: UnitSpotReference = null
+
+func _remove_target(ref: UnitSpotReference) -> void:
+	# Using null references instead of erase() to preserve the original order
+	# Primarily maintains first entry indices for the is_primary_target() method
+	var i := target_references.find(ref)
+	if not preserved_first_target and i == 0:
+		preserved_first_target = target_references[i]
+	target_references[i] = null
+
 func _check_immunity(ref: UnitSpotReference) -> bool:
 	var unit := ref.spot.unit
 	if not unit: return false
@@ -112,11 +122,7 @@ func _check_immunity(ref: UnitSpotReference) -> bool:
 	ref.spot.system.display_text_near_unit(unit, "Immunity")
 	unit.sound_player.play_immunity_sound()
 	tags.append(&"immuned")
-	
-	# Using null references instead of erase() to preserve the original order
-	# Primarily maintains first entry indices for the is_primary_target() method
-	var i := target_references.find(ref)
-	target_references[i] = null
+	_remove_target(ref)
 	return true
 
 func _check_miss(ref: UnitSpotReference) -> bool:
@@ -128,11 +134,7 @@ func _check_miss(ref: UnitSpotReference) -> bool:
 	EventBus.attack_missed.emit(unit, self)
 	attacker.sound_player.play_miss_sound()
 	tags.append(&"missed")
-	
-	# Using null references instead of erase() to preserve the original order
-	# Primarily maintains first entry indices for the is_primary_target() method
-	var i := target_references.find(ref)
-	target_references[i] = null
+	_remove_target(ref)
 	return true
 
 func _check_ward(ref: UnitSpotReference) -> bool:
@@ -143,12 +145,9 @@ func _check_ward(ref: UnitSpotReference) -> bool:
 	unit.system.display_text_near_unit(unit, "Ward!")
 	unit.sound_player.play_shield_sound()
 	tags.append(&"warded")
-	
-	# Using null references instead of erase() to preserve the original order
-	# Primarily maintains first entry indices for the is_primary_target() method
-	var i := target_references.find(ref)
-	target_references[i] = null
+	_remove_target(ref)
 	return true
+
 
 ## Filters targets by removing immune units and calculating misses based on accuracy.
 ## Processes each target reference to determine validity before damage application.
@@ -236,13 +235,24 @@ func find_all_references(target: UnitSpot) -> Array[UnitSpotReference]:
 ## Returns [code]null[/code] if there is none.
 func find_reference(target: UnitSpot) -> UnitSpotReference:
 	for t: UnitSpotReference in target_references:
-		if t.spot == target: return t
+		if t and t.spot == target: return t
 	return null
 
 ## Returns if [param target] was chosen by a player.
 func is_primary_target(target: UnitSpot) -> bool:
 	var pos := target_spots.find(target)
 	return pos >= 0 and pos < targets_chosen
+
+func find_first_primary_target() -> UnitSpotReference:
+	if not target_references:
+		return null
+	if target_references.size() < targets_chosen:
+		push_error("targets_chosen is larger than target_references size!")
+		return null
+	if preserved_first_target: return preserved_first_target
+	for i in range(targets_chosen):
+		if target_references[i]: return target_references[i]
+	return null
 
 func __init_via_UnitAttack(_unit_attack: UnitAttack, eff: Resource) -> void:
 	type = _unit_attack.type
