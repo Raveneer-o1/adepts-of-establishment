@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://6lq6f06hma7"]
+[gd_scene load_steps=10 format=3 uid="uid://6lq6f06hma7"]
 
 [ext_resource type="PackedScene" uid="uid://cku7rhe8jn3tx" path="res://Combat/Scenes/combat.tscn" id="1_7nbev"]
 [ext_resource type="PackedScene" uid="uid://dsk1e0o76tdgv" path="res://Combat/Scenes/background.tscn" id="1_q0clm"]
 [ext_resource type="PackedScene" uid="uid://d12hr40jjb8s8" path="res://Combat/Scenes/UnitInfoPanel.tscn" id="1_roecy"]
 [ext_resource type="Texture2D" uid="uid://cs11l1twocaox" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/MenusBox_34x34.png" id="4_767k7"]
+[ext_resource type="Script" uid="uid://q44rjos0ku5w" path="res://ui.gd" id="4_vbegm"]
 [ext_resource type="Script" uid="uid://dnohpbeyul511" path="res://Combat/Scripts/round_counter.gd" id="5_835jq"]
 [ext_resource type="Script" uid="uid://53jfwxh6fdtn" path="res://Combat/Scripts/miniature_queue_manager.gd" id="5_nndeq"]
 
@@ -32,6 +33,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme = SubResource("Theme_x3kym")
+script = ExtResource("4_vbegm")
 
 [node name="ParentContainer" type="NinePatchRect" parent="UI"]
 layout_mode = 1
@@ -122,6 +124,12 @@ size_flags_vertical = 4
 bbcode_enabled = true
 text = "Round: [font_size=25]1[/font_size]"
 script = ExtResource("5_835jq")
+
+[node name="VesrionLabel" type="Label" parent="UI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
 
 [connection signal="pressed" from="UI/ParentContainer/PanelContainer/HBoxContainer/ButtonSwitchAction" to="Combat" method="_on_button_switch_action_pressed"]
 [connection signal="pressed" from="UI/ParentContainer/PanelContainer/HBoxContainer/ButtonDefense" to="Combat" method="_on_button_defense_pressed"]

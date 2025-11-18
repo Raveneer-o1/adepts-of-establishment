@@ -223,7 +223,6 @@ base_damage = 80
 
 [node name="Grave whisperer" instance=ExtResource("1_qe102")]
 unit_name = "Grave whisperer"
-unit_type = "Warrior"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_rw7sr")
@@ -253,4 +252,3 @@ target_validation = ExtResource("7_gle8i")
 heal = 0.35
 is_percentage = true
 effect_name = "Vamirism"
-description = "When attacking, units restores %d%s health"

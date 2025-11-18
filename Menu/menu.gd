@@ -147,3 +147,4 @@ func _on_clear_button_pressed() -> void:
 func _ready() -> void:
 	item_list_left_controller.select(STANDARD_AI_CONTROLLER)
 	item_list_right_controller.select(PLAYER_CONTROLLER)
+	%VesrionLabel.text = ProjectSettings.get_setting("application/config/version")
