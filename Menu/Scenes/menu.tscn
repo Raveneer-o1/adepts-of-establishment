@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://rhljgisluynr"]
+[gd_scene load_steps=18 format=3 uid="uid://rhljgisluynr"]
 
 [ext_resource type="PackedScene" uid="uid://bt1s54jsu58q1" path="res://Menu/Scenes/menu_unit_place.tscn" id="1_3imto"]
 [ext_resource type="Script" uid="uid://chbge2rkv57yv" path="res://Menu/menu.gd" id="1_h46x8"]
@@ -169,6 +169,12 @@ _data = {
 &"RESET": SubResource("Animation_l6mnw"),
 &"background_animation": SubResource("Animation_kv8pg")
 }
+
+[sub_resource type="LabelSettings" id="LabelSettings_3ksg3"]
+font_size = 30
+font_color = Color(1, 0, 0, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -374,10 +380,9 @@ layout_mode = 2
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 3
+current_tab = 0
 
 [node name="Humans" type="TabContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 current_tab = 0
@@ -1043,6 +1048,10 @@ layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
+[node name="padding" type="Container" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Special/Lvl5"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
 [node name="Tree Item Unit" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Special/Lvl5" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Dracolich"
@@ -1093,10 +1102,10 @@ layout_mode = 2
 unit_name = "Pirate"
 path = "res://Combat/Units/Derived units/Neutral/pirate.tscn"
 
-[node name="Pirate capitan" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Neutral/Humans" instance=ExtResource("2_r33n7")]
+[node name="Pirate captain" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Neutral/Humans" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Pirate capitan"
-path = "res://Combat/Units/Derived units/Neutral/pirate_capitan.tscn"
+path = "res://Combat/Units/Derived units/Neutral/pirate_captain.tscn"
 
 [node name="Thief" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Neutral/Humans" instance=ExtResource("2_r33n7")]
 layout_mode = 2
@@ -1109,6 +1118,7 @@ unit_name = "Rogue"
 path = "res://Combat/Units/Derived units/Neutral/rogue.tscn"
 
 [node name="Heroes" type="TabContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer"]
+visible = false
 layout_mode = 2
 current_tab = 0
 metadata/_tab_index = 3
@@ -1143,6 +1153,11 @@ layout_mode = 2
 unit_name = "Sir Roland"
 path = "res://Combat/Units/Derived units/Heroes/sir_roland.tscn"
 
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Heroes/Empire"]
+layout_mode = 2
+text = "Heroes are unfinished!"
+label_settings = SubResource("LabelSettings_3ksg3")
+
 [node name="Undead" type="GridContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Heroes"]
 visible = false
 layout_mode = 2
@@ -1173,6 +1188,11 @@ path = "res://Combat/Units/Derived units/Heroes/margrave_solreth.tscn"
 layout_mode = 2
 unit_name = "Virion The Bonebinder"
 path = "res://Combat/Units/Derived units/Heroes/virion_the_bonebinder.tscn"
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Heroes/Undead"]
+layout_mode = 2
+text = "Heroes are unfinished!"
+label_settings = SubResource("LabelSettings_3ksg3")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4"]
 visible = false

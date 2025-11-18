@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://caqh5ogy4a384"
-path="res://.godot/imported/Pirate capitan.wav-f3c9b8528f92ad98b8b680fc577ca360.sample"
+path="res://.godot/imported/Pirate captain.wav-3566b173fbbab9f81c5265936e26288c.sample"
 
 [deps]
 
-source_file="res://Sounds/using/Attack/Neutral/Pirate capitan.wav"
-dest_files=["res://.godot/imported/Pirate capitan.wav-f3c9b8528f92ad98b8b680fc577ca360.sample"]
+source_file="res://Sounds/using/Attack/Neutral/Pirate captain.wav"
+dest_files=["res://.godot/imported/Pirate captain.wav-3566b173fbbab9f81c5265936e26288c.sample"]
 
 [params]
 

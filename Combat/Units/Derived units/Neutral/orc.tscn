@@ -1,7 +1,8 @@
-[gd_scene load_steps=36 format=3 uid="uid://g5hai1278qua"]
+[gd_scene load_steps=37 format=3 uid="uid://g5hai1278qua"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_qx1fk"]
 [ext_resource type="Texture2D" uid="uid://bdtsjxgm0nbrq" path="res://Arts/Generic/g02 orc attack.png" id="2_gc78g"]
+[ext_resource type="Texture2D" uid="uid://ckreooi5uf34e" path="res://Arts/Placeholders/Orc.jpg" id="2_iit4r"]
 [ext_resource type="Texture2D" uid="uid://bji5lpnoskyhq" path="res://Arts/Generic/g02 orc idle .png" id="3_4jnn6"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_ue142"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_5ho5h"]
@@ -116,7 +117,9 @@ armor = 10
 
 [node name="Orc" instance=ExtResource("1_qx1fk")]
 unit_name = "Orc"
+faction = 7
 full_description = "Orcs are fearsome warriors known for their brute strength and relentless aggression. They thrive in battle, often overpowering their foes with sheer force and determination. While they lack finesse, their loyalty to their clan and ferocity make them a dangerous presence on the battlefield."
+portrait_texture = ExtResource("2_iit4r")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_x3amd")

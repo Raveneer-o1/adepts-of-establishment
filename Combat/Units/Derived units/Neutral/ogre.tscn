@@ -1,12 +1,14 @@
-[gd_scene load_steps=40 format=3 uid="uid://5ouvt0ouuy23"]
+[gd_scene load_steps=42 format=3 uid="uid://5ouvt0ouuy23"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_878kx"]
+[ext_resource type="Texture2D" uid="uid://b38mbtym0suxr" path="res://Arts/Placeholders/Ogre.jpg" id="2_6ygjt"]
 [ext_resource type="Texture2D" uid="uid://v616i1dyc5im" path="res://Arts/Generic/g03 ogre attack .png" id="2_67f6v"]
 [ext_resource type="Texture2D" uid="uid://b6hkkb86o6qxt" path="res://Arts/Generic/g03 ogre idle  (2).png" id="3_hi10f"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_wgrcg"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_8pf8y"]
 [ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="6_hw85c"]
 [ext_resource type="AudioStream" uid="uid://bc5nrxd1d2xcr" path="res://Sounds/using/Damage/Stone_1.wav" id="7_btfhl"]
+[ext_resource type="Resource" uid="uid://d3v4hhqcmpw7w" path="res://Combat/Units/Parameters/Additional targets/Double_attack.tres" id="7_hgv6i"]
 [ext_resource type="AudioStream" uid="uid://6te6nusi62gj" path="res://Sounds/using/Damage/Stone_2.wav" id="8_hgv6i"]
 [ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="9_6ygjt"]
 [ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="10_dgkwl"]
@@ -138,13 +140,16 @@ animations = [{
 [sub_resource type="Resource" id="Resource_ego08"]
 resource_local_to_scene = true
 script = ExtResource("4_wgrcg")
-max_HP = 400
-base_damage = 120
-armor = 10
+max_HP = 450
+base_damage = 130
+armor = 30
+evasion = 0.01
 
 [node name="Ogre" instance=ExtResource("1_878kx")]
 unit_name = "Ogre"
+faction = 7
 full_description = "Ogres are hulking brutes with unparalleled physical power, smashing through enemies and obstacles alike. Though not known for their intelligence, their immense strength and resilience make them formidable foes. These behemoths are often used as shock troops, devastating enemy ranks with crushing blows."
+portrait_texture = ExtResource("2_6ygjt")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_ktgvs")
@@ -157,13 +162,16 @@ frames_to_emit = Array[int]([3, 5])
 attack_sound_frame = 3
 
 [node name="UnitParameters" parent="." index="1"]
+level = 2
 base_paramaters = SubResource("Resource_ego08")
 large_unit = true
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("5_8pf8y")
+damage_multiplier = 0.5
 initiative = 15
 target_validation = ExtResource("6_hw85c")
+additional_targets = ExtResource("7_hgv6i")
 metadata/_custom_type_script = "uid://c5u15vrtdf7kf"
 
 [node name="Stone1" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]

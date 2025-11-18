@@ -1,7 +1,8 @@
-[gd_scene load_steps=37 format=3 uid="uid://bd1qlt6xdi7ru"]
+[gd_scene load_steps=38 format=3 uid="uid://bd1qlt6xdi7ru"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_qtvxl"]
 [ext_resource type="Texture2D" uid="uid://c870pi1x3r4v0" path="res://Arts/Generic/g07 rogue attack .png" id="2_hlh76"]
+[ext_resource type="Texture2D" uid="uid://camqx13ymfvh7" path="res://Arts/Placeholders/Rogue.jpg" id="2_vv05r"]
 [ext_resource type="Texture2D" uid="uid://c5jcma42n8c3c" path="res://Arts/Generic/g07 rogue idle .png" id="3_asnxk"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_a75rt"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_p8weg"]
@@ -105,12 +106,14 @@ animations = [{
 [sub_resource type="Resource" id="Resource_bpxtm"]
 resource_local_to_scene = true
 script = ExtResource("4_a75rt")
-max_HP = 120
-base_damage = 40
+max_HP = 150
+base_damage = 30
 
 [node name="Rogue" instance=ExtResource("1_qtvxl")]
 unit_name = "Rogue"
+faction = 6
 full_description = "Rogues are seasoned fighters who blend agility and combat prowess, striking quickly and decisively. They are masters of deception, often using dirty tricks to gain the upper hand. Though they prefer to avoid direct confrontation, their versatility makes them a dangerous adversary."
+portrait_texture = ExtResource("2_vv05r")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_01jde")
@@ -120,24 +123,34 @@ frames_to_emit = Array[int]([3])
 attack_sound_frame = 3
 
 [node name="UnitParameters" parent="." index="1"]
+level = 2
 base_paramaters = SubResource("Resource_bpxtm")
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("5_p8weg")
 initiative = 60
 target_validation = ExtResource("6_ogffi")
+applying_effects = Dictionary[String, Variant]({
+"poison": [10, 3]
+})
 metadata/_custom_type_script = "uid://c5u15vrtdf7kf"
 
 [node name="UnitAttack2" type="Node" parent="UnitParameters" index="2"]
 script = ExtResource("5_p8weg")
 initiative = 45
 target_validation = ExtResource("6_ogffi")
+applying_effects = Dictionary[String, Variant]({
+"poison": [10, 3]
+})
 metadata/_custom_type_script = "uid://c5u15vrtdf7kf"
 
 [node name="UnitAttack3" type="Node" parent="UnitParameters" index="3"]
 script = ExtResource("5_p8weg")
 initiative = 30
 target_validation = ExtResource("6_ogffi")
+applying_effects = Dictionary[String, Variant]({
+"poison": [10, 3]
+})
 metadata/_custom_type_script = "uid://c5u15vrtdf7kf"
 
 [node name="Oof17" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]

@@ -10,7 +10,7 @@ extends AppliedEffect
 func _get_description() -> String:
 	return \
 		description % (\
-			(str(int(heal * 100)) + "%% of damage as") if is_percentage \
+			(str(int(heal * 100)) + " percent of damage as") if is_percentage \
 			else str( int(heal) )
 		)
 

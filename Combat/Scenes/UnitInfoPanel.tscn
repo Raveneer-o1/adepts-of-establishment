@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://d12hr40jjb8s8"]
+[gd_scene load_steps=5 format=3 uid="uid://d12hr40jjb8s8"]
 
 [ext_resource type="Script" uid="uid://df3o7avtisvgt" path="res://Combat/Scripts/unit_info_panel.gd" id="1_udonc"]
 [ext_resource type="Texture2D" uid="uid://bqxx85jbcslr4" path="res://Arts/Placeholder portrait.jpg" id="2_ljltd"]
 [ext_resource type="Texture2D" uid="uid://dxhnooqfvgjkt" path="res://Arts/itch assets/Custom Border and Panels Menu All Part [BDragon1727]/border.tres" id="3_5gem6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_s8qj1"]
+font_size = 50
+font_color = Color(1, 0.01999998, 0.01999998, 0.5019608)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 
 [node name="UnitInfoPanel" type="Control"]
 layout_mode = 3
@@ -67,6 +73,14 @@ stretch_mode = 5
 [node name="TextureRect" type="TextureRect" parent="Panel/MainContainer/LeftContainer/PortraitPanel/PortraitMargin"]
 layout_mode = 2
 texture = ExtResource("3_5gem6")
+
+[node name="Disclaimer" type="Label" parent="Panel/MainContainer/LeftContainer/PortraitPanel/PortraitMargin"]
+layout_mode = 2
+text = "Placeholder
+AI-generated"
+label_settings = SubResource("LabelSettings_s8qj1")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="DesctiprionPanel" type="Panel" parent="Panel/MainContainer/LeftContainer"]
 layout_mode = 2

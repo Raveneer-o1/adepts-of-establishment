@@ -1,7 +1,8 @@
-[gd_scene load_steps=47 format=3 uid="uid://due6cek848mty"]
+[gd_scene load_steps=48 format=3 uid="uid://due6cek848mty"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_8bqrg"]
 [ext_resource type="Texture2D" uid="uid://ragymeslg6lq" path="res://Arts/Generic/g01 orc chieftain attack .png" id="2_nnypv"]
+[ext_resource type="Texture2D" uid="uid://ds82f830n3c0" path="res://Arts/Placeholders/Orc chieftain.jpg" id="2_qguc2"]
 [ext_resource type="Texture2D" uid="uid://b861bayrkpx0o" path="res://Arts/Generic/g01 orc chieftain idle .png" id="3_xhkvy"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_rcpxb"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_olqh7"]
@@ -187,13 +188,15 @@ animations = [{
 [sub_resource type="Resource" id="Resource_r7gwq"]
 resource_local_to_scene = true
 script = ExtResource("4_rcpxb")
-max_HP = 180
-base_damage = 70
-armor = 20
+max_HP = 275
+base_damage = 80
+armor = 35
 
 [node name="Orc cheiftain" instance=ExtResource("1_8bqrg")]
 unit_name = "Orc cheiftain"
+faction = 7
 full_description = "Orc Chieftains are the leaders of their clans, commanding respect through strength and cunning. They inspire their kin with battle cries and powerful strikes, rallying their forces to victory."
+portrait_texture = ExtResource("2_qguc2")
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_ao4o3")
@@ -207,6 +210,7 @@ last_frame = 10
 attack_sound_frame = 4
 
 [node name="UnitParameters" parent="." index="1"]
+level = 4
 base_paramaters = SubResource("Resource_r7gwq")
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
