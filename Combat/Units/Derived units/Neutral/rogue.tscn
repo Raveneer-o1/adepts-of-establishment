@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bd1qlt6xdi7ru"]
+[gd_scene load_steps=37 format=3 uid="uid://bd1qlt6xdi7ru"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_qtvxl"]
 [ext_resource type="Texture2D" uid="uid://c870pi1x3r4v0" path="res://Arts/Generic/g07 rogue attack .png" id="2_hlh76"]
@@ -6,6 +6,25 @@
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_a75rt"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_p8weg"]
 [ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="6_ogffi"]
+[ext_resource type="AudioStream" uid="uid://k4svejt4piit" path="res://Sounds/using/Damage/oof 17.wav" id="7_c3600"]
+[ext_resource type="AudioStream" uid="uid://c7oy42pegbo3a" path="res://Sounds/using/Damage/oof 19.wav" id="8_vv05r"]
+[ext_resource type="AudioStream" uid="uid://b7r3kee6rjmo4" path="res://Sounds/using/Damage/Default_2.wav" id="9_u1fbp"]
+[ext_resource type="AudioStream" uid="uid://cucn7770e3ayy" path="res://Sounds/using/Damage/Default_4.wav" id="10_xlwoy"]
+[ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="11_36u8j"]
+[ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="12_w45va"]
+[ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="13_bqssl"]
+[ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="14_bubas"]
+[ext_resource type="AudioStream" uid="uid://bbngje7751rc2" path="res://Sounds/using/Shield/fencing hit 25.wav" id="15_nxh4l"]
+[ext_resource type="AudioStream" uid="uid://g50lfdbhl844" path="res://Sounds/using/Shield/Metal_clash_1.wav" id="16_jde18"]
+[ext_resource type="AudioStream" uid="uid://cxti7sw334cs7" path="res://Sounds/using/Shield/Metal_clash_2.wav" id="17_wrs47"]
+[ext_resource type="AudioStream" uid="uid://cfjfygk06lph7" path="res://Sounds/using/Attack/Slash.wav" id="18_ixtlq"]
+[ext_resource type="AudioStream" uid="uid://57uq8ddrqmg0" path="res://Sounds/using/Heal/GP_Turbo_Select_1.wav" id="19_npjxb"]
+[ext_resource type="AudioStream" uid="uid://bvxxsyhcv73oo" path="res://Sounds/using/Heal/GP_Turbo_Select_2.wav" id="20_qi5gl"]
+[ext_resource type="AudioStream" uid="uid://befag54021wep" path="res://Sounds/using/Heal/GP_Turbo_Select_3.wav" id="21_q2d28"]
+[ext_resource type="AudioStream" uid="uid://dsge1pqh4ihjr" path="res://Sounds/using/Heal/GP_Turbo_Select_4.wav" id="22_vhu82"]
+[ext_resource type="AudioStream" uid="uid://dxiivr6txaweh" path="res://Sounds/using/Death/body fall 3.wav" id="23_1ewkc"]
+[ext_resource type="AudioStream" uid="uid://bfaxc8l3qk67k" path="res://Sounds/using/Death/body fall 6.wav" id="24_lrah7"]
+[ext_resource type="AudioStream" uid="uid://bcae4mab3j5u" path="res://Sounds/using/Death/body fall 12.wav" id="25_7gnfy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l2jr7"]
 atlas = ExtResource("2_hlh76")
@@ -91,7 +110,6 @@ base_damage = 40
 
 [node name="Rogue" instance=ExtResource("1_qtvxl")]
 unit_name = "Rogue"
-unit_type = "Debuffer"
 full_description = "Rogues are seasoned fighters who blend agility and combat prowess, striking quickly and decisively. They are masters of deception, often using dirty tricks to gain the upper hand. Though they prefer to avoid direct confrontation, their versatility makes them a dangerous adversary."
 
 [node name="AnimationHandle" parent="." index="0"]
@@ -99,24 +117,82 @@ sprite_frames = SubResource("SpriteFrames_01jde")
 animation = &"attack"
 autoplay = "default"
 frames_to_emit = Array[int]([3])
+attack_sound_frame = 3
 
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_bpxtm")
 
-[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("5_p8weg")
 initiative = 60
 target_validation = ExtResource("6_ogffi")
 metadata/_custom_type_script = "uid://c5u15vrtdf7kf"
 
-[node name="UnitAttack2" type="Node" parent="UnitParameters" index="3"]
+[node name="UnitAttack2" type="Node" parent="UnitParameters" index="2"]
 script = ExtResource("5_p8weg")
 initiative = 45
 target_validation = ExtResource("6_ogffi")
 metadata/_custom_type_script = "uid://c5u15vrtdf7kf"
 
-[node name="UnitAttack3" type="Node" parent="UnitParameters" index="4"]
+[node name="UnitAttack3" type="Node" parent="UnitParameters" index="3"]
 script = ExtResource("5_p8weg")
 initiative = 30
 target_validation = ExtResource("6_ogffi")
 metadata/_custom_type_script = "uid://c5u15vrtdf7kf"
+
+[node name="Oof17" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
+stream = ExtResource("7_c3600")
+
+[node name="Oof19" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="1"]
+stream = ExtResource("8_vv05r")
+
+[node name="Default2" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="2"]
+stream = ExtResource("9_u1fbp")
+
+[node name="Default4" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="3"]
+stream = ExtResource("10_xlwoy")
+
+[node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
+stream = ExtResource("11_36u8j")
+
+[node name="GpArmorDown2" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="1"]
+stream = ExtResource("12_w45va")
+
+[node name="GpArmorDown3" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="2"]
+stream = ExtResource("13_bqssl")
+
+[node name="GpArmorDown4" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="3"]
+stream = ExtResource("14_bubas")
+
+[node name="FencingHit25" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
+stream = ExtResource("15_nxh4l")
+
+[node name="MetalClash1" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="1"]
+stream = ExtResource("16_jde18")
+
+[node name="MetalClash2" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="2"]
+stream = ExtResource("17_wrs47")
+
+[node name="Slash" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
+stream = ExtResource("18_ixtlq")
+
+[node name="GpTurboSelect1" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]
+stream = ExtResource("19_npjxb")
+
+[node name="GpTurboSelect2" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="1"]
+stream = ExtResource("20_qi5gl")
+
+[node name="GpTurboSelect3" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="2"]
+stream = ExtResource("21_q2d28")
+
+[node name="GpTurboSelect4" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="3"]
+stream = ExtResource("22_vhu82")
+
+[node name="BodyFall3" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="0"]
+stream = ExtResource("23_1ewkc")
+
+[node name="BodyFall6" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="1"]
+stream = ExtResource("24_lrah7")
+
+[node name="BodyFall12" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="2"]
+stream = ExtResource("25_7gnfy")

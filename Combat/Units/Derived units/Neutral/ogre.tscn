@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://5ouvt0ouuy23"]
+[gd_scene load_steps=40 format=3 uid="uid://5ouvt0ouuy23"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_878kx"]
 [ext_resource type="Texture2D" uid="uid://v616i1dyc5im" path="res://Arts/Generic/g03 ogre attack .png" id="2_67f6v"]
@@ -6,6 +6,23 @@
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_wgrcg"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_8pf8y"]
 [ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="6_hw85c"]
+[ext_resource type="AudioStream" uid="uid://bc5nrxd1d2xcr" path="res://Sounds/using/Damage/Stone_1.wav" id="7_btfhl"]
+[ext_resource type="AudioStream" uid="uid://6te6nusi62gj" path="res://Sounds/using/Damage/Stone_2.wav" id="8_hgv6i"]
+[ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="9_6ygjt"]
+[ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="10_dgkwl"]
+[ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="11_5fv4p"]
+[ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="12_nwx4t"]
+[ext_resource type="AudioStream" uid="uid://bbngje7751rc2" path="res://Sounds/using/Shield/fencing hit 25.wav" id="13_ptlkx"]
+[ext_resource type="AudioStream" uid="uid://g50lfdbhl844" path="res://Sounds/using/Shield/Metal_clash_1.wav" id="14_h5d8y"]
+[ext_resource type="AudioStream" uid="uid://cxti7sw334cs7" path="res://Sounds/using/Shield/Metal_clash_2.wav" id="15_rgmyt"]
+[ext_resource type="AudioStream" uid="uid://d4nhhg6fw3biq" path="res://Sounds/using/Attack/Neutral/Ogre.wav" id="16_ufajp"]
+[ext_resource type="AudioStream" uid="uid://57uq8ddrqmg0" path="res://Sounds/using/Heal/GP_Turbo_Select_1.wav" id="17_q1fvw"]
+[ext_resource type="AudioStream" uid="uid://bvxxsyhcv73oo" path="res://Sounds/using/Heal/GP_Turbo_Select_2.wav" id="18_uojlj"]
+[ext_resource type="AudioStream" uid="uid://befag54021wep" path="res://Sounds/using/Heal/GP_Turbo_Select_3.wav" id="19_hhpy8"]
+[ext_resource type="AudioStream" uid="uid://dsge1pqh4ihjr" path="res://Sounds/using/Heal/GP_Turbo_Select_4.wav" id="20_3b6v1"]
+[ext_resource type="AudioStream" uid="uid://dxiivr6txaweh" path="res://Sounds/using/Death/body fall 3.wav" id="21_ldmrv"]
+[ext_resource type="AudioStream" uid="uid://bfaxc8l3qk67k" path="res://Sounds/using/Death/body fall 6.wav" id="22_wwdhn"]
+[ext_resource type="AudioStream" uid="uid://bcae4mab3j5u" path="res://Sounds/using/Death/body fall 12.wav" id="23_u6ulc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dmh4u"]
 atlas = ExtResource("2_67f6v")
@@ -127,22 +144,75 @@ armor = 10
 
 [node name="Ogre" instance=ExtResource("1_878kx")]
 unit_name = "Ogre"
-unit_type = "Warrior"
 full_description = "Ogres are hulking brutes with unparalleled physical power, smashing through enemies and obstacles alike. Though not known for their intelligence, their immense strength and resilience make them formidable foes. These behemoths are often used as shock troops, devastating enemy ranks with crushing blows."
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_ktgvs")
 animation = &"attack"
 autoplay = "default"
+frame = 7
+frame_progress = 1.0
 offset = Vector2(0, -16)
 frames_to_emit = Array[int]([3, 5])
+attack_sound_frame = 3
 
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_ego08")
 large_unit = true
 
-[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("5_8pf8y")
 initiative = 15
 target_validation = ExtResource("6_hw85c")
 metadata/_custom_type_script = "uid://c5u15vrtdf7kf"
+
+[node name="Stone1" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
+stream = ExtResource("7_btfhl")
+
+[node name="Stone2" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="1"]
+stream = ExtResource("8_hgv6i")
+
+[node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
+stream = ExtResource("9_6ygjt")
+
+[node name="GpArmorDown2" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="1"]
+stream = ExtResource("10_dgkwl")
+
+[node name="GpArmorDown3" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="2"]
+stream = ExtResource("11_5fv4p")
+
+[node name="GpArmorDown4" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="3"]
+stream = ExtResource("12_nwx4t")
+
+[node name="FencingHit25" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
+stream = ExtResource("13_ptlkx")
+
+[node name="MetalClash1" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="1"]
+stream = ExtResource("14_h5d8y")
+
+[node name="MetalClash2" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="2"]
+stream = ExtResource("15_rgmyt")
+
+[node name="Ogre" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
+stream = ExtResource("16_ufajp")
+
+[node name="GpTurboSelect1" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]
+stream = ExtResource("17_q1fvw")
+
+[node name="GpTurboSelect2" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="1"]
+stream = ExtResource("18_uojlj")
+
+[node name="GpTurboSelect3" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="2"]
+stream = ExtResource("19_hhpy8")
+
+[node name="GpTurboSelect4" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="3"]
+stream = ExtResource("20_3b6v1")
+
+[node name="BodyFall3" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="0"]
+stream = ExtResource("21_ldmrv")
+
+[node name="BodyFall6" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="1"]
+stream = ExtResource("22_wwdhn")
+
+[node name="BodyFall12" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="2"]
+stream = ExtResource("23_u6ulc")
