@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://do5kbkdjdwp2s"
-path="res://.godot/imported/dis tiles.png-4a65e040c6891c59e246b578e374a611.ctex"
+uid="uid://f0gylxuyibna"
+path="res://.godot/imported/g11 whip guy idle.png-a9598c3725715417cada47dd4baadc56.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Arts/Map objects/dis tiles.png"
-dest_files=["res://.godot/imported/dis tiles.png-4a65e040c6891c59e246b578e374a611.ctex"]
+source_file="res://Arts/Generic/g11 whip guy idle.png"
+dest_files=["res://.godot/imported/g11 whip guy idle.png-a9598c3725715417cada47dd4baadc56.ctex"]
 
 [params]
 
