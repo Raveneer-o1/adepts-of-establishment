@@ -24,20 +24,20 @@ Set `Unit Name`, `Unit Type`, `Faction`, and description
 ### AnimationHandle Node
 1. Create a new SpriteFrames resource
 2. Add animations with these exact names (case-sensitive):
-| Animation             | Exact Name |
-| --------------------- | ---------- |
-| Idle                  | `default`  |
-| Attacking             | `attack`   |
-| Alternative attacking | `attack2`  |
-| Taking damage         | `damage`   |
-| Healing               | `heal`     |
+	| Animation             | Exact Name |
+	| --------------------- | ---------- |
+	| Idle                  | `default`  |
+	| Attacking             | `attack`   |
+	| Alternative attacking | `attack2`  |
+	| Taking damage         | `damage`   |
+	| Healing               | `heal`     |
 
 	You don't have to have all these implemented: missing animations will use defaults from the **AnimationPlayer** node
 
 3. Enable autoplay for the `default` (idle) animation
 4. Disable looping for all other animations
 5. Set the **Frames to Emit** list. The list should contain the frame numbers from your attack animation where the weapon makes contact or the projectile would be launched - the exact moments when the attack's impact occurs
-6. **Attack Sound Frame** is the frame where sound is played. Is should by syncronized with [sound](#adding_sounds)
+6. **Attack Sound Frame** is the frame where sound is played. Is should by syncronized with [sound](#adding-sounds)
 7. Set the offset value so that the unit is placed at the center
 
 ### UnitParameters Node
@@ -50,7 +50,7 @@ Set `Unit Name`, `Unit Type`, `Faction`, and description
 	6. *Other Effects*
 2. Add **UnitAttack** nodes for each attack the unit needs (see the class documentation).
 Don't forget to add the *Target Validation* resource (located at `res://Combat/Units/Parameters/Validation/`)
-3. Add effects and abilities by instantiating scenes from `res://Combat/Effects/AppliedEffects/Scenes/`. If you want to create a new effect, refer to the [guide](new_unit.md)
+3. Add effects and abilities by instantiating scenes from `res://Combat/Effects/AppliedEffects/Scenes/`. If you want to create a new effect, refer to the [guide](new_effect.md)
 
 ## Adding Sounds
 
