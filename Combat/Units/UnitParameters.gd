@@ -18,7 +18,13 @@ const STANDARD_FRACTIONAL_DAMAGE_DEVIATION = 0.1
 
 @export var base_paramaters: BaseParameters
 
-var attacks: Array[UnitAttack] = []
+var attacks: Array[UnitAttack]:
+	get:
+		var res: Array[UnitAttack]
+		for child in get_children():
+			if child is UnitAttack:
+				res.append(child)
+		return res
 
 @export var large_unit: bool = false
 
@@ -28,7 +34,15 @@ var attacks: Array[UnitAttack] = []
 ## the list can be modified dynamically if required.
 @export var underlying_immunities: Array[GlobalDefs.AttackType] = []
 
+## This effect is instantiated as the target's child when the unit attacks.
+## Intended for visual effects, though this resource undergoes no validation.
+## The instantiated object is not tracked as it should free itself after animation
+## completion. If using this for objects other than [TemporaryEffect],
+## manual memory management is required.
 @export var attack_effect: Resource
+
+## Additional effects available for custom implementation.
+## @experimental: Not used by default, provided for extended functionality.
 @export var other_effects: Array[Resource]
 
 @export_group("Override parameters")
@@ -337,10 +351,6 @@ func initialize_effects() -> void:
 	EventBus.turn_started.connect(turn_start_reaction)
 
 func set_references() -> void:
-	for child in get_children():
-		if child is UnitAttack:
-			attacks.append(child)
-	
 	for attack in attacks:
 		attack.initialize(parent_unit)
 

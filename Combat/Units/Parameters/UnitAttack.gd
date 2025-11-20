@@ -105,7 +105,7 @@ var accuracy_representation: float:
 ## You should not attempt to initialize the attack manually.
 func initialize(u: Unit) -> void:
 	if target_validation == null:
-		print_debug("Target validation is empty! Unit: %s" % u.unit_name)
+		push_error("Target validation is empty! Unit: %s" % u.unit_name)
 		queue_free()
 	unit = u
 	for c: UnitAttack in get_children():

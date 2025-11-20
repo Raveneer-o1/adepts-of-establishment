@@ -28,8 +28,11 @@ class_name AppliedEffect
 ## or lift it with [method lift_effect]
 @export var silencable: bool = true
 
+## Color of the message shown when the effect is [b]applied[/b]
 @export var color_start: Color = Color.BURLYWOOD
+## Color of the message shown when the effect is [b]triggered[/b]
 @export var color_effect: Color = Color.YELLOW
+## Color of the message shown when the effect is [b]lifted[/b]
 @export var color_end: Color = Color.WHITE
 
 const ICONS := preload("res://Arts/icons.png")
@@ -109,10 +112,12 @@ func lift_effect() -> void:
 	if not liftable:
 		return
 	
+	# queue_free() should be called before emitting signal and calling clean_effects()
+	queue_free()
 	EventBus.effect_lifted.emit(self)
+	if not is_queued_for_deletion(): return
 	_remove_effect()
 	target_unit.clean_effects()
-	queue_free()
 
 var silenced_turns: int = -1
 
@@ -176,6 +181,8 @@ func restore_effect() -> void:
 			return
 	if EventBus.round_ended.is_connected(check_silence_countdown):
 		EventBus.round_ended.disconnect(check_silence_countdown)
+	if EventBus.round_ended.is_connected(silence_count):
+		EventBus.round_ended.disconnect(silence_count)
 	silenced_effects_node.remove_child(self)
 	silenced_effects_node.get_parent().add_child(self)
 	

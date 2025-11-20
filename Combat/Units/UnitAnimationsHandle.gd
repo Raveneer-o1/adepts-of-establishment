@@ -29,7 +29,10 @@ func play_attack_animation() -> void:
 	if animation != &"default":
 		next_animation = &"attack"
 		return
-	play(&"attack")
+	if sprite_frames.has_animation(&"attack"):
+		play(&"attack")
+	else:
+		(get_child(0) as AnimationPlayer).play(&"unit_standard_attack_animation")
 	if attack_sound_frame == 0:
 		parent_unit.sound_player.play_attack_sound()
 	now_attacking = true
@@ -76,8 +79,8 @@ func play_animation_by_name(animation_name: StringName) -> void:
 		&"heal":
 			play_heal_animation()
 			return
-	print_debug("Unable to map '%s' animation!" % animation_name)
-	play("default")
+	push_error("Unable to map '%s' animation!" % animation_name)
+	play(&"default")
 
 func _on_animation_finished() -> void:
 	play(&"default")
@@ -98,6 +101,8 @@ func _on_frame_changed() -> void:
 		finish_attack()
 	if frame == attack_sound_frame and attack_sound_frame > 0:
 		parent_unit.sound_player.play_attack_sound()
+	if frame == 0:
+		_on_animation_finished()
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

@@ -380,9 +380,10 @@ layout_mode = 2
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 0
+current_tab = 2
 
 [node name="Humans" type="TabContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 current_tab = 0
@@ -1058,7 +1059,6 @@ unit_name = "Dracolich"
 path = "res://Combat/Units/Derived units/Undead/u33_Dracolich.tscn"
 
 [node name="Neutral" type="TabContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer"]
-visible = false
 layout_mode = 2
 current_tab = 0
 metadata/_tab_index = 2
@@ -1116,6 +1116,11 @@ path = "res://Combat/Units/Derived units/Neutral/thief.tscn"
 layout_mode = 2
 unit_name = "Rogue"
 path = "res://Combat/Units/Derived units/Neutral/rogue.tscn"
+
+[node name="Robber" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Neutral/Humans" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Robber"
+path = "res://Combat/Units/Derived units/Neutral/robber.tscn"
 
 [node name="Heroes" type="TabContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer"]
 visible = false
