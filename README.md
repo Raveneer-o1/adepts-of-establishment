@@ -105,9 +105,15 @@ Here is the tree of units planned for this project. The main bulk of it was copi
   
 </details>
 
+## A Note on AI-Generated Content
+
+* **Art Assets (Placeholders):** The unit portraits in this build are AI-generated. They are temporary stand-ins to visualize the game during development and are **not** intended for the final product. The source repository does not include these image files for this reason. My goal is to eventually find an artist to create all final assets.
+
+* **Documentation & Comments:** To save time, I use Large Language Models (LLMs) to help draft documentation and code comments. The logic and architecture of the code itself are human-written. If you find any comments that are unhelpful, redundant, or unclear, please feel free to correct them in a Pull Request!
+
 ## Getting Started
 ### Prerequisites
-1. Download and install the [Godot Engine](https://godotengine.org/). Current version is being developed with Godot 4.5
+1. Download and install the [Godot Engine](https://godotengine.org/). Current version is being developed with Godot 4.5  
 2. Ensure Git LFS is installed on your system
 
 ### Installation Steps
@@ -120,32 +126,40 @@ Here is the tree of units planned for this project. The main bulk of it was copi
    ```bash
    git lfs version
    ```
-   And update LFS-tracked files with:
+   Check the [Git LFS official instructions](https://git-lfs.com/) if you need more help.
+   
+   Update LFS-tracked files with:
    ```bash
    git lfs pull
    ```
-
-### Where to start
-Once you open the project, run it to get the idea of what the game is about and how it works. Then find the documentation on the main elements. By default, `F1` key opens Godot's 'Search help' window. Start with `CombatSystem`, then go to through `Attack`, `Unit`, `UnitAttack`.
 
 ## How to Contribute
 I encourage any contributions to the project, whether you're a programmer, artist, or just someone passionate about strategy games. Contributions can range from improving the codebase, adding assets, or suggesting new gameplay features (see below).
 
 The codebase is thoroughly commented using Godot's built-in documentation format and I do my best to maintain clear and understandable code. However, if you find any part of the code unclear or difficult to follow, feel free to open an issue. We’ll discuss and work together to improve it.
 
-All help welcome! No contribution too small:
-### **Code** 
-- (GDScript): Core gameplay, UI systems, AI
-### **Art**:
-- **UI**. The game doesn't have good interface right now. This is the weakest part of the project.
-- Pixel art units (64x64), environment tilesets.
-*Currently the game is implemented with 32x32 pixel art sprites.*
-### **Game Design**:
-- Balance factions
-- Lore text is ok, however I do have my own vision on this world so it's best to leave this kind of changes to different forks
-### **Testing**:
-- Bug reports, compatibility checks
+### Where to start
+Once you open the project, run it to get the idea of what the game is about and how it works. Then find the documentation on the main elements. By default, `F1` key opens Godot's 'Search help' window. Start with `CombatSystem`, then go to through `Attack`, `Unit`, `UnitAttack`.
 
+If you are new to programming or godot or just want something to start with, please check out the [guides](docs/contributing).
+
+### What is needed specifically
+All help welcome! No contribution too small. But here's a small selection of what I personally think needs to be done (in *itallics* are non-urgent tasks).
+
+#### **UI/UX**
+- The game doesn't have good interface right now. There is no consistent art style for UI, no thought behind any of the UX decisions, it's a mess
+#### **Art**:
+- Environment tilesets. There is a rudimentary tiles drawn by me but they don't look particularly good
+- Unit potraits. We don't have any at the moment
+- *Pixel art units improvements*
+*(currently the game is implemented with 32x32 pixel art sprites)*
+#### **Sound**:
+- Sound design is very unfamiliar territory to me, anything would be helpful
+#### **Game Design**:
+- New, unique effects for units
+- Balance units and factions
+#### **Testing**:
+- Bug reports, compatibility checks
 
 ## License
 This project is licensed under the [GNU General Public License v3 (GPL-3.0)](https://www.gnu.org/licenses/gpl-3.0.html). By contributing to the project, you agree to license your contributions under the same license.
