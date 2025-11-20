@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://dlu3vl2ltauc0"]
+[gd_scene load_steps=26 format=4 uid="uid://dlu3vl2ltauc0"]
 
 [ext_resource type="Script" uid="uid://dvi42dc2k0m2h" path="res://Map/Scripts/map.gd" id="1_q0qov"]
 [ext_resource type="Texture2D" uid="uid://c462nhclviryl" path="res://Arts/Map objects/dis tiles (1).png" id="1_xec2n"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dgkyc1ro5rkt4" path="res://Arts/Map objects/hollow bazaar .png" id="7_iq1o3"]
 [ext_resource type="Texture2D" uid="uid://b1e761x812u2v" path="res://Arts/Map objects/o04 blue flag .png" id="8_kwhd2"]
 [ext_resource type="Texture2D" uid="uid://bc6awndrgx3qt" path="res://Arts/Map objects/mana crystals.png" id="9_2vadw"]
+[ext_resource type="Texture2D" uid="uid://pch686fgq517" path="res://Arts/Map objects/Empire capital.png" id="12_iq1o3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iq1o3"]
 texture = ExtResource("1_xec2n")
@@ -177,6 +178,17 @@ texture = ExtResource("9_2vadw")
 texture_region_size = Vector2i(40, 40)
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2vadw"]
+texture = ExtResource("12_iq1o3")
+texture_region_size = Vector2i(32, 32)
+0:0/size_in_atlas = Vector2i(3, 3)
+0:0/animation_columns = 1
+0:0/animation_frame_0/duration = 0.3
+0:0/animation_frame_1/duration = 1.0
+0:0/animation_frame_2/duration = 0.3
+0:0/animation_frame_3/duration = 0.3
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_3ily0"]
 tile_shape = 3
 tile_size = Vector2i(27, 29)
@@ -189,6 +201,7 @@ sources/6 = SubResource("TileSetAtlasSource_gdowr")
 sources/7 = SubResource("TileSetAtlasSource_xno3x")
 sources/8 = SubResource("TileSetAtlasSource_pqwdj")
 sources/0 = SubResource("TileSetAtlasSource_kwhd2")
+sources/9 = SubResource("TileSetAtlasSource_2vadw")
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_q0qov")

@@ -151,6 +151,7 @@ sprite_frames = SubResource("SpriteFrames_5uh6n")
 animation = &"attack"
 autoplay = "default"
 offset = Vector2(16, 0)
+frames_to_emit = Array[int]([4])
 attack_sound_frame = 2
 
 [node name="UnitParameters" parent="." index="1"]
