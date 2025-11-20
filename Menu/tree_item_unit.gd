@@ -1,9 +1,8 @@
 extends PanelContainer
-
 class_name TreeItemUnit
 
 @export var unit_name: String
-@export_dir var path: String
+@export_file("*.tscn") var path: String
 @onready var label: Label = $MarginContainer/Label
 
 func get_preview() -> Control:
