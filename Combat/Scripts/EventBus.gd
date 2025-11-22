@@ -24,6 +24,7 @@ var right_units: Array[String] = [
 
 var packed_menu: PackedScene
 
+#region Combat
 @warning_ignore("unused_signal") signal spot_clicked(spot: UnitSpot)
 @warning_ignore("unused_signal") signal wait_clicked()
 @warning_ignore("unused_signal") signal defense_clicked()
@@ -55,3 +56,12 @@ var packed_menu: PackedScene
 @warning_ignore("unused_signal") signal effect_applied(effect: AppliedEffect)
 @warning_ignore("unused_signal") signal effect_lifted(effect: AppliedEffect)
 @warning_ignore("unused_signal") signal damage_taken(unit: Unit, dmg: int)
+#endregion
+
+#region Map
+## Emitted before the actual movement occurs.
+## The old position can be retrieved using [code]party.tile_position[/code].
+## Movement can be canceled by setting [code]party.cancel_movement[/code] to [code]true[/code].
+## [i](cancel_movement is automatically reset to false after signal processing)[/i]
+signal party_move_started(party: MapParty, destination: Vector2i)
+#endregion

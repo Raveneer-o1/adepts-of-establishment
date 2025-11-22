@@ -1,6 +1,84 @@
-[gd_scene load_steps=2 format=3 uid="uid://2kk6w327nvk"]
+[gd_scene load_steps=14 format=3 uid="uid://2kk6w327nvk"]
 
 [ext_resource type="Script" uid="uid://ckonqee8nxgfi" path="res://Map/Scripts/map_party.gd" id="1_rleo8"]
+[ext_resource type="Texture2D" uid="uid://djapeb4rjrhbe" path="res://Arts/Map/Parties/hero knight idle.png" id="2_jf7u3"]
+[ext_resource type="Texture2D" uid="uid://cbcqnvaydykwn" path="res://Arts/Map/Parties/hero knight walk.png" id="3_lo4k0"]
+[ext_resource type="Script" uid="uid://dkh6kgop0svm7" path="res://Map/Scripts/map_party_animation_handle.gd" id="4_eib2m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3wsb"]
+atlas = ExtResource("2_jf7u3")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dkfds"]
+atlas = ExtResource("2_jf7u3")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbt6h"]
+atlas = ExtResource("2_jf7u3")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orjdp"]
+atlas = ExtResource("2_jf7u3")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tu782"]
+atlas = ExtResource("3_lo4k0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtpw4"]
+atlas = ExtResource("3_lo4k0")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yfams"]
+atlas = ExtResource("3_lo4k0")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8r1ka"]
+atlas = ExtResource("3_lo4k0")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5pwpc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s3wsb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dkfds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbt6h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_orjdp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tu782")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtpw4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yfams")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8r1ka")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
 
 [node name="MapParty" type="Node2D"]
 script = ExtResource("1_rleo8")
+
+[node name="AnimationHandle" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5pwpc")
+animation = &"walk"
+autoplay = "default"
+script = ExtResource("4_eib2m")
