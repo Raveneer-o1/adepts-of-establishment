@@ -42,7 +42,7 @@ func get_neighbors(coords: Vector2i) -> Array[Vector2i]:
 
 func find_path(start: Vector2i, end: Vector2i, travel_data: TravelData) -> Array[Vector2i]:
 	#TODO: construct TravelData object from Party provided
-	return path_finder.find_path(start, end, travel_data)
+	return path_finder.A_star(start, end, travel_data)
 
 func _ready() -> void:
 	active_party.map = self
@@ -89,7 +89,7 @@ func _reset_highlights() -> void:
 	_highlighted_tiles.clear()
 
 const _ALTERNATIVE_COLOR: Dictionary[StringName, Vector2i] = {
-	"blue" = Vector2i(2, 0),
+	#"blue" = Vector2i(2, 0),
 	"yellow" = Vector2i(1, 0),
 }
 const _TILE_HIGHLIGHT_ATLAS_ID = 2

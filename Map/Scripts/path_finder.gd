@@ -28,9 +28,10 @@ class PathNode extends RefCounted:
 ## Finds a path from start to end using A* algorithm [br][br]
 ## [param start]: Starting tile coordinates[br]
 ## [param end]: Destination tile coordinates[br]
-## [param travel_data]: Travel parameters that affect pathfinding[br]
-## [b]Returns:[/b] Array of tile coordinates representing the path from start to end (excluding start)
-func find_path(start: Vector2i, end: Vector2i, travel_data: TravelData) -> Array[Vector2i]:
+## [param travel_data]: Travel parameters that affect pathfinding[br][br]
+## [b]Returns:[/b] Array of tile coordinates representing the path from start
+## to end (excluding start)
+func A_star(start: Vector2i, end: Vector2i, travel_data: TravelData) -> Array[Vector2i]:
 	if start == end: 
 		return []
 	
@@ -168,4 +169,4 @@ func _get_next_node(open_set: Dictionary[Vector2i, PathNode], goal: Vector2i) ->
 	return result
 
 func _visualize_current_tile(tile_coords: Vector2i) -> void:
-	terrain_layer.set_cell(tile_coords, 2, Vector2i(randi() % 6, randi() % 6))
+	map._highlight_tiles([tile_coords])
