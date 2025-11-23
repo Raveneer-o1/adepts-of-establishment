@@ -1,7 +1,7 @@
 class_name MapParty
 extends Node2D
 
-@onready var map: Map = get_parent() if get_parent() is Map else null
+var map: Map
 @onready var animation_handle: MapPartyAnimationHandle = $AnimationHandle
 
 ## Number of tiles the unit can traverse per second. [br]
