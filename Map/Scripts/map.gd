@@ -13,7 +13,37 @@ extends Node2D
 @onready var camera: MapCamera = $Camera2D
 @onready var path_finder: PathFinder = $PathFinder
 
-@onready var active_party: MapParty = $Parties/MapParty
+var active_party: MapParty
+var active_faction: MapFaction
+
+@export var battle_scene: PackedScene
+
+func get_controller(type: GlobalDefs.ControllerType) -> String:
+	match type:
+		GlobalDefs.ControllerType.Human:
+			return "res://Combat/Scenes/player_controller.tscn"
+		GlobalDefs.ControllerType.BasicAI:
+			return "res://Combat/Scenes/basic_combat_ai.tscn"
+		GlobalDefs.ControllerType.StandardAI:
+			return "res://Combat/Scenes/standard_combat_ai.tscn"
+	push_error("Unknown Controller type!")
+	return ""
+
+
+func start_batle(attacker: MapParty, defender: MapParty) -> void:
+	EventBus.left_units = attacker.units.duplicate()
+	EventBus.right_units = defender.units.duplicate()
+	EventBus.left_controller = load(get_controller(attacker.faction.controller))
+	EventBus.right_controller = load(get_controller(defender.faction.controller))
+	var battle := battle_scene.instantiate(PackedScene.GEN_EDIT_STATE_MAIN)
+	add_child(battle)
+	battle.process_mode = Node.PROCESS_MODE_ALWAYS
+	process_mode = Node.PROCESS_MODE_DISABLED
+	(battle.find_child("Camera2D", false) as Camera2D).make_current()
+	await EventBus.battle_ended
+	battle.queue_free()
+	process_mode = Node.PROCESS_MODE_PAUSABLE
+	camera.make_current()
 
 ## Returns the global coordinates for the specified tile
 func get_global_coords(tile_coord: Vector2i) -> Vector2:
@@ -41,15 +71,47 @@ func get_neighbors(coords: Vector2i) -> Array[Vector2i]:
 		terrain_layer.get_neighbor_cell(coords, TileSet.CELL_NEIGHBOR_RIGHT_SIDE),
 	]
 
+func set_active_party(party: MapParty) -> void:
+	active_party = party
+
 func find_path(start: Vector2i, end: Vector2i, travel_data: TravelData) -> Array[Vector2i]:
 	#TODO: construct TravelData object from Party provided
 	return path_finder.A_star(start, end, travel_data)
 
+func party_click(party: MapParty) -> void:
+	if active_faction == party.faction:
+		active_party = party
+		return
+	if not active_party: return
+	if party.request_interaction(active_party):
+		var path := find_path(
+			active_party.tile_position,
+			party.tile_position,
+			TravelData.new()
+		)
+		await active_party.walk_along_path(path)
+		party.interact(active_party)
+
+func get_objects_on_tile(coords: Vector2i) -> Array[MapInteractableObject]:
+	var res: Array[MapInteractableObject] = []
+	for c in $Parties.get_children():
+		if c is MapParty:
+			if c.tile_position == coords:
+				res.append(c)
+	return res
+
 func _ready() -> void:
-	active_party.map = self
-	active_party.walk_to(Vector2i(23, 16))
+	active_faction = $Factions/Empire
+	var map_party_1: MapParty = $Parties/MapParty
+	map_party_1.map = self
+	map_party_1.walk_to(Vector2i(23, 16))
+	
+	var map_party_2: MapParty = $Parties/MapParty2
+	map_party_2.map = self
+	map_party_2.walk_to(Vector2i(26, 10))
 
 func _handle_mouse_hovering() -> void:
+	if not active_party: return
 	if active_party._is_moving: return
 	
 	var mouse_coords := terrain_layer.local_to_map(get_local_mouse_position())
@@ -69,20 +131,31 @@ func _handle_mouse_hovering() -> void:
 	_highlight_tiles(path)
 	get_viewport().set_input_as_handled()
 
-func _handle_mouse_input(event: InputEventMouse) -> void:
-	#print(event.button_mask)
-	
-	# TODO: rework this temporary solution
-	match event.button_mask:
-		MouseButton.MOUSE_BUTTON_NONE:
-			_handle_mouse_hovering()
+func _process_click() -> void:
+	#print("click")
+	var tile := terrain_layer.local_to_map(get_local_mouse_position())
+	var objs := get_objects_on_tile(tile)
+	var target_party: MapParty = null
+	for o in objs:
+		if o is MapParty:
+			target_party = o
+			break
+	if target_party:
+		party_click(target_party)
+		return
+	if active_party:
+		if tile not in _highlighted_tiles: return
+		get_viewport().set_input_as_handled()
+		await active_party.walk_along_path(_highlighted_tiles)
+
+func _handle_mouse_input(event: InputEventMouseButton) -> void:
+	match event.button_index:
 		MouseButton.MOUSE_BUTTON_LEFT:
-			get_viewport().set_input_as_handled()
-			await active_party.walk_along_path(_highlighted_tiles)
-		1 << (MouseButton.MOUSE_BUTTON_WHEEL_DOWN - 1):
+			_process_click()
+		MouseButton.MOUSE_BUTTON_WHEEL_DOWN:
 			camera.zoom_out()
 			get_viewport().set_input_as_handled()
-		1 << (MouseButton.MOUSE_BUTTON_WHEEL_UP - 1):
+		MouseButton.MOUSE_BUTTON_WHEEL_UP:
 			camera.zoom_in()
 			get_viewport().set_input_as_handled()
 
@@ -109,8 +182,11 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	get_viewport().set_input_as_handled()
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouse:
+	if event is InputEventMouseButton and event.is_pressed():
 		_handle_mouse_input(event)
+		return
+	if event is InputEventMouseMotion:
+		_handle_mouse_hovering()
 
 var last_target_tile: Vector2i
 var _highlighted_tiles: Array[Vector2i]

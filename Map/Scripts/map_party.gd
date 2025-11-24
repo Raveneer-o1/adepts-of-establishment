@@ -1,16 +1,34 @@
 class_name MapParty
-extends Node2D
+extends MapInteractableObject
 
 var map: Map
 @onready var animation_handle: MapPartyAnimationHandle = $AnimationHandle
+@onready var parameters: PartyParameters = $PartyParameters
+
+@export var units: Array[String]
+@export var faction: MapFaction
 
 ## Number of tiles the unit can traverse per second. [br]
 ## [b]Note:[/b] Actual movement time is proportional to path length -
 ## the movement timer restarts after reaching each tile in the path.
 const MAP_SPEED = 5.0
 
-var tile_position: Vector2i
+#var tile_position: Vector2i
 var cancel_movement: bool = false
+
+func click_response(active_faction: MapFaction) -> void:
+	if active_faction == faction:
+		map.set_active_party(self)
+
+func interact(party: MapParty) -> void:
+	if party.faction != faction:
+		map.start_batle(party, self)
+
+func request_interaction(party: MapParty) -> bool:
+	if not party: return false
+	if not faction or not party.faction: return false
+	return party.faction != faction
+
 
 ## Flips the sprite to face the specified [param target] tile. [br]
 ## This method assumes axial coordinates (Godot's [b]Stairs[/b] or
@@ -76,6 +94,8 @@ func walk_along_path(
 func _process(delta: float) -> void:
 	if _is_moving: _process_movement(delta)
 
+#region Private
+
 func _process_movement(delta: float) -> void:
 	_time_passed += delta
 	if _smooth_movement:
@@ -114,3 +134,14 @@ func _start_moving_animation(p: Vector2i, time: float = 1.0 / MAP_SPEED) -> void
 
 func _jump_to(p: Vector2i) -> void:
 	global_position = map.get_global_coords(p)
+
+#endregion
+
+
+#func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	#get_viewport().set_input_as_handled()
+	#if event is InputEventMouseButton:
+		#if event.button_index == MOUSE_BUTTON_LEFT and \
+			#event.is_pressed() and \
+			#not event.is_echo():
+			#map.party_click(self)

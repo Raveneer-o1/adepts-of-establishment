@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://2kk6w327nvk"]
+[gd_scene load_steps=16 format=3 uid="uid://2kk6w327nvk"]
 
 [ext_resource type="Script" uid="uid://ckonqee8nxgfi" path="res://Map/Scripts/map_party.gd" id="1_rleo8"]
 [ext_resource type="Texture2D" uid="uid://djapeb4rjrhbe" path="res://Arts/Map/Parties/hero knight idle.png" id="2_jf7u3"]
 [ext_resource type="Texture2D" uid="uid://cbcqnvaydykwn" path="res://Arts/Map/Parties/hero knight walk.png" id="3_lo4k0"]
 [ext_resource type="Script" uid="uid://dkh6kgop0svm7" path="res://Map/Scripts/map_party_animation_handle.gd" id="4_eib2m"]
+[ext_resource type="Script" uid="uid://cdhc27wpom1un" path="res://Map/Scripts/party_parameters.gd" id="5_lo4k0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s3wsb"]
 atlas = ExtResource("2_jf7u3")
@@ -74,6 +75,8 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lo4k0"]
+
 [node name="MapParty" type="Node2D"]
 script = ExtResource("1_rleo8")
 
@@ -82,3 +85,13 @@ sprite_frames = SubResource("SpriteFrames_5pwpc")
 animation = &"walk"
 autoplay = "default"
 script = ExtResource("4_eib2m")
+
+[node name="PartyParameters" type="Node" parent="."]
+script = ExtResource("5_lo4k0")
+
+[node name="Area2D" type="Area2D" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_lo4k0")

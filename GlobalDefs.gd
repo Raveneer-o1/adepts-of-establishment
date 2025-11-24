@@ -1,5 +1,12 @@
 extends Node
 
+## Type of the player
+enum ControllerType{
+	Human,
+	BasicAI,
+	StandardAI,
+}
+
 ## Unit type is used to determine default behavior in certain situations
 enum UnitType{
 	## When a melee unit assumes a defense stance, it automatically [i]shields[/i] (see [Unit])
@@ -34,6 +41,8 @@ enum AttackType {
 # List of all avaliable factions.
 # Note: this should include all factions, not only playable ones
 enum Faction {
+	Undefined,
+	
 	## Playable faction (humans)
 	Empire,
 	## Playable faction (undead)

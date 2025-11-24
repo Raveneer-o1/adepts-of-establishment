@@ -515,11 +515,12 @@ func find_avaliable_targets(unit: Unit = current_unit) -> Array[UnitSpot]:
 ## Loads menu scene as current one. If [member EventBus.packed_menu] is empty,
 ## loads new scene from [code]"res://Menu/Scenes/menu.tscn"[/code]
 func end_scene() -> void:
-	queue_free()
-	if EventBus.packed_menu == null:
-		get_tree().change_scene_to_file("res://Menu/Scenes/menu.tscn")
-	else:
-		get_tree().change_scene_to_packed(EventBus.packed_menu)
+	EventBus.battle_ended.emit()
+	#queue_free()
+	#if EventBus.packed_menu == null:
+		#get_tree().change_scene_to_file("res://Menu/Scenes/menu.tscn")
+	#else:
+		#get_tree().change_scene_to_packed(EventBus.packed_menu)
 
 
 ## Starts a timer for [member TIME_TO_END] seconds.

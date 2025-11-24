@@ -15,6 +15,9 @@ PanelContainer/styles/panel = SubResource("StyleBoxTexture_accvu")
 
 [node name="Node2D" type="Node"]
 
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(800, 450)
+
 [node name="Control" parent="." instance=ExtResource("1_q0clm")]
 
 [node name="Combat" parent="." instance=ExtResource("1_7nbev")]

@@ -1110,17 +1110,17 @@ path = "res://Combat/Units/Derived units/Neutral/pirate_captain.tscn"
 [node name="Thief" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Neutral/Humans" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Thief"
-path = "res://Combat/Units/Derived units/Neutral/thief.tscn"
+path = "uid://0gkab1f2csfn"
 
 [node name="Rogue" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Neutral/Humans" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Rogue"
-path = "res://Combat/Units/Derived units/Neutral/rogue.tscn"
+path = "uid://bd1qlt6xdi7ru"
 
 [node name="Robber" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Neutral/Humans" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Robber"
-path = "res://Combat/Units/Derived units/Neutral/robber.tscn"
+path = "uid://cm35mp2mfienx"
 
 [node name="Heroes" type="TabContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer"]
 visible = false
