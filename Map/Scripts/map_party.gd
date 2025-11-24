@@ -13,7 +13,6 @@ var map: Map
 ## the movement timer restarts after reaching each tile in the path.
 const MAP_SPEED = 5.0
 
-#var tile_position: Vector2i
 var cancel_movement: bool = false
 
 func click_response(active_faction: MapFaction) -> void:
@@ -22,7 +21,7 @@ func click_response(active_faction: MapFaction) -> void:
 
 func interact(party: MapParty) -> void:
 	if party.faction != faction:
-		map.start_batle(party, self)
+		map.start_battle(party, self)
 
 func request_interaction(party: MapParty) -> bool:
 	if not party: return false

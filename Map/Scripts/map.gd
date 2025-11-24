@@ -2,7 +2,6 @@ class_name Map
 extends Node2D
 
 ## Map node. Handles map related actions.
-##
 
 ## This layer should contain [code]traverse_cost[/code] custom
 ## data layer with [b]int[/b] type (value of -1 means the tile is not traversable)
@@ -13,11 +12,15 @@ extends Node2D
 @onready var camera: MapCamera = $Camera2D
 @onready var path_finder: PathFinder = $PathFinder
 
+## Currently selected party that the player controls
 var active_party: MapParty
+## Faction that currently has turn control
 var active_faction: MapFaction
 
+## Reference to the battle scene to instantiate when combat starts
 @export var battle_scene: PackedScene
 
+## Returns the file path to the controller scene based on controller type
 func get_controller(type: GlobalDefs.ControllerType) -> String:
 	match type:
 		GlobalDefs.ControllerType.Human:
@@ -30,7 +33,10 @@ func get_controller(type: GlobalDefs.ControllerType) -> String:
 	return ""
 
 
-func start_batle(attacker: MapParty, defender: MapParty) -> void:
+## Initiates a battle between two parties. [br]
+## [param attacker]: The party initiating the combat encounter[br]
+## [param defender]: The party being attacked
+func start_battle(attacker: MapParty, defender: MapParty) -> void:
 	EventBus.left_units = attacker.units.duplicate()
 	EventBus.right_units = defender.units.duplicate()
 	EventBus.left_controller = load(get_controller(attacker.faction.controller))
@@ -53,7 +59,7 @@ func get_global_coords(tile_coord: Vector2i) -> Vector2:
 ## Note: This function assumes axial coordinate system
 ## (Godot's [i]Stairs[/i] or [i]Diamond[/i] layouts)
 ## and will not produce correct results with offset coordinates
-## (Godot's [i]Stacked[/i] layout).
+## (Godot's [i]Stacked[/i] layouts)
 func get_distance(pos1: Vector2i, pos2: Vector2i) -> int:
 	var diff: Vector2i = pos1 - pos2
 	var dz := absi(diff.x + diff.y)
@@ -71,27 +77,16 @@ func get_neighbors(coords: Vector2i) -> Array[Vector2i]:
 		terrain_layer.get_neighbor_cell(coords, TileSet.CELL_NEIGHBOR_RIGHT_SIDE),
 	]
 
+## Sets the active party
 func set_active_party(party: MapParty) -> void:
 	active_party = party
 
+## Finds a path between two points
 func find_path(start: Vector2i, end: Vector2i, travel_data: TravelData) -> Array[Vector2i]:
 	#TODO: construct TravelData object from Party provided
 	return path_finder.A_star(start, end, travel_data)
 
-func party_click(party: MapParty) -> void:
-	if active_faction == party.faction:
-		active_party = party
-		return
-	if not active_party: return
-	if party.request_interaction(active_party):
-		var path := find_path(
-			active_party.tile_position,
-			party.tile_position,
-			TravelData.new()
-		)
-		await active_party.walk_along_path(path)
-		party.interact(active_party)
-
+## Returns all interactable objects on a specific tile
 func get_objects_on_tile(coords: Vector2i) -> Array[MapInteractableObject]:
 	var res: Array[MapInteractableObject] = []
 	for c in $Parties.get_children():
@@ -115,7 +110,7 @@ func _handle_mouse_hovering() -> void:
 	if active_party._is_moving: return
 	
 	var mouse_coords := terrain_layer.local_to_map(get_local_mouse_position())
-	if last_target_tile == mouse_coords: return
+	if _last_target_tile == mouse_coords: return
 	
 	_reset_highlights()
 	var tile_data := terrain_layer.get_cell_tile_data(mouse_coords)
@@ -127,9 +122,23 @@ func _handle_mouse_hovering() -> void:
 		mouse_coords,
 		TravelData.new()
 	)
-	last_target_tile = mouse_coords
+	_last_target_tile = mouse_coords
 	_highlight_tiles(path)
 	get_viewport().set_input_as_handled()
+
+func _party_click(party: MapParty) -> void:
+	if active_faction == party.faction:
+		active_party = party
+		return
+	if not active_party: return
+	if party.request_interaction(active_party):
+		var path := find_path(
+			active_party.tile_position,
+			party.tile_position,
+			TravelData.new()
+		)
+		await active_party.walk_along_path(path)
+		party.interact(active_party)
 
 func _process_click() -> void:
 	#print("click")
@@ -141,7 +150,8 @@ func _process_click() -> void:
 			target_party = o
 			break
 	if target_party:
-		party_click(target_party)
+		_party_click(target_party)
+		get_viewport().set_input_as_handled()
 		return
 	if active_party:
 		if tile not in _highlighted_tiles: return
@@ -160,7 +170,6 @@ func _handle_mouse_input(event: InputEventMouseButton) -> void:
 			get_viewport().set_input_as_handled()
 
 func _handle_camera_key(event: InputEventKey) -> void:
-	
 	var key := event.keycode
 	var direction := Vector2.ZERO
 	match key:
@@ -188,7 +197,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		_handle_mouse_hovering()
 
-var last_target_tile: Vector2i
+var _last_target_tile: Vector2i
 var _highlighted_tiles: Array[Vector2i]
 
 func _reset_highlights() -> void:
@@ -196,10 +205,12 @@ func _reset_highlights() -> void:
 		highlight_layer.set_cell(t)
 	_highlighted_tiles.clear()
 
+# Dictionary mapping color identifiers to atlas coordinates for highlighting
 const _ALTERNATIVE_COLOR: Dictionary[StringName, Vector2i] = {
 	#"blue" = Vector2i(2, 0),
 	"yellow" = Vector2i(1, 0),
 }
+
 const _TILE_HIGHLIGHT_ATLAS_ID = 2
 
 func _highlight_tiles(tiles: Array[Vector2i]) -> void:
