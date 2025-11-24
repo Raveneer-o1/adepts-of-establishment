@@ -187,6 +187,7 @@ decay_rate = 0.3
 
 [node name="Unit" instance=ExtResource("1_pd60s")]
 unit_name = "Grand Inquisitor"
+faction = 1
 full_description = "Grand Inquisitors channel divine energy to manifest enormous spectral warhammers, delivering crushing blows that bypass magical defenses. Their presence on the battlefield bolsters the vitality of nearby allies, increasing their resilience against even the fiercest assaults. With unwavering conviction, they serve as both protectors and avengers, ensuring the light triumphs over darkness."
 portrait_texture = ExtResource("2_7ao73")
 

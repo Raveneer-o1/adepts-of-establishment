@@ -117,7 +117,7 @@ armor = 10
 
 [node name="Orc" instance=ExtResource("1_qx1fk")]
 unit_name = "Orc"
-faction = 7
+faction = 8
 full_description = "Orcs are fearsome warriors known for their brute strength and relentless aggression. They thrive in battle, often overpowering their foes with sheer force and determination. While they lack finesse, their loyalty to their clan and ferocity make them a dangerous presence on the battlefield."
 portrait_texture = ExtResource("2_iit4r")
 

@@ -188,6 +188,7 @@ max_move = 2
 
 [node name="Unit" instance=ExtResource("1_v252y")]
 unit_name = "Paladin"
+faction = 1
 full_description = "Paladins are elite horsemen sworn to the king's service, their presence a testament to the kingdom's might. Mounted on powerful steeds clad in ornate armor, they charge into battle with unmatched speed and force, devastating enemy lines. Their discipline and training allow them to perform precision maneuvers, bolstering the effectiveness of allied forces."
 portrait_texture = ExtResource("2_bb4no")
 

@@ -141,6 +141,7 @@ default_policy = SubResource("Resource_pq6fs")
 [node name="Arcanist" instance=ExtResource("1_insub")]
 unit_name = "Arcanist"
 unit_type = 2
+faction = 1
 full_description = "Arcanists are the pinnacle of arcane mastery, wielding devastating spells that reshape the battlefield. Their magic transcends the ordinary, unraveling enemy formations and wreaking havoc with immense elemental power. While physically fragile, their unparalleled command of destructive forces makes them a cornerstone of any strategy that seeks to overwhelm foes with raw magical might."
 portrait_texture = ExtResource("2_qovuj")
 

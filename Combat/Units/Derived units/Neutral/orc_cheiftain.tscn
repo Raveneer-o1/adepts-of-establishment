@@ -194,7 +194,7 @@ armor = 35
 
 [node name="Orc cheiftain" instance=ExtResource("1_8bqrg")]
 unit_name = "Orc cheiftain"
-faction = 7
+faction = 8
 full_description = "Orc Chieftains are the leaders of their clans, commanding respect through strength and cunning. They inspire their kin with battle cries and powerful strikes, rallying their forces to victory."
 portrait_texture = ExtResource("2_qguc2")
 

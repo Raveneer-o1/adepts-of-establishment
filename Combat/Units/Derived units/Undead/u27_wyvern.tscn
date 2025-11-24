@@ -124,7 +124,7 @@ evasion = 0.005
 [node name="Wyvern" instance=ExtResource("1_lj8lh")]
 unit_name = "Wyvern"
 unit_type = 1
-faction = 1
+faction = 2
 full_description = "Wyverns are the earthbound cousins of dragons, stripped of the freedom of flight. Their bitterness over this difference drives them to seek power, often turning to the God of Death for strength and vengeance. While physically imposing, wyverns lack the majesty of true dragons, channeling their rage into ferocious attacks."
 portrait_texture = ExtResource("2_q1e14")
 

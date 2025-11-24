@@ -188,7 +188,7 @@ armor = 20
 
 [node name="Dame Seraphine" instance=ExtResource("1_yi6g7")]
 unit_name = "Dame Seraphine"
-unit_type = "Buffer"
+faction = 1
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_k00dn")

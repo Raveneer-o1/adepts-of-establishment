@@ -121,7 +121,7 @@ evasion = 0.1
 
 [node name="Phantom Warrior" instance=ExtResource("1_g7wac")]
 unit_name = "Phantom Warrior"
-faction = 1
+faction = 2
 full_description = "Phantom Warriors are spectral remnants of fallen soldiers, bound to the will of the Necropolis. They drift across the battlefield, their incorporeal forms allowing them to evade physical attacks. Armed with ghostly weapons, they deliver chilling strikes that sap the vitality of their foes, leaving them weakened and vulnerable."
 portrait_texture = ExtResource("2_5g80a")
 

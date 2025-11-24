@@ -156,7 +156,7 @@ shielding_chance = 0.3
 
 [node name="Skeleton Hero" instance=ExtResource("1_f4ptt")]
 unit_name = "Skeleton Hero"
-faction = 1
+faction = 2
 full_description = "Skeleton Heroes are the pinnacle of necromantic reanimation, resurrected from the remains of legendary champions of old. Their undying forms retain the combat expertise they mastered in life, now enhanced by unholy power. Leading the armies of the Necropolis with a mix of tactical brilliance and raw strength, they are a force to be reckoned with, feared by both the living and the dead."
 portrait_texture = ExtResource("2_tryhr")
 

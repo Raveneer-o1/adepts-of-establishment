@@ -158,7 +158,7 @@ shielding_chance = 0.0
 
 [node name="Pirate" instance=ExtResource("1_10x7v")]
 unit_name = "Pirate"
-faction = 5
+faction = 6
 full_description = "Pirates are rowdy and fearless, driven by a lust for gold and adventure. Armed with an array of mismatched weapons, they thrive in chaotic battles where their opportunistic nature shines. Their unpredictability and savage fighting style make them a force to be reckoned with."
 portrait_texture = ExtResource("2_osep0")
 

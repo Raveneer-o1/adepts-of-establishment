@@ -105,7 +105,7 @@ evasion = 0.07
 [node name="Ghost" instance=ExtResource("1_ste1w")]
 unit_name = "Ghost"
 unit_type = 1
-faction = 1
+faction = 2
 full_description = "Ghosts are the lingering spirits of the dead, cursed to wander the mortal realm. Though their spectral forms are fragile, they are immune to physical attacks, making them tricky opponents. Their chilling presence weakens the resolve of their enemies, while their attacks drain the vitality of the living leaving them paralyzed."
 portrait_texture = ExtResource("2_axmat")
 

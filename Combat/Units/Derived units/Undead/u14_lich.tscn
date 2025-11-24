@@ -119,7 +119,7 @@ resurrection_cost = 25
 [node name="Lich" instance=ExtResource("1_ufroq")]
 unit_name = "Lich"
 unit_type = 2
-faction = 1
+faction = 2
 full_description = "Liches are necromancers who have transcended mortality by binding their souls to phylacteries. These skeletal sorcerers wield immense magical power, unleashing devastating curses and summoning hordes of undead with ease. Their cold intellect and timeless experience make them formidable adversaries and invaluable strategists."
 portrait_texture = ExtResource("2_jn4dx")
 

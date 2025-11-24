@@ -142,6 +142,7 @@ base_damage = 45
 [node name="Wizard" instance=ExtResource("1_ve23n")]
 unit_name = "Wizard"
 unit_type = 2
+faction = 1
 full_description = "Wizards are masters of advanced arcane arts, capable of reshaping the battlefield with devastating spells and area control. Their ability to manipulate energy allows them to strike multiple enemies or weaken their defenses with precision."
 portrait_texture = ExtResource("2_r2nux")
 

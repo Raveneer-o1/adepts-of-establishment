@@ -170,6 +170,7 @@ evasion = 0.15
 
 [node name="Samurai" instance=ExtResource("1_34hwq")]
 unit_name = "Samurai"
+faction = 1
 full_description = "Samurai are elite warriors who combine unmatched discipline with masterful swordsmanship. Adhering to a strict code of honor, they are steadfast defenders of their allies, standing unyielding in the face of overwhelming odds. With swift, precise strikes and the ability to anticipate their foes' moves, samurai can atack twice."
 portrait_texture = ExtResource("2_utg5b")
 

@@ -133,7 +133,7 @@ armor = 10
 
 [node name="Cartographer" instance=ExtResource("1_xhvj6")]
 unit_name = "Cartographer"
-unit_type = "Debuffer"
+faction = 1
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_tb1uy")
@@ -147,6 +147,6 @@ base_paramaters = SubResource("Resource_8tokk")
 script = ExtResource("6_swfn0")
 accuracy = 0.9
 target_validation = ExtResource("7_7llxv")
-applying_effects = {
+applying_effects = Dictionary[String, Variant]({
 "Weakness": [1, 30]
-}
+})

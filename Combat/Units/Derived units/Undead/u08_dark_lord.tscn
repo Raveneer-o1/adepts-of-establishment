@@ -163,7 +163,7 @@ armor = 35
 
 [node name="Dark lord" instance=ExtResource("1_udcxh")]
 unit_name = "Dark Lord"
-faction = 1
+faction = 2
 full_description = "Dark Lords are powerful commanders of the Necropolis, imbued with overwhelming dark magic and martial prowess. Their mere presence unnerves the living, sapping their will to fight. Wielding cursed weapons and commanding legions of undead, they are both fearsome warriors and ruthless strategists, capable of turning the tide of any battle."
 portrait_texture = ExtResource("2_ifm0e")
 
@@ -201,7 +201,6 @@ silencable = false
 [node name="NegativeEffectNegate" parent="UnitParameters" index="3" instance=ExtResource("9_seabv")]
 triggers = 3
 effect_name = "Denial"
-icon_index = 4
 
 [node name="AliveOof2" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("10_seabv")

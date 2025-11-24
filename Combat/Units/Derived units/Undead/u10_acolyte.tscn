@@ -126,7 +126,7 @@ evasion = 0.045
 [node name="Death Acolyte" instance=ExtResource("1_jcdtv")]
 unit_name = "Death Acolyte"
 unit_type = 2
-faction = 1
+faction = 2
 full_description = "Acolytes are novice practitioners of necromancy, drawn to the allure of death's secrets. Though their abilities are limited, they can channel minor curses to aid their allies. With time and guidance, these fledgling necromancers can evolve into powerful wielders of dark magic."
 portrait_texture = ExtResource("2_ow6vu")
 

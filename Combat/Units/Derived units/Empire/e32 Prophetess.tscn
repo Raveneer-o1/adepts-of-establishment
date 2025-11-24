@@ -133,6 +133,7 @@ base_damage = 65
 [node name="Prophetess" instance=ExtResource("1_p4gqo")]
 unit_name = "Prophetess"
 unit_type = 3
+faction = 1
 full_description = "Prophetesses wield extraordinary magic, providing powerful healing to their entire party. Their blessings not only mend wounds but also imbue allies with a sense of divine purpose. On the battlefield, they act as guiding lights, ensuring their comrades endure even the most grueling trials."
 portrait_texture = ExtResource("2_kdng4")
 

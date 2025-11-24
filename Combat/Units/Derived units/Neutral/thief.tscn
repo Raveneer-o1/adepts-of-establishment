@@ -111,6 +111,7 @@ base_damage = 25
 
 [node name="Thief" instance=ExtResource("1_k4b78")]
 unit_name = "Thief"
+faction = 1
 full_description = "Thieves are nimble and cunning, excelling in stealth and precision strikes. They specialize in exploiting enemy weaknesses, targeting vulnerabilities for devastating effect."
 portrait_texture = ExtResource("2_vtb4r")
 

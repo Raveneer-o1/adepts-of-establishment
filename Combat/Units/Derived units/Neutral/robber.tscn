@@ -144,7 +144,7 @@ base_damage = 30
 
 [node name="Unit" instance=ExtResource("1_ym5ts")]
 unit_name = "Robber"
-faction = 6
+faction = 7
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_5uh6n")

@@ -128,7 +128,7 @@ armor = 20
 
 [node name="Fallen Inquisitor" instance=ExtResource("1_v36aa")]
 unit_name = "Fallen Inquisitor"
-faction = 1
+faction = 2
 full_description = "Once holy warriors, Fallen Inquisitors were corrupted by the Necropolis's dark power. Now they wield their former knowledge of divine magic against the living, combining brutal melee combat with devastating unholy spells. Their tragic fall from grace is reflected in their fierce hatred for their former brethren, making them relentless in battle."
 portrait_texture = ExtResource("2_wxjrt")
 
@@ -163,7 +163,6 @@ multiplier = 1.25
 
 [node name="NegativeEffectNegate" parent="UnitParameters" index="4" instance=ExtResource("10_61uc6")]
 effect_name = "Denial"
-icon_index = 4
 
 [node name="AliveOof2" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("10_tki5d")

@@ -170,6 +170,7 @@ armor = 50
 
 [node name="Unit" instance=ExtResource("1_atu73")]
 unit_name = "Royal Cavalier"
+faction = 1
 full_description = "Royal Cavaliers are the backbone of the kingdom's mounted forces, blending power and precision. Equipped with finely crafted lances and sturdy armor, they excel at breaking enemy formations with calculated charges. Their training and discipline ensure they remain steadfast under pressure, offering reliable strength on the battlefield"
 portrait_texture = ExtResource("2_mfi4u")
 

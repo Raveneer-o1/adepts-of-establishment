@@ -163,6 +163,7 @@ base_damage = 30
 [node name="Archer" instance=ExtResource("1_rj356")]
 unit_name = "Archer"
 unit_type = 1
+faction = 1
 full_description = "Archers are the backbone of any ranged offense, skilled in the art of precision and timing. Armed with simple bows, they provide consistent support from the backlines, picking off weaker targets or softening up foes before the main assault."
 portrait_texture = ExtResource("2_oeoou")
 

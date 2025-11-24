@@ -115,7 +115,7 @@ evasion = 0.04
 
 [node name="Destined" instance=ExtResource("1_lms7p")]
 unit_name = "Destined"
-faction = 1
+faction = 2
 full_description = "The Destined are individuals who pledge their lives to the King of Necropolis even before death claims them. This devotion grants them a fragile connection to the forces of death, allowing them to manipulate minor necromantic powers. However, their frail, living bodies struggle to withstand the rigors of combat"
 portrait_texture = ExtResource("2_4cakw")
 

@@ -150,7 +150,7 @@ evasion = 0.1
 [node name="Goblin shaman" instance=ExtResource("1_fstih")]
 unit_name = "Goblin shaman"
 unit_type = 2
-faction = 7
+faction = 8
 full_description = "Goblin Shamans wield primitive but potent magic, channeling the chaotic energy of their tribe’s spirit rituals. They serve as both support and disruptors, casting spells that weaken enemies or bolster their allies."
 portrait_texture = ExtResource("2_uktgu")
 

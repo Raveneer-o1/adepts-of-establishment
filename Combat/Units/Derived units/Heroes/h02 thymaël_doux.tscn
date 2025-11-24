@@ -251,7 +251,7 @@ armor = 40
 
 [node name="Thymaël Doux" instance=ExtResource("1_7rdhv")]
 unit_name = "Thymaël Doux, the Blade of Holy Light"
-unit_type = "Warrior"
+faction = 1
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_85hvq")

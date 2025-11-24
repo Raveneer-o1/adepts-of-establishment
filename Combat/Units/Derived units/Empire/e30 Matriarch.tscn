@@ -126,6 +126,7 @@ base_damage = 45
 [node name="Matriarch" instance=ExtResource("1_eiqlo")]
 unit_name = "Matriarch"
 unit_type = 3
+faction = 1
 full_description = "Matriarchs are pillars of divine strength, safeguarding the vitality of their entire party. Their healing magic envelops all allies, keeping them resilient against the relentless tides of war. Their presence fosters unity and endurance among their comrades."
 portrait_texture = ExtResource("2_2p06v")
 

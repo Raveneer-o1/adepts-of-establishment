@@ -230,6 +230,7 @@ evasion = 0.2
 
 [node name="Blade saint" instance=ExtResource("1_v0wje")]
 unit_name = "Blade Saint"
+faction = 1
 full_description = "Blade Saints are legendary swordsmen whose mastery of the blade borders on the supernatural. Their movements are fluid and precise, cutting through enemies with unmatched grace and speed. Years of discipline and devotion to their craft have made them nearly invincible."
 portrait_texture = ExtResource("2_irywl")
 

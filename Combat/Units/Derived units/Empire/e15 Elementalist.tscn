@@ -129,6 +129,7 @@ base_damage = 30
 [node name="Elementalist" instance=ExtResource("1_wepdu")]
 unit_name = "Elementalist"
 unit_type = 2
+faction = 1
 full_description = "Elementalists are specialists who wield the raw forces of nature, calling upon the elements to devastate their enemies. Their mastery of summoning allows them to conjure elemental creatures to fight alongside them, disrupting enemy formations."
 portrait_texture = ExtResource("2_0ppj8")
 

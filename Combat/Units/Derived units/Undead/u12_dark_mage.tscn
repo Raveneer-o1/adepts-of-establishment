@@ -158,7 +158,7 @@ base_damage = 30
 [node name="Dark Mage" instance=ExtResource("1_382ol")]
 unit_name = "Dark Mage"
 unit_type = 2
-faction = 1
+faction = 2
 full_description = "Dark Mages delve into the forbidden arts of destructive magic, harnessing shadow and decay to annihilate their enemies. Their spells spread fear and chaos, breaking the will of the living. While less adept at raising the dead, their offensive capabilities make them invaluable on the battlefield."
 portrait_texture = ExtResource("2_bp74a")
 

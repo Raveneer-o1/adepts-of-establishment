@@ -202,7 +202,7 @@ script = ExtResource("10_nx2ry")
 [node name="Herald of Death" instance=ExtResource("1_sqfu4")]
 unit_name = "Herald of Death"
 unit_type = 2
-faction = 1
+faction = 2
 full_description = "The Heralds of Death are necromantic priests who serve as emissaries of the Necropolis's dark gods. They channel divine death magic to empower allies and wreak havoc on their enemies. With their unholy auras and devastating spells, they are both revered by their followers and feared by their foes."
 portrait_texture = ExtResource("2_bsj1p")
 

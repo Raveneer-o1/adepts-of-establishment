@@ -216,7 +216,7 @@ armor = 40
 
 [node name="Sir Roland" instance=ExtResource("1_cdjp6")]
 unit_name = "Sir Roland"
-unit_type = "Defender"
+faction = 1
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_y22yd")

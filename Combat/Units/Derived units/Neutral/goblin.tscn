@@ -127,7 +127,7 @@ evasion = 0.1
 [node name="Goblin" instance=ExtResource("1_3oyoe")]
 unit_name = "Goblin"
 unit_type = 1
-faction = 7
+faction = 8
 full_description = "Goblin Archers are small but surprisingly deadly, using their agility to stay out of reach while raining arrows on their enemies. Though their aim can be erratic, their sheer numbers often compensate for individual accuracy. They are often deployed as harassers, chipping away at enemy forces from a safe distance."
 portrait_texture = ExtResource("2_subec")
 

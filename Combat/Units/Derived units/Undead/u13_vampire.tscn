@@ -138,7 +138,7 @@ base_damage = 40
 [node name="Vampire" instance=ExtResource("1_nnejl")]
 unit_name = "Vampire"
 unit_type = 2
-faction = 1
+faction = 2
 full_description = "Vampires are necromancers who dared to perform the blood ritual, a dark rite that grants immortality at a terrible cost. Empowered by the forbidden magic coursing through their veins, they possess unmatched agility and ferocity in combat. Their vampiric bite drains the lifeforce of their enemies, fueling their insatiable hunger while sustaining their undead existence."
 portrait_texture = ExtResource("2_ahyrf")
 

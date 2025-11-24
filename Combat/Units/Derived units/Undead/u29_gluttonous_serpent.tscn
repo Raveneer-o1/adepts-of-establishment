@@ -117,7 +117,7 @@ armor = 20
 
 [node name="Gluttonous Serpent" instance=ExtResource("1_nautt")]
 unit_name = "Gluttonous Serpent"
-faction = 1
+faction = 2
 full_description = "The Gluttonous Serpent is a grotesque creature that has abandoned all thought for insatiable hunger. With an elongated, serpentine body and jaws capable of consuming multiple foes, it leaves destruction in its wake. Though mindless, its appetite makes it an overwhelming force that overwhelms through sheer persistence."
 portrait_texture = ExtResource("2_hpxbw")
 

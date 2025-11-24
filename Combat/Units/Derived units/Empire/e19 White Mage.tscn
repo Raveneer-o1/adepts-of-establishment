@@ -177,6 +177,7 @@ default_policy = ExtResource("10_4kvwf")
 [node name="White mage" instance=ExtResource("1_mbqb6")]
 unit_name = "White Mage"
 unit_type = 2
+faction = 1
 full_description = "The most powerful wizards are granted the title of White Mages. The storms they can summon on the battlefield can wipe out entire armies."
 portrait_texture = ExtResource("10_t48w5")
 

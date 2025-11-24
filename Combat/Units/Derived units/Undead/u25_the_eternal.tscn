@@ -132,7 +132,7 @@ evasion = 0.2
 [node name="The Eternal" instance=ExtResource("1_rnn02")]
 unit_name = "The Eternal"
 unit_type = 3
-faction = 1
+faction = 2
 full_description = "The Eternal is a spirit bound by an ancient, unbreakable curse, its presence a harbinger of inevitable doom. This spectral entity wields overwhelming power, draining life from entire groups of enemies with its devastating attacks. Its unyielding persistence in battle makes it a terrifying force, embodying the unending grasp of death."
 portrait_texture = ExtResource("2_uxa4j")
 

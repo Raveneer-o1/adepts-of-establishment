@@ -212,7 +212,7 @@ armor = 15
 
 [node name="Virion the Bonebinder" instance=ExtResource("1_nb6q3")]
 unit_name = "Virion the Bonebinder"
-unit_type = "Mage"
+faction = 1
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_3r5h8")

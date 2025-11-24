@@ -140,7 +140,7 @@ base_damage = 40
 
 [node name="Bone collector" instance=ExtResource("1_c6arl")]
 unit_name = "Bone collector"
-unit_type = "Defender"
+faction = 1
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_vr70o")
@@ -155,7 +155,7 @@ attack_effect = ExtResource("6_hhhol")
 script = ExtResource("6_pympk")
 accuracy = 0.83
 target_validation = ExtResource("7_0mn26")
-applying_effects = {
+applying_effects = Dictionary[String, Variant]({
 "vulnerability": [1, 15],
 "weakness": [1, 15]
-}
+})
