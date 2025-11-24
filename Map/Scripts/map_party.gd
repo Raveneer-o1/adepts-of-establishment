@@ -12,6 +12,18 @@ const MAP_SPEED = 5.0
 var tile_position: Vector2i
 var cancel_movement: bool = false
 
+## Flips the sprite to face the specified [param target] tile. [br]
+## This method assumes axial coordinates (Godot's [b]Stairs[/b] or
+## [b]Diamond[/b] layouts) and will produce incorrect results with offset
+## coordinates (Godot's [b]Stacked[/b] layouts).
+func face_tile(target: Vector2i) -> void:
+	var d := target - tile_position
+	if d == Vector2i.ZERO: return
+	if d.x != 0:
+		animation_handle.flip_h = d.x < 0
+		return
+	animation_handle.flip_h = d.y < 0
+
 ## Moves the party to the specified coordinates. [br]
 ## If [param animate] is [code]false[/code], the unit teleports instantly to the destination.[br]
 ## [color=red]Warning:[/color] This method performs no validation - it can move
@@ -24,6 +36,7 @@ func walk_to(
 	if cancel_movement:
 		cancel_movement = false
 		return
+	face_tile(destination)
 	tile_position = destination
 	if animate:
 		_smooth_movement = true
@@ -49,6 +62,7 @@ func walk_along_path(
 		if cancel_movement:
 			cancel_movement = false
 			return
+		face_tile(destination)
 		animation_handle.play_walk()
 		tile_position = destination
 		if animate:

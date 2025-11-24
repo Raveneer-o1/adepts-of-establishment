@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://dlu3vl2ltauc0"]
+[gd_scene load_steps=38 format=4 uid="uid://dlu3vl2ltauc0"]
 
 [ext_resource type="Script" uid="uid://dvi42dc2k0m2h" path="res://Map/Scripts/map.gd" id="1_q0qov"]
 [ext_resource type="Texture2D" uid="uid://c462nhclviryl" path="res://Arts/Map objects/dis tiles (1).png" id="1_xec2n"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://518ilab6qsv7" path="res://Arts/Map/tile highlight.png" id="16_ab646"]
 [ext_resource type="Texture2D" uid="uid://dj7bwp2kwlwe6" path="res://Arts/Map/tile highlights atlas.png" id="17_aku2f"]
 [ext_resource type="Script" uid="uid://ijg56utnmlvn" path="res://Map/Scripts/path_finder.gd" id="18_jtf36"]
+[ext_resource type="Script" uid="uid://bx6fsao0crbjq" path="res://Map/Scripts/map_camera.gd" id="19_gdowr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iq1o3"]
 texture = ExtResource("1_xec2n")
@@ -308,3 +309,7 @@ z_index = 1
 
 [node name="PathFinder" type="Node" parent="."]
 script = ExtResource("18_jtf36")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("19_gdowr")
+movement_speed = 350.0

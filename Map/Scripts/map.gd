@@ -10,6 +10,7 @@ extends Node2D
 @onready var objects_layer : TileMapLayer = %ObjectsLayer
 @onready var highlight_layer: TileMapLayer = %HighlightLayer
 
+@onready var camera: MapCamera = $Camera2D
 @onready var path_finder: PathFinder = $PathFinder
 
 @onready var active_party: MapParty = $Parties/MapParty
@@ -69,12 +70,43 @@ func _handle_mouse_hovering() -> void:
 	get_viewport().set_input_as_handled()
 
 func _handle_mouse_input(event: InputEventMouse) -> void:
+	#print(event.button_mask)
+	
+	# TODO: rework this temporary solution
 	match event.button_mask:
 		MouseButton.MOUSE_BUTTON_NONE:
 			_handle_mouse_hovering()
 		MouseButton.MOUSE_BUTTON_LEFT:
 			get_viewport().set_input_as_handled()
 			await active_party.walk_along_path(_highlighted_tiles)
+		1 << (MouseButton.MOUSE_BUTTON_WHEEL_DOWN - 1):
+			camera.zoom_out()
+			get_viewport().set_input_as_handled()
+		1 << (MouseButton.MOUSE_BUTTON_WHEEL_UP - 1):
+			camera.zoom_in()
+			get_viewport().set_input_as_handled()
+
+func _handle_camera_key(event: InputEventKey) -> void:
+	
+	var key := event.keycode
+	var direction := Vector2.ZERO
+	match key:
+		Key.KEY_D:
+			direction += Vector2.RIGHT
+		Key.KEY_A:
+			direction += Vector2.LEFT
+		Key.KEY_S:
+			direction += Vector2.DOWN
+		Key.KEY_W:
+			direction += Vector2.UP
+	
+	if event.is_released():
+		direction = -direction
+	camera.start_drift(direction)
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	_handle_camera_key(event)
+	get_viewport().set_input_as_handled()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouse:
