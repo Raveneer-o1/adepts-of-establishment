@@ -28,22 +28,17 @@ func visualize_paralysis() -> void:
 	target_unit.system.display_text_near_unit(target_unit, message_start, color_start)
 	target_unit.animation_handle.pause()
 
-## Called when the effect is applied to a unit.
+func read_params(params: Variant) -> void:
+	if params is not Array: return
+	if params.size() != 2: return
+	chance_to_be_lifted = params[0]
+	turns = params[1]
+
+func _get_full_data() -> Variant:
+	return [chance_to_be_lifted, turns]
+
 func _apply_effect(params: Variant) -> void:
-	if params is Array:
-		if params.size() >= 2:
-			chance_to_be_lifted = params[0]
-			turns = params[1]
-		else:
-			push_error(
-				"Invalid number parameter for a stun effect. Expected 2, found %d!" % \
-				params.size()
-			)
-	else:
-		push_error(
-			"Invalid parameter for a stun effect. Expected Array, found %s!" % \
-			type_string(typeof(params))
-		)
+	read_params(params)
 	if turns <= 0:
 		queue_free()
 		return

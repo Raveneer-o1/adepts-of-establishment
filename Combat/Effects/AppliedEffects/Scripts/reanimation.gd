@@ -11,10 +11,15 @@ extends AppliedEffect
 func _get_description() -> String:
 	return description
 
-## Called when the effect is applied to a unit.
+func read_params(params: Variant) -> void:
+	if params is not Dictionary: return
+	buff_parameters = params
+
+func _get_full_data() -> Variant:
+	return buff_parameters
+
 func _apply_effect(params: Variant) -> void:
-	if params is Dictionary:
-		buff_parameters = params
+	read_params(params)
 	for parameter: String in buff_parameters:
 		#print(parameter + ": " + str(buff_parameters[parameter]))
 		var function := func (val: Variant) -> Variant: return val + buff_parameters[parameter]

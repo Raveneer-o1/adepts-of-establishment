@@ -14,16 +14,17 @@ func check_turn(u: Unit) -> void:
 	turns -= 1
 	if turns <= 0: lift_effect()
 
+func read_params(params: Variant) -> void:
+	if params is not Array[int]: return
+	if params.size() != 2: return
+	evasion_decrease = params[0]
+	turns = params[1]
+
+func _get_full_data() -> Variant:
+	return [evasion_decrease, turns]
+
 func _apply_effect(params: Variant) -> void:
-	if params is Array:
-		if params.size() != 2:
-			push_error("Unxepected number of arguments passed to %s! Expected 2, got %d" % \
-				[effect_name, params.size()]
-			)
-			queue_free()
-			return
-		evasion_decrease = params[0]
-		turns = params[1]
+	read_params(params)
 	if turns == 0:
 		lift_effect()
 		return

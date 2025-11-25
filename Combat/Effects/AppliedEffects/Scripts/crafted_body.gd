@@ -13,6 +13,13 @@ func check_trigger(unit: Unit) -> void:
 		target_unit.parameters.apply_effect("reanimation", buff_parameters)
 
 
-## Called when the effect is applied to a unit.
+func read_params(params: Variant) -> void:
+	if params is not Dictionary: return
+	buff_parameters = params
+
+func _get_full_data() -> Variant:
+	return buff_parameters
+
 func _apply_effect(params: Variant) -> void:
+	read_params(params)
 	_signal_function_pairs[EventBus.unit_revived] = check_trigger

@@ -104,6 +104,16 @@ func _remove_effect() -> void:
 	# It cannot catch queue_free() calls and should not be used for memory management purposes.
 	pass
 
+func get_full_data() -> Dictionary:
+	return {
+		"effect_name" = effect_name,
+		"effect_path" = scene_file_path,
+		"args" = _get_full_data(),
+	}
+
+func _get_full_data() -> Variant:
+	return null
+
 ## Call to manually remove the effect (e.g., if cured or expired).
 ## Emits [member EventBus.effect_lifted]. [br]
 ## If you need to remove effect without emitting the signal (e.g. when a unit dies),

@@ -15,18 +15,17 @@ func check_turn(u: Unit) -> void:
 	turns -= 1
 	if turns <= 0: lift_effect()
 
+func read_params(params: Variant) -> void:
+	if params is not Array: return
+	if params.size() != 2: return
+	type = params[0]
+	turns = params[1]
+
+func _get_full_data() -> Variant:
+	return [type, turns]
+
 func _apply_effect(params: Variant) -> void:
-	if params is int:
-		turns = params
-	if params is GlobalDefs.AttackType:
-		type = params
-	if params is Array:
-		if params.size() != 2:
-			push_error("Unexpected numer of parameters! Need 2, got %d" % params.size())
-			queue_free()
-			return
-		type = params[0]
-		turns = params[1]
+	read_params(params)
 	
 	if turns == 0:
 		queue_free()

@@ -23,5 +23,15 @@ func check_trigger(attack: Attack) -> void:
 func _get_description() -> String:
 	return description % [triggers, str(GlobalDefs.AttackType.keys()[damage_type])]
 
+func read_params(params: Variant) -> void:
+	if params is not Array: return
+	if params.size() != 2: return
+	damage_type = params[0]
+	triggers = params[1]
+
+func _get_full_data() -> Variant:
+	return [damage_type, triggers]
+
 func _apply_effect(params: Variant) -> void:
+	read_params(params)
 	_signal_function_pairs[EventBus.attack_booked] = check_trigger

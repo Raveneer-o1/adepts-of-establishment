@@ -37,7 +37,7 @@ func check_trigger(a: Attack) -> void:
 	if durability <= 0:
 		lift_effect()
 
-func _apply_effect(params: Variant) -> void:
+func read_params(params: Variant) -> void:
 	if params is not Array:
 		push_error("Unxepected type passed to %s! Expected Array, got %s" % \
 			[effect_name, type_string(typeof(params))])
@@ -49,4 +49,10 @@ func _apply_effect(params: Variant) -> void:
 	durability = params[0]
 	is_measured_in_damage = params[1]
 	percent_blocked = params[2]
+
+func _get_full_data() -> Variant:
+	return [durability, is_measured_in_damage, percent_blocked]
+
+func _apply_effect(params: Variant) -> void:
+	read_params(params)
 	_signal_function_pairs[EventBus.attack_booked] = check_trigger

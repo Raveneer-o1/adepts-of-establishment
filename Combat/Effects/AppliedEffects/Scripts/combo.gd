@@ -32,5 +32,15 @@ func check_trigger(attack: Attack) -> void:
 	else:
 		count_up()
 
+func read_params(params: Variant) -> void:
+	if params is not Array: return
+	if params.size() != 2: return
+	flat_increase = params[0]
+	multiplier = params[1]
+
+func _get_full_data() -> Variant:
+	return [flat_increase, multiplier]
+
 func _apply_effect(params: Variant) -> void:
+	read_params(params)
 	_signal_function_pairs[EventBus.attack_resolved] = check_trigger

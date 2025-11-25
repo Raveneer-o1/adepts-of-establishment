@@ -23,5 +23,15 @@ func check_tigger(u: Unit, dmg: int) -> void:
 	triggers -= 1
 	if triggers <= 0: queue_free()
 
+func read_params(params: Variant) -> void:
+	if params is not Array[int]: return
+	if params.size() != 2: return
+	triggers = params[0]
+	reset_hp_to = params[1]
+
+func _get_full_data() -> Variant:
+	return [triggers, reset_hp_to]
+
 func _apply_effect(params: Variant) -> void:
+	read_params(params)
 	_signal_function_pairs[EventBus.damage_taken] = check_tigger

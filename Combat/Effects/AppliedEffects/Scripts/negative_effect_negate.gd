@@ -12,5 +12,13 @@ func check_trigger(e: AppliedEffect) -> void:
 	triggers -= 1
 	if triggers <= 0: lift_effect()
 
+func read_params(params: Variant) -> void:
+	if params is not int: return
+	triggers = params
+
+func _get_full_data() -> Variant:
+	return triggers
+
 func _apply_effect(params: Variant) -> void:
+	read_params(params)
 	_signal_function_pairs[EventBus.effect_applied] = check_trigger

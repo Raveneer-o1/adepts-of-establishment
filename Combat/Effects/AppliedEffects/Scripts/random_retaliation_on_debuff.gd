@@ -23,5 +23,20 @@ func check_trigger(e: AppliedEffect) -> void:
 	):
 		target_unit.system.display_text_near_unit_async(target_unit, message, color_effect)
 
+func read_params(params: Variant) -> void:
+	if params is not Array: return
+	if params.size() != 3: return
+	turns = params[0]
+	strength = params[1]
+	multiplier = params[2]
+
+func _get_full_data() -> Variant:
+	return [
+		turns,
+		strength,
+		multiplier
+	]
+
 func _apply_effect(params: Variant) -> void:
+	read_params(params)
 	_signal_function_pairs[EventBus.effect_applied] = check_trigger

@@ -15,24 +15,17 @@ func count_turn(unit: Unit) -> void:
 		if turns <= 0:
 			lift_effect()
 
+func read_params(params: Variant) -> void:
+	if params is not Array: return
+	if params.size() != 2: return
+	turns = params[0]
+	damage_decrease = params[1]
 
-## Called when the effect is applied to a unit.
+func _get_full_data() -> Variant:
+	return [turns, damage_decrease]
+
 func _apply_effect(params: Variant) -> void:
-	if params is Array:
-		if params.size() == 2:
-			turns = params[0]
-			damage_decrease = params[1]
-		else:
-			push_error(
-				"Invalid number parameter for a '%s' effect. Expected 2, found %d!" % \
-				[effect_name, params.size()]
-			)
-	else:
-		push_error(
-			"Invalid parameter for a '%s' effect. Expected array, found %s!" % \
-			[ effect_name, type_string(typeof(params)) ] 
-		)
-	
+	read_params(params)
 	if turns <= 0:
 		lift_effect()
 		return

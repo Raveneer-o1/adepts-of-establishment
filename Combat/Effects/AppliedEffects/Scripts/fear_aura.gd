@@ -4,7 +4,15 @@ extends AppliedEffect
 
 const DEBUFF_ICON_INDEX = 6
 
+func read_params(params: Variant) -> void:
+	if params is not float: return
+	evasion_decrease = params
+
+func _get_full_data() -> Variant:
+	return evasion_decrease
+
 func _apply_effect(params: Variant) -> void:
+	read_params(params)
 	var pos := target_unit.party_position
 	var affected_units := \
 			target_unit.party.get_adjacent_units(pos)

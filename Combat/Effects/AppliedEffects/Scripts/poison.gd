@@ -1,28 +1,29 @@
 extends AppliedEffect
 
-@export var damage_pet_turn: int = 30
-
-var turns: int = 1
+@export var damage_per_turn: int = 30
+@export var turns: int = 1
 
 func _get_description() -> String:
-	return description % [damage_pet_turn, turns]
+	return description % [damage_per_turn, turns]
 
 func deal_damage(unit: Unit) -> void:
 	if unit != target_unit:
 		return
-	target_unit.take_direct_damage(damage_pet_turn, "poison", color_effect)
+	target_unit.take_direct_damage(damage_per_turn, "poison", color_effect)
 	turns -= 1
 	if turns <= 0:
 		lift_effect()
 
-# Called when the effect is applied to a unit.
+func read_params(params: Variant) -> void:
+	if params is not Array: return
+	if params.size() != 2: return
+	damage_per_turn = params[0]
+	turns = params[1]
+
+func _get_full_data() -> Variant:
+	return [damage_per_turn, turns]
+
 func _apply_effect(params: Variant) -> void:
-	if params is Array:
-		damage_pet_turn = params[0]
-		if params.size() >= 2:
-			turns = params[1]
-	else:
-		print_debug("Invalid parameter for a poison effect. Expected Array, found %s!" % type_string(typeof(params)))
+	read_params(params)
 	
 	_signal_function_pairs[EventBus.turn_started] = deal_damage
-	

@@ -5,15 +5,15 @@ extends AppliedEffect
 # store the effects silenced by this particular silence
 var silenced_effects: Array[AppliedEffect] = []
 
-## Called when the effect is applied to a unit.
-func _apply_effect(params: Variant) -> void:
+func read_params(params: Variant) -> void:
 	if params is int:
 		turns = params
-	else:
-		print_debug("Invalid parameter for a '%s' effect. Expected int, found %s!" \
-				% [ effect_name, type_string(typeof(params)) ] )
-		queue_free()
-		return
+
+func _get_full_data() -> Variant:
+	return turns
+
+func _apply_effect(params: Variant) -> void:
+	read_params(params)
 	
 	for node in get_parent().get_children():
 		if node == self:

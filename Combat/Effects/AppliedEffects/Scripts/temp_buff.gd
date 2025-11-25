@@ -95,6 +95,14 @@ func try_init_params(params: Variant) -> bool:
 	
 	return true
 
+func _get_full_data() -> Variant:
+	return {
+		&"parameter": _parameter,
+		&"turns": turns,
+		&"strength": strength,
+		&"multiplier": multiplier,
+	}
+
 # Called when the effect is applied to a unit
 func _apply_effect(params: Variant) -> void:
 	if not try_init_params(params):

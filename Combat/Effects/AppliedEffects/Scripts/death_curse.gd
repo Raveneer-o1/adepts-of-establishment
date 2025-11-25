@@ -22,17 +22,18 @@ func count_turn(u: Unit) -> void:
 	turns -= 1
 	if turns <= 0: lift_effect()
 
+func read_params(params: Variant) -> void:
+	if params is not Array: return
+	if params.size() != 2: return
+	turns = params[0]
+	damage = params[1]
+
+func _get_full_data() -> Variant:
+	return [turns, damage]
+
 func _apply_effect(params: Variant) -> void:
+	read_params(params)
 	const arg_number = 2
-	if params is Array:
-		if params.size() != arg_number:
-			push_error("Unxepected number of agruments passed to %s! Expected %d, got %d" % \
-				[effect_name, arg_number, params.size()]
-			)
-			queue_free()
-			return
-		turns = params[0]
-		damage = params[1]
 	if turns == 0:
 		lift_effect()
 		return

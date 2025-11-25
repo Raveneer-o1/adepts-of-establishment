@@ -36,16 +36,25 @@ func give_sheild(unit: Unit) -> void:
 	):
 		if shields_left > 0: shields_left -= 1
 
+func read_params(params: Variant) -> void:
+	if params is not Array: return
+	if params.size() != 5: return
+	durability = params[0]
+	is_measured_in_damage = params[1]
+	percent_blocked = params[2]
+	block_chance = params[3]
+	shields_left = params[4]
+
+func _get_full_data() -> Variant:
+	return [
+		durability,
+		is_measured_in_damage,
+		percent_blocked,
+		block_chance,
+		shields_left
+	]
+
 func _apply_effect(params: Variant) -> void:
-	if params is Array:
-		if params.size() != 5:
-			push_error("Unxepected number of arguments passed to %s! Expected 5, got %d" % \
-				[effect_name, params.size()])
-			return
-		durability = params[0]
-		is_measured_in_damage = params[1]
-		percent_blocked = params[2]
-		block_chance = params[3]
-		shields_left = params[4]
+	read_params(params)
 	
 	_signal_function_pairs[EventBus.attack_booked] = check_trigger

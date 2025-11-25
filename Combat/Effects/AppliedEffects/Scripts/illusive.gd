@@ -53,6 +53,21 @@ func apply() -> void:
 			func(ev: float) -> float: return ev + evasion_buff
 		)
 
-## Called when the effect is applied to a unit.
+func read_params(params: Variant) -> void:
+	if params is not Dictionary: return
+	evasion_buff = params.get("evasion_buff", 0.0)
+	other_stat_buff = params.get("other_stat_buff", "")
+	other_stat_buff_strength = params.get("other_stat_buff_strength", 0)
+	other_stat_buff_multiplier = params.get("other_stat_buff_multiplier", 1.0)
+
+func _get_full_data() -> Variant:
+	return {
+		"evasion_buff" = evasion_buff,
+		"other_stat_buff" = other_stat_buff,
+		"other_stat_buff_strength" = other_stat_buff_strength,
+		"other_stat_buff_multiplier" = other_stat_buff_multiplier,
+	}
+
 func _apply_effect(params: Variant) -> void:
+	read_params(params)
 	_signal_function_pairs[EventBus.attack_resolved] = check_trigger

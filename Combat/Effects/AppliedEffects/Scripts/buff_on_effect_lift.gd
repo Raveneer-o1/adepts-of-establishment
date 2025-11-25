@@ -1,9 +1,6 @@
 extends AppliedEffect
 class_name BuffOnEffectLift
 
-#"Health" = "max_HP",
-#"Attack" = "base_damage",
-#"Armor" = "armor",
 @export_enum("Health", "Attack", "Armor") var parameter_to_buff: String
 @export var buff_strength: int
 @export var buff_multiplier: float
@@ -50,8 +47,24 @@ func apply_buff(effect: AppliedEffect) -> void:
 			color_start
 	)
 
-## Called when the effect is applied to a unit.
+func read_params(params: Variant) -> void:
+	if params is not Dictionary:
+		return
+	parameter_to_buff = params.get("parameter_to_buff", "")
+	buff_strength = params.get("buff_strength", 0)
+	buff_multiplier = params.get("buff_multiplier", 1.0)
+	buff_turns = params.get("buff_turns", 2)
+
+func _get_full_data() -> Variant:
+	return {
+		"parameter_to_buff" = parameter_to_buff,
+		"buff_strength" = buff_strength,
+		"buff_multiplier" = buff_multiplier,
+		"buff_turns" = buff_turns,
+	}
+
 func _apply_effect(params: Variant) -> void:
+	read_params(params)
 	if parameter_to_buff == "":
 		print_debug("Empty parameter value!")
 		queue_free()

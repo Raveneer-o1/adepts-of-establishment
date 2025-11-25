@@ -4,12 +4,10 @@ extends AppliedEffect
 @export var turns: int = 2
 
 func _get_description() -> String:
-	#print(description)
-	var percent: int = (round((buff - 1.0) * 100) if buff > 1.0 \
-			else 0)
-	#print(percent)
+	var percent: int = (
+		round((buff - 1.0) * 100) if buff > 1.0 else 0
+	)
 	return description % percent
-			
 
 
 func trigger_effect(unit: Unit, attack: Attack) -> void:
@@ -23,7 +21,17 @@ func trigger_effect(unit: Unit, attack: Attack) -> void:
 	}
 	target_unit.parameters.apply_effect("temporary_buff", params)
 
+func read_params(params: Variant) -> void:
+	if params is not Array:
+		return
+	if params.size() != 2:
+		return
+	turns = params[0]
+	buff = params[1]
 
-## Called when the effect is applied to a unit.
+func _get_full_data() -> Variant:
+	return [turns, buff]
+
 func _apply_effect(params: Variant) -> void:
+	read_params(params)
 	_signal_function_pairs[EventBus.attack_evaded] = trigger_effect

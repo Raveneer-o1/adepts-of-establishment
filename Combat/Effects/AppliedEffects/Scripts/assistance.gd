@@ -30,6 +30,14 @@ func check_trigger(attack: Attack) -> void:
 	
 	target_unit.force_attack(target)
 
-## Called when the effect is applied to a unit.
+func read_params(params: Variant) -> void:
+	if params is not float:
+		return
+	chance = params
+
+func _get_full_data() -> Variant:
+	return chance
+
 func _apply_effect(params: Variant) -> void:
+	read_params(params)
 	_signal_function_pairs[EventBus.attack_booked] = check_trigger

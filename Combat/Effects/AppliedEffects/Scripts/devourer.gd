@@ -12,6 +12,13 @@ func check_trigger(unit: Unit, killer: Unit) -> void:
 	
 	target_unit.heal(health_restore)
 
-## Called when the effect is applied to a unit.
+func read_params(params: Variant) -> void:
+	if params is not int: return
+	health_restore = params
+
+func _get_full_data() -> Variant:
+	return health_restore
+
 func _apply_effect(params: Variant) -> void:
+	read_params(params)
 	_signal_function_pairs[EventBus.unit_killed] = check_trigger

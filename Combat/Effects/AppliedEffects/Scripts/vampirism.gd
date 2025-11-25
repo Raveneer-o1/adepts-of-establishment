@@ -2,10 +2,10 @@ extends AppliedEffect
 
 @export var heal: float
 
-## if [code]true[/code], unit is healed by a percentage of damage dealt ([code]heal * attack.damage[/code])
-## NOTE: heal would serve as multiplier, i.e. value of .1 would mean 10%
+## if [code]true[/code], unit is healed by a percentage of damage dealt
+## ([code]heal * attack.applied_damage[/code])
+## [b]Note:[/b] heal would serve as multiplier, i.e. value of .1 would mean 10%
 @export var is_percentage: bool
-
 
 func _get_description() -> String:
 	return \
@@ -23,7 +23,16 @@ func vampiric_heal(attack: Attack) ->void:
 	if attack.attacker == target_unit:
 		self.call_deferred(&"apply_heal", attack)
 
-## Called when the effect is applied to a unit.
+func read_params(params: Variant) -> void:
+	if params is not Array: return
+	if params.size() != 2: return
+	heal = params[0]
+	is_percentage = params[1]
+
+func _get_full_data() -> Variant:
+	return [heal, is_percentage]
+
 func _apply_effect(params: Variant) -> void:
+	read_params(params)
 	_signal_function_pairs[EventBus.attack_resolved] = vampiric_heal
 	

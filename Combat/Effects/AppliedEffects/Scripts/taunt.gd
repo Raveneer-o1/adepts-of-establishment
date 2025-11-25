@@ -1,7 +1,8 @@
 extends AppliedEffect
 
-@export var chance_to_taunt: float = 0.1
 @export var message: String = "Taunted!"
+
+@export var chance_to_taunt: float = 0.1
 ## Multiplier to damage. Can be set to value more than 1.0 to increase damage instead
 @export var damage_reduction_during_taunting: float = 1.0
 
@@ -30,5 +31,15 @@ func check_trigger(attack: Attack) -> void:
 			if attack.damages.has(ref) else attack.default_damage)
 		)
 
+func read_params(params: Variant) -> void:
+	if params is not Array: return
+	if params.size() != 2: return
+	chance_to_taunt = params[0]
+	damage_reduction_during_taunting = params[1]
+
+func _get_full_data() -> Variant:
+	return [chance_to_taunt, damage_reduction_during_taunting]
+
 func _apply_effect(params: Variant) -> void:
+	read_params(params)
 	_signal_function_pairs[EventBus.attack_booked] = check_trigger

@@ -12,5 +12,14 @@ func check_trigger(a: Attack) -> void:
 	if unit_to_check.parameters.immunities.has(GlobalDefs.AttackType.Elemental):
 		a.type = change_to
 
+func read_params(params: Variant) -> void:
+	if params is not GlobalDefs.AttackType:
+		return
+	change_to = params
+
+func _get_full_data() -> Variant:
+	return change_to
+
 func _apply_effect(params: Variant) -> void:
+	read_params(params)
 	_signal_function_pairs[EventBus.attack_booked] = check_trigger
