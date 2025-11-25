@@ -20,16 +20,23 @@ const database_path := preload("res://Databases/unit_database.gd")
 ## Units with position [code]-1[/code] are considered [i]in garrison[/i]
 ## and do not participate in combat.
 @export_range(-1, 6) var party_position: int = -1
+## Overrides [member unit_name] for representation
+@export var personal_name: String
+@export var current_hp: int
 
 @export_category("Parameters")
 @export var unit_name: String
+@export var level: int
 @export var attack_data: Array[UnitAttackData]
+@export var large_unit: bool
+@export var immunities: Array[GlobalDefs.AttackType]
 
 @export_group("Base parameters")
 @export var base_damage: int
 @export var max_hp: int
-@export var current_hp: int
-@export var immunities: Array[GlobalDefs.AttackType]
+@export var armor: int
+@export var evasion: float
+@export var shielding_chance: float
 
 
 var database_dict: Dictionary:
