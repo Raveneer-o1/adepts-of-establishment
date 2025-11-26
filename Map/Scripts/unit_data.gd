@@ -25,11 +25,12 @@ const database_path := preload("res://Databases/unit_database.gd")
 @export var current_hp: int
 
 @export_category("Parameters")
-@export var unit_name: String
+@export var unit_name: StringName
 @export var level: int
 @export var attack_data: Array[UnitAttackData]
 @export var large_unit: bool
 @export var immunities: Array[GlobalDefs.AttackType]
+@export var effects: Array[Dictionary]
 
 @export_group("Base parameters")
 @export var base_damage: int
@@ -43,13 +44,88 @@ var database_dict: Dictionary:
 	get: return database_path.database.get(unit_name, {})
 
 var description: String:
-	get: return database_dict.get("description", "")
+	get: return database_dict.get(&"description", "")
+
+var database_scene_path: String:
+	get: return database_dict.get(&"scene_path", "")
 
 var faction: GlobalDefs.Faction:
-	get: return database_dict.get("faction", "")
+	get: return database_dict.get(&"faction", GlobalDefs.Faction.Undefined)
 
 var unit_type: GlobalDefs.UnitType:
-	get: return database_dict.get("unit_type", "")
+	get: return database_dict.get(&"unit_type", GlobalDefs.UnitType.Undefined)
+
+## Returns the file path to the unit scene resource.
+## This path must be added to either [member EventBus.left_units] or
+## [member EventBus.right_units] to instantiate the unit when battle begins.
+func get_scene_path() -> String:
+	var provided_file_exists := FileAccess.file_exists(scene_path)
+	var database_file_exists := FileAccess.file_exists(database_scene_path)
+	
+	if database_scene_path != scene_path:
+		print("Provided path does not match the database")
+		if provided_file_exists:
+			print("Using provided scene")
+			return scene_path
+		elif database_file_exists:
+			if scene_path: push_error("Provided path does not exist")
+			print("Using database scene")
+			return database_scene_path
+	
+	if provided_file_exists:
+		return scene_path
+	
+	push_error("Neither provided scene nor database scene exists!")
+	return ""
+
+func _initialize_effect_data() -> void:
+	effects.clear()
+	var effects_array: Array[Dictionary] = database_dict.get(&"effects", [])
+	for e in effects_array:
+		effects.append(e)
+
+func _initialize_attack_data() -> void:
+	for data in attack_data:
+		data.free()
+	attack_data.clear()
+	var attacks_array: Array[Dictionary] = database_dict.get(&"attacks", [])
+	for a in attacks_array:
+		var data := UnitAttackData.new()
+		data.damage_multiplier = database_dict.get(&"damage_multiplier", 1.0)
+		data.damage_override = database_dict.get(&"damage_override", false)
+		data.is_heal = database_dict.get(&"is_heal", false)
+		data.type = database_dict.get(&"type", 0)
+		data.accuracy = database_dict.get(&"accuracy", 0.95)
+		data.targets_needed = database_dict.get(&"targets_needed", 1)
+		data.initiative = database_dict.get(&"initiative", 0)
+		data.evadable = database_dict.get(&"evadable", true)
+		data.tags = database_dict.get(&"tags", [])
+		data.target_validation = database_dict.get(&"target_validation", "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres")
+		data.additional_targets = database_dict.get(&"additional_targets", "")
+		data.damage_policy = database_dict.get(&"damage_policy", "")
+		data.applying_effects = database_dict.get(&"applying_effects", {})
+		attack_data.append(data)
+
+## Initializes the data to database defaults. [br]
+## [color=red]Warning:[/color] this method discards and custom chages to the unit,
+## sets gained XP to 0 and reloads all defined attacks and effects
+func initialize(personal: String = "") -> void:
+	if not database_path.database.has(unit_name):
+		push_error("unit name '%s' does not exist in the database" % unit_name)
+		return
+	
+	level = database_dict.get(&"level", 0)
+	large_unit = database_dict.get(&"large_unit", false)
+	immunities = database_dict.get(&"immunities", [])
+	
+	base_damage = database_dict.get(&"base_damage", 0)
+	max_hp = database_dict.get(&"max_hp", 1)
+	armor = database_dict.get(&"armor", 0)
+	evasion = database_dict.get(&"evasion", 0.0)
+	shielding_chance = database_dict.get(&"shielding_chance", 0.0)
+	
+	_initialize_attack_data()
+	_initialize_effect_data()
 
 #func  _ready() -> void:
 	#database_path.database

@@ -17,6 +17,8 @@ enum UnitType{
 	Mage,
 	## Support units can be [i]shielded[/i] by others even if that unit is not [i]shielding[/i]
 	Support,
+	
+	Undefined,
 }
 
 ## Defines the type of attack or damage, which determines synergies, 

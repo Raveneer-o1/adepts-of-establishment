@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://dlu3vl2ltauc0"]
+[gd_scene load_steps=41 format=4 uid="uid://dlu3vl2ltauc0"]
 
 [ext_resource type="Script" uid="uid://dvi42dc2k0m2h" path="res://Map/Scripts/map.gd" id="1_q0qov"]
 [ext_resource type="Texture2D" uid="uid://c462nhclviryl" path="res://Arts/Map objects/dis tiles (1).png" id="1_xec2n"]
@@ -22,7 +22,6 @@
 [ext_resource type="Script" uid="uid://bx6fsao0crbjq" path="res://Map/Scripts/map_camera.gd" id="19_gdowr"]
 [ext_resource type="Script" uid="uid://bjfntvb3r7vr8" path="res://Map/Scripts/map_faction.gd" id="20_xno3x"]
 [ext_resource type="Script" uid="uid://mn0dy1cf0p65" path="res://Map/Scripts/unit_data.gd" id="21_bl7ab"]
-[ext_resource type="Script" uid="uid://572h8tc4f43b" path="res://Map/Scripts/unit_attack_data.gd" id="22_xm4m6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iq1o3"]
 texture = ExtResource("1_xec2n")
@@ -324,7 +323,6 @@ faction = NodePath("../../Factions/Empire")
 
 [node name="UnitData" type="Node" parent="Parties/MapParty"]
 script = ExtResource("21_bl7ab")
-attack_data = Array[ExtResource("22_xm4m6")]([null])
 metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 
 [node name="MapParty2" parent="Parties" node_paths=PackedStringArray("faction") instance=ExtResource("12_kwhd2")]
