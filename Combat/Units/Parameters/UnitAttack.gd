@@ -99,17 +99,42 @@ var accuracy_representation: float:
 		if is_zero_approx(chance_to_miss): return INF
 		return 1.0 / chance_to_miss
 
+func _read_data(data: UnitAttackData) -> void:
+	damage_multiplier = data.damage_multiplier
+	damage_override = data.damage_override
+	is_heal = data.is_heal
+	type = data.type
+	accuracy = data.accuracy
+	targets_needed = data.targets_needed
+	initiative = data.initiative
+	evadable = data.evadable
+	tags = data.tags
+	target_validation = load(data.target_validation)
+	additional_targets = load(data.additional_targets) if data.additional_targets else null
+	damage_policy = load(data.damage_policy) if data.damage_policy else null
+	applying_effects = data.applying_effects
+	for c: UnitAttack in get_children():
+		c.free()
+	for alt in data.alternative_actions:
+		var alternative := UnitAttack.new()
+		alternative.initialize(unit, alt)
+
+func _initialize_alternative() -> void:
+	for c: UnitAttack in get_children():
+		c.initialize(unit, null)
+
 ## This method is called by [UnitParameters] at the start of the combat. [br]
 ## Note: Currently not implemented, but [UnitParameters] will also be responsible 
 ## for calling it for any attacks added during the battle.
 ## You should not attempt to initialize the attack manually.
-func initialize(u: Unit) -> void:
+func initialize(u: Unit, data: UnitAttackData) -> void:
 	if target_validation == null:
 		push_error("Target validation is empty! Unit: %s" % u.unit_name)
 		queue_free()
+	
 	unit = u
-	for c: UnitAttack in get_children():
-		c.initialize(u)
+	if data: _read_data(data)
+	else: _initialize_alternative()
 
 func can_be_performed() -> bool:
 	if unit == null:

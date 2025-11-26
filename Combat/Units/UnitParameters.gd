@@ -2,6 +2,11 @@ class_name UnitParameters
 extends Node
 
 ## This class represents inner logic of a unit: its health, damage and abilities
+##
+## Fields marked with "[color=yellow][b]Not serialized[/b][/color]", are
+## not stored in the database nor in [UnitData] object.
+## When a unit instance is initialized, it receives the same value
+## as defined in the original scene resource.
 
 ## Armor = 900 is the equivalent of .1 multiplier. In order for the damage to not be 
 ## cut more than 10 times armor is capped at this value
@@ -34,6 +39,7 @@ var attacks: Array[UnitAttack]:
 ## the list can be modified dynamically if required.
 @export var underlying_immunities: Array[GlobalDefs.AttackType] = []
 
+## [color=yellow][b]Not serialized[/b][/color][br][br]
 ## This effect is instantiated as the target's child when the unit attacks.
 ## Intended for visual effects, though this resource undergoes no validation.
 ## The instantiated object is not tracked as it should free itself after animation
@@ -41,7 +47,8 @@ var attacks: Array[UnitAttack]:
 ## manual memory management is required.
 @export var attack_effect: Resource
 
-## Additional effects available for custom implementation.
+## [color=yellow][b]Not serialized[/b][/color][br][br]
+## Additional effects available for custom implementation.[br]
 ## @experimental: Not used by default, provided for extended functionality.
 @export var other_effects: Array[Resource]
 
@@ -80,23 +87,23 @@ var armor_multiplier: float:
 
 #region Underlying values
 
-# Base HP value before applying any modifiers - stores the actual numerical value
+## Base HP value before applying any modifiers - stores the actual numerical value
 var underlying_HP: int = 1
 
 @onready var underlying_evasion: float = \
 		evasion_override if evasion_override > 0 else \
 		base_paramaters.evasion if base_paramaters != null else \
-		0.02
+		0.0
 
 @onready var underlying_max_HP: int = \
 		max_hp_override if max_hp_override > 0 else \
 		base_paramaters.max_HP if base_paramaters != null else \
-		100
+		1
 
 @onready var underlying_base_damage: int = \
 		base_damage_override if base_damage_override > 0 else \
 		base_paramaters.base_damage if base_paramaters != null else \
-		30
+		1
 
 @onready var underlying_armor: int = \
 		armor_override if armor_override > 0 else \
@@ -323,9 +330,38 @@ func get_full_damage() -> int:
 
 var initializtion_successful: bool = false
 
-func initialize_variables() -> bool:
+func _init_effects(array: Array[Dictionary]) -> void:
+	for e in get_all_effects(): e.free()
+	for effect_data in array:
+		apply_effect_path(effect_data[&"effect_path"], effect_data[&"args"])
+
+func _init_attacks(array: Array[UnitAttackData]) -> void:
+	for a in attacks: a.free()
+	for attack_data in array:
+		var attack := UnitAttack.new()
+		add_child(attack)
+		attack.initialize(parent_unit, attack_data)
+
+func _read_data(data: UnitData) -> void:
+	level = data.level
+	large_unit = data.large_unit
+	underlying_HP = data.current_hp
+	underlying_max_HP = data.max_hp
+	underlying_immunities = data.immunities
+	
+	underlying_base_damage = data.base_damage
+	underlying_armor = data.armor
+	underlying_evasion = data.evasion
+	underlying_shielding_chance = data.shielding_chance
+	
+	_init_effects(data.effects)
+	_init_attacks(data.attack_data)
+
+func initialize_variables(data: UnitData) -> bool:
 	parent_unit = get_parent()
-	set_references()
+	if data: _read_data(data)
+	else: set_references()
+	
 	check_parameters()
 	
 	hp = max_hp
@@ -352,13 +388,43 @@ func initialize_effects() -> void:
 
 func set_references() -> void:
 	for attack in attacks:
-		attack.initialize(parent_unit)
+		attack.initialize(parent_unit, null)
 
 func check_parameters() -> void:
 	# initializtion_successful is false at the start
 	if not base_paramaters:  return
 	# TODO: write check_parameters() function
 	initializtion_successful = true
+
+## Applies an effect using a scene file path instead of an effect name.
+## Functionally identical to [method apply_effect] but uses direct path reference.
+func apply_effect_path(
+	effect_path: String, 
+	params: Variant, 
+	force_stackability: bool = false, 
+	override_stackability: bool = false
+) -> AppliedEffect:
+	var res: Resource = load(effect_path)
+	if not res:
+		push_error("Effect not found: %s" % effect_path)
+		return null
+	
+	var child: AppliedEffect = res.instantiate()
+	add_child(child)
+	
+	if force_stackability:
+		child.stackable = override_stackability
+	
+	# Initialize effect with parameters (implementation-specific logic)
+	child.initialize(params)
+	
+	# Handle cases where the effect might self-remove immediately after initialization
+	# (e.g., one-time effects that complete their action in initialize())
+	if not is_instance_valid(child) or child.is_queued_for_deletion():
+		child = null
+	
+	if child: EventBus.effect_applied.emit(child)
+	return child
 
 ## Applies the effect specified by [param effect_name] by loading and instantiating its scene.
 ## The effect scene is expected to be located directly in the
@@ -380,27 +446,12 @@ func apply_effect(
 	) -> AppliedEffect:
 	
 	var effect_path := "res://Combat/Effects/AppliedEffects/Scenes/%s.tscn" % effect_name
-	var res: Resource = load(effect_path)
-	if not res:
-		push_error("Effect '%s' not found at path: %s" % [effect_name, effect_path])
-		return null
-	
-	var child: AppliedEffect = res.instantiate()
-	add_child(child)
-	
-	if force_stackability:
-		child.stackable = override_stackability
-	
-	# Initialize effect with parameters (implementation-specific logic)
-	child.initialize(params)
-	
-	# Handle cases where the effect might self-remove immediately after initialization
-	# (e.g., one-time effects that complete their action in initialize())
-	if not is_instance_valid(child) or child.is_queued_for_deletion():
-		child = null
-	
-	if child: EventBus.effect_applied.emit(child)
-	return child
+	return apply_effect_path(
+		effect_path,
+		params,
+		force_stackability,
+		override_stackability,
+	)
 
 func turn_start_reaction(_unit: Unit) -> void:
 	update_effects()

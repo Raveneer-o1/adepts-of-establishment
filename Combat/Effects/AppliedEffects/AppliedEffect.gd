@@ -112,26 +112,31 @@ func _remove_effect() -> void:
 ## [br]
 ## When called without parameters, it serializes the current effect instance.[br][br]
 ##
-## If [param other_effect] is present (not null), it serializes that effect instead.
-## [color=yellow][b]However[/b][/color], the other effect [b]must[/b] be the same script
+## If [param other_effect] is present (not null), it serializes that effect instead. [br]
+## [color=yellow]Note:[/color] the other effect [b]must[/b] be the same script
 ## as this effect because actual data is fetched accoring to specific effect implementation.
 ## This is primarily needed to get the data with [code]@tool[/code] scripts. For example:
 ## [codeblock]
 ## @tool
 ## # ...
 ## func get_effect_data(effect: AppliedEffect) -> Dictionary
-##   # This will procuce an error: tools can not call methods on scene scripts
-##   # because they are placeholder instances:
-##   # effect.get_full_data(effect)
+##     # Tools can not call methods on scene scripts because
+##     # they are placeholder instances.
 ##
-##   # Instead you can do this:
-##   # Creade "dummy" instance of the script
-##   var script_instance = effect.get_script().new()
+##     # This would procuce an error: 
+##     #effect.get_full_data(effect)
 ##
-##   # Fetch data from the open scene with that scipt
-##   var full_data = script_instance.get_full_data(effect)
+##     # Instead you can do this:
+##     # Creade "dummy" instance of the script
+##     var script_instance = effect.get_script().new()
 ##
-##   return full_data
+##     # Fetch data from the open scene with that scipt
+##     var full_data = script_instance.get_full_data(effect)
+##
+##     # Don't forget to free the dummy instance
+##     script_instance.free()
+##
+##     return full_data
 ## [/codeblock]
 ## [br][br]
 ## [b]Implementation note:[/b]

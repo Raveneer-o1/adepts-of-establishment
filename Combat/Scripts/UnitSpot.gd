@@ -54,7 +54,7 @@ func assign_unit(u: Unit) -> void:
 		return
 	unit = u
 	add_child(unit)
-	if not unit.initialize_variables():
+	if not unit.initialize_variables(null):
 		unit.queue_free()
 		return
 	unit.spot = self

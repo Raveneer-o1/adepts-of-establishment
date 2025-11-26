@@ -42,3 +42,5 @@ extends Resource
 
 ## This element is passed to the [member Attack.applying_effects]
 @export var applying_effects : Dictionary[String, Variant]
+
+@export var alternative_actions: Array[UnitAttackData]

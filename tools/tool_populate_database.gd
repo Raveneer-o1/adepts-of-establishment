@@ -3,6 +3,9 @@ extends EditorScript
 
 func construct_attack_dict(a: UnitAttack) -> Dictionary:
 	print("constructing attack")
+	var alternative_actions: Array[Dictionary] = []
+	for child: UnitAttack in a.get_children():
+		alternative_actions.append(construct_attack_dict(child))
 	var res := {
 		"damage_multiplier" = a.damage_multiplier,
 		"damage_override" = a.damage_override,
@@ -17,6 +20,7 @@ func construct_attack_dict(a: UnitAttack) -> Dictionary:
 		"additional_targets" = a.additional_targets.resource_path if a.additional_targets else "",
 		"damage_policy" = a.damage_policy.resource_path if a.damage_policy else "",
 		"applying_effects" = a.applying_effects,
+		"alternative_actions" = alternative_actions,
 	}
 	return res
 

@@ -155,8 +155,17 @@ var active: bool = false
 
 #region API
 
-## Initializes unit variables and connects signals.
-func initialize_variables() -> bool:
+func _read_data(data: UnitData) -> void:
+	unit_name = data.personal_name
+	needed_xp = data.needed_xp
+	unit_type = data.unit_type
+	faction = data.faction
+	full_description = data.description
+
+## Initializes unit variables and connects signals. Safe to call multiple times. [br]
+## [param data] can be set to null: the data is ignored in this case. [br]
+## [b]Returns:[/b] whether initialization was successful or not.
+func initialize_variables(data: UnitData) -> bool:
 	if initialized:
 		return true
 	parameters = get_node("UnitParameters")
@@ -165,8 +174,10 @@ func initialize_variables() -> bool:
 	if party == null:
 		print_debug("Unable to find Party node!")
 	
-	if not parameters.initialize_variables():
+	if not parameters.initialize_variables(data):
 		return false
+	
+	if data: _read_data(data)
 	
 	EventBus.turn_ended.connect(reset_chosen_targets)
 	EventBus.turn_ended.connect(clean_effects)
