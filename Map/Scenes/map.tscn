@@ -322,9 +322,17 @@ faction = NodePath("../../Factions/Empire")
 
 [node name="UnitData" type="Node" parent="Parties/MapParty"]
 script = ExtResource("21_bl7ab")
-party_position = 2
+party_position = 0
 current_hp = 100
 unit_name = &"Paladin"
+max_hp = 100
+metadata/_custom_type_script = "uid://mn0dy1cf0p65"
+
+[node name="UnitData2" type="Node" parent="Parties/MapParty"]
+script = ExtResource("21_bl7ab")
+party_position = 6
+current_hp = 100
+unit_name = &"Angel Knight"
 max_hp = 100
 metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 
@@ -333,10 +341,25 @@ faction = NodePath("../../Factions/Neutral")
 
 [node name="UnitData" type="Node" parent="Parties/MapParty2"]
 script = ExtResource("21_bl7ab")
-scene_path = "res://Combat/Units/Derived units/Neutral/rogue.tscn"
-party_position = 4
+party_position = 2
 current_hp = 100
 unit_name = &"Rogue"
+max_hp = 100
+metadata/_custom_type_script = "uid://mn0dy1cf0p65"
+
+[node name="UnitData2" type="Node" parent="Parties/MapParty2"]
+script = ExtResource("21_bl7ab")
+party_position = 4
+current_hp = 100
+unit_name = &"Thief"
+max_hp = 100
+metadata/_custom_type_script = "uid://mn0dy1cf0p65"
+
+[node name="UnitData3" type="Node" parent="Parties/MapParty2"]
+script = ExtResource("21_bl7ab")
+party_position = 6
+current_hp = 100
+unit_name = &"Pirate"
 max_hp = 100
 metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 

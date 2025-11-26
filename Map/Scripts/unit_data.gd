@@ -71,6 +71,7 @@ func get_scene_path() -> String:
 	var database_file_exists := FileAccess.file_exists(database_scene_path)
 	
 	if database_scene_path != scene_path:
+		print("======= Unit: " + unit_name + ((" (%s)" % personal_name) if personal_name else ""))
 		print("Provided path does not match the database")
 		if provided_file_exists:
 			print("Using provided scene")
