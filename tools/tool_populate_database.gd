@@ -59,6 +59,7 @@ func read_unit(u: Unit, full_path: String) -> void:
 		"description" = u.full_description,
 		"faction" = u.faction,
 		"unit_type" = u.unit_type,
+		"needed_xp" = u.needed_xp,
 		"attacks" = attacks,
 		"effects" = effects,
 		"base_damage" = base_paramaters.get_indexed("base_damage"),

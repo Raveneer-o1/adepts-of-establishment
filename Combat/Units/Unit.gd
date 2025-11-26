@@ -65,6 +65,9 @@ const SKIP_DELAY = 0.4
 @export var unit_type: GlobalDefs.UnitType
 ## @experimental: currently does not have any impact
 @export var faction: GlobalDefs.Faction
+## Experience required to level up. This value has no combat effect,
+## only relevant for calculating the results and for the map
+@export var needed_xp: int
 @export_multiline var brief_description: String
 @export_multiline var full_description: String
 @export var portrait_texture: Texture2D

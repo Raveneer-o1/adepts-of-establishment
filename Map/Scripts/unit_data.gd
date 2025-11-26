@@ -23,6 +23,7 @@ const database_path := preload("res://Databases/unit_database.gd")
 ## Overrides [member unit_name] for representation
 @export var personal_name: String
 @export var current_hp: int
+@export var current_xp: int
 
 @export_category("Parameters")
 @export var unit_name: StringName
@@ -31,6 +32,7 @@ const database_path := preload("res://Databases/unit_database.gd")
 @export var large_unit: bool
 @export var immunities: Array[GlobalDefs.AttackType]
 @export var effects: Array[Dictionary]
+@export var needed_xp: int
 
 @export_group("Base parameters")
 @export var base_damage: int
@@ -106,15 +108,17 @@ func _initialize_attack_data() -> void:
 		data.applying_effects = database_dict.get(&"applying_effects", {})
 		attack_data.append(data)
 
-## Initializes the data to database defaults. [br]
-## [color=red]Warning:[/color] this method discards and custom chages to the unit,
-## sets gained XP to 0 and reloads all defined attacks and effects
+## Initializes unit data with database defaults. [br]
+## [color=red]Warning:[/color] This method discards all custom unit modifications,
+## resets experience to 0, and reloads all defined attacks and effects.
+## Should only be called when spawning a new unit into the world.
 func initialize(personal: String = "") -> void:
 	if not database_path.database.has(unit_name):
 		push_error("unit name '%s' does not exist in the database" % unit_name)
 		return
 	
 	level = database_dict.get(&"level", 0)
+	needed_xp = database_dict.get(&"needed_xp", -1)
 	large_unit = database_dict.get(&"large_unit", false)
 	immunities = database_dict.get(&"immunities", [])
 	
@@ -126,6 +130,8 @@ func initialize(personal: String = "") -> void:
 	
 	_initialize_attack_data()
 	_initialize_effect_data()
+	
+	current_xp = 0
 
 #func  _ready() -> void:
 	#database_path.database
