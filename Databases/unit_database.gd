@@ -8,10 +8,8 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect": "Ward", &"args": {
  &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [3, 1]
  
-} 
 }]
 , &"base_damage": 90, &"max_hp": 600, &"armor": 20, &"evasion": 0.005, &"shielding_chance": 0.7 
 },&"Vision of Darkness" : {
@@ -36,10 +34,8 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect": "Ward", &"args": {
  &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [3, 2]
  
-} 
 }]
 , &"base_damage": 180, &"max_hp": 800, &"armor": 35, &"evasion": 0.005, &"shielding_chance": 0.7 
 },&"Templar" : {
@@ -51,15 +47,11 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect": "Ward", &"args": {
  &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [1, 1]
  
-} 
 }, {
- &"effect": "Twisted will", &"args": {
  &"effect_name": "Twisted will", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/random_retaliation_on_debuff.tscn", &"args": [2, 0, 1.2]
  
-} 
 }]
 , &"base_damage": 45, &"max_hp": 150, &"armor": 10, &"evasion": 0.05, &"shielding_chance": 0.75 
 },&"Wyvern" : {
@@ -82,10 +74,8 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect": "Ward", &"args": {
  &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [0, 2]
  
-} 
 }]
 , &"base_damage": 60, &"max_hp": 180, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7 
 },&"Ghost" : {
@@ -108,19 +98,13 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect": "Devourer", &"args": {
  &"effect_name": "Devourer", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/devourer.tscn", &"args": 200 
-} 
 }, {
- &"effect": "Ward", &"args": {
  &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [3, 1]
  
-} 
 }, {
- &"effect": "Agility", &"args": {
  &"effect_name": "Agility", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/agility.tscn", &"args": [3, 1.3]
  
-} 
 }]
 , &"base_damage": 240, &"max_hp": 800, &"armor": 35, &"evasion": 0.1, &"shielding_chance": 0.7 
 },&"Skeleton Hero" : {
@@ -132,29 +116,21 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect": "Crafted body", &"args": {
  &"effect_name": "Crafted body", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/crafted_body.tscn", &"args": {
  &"armor": 20, &"base_damage": 30, &"evasion": 0.02, &"max_HP": 70 
 } 
-} 
 }, {
- &"effect": "Grave caress", &"args": {
  &"effect_name": "Grave caress", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/vampirism.tscn", &"args": [20.0, false]
  
-} 
 }, {
- &"effect": "Regeneration", &"args": {
  &"effect_name": "Regeneration", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/on_turn_self_heal.tscn", &"args": 30 
-} 
 }, {
- &"effect": "Crypt spirit", &"args": {
  &"effect_name": "Crypt spirit", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/on_death_summon.tscn", &"args": ["res://Combat/Units/Derived units/Undead/u05_skeleton.tscn", {
  "reanimation": {
  &"armor": 5, &"base_damage": 10, &"evasion": 0.005, &"max_HP": 15 
 } 
 }]
  
-} 
 }]
 , &"base_damage": 100, &"max_hp": 350, &"armor": 50, &"evasion": 0.05, &"shielding_chance": 0.3 
 },&"The Eternal" : {
@@ -189,24 +165,18 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect": "Crafted body", &"args": {
  &"effect_name": "Crafted body", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/crafted_body.tscn", &"args": {
  &"armor": 15, &"base_damage": 30, &"evasion": 0.015, &"max_HP": 50 
 } 
-} 
 }, {
- &"effect": "Regeneration", &"args": {
  &"effect_name": "Regeneration", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/on_turn_self_heal.tscn", &"args": 25 
-} 
 }, {
- &"effect": "Crypt spirit", &"args": {
  &"effect_name": "Crypt spirit", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/on_death_summon.tscn", &"args": ["res://Combat/Units/Derived units/Undead/u05_skeleton.tscn", {
  "reanimation": {
  &"armor": 5, &"base_damage": 10, &"evasion": 0.005, &"max_HP": 15 
 } 
 }]
  
-} 
 }]
 , &"base_damage": 80, &"max_hp": 275, &"armor": 35, &"evasion": 0.05, &"shielding_chance": 0.0 
 },&"Necromancer" : {
@@ -228,14 +198,10 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect": "Twisted will", &"args": {
  &"effect_name": "Twisted will", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/random_retaliation_on_debuff.tscn", &"args": [-1, 0, 1.3]
  
-} 
 }, {
- &"effect": "Denial", &"args": {
  &"effect_name": "Denial", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/negative_effect_negate.tscn", &"args": 3 
-} 
 }]
 , &"base_damage": 80, &"max_hp": 275, &"armor": 35, &"evasion": 0.05, &"shielding_chance": 0.7 
 },&"Destined" : {
@@ -257,9 +223,7 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect": "Regeneration", &"args": {
  &"effect_name": "Regeneration", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/on_turn_self_heal.tscn", &"args": 10 
-} 
 }]
 , &"base_damage": 35, &"max_hp": 200, &"armor": 15, &"evasion": 0.025, &"shielding_chance": 0.8 
 },&"Vampire" : {
@@ -271,15 +235,11 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect": "Vampirism", &"args": {
  &"effect_name": "Vampirism", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/vampirism.tscn", &"args": [0.4, true]
  
-} 
 }, {
- &"effect": "Ward", &"args": {
  &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [3, 1]
  
-} 
 }]
 , &"base_damage": 40, &"max_hp": 150, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7 
 },&"Specter" : {
@@ -302,19 +262,13 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect": "Ward", &"args": {
  &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [1, 1]
  
-} 
 }, {
- &"effect": "Twisted will", &"args": {
  &"effect_name": "Twisted will", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/random_retaliation_on_debuff.tscn", &"args": [4, 0, 1.25]
  
-} 
 }, {
- &"effect": "Denial", &"args": {
  &"effect_name": "Denial", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/negative_effect_negate.tscn", &"args": 1 
-} 
 }]
 , &"base_damage": 60, &"max_hp": 200, &"armor": 20, &"evasion": 0.05, &"shielding_chance": 0.7 
 },&"Elder vampire" : {
@@ -327,15 +281,11 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect": "Vampirism", &"args": {
  &"effect_name": "Vampirism", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/vampirism.tscn", &"args": [0.6, true]
  
-} 
 }, {
- &"effect": "Ward", &"args": {
  &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [3, 1]
  
-} 
 }]
 , &"base_damage": 60, &"max_hp": 220, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7 
 },&"Gluttonous Serpent" : {
@@ -347,14 +297,10 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect": "Ward", &"args": {
  &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [3, 1]
  
-} 
 }, {
- &"effect": "Devourer", &"args": {
  &"effect_name": "Devourer", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/devourer.tscn", &"args": 100 
-} 
 }]
 , &"base_damage": 120, &"max_hp": 600, &"armor": 20, &"evasion": 0.05, &"shielding_chance": 0.7 
 },&"Archlich" : {
@@ -396,19 +342,13 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect": "Vampirism", &"args": {
  &"effect_name": "Vampirism", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/vampirism.tscn", &"args": [0.5, true]
  
-} 
 }, {
- &"effect": "Fear aura", &"args": {
  &"effect_name": "Fear aura", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/fear_aura.tscn", &"args": 0.05 
-} 
 }, {
- &"effect": "Ward", &"args": {
  &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [3, 2]
  
-} 
 }]
 , &"base_damage": 100, &"max_hp": 350, &"armor": 50, &"evasion": 0.1, &"shielding_chance": 0.7 
 },&"Wraith" : {
@@ -421,10 +361,8 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect": "Ward", &"args": {
  &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [0, 1]
  
-} 
 }]
 , &"base_damage": 40, &"max_hp": 100, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7 
 },&"Lich" : {
@@ -465,15 +403,11 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect": "Crafted body", &"args": {
  &"effect_name": "Crafted body", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/crafted_body.tscn", &"args": {
  &"max_HP": 30, &"armor": 10, &"base_damage": 20, &"evasion": 0.01 
 } 
-} 
 }, {
- &"effect": "Regeneration", &"args": {
  &"effect_name": "Regeneration", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/on_turn_self_heal.tscn", &"args": 20 
-} 
 }]
 , &"base_damage": 60, &"max_hp": 200, &"armor": 20, &"evasion": 0.05, &"shielding_chance": 0.0 
 },&"Shadow" : {
@@ -498,15 +432,11 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect": "Vampirism", &"args": {
  &"effect_name": "Vampirism", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/vampirism.tscn", &"args": [0.65, true]
  
-} 
 }, {
- &"effect": "Ward", &"args": {
  &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [3, 2]
  
-} 
 }]
 , &"base_damage": 75, &"max_hp": 285, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7 
 },&"Phantom Warrior" : {
@@ -518,16 +448,12 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect": "Illusive", &"args": {
  &"effect_name": "Illusive", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/illusive.tscn", &"args": {
  &"evasion_buff": 0.03, &"other_stat_buff": "Attack", &"other_stat_buff_strength": 10, &"other_stat_buff_multiplier": 1.0 
 } 
-} 
 }, {
- &"effect": "Phantom", &"args": {
  &"effect_name": "Phantom", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/Phantom.tscn", &"args": [0, 1]
  
-} 
 }]
 , &"base_damage": 45, &"max_hp": 180, &"armor": 10, &"evasion": 0.1, &"shielding_chance": 0.7 
 },&"Doomdrake" : {
@@ -540,10 +466,8 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect": "Ward", &"args": {
  &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [3, 1]
  
-} 
 }]
 , &"base_damage": 65, &"max_hp": 450, &"armor": 10, &"evasion": 0.005, &"shielding_chance": 0.7 
 },&"Death Acolyte" : {
@@ -570,10 +494,8 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect": "Vamirism", &"args": {
  &"effect_name": "Vamirism", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/vampirism.tscn", &"args": [0.35, true]
  
-} 
 }]
 , &"base_damage": 80, &"max_hp": 150, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7 
 },&"Dame Seraphine" : {
@@ -703,14 +625,10 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect": "Armor buff Aura", &"args": {
  &"effect_name": "Armor buff Aura", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/armor_buff_aura.tscn", &"args": 30 
-} 
 }, {
- &"effect": "Divine nature", &"args": {
  &"effect_name": "Divine nature", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/cheat_death.tscn", &"args": [1, 1]
  
-} 
 }]
 , &"base_damage": 100, &"max_hp": 350, &"armor": 50, &"evasion": 0.05, &"shielding_chance": 0.7 
 },&"Blade Saint" : {
@@ -722,10 +640,8 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect": "Combo", &"args": {
  &"effect_name": "Combo", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/combo.tscn", &"args": [30, 1.0]
  
-} 
 }]
 , &"base_damage": 80, &"max_hp": 275, &"armor": 35, &"evasion": 0.2, &"shielding_chance": 0.7 
 },&"Priest" : {
@@ -785,10 +701,8 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect": "Agility", &"args": {
  &"effect_name": "Agility", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/agility.tscn", &"args": [2, 1.2]
  
-} 
 }]
 , &"base_damage": 75, &"max_hp": 85, &"armor": -20, &"evasion": 0.3, &"shielding_chance": 0.7 
 },&"Paladin" : {
@@ -810,14 +724,10 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect": "Giddy up", &"args": {
  &"effect_name": "Giddy up", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/on_move_evasion_up.tscn", &"args": [1.7, 3]
  
-} 
 }, {
- &"effect": "Damage buff Aura", &"args": {
  &"effect_name": "Damage buff Aura", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/damage_buff_aura.tscn", &"args": 40 
-} 
 }]
 , &"base_damage": 100, &"max_hp": 350, &"armor": 70, &"evasion": 0.05, &"shielding_chance": 0.8 
 },&"Cleric" : {
@@ -849,10 +759,8 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect": "Giddy up", &"args": {
  &"effect_name": "Giddy up", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/on_move_evasion_up.tscn", &"args": [1.5, 1]
  
-} 
 }]
 , &"base_damage": 80, &"max_hp": 275, &"armor": 50, &"evasion": 0.05, &"shielding_chance": 0.7 
 },&"Squire" : {
@@ -899,14 +807,10 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect": "Agility", &"args": {
  &"effect_name": "Agility", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/agility.tscn", &"args": [2, 1.2]
  
-} 
 }, {
- &"effect": "Assistance", &"args": {
  &"effect_name": "Assistance", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/assistance.tscn", &"args": 0.5 
-} 
 }]
 , &"base_damage": 80, &"max_hp": 140, &"armor": 0, &"evasion": 0.296, &"shielding_chance": 0.7 
 },&"Grand Inquisitor" : {
@@ -918,22 +822,14 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect": "HP buff Aura", &"args": {
  &"effect_name": "HP buff Aura", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/hp_buff_aura.tscn", &"args": 50 
-} 
 }, {
- &"effect": "Holy wrath", &"args": {
  &"effect_name": "Holy wrath", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/holy_wrath.tscn", &"args": [2, 1.3]
  
-} 
 }, {
- &"effect": "Sturdy will", &"args": {
  &"effect_name": "Sturdy will", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/retaliation_on_debuff.tscn", &"args": 1.3 
-} 
 }, {
- &"effect": "Purity", &"args": {
  &"effect_name": "Purity", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/negative_effect_immune.tscn", &"args": null 
-} 
 }]
 , &"base_damage": 80, &"max_hp": 275, &"armor": 35, &"evasion": 0.15, &"shielding_chance": 0.6 
 },&"Hierophant" : {
@@ -965,19 +861,13 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect": "Sturdy will", &"args": {
  &"effect_name": "Sturdy will", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/retaliation_on_debuff.tscn", &"args": 1.2 
-} 
 }, {
- &"effect": "Holy wrath", &"args": {
  &"effect_name": "Holy wrath", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/holy_wrath.tscn", &"args": [2, 1.3]
  
-} 
 }, {
- &"effect": "Ward", &"args": {
  &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [2, 1]
  
-} 
 }]
 , &"base_damage": 60, &"max_hp": 200, &"armor": 20, &"evasion": 0.1, &"shielding_chance": 0.6 
 },&"Knight" : {
@@ -989,10 +879,8 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect": "Taunt", &"args": {
  &"effect_name": "Taunt", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/taunt.tscn", &"args": [0.3, 1.0]
  
-} 
 }]
 , &"base_damage": 45, &"max_hp": 150, &"armor": 20, &"evasion": 0.05, &"shielding_chance": 0.7 
 },&"Samurai" : {
@@ -1015,12 +903,9 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect": "Defender", &"args": {
  &"effect_name": "Defender", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/protect_on_attack.tscn", &"args": [50, true, 0.5, 0.3, -1]
  
-} 
 }, {
- &"effect": "Retaliation", &"args": {
  &"effect_name": "Retaliation", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/retaliation.tscn", &"args": [30, {
  &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 1.0, &"targets_needed": 1, &"initiative": 0, &"evadable": false, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_mage_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
@@ -1028,7 +913,6 @@ const database = {
 } 
 }]
  
-} 
 }]
 , &"base_damage": 80, &"max_hp": 200, &"armor": 15, &"evasion": 0.05, &"shielding_chance": 0.7 
 },&"Angel Knight" : {
@@ -1045,19 +929,13 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect": "Divine nature", &"args": {
  &"effect_name": "Divine nature", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/cheat_death.tscn", &"args": [1, 1]
  
-} 
 }, {
- &"effect": "Taunt", &"args": {
  &"effect_name": "Taunt", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/taunt.tscn", &"args": [0.5, 0.55]
  
-} 
 }, {
- &"effect": "Healing aura", &"args": {
  &"effect_name": "Healing aura", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/on_turn_heal.tscn", &"args": 25 
-} 
 }]
 , &"base_damage": 80, &"max_hp": 275, &"armor": 80, &"evasion": 0.05, &"shielding_chance": 0.85 
 },&"Keeper of Knowledge" : {
@@ -1069,9 +947,7 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect": "All-knowing", &"args": {
  &"effect_name": "All-knowing", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/change_attack_type.tscn", &"args": 2 
-} 
 }]
 , &"base_damage": 100, &"max_hp": 200, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7 
 },&"Wizard" : {
@@ -1109,10 +985,8 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect": "Agility", &"args": {
  &"effect_name": "Agility", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/agility.tscn", &"args": [2, 0.0]
  
-} 
 }]
 , &"base_damage": 60, &"max_hp": 100, &"armor": 0, &"evasion": 0.208, &"shielding_chance": 0.7 
 },&"Knight Master" : {
@@ -1124,10 +998,8 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect": "Taunt", &"args": {
  &"effect_name": "Taunt", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/taunt.tscn", &"args": [0.4, 0.65]
  
-} 
 }]
 , &"base_damage": 60, &"max_hp": 200, &"armor": 50, &"evasion": 0.05, &"shielding_chance": 0.7 
 },&"Horseman" : {

@@ -32,10 +32,7 @@ func construct_effect_dict(a: AppliedEffect) -> Dictionary:
 				entry = construct_attack_dict(entry)
 	
 	dummy.free()
-	return {
-		"effect" = a.effect_name,
-		"args" = data
-	}
+	return data
 
 func read_unit(u: Unit, full_path: String) -> void:
 	if dict.has(u.unit_name):
