@@ -177,7 +177,7 @@ func next_stage(remove_miniature: bool = true) -> void:
 			end_battle()
 
 func start_battle() -> void:
-	initialize_effects()
+	#initialize_effects()
 	start_round()
 	next_stage()
 
@@ -194,6 +194,7 @@ func end_battle() -> void:
 	print("The battle is over!")
 	main_system.win_label.visible = true
 	battle_in_progress = false
+	main_system.start_end_countdown()
 
 
 #endregion

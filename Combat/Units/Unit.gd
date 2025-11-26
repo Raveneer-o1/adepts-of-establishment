@@ -156,7 +156,7 @@ var active: bool = false
 #region API
 
 func _read_data(data: UnitData) -> void:
-	unit_name = data.personal_name
+	unit_name = data.personal_name if data.personal_name else unit_name
 	needed_xp = data.needed_xp
 	unit_type = data.unit_type
 	faction = data.faction

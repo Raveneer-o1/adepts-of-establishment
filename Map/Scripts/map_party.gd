@@ -5,8 +5,33 @@ var map: Map
 @onready var animation_handle: MapPartyAnimationHandle = $AnimationHandle
 @onready var parameters: PartyParameters = $PartyParameters
 
-@export var units: Array[String]
 @export var faction: MapFaction
+
+var units: Array[UnitData]:
+	get:
+		var res: Array[UnitData] = []
+		for ch in get_children():
+			if ch is UnitData:
+				res.append(ch)
+		return res
+
+func get_battle_ready_units() -> Array[UnitData]:
+	var res: Array[UnitData] = []
+	for ch in get_children():
+		if ch is UnitData:
+			if ch.party_position >= 0:
+				res.append(ch)
+	res.sort_custom(
+		func(e1: UnitData, e2: UnitData) -> bool:
+			return e1.party_position < e2.party_position
+	)
+	var i := -1
+	for d: UnitData in res.duplicate():
+		if d.party_position == i:
+			push_error("Duplacate position %d" % i)
+			res.erase(d)
+		i = d.party_position
+	return res
 
 ## Number of tiles the unit can traverse per second. [br]
 ## [b]Note:[/b] Actual movement time is proportional to path length -

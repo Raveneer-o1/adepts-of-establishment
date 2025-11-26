@@ -3,24 +3,8 @@ extends Node
 var left_controller : Resource
 var right_controller : Resource
 
-var left_units: Array[String] = [
-	"res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn",
-	"res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn",
-	"res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn",
-	"res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn",
-	"res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn",
-	"res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn",
-	"res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn",
-]
-var right_units: Array[String] = [
-	"res://Combat/Units/Derived units/Empire/e33 Hierophant.tscn",
-	"res://Combat/Units/Derived units/Empire/e33 Hierophant.tscn",
-	"res://Combat/Units/Derived units/Empire/e33 Hierophant.tscn",
-	"res://Combat/Units/Derived units/Empire/e33 Hierophant.tscn",
-	"res://Combat/Units/Derived units/Empire/e33 Hierophant.tscn",
-	"res://Combat/Units/Derived units/Empire/e33 Hierophant.tscn",
-	"res://Combat/Units/Derived units/Empire/e33 Hierophant.tscn",
-]
+var left_units: Array[UnitData] = []
+var right_units: Array[UnitData] = []
 
 var packed_menu: PackedScene
 

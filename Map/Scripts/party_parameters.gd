@@ -3,6 +3,6 @@ extends Node
 
 @onready var map_party: MapParty = $".."
 
-@export var units: Array[String]:
+@export var units: Array[UnitData]:
 	get:
 		return map_party.units

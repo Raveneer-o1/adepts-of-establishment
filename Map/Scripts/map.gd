@@ -32,20 +32,37 @@ func get_controller(type: GlobalDefs.ControllerType) -> String:
 	push_error("Unknown Controller type!")
 	return ""
 
+func _clear_eventbus() -> void:
+	for u in EventBus.left_units + EventBus.right_units:
+		if u: u.free()
+	EventBus.left_units = []
+	EventBus.right_units = []
+	#if EventBus.left_controller:
+		#EventBus.left_controller.free()
+		#EventBus.left_controller = null
+	#if EventBus.right_controller:
+		#EventBus.right_controller.free()
+		#EventBus.right_controller = null
 
 ## Initiates a battle between two parties. [br]
 ## [param attacker]: The party initiating the combat encounter[br]
 ## [param defender]: The party being attacked
 func start_battle(attacker: MapParty, defender: MapParty) -> void:
-	EventBus.left_units = attacker.units.duplicate()
-	EventBus.right_units = defender.units.duplicate()
+	_clear_eventbus()
+	EventBus.left_units = attacker.units
+	EventBus.right_units = defender.units
 	EventBus.left_controller = load(get_controller(attacker.faction.controller))
 	EventBus.right_controller = load(get_controller(defender.faction.controller))
+	
 	var battle := battle_scene.instantiate(PackedScene.GEN_EDIT_STATE_MAIN)
-	add_child(battle)
 	battle.process_mode = Node.PROCESS_MODE_ALWAYS
 	process_mode = Node.PROCESS_MODE_DISABLED
+	
+	# combat starts here because this is when combat scene enters
+	# the tree and _ready() is called
+	add_child(battle)
 	(battle.find_child("Camera2D", false) as Camera2D).make_current()
+	
 	await EventBus.battle_ended
 	battle.queue_free()
 	process_mode = Node.PROCESS_MODE_PAUSABLE
@@ -63,7 +80,7 @@ func get_global_coords(tile_coord: Vector2i) -> Vector2:
 func get_distance(pos1: Vector2i, pos2: Vector2i) -> int:
 	var diff: Vector2i = pos1 - pos2
 	var dz := absi(diff.x + diff.y)
-	diff = abs(diff)
+	diff = diff.abs()
 	return (diff.x + diff.y + dz) >> 1
 
 ## Gets all neighboring tiles for a given coordinate

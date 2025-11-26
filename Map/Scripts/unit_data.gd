@@ -5,13 +5,19 @@ extends Node
 ##
 ## This class stores complete unit definition and parameter data.[br][br]
 ##
-## Any provided [b]Parameters[/b] values override the unit's corresponding
-## default parameters.[br][br]
+## Any values present in this object override the unit's corresponding
+## default parameters during initialization.[br][br]
 ##
 ## Design behavior: When a unit spawns into the world, it receives default
 ## parameters that are independent of the database, allowing units to develop
 ## stats that differ from their baseline values. For example, a unit can level
-## up without evolving, gaining increased stats including level progression.
+## up without evolving, gaining increased stats including level progression. [br][br]
+##
+## [b]Currently not implemented:[/b][br]
+## This class is not designed for manual instantiation via the editor.
+## Units are automatically created with all required fields populated
+## during unit spawning events [i](e.g., hiring or evolution)[/i].
+##
 
 @export_file_path("*.tscn") var scene_path: String
 const database_path := preload("res://Databases/unit_database.gd")
@@ -82,30 +88,31 @@ func get_scene_path() -> String:
 
 func _initialize_effect_data() -> void:
 	effects.clear()
-	var effects_array: Array[Dictionary] = database_dict.get(&"effects", [])
-	for e in effects_array:
+	#var effects_array: Array[Dictionary] = database_dict.get(&"effects", [])
+	for e:Dictionary in database_dict.get(&"effects", []):
 		effects.append(e)
 
 func _initialize_attack_data() -> void:
 	for data in attack_data:
 		data.free()
 	attack_data.clear()
-	var attacks_array: Array[Dictionary] = database_dict.get(&"attacks", [])
+	var attacks_array: Array[Dictionary]
+	attacks_array.assign(database_dict.get(&"attacks", []))
 	for a in attacks_array:
 		var data := UnitAttackData.new()
-		data.damage_multiplier = database_dict.get(&"damage_multiplier", 1.0)
-		data.damage_override = database_dict.get(&"damage_override", false)
-		data.is_heal = database_dict.get(&"is_heal", false)
-		data.type = database_dict.get(&"type", 0)
-		data.accuracy = database_dict.get(&"accuracy", 0.95)
-		data.targets_needed = database_dict.get(&"targets_needed", 1)
-		data.initiative = database_dict.get(&"initiative", 0)
-		data.evadable = database_dict.get(&"evadable", true)
-		data.tags = database_dict.get(&"tags", [])
-		data.target_validation = database_dict.get(&"target_validation", "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres")
-		data.additional_targets = database_dict.get(&"additional_targets", "")
-		data.damage_policy = database_dict.get(&"damage_policy", "")
-		data.applying_effects = database_dict.get(&"applying_effects", {})
+		data.damage_multiplier = a.get(&"damage_multiplier", 1.0)
+		data.damage_override = a.get(&"damage_override", false)
+		data.is_heal = a.get(&"is_heal", false)
+		data.type = a.get(&"type", 0)
+		data.accuracy = a.get(&"accuracy", 0.95)
+		data.targets_needed = a.get(&"targets_needed", 1)
+		data.initiative = a.get(&"initiative", 0)
+		data.evadable = a.get(&"evadable", true)
+		data.tags.assign(a.get(&"tags", []))
+		data.target_validation = a.get(&"target_validation", "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres")
+		data.additional_targets = a.get(&"additional_targets", "")
+		data.damage_policy = a.get(&"damage_policy", "")
+		data.applying_effects.assign(a.get(&"applying_effects", {}))
 		attack_data.append(data)
 
 ## Initializes unit data with database defaults. [br]
@@ -120,7 +127,7 @@ func initialize(personal: String = "") -> void:
 	level = database_dict.get(&"level", 0)
 	needed_xp = database_dict.get(&"needed_xp", -1)
 	large_unit = database_dict.get(&"large_unit", false)
-	immunities = database_dict.get(&"immunities", [])
+	immunities.assign(database_dict.get(&"immunities", []))
 	
 	base_damage = database_dict.get(&"base_damage", 0)
 	max_hp = database_dict.get(&"max_hp", 1)
@@ -128,10 +135,13 @@ func initialize(personal: String = "") -> void:
 	evasion = database_dict.get(&"evasion", 0.0)
 	shielding_chance = database_dict.get(&"shielding_chance", 0.0)
 	
+	scene_path = get_scene_path()
+	
 	_initialize_attack_data()
 	_initialize_effect_data()
 	
 	current_xp = 0
 
-#func  _ready() -> void:
-	#database_path.database
+# WARNING: this is testing implementation, initialization here will be removed
+func  _ready() -> void:
+	initialize()

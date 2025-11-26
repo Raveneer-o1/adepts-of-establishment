@@ -90,6 +90,9 @@ func get_units_custom(filter_func: Callable) -> Array[Unit]:
 	return result
 
 func place_spots() -> void:
+	for spot in unit_spots:
+		if spot.unit: spot.unit.free()
+		spot.free()
 	unit_spots.clear()
 	for i in range(MAX_UNITS_NUMBER):
 		unit_spots.append(main_system.UNIT_SPOT.instantiate())
@@ -100,30 +103,30 @@ func place_spots() -> void:
 		unit_spots[i].party = self
 
 ## Places units based on a list of unit names.
-func place_units(list: Array[String]) -> void:
+func place_units(list: Array[UnitData]) -> void:
 	place_spots()
 	
 	if list.size() > MAX_UNITS_NUMBER:
-		print_debug("Unit list exceeds the maximum allowed number of units!")
+		push_error("Unit list exceeds the maximum allowed number of units!")
 		return
 	
-	var i := -1
-	for s: String in list:
-		i += 1
-		if s.is_empty():
+	#var i := -1
+	for unit_data: UnitData in list:
+		var i := unit_data.party_position
+		var path := unit_data.scene_path
+		if path.is_empty(): continue
+		if not main_system.loaded_units.has(path):
+			push_error(unit_data.unit_name + " is not loaded!")
 			continue
-		if not main_system.loaded_units.has(s):
-			print_debug(s + " is not loaded!")
-			continue
-		var loaded_unit: Resource = main_system.loaded_units[s]
 		if units[i] != null:
-			print_debug("Position " + str(i) + " is already occupied!")
+			push_error("Position %d is already occupied!" % i)
 			continue
-		unit_spots[i].add_unit(loaded_unit)
+		var loaded_unit: Resource = main_system.loaded_units[path]
+		unit_spots[i].add_unit(loaded_unit, unit_data)
 		if units[i] == null:
-			print_debug("Unit '%s' is not registered!" % s)
+			push_error("Unit '%s' is not registered!" % unit_data.unit_name)
 			continue
-		#units[i].party_position = i
+		
 		if units[i].parameters.large_unit:
 			if i == 0 or i == MAX_UNITS_NUMBER - 1 or units[i - 1] != null:
 				print_debug("Not enough space for large unit at position " + str(i) + "!")

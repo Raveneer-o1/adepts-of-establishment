@@ -62,8 +62,8 @@ const WIN_LABEL_LINE = "[center][color=green]%s[/color][/center]"
 const TIME_TO_END = 2.5
 
 # Configuration variables for parties
-@export var left_party_units: Array[String]
-@export var right_party_units: Array[String]
+@export var left_party_units: Array[UnitData]
+@export var right_party_units: Array[UnitData]
 
 ## Contains a dictionary of baseline unit parameters for reference purposes.
 ## Not used for unit initialization and does not trigger validation failures when stats differ.
@@ -174,7 +174,6 @@ func check_winner(_unit: Unit = null) -> void:
 	else:
 		return
 	combat_logic.end_battle()
-	start_end_countdown()
 
 ## Handles the resolution of all attacks and prepares for the next combat stage
 func finish_attack() -> void:
@@ -398,8 +397,9 @@ func display_hints() -> void:
 #endregion
 
 #region Initialization
-func load_unit_list(list: Array[String]) -> void:
-	for path in list:
+func load_unit_list(list: Array[UnitData]) -> void:
+	for unit_data in list:
+		var path := unit_data.scene_path
 		if not path.is_empty() and not loaded_units.has(path):
 			var resource := load(path)
 			if resource != null:
@@ -414,21 +414,29 @@ func load_units() -> void:
 func check_refs_validity() -> bool:
 	var are_refs_valid: bool = true
 	
-	if (not is_instance_valid(left_party)) or left_party == null:
-		print_debug("Left party is not found!")
-		are_refs_valid = false
+	if (not is_instance_valid(left_party)) or \
+		left_party == null or \
+		left_party.is_queued_for_deletion():
+			push_error("Left party is not found!")
+			are_refs_valid = false
 	
-	if (not is_instance_valid(right_party)) or right_party == null:
-		print_debug("Right party is not found!")
-		are_refs_valid = false
+	if (not is_instance_valid(right_party)) or \
+		right_party == null or \
+		right_party.is_queued_for_deletion():
+			push_error("Right party is not found!")
+			are_refs_valid = false
 	
-	if (not is_instance_valid(left_player)) or left_player == null:
-		print_debug("Left player is not found!")
-		are_refs_valid = false
+	if (not is_instance_valid(left_player)) or \
+		left_player == null or \
+		left_player.is_queued_for_deletion():
+			push_error("Left player is not found!")
+			are_refs_valid = false
 	
-	if (not is_instance_valid(right_player)) or right_player == null:
-		print_debug("Right player is not found!")
-		are_refs_valid = false
+	if (not is_instance_valid(right_player)) or \
+		right_player == null or \
+		right_player.is_queued_for_deletion():
+			push_error("Right player is not found!")
+			are_refs_valid = false
 	
 	return are_refs_valid
 
@@ -438,7 +446,7 @@ func initialize_variables() -> void:
 		return
 	
 	# randomize positions of temporary labels
-	label_positions.shuffle()
+	#label_positions.shuffle()
 	
 	left_party.main_system = self
 	left_party.other_party = right_party
@@ -523,8 +531,10 @@ func end_scene() -> void:
 		#get_tree().change_scene_to_packed(EventBus.packed_menu)
 
 
-## Starts a timer for [member TIME_TO_END] seconds.
-## On timeout loads menu scene.
+## Starts a countdown timer for [member TIME_TO_END] seconds.
+## When the timer expires, the menu scene will be loaded.
+## The created timer is stored in [member timer].
+## Safe to call multiple times - has no effect if [member timer] already exists.
 func start_end_countdown() -> void:
 	if timer != null:
 		return

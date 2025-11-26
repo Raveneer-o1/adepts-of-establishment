@@ -128,13 +128,13 @@ func _initialize_alternative() -> void:
 ## for calling it for any attacks added during the battle.
 ## You should not attempt to initialize the attack manually.
 func initialize(u: Unit, data: UnitAttackData) -> void:
-	if target_validation == null:
-		push_error("Target validation is empty! Unit: %s" % u.unit_name)
-		queue_free()
-	
 	unit = u
 	if data: _read_data(data)
 	else: _initialize_alternative()
+	
+	if target_validation == null:
+		push_error("Target validation is empty! Unit: %s" % u.unit_name)
+		queue_free()
 
 func can_be_performed() -> bool:
 	if unit == null:
@@ -145,8 +145,9 @@ func can_be_performed() -> bool:
 		return true
 	return unit.attacks_for_this_round.has(self)
 
-## Swaps this attack with [member Unit.current_attack].
-## The unit's attack list doesn't account for initiative and random shuffling, so the
+## Swaps this attack with [member Unit.current_attack]. [br][br]
+##
+## The unit's [member attacks] list doesn't account for initiative and random shuffling, so the
 ## performed attack may differ from the one in [member CombatLogic.attacks_queue].
 ## Call this method before constructing an attack to avoid that.
 func make_current() -> void:
