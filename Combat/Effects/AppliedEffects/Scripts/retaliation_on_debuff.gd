@@ -24,11 +24,14 @@ func check_trigger(e: AppliedEffect) -> void:
 	):
 		target_unit.system.display_text_near_unit_async(target_unit, message, color_effect)
 
-func _apply_effect(params: Variant) -> void:
-	_signal_function_pairs[EventBus.effect_applied] = check_trigger
+func read_params(params: Variant) -> void:
+	if params is not float: return
+	strength = params
 
-#func _remove_effect() -> void:
-	# Override this method in derived classes to define custom behavior when the effect is removed.
-	# Note: This method is only called when the effect is explicitly lifted using lift_effect().
-	# It cannot catch queue_free() calls and should not be used for memory management purposes.
-	#pass
+func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
+	if other_effect: return other_effect.strength
+	return strength
+
+func _apply_effect(params: Variant) -> void:
+	read_params(params)
+	_signal_function_pairs[EventBus.effect_applied] = check_trigger

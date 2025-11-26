@@ -28,7 +28,8 @@ func read_params(params: Variant) -> void:
 	turns = params[0]
 	damage = params[1]
 
-func _get_full_data() -> Variant:
+func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
+	if other_effect: return [other_effect.turns, other_effect.damage]
 	return [turns, damage]
 
 func _apply_effect(params: Variant) -> void:

@@ -11,7 +11,8 @@ func read_params(params: Variant) -> void:
 	effect = params[1]
 	passing_params = params[2]
 
-func _get_full_data() -> Variant:
+func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
+	if other_effect: return [other_effect.type, other_effect.effect, other_effect.passing_params]
 	return [type, effect, passing_params]
 
 func _apply_effect(params: Variant) -> void:

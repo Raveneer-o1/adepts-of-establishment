@@ -29,7 +29,8 @@ func read_params(params: Variant) -> void:
 	damage_type = params[0]
 	triggers = params[1]
 
-func _get_full_data() -> Variant:
+func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
+	if other_effect: return [other_effect.damage_type, other_effect.triggers]
 	return [damage_type, triggers]
 
 func _apply_effect(params: Variant) -> void:

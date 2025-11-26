@@ -20,7 +20,8 @@ func read_params(params: Variant) -> void:
 	evasion_decrease = params[0]
 	turns = params[1]
 
-func _get_full_data() -> Variant:
+func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
+	if other_effect: return [other_effect.evasion_decrease, other_effect.turns]
 	return [evasion_decrease, turns]
 
 func _apply_effect(params: Variant) -> void:

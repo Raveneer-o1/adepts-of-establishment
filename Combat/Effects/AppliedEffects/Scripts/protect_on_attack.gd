@@ -45,7 +45,14 @@ func read_params(params: Variant) -> void:
 	block_chance = params[3]
 	shields_left = params[4]
 
-func _get_full_data() -> Variant:
+func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
+	if other_effect: return [
+			other_effect.durability,
+			other_effect.is_measured_in_damage,
+			other_effect.percent_blocked,
+			other_effect.block_chance,
+			other_effect.shields_left
+		]
 	return [
 		durability,
 		is_measured_in_damage,

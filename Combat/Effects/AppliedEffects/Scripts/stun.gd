@@ -34,7 +34,8 @@ func read_params(params: Variant) -> void:
 	chance_to_be_lifted = params[0]
 	turns = params[1]
 
-func _get_full_data() -> Variant:
+func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
+	if other_effect: return [other_effect.chance_to_be_lifted, other_effect.turns]
 	return [chance_to_be_lifted, turns]
 
 func _apply_effect(params: Variant) -> void:

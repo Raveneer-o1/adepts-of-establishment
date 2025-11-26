@@ -28,11 +28,12 @@ func check_trigger(u: Unit) -> void:
 func read_params(params: Variant) -> void:
 	if params is not Array: return
 	if params.size() != 2: return
-	summon = params[0]
+	summon = load(params[0])
 	effects = params[1]
 
-func _get_full_data() -> Variant:
-	return [summon, effects]
+func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
+	if other_effect: return [other_effect.summon.resource_path, other_effect.effects]
+	return [summon.resource_path, effects]
 
 func _apply_effect(params: Variant) -> void:
 	read_params(params)

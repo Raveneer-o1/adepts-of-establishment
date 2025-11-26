@@ -11,7 +11,8 @@ func read_params(params: Variant) -> void:
 	if params is not int: return
 	hp_increase = params
 
-func _get_full_data() -> Variant:
+func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
+	if other_effect: return other_effect.hp_increase
 	return hp_increase
 
 func _apply_effect(params: Variant) -> void:

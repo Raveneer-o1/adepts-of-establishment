@@ -104,14 +104,62 @@ func _remove_effect() -> void:
 	# It cannot catch queue_free() calls and should not be used for memory management purposes.
 	pass
 
-func get_full_data() -> Dictionary:
+## [b]Returns:[/b] Returns a complete serialization dictionary that can
+## reconstruct this effect: [br]
+## [code]effect_name[/code]: Human-readable identifier for the effect [br]
+## [code]effect_path[/code]: File path to the scene resource [br]
+## [code]args[/code]: Effect-specific data returned by [method _get_full_data] [br]
+## [br]
+## When called without parameters, it serializes the current effect instance.[br][br]
+##
+## If [param other_effect] is present (not null), it serializes that effect instead.
+## [color=yellow][b]However[/b][/color], the other effect [b]must[/b] be the same script
+## as this effect because actual data is fetched accoring to specific effect implementation.
+## This is primarily needed to get the data with [code]@tool[/code] scripts. For example:
+## [codeblock]
+## @tool
+## # ...
+## func get_effect_data(effect: AppliedEffect) -> Dictionary
+##   # This will procuce an error: tools can not call methods on scene scripts
+##   # because they are placeholder instances:
+##   # effect.get_full_data(effect)
+##
+##   # Instead you can do this:
+##   # Creade "dummy" instance of the script
+##   var script_instance = effect.get_script().new()
+##
+##   # Fetch data from the open scene with that scipt
+##   var full_data = script_instance.get_full_data(effect)
+##
+##   return full_data
+## [/codeblock]
+## [br][br]
+## [b]Implementation note:[/b]
+## The actual data collection is delegated to _get_full_data(), which must be overridden
+## in each AppliedEffect subclass. This separation ensures that each effect type defines
+## its own serialization format while maintaining a consistent interface.
+func get_full_data(other_effect: AppliedEffect = null) -> Dictionary:
+	if other_effect:
+		return {
+			"effect_name" = other_effect.effect_name,
+			"effect_path" = other_effect.scene_file_path,
+			"args" = _get_full_data(other_effect),
+		}
 	return {
 		"effect_name" = effect_name,
 		"effect_path" = scene_file_path,
 		"args" = _get_full_data(),
 	}
 
-func _get_full_data() -> Variant:
+func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
+	# Override this method to return the exact arguments needed to reconstruct a
+	# copy of this effect. For example, if your effect accepts an Array as params
+	# and writes it in two variables "value1" and "value2",
+	# this method should return [value1, value2]
+	#
+	# if "other_effect" is specified, method should return the exact same structure
+	# but with values fetched from "other_effect" 
+	# (e.g. [other_effect.value1, other_effect.value2])
 	return null
 
 ## Call to manually remove the effect (e.g., if cured or expired).

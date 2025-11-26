@@ -21,7 +21,8 @@ func read_params(params: Variant) -> void:
 	type = params[0]
 	turns = params[1]
 
-func _get_full_data() -> Variant:
+func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
+	if other_effect: return [other_effect.type, other_effect.turns]
 	return [type, turns]
 
 func _apply_effect(params: Variant) -> void:

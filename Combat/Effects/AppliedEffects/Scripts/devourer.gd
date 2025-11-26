@@ -16,7 +16,8 @@ func read_params(params: Variant) -> void:
 	if params is not int: return
 	health_restore = params
 
-func _get_full_data() -> Variant:
+func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
+	if other_effect: return other_effect.health_restore
 	return health_restore
 
 func _apply_effect(params: Variant) -> void:

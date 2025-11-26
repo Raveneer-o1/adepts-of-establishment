@@ -29,7 +29,8 @@ func read_params(params: Variant) -> void:
 	heal = params[0]
 	is_percentage = params[1]
 
-func _get_full_data() -> Variant:
+func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
+	if other_effect: return [other_effect.heal, other_effect.is_percentage]
 	return [heal, is_percentage]
 
 func _apply_effect(params: Variant) -> void:

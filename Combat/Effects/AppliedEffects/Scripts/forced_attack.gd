@@ -30,7 +30,8 @@ func read_params(params: Variant) -> void:
 	if params is not Array: return
 	targets.assign(params as Array)
 
-func _get_full_data() -> Variant:
+func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
+	if other_effect: return other_effect.targets
 	return targets
 
 func _apply_effect(params: Variant) -> void:

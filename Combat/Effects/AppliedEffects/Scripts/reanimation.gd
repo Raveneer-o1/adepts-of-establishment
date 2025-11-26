@@ -15,7 +15,8 @@ func read_params(params: Variant) -> void:
 	if params is not Dictionary: return
 	buff_parameters = params
 
-func _get_full_data() -> Variant:
+func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
+	if other_effect: return other_effect.buff_parameters
 	return buff_parameters
 
 func _apply_effect(params: Variant) -> void:

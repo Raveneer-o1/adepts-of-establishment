@@ -29,7 +29,8 @@ func read_params(params: Variant) -> void:
 	triggers = params[0]
 	reset_hp_to = params[1]
 
-func _get_full_data() -> Variant:
+func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
+	if other_effect: return [other_effect.triggers, other_effect.reset_hp_to]
 	return [triggers, reset_hp_to]
 
 func _apply_effect(params: Variant) -> void:

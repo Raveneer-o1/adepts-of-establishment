@@ -55,7 +55,13 @@ func read_params(params: Variant) -> void:
 	buff_multiplier = params.get("buff_multiplier", 1.0)
 	buff_turns = params.get("buff_turns", 2)
 
-func _get_full_data() -> Variant:
+func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
+	if other_effect: return {
+			"parameter_to_buff" = other_effect.parameter_to_buff,
+			"buff_strength" = other_effect.buff_strength,
+			"buff_multiplier" = other_effect.buff_multiplier,
+			"buff_turns" = other_effect.buff_turns,
+		} 
 	return {
 		"parameter_to_buff" = parameter_to_buff,
 		"buff_strength" = buff_strength,

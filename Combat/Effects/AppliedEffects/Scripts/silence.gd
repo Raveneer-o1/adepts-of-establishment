@@ -9,7 +9,8 @@ func read_params(params: Variant) -> void:
 	if params is int:
 		turns = params
 
-func _get_full_data() -> Variant:
+func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
+	if other_effect: return other_effect.turns
 	return turns
 
 func _apply_effect(params: Variant) -> void:

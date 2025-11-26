@@ -8,7 +8,8 @@ func read_params(params: Variant) -> void:
 	if params is not float: return
 	evasion_decrease = params
 
-func _get_full_data() -> Variant:
+func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
+	if other_effect: return other_effect.evasion_decrease
 	return evasion_decrease
 
 func _apply_effect(params: Variant) -> void:

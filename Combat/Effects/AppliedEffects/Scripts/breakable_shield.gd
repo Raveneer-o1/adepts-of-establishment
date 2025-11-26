@@ -50,7 +50,12 @@ func read_params(params: Variant) -> void:
 	is_measured_in_damage = params[1]
 	percent_blocked = params[2]
 
-func _get_full_data() -> Variant:
+func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
+	if other_effect: return [
+			other_effect.durability, 
+			other_effect.is_measured_in_damage, 
+			other_effect.percent_blocked
+		]
 	return [durability, is_measured_in_damage, percent_blocked]
 
 func _apply_effect(params: Variant) -> void:

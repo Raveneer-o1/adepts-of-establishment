@@ -26,17 +26,18 @@ func check_trigger(attack: Attack) -> void:
 	
 	target_unit.take_direct_damage(damage, message_trigger, color_effect)
 
-## Called when the effect is applied to a unit.
+func read_params(params: Variant) -> void:
+	if params is not Array: return
+	if params.size() != 2: return
+	turns = params[0]
+	damage = params[1]
+
+func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
+	if other_effect: return [other_effect.turns, other_effect.damage]
+	return [turns, damage]
+
 func _apply_effect(params: Variant) -> void:
-	if params is Array:
-		if params.size() == 2:
-			turns = params[0]
-			damage = params[1]
-		else:
-			print_debug("Invalid number parameter for an 'electified' effect. Expected 2, found %d!" % params.size())
-	else:
-		print_debug("Invalid parameter for an 'electified' effect. Expected array, found %s!" % type_string(typeof(params)))
-	
+	read_params(params)
 	if turns <= 0:
 		queue_free()
 		return

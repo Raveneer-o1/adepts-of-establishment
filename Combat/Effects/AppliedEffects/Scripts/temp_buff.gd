@@ -95,7 +95,13 @@ func try_init_params(params: Variant) -> bool:
 	
 	return true
 
-func _get_full_data() -> Variant:
+func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
+	if other_effect: return {
+			&"parameter": other_effect._parameter,
+			&"turns": other_effect.turns,
+			&"strength": other_effect.strength,
+			&"multiplier": other_effect.multiplier,
+		}
 	return {
 		&"parameter": _parameter,
 		&"turns": turns,

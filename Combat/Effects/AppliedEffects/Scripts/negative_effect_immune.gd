@@ -2,7 +2,7 @@ extends AppliedEffect
 
 @export var message: String = "Immune to effects"
 
-func  check_trigger(e: AppliedEffect) -> void:
+func check_trigger(e: AppliedEffect) -> void:
 	if not e.negative_effect: return
 	if e.target_unit != target_unit: return
 	e.queue_free()

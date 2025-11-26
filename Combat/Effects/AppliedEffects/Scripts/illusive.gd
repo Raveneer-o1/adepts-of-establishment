@@ -60,7 +60,13 @@ func read_params(params: Variant) -> void:
 	other_stat_buff_strength = params.get("other_stat_buff_strength", 0)
 	other_stat_buff_multiplier = params.get("other_stat_buff_multiplier", 1.0)
 
-func _get_full_data() -> Variant:
+func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
+	if other_effect: return {
+			"evasion_buff" = other_effect.evasion_buff,
+			"other_stat_buff" = other_effect.other_stat_buff,
+			"other_stat_buff_strength" = other_effect.other_stat_buff_strength,
+			"other_stat_buff_multiplier" = other_effect.other_stat_buff_multiplier,
+		}
 	return {
 		"evasion_buff" = evasion_buff,
 		"other_stat_buff" = other_stat_buff,
