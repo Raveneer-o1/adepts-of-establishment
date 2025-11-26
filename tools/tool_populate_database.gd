@@ -2,6 +2,7 @@
 extends EditorScript
 
 func construct_attack_dict(a: UnitAttack) -> Dictionary:
+	print("constructing attack")
 	var res := {
 		"damage_multiplier" = a.damage_multiplier,
 		"damage_override" = a.damage_override,
@@ -12,7 +13,7 @@ func construct_attack_dict(a: UnitAttack) -> Dictionary:
 		"initiative" = a.initiative,
 		"evadable" = a.evadable,
 		"tags" = a.tags,
-		"target_validation" = a.target_validation.resource_path if a.target_validation else "",
+		"target_validation" = a.target_validation.resource_path,
 		"additional_targets" = a.additional_targets.resource_path if a.additional_targets else "",
 		"damage_policy" = a.damage_policy.resource_path if a.damage_policy else "",
 		"applying_effects" = a.applying_effects,
@@ -20,16 +21,25 @@ func construct_attack_dict(a: UnitAttack) -> Dictionary:
 	return res
 
 func construct_effect_dict(a: AppliedEffect) -> Dictionary:
+	print("constructing effect")
+	var dummy: AppliedEffect = a.get_script().new()
+	var data := dummy.get_full_data(a)  # what the actual f
+	
+	# This is pretty much exclusive to retaliation effect
+	if data["args"] is Array:
+		for entry: Variant in data["args"]:
+			if entry is UnitAttack:
+				entry = construct_attack_dict(entry)
+	
+	dummy.free()
 	return {
 		"effect" = a.effect_name,
-		# this does not work because we can't address non-static
-		# instance method from a tool script
-		"args" = a.get_full_data()
+		"args" = data
 	}
 
 func read_unit(u: Unit, full_path: String) -> void:
-	if dict.has(u.name):
-		push_error("Repeating unit name: " + u.name)
+	if dict.has(u.unit_name):
+		push_error("Repeating unit name: %s\n\tfile: %s" % [u.unit_name, full_path])
 		return
 	var attacks := []
 	var effects := []
@@ -61,9 +71,11 @@ func read_unit(u: Unit, full_path: String) -> void:
 		"shielding_chance" = base_paramaters.get_indexed("shielding_chance"),
 	}
 	
-	dict[u.name] = params
+	write_unit(u.unit_name, params)
+	dict[u.unit_name] = null
 
 func handle_file(s: String) -> void:
+	print("\nhandling file: %s\n--------------" % s)
 	EditorInterface.open_scene_from_path(s)
 	
 	var root := EditorInterface.get_edited_scene_root()
@@ -96,18 +108,31 @@ func scan_directory(p: String) -> void:
 		file_name = dir.get_next()
 		#break
 
-var dict: Dictionary
+func write_unit(name: String, params: Dictionary) -> void:
+	print("writing " + name)
+	var content := ("&\"%s\" : " % name) + str(params) + ","
+	content = content.replace("<null>", "null")
+	content = content.replace("}", "\n}")
+	content = content.replace("{", "{\n")
+	content = content.replace("]", "]\n")
+	file.store_string(content)
+	
 
+var dict: Dictionary
+var file : FileAccess
 # Called when the script is executed (using File -> Run in Script Editor).
 func _run() -> void:
-	scan_directory("res://Combat/Units/Derived units/")
-	#handle_file("res://Combat/Units/Derived units/Elemental.tscn")
-	
-	var file := FileAccess.open("res://Databases/unit_database.gd", FileAccess.WRITE)
+	file = FileAccess.open("res://Databases/unit_database.gd", FileAccess.WRITE)
 	if not file:
 		print("File not opened")
 		return
-	var content := "const database = " + str(dict)
-	content = content.replace("<null>", "null")
-	file.store_string(content)
+	file.store_line("const database = {")
+	scan_directory("res://Combat/Units/Derived units/")
+	#handle_file("res://Combat/Units/Derived units/Empire/e15 Elementalist.tscn")
+	
+	print("Storing end line")
+	file.store_line("\n# end of database\n}")
+	
+	print("Closing file")
 	file.close()
+	print("Done")
