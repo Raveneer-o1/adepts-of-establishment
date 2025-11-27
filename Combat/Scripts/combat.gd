@@ -266,7 +266,7 @@ func try_moving_unit(unit: Unit, pos: int) -> bool:
 	if unit.parameters.large_unit: return false
 	if pos < 0 or pos >= Party.MAX_UNITS_NUMBER: return false
 	var party: Party = unit.party
-	if party.units[pos]: return false
+	if party.unit_spots[pos].unit: return false
 	
 	var old_pos: int = unit.spot.party_position
 	unit.spot.release_unit()

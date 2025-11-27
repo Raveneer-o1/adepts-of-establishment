@@ -50,15 +50,18 @@ func reset_highlight() -> void:
 func assign_unit(u: Unit) -> void:
 	if not u: return
 	if unit != null:
-		push_error("Trying to assign unit on top of already existing one!")
+		push_error("Trying to assign unit (%s) to a spot that already has a unit (%s)!" % \
+			[u.unit_name, unit.unit_name])
 		return
 	unit = u
 	add_child(unit)
 	unit.spot = self
-	unit.party_position = party_position
-	party.units[party_position] = unit
+	#unit.party_position = party_position
+	#party.units[party_position] = unit
 	unit.activate()
 
+## Instantiates the provided [param loaded_unit] resource and assigns it to this spot. [br]
+## [param data] can be set to [code]null[/code] and will be ignored.
 func add_unit(loaded_unit: Resource, data: UnitData) -> Unit:
 	if unit != null:
 		push_error("Trying to add unit on top of already existing one!")

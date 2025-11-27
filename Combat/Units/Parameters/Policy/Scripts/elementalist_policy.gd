@@ -11,7 +11,7 @@ func _apply_policy(attack: Attack, finalize: bool) -> void:
 			if attack.attacker.parameters.other_effects.is_empty():
 				print_debug("No Elemental prefab found!")
 				return
-			var u := t.spot.add_unit(attack.attacker.parameters.other_effects[0])
+			var u := t.spot.add_unit(attack.attacker.parameters.other_effects[0], null)
 			if u: u.summoned_unit = true
 			continue
 		new_refs.append(t)

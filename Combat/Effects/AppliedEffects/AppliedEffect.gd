@@ -35,6 +35,13 @@ class_name AppliedEffect
 ## Color of the message shown when the effect is [b]lifted[/b]
 @export var color_end: Color = Color.WHITE
 
+## When [code]true[/code], this effect persists after combat and is saved with the unit data.
+## The effect will be serialized and stored in [member UnitData.effects].
+## Effects lifted during combat or silenced at combat end will [b]not[/b] be saved.
+## [br][br]
+## See also: [method make_persistent].
+var persistent: bool = false
+
 const ICONS := preload("res://Arts/icons.png")
 
 @export var effect_name: String = "Undefined"
@@ -156,10 +163,10 @@ func _remove_effect() -> void:
 ##     #effect.get_full_data(effect)
 ##
 ##     # Instead you can do this:
-##     # Creade "dummy" instance of the script
+##     # Create "dummy" instance of the script
 ##     var script_instance = effect.get_script().new()
 ##
-##     # Fetch data from the open scene with that scipt
+##     # Fetch data from the open scene with that instance
 ##     var full_data = script_instance.get_full_data(effect)
 ##
 ##     # Don't forget to free the dummy instance
@@ -168,10 +175,9 @@ func _remove_effect() -> void:
 ##     return full_data
 ## [/codeblock]
 ## [br][br]
-## [b]Implementation note:[/b]
-## The actual data collection is delegated to _get_full_data(), which must be overridden
-## in each AppliedEffect subclass. This separation ensures that each effect type defines
-## its own serialization format while maintaining a consistent interface.
+## [b]Implementation note:[/b][br]
+## The actual data collection is delegated to _get_full_data(), which should be overridden
+## in each AppliedEffect subclass.
 func get_full_data(other_effect: AppliedEffect = null) -> Dictionary:
 	if other_effect:
 		return {
@@ -222,7 +228,8 @@ var silenced: bool = false
 ## instead of turns. [br]
 ## Notes: [br]
 ## - The [kbd]SilencedEffects[/kbd] container must be a sibling of this effect node [br]
-## - If [member silencable] is [code]false[/code], this method does nothing and returns immediately
+## - If [member silencable] is [code]false[/code], this method does nothing
+## and returns immediately [br]
 ## - if [param time] is set to a negative value, [param is_round] is ignored
 func silence_effect(time: int = -1, is_round: bool = false) -> void:
 	if not silencable:
@@ -275,7 +282,9 @@ func restore_effect() -> void:
 
 func connect_callables() -> void:
 	for signal_in_pairs: Signal in _signal_function_pairs:
-		signal_in_pairs.connect(_signal_function_pairs[signal_in_pairs])
+		var c: Callable = _signal_function_pairs[signal_in_pairs]
+		if not signal_in_pairs.is_connected(c):
+			signal_in_pairs.connect(c)
 
 
 ## Called when this node is added to a unit. Automatically applies the effect.
@@ -287,13 +296,13 @@ func initialize(params: Variant = null) -> void:
 		return
 	
 	if not stackable:
-		# second agrument excluds this instance which is being added
+		# second agrument excludes this instance which is being added
 		if target_unit.parameters.have_effect(effect_name, self):
 			queue_free()
 			return
 	
 	else:
-		# second agrument excluds this instance which is being added
+		# second agrument excludes this instance which is being added
 		var effect_count: int = target_unit.parameters.count_effects(effect_name, self)
 		
 		# Remove this instance if stack limit reached
@@ -302,10 +311,22 @@ func initialize(params: Variant = null) -> void:
 			return
 	
 	_apply_effect(params)
+	if is_queued_for_deletion(): return
 	connect_callables()
+	
 	if icon_index >= 0:
 		var image: Image = ICONS.get_layer_data(icon_index)
 		if image == null:
 			print_debug("Icon not found!")
 			return
 		target_unit.display_effect_icon(image, self)
+
+
+## Marks the effect as persistent by setting [member persistent] to [code]true[/code]. [br]
+## If [param immediately] is [code]true[/code], adds the entry to [member UnitData.effects],
+## ensuring it persists after combat even if lifted or silenced during combat.
+func make_persistent(immediately: bool = false) -> void:
+	if immediately:
+		target_unit.add_persistent_effect(self)
+	# if persistent is set to true, it will be added again when combat ends
+	else: persistent = true

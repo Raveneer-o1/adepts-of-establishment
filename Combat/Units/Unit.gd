@@ -1,7 +1,6 @@
 class_name Unit
 extends Node2D
 
-
 ## Unit is central combat entity, they perform actions during combat.
 ##
 ## [Unit] objects are the main part of the battle.
@@ -101,7 +100,7 @@ var initialized: bool = false
 var displayed_icons: Dictionary[TextureRect, AppliedEffect]
 
 ## Position in the party. Even numbers represent fron line, odd numbers - back line.
-## Position is also index of this unit in the [member Party.units]
+## Position is also index of this unit in the [member Party.unit_spots] and [member Party.units]
 var party_position: int
 
 ## List of targets player or AI have chosen. This list is passed as an argument to a new [Attack]
@@ -151,11 +150,17 @@ var summoned_unit: bool = false
 
 var active: bool = false
 
+## Reference to the original [UnitData] object used to initialize this unit instance.
+## If this reference is lost, the unit cannot update health, experience,
+## and other persistent parameters after combat concludes.
+var original_data: UnitData = null
+
 #endregion
 
 #region API
 
 func _read_data(data: UnitData) -> void:
+	original_data = data
 	unit_name = data.personal_name if data.personal_name else unit_name
 	needed_xp = data.needed_xp
 	unit_type = data.unit_type
@@ -169,10 +174,8 @@ func initialize_variables(data: UnitData) -> bool:
 	if initialized:
 		return true
 	parameters = get_node("UnitParameters")
-	party = get_parent().get_parent() as Party
+	party = spot.get_parent() as Party
 	system = party.main_system
-	if party == null:
-		print_debug("Unable to find Party node!")
 	
 	if not parameters.initialize_variables(data):
 		return false
@@ -184,6 +187,10 @@ func initialize_variables(data: UnitData) -> bool:
 	EventBus.round_started.connect(arrange_attacks_and_set_next)
 	EventBus.attack_reached.connect(check_taking_damage)
 	
+	if parameters.dead:
+		spot.move_unit_to_graveyard()
+		animation_handle.pause()
+		visible = false
 	initialized = true
 	return true
 
@@ -707,7 +714,7 @@ func die() -> void:
 	animation_handle.play_death_animation()
 	sound_player.play_death_sound()
 	
-	party.units[party_position] = null
+	#party.units[party_position] = null
 	spot.move_unit_to_graveyard()
 	death_visualized = true
 
@@ -719,6 +726,16 @@ func update_visuals() -> void:
 	visual_bar.value = parameters.hp
 	parameter_snapshots.clear()
 	if parameters.dead: die()
+
+#region Global Interaction
+
+## Adds a new effect to the [member original_data] for persistence between battles. [br]
+## This method performs no validation - duplicate effects may be added without checks.
+func add_persistent_effect(effect: AppliedEffect) -> void:
+	if not original_data: return
+	original_data.add_effect(effect)
+
+#endregion
 
 #region Utilities
 

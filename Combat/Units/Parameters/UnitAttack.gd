@@ -159,3 +159,26 @@ func make_current() -> void:
 	if pos < 0: return
 	unit.attacks_for_this_round[pos] = prev_atk
 	unit.current_attack = self
+
+static func serialized(a: UnitAttack) -> Dictionary:
+	print("constructing attack")
+	var alternative_actions: Array[Dictionary] = []
+	for child: UnitAttack in a.get_children():
+		alternative_actions.append(UnitAttack.serialized(child))
+	var res := {
+		"damage_multiplier" = a.damage_multiplier,
+		"damage_override" = a.damage_override,
+		"is_heal" = a.is_heal,
+		"type" = a.type,
+		"accuracy" = a.accuracy,
+		"targets_needed" = a.targets_needed,
+		"initiative" = a.initiative,
+		"evadable" = a.evadable,
+		"tags" = a.tags,
+		"target_validation" = a.target_validation.resource_path,
+		"additional_targets" = a.additional_targets.resource_path if a.additional_targets else "",
+		"damage_policy" = a.damage_policy.resource_path if a.damage_policy else "",
+		"applying_effects" = a.applying_effects,
+		"alternative_actions" = alternative_actions,
+	}
+	return res

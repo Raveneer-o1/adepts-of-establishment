@@ -23,10 +23,17 @@ var other_party: Party
 var main_system: CombatSystem
 var player: PlayerAPI
 
-## Stores all units[br]
-## NOTE: this should be a read-only member, however it's planned to have an option
-## to move units during combat. For this reason this array stays modifiable
-var units: Array[Unit] = []
+var all_units: Array[Unit]
+
+## Retuns an array of all units. This includes [code]null[/code] values for vacant spots. [br]
+## [b]Note:[/b] this property does not return all units in the party, only mapping to
+## positions in the party. For the former, use [member all_units]
+var units: Array[Unit]:
+	get:
+		var res: Array[Unit] = []
+		for spot in unit_spots:
+			res.append(spot.unit)
+		return res
 
 var unit_spots: Array[UnitSpot] = []
 
@@ -46,9 +53,9 @@ func get_units_at_positions(positions: Array[int], include_nulls: bool = true) -
 			if include_nulls: result.append(null)
 			continue
 		
-		if not units[i]: continue
-		if units[i].parameters.dead: continue
-		if units[i] in result: continue
+		if not unit_spots[i].unit: continue
+		if unit_spots[i].unit.parameters.dead: continue
+		if unit_spots[i].unit in result: continue
 		
 		result.append(units[i])
 	
@@ -57,8 +64,8 @@ func get_units_at_positions(positions: Array[int], include_nulls: bool = true) -
 func get_adjacent_units(pos: int) -> Array[Unit]:
 	if pos < 0 or pos > MAX_UNITS_NUMBER:
 		return []
-	if units[pos] != null and units[pos].parameters.large_unit:
-		pos = units[pos].party_position
+	if unit_spots[pos].unit != null and unit_spots[pos].unit.parameters.large_unit:
+		pos = unit_spots[pos].unit.party_position
 		return get_units_at_positions([
 			pos + 3,
 			pos - 3,
@@ -72,11 +79,10 @@ func get_adjacent_units(pos: int) -> Array[Unit]:
 		pos - 2,
 	], false)
 
-
 ## Checks if the frontline is empty.
 func front_line_is_empty() -> bool:
 	for i in range(0, MAX_UNITS_NUMBER, 2):
-		if units[i] != null and not units[i].parameters.dead:
+		if unit_spots[i].unit != null and not unit_spots[i].unit.parameters.dead:
 			return false
 	return true
 
@@ -110,7 +116,6 @@ func place_units(list: Array[UnitData]) -> void:
 		push_error("Unit list exceeds the maximum allowed number of units!")
 		return
 	
-	#var i := -1
 	for unit_data: UnitData in list:
 		var i := unit_data.party_position
 		var path := unit_data.scene_path
@@ -118,23 +123,22 @@ func place_units(list: Array[UnitData]) -> void:
 		if not main_system.loaded_units.has(path):
 			push_error(unit_data.unit_name + " is not loaded!")
 			continue
-		if units[i] != null:
+		if unit_spots[i].unit != null:
 			push_error("Position %d is already occupied!" % i)
 			continue
 		var loaded_unit: Resource = main_system.loaded_units[path]
-		unit_spots[i].add_unit(loaded_unit, unit_data)
-		if units[i] == null:
+		var added_unit := unit_spots[i].add_unit(loaded_unit, unit_data)
+		if not added_unit:
 			push_error("Unit '%s' is not registered!" % unit_data.unit_name)
 			continue
+		all_units.append(added_unit)
 		
-		if units[i].parameters.large_unit:
+		if unit_spots[i].unit.parameters.large_unit:
 			if i == 0 or i == MAX_UNITS_NUMBER - 1 or units[i - 1] != null:
 				print_debug("Not enough space for large unit at position " + str(i) + "!")
-				units[i].free()
-				units[i] = null
+				unit_spots[i].unit.free()
+				unit_spots[i].unit = null
 				continue
-			units[i + 1] = units[i]
-			units[i - 1] = units[i]
 			unit_spots[i].position = get_large_unit_position(i)
 			unit_spots[i - 1].active = false
 			unit_spots[i + 1].active = false

@@ -189,11 +189,13 @@ func initialize_effects() -> void:
 func end_battle() -> void:
 	if not battle_in_progress:
 		return
-	#print("Orphans:")
-	#print_orphan_nodes()
 	print("The battle is over!")
 	main_system.win_label.visible = true
 	battle_in_progress = false
+	for unit in main_system.left_party.all_units + main_system.right_party.all_units:
+		if not unit: continue
+		if not unit.original_data: continue
+		unit.original_data.update_values(unit)
 	main_system.start_end_countdown()
 
 

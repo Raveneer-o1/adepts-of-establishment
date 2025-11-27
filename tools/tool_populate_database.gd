@@ -1,53 +1,12 @@
 @tool
 extends EditorScript
 
-func construct_attack_dict(a: UnitAttack) -> Dictionary:
-	print("constructing attack")
-	var alternative_actions: Array[Dictionary] = []
-	for child: UnitAttack in a.get_children():
-		alternative_actions.append(construct_attack_dict(child))
-	var res := {
-		"damage_multiplier" = a.damage_multiplier,
-		"damage_override" = a.damage_override,
-		"is_heal" = a.is_heal,
-		"type" = a.type,
-		"accuracy" = a.accuracy,
-		"targets_needed" = a.targets_needed,
-		"initiative" = a.initiative,
-		"evadable" = a.evadable,
-		"tags" = a.tags,
-		"target_validation" = a.target_validation.resource_path,
-		"additional_targets" = a.additional_targets.resource_path if a.additional_targets else "",
-		"damage_policy" = a.damage_policy.resource_path if a.damage_policy else "",
-		"applying_effects" = a.applying_effects,
-		"alternative_actions" = alternative_actions,
-	}
-	return res
-
-func _filter_container(c: Variant) -> void:
-	if c is Array:
-		for entry: Variant in c:
-			if entry is UnitAttack:
-				entry = construct_attack_dict(entry)
-				continue
-			if entry is Object:
-				# references are not allowed in the serialized data
-				entry = null
-	if c is Dictionary:
-		for key: Variant in c:
-			if c[key] is UnitAttack:
-				c[key] = construct_attack_dict(c[key])
-				continue
-			if c[key] is Object:
-				# references are not allowed in the serialized data
-				c[key] = null
-
 func construct_effect_dict(a: AppliedEffect) -> Dictionary:
 	print("constructing effect")
 	var dummy: AppliedEffect = a.get_script().new()
 	var data := dummy.get_full_data(a)  # what the actual f
 	
-	_filter_container(data["args"])
+	UnitData.filter_data(data["args"])
 	
 	dummy.free()
 	return data
@@ -61,14 +20,12 @@ func read_unit(u: Unit, full_path: String) -> void:
 	var unit_parameters: UnitParameters = u.find_child("UnitParameters")
 	for c in unit_parameters.get_children():
 		if c is UnitAttack:
-			attacks.append(construct_attack_dict(c))
+			attacks.append(UnitAttack.serialized(c))
 		elif c is AppliedEffect:
 			effects.append(construct_effect_dict(c))
 	
 	
 	var base_paramaters := unit_parameters.base_paramaters
-	#print(base_paramaters.get_indexed("evasion"))
-	#return
 	var params := {
 		"scene_path" = full_path,
 		"level" = unit_parameters.level,
@@ -135,6 +92,7 @@ func write_unit(name: String, params: Dictionary) -> void:
 
 var dict: Dictionary
 var file : FileAccess
+
 # Called when the script is executed (using File -> Run in Script Editor).
 func _run() -> void:
 	file = FileAccess.open("res://Databases/unit_database.gd", FileAccess.WRITE)

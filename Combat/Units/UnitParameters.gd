@@ -356,6 +356,9 @@ func _read_data(data: UnitData) -> void:
 	
 	_init_effects(data.effects)
 	_init_attacks(data.attack_data)
+	
+	hp = hp  # you don't say
+	# thi is needed because hp updates "dead" flag and triggers death
 
 func initialize_variables(data: UnitData) -> bool:
 	parent_unit = get_parent()
@@ -364,7 +367,7 @@ func initialize_variables(data: UnitData) -> bool:
 	
 	check_parameters()
 	
-	hp = max_hp
+	#hp = max_hp
 	parent_unit.update_visuals()
 	
 	return initializtion_successful

@@ -63,6 +63,9 @@ var faction: GlobalDefs.Faction:
 var unit_type: GlobalDefs.UnitType:
 	get: return database_dict.get(&"unit_type", GlobalDefs.UnitType.Undefined)
 
+var is_dead: bool:
+	get: return current_hp <= 0
+
 ## Returns the file path to the unit scene resource.
 ## This path must be added to either [member EventBus.left_units] or
 ## [member EventBus.right_units] to instantiate the unit when battle begins.
@@ -89,8 +92,7 @@ func get_scene_path() -> String:
 
 func _initialize_effect_data() -> void:
 	effects.clear()
-	#var effects_array: Array[Dictionary] = database_dict.get(&"effects", [])
-	for e:Dictionary in database_dict.get(&"effects", []):
+	for e: Dictionary in database_dict.get(&"effects", []):
 		effects.append(e)
 
 func _initialize_attack_data() -> void:
@@ -116,7 +118,7 @@ func _initialize_attack_data() -> void:
 		data.applying_effects.assign(a.get(&"applying_effects", {}))
 		attack_data.append(data)
 
-## Initializes unit data with database defaults. [br]
+## Initializes unit data with database defaults. [br][br]
 ## [color=red]Warning:[/color] This method discards all custom unit modifications,
 ## resets experience to 0, and reloads all defined attacks and effects.
 ## Should only be called when spawning a new unit into the world.
@@ -125,24 +127,69 @@ func initialize(personal: String = "") -> void:
 		push_error("unit name '%s' does not exist in the database" % unit_name)
 		return
 	
-	level = database_dict.get(&"level", 0)
-	needed_xp = database_dict.get(&"needed_xp", -1)
-	large_unit = database_dict.get(&"large_unit", false)
-	immunities.assign(database_dict.get(&"immunities", []))
-	
 	base_damage = database_dict.get(&"base_damage", 0)
 	max_hp = database_dict.get(&"max_hp", 1)
 	armor = database_dict.get(&"armor", 0)
 	evasion = database_dict.get(&"evasion", 0.0)
 	shielding_chance = database_dict.get(&"shielding_chance", 0.0)
 	
-	scene_path = get_scene_path()
+	level = database_dict.get(&"level", 0)
+	needed_xp = database_dict.get(&"needed_xp", -1)
+	large_unit = database_dict.get(&"large_unit", false)
+	immunities.assign(database_dict.get(&"immunities", []))
+	personal_name = personal
+	current_hp = max_hp
+	
+	scene_path = database_scene_path
 	
 	_initialize_attack_data()
 	_initialize_effect_data()
 	
 	current_xp = 0
 
+## This method performs no validation - duplicate effects may be added without checks.
+func add_effect(effect: AppliedEffect) -> void:
+	if not effect: return
+	var full_data := effect.get_full_data()
+	UnitData.filter_data(full_data)
+	effects.append(full_data)
+
+func update_values(u: Unit) -> void:
+	if not u: return
+	current_hp = u.parameters.hp
+	for e: AppliedEffect in u.parameters.get_all_effects():
+		if e.persistent: add_effect(e)
+
 # WARNING: this is testing implementation, initialization here will be removed
 func  _ready() -> void:
 	initialize()
+
+## Recursively processes all Arrays and Dictionaries within [param data]: [br]
+## - Serializes [UnitAttack] references into Dictionaries [br]
+## - Replaces all other [Object] references with [code]null[/code] [br][br]
+## [b]Note:[/b] Dictionary entries with [Object] keys are completely removed.
+static func filter_data(data: Variant) -> void:
+	if data is Array:
+		for entry: Variant in data:
+			if entry is UnitAttack:
+				entry = UnitAttack.serialized(entry)
+				continue
+			if entry is Object:
+				entry = null
+				continue
+			filter_data(data)
+	if data is Dictionary:
+		var keys_for_removal := []
+		for key: Variant in data:
+			if key is Object:
+				keys_for_removal.append(key)
+				continue
+			if data[key] is UnitAttack:
+				data[key] = UnitAttack.serialized(data[key])
+				continue
+			if data[key] is Object:
+				data[key] = null
+				continue
+			filter_data(data)
+		for key: Variant in keys_for_removal:
+			data.erase(key)
