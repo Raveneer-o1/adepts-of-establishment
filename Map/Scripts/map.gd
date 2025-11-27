@@ -32,23 +32,11 @@ func get_controller(type: GlobalDefs.ControllerType) -> String:
 	push_error("Unknown Controller type!")
 	return ""
 
-func _clear_eventbus() -> void:
-	for u in EventBus.left_units + EventBus.right_units:
-		if u: u.free()
-	EventBus.left_units = []
-	EventBus.right_units = []
-	#if EventBus.left_controller:
-		#EventBus.left_controller.free()
-		#EventBus.left_controller = null
-	#if EventBus.right_controller:
-		#EventBus.right_controller.free()
-		#EventBus.right_controller = null
 
 ## Initiates a battle between two parties. [br]
 ## [param attacker]: The party initiating the combat encounter[br]
 ## [param defender]: The party being attacked
 func start_battle(attacker: MapParty, defender: MapParty) -> void:
-	_clear_eventbus()
 	EventBus.left_units = attacker.units
 	EventBus.right_units = defender.units
 	EventBus.left_controller = load(get_controller(attacker.faction.controller))
