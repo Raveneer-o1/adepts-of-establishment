@@ -24,16 +24,30 @@ func construct_attack_dict(a: UnitAttack) -> Dictionary:
 	}
 	return res
 
+func _filter_container(c: Variant) -> void:
+	if c is Array:
+		for entry: Variant in c:
+			if entry is UnitAttack:
+				entry = construct_attack_dict(entry)
+				continue
+			if entry is Object:
+				# references are not allowed in the serialized data
+				entry = null
+	if c is Dictionary:
+		for key: Variant in c:
+			if c[key] is UnitAttack:
+				c[key] = construct_attack_dict(c[key])
+				continue
+			if c[key] is Object:
+				# references are not allowed in the serialized data
+				c[key] = null
+
 func construct_effect_dict(a: AppliedEffect) -> Dictionary:
 	print("constructing effect")
 	var dummy: AppliedEffect = a.get_script().new()
 	var data := dummy.get_full_data(a)  # what the actual f
 	
-	# This is pretty much exclusive to retaliation effect
-	if data["args"] is Array:
-		for entry: Variant in data["args"]:
-			if entry is UnitAttack:
-				entry = construct_attack_dict(entry)
+	_filter_container(data["args"])
 	
 	dummy.free()
 	return data
@@ -108,7 +122,6 @@ func scan_directory(p: String) -> void:
 			handle_file(dir.get_current_dir() + "/" + file_name)
 		
 		file_name = dir.get_next()
-		#break
 
 func write_unit(name: String, params: Dictionary) -> void:
 	print("writing " + name)

@@ -44,3 +44,48 @@ extends Resource
 @export var applying_effects : Dictionary[String, Variant]
 
 @export var alternative_actions: Array[UnitAttackData]
+
+## Creates a new [UnitAttackData] instance with parameters from the provided dictionary.
+## Missing entries use default values. [br][br]
+##
+## Supported dictionary fields with defaults:
+## [codeblock]
+## {
+##     "damage_multiplier" = 1.0,
+##     "damage_override" = false,
+##     "is_heal" = false,
+##     "type" = GlobalDefs.AttackType.Physical,
+##     "accuracy" = 0.95,
+##     "targets_needed" = 1,
+##     "initiative" = 0,
+##     "evadable" = true,
+##     "tags" = [],  # Array[StringName]
+##     "target_validation" = "",  # Required field for all attacks
+##     "additional_targets" = "",
+##     "damage_policy" = "",
+##     "applying_effects" = {},
+##     "alternative_actions" = [],  # Array[UnitAttackData] or Array[Dictionary]
+##     # Dictionaries in alternative_actions are recursively converted to UnitAttackData
+## }
+## [/codeblock]
+static func from_dict(dict: Dictionary) -> UnitAttackData:
+	var res := UnitAttackData.new()
+	res.damage_multiplier = dict.get("damage_multiplier", 1.0)
+	res.damage_override = dict.get("damage_override", false)
+	res.is_heal = dict.get("is_heal", false)
+	res.type = dict.get("type", GlobalDefs.AttackType.Physical)
+	res.accuracy = dict.get("accuracy", 0.95)
+	res.targets_needed = dict.get("targets_needed", 1)
+	res.initiative = dict.get("initiative", 0)
+	res.evadable = dict.get("evadable", true)
+	res.tags = dict.get("tags", [])
+	res.target_validation = dict.get("target_validation", "")
+	res.additional_targets = dict.get("additional_targets", "")
+	res.damage_policy = dict.get("damage_policy", "")
+	res.applying_effects = dict.get("applying_effects", {})
+	var alt_actions: Array = dict.get("alternative_actions", [])
+	for a: Variant in alt_actions:
+		if a is Dictionary:
+			a = UnitAttackData.from_dict(a)
+	res.alternative_actions = alt_actions
+	return res
