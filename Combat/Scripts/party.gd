@@ -133,6 +133,7 @@ func place_units(list: Array[UnitData]) -> void:
 			continue
 		all_units.append(added_unit)
 		
+		if not unit_spots[i].unit: continue
 		if unit_spots[i].unit.parameters.large_unit:
 			if i == 0 or i == MAX_UNITS_NUMBER - 1 or units[i - 1] != null:
 				print_debug("Not enough space for large unit at position " + str(i) + "!")

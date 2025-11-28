@@ -86,10 +86,13 @@ func get_neighbors(coords: Vector2i) -> Array[Vector2i]:
 func set_active_party(party: MapParty) -> void:
 	active_party = party
 
-## Finds a path between two points
-func find_path(start: Vector2i, end: Vector2i, travel_data: TravelData) -> Array[Vector2i]:
+## Finds a path between two points. [br]
+## If [param party] is not provided, uses [member active_party].
+func find_path(start: Vector2i, end: Vector2i, party: MapParty = null) -> Array[Vector2i]:
+	if not party: party = active_party
+	if not active_party: return []
 	#TODO: construct TravelData object from Party provided
-	return path_finder.A_star(start, end, travel_data)
+	return path_finder.A_star(start, end, TravelData.new())
 
 ## Returns all interactable objects on a specific tile
 func get_objects_on_tile(coords: Vector2i) -> Array[MapInteractableObject]:
@@ -110,6 +113,15 @@ func _ready() -> void:
 	map_party_2.map = self
 	map_party_2.walk_to(Vector2i(26, 10))
 
+func _can_move(party: MapParty, objects: Array[MapInteractableObject]) -> bool:
+	if not party: return false
+	if not objects: return true
+	for o in objects:
+		if not o.passable(party): return false
+		#if o.request_interaction(party): continue
+		#return false
+	return true
+
 func _handle_mouse_hovering() -> void:
 	if not active_party: return
 	if active_party._is_moving: return
@@ -122,13 +134,27 @@ func _handle_mouse_hovering() -> void:
 	if not tile_data: 
 		return
 	
+	var objects := get_objects_on_tile(mouse_coords)
+	if not _can_move(active_party, objects): return
+	
+	var interaction := false
+	for o in objects:
+		if o.request_interaction(active_party): interaction = true; break
+	
 	var path := find_path(
 		active_party.tile_position,
-		mouse_coords,
-		TravelData.new()
+		mouse_coords
 	)
+	
+	# TODO: replace this abomination with normal O(n)
+	if not interaction:
+		for tile in path:
+			for o in get_objects_on_tile(tile):
+				if o.request_interaction(active_party): interaction = true; break
+			if interaction: break
+	
 	_last_target_tile = mouse_coords
-	_highlight_tiles(path)
+	_highlight_tiles(path, interaction)
 	get_viewport().set_input_as_handled()
 
 func _party_click(party: MapParty) -> void:
@@ -139,14 +165,13 @@ func _party_click(party: MapParty) -> void:
 	if party.request_interaction(active_party):
 		var path := find_path(
 			active_party.tile_position,
-			party.tile_position,
-			TravelData.new()
+			party.tile_position
 		)
 		await active_party.walk_along_path(path)
+		_reset_highlights()
 		party.interact(active_party)
 
 func _process_click() -> void:
-	#print("click")
 	var tile := terrain_layer.local_to_map(get_local_mouse_position())
 	var objs := get_objects_on_tile(tile)
 	var target_party: MapParty = null
@@ -162,6 +187,7 @@ func _process_click() -> void:
 		if tile not in _highlighted_tiles: return
 		get_viewport().set_input_as_handled()
 		await active_party.walk_along_path(_highlighted_tiles)
+		_reset_highlights()
 
 func _handle_mouse_input(event: InputEventMouseButton) -> void:
 	match event.button_index:
@@ -215,15 +241,18 @@ const _ALTERNATIVE_COLOR: Dictionary[StringName, Vector2i] = {
 	#"blue" = Vector2i(2, 0),
 	"yellow" = Vector2i(1, 0),
 }
-
 const _TILE_HIGHLIGHT_ATLAS_ID = 2
+const _INTERACTION_ALTLAS_COORDS = Vector2i(2, 0)
 
-func _highlight_tiles(tiles: Array[Vector2i]) -> void:
+func _highlight_tiles(tiles: Array[Vector2i], interation: bool = false) -> void:
 	for t in tiles:
-		var data := terrain_layer.get_cell_tile_data(t)
 		var atlas_coords := Vector2i(0, 0)
-		if data:
-			var color_name: StringName = data.get_custom_data("color_identifier")
-			atlas_coords = _ALTERNATIVE_COLOR.get(color_name, atlas_coords)
+		if interation:
+			atlas_coords = _INTERACTION_ALTLAS_COORDS
+		else:
+			var data := terrain_layer.get_cell_tile_data(t)
+			if data:
+				var color_name: StringName = data.get_custom_data("color_identifier")
+				atlas_coords = _ALTERNATIVE_COLOR.get(color_name, atlas_coords)
 		highlight_layer.set_cell(t, _TILE_HIGHLIGHT_ATLAS_ID, atlas_coords)
 	_highlighted_tiles.append_array(tiles)

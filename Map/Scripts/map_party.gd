@@ -15,6 +15,29 @@ var units: Array[UnitData]:
 				res.append(ch)
 		return res
 
+#region Abstract Definitions
+
+func interact(party: MapParty) -> void:
+	if party.faction != faction:
+		map.start_battle(party, self)
+
+func request_interaction(party: MapParty) -> bool:
+	if not party: return false
+	if not faction or not party.faction: return false
+	return party.faction != faction
+
+func passable(party: MapParty) -> bool:
+	return true
+#@abstract func click_response(active_faction: MapFaction) -> void
+
+func request_player_interaction(player: MapFaction) -> bool:
+	return false
+
+func player_interact(player: MapFaction) -> void:
+	pass
+
+#endregion
+
 func get_battle_ready_units() -> Array[UnitData]:
 	var res: Array[UnitData] = []
 	for ch in get_children():
@@ -43,16 +66,6 @@ var cancel_movement: bool = false
 func click_response(active_faction: MapFaction) -> void:
 	if active_faction == faction:
 		map.set_active_party(self)
-
-func interact(party: MapParty) -> void:
-	if party.faction != faction:
-		map.start_battle(party, self)
-
-func request_interaction(party: MapParty) -> bool:
-	if not party: return false
-	if not faction or not party.faction: return false
-	return party.faction != faction
-
 
 ## Flips the sprite to face the specified [param target] tile. [br]
 ## This method assumes axial coordinates (Godot's [b]Stairs[/b] or
