@@ -3,21 +3,44 @@ extends Node2D
 
 ## Map node. Handles map related actions.
 ##
+## [br][br][br]
+##
+## The map consists of three primary components: [b]terrain layer[/b],
+## [b]object layer[/b], and [b]interactive objects[/b].[br][br]
+##
+## [member terrain_layer] serves as the foundational map layer,
+## providing essential terrain data including: [br]
+## - Terrain types (land, water, mountains, etc.) [br]
+## - Movement costs and traversability [br]
+## - Tile ownership and claim status [br] [br]
+## This layer acts as the spatial reference for all map systems.[br][br]
+##
+## [member objects_layer] contains static, non-movable objects represented as tiles: [br]
+## - Cities, merchant outposts, training facilities [br]
+## - Each tile accommodates only one object [br]
+## All objects on this layer are tiles and thus it's not possible
+## to have two objects on the same tile. [br][br]
+##
+## [b]Interactive objects[/b] are [MapInteractableObject] nodes that offer dynamic
+## map interactions: movement
+## [br]
+## [br]
+## [center]--------------------------------------------------------[/center]
+## [br]
+## [i]
 ## The game uses axial coordinates for hex grid implementation (see tutorial below).
 ## While theoretically compatible with other grid types, only axial coordinates
 ## have been tested. [br][br]
+## @tutorial(Hexagonal Grids): https://www.redblobgames.com/grids/hexagons/
 ##
 ## To maintain flexibility for potential future grid systems, all methods with
 ## axial coordinate dependencies are explicitly documented. Switching to an
 ## alternative grid implementation would require reimplementing only these
 ## specific functions rather than the entire map system. [br][br]
 ##
-## Current implementation assumes [i]Stairs[/i] or [i]Diamond[/i] layout
-## configurations in Godot's [TileMapLayer]. [br][br]
-##
-## The map is split into three main parts: terrain layer, object layer and objects.
-## 
-## @tutorial(Hexagonal Grids): https://www.redblobgames.com/grids/hexagons/
+## Current implementation assumes [u]Stairs[/u] or [u]Diamond[/u] layout
+## configurations in Godot's [TileMapLayer].
+## [/i]
 
 ## This layer should contain [code]traverse_cost[/code] custom
 ## data layer with [b]int[/b] type (value of -1 means the tile is not traversable)
@@ -98,7 +121,7 @@ func get_global_coords(tile_coord: Vector2i) -> Vector2:
 
 
 ## Returns the distance between two hex positions in axial coordinates. [br]
-## Note: This function assumes axial coordinate system
+## [b]Note:[/b] This function assumes axial coordinate system
 ## (Godot's [i]Stairs[/i] or [i]Diamond[/i] layouts)
 ## and will not produce correct results with offset coordinates
 ## (Godot's [i]Stacked[/i] layouts)
