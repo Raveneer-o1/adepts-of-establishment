@@ -90,6 +90,7 @@ func walk_to(
 	EventBus.party_move_started.emit(self, destination)
 	if cancel_movement:
 		cancel_movement = false
+		_is_moving = false
 		return
 	face_tile(destination)
 	tile_position = destination
@@ -101,6 +102,7 @@ func walk_to(
 		_smooth_movement = false
 		animation_handle.play_default()
 	else: _jump_to(destination)
+	_is_moving = false
 	# safeguard against misaligned position
 	global_position = _moving_to
 
@@ -116,6 +118,7 @@ func walk_along_path(
 		EventBus.party_move_started.emit(self, destination)
 		if cancel_movement:
 			cancel_movement = false
+			_is_moving = false
 			return
 		face_tile(destination)
 		animation_handle.play_walk()
@@ -125,8 +128,22 @@ func walk_along_path(
 			await _moving_finished
 		else: _jump_to(destination)
 		animation_handle.play_default()
+	_is_moving = false
+	
 	# safeguard against misaligned position
 	global_position = _moving_to
+
+## Equivalent to setting [member cancel_movement] to [code]true[/code].[br]
+## Stops the party's movement after completing the current step.[br]
+## [br]
+## 
+## [b]Note:[/b]  this only affects multi-tile movements initiated with
+## [method walk_along_path].
+## Single-step movements started with [method walk_to] are unaffected.[br]
+## [i]Exception: During [signal EventBus.party_move_started] processing, movement can be
+## canceled entirely since the signal fires before movement begins.[/i]
+func abort_moving() -> void:
+	cancel_movement = true
 
 func _process(delta: float) -> void:
 	if _is_moving: _process_movement(delta)
@@ -152,13 +169,15 @@ signal _moving_finished
 
 var _smooth_movement: bool = false
 var _is_moving: bool = false
+var is_moving: bool:
+	get: return _is_moving
 var _moving_to: Vector2
 var _moving_velocity: Vector2
 var _time_to_reach: float = 1.0 / MAP_SPEED
 var _time_passed: float = 0.0
 
 func _finish_moving_animation() -> void:
-	_is_moving = false
+	#_is_moving = false
 	animation_handle.play_default()
 	_moving_finished.emit()
 

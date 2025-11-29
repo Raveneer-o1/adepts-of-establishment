@@ -190,14 +190,20 @@ func _ready() -> void:
 	map_party_2.map = self
 	map_party_2.walk_to(Vector2i(26, 10))
 
+func _move_active_party(coords: Vector2i) -> void:
+	if active_party.is_moving:
+		active_party.abort_moving()
+		return
+	await active_party.walk_along_path(event_handler.get_highlighted_tiles())
+	event_handler._reset_highlights()
+
 ## Determines interaction for the active party at the specified [param coordinates]
 ## and calls performs that action
 func request_active_party_interaction(coordinates: Vector2i) -> void:
 	if not active_party: return
 	var obj := get_first_interactable_object(coordinates)
 	if not obj:
-		await active_party.walk_along_path(event_handler.get_highlighted_tiles())
-		event_handler._reset_highlights()
+		_move_active_party(coordinates)
 		return
 	await active_party.walk_along_path(event_handler.get_highlighted_tiles())
 	event_handler._reset_highlights()
@@ -210,16 +216,14 @@ func request_player_interaction(coords: Vector2i) -> void:
 		set_active_party(obj)
 		return
 
-# Checks if a party can move given the objects in its path
-# [param party]: The party attempting to move
-# [param objects]: Array of objects at the destination tile
-# [return]: true if the party can move, false otherwise
-#func can_move(party: MapParty, objects: Array[MapInteractableObject]) -> bool:
-	#if not party: return false
-	#if party._is_moving: return false
-	#if not objects: return true
-	#for o in objects:
-		#if not o.passable(party): return false
+## Checks if a party can move to the given [param tile]
+func can_move(party: MapParty, tile: Vector2i) -> bool:
+	if not party: return false
+	if party._is_moving: return false
+	var objects := get_objects_on_tile(tile)
+	if not objects: return true
+	for o in objects:
+		if not o.passable(party): return false
 		#if o.request_interaction(party): continue
 		#return false
-	#return true
+	return true

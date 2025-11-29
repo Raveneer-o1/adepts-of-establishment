@@ -35,8 +35,7 @@ func _handle_mouse_hovering() -> void:
 	var mouse_coords := terrain_layer.local_to_map(terrain_layer.get_local_mouse_position())
 	if _last_target_tile == mouse_coords: return
 		
-	var objects := map.get_objects_on_tile(mouse_coords)
-	if not map.can_move(map.active_party, objects): return
+	if not map.can_move(map.active_party, mouse_coords): return
 	
 	_reset_highlights()
 	
@@ -44,8 +43,9 @@ func _handle_mouse_hovering() -> void:
 	if not tile_data: 
 		return
 	
+	#var objects := map.get_objects_on_tile(mouse_coords)
 	var interaction := false
-	for o in objects:
+	for o in map.get_objects_on_tile(mouse_coords):
 		if o.request_interaction(map.active_party): interaction = true; break
 	
 	var path := map.find_path(
