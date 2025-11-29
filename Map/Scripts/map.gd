@@ -47,6 +47,13 @@ var min_tile := Vector2i.ZERO
 ## Maximum tile coordinate of the map bounds  
 var max_tile := Vector2i.ZERO
 
+## Mapping between tile coordinates and objects on the map
+## Should be:
+## [codeblock]
+## Dictionary[ Vector2i, Array[MapInteractableObject] ]
+## [/codeblock]
+## But nested typed collections are not supported in Godot
+var tile_to_object: Dictionary[Vector2i, Array] = {}
 
 ## Returns the file path to the controller scene based on controller type
 func get_controller(type: GlobalDefs.ControllerType) -> String:
@@ -125,31 +132,33 @@ func find_path(start: Vector2i, end: Vector2i, party: MapParty = null) -> Array[
 	#TODO: construct TravelData object from Party provided
 	return path_finder.A_star(start, end, TravelData.new())
 
-
 ## Returns all interactable objects on a specific tile
 func get_objects_on_tile(coords: Vector2i) -> Array[MapInteractableObject]:
 	var res: Array[MapInteractableObject] = []
-	# TODO: introduce two dictionaries to map objects to coordinates
-	for c in $Parties.get_children():
-		if c is MapParty:
-			if c.tile_position == coords:
-				res.append(c)
+	res.assign(tile_to_object.get(coords, []))
 	return res
 
-
-## Returns the first object on a specific tile that the provided [param party]
-## can interact with
+## Returns the first object on a specific tile that the
+## provided [param party] can interact with.
+## If no party is providedm uses [member active_party] [br][br]
+## [i]See also: [method get_interactable_object_no_filter] [/i]
 func get_first_interactable_object(
 	coords: Vector2i,
 	party: MapParty = null
 ) -> MapInteractableObject:
 	if not party: party = active_party
-	# TODO: introduce two dictionaries to map objects to coordinates
-	for c in $Parties.get_children():
-		if c is MapParty:
-			if c.tile_position == coords:
-				return c
+	var objects := get_objects_on_tile(coords)
+	for o in objects:
+		if o.request_interaction(party): return o
 	return null
+
+## Returns the first object on a specific tile.[br][br]
+## [i]See also: [method get_first_interactable_object] [/i]
+func get_interactable_object_no_filter(
+	coords: Vector2i
+) -> MapInteractableObject:
+	var objects := get_objects_on_tile(coords)
+	return objects[0] if objects else null
 
 
 ## Returns the bounding coordinates of the circumscribed rectangle containing the entire map.
@@ -211,7 +220,7 @@ func request_active_party_interaction(coordinates: Vector2i) -> void:
 
 ## Handles player interaction when no active party is selected
 func request_player_interaction(coords: Vector2i) -> void:
-	var obj := get_first_interactable_object(coords)
+	var obj := get_interactable_object_no_filter(coords)
 	if obj is MapParty:
 		set_active_party(obj)
 		return
@@ -219,7 +228,7 @@ func request_player_interaction(coords: Vector2i) -> void:
 ## Checks if a party can move to the given [param tile]
 func can_move(party: MapParty, tile: Vector2i) -> bool:
 	if not party: return false
-	if party._is_moving: return false
+	if party.is_moving: return false
 	var objects := get_objects_on_tile(tile)
 	if not objects: return true
 	for o in objects:

@@ -53,12 +53,11 @@ func _handle_mouse_hovering() -> void:
 		mouse_coords
 	)
 	
-	# TODO: replace this abomination with normal O(n)
 	if not interaction:
 		for tile in path:
-			for o in map.get_objects_on_tile(tile):
-				if o.request_interaction(map.active_party): interaction = true; break
-			if interaction: break
+			if map.get_first_interactable_object(tile):
+				interaction = true
+				break
 	
 	_last_target_tile = mouse_coords
 	_highlight_tiles(path, interaction)
