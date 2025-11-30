@@ -74,7 +74,7 @@ func _is_passable(tile: Vector2i, travel_data: TravelData) -> bool:
 	if not data: return false
 	if data.get_custom_data("traverse_cost") < 0: return false
 	for obj in map.get_objects_on_tile(tile):
-		if not obj.passable(null): return false
+		if not obj.passable(travel_data): return false
 	return true
 
 func _are_tiles_valid(start: Vector2i, end: Vector2i, travel_data: TravelData) -> bool:

@@ -1,13 +1,13 @@
 class_name MapCity
 extends MapInteractableObject
 
-func interact(party: MapParty = null) -> void:
+func interact(party: MapParty) -> void:
 	return
 
-func request_interaction(party: MapParty = null) -> bool:
+func request_interaction(party: MapParty) -> bool:
 	return false
 
-func passable(party: MapParty = null) -> bool:
+func passable(party: Variant) -> bool:
 	return false
 
 func request_player_interaction(faction: MapFaction) -> bool:
