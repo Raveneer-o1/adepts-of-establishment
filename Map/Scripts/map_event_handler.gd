@@ -34,10 +34,11 @@ const _INTERACTION_ATLAS_COORDS = Vector2i(2, 0)
 func _handle_mouse_hovering() -> void:
 	var mouse_coords := terrain_layer.local_to_map(terrain_layer.get_local_mouse_position())
 	if _last_target_tile == mouse_coords: return
-		
-	if not map.can_move(map.active_party, mouse_coords): return
 	
-	_reset_highlights()
+	if map.active_party and not map.active_party.is_moving:
+		_reset_highlights()
+	
+	if not map.can_move(map.active_party, mouse_coords): return
 	
 	var tile_data := terrain_layer.get_cell_tile_data(mouse_coords)
 	if not tile_data: 

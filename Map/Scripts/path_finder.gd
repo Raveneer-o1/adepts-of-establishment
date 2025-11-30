@@ -69,20 +69,16 @@ func A_star(start: Vector2i, end: Vector2i, travel_data: TravelData) -> Array[Ve
 	
 	return _reconstruct_path(closed_set[end], start)
 
-func _are_tiles_valid(start: Vector2i, end: Vector2i, travel_data: TravelData) -> bool:
-	var start_tile := terrain_layer.get_cell_tile_data(start)
-	var end_tile := terrain_layer.get_cell_tile_data(end)
-	
-	if not start_tile or not end_tile:
-		return false
-	
-	var start_cost: int = start_tile.get_custom_data("traverse_cost")
-	var end_cost: int = end_tile.get_custom_data("traverse_cost")
-	
-	if start_cost < 0 or end_cost < 0:
-		return false
-	
+func _is_passable(tile: Vector2i, travel_data: TravelData) -> bool:
+	var data := terrain_layer.get_cell_tile_data(tile)
+	if not data: return false
+	if data.get_custom_data("traverse_cost") < 0: return false
+	for obj in map.get_objects_on_tile(tile):
+		if not obj.passable(null): return false
 	return true
+
+func _are_tiles_valid(start: Vector2i, end: Vector2i, travel_data: TravelData) -> bool:
+	return _is_passable(start, travel_data) and _is_passable(end, travel_data)
 
 func _evaluate_repeating_neighbor(
 	neighbor_coords: Vector2i,
@@ -117,13 +113,7 @@ func _evaluate_neighbors(
 			if neighbor_coords in open_set:
 				continue
 			
-			var neighbor_data := terrain_layer.\
-				get_cell_tile_data(neighbor_coords)
-			if not neighbor_data: continue
-			var neighbor_cost: int = neighbor_data.\
-				get_custom_data("traverse_cost")
-			if neighbor_cost < 0:
-				continue
+			if not _is_passable(neighbor_coords, travel_data): continue
 			
 			open_set[neighbor_coords] = \
 				PathNode.new(neighbor_coords, terrain_layer, current_node)

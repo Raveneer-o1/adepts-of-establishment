@@ -16,16 +16,16 @@ var units: Array[UnitData]:
 
 #region Abstract Definitions
 
-func interact(party: MapParty) -> void:
+func interact(party: MapParty = null) -> void:
 	if party.faction != faction:
 		map.start_battle(party, self)
 
-func request_interaction(party: MapParty) -> bool:
+func request_interaction(party: MapParty = null) -> bool:
 	if not party: return false
 	if not faction or not party.faction: return false
 	return party.faction != faction
 
-func passable(party: MapParty) -> bool:
+func passable(party: MapParty = null) -> bool:
 	return true
 #@abstract func click_response(active_faction: MapFaction) -> void
 

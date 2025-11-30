@@ -24,34 +24,55 @@ extends Node2D
 var map: Map
 var object_name: String = ""
 
+func _move_mapping(destination: Vector2i) -> void:
+	for t in get_occupied_tiles():
+		if map.tile_to_object.has(t):
+			map.tile_to_object[t].erase(self)
+	
+	for t in get_occupied_tiles(destination):
+		if map.tile_to_object.has(t):
+			map.tile_to_object[t].append(self)
+		else:
+			map.tile_to_object[t] = [self]
+
 var tile_position: Vector2i:
 	get: return tile_position
 	set(value):
 		if not map:
-			push_error("Map reference is empty!")
+			push_error("Map reference is empty! (%s)" % object_name)
 			tile_position = value
 			return
-		var mapping_array: Array[MapInteractableObject]
-		mapping_array.assign(map.tile_to_object.get(tile_position, []))
-		mapping_array.erase(self)
-		if map.tile_to_object.has(value):
-			map.tile_to_object[value].append(self)
-		else:
-			map.tile_to_object[value] = [self]
+		_move_mapping(value)
 		tile_position = value
 
-@abstract func interact(party: MapParty) -> void
+@abstract func interact(party: MapParty = null) -> void
 ## Determines whether interaction with this object is currently available.
 ## Returns [code]true[/code] if the tile should highlight as interactable
 ## when the player hovers over this object with a party selected. [br][br]
 ## [b]Note:[/b] This method checks interaction availability for the [b]party[/b],
 ## not the player. For player interaction checks, use [method request_player_interaction].
-@abstract func request_interaction(party: MapParty) -> bool
-@abstract func passable(party: MapParty) -> bool
+@abstract func request_interaction(party: MapParty = null) -> bool
+@abstract func passable(party: MapParty = null) -> bool
 #@abstract func click_response(active_faction: MapFaction) -> void
 
 @abstract func request_player_interaction(faction: MapFaction) -> bool
 @abstract func player_interact(faction: MapFaction) -> void
+
+## Returns an array of tiles occupied by this object. [br][br]
+## [color=yellow]
+## This method assumes the [b]Stairs Right[/b] hex layout and will procude incorrect
+## results for other grid types, including [b]Stairs Left[/b] and [b]Diamond[/b].
+## [/color]
+func get_occupied_tiles(main: Vector2i = tile_position) -> Array[Vector2i]:
+	# Potential redesign: implement layout-specific methods such as
+	# _get_occupied_tiles_axial(), 
+	# _get_occupied_tiles_axial_swapped(), 
+	# _get_occupied_tiles_offset(),
+	# and have this public method delegate to the appropriate one.
+	return _get_occupied_tiles(main)
+
+func _get_occupied_tiles(main: Vector2i = tile_position) -> Array[Vector2i]:
+	return [main]
 
 func _register_object() -> void:
 	tile_position = map.objects_layer.local_to_map(
