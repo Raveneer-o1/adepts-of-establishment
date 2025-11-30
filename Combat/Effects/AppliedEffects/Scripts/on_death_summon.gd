@@ -20,7 +20,7 @@ func check_trigger(u: Unit) -> void:
 	var spot: UnitSpot = avaliable_spots.pick_random()
 	
 	# summoned unit has summoned_unit flag set to false: this in intentional
-	var unit := spot.add_unit(summon)
+	var unit := spot.add_unit(summon, null)
 	
 	for eff_name in effects:
 		unit.parameters.apply_effect(eff_name, effects[eff_name])

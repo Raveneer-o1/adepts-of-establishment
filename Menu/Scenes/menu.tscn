@@ -442,7 +442,7 @@ path = "res://Combat/Units/Derived units/Empire/e07 Horseman.tscn"
 
 [node name="Knight Master" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee/Lvl3" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "Knight master"
+unit_name = "Knight Master"
 path = "res://Combat/Units/Derived units/Empire/e06 Knight Master.tscn"
 
 [node name="Lvl4" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee"]
@@ -453,22 +453,22 @@ alignment = 1
 
 [node name="Blade saint" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee/Lvl4" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "Blade saint"
+unit_name = "Blade Saint"
 path = "res://Combat/Units/Derived units/Empire/e08 Blade Saint.tscn"
 
 [node name="Grand inquisitor" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee/Lvl4" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "Grand inquisitor"
+unit_name = "Grand Inquisitor"
 path = "res://Combat/Units/Derived units/Empire/e09 Grand Inquisitor.tscn"
 
 [node name="Royal cavalier" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee/Lvl4" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "Royal cavalier"
+unit_name = "Royal Cavalier"
 path = "res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn"
 
 [node name="Angel knight" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee/Lvl4" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "Angel knight"
+unit_name = "Angel Knight"
 path = "res://Combat/Units/Derived units/Empire/e10 Angel Knight.tscn"
 
 [node name="Lvl5" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee"]
@@ -545,7 +545,7 @@ alignment = 1
 
 [node name="White mage" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Mages/Lvl4" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "White mage"
+unit_name = "White Mage"
 path = "res://Combat/Units/Derived units/Empire/e19 White Mage.tscn"
 
 [node name="Lvl5" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Mages"]
@@ -558,7 +558,7 @@ alignment = 1
 
 [node name="Keeper of knowledge" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Mages/Lvl5" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "Keeper of knowledge"
+unit_name = "Keeper of Knowledge"
 path = "res://Combat/Units/Derived units/Empire/e20 Keeper of Knowledge.tscn"
 
 [node name="Arcanist" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Mages/Lvl5" instance=ExtResource("2_r33n7")]
@@ -616,7 +616,7 @@ alignment = 1
 
 [node name="Imperial ranger" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Archers/Lvl4" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "Imperial ranger"
+unit_name = "Imperial Ranger"
 path = "res://Combat/Units/Derived units/Empire/e26 Imperial Ranger.tscn"
 
 [node name="Lvl5" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Archers"]
@@ -668,7 +668,7 @@ path = "res://Combat/Units/Derived units/Empire/e30 Matriarch.tscn"
 
 [node name="Clergyman" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Special/Lvl3" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "Clergyman"
+unit_name = "Imperial priest"
 path = "res://Combat/Units/Derived units/Empire/e31 Imperial priest.tscn"
 
 [node name="Lvl4" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Special"]
@@ -817,7 +817,7 @@ path = "res://Combat/Units/Derived units/Undead/u05_skeleton.tscn"
 
 [node name="Tree Item Unit3" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Melee/Lvl3" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "Fallen Inquizitor"
+unit_name = "Fallen Inquisitor"
 path = "res://Combat/Units/Derived units/Undead/u06_fallen_inquisitor.tscn"
 
 [node name="Lvl4" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Melee"]
@@ -912,7 +912,7 @@ path = "res://Combat/Units/Derived units/Undead/u16_elder_vampire.tscn"
 
 [node name="Tree Item Unit3" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Mages/Lvl4" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "Herald of death"
+unit_name = "Herald of Death"
 path = "res://Combat/Units/Derived units/Undead/u18_herald_of_death.tscn"
 
 [node name="Lvl5" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Mages"]
@@ -927,8 +927,8 @@ path = "res://Combat/Units/Derived units/Undead/u19_blood_spawn.tscn"
 
 [node name="Tree Item Unit2" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Mages/Lvl5" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "Vampire lord"
-path = "res://Combat/Units/Derived units/Undead/u20_vampire_lord.tscn"
+unit_name = "Vampire Lord"
+path = "uid://c4wmjlxgojxgm"
 
 [node name="Archers" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead"]
 visible = false
@@ -967,7 +967,7 @@ path = "res://Combat/Units/Derived units/Undead/u24_shadow.tscn"
 
 [node name="Tree Item Unit2" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Archers/Lvl3" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "Will-o'whisp"
+unit_name = "Will-o’-Wisp"
 path = "res://Combat/Units/Derived units/Undead/u23_will_o_wisp.tscn"
 
 [node name="Lvl4" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Archers"]
@@ -982,7 +982,7 @@ path = "res://Combat/Units/Derived units/Undead/u26_vision_of_darkness.tscn"
 
 [node name="Tree Item Unit2" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Archers/Lvl4" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "The eternal"
+unit_name = "The Eternal"
 path = "res://Combat/Units/Derived units/Undead/u25_the_eternal.tscn"
 
 [node name="Lvl5" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Archers"]
@@ -1021,7 +1021,7 @@ alignment = 1
 
 [node name="Tree Item Unit" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Special/Lvl3" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "Gluttonous serpent"
+unit_name = "Gluttonous Serpent"
 path = "res://Combat/Units/Derived units/Undead/u29_gluttonous_serpent.tscn"
 
 [node name="Tree Item Unit2" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Special/Lvl3" instance=ExtResource("2_r33n7")]
@@ -1036,7 +1036,7 @@ alignment = 1
 
 [node name="Tree Item Unit" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Special/Lvl4" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "The devourer"
+unit_name = "The Devourer"
 path = "res://Combat/Units/Derived units/Undead/u31_the_devourer.tscn"
 
 [node name="Tree Item Unit2" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Special/Lvl4" instance=ExtResource("2_r33n7")]
@@ -1135,7 +1135,7 @@ metadata/_tab_index = 0
 
 [node name="Thymaël Doux" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Heroes/Empire" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "Thymaël Doux"
+unit_name = "Thymaël Doux, the Blade of Holy Light"
 path = "res://Combat/Units/Derived units/Heroes/h02 thymaël_doux.tscn"
 
 [node name="High mage" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Heroes/Empire" instance=ExtResource("2_r33n7")]
@@ -1171,7 +1171,7 @@ metadata/_tab_index = 1
 
 [node name="bone_collector" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Heroes/Undead" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "Bone Collector"
+unit_name = "Bone collector"
 path = "res://Combat/Units/Derived units/Heroes/bone_collector.tscn"
 
 [node name="dame_seraphine" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Heroes/Undead" instance=ExtResource("2_r33n7")]
@@ -1181,7 +1181,7 @@ path = "res://Combat/Units/Derived units/Heroes/dame_seraphine.tscn"
 
 [node name="grave_whisperer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Heroes/Undead" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "Grave Whisperer"
+unit_name = "Grave whispere"
 path = "res://Combat/Units/Derived units/Heroes/grave_whisperer.tscn"
 
 [node name="margrave_solreth" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Heroes/Undead" instance=ExtResource("2_r33n7")]
@@ -1191,7 +1191,7 @@ path = "res://Combat/Units/Derived units/Heroes/margrave_solreth.tscn"
 
 [node name="virion_the_bonebinder" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Heroes/Undead" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "Virion The Bonebinder"
+unit_name = "Virion the Bonebinder"
 path = "res://Combat/Units/Derived units/Heroes/virion_the_bonebinder.tscn"
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Heroes/Undead"]

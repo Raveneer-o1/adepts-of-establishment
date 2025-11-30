@@ -78,14 +78,14 @@ static func from_dict(dict: Dictionary) -> UnitAttackData:
 	res.targets_needed = dict.get("targets_needed", 1)
 	res.initiative = dict.get("initiative", 0)
 	res.evadable = dict.get("evadable", true)
-	res.tags = dict.get("tags", [])
+	res.tags.assign(dict.get("tags", []))
 	res.target_validation = dict.get("target_validation", "")
 	res.additional_targets = dict.get("additional_targets", "")
 	res.damage_policy = dict.get("damage_policy", "")
-	res.applying_effects = dict.get("applying_effects", {})
+	res.applying_effects.assign(dict.get("applying_effects", {}))
 	var alt_actions: Array = dict.get("alternative_actions", [])
 	for a: Variant in alt_actions:
 		if a is Dictionary:
 			a = UnitAttackData.from_dict(a)
-	res.alternative_actions = alt_actions
+	res.alternative_actions.assign(alt_actions)
 	return res
