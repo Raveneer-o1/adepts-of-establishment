@@ -7,21 +7,22 @@
 [ext_resource type="Texture2D" uid="uid://bugwls130mkxq" path="res://Arts/Map objects/objects.png" id="2_q0qov"]
 [ext_resource type="Script" uid="uid://cy3qdta1wg1jq" path="res://Map/Scripts/map_event_handler.gd" id="3_1tmes"]
 [ext_resource type="Texture2D" uid="uid://b2v51mrky8rhp" path="res://Arts/Map objects/o02 village .png" id="3_b45i2"]
-[ext_resource type="Texture2D" uid="uid://g22vk0350u61" path="res://Arts/Map objects/big city .png" id="3_fsm7x"]
 [ext_resource type="Texture2D" uid="uid://cbm3wlhrsci2y" path="res://Arts/Map objects/o03 stuff.png" id="4_xec2n"]
 [ext_resource type="Texture2D" uid="uid://qbtgdgqgc535" path="res://Arts/Map objects/tree.png" id="5_q0qov"]
 [ext_resource type="Texture2D" uid="uid://73u46mcqeqgi" path="res://Arts/Map objects/tower with crystals.png" id="5_wp3p1"]
 [ext_resource type="Texture2D" uid="uid://dwi4ftfj27hk1" path="res://Arts/Map objects/building.png" id="6_ab646"]
 [ext_resource type="Texture2D" uid="uid://dgkyc1ro5rkt4" path="res://Arts/Map objects/hollow bazaar .png" id="7_iq1o3"]
 [ext_resource type="Texture2D" uid="uid://bc6awndrgx3qt" path="res://Arts/Map objects/mana crystals.png" id="9_2vadw"]
-[ext_resource type="Texture2D" uid="uid://hqdbkrdckl6p" path="res://Arts/Map objects/undead capital.png" id="10_xm4m6"]
+[ext_resource type="PackedScene" uid="uid://c77vxt0dfyo53" path="res://Map/Scenes/map_city.tscn" id="11_1e4ck"]
 [ext_resource type="Texture2D" uid="uid://cyi0wg48ro43r" path="res://Arts/Map objects/large rock.png" id="12_aku2f"]
 [ext_resource type="Texture2D" uid="uid://pch686fgq517" path="res://Arts/Map objects/Empire capital.png" id="12_iq1o3"]
 [ext_resource type="PackedScene" uid="uid://2kk6w327nvk" path="res://Map/Scenes/map_party.tscn" id="12_kwhd2"]
+[ext_resource type="PackedScene" uid="uid://bmp8htqi7l1i" path="res://Map/Scenes/map_capital_undead.tscn" id="12_l17lq"]
 [ext_resource type="Texture2D" uid="uid://518ilab6qsv7" path="res://Arts/Map/tile highlight.png" id="16_ab646"]
 [ext_resource type="Texture2D" uid="uid://dj7bwp2kwlwe6" path="res://Arts/Map/tile highlights atlas.png" id="17_aku2f"]
 [ext_resource type="Script" uid="uid://ijg56utnmlvn" path="res://Map/Scripts/path_finder.gd" id="18_jtf36"]
 [ext_resource type="Script" uid="uid://bx6fsao0crbjq" path="res://Map/Scripts/map_camera.gd" id="19_gdowr"]
+[ext_resource type="Script" uid="uid://pn3mawujeix2" path="res://Map/Scripts/objects_layer.gd" id="20_1e4ck"]
 [ext_resource type="Script" uid="uid://bjfntvb3r7vr8" path="res://Map/Scripts/map_faction.gd" id="20_xno3x"]
 [ext_resource type="Script" uid="uid://mn0dy1cf0p65" path="res://Map/Scripts/unit_data.gd" id="21_bl7ab"]
 
@@ -176,13 +177,6 @@ texture_region_size = Vector2i(39, 39)
 3:0/0 = 0
 1:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kyln5"]
-texture = ExtResource("3_fsm7x")
-texture_region_size = Vector2i(32, 32)
-0:0/size_in_atlas = Vector2i(3, 3)
-0:0/0 = 0
-0:0/0/texture_origin = Vector2i(0, 32)
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xno3x"]
 texture = ExtResource("5_wp3p1")
 texture_region_size = Vector2i(63, 63)
@@ -195,18 +189,9 @@ texture_region_size = Vector2i(63, 63)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, 11)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l17lq"]
-texture = ExtResource("10_xm4m6")
-texture_region_size = Vector2i(96, 128)
-0:0/animation_columns = 1
-0:0/animation_frame_0/duration = 0.2
-0:0/animation_frame_1/duration = 0.2
-0:0/animation_frame_2/duration = 0.2
-0:0/animation_frame_3/duration = 0.2
-0:0/animation_frame_4/duration = 0.2
-0:0/animation_frame_5/duration = 0.2
-0:0/0 = 0
-0:0/0/texture_origin = Vector2i(0, 42)
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ykca1"]
+scenes/1/scene = ExtResource("11_1e4ck")
+scenes/2/scene = ExtResource("12_l17lq")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wp3p1"]
 texture = ExtResource("3_b45i2")
@@ -268,8 +253,8 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSet" id="TileSet_3ily0"]
 tile_shape = 3
+tile_layout = 2
 tile_size = Vector2i(27, 29)
-sources/1 = SubResource("TileSetAtlasSource_kyln5")
 sources/2 = SubResource("TileSetAtlasSource_wp3p1")
 sources/3 = SubResource("TileSetAtlasSource_ab646")
 sources/4 = SubResource("TileSetAtlasSource_aku2f")
@@ -281,7 +266,7 @@ sources/9 = SubResource("TileSetAtlasSource_2vadw")
 sources/7 = SubResource("TileSetAtlasSource_xm4m6")
 sources/10 = SubResource("TileSetAtlasSource_xno3x")
 sources/11 = SubResource("TileSetAtlasSource_bl7ab")
-sources/12 = SubResource("TileSetAtlasSource_l17lq")
+sources/13 = SubResource("TileSetScenesCollectionSource_ykca1")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1tmes"]
 texture = ExtResource("16_ab646")
@@ -327,8 +312,9 @@ tile_set = SubResource("TileSet_kyln5")
 
 [node name="ObjectsLayer" type="TileMapLayer" parent="MapLayers"]
 unique_name_in_owner = true
-tile_map_data = PackedByteArray("AAAYAAgAAgAAAAAAAAAoABQAAQAAAAAAAAAmACUAAgAAAAAAAAAgACYAAgAAAAAAAAARAAUABgAAAAAAAAAQAAEAAAACAAEAAAAMAAYAAAABAAAAAAAQAA4AAAAAAAAAAAASABEAAAACAAAAAAAmABUABQACAAAAAAAvACUABQACAAAAAAAHAAoAAAADAAEAAAAIAAoAAAAAAAIAAAAHAAsAAAABAAIAAAAIAAsAAAADAAEAAAAJAAwAAAABAAIAAAAIAA0ACAAAAAAAAAAHAAwAAAADAAEAAAAGAA0AAAABAAIAAAAHAA0AAAAAAAIAAAAIAAwAAAAAAAIAAAAIAA4AAAADAAEAAAAHAA4AAAADAAEAAAAPAA4AAAACAAEAAAAPAA8AAAABAAEAAAASABQAAAAAAAEAAAAUABMAAgAAAAAAAAAYAAMABQAAAAAAAAAfACkABQABAAAAAAAYAAcACAAAAAAAAAAPAAgABQABAAAAAAANABcABQABAAAAAAANABYACAAAAAAAAAAxACYACAAAAAAAAAAbAAAAAAABAAAAAAAqABQAAAAAAAAAAAAoABYAAAADAAAAAAAgABEAAAABAAEAAAAgABAAAAADAAAAAAAZAAkAAAADAAAAAAAXACAAAAADAAAAAAAcACcAAAADAAAAAAAvACAAAAADAAAAAAApACYAAAAAAAEAAAA4ACcAAAAAAAEAAAA5ACYABQAAAAAAAAA4ACMACAAAAAAAAAAsACIAAAAAAAIAAAAsACMAAAABAAIAAAAtACIAAAAAAAIAAAAtACMAAAADAAEAAAAuACIAAAAAAAIAAAAuACMAAAADAAEAAAAvACMAAAADAAEAAAAqACEAAAABAAIAAAArACAAAAAAAAIAAAAqACAAAAADAAEAAAArACEAAAAAAAIAAAApAB8AAAABAAIAAAApACAAAAABAAIAAAAoACAAAAABAAIAAAAVABYAAAABAAIAAAAUABcAAAABAAIAAAAVABcAAAADAAEAAAAWABcAAAAAAAIAAAAXABgAAAABAAIAAAAYABgAAAAAAAIAAAAXABkAAAAAAAIAAAAYABkAAAADAAEAAAAZABkAAAAAAAIAAAAZABoAAAABAAIAAAAaABoAAAAAAAIAAAAPAB0AAAABAAIAAAAQAB4AAAAAAAIAAAARAB4AAAADAAEAAAASAB4AAAAAAAIAAAASAB8AAAABAAIAAAATAB4AAAAAAAIAAAATAB8AAAAAAAIAAAAUAB8AAAAAAAIAAAAVACAAAAADAAEAAAAVACEAAAAAAAIAAAAWACEAAAAAAAIAAAAPABgAAAAAAAIAAAAPABkAAAAAAAIAAAAOABkAAAAAAAIAAAAQABoAAAAAAAIAAAAPABoAAAAAAAIAAAAPABsAAAADAAEAAAAdABAAAAABAAIAAAAcAA8AAAAAAAIAAAAdAA8AAAADAAEAAAAeAA8AAAAAAAIAAAAfAA8AAAAAAAIAAAAfAA4AAAABAAIAAAAfAA0AAAADAAEAAAAeAA4AAAABAAIAAAAdAA4AAAAAAAIAAAAcAA4AAAABAAIAAAARAB8AAAADAAEAAAAQABwAAAADAAEAAAArACIAAAADAAEAAAAmABQAAAADAAEAAAAlABUAAAAAAAIAAAAHAAQAAwABAAAAAAAGAAUAAwAAAAAAAAAHAAYACAAAAAAAAAA0ACEACQAAAAAAAAAaAA4ACwAAAAAAAAAbABoACgAAAAAAAAASAAsABwAAAAAAAAASAAwABwAAAAAAAAAUAAwABwAAAAAAAAAFAAoABwAAAAAAAAAEAAcABwAAAAAAAAAKAAEABwAAAAAAAAAHAAAABwAAAAAAAAA4ACgABwAAAAAAAAAwACcABwAAAAAAAAArACcABwAAAAAAAAAfAAcABwAAAAAAAAAUABkADAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAYAAgAAgAAAAAAAAAmACUAAgAAAAAAAAAgACYAAgAAAAAAAAAQAAEAAAACAAEAAAAMAAYAAAABAAAAAAASABEAAAACAAAAAAAmABUABQACAAAAAAAHAAoAAAADAAEAAAAIAAoAAAAAAAIAAAAHAAsAAAABAAIAAAAIAAsAAAADAAEAAAAJAAwAAAABAAIAAAAIAA0ACAAAAAAAAAAHAAwAAAADAAEAAAAGAA0AAAABAAIAAAAHAA0AAAAAAAIAAAAIAAwAAAAAAAIAAAAIAA4AAAADAAEAAAAHAA4AAAADAAEAAAAYAAMABQAAAAAAAAAfACkABQABAAAAAAAYAAcACAAAAAAAAAANABcABQABAAAAAAANABYACAAAAAAAAAAbAAAAAAABAAAAAAAoABYAAAADAAAAAAAgABEAAAABAAEAAAAgABAAAAADAAAAAAAZAAkAAAADAAAAAAAXACAAAAADAAAAAAAcACcAAAADAAAAAAAUABcAAAABAAIAAAAVABcAAAADAAEAAAAWABcAAAAAAAIAAAAYABgAAAAAAAIAAAAXABkAAAAAAAIAAAAYABkAAAADAAEAAAAZABkAAAAAAAIAAAAZABoAAAABAAIAAAAaABoAAAAAAAIAAAAPAB0AAAABAAIAAAAQAB4AAAAAAAIAAAARAB4AAAADAAEAAAASAB4AAAAAAAIAAAASAB8AAAABAAIAAAATAB4AAAAAAAIAAAATAB8AAAAAAAIAAAAUAB8AAAAAAAIAAAAVACAAAAADAAEAAAAVACEAAAAAAAIAAAAWACEAAAAAAAIAAAAPABgAAAAAAAIAAAAOABkAAAAAAAIAAAAQABoAAAAAAAIAAAAPABoAAAAAAAIAAAAPABsAAAADAAEAAAAdABAAAAABAAIAAAAcAA8AAAAAAAIAAAAdAA8AAAADAAEAAAAeAA8AAAAAAAIAAAAfAA8AAAAAAAIAAAAfAA4AAAABAAIAAAAfAA0AAAADAAEAAAAeAA4AAAABAAIAAAAdAA4AAAAAAAIAAAAcAA4AAAABAAIAAAARAB8AAAADAAEAAAAQABwAAAADAAEAAAAmABQAAAADAAEAAAAlABUAAAAAAAIAAAAHAAQAAwABAAAAAAAGAAUAAwAAAAAAAAAHAAYACAAAAAAAAAAaAA4ACwAAAAAAAAASAAsABwAAAAAAAAASAAwABwAAAAAAAAAUAAwABwAAAAAAAAAFAAoABwAAAAAAAAAEAAcABwAAAAAAAAAKAAEABwAAAAAAAAAHAAAABwAAAAAAAAAfAAcABwAAAAAAAAAkACEACQAAAAAAAAAJABkADQAAAAAAAgAPABkACgAAAAAAAAAGABAAAAAAAAEAAAAIAA8AAgAAAAAAAAAHABEAAAACAAEAAAAHABIAAAABAAEAAAAIABEAAAAAAAAAAAANAAgABQABAAAAAAAPAAUABgAAAAAAAAAeABQADQAAAAAAAQA=")
 tile_set = SubResource("TileSet_3ily0")
+script = ExtResource("20_1e4ck")
 
 [node name="HighlightLayer" type="TileMapLayer" parent="MapLayers"]
 unique_name_in_owner = true
@@ -337,6 +323,7 @@ tile_set = SubResource("TileSet_1e4ck")
 [node name="Parties" type="Node" parent="."]
 
 [node name="MapParty" parent="Parties" node_paths=PackedStringArray("faction") instance=ExtResource("12_kwhd2")]
+position = Vector2(761, 300)
 faction = NodePath("../../Factions/Empire")
 
 [node name="UnitData" type="Node" parent="Parties/MapParty"]
@@ -356,6 +343,7 @@ max_hp = 100
 metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 
 [node name="MapParty2" parent="Parties" node_paths=PackedStringArray("faction") instance=ExtResource("12_kwhd2")]
+position = Vector2(826, 364)
 faction = NodePath("../../Factions/Neutral")
 
 [node name="UnitData" type="Node" parent="Parties/MapParty2"]

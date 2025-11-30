@@ -60,11 +60,9 @@ func get_battle_ready_units() -> Array[UnitData]:
 ## the movement timer restarts after reaching each tile in the path.
 const MAP_SPEED = 5.0
 
+## When set to [code]true[/code], the next movement attempt is canceled and
+## this flag automatically resets to [code]false[/code].
 var cancel_movement: bool = false
-
-func click_response(active_faction: MapFaction) -> void:
-	if active_faction == faction:
-		map.set_active_party(self)
 
 ## Flips the sprite to face the specified [param target] tile. [br]
 ## This method assumes axial coordinates (Godot's [b]Stairs[/b] or
@@ -101,7 +99,7 @@ func walk_to(
 		_smooth_movement = false
 		animation_handle.play_default()
 	else: _jump_to(destination)
-	_is_moving = false
+	_finish_moving_animation()
 	# safeguard against misaligned position
 	global_position = _moving_to
 
@@ -127,7 +125,7 @@ func walk_along_path(
 			await _moving_finished
 		else: _jump_to(destination)
 		animation_handle.play_default()
-	_is_moving = false
+	_finish_moving_animation()
 	
 	# safeguard against misaligned position
 	global_position = _moving_to
@@ -144,6 +142,14 @@ func walk_along_path(
 func abort_moving() -> void:
 	cancel_movement = true
 
+func update_parameters() -> void:
+	for u in units:
+		if not u.is_dead: return
+	die()
+
+func die() -> void:
+	queue_free()
+
 func _process(delta: float) -> void:
 	if _is_moving: _process_movement(delta)
 
@@ -159,10 +165,10 @@ func _process_movement(delta: float) -> void:
 		# is faster than standard acceleration + velocity approaches
 		global_position = global_position.lerp(_moving_to, clampf(weight, 0.0, 1.0))
 		
-		if weight >= 1.0: _finish_moving_animation()
+		if weight >= 1.0: _finish_moving()
 	else:
 		global_position += _moving_velocity * delta
-		if _time_passed >= _time_to_reach: _finish_moving_animation()
+		if _time_passed >= _time_to_reach: _finish_moving()
 
 signal _moving_finished
 
@@ -175,10 +181,12 @@ var _moving_velocity: Vector2
 var _time_to_reach: float = 1.0 / MAP_SPEED
 var _time_passed: float = 0.0
 
-func _finish_moving_animation() -> void:
-	#_is_moving = false
-	animation_handle.play_default()
+func _finish_moving() -> void:
 	_moving_finished.emit()
+
+func _finish_moving_animation() -> void:
+	_is_moving = false
+	animation_handle.play_default()
 
 func _start_moving_animation(p: Vector2i, time: float = 1.0 / MAP_SPEED) -> void:
 	_moving_to = map.get_global_coords(p)
@@ -191,12 +199,3 @@ func _jump_to(p: Vector2i) -> void:
 	global_position = map.get_global_coords(p)
 
 #endregion
-
-
-#func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	#get_viewport().set_input_as_handled()
-	#if event is InputEventMouseButton:
-		#if event.button_index == MOUSE_BUTTON_LEFT and \
-			#event.is_pressed() and \
-			#not event.is_echo():
-			#map.party_click(self)

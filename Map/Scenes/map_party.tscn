@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://2kk6w327nvk"]
+[gd_scene load_steps=15 format=3 uid="uid://2kk6w327nvk"]
 
 [ext_resource type="Script" uid="uid://ckonqee8nxgfi" path="res://Map/Scripts/map_party.gd" id="1_rleo8"]
 [ext_resource type="Texture2D" uid="uid://djapeb4rjrhbe" path="res://Arts/Map/Parties/hero knight idle.png" id="2_jf7u3"]
@@ -75,8 +75,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lo4k0"]
-
 [node name="MapParty" type="Node2D"]
 script = ExtResource("1_rleo8")
 
@@ -88,10 +86,3 @@ script = ExtResource("4_eib2m")
 
 [node name="PartyParameters" type="Node" parent="."]
 script = ExtResource("5_lo4k0")
-
-[node name="Area2D" type="Area2D" parent="."]
-monitoring = false
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_lo4k0")

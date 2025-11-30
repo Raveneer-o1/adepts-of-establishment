@@ -46,7 +46,7 @@ extends Node2D
 ## data layer with [b]int[/b] type (value of -1 means the tile is not traversable)
 @onready var terrain_layer : TileMapLayer = %TerrainLayer
 ## Layer containing map objects like parties, interactables, etc.
-@onready var objects_layer : TileMapLayer = %ObjectsLayer
+@onready var objects_layer : MapObjectsLayer = %ObjectsLayer
 ## Layer used for highlighting tiles during pathfinding and interactions
 @onready var highlight_layer: TileMapLayer = %HighlightLayer
 
@@ -90,11 +90,23 @@ func get_controller(type: GlobalDefs.ControllerType) -> String:
 	push_error("Unknown Controller type!")
 	return ""
 
+## Safely removes the object and clears any references preserved by the map. [br][br]
+## Use this method as a last resort only, since [MapInteractableObject] instances
+## are generally not designed to be freed during runtime.
+## See class documentation for alternatives.
+func free_map_object(o: MapInteractableObject) -> void:
+	clear_object_refs(o)
+	o.queue_free()
+
+func clear_object_refs(o: MapInteractableObject) -> void:
+	tile_to_object.get(o.tile_position, []).erase(o)
 
 ## Initiates a battle between two parties. [br]
 ## [param attacker]: The party initiating the combat encounter[br]
 ## [param defender]: The party being attacked
 func start_battle(attacker: MapParty, defender: MapParty) -> void:
+	# TODO: add subroutine to load combat scene and play animation while that happens
+	
 	EventBus.left_units = attacker.units
 	EventBus.right_units = defender.units
 	EventBus.left_controller = load(get_controller(attacker.faction.controller))
@@ -206,21 +218,35 @@ func get_map_size(layer: TileMapLayer) -> Array[Vector2i]:
 		if c.y > _max.y: _max.y = c.y
 	return [_min, _max]
 
+func _check_object_layer() -> void:
+	for c in objects_layer.get_used_cells():
+		if c.x < min_tile.x or \
+			c.x > max_tile.x:
+				push_error("Object layer is bigger than terrain layer!
+	object at: " + str(c) + "; map size: " + str(min_tile) + "-" + str(max_tile))
+
 func _initialize() -> void:
 	var size := get_map_size(terrain_layer)
 	min_tile = size[0]
 	max_tile = size[1]
+	
+	_check_object_layer()
+	objects_layer.map = self
+
+func test() -> void:
+	objects_layer.set_tile(Vector2i(30, 20))
 
 func _ready() -> void:
 	_initialize()
 	active_faction = $Factions/Empire
-	var map_party_1: MapParty = $Parties/MapParty
-	map_party_1.map = self
-	map_party_1.walk_to(Vector2i(23, 16))
-	
-	var map_party_2: MapParty = $Parties/MapParty2
-	map_party_2.map = self
-	map_party_2.walk_to(Vector2i(26, 10))
+	call_deferred(&"test")
+	#var map_party_1: MapParty = $Parties/MapParty
+	#map_party_1.map = self
+	#map_party_1.walk_to(Vector2i(23, 16))
+	#
+	#var map_party_2: MapParty = $Parties/MapParty2
+	#map_party_2.map = self
+	#map_party_2.walk_to(Vector2i(26, 10))
 
 func _move_active_party(coords: Vector2i) -> void:
 	if active_party.is_moving:
