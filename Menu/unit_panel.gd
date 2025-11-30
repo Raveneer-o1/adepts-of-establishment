@@ -13,6 +13,12 @@ class_name UnitPanel
 	#set(value):
 		#label.text = value
 
+func get_data_object() -> UnitData:
+	var res := UnitData.new()
+	res.unit_name = unit_name
+	res.initialize()
+	return res
+
 func _ready() -> void:
 	label.text = unit_name
 	label.owner = owner

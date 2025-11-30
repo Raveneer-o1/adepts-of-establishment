@@ -16,7 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://bbngje7751rc2" path="res://Sounds/using/Shield/fencing hit 25.wav" id="13_sdk48"]
 [ext_resource type="AudioStream" uid="uid://g50lfdbhl844" path="res://Sounds/using/Shield/Metal_clash_1.wav" id="14_4vr00"]
 [ext_resource type="AudioStream" uid="uid://cxti7sw334cs7" path="res://Sounds/using/Shield/Metal_clash_2.wav" id="15_ikp0p"]
-[ext_resource type="AudioStream" uid="uid://b0y6okblodpsp" path="res://Sounds/using/Attack/Neutral/Orck cheiftain.wav" id="16_pv0ll"]
+[ext_resource type="AudioStream" uid="uid://b0y6okblodpsp" path="res://Sounds/using/Attack/Neutral/Orck chieftain.wav" id="16_pv0ll"]
 [ext_resource type="AudioStream" uid="uid://57uq8ddrqmg0" path="res://Sounds/using/Heal/GP_Turbo_Select_1.wav" id="17_ux3d1"]
 [ext_resource type="AudioStream" uid="uid://bvxxsyhcv73oo" path="res://Sounds/using/Heal/GP_Turbo_Select_2.wav" id="18_qp4ro"]
 [ext_resource type="AudioStream" uid="uid://befag54021wep" path="res://Sounds/using/Heal/GP_Turbo_Select_3.wav" id="19_b42dt"]
@@ -192,8 +192,8 @@ max_HP = 275
 base_damage = 80
 armor = 35
 
-[node name="Orc cheiftain" instance=ExtResource("1_8bqrg")]
-unit_name = "Orc cheiftain"
+[node name="Orc chieftain" instance=ExtResource("1_8bqrg")]
+unit_name = "Orc chieftain"
 faction = 8
 full_description = "Orc Chieftains are the leaders of their clans, commanding respect through strength and cunning. They inspire their kin with battle cries and powerful strikes, rallying their forces to victory."
 portrait_texture = ExtResource("2_qguc2")

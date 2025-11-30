@@ -61,7 +61,15 @@ The **SoundPlayer** node contains categorized containers for different events. A
 
 You can add multiple sounds to each container for variety - the system will randomize selection.
 
-## Adding the Unit to the Menu
+## Adding unit to the database
+
+_**Important note:** the script for auto-populating database sometimes crashes Godot, make sure you saved and commited all your files._
+
+Parameters you filled for your new unit now exist in the scene. But now you need to add this unit to the database. Open `res://tools/tool_populate_database.gd` in the editor. Then click **File -> Run** (or just `ctrl+shift+X`). This will run the script and automatically serialize your unit and populate the database with the new data.
+
+You will also have to run this script every time you change any of the unit's parameters. If you want to experiment and don't want to modify the database just yet, use dedicated **override parameters** in the **UnitParameters** node
+
+## Adding unit to the Menu
 
 To make your new unit available for selection in the game's menu, you need to add it to the appropriate list.
 
@@ -76,11 +84,5 @@ To make your new unit available for selection in the game's menu, you need to ad
 5. Instantiate a `tree_item_unit` node as a child of the correct unit type.
 6. Configure the new node:
    * Rename it to match your unit's name
-   * Set the **Unit Name** parameter to your unit's display name
-   * Set the **Path** parameter to point to your unit's scene file
-
-*Example Configurations:*
-| Unit Name | Path |
-| --------- | ---- |
-| Vampire   | `res://Combat/Units/Derived units/Undead/u13_vampire.tscn` |
-| Royal cavalier | `res://Combat/Units/Derived units/Empire/e11 Royal Cavalier.tscn` |
+   * Set the **Unit Name** parameter to your unit's display name. Make sure the name you provided matches your unit's name exactly. Otherwise, the game won't be able to find it.
+   * ~~Set the **Path** parameter to point to your unit's scene file~~ *this is no longer required, unit scene can be located automatically via unit's name*

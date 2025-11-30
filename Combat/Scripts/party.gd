@@ -113,7 +113,8 @@ func place_units(list: Array[UnitData]) -> void:
 	place_spots()
 	
 	if list.size() > MAX_UNITS_NUMBER:
-		push_error("Unit list exceeds the maximum allowed number of units!")
+		push_error("Unit list exceeds the maximum allowed number of units!
+%d proveded, only %d is allowed!" % [list.size(), MAX_UNITS_NUMBER])
 		return
 	
 	for unit_data: UnitData in list:

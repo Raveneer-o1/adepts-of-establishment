@@ -1089,7 +1089,7 @@ path = "res://Combat/Units/Derived units/Neutral/orc.tscn"
 
 [node name="Ocr cheiftain" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Neutral/Greenskin" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "Ocr cheiftain"
+unit_name = "Orc chieftain"
 path = "res://Combat/Units/Derived units/Neutral/orc_cheiftain.tscn"
 
 [node name="Humans" type="GridContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Neutral"]

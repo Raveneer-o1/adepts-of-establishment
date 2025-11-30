@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://b0y6okblodpsp"
-path="res://.godot/imported/Orck cheiftain.wav-21381db3aa05a25841e8e6d3b419cf02.sample"
+path="res://.godot/imported/Orck chieftain.wav-e67359c12cce31967c36f9497a781fc6.sample"
 
 [deps]
 
-source_file="res://Sounds/using/Attack/Neutral/Orck cheiftain.wav"
-dest_files=["res://.godot/imported/Orck cheiftain.wav-21381db3aa05a25841e8e6d3b419cf02.sample"]
+source_file="res://Sounds/using/Attack/Neutral/Orck chieftain.wav"
+dest_files=["res://.godot/imported/Orck chieftain.wav-e67359c12cce31967c36f9497a781fc6.sample"]
 
 [params]
 

@@ -104,24 +104,30 @@ func _on_start_button_pressed() -> void:
 	if OS.is_debug_build():
 		can_start = true
 	
-	# Process the left unit panels
+	var i := -1
 	for panel in left_array:
+		i += 1
 		# If the panel is invalid or null, mark spot as empty by appending an empty string
 		if not is_instance_valid(panel) or panel == null:
-			EventBus.left_units.append("")
+			#EventBus.left_units.append("")
 			continue
 		
-		EventBus.left_units.append((panel as UnitPanel).directory)
+		var data_obj := (panel as UnitPanel).get_data_object()
+		data_obj.party_position = i
+		EventBus.left_units.append(data_obj)
 		can_start = true  # At least one valid unit is present, so the game can start
 	
-	# Process the right unit panels
+	i = -1
 	for panel in right_array:
+		i += 1
 		# If the panel is invalid or null, mark spot as empty by appending an empty string
 		if not is_instance_valid(panel) or panel == null:
-			EventBus.right_units.append("")
+			#EventBus.right_units.append("")
 			continue
 		
-		EventBus.right_units.append((panel as UnitPanel).directory)
+		var data_obj := (panel as UnitPanel).get_data_object()
+		data_obj.party_position = i
+		EventBus.right_units.append(data_obj)
 		can_start = true  # At least one valid unit is present, so the game can start
 	
 	# If no valid units were added to either side, do not proceed
@@ -130,11 +136,16 @@ func _on_start_button_pressed() -> void:
 	
 	save_controllers()
 	
+	var battle_scene := load("res://test.tscn") as PackedScene
+	var battle := battle_scene.instantiate()
+	process_mode = Node.PROCESS_MODE_DISABLED
+	battle.process_mode = Node.PROCESS_MODE_ALWAYS
+	add_child(battle)
 	
-	save_unit_composition()
+	await EventBus.battle_ended
+	battle.queue_free()
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	
-	# Change the current scene to the test scene
-	get_tree().change_scene_to_file("res://test.tscn")
 
 
 func _on_clear_button_pressed() -> void:

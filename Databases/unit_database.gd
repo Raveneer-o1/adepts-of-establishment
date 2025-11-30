@@ -1069,8 +1069,8 @@ const database = {
 }]
 , &"effects": []
 , &"base_damage": 45, &"max_hp": 150, &"armor": 10, &"evasion": 0.05, &"shielding_chance": 0.7 
-},&"Orc cheiftain" : {
- &"scene_path": "res://Combat/Units/Derived units//Neutral/orc_cheiftain.tscn", &"level": 4, &"large_unit": false, &"immunities": []
+},&"Orc chieftain" : {
+ &"scene_path": "res://Combat/Units/Derived units//Neutral/orc_chieftain.tscn", &"level": 4, &"large_unit": false, &"immunities": []
 , &"description": "Orc Chieftains are the leaders of their clans, commanding respect through strength and cunning. They inspire their kin with battle cries and powerful strikes, rallying their forces to victory.", &"faction": 8, &"unit_type": 0, &"attacks": [{
  &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
