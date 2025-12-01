@@ -78,6 +78,12 @@ var max_tile := Vector2i.ZERO
 ## But nested typed collections are not supported in Godot
 var tile_to_object: Dictionary[Vector2i, Array] = {}
 
+func clean_hashtable() -> void:
+	#get_tree().process_frame
+	for k: Vector2i in tile_to_object.keys():
+		if not tile_to_object[k]:
+			tile_to_object.erase(k)
+
 ## Returns the file path to the controller scene based on controller type
 func get_controller(type: GlobalDefs.ControllerType) -> String:
 	match type:
@@ -101,36 +107,73 @@ func free_map_object(o: MapInteractableObject) -> void:
 func clear_object_refs(o: MapInteractableObject) -> void:
 	tile_to_object.get(o.tile_position, []).erase(o)
 
-## Initiates a battle between two parties. [br]
-## [param attacker]: The party initiating the combat encounter[br]
-## [param defender]: The party being attacked
-func start_battle(attacker: MapParty, defender: MapParty) -> void:
-	# TODO: add subroutine to load combat scene and play animation while that happens
-	
+func _prefill_data(attacker: MapParty, defender: MapParty) -> void:
 	EventBus.left_units = attacker.units
 	EventBus.right_units = defender.units
 	EventBus.left_controller = load(get_controller(attacker.faction.controller))
 	EventBus.right_controller = load(get_controller(defender.faction.controller))
-	
-	var battle := battle_scene.instantiate(PackedScene.GEN_EDIT_STATE_MAIN)
+
+func _load_battle(attacker: MapParty, defender: MapParty) -> Node:
+	var battle: Control = battle_scene.instantiate(PackedScene.GEN_EDIT_STATE_MAIN)
 	battle.process_mode = Node.PROCESS_MODE_ALWAYS
-	process_mode = Node.PROCESS_MODE_DISABLED
+	battle.hide()
 	
 	# combat starts here because this is when combat scene enters
 	# the tree and _ready() is called
-	add_child(battle)
+	get_tree().root.add_child.call_deferred(battle)
+	return battle
+
+const battle_effect = preload("res://Map/Scenes/visual_effect.tscn")
+
+#static var battle: Node
+
+func _switch_to_battle(battle: Control) -> void:
 	(battle.find_child("Camera2D", false) as Camera2D).make_current()
+	
+	#hide()
+	battle.show()
+	process_mode = Node.PROCESS_MODE_DISABLED
 	
 	await EventBus.battle_ended
 	battle.queue_free()
 	process_mode = Node.PROCESS_MODE_PAUSABLE
 	camera.make_current()
 
+func _play_effect(pos: Vector2) -> void:
+	var effect := battle_effect.instantiate() as TemporaryEffect
+	add_child.call_deferred(effect)
+	(func()->void: effect.global_position = pos).call_deferred()
+	await effect.effect_finished
+
+## Initiates a battle between two parties. [br]
+## [param attacker]: The party initiating the combat encounter[br]
+## [param defender]: The party being attacked
+func start_battle(attacker: MapParty, defender: MapParty) -> void:
+	#var thread := Thread.new()
+	_prefill_data(attacker, defender)
+	
+	#if thread.start(_load_battle.bind(attacker, defender)) != OK:
+		#push_error("Unable to create thread!")
+		#return
+	
+	var battle := _load_battle(attacker, defender)
+	
+	await _play_effect(defender.global_position)
+	
+	#var battle : Control = thread.wait_to_finish()
+	
+	#if thread.is_started():
+		#if thread.is_alive():
+			#await thread.wait_to_finish()
+		#else: thread.wait_to_finish()
+	
+	_switch_to_battle(battle)
+	attacker.update_parameters()
+	defender.update_parameters()
 
 ## Returns the global coordinates for the specified tile (coordinates of the center)
 func get_global_coords(tile_coord: Vector2i) -> Vector2:
 	return terrain_layer.to_global(terrain_layer.map_to_local(tile_coord))
-
 
 ## Returns the distance between two hex positions in axial coordinates. [br]
 ## [b]Note:[/b] This function assumes axial coordinate system
@@ -145,14 +188,16 @@ func get_distance(pos1: Vector2i, pos2: Vector2i) -> int:
 
 ## Gets all neighboring tiles for a given coordinate
 func get_neighbors(coords: Vector2i) -> Array[Vector2i]:
-	return [
-		terrain_layer.get_neighbor_cell(coords, TileSet.CELL_NEIGHBOR_BOTTOM_LEFT_SIDE),
-		terrain_layer.get_neighbor_cell(coords, TileSet.CELL_NEIGHBOR_BOTTOM_RIGHT_SIDE),
-		terrain_layer.get_neighbor_cell(coords, TileSet.CELL_NEIGHBOR_TOP_LEFT_SIDE),
-		terrain_layer.get_neighbor_cell(coords, TileSet.CELL_NEIGHBOR_TOP_RIGHT_SIDE),
-		terrain_layer.get_neighbor_cell(coords, TileSet.CELL_NEIGHBOR_LEFT_SIDE),
-		terrain_layer.get_neighbor_cell(coords, TileSet.CELL_NEIGHBOR_RIGHT_SIDE),
-	]
+	# I didn't know this existed so here we are
+	return terrain_layer.get_surrounding_cells(coords)
+	#[
+		#terrain_layer.get_neighbor_cell(coords, TileSet.CELL_NEIGHBOR_BOTTOM_LEFT_SIDE),
+		#terrain_layer.get_neighbor_cell(coords, TileSet.CELL_NEIGHBOR_BOTTOM_RIGHT_SIDE),
+		#terrain_layer.get_neighbor_cell(coords, TileSet.CELL_NEIGHBOR_TOP_LEFT_SIDE),
+		#terrain_layer.get_neighbor_cell(coords, TileSet.CELL_NEIGHBOR_TOP_RIGHT_SIDE),
+		#terrain_layer.get_neighbor_cell(coords, TileSet.CELL_NEIGHBOR_LEFT_SIDE),
+		#terrain_layer.get_neighbor_cell(coords, TileSet.CELL_NEIGHBOR_RIGHT_SIDE),
+	#]
 
 ## Sets the active party
 func set_active_party(party: MapParty) -> void:
@@ -197,7 +242,7 @@ func get_interactable_object_no_filter(
 
 
 ## Returns the bounding coordinates of the circumscribed rectangle containing the entire map.
-## For square or offset hex maps this is a rectangle;
+## For square or offset hex maps this is a rectangle; [br]
 ## for isometric or axial hex maps it's a rhombus. [br][br]
 ## [b]Note:[/b] Assumes tile (0, 0) is always included.
 ## Maps spanning only negative or positive coordinates
@@ -238,15 +283,9 @@ func test() -> void:
 
 func _ready() -> void:
 	_initialize()
+	
 	active_faction = $Factions/Empire
-	call_deferred(&"test")
-	#var map_party_1: MapParty = $Parties/MapParty
-	#map_party_1.map = self
-	#map_party_1.walk_to(Vector2i(23, 16))
-	#
-	#var map_party_2: MapParty = $Parties/MapParty2
-	#map_party_2.map = self
-	#map_party_2.walk_to(Vector2i(26, 10))
+	test.call_deferred()
 
 func _move_active_party(coords: Vector2i) -> void:
 	if active_party.is_moving:
@@ -255,24 +294,20 @@ func _move_active_party(coords: Vector2i) -> void:
 	await active_party.walk_along_path(event_handler.get_highlighted_tiles())
 	event_handler._reset_highlights()
 
-## Determines interaction for the active party at the specified [param coordinates]
-## and calls performs that action
+## Determines interaction for the active party at the specified
+## [param coordinates] and performs that action
 func request_active_party_interaction(coordinates: Vector2i) -> void:
 	if not active_party: return
-	var obj := get_first_interactable_object(coordinates)
-	if not obj:
-		_move_active_party(coordinates)
-		return
 	await active_party.walk_along_path(event_handler.get_highlighted_tiles())
 	event_handler._reset_highlights()
-	if obj.request_interaction(active_party): obj.interact(active_party)
 
 ## Handles player interaction when no active party is selected
 func request_player_interaction(coords: Vector2i) -> void:
-	var obj := get_interactable_object_no_filter(coords)
-	if obj is MapParty:
-		set_active_party(obj)
-		return
+	var objects := get_objects_on_tile(coords)
+	for obj in objects:
+		if obj.request_player_interaction(active_faction):
+			obj.player_interact(active_faction)
+			return
 
 ## Checks if a party can move to the given [param tile]
 func can_move(party: MapParty, tile: Vector2i) -> bool:
@@ -282,6 +317,4 @@ func can_move(party: MapParty, tile: Vector2i) -> bool:
 	if not objects: return true
 	for o in objects:
 		if not o.passable(party): return false
-		#if o.request_interaction(party): continue
-		#return false
 	return true

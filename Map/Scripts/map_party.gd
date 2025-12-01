@@ -29,10 +29,11 @@ func passable(party: Variant) -> bool:
 	return true
 
 func request_player_interaction(player: MapFaction) -> bool:
-	return false
+	return player == faction
 
 func player_interact(player: MapFaction) -> void:
-	pass
+	if player == faction:
+		map.set_active_party(self)
 
 #endregion
 
@@ -96,7 +97,6 @@ func walk_to(
 		_start_moving_animation(destination)
 		await _moving_finished
 		_smooth_movement = false
-		animation_handle.play_default()
 	else: _jump_to(destination)
 	_finish_moving_animation()
 	# safeguard against misaligned position
@@ -123,7 +123,12 @@ func walk_along_path(
 			_start_moving_animation(destination)
 			await _moving_finished
 		else: _jump_to(destination)
-		animation_handle.play_default()
+		for o in map.get_objects_on_tile(tile_position):
+			if o.request_interaction(self):
+				o.interact(self)
+				_finish_moving_animation()
+				return
+	
 	_finish_moving_animation()
 	
 	# safeguard against misaligned position

@@ -13,20 +13,28 @@
 [sub_resource type="Theme" id="Theme_x3kym"]
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_accvu")
 
-[node name="Node2D" type="Node"]
+[node name="Node2D" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(800, 450)
 
 [node name="Control" parent="." instance=ExtResource("1_q0clm")]
+layout_mode = 1
 
 [node name="Combat" parent="." instance=ExtResource("1_7nbev")]
 
 [node name="UnitInfoPanel" parent="." instance=ExtResource("1_roecy")]
 visible = false
+layout_mode = 1
 
 [node name="UI" type="Control" parent="."]
-layout_mode = 3
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

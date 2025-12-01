@@ -4,6 +4,7 @@ class_name TemporaryEffect
 @export var sound_delay: int = 0;
 
 var awaiting_free: bool = false
+signal effect_finished
 
 func _on_animation_finished() -> void:
 	if frame_changed.is_connected(_on_frame_changed):
@@ -18,6 +19,7 @@ func _on_animation_finished() -> void:
 				hide()
 				return
 	queue_free()
+	effect_finished.emit()
 
 func _process(delta: float) -> void:
 	if not awaiting_free: return
