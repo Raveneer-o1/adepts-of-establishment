@@ -123,7 +123,7 @@ func _load_battle(attacker: MapParty, defender: MapParty) -> Node:
 	
 	# combat starts here because this is when combat scene enters
 	# the tree and _ready() is called
-	get_tree().root.add_child(battle)
+	add_sibling(battle)
 	return battle
 
 const battle_effect = preload("res://Map/Scenes/visual_effect.tscn")
@@ -136,8 +136,10 @@ func _switch_to_battle(battle: Control) -> void:
 	#hide()
 	battle.show()
 	process_mode = Node.PROCESS_MODE_DISABLED
+	set_process(false)
 	
 	await EventBus.battle_ended
+	set_process(true)
 	battle.queue_free()
 	process_mode = Node.PROCESS_MODE_PAUSABLE
 	camera.make_current()

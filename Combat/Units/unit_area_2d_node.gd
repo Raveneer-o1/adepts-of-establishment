@@ -11,6 +11,7 @@ class_name UnitArea
 @onready var highlight_node := $HighlightAnimation as AnimatedSprite2D
 
 func _on_mouse_entered() -> void:
+	#print("hi")
 	highlight_node.visible = true
 
 
