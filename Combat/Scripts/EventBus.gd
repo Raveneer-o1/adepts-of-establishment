@@ -27,10 +27,6 @@ signal attack_missed(target: Unit, attack: Attack)
 ## This signal is diconnected from everything except [method CombatLogic.check_finished_animation] 
 ## at the end of each turn.
 signal attack_animation_finished(unit: Unit)
-## This signal is automatically disconnected from all receivers at the end of each turn.
-## For persistent connections, use [signal attack_resolved] instead.
-## @deprecated: use [method Object.call_deferred] instead
-signal attack_resolved_trigger(attack: Attack)
 ## This signal maintains connections.
 ## Avoid using it for one-time effects that require manual cleanup.
 signal attack_resolved(attack: Attack)

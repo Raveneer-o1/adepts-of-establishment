@@ -2,8 +2,7 @@ class_name ModifierStack
 
 var stack: Array[Modifier]
 
-@warning_ignore("untyped_declaration")
-func get_effective_value(value) -> Variant:
+func get_effective_value(value: Variant) -> Variant:
 	if stack.is_empty():
 		return value
 	var last_value: Variant = value
