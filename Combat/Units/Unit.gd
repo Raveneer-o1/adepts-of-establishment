@@ -720,6 +720,8 @@ func die() -> void:
 
 #endregion
 
+## Updates the unit's visual representation to match current parameter values.
+## Resets [member parameter_snapshots], triggers death animation if applicable.
 func update_visuals() -> void:
 	if death_visualized: return
 	visual_bar.max_value = parameters.max_hp

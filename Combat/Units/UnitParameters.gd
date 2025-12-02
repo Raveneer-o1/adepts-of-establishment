@@ -8,10 +8,6 @@ extends Node
 ## When a unit instance is initialized, it receives the same value
 ## as defined in the original scene resource.
 
-## Armor = 900 is the equivalent of .1 multiplier. In order for the damage to not be 
-## cut more than 10 times armor is capped at this value
-const ARMOR_CAP = 900
-
 ## Max damage deviation. Note: actual deviation is maximum between
 ## [member STANDARD_DAMAGE_DEVIATION] and [member STANDARD_FRACTIONAL_DAMAGE_DEVIATION] * damage
 const STANDARD_DAMAGE_DEVIATION = 5
@@ -71,19 +67,41 @@ var attacks: Array[UnitAttack]:
 ## Setting these parameters will override base parameters (use if you want to experiment
 ## but don't want to change the intended behavior)
 
+## Defines the scaling factor for armor values.
+## When armor reaches this value, incoming damage is approximately halved. [br][br]
+## For example, setting this to [code]100[/code] means armor values typically range
+## up to ~100 with only exceptionally sturdy of buffed units going beyond that.[br][br]
+## [color=lightgreen][b]Note:[/b] Changing this value would also mean that armor of
+## all units now provides different damage reduction. Keep that in mind if
+## you decide to change it: you might have to rebalance unit parameters.[/color]
+const ARMOR_SCALE = 100
+## Minimum possible damage multiplier from armor.
+## Note: Actual multiplier will rarely reach this low as it would require
+## extremely high armor values.
+const ARMOR_MIN_MULTIPLIER = 0.1
 
-## Recalculates human-readable armor parameter into actual multiplier.
+const _ARMOR_SCALE_COMPL = int(ARMOR_SCALE * (1.0 - ARMOR_MIN_MULTIPLIER))
+const _ARMOR_NEGATIVE_FACTOR = - float(_ARMOR_SCALE_COMPL) / float(ARMOR_SCALE ** 2)
+
+## Recalculates human-readable armor parameter into actual multiplier.[br][br]
+##
+## For positive armor values, the multiplier asymptotically approaches
+## [constant ARMOR_MIN_MULTIPLIER].[br]
+## For negative values linearly increase with no caps or restrictions.
+## Slope in this case is given by [constant ARMOR_NEGATIVE_FACTOR] [br]
+## Adjust [constant ARMOR_SCALE] to modify the function's steepness.
+## [br][br]
+## [i]
 ## The idea is that players can increase
 ## armor stat indefinitely but will see diminishing returns.
 ## Thus, it's possible to let players increase the stat as
-## much as they want rather than cap it at a specific value.[br]
-## Note: Armor is still capped at [member UnitParameters.ARMOR_CAP], but that value 
-## is much harder to achieve.
+## much as they want rather than cap it at a specific value.
+## [/i]
 var armor_multiplier: float:
 	get:
-		if armor >= ARMOR_CAP:
-			return 0.1
-		return 100.0 / (armor + 100) if armor > 0 else 100.0 / (armor - 100) + 2.0
+		if armor == 0: return 1.0
+		if armor < 0: return armor * _ARMOR_NEGATIVE_FACTOR + 1.0
+		return float(_ARMOR_SCALE_COMPL) / float(ARMOR_SCALE + armor) + ARMOR_MIN_MULTIPLIER
 
 #region Underlying values
 
@@ -121,6 +139,9 @@ var underlying_shielding: bool = false
 
 #region Data broker
 
+## [color=yellow]Data broker:[/color] this property is part of the data broker system.
+## Use to access values instead of directly accessing underlying parameters.
+## [br][br]
 ## Unlike other data broker fields, this property returns a shallow copy of the
 ## base value with modifications applied from the associated [ModifierStack].
 var immunities: Array[GlobalDefs.AttackType]:
@@ -131,6 +152,8 @@ var immunities: Array[GlobalDefs.AttackType]:
 			return (stats_modifiers[stat_name] as ModifierStack).get_effective_value(underlying_value)
 		return underlying_value
 
+## [color=yellow]Data broker:[/color] this property is part of the data broker system.
+## Use to access values instead of directly accessing underlying parameters.
 var shielding: bool:
 	get:
 		const stat_name = &"shielding"
@@ -141,6 +164,8 @@ var shielding: bool:
 	set(value):
 		underlying_shielding = value
 
+## [color=yellow]Data broker:[/color] this property is part of the data broker system.
+## Use to access values instead of directly accessing underlying parameters.
 var shielding_chance: float:
 	get:
 		const stat_name = &"shielding_chance"
@@ -149,6 +174,8 @@ var shielding_chance: float:
 			return (stats_modifiers[stat_name] as ModifierStack).get_effective_value(underlying_value)
 		return underlying_value
 
+## [color=yellow]Data broker:[/color] this property is part of the data broker system.
+## Use to access values instead of directly accessing underlying parameters.
 var max_hp: int:
 	get:
 		const stat_name = &"max_HP"
@@ -157,6 +184,8 @@ var max_hp: int:
 			return (stats_modifiers[stat_name] as ModifierStack).get_effective_value(underlying_value)
 		return underlying_value
 
+## [color=yellow]Data broker:[/color] this property is part of the data broker system.
+## Use to access values instead of directly accessing underlying parameters.
 var base_damage: int:
 	get:
 		const stat_name = &"base_damage"
@@ -165,6 +194,10 @@ var base_damage: int:
 			return (stats_modifiers[stat_name] as ModifierStack).get_effective_value(underlying_value)
 		return underlying_value
 
+## [color=yellow]Data broker:[/color] this property is part of the data broker system.
+## Use to access values instead of directly accessing underlying parameters.
+## [br][br]
+## Returns the armor value. For calculations use [member armor_multiplier] instead.
 var armor: int:
 	get:
 		const stat_name = &"armor"
@@ -173,6 +206,8 @@ var armor: int:
 			return (stats_modifiers[stat_name] as ModifierStack).get_effective_value(underlying_value)
 		return underlying_value
 
+## [color=yellow]Data broker:[/color] this property is part of the data broker system.
+## Use to access values instead of directly accessing underlying parameters.
 var evasion: float:
 	get:
 		const stat_name = &"evasion"
@@ -192,7 +227,8 @@ var evasion: float:
 ## 0.1 (10%) → 0.111111 [br]
 ## 0.2 (20%) → 0.25 [br]
 ## 0.3 (30%) → 0.428571 [br]
-## 0.5 (50%) → 1.0
+## 0.5 (50%) → 1.0 [br]
+## 0.75 (75%) → 3.0
 ## [/i][/center]
 var evasion_represetation: float:
 	get:
@@ -215,7 +251,10 @@ var _hp: int:
 		else:
 			underlying_HP = value
 
-# Public interface for HP - clamps values to maximum and triggers death when reaching zero
+## [color=yellow]Data broker:[/color] this property is part of the data broker system.
+## Use to access values instead of directly accessing underlying parameters.
+## [br][br]
+## Public interface for HP - clamps values to maximum and triggers death when reaching zero.
 var hp: int:
 	get:
 		return _hp
@@ -233,13 +272,11 @@ var hp_percentage: float:
 
 var effective_current_hp: int:
 	get:
-		return round(float(hp) / armor_multiplier)
+		return roundi(float(hp) / armor_multiplier / (1.0 - evasion))
 
 var effective_max_hp: int:
 	get:
-		return round(float(max_hp) / armor_multiplier)
-
-
+		return roundi(float(max_hp) / armor_multiplier / (1.0 - evasion))
 
 var dead: bool = false
 
@@ -278,7 +315,8 @@ func have_effect(effect_name: StringName, except: AppliedEffect = null) -> bool:
 			return true
 	return false
 
-## Returns the fiesr instance of the [param effect_name] or [code]null[/code]
+## Returns the first instance of the [param effect_name]
+## or [code]null[/code] if none is found.
 func find_effect(effect_name: StringName, except: AppliedEffect = null) -> AppliedEffect:
 	for child in get_children():
 		if child is not AppliedEffect:
@@ -290,6 +328,9 @@ func find_effect(effect_name: StringName, except: AppliedEffect = null) -> Appli
 			return child
 	return null
 
+## Removes inactive modifiers from all [ModifierStack]s.
+## A modifier is considered inactive if its associated [AppliedEffect] reference
+## is invalid (e.g., the effect was freed) or if the effect is currently silenced.
 func clean_modifiers() -> void:
 	for modifier: ModifierStack in stats_modifiers.values():
 		modifier.clean()
@@ -358,8 +399,9 @@ func _read_data(data: UnitData) -> void:
 	_init_attacks(data.attack_data)
 	
 	hp = hp  # you don't say
-	# thi is needed because hp updates "dead" flag and triggers death
+	# this is needed because hp updates "dead" flag and triggers death
 
+## Initializes references. Returns if initializtion was successful.
 func initialize_variables(data: UnitData) -> bool:
 	parent_unit = get_parent()
 	if data: _read_data(data)
@@ -372,6 +414,7 @@ func initialize_variables(data: UnitData) -> bool:
 	
 	return initializtion_successful
 
+## See [method Unit.update_visuals]
 func update_effects() -> void:
 	for stack_name: String in stats_modifiers:
 		stats_modifiers[stack_name].clean()
@@ -379,6 +422,7 @@ func update_effects() -> void:
 
 var initialized: bool = false
 
+## Applies all effects. Safe to call multiple times: has no effect after the first call.
 func initialize_effects() -> void:
 	if initialized:
 		return
@@ -387,7 +431,7 @@ func initialize_effects() -> void:
 		if child is AppliedEffect:
 			child.initialize()
 	parent_unit.update_visuals()
-	EventBus.turn_started.connect(turn_start_reaction)
+	EventBus.turn_started.connect(_turn_start_reaction)
 
 func set_references() -> void:
 	for attack in attacks:
@@ -396,6 +440,10 @@ func set_references() -> void:
 func check_parameters() -> void:
 	# initializtion_successful is false at the start
 	if not base_paramaters:  return
+	for attack in attacks:
+		if not is_instance_valid(attack) or \
+		attack.is_queued_for_deletion():
+			return
 	# TODO: write check_parameters() function
 	initializtion_successful = true
 
@@ -456,9 +504,10 @@ func apply_effect(
 		override_stackability,
 	)
 
-func turn_start_reaction(_unit: Unit) -> void:
+func _turn_start_reaction(_unit: Unit) -> void:
 	update_effects()
 
+## Deals damage bypassing armor. Returns actual damage taken.
 func take_direct_damage(dmg: int, randomize_damage: bool = false) -> int:
 	if randomize_damage:
 		var random_deviation: int = max(
@@ -480,7 +529,7 @@ func take_direct_damage(dmg: int, randomize_damage: bool = false) -> int:
 		)
 	return taken_dmg
 
-
+## Returns actual damage taken.
 func take_damage(dmg: int, randomize_damage: bool = true) -> int:
 	if parent_unit.defense_stance:
 		dmg /= 2
@@ -508,7 +557,7 @@ func take_damage(dmg: int, randomize_damage: bool = true) -> int:
 		)
 	return taken_dmg
 
-
+## Returns actual health restored.
 func heal(value: int) -> int:
 	var original_hp: int = hp
 	hp += value

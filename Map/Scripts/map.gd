@@ -105,6 +105,9 @@ func free_map_object(o: MapInteractableObject) -> void:
 	o.queue_free()
 
 func clear_object_refs(o: MapInteractableObject) -> void:
+	if not is_instance_valid(o):
+		push_error("Invalid reference passed to clear object! Did you free it somewhere else?")
+		return
 	tile_to_object.get(o.tile_position, []).erase(o)
 
 func _prefill_data(attacker: MapParty, defender: MapParty) -> void:
@@ -120,7 +123,7 @@ func _load_battle(attacker: MapParty, defender: MapParty) -> Node:
 	
 	# combat starts here because this is when combat scene enters
 	# the tree and _ready() is called
-	get_tree().root.add_child.call_deferred(battle)
+	get_tree().root.add_child(battle)
 	return battle
 
 const battle_effect = preload("res://Map/Scenes/visual_effect.tscn")
@@ -141,8 +144,10 @@ func _switch_to_battle(battle: Control) -> void:
 
 func _play_effect(pos: Vector2) -> void:
 	var effect := battle_effect.instantiate() as TemporaryEffect
-	add_child.call_deferred(effect)
-	(func()->void: effect.global_position = pos).call_deferred()
+	#add_child.call_deferred(effect)
+	#(func()->void: effect.global_position = pos).call_deferred()
+	add_child(effect)
+	effect.global_position = pos
 	await effect.effect_finished
 
 ## Initiates a battle between two parties. [br]
