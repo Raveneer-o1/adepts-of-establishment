@@ -79,7 +79,6 @@ var max_tile := Vector2i.ZERO
 var tile_to_object: Dictionary[Vector2i, Array] = {}
 
 func clean_hashtable() -> void:
-	#get_tree().process_frame
 	for k: Vector2i in tile_to_object.keys():
 		if not tile_to_object[k]:
 			tile_to_object.erase(k)
@@ -128,12 +127,9 @@ func _load_battle(attacker: MapParty, defender: MapParty) -> Node:
 
 const battle_effect = preload("res://Map/Scenes/visual_effect.tscn")
 
-#static var battle: Node
-
 func _switch_to_battle(battle: Control) -> void:
 	(battle.find_child("Camera2D", false) as Camera2D).make_current()
 	
-	#hide()
 	battle.show()
 	process_mode = Node.PROCESS_MODE_DISABLED
 	set_process(false)
@@ -146,8 +142,6 @@ func _switch_to_battle(battle: Control) -> void:
 
 func _play_effect(pos: Vector2) -> void:
 	var effect := battle_effect.instantiate() as TemporaryEffect
-	#add_child.call_deferred(effect)
-	#(func()->void: effect.global_position = pos).call_deferred()
 	add_child(effect)
 	effect.global_position = pos
 	await effect.effect_finished
@@ -156,23 +150,10 @@ func _play_effect(pos: Vector2) -> void:
 ## [param attacker]: The party initiating the combat encounter[br]
 ## [param defender]: The party being attacked
 func start_battle(attacker: MapParty, defender: MapParty) -> void:
-	#var thread := Thread.new()
 	_prefill_data(attacker, defender)
 	
-	#if thread.start(_load_battle.bind(attacker, defender)) != OK:
-		#push_error("Unable to create thread!")
-		#return
-	
 	var battle := _load_battle(attacker, defender)
-	
 	await _play_effect(defender.global_position)
-	
-	#var battle : Control = thread.wait_to_finish()
-	
-	#if thread.is_started():
-		#if thread.is_alive():
-			#await thread.wait_to_finish()
-		#else: thread.wait_to_finish()
 	
 	_switch_to_battle(battle)
 	attacker.update_parameters()
@@ -195,16 +176,7 @@ func get_distance(pos1: Vector2i, pos2: Vector2i) -> int:
 
 ## Gets all neighboring tiles for a given coordinate
 func get_neighbors(coords: Vector2i) -> Array[Vector2i]:
-	# I didn't know this existed so here we are
 	return terrain_layer.get_surrounding_cells(coords)
-	#[
-		#terrain_layer.get_neighbor_cell(coords, TileSet.CELL_NEIGHBOR_BOTTOM_LEFT_SIDE),
-		#terrain_layer.get_neighbor_cell(coords, TileSet.CELL_NEIGHBOR_BOTTOM_RIGHT_SIDE),
-		#terrain_layer.get_neighbor_cell(coords, TileSet.CELL_NEIGHBOR_TOP_LEFT_SIDE),
-		#terrain_layer.get_neighbor_cell(coords, TileSet.CELL_NEIGHBOR_TOP_RIGHT_SIDE),
-		#terrain_layer.get_neighbor_cell(coords, TileSet.CELL_NEIGHBOR_LEFT_SIDE),
-		#terrain_layer.get_neighbor_cell(coords, TileSet.CELL_NEIGHBOR_RIGHT_SIDE),
-	#]
 
 ## Sets the active party
 func set_active_party(party: MapParty) -> void:
@@ -248,12 +220,14 @@ func get_interactable_object_no_filter(
 	return objects[0] if objects else null
 
 
-## Returns the bounding coordinates of the circumscribed rectangle containing the entire map.
-## For square or offset hex maps this is a rectangle; [br]
+## Returns the bounding coordinates of the circumscribed rectangle containing
+## the entire map. [br]
+## For square or offset hex maps this is a rectangle;
 ## for isometric or axial hex maps it's a rhombus. [br][br]
 ## [b]Note:[/b] Assumes tile (0, 0) is always included.
 ## Maps spanning only negative or positive coordinates
-## will be expanded to include (0, 0).
+## will be expanded to include (0, 0).[br]
+## The returned array has the structure [code][min, max][/code]:
 ## [codeblock]
 ## var size := get_map_size(map_layer)
 ## var min_tile := size[0]  # Minimum coordinates

@@ -1,19 +1,10 @@
 extends Area2D
 class_name UnitArea
 
-#var area_active: bool:
-	#set(value):
-		#input_pickable = value
-		#if not value:
-			#highlight_node.visible = false
-
-#@onready var unit: Unit = get_parent()
 @onready var highlight_node := $HighlightAnimation as AnimatedSprite2D
 
 func _on_mouse_entered() -> void:
-	#print("hi")
 	highlight_node.visible = true
-
 
 func _on_mouse_exited() -> void:
 	highlight_node.visible = false

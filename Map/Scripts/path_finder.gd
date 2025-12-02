@@ -3,6 +3,11 @@ extends Node
 
 @onready var map: Map = $".."
 
+## Maximum tile distance permitted for pathfinding calculations.
+## If the requested distance exceeds this value, the algorithm will not execute
+## and an empty path will be returned.
+const MAX_DISTANCE = 50
+
 var terrain_layer: TileMapLayer:
 	get:
 		return map.terrain_layer
@@ -38,12 +43,15 @@ func A_star(start: Vector2i, end: Vector2i, travel_data: TravelData) -> Array[Ve
 	if not _are_tiles_valid(start, end, travel_data):
 		return []
 	
+	if map.get_distance(start, end) > MAX_DISTANCE:
+		return []
+	
 	var current_node := PathNode.new(start, terrain_layer)
 	current_node.terrain_cost = 0
 	var closed_set: Dictionary[Vector2i, PathNode] = {}  # Tiles that have been evaluated
 	var open_set: Dictionary[Vector2i, PathNode] = {}    # Tiles to be evaluated
-	const MAX_ITERATIONS = 1000
 	
+	const MAX_ITERATIONS = 1000
 	# A* algorithm main loop, capped at MAX_ITERATIONS
 	for iteration in range(MAX_ITERATIONS):
 		#_visualize_current_tile(current_node.tile_coords)
