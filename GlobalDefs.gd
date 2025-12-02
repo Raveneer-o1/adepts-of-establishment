@@ -1,5 +1,7 @@
 extends Node
 
+const database_path := preload("res://Databases/unit_database.gd")
+
 ## Type of the player
 enum ControllerType{
 	Human,

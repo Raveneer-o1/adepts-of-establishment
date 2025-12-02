@@ -20,7 +20,6 @@ extends Node
 ##
 
 @export_file_path("*.tscn") var scene_path: String
-const database_path := preload("res://Databases/unit_database.gd")
 
 ## Position of the unit within the party (see [Party] class documentation). [br]
 ## Units with position [code]-1[/code] are considered [i]in garrison[/i]
@@ -47,9 +46,10 @@ const database_path := preload("res://Databases/unit_database.gd")
 @export var evasion: float
 @export var shielding_chance: float
 
+const database = GlobalDefs.database_path.database
 
 var database_dict: Dictionary:
-	get: return database_path.database.get(unit_name, {})
+	get: return database.get(unit_name, {})
 
 var description: String:
 	get: return database_dict.get(&"description", "")
@@ -123,7 +123,7 @@ func _initialize_attack_data() -> void:
 ## resets experience to 0, and reloads all defined attacks and effects.
 ## Should only be called when spawning a new unit into the world.
 func initialize(personal: String = "") -> void:
-	if not database_path.database.has(unit_name):
+	if not database.has(unit_name):
 		push_error("unit name '%s' does not exist in the database" % unit_name)
 		return
 	
