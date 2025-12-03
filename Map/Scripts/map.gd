@@ -155,7 +155,7 @@ func start_battle(attacker: MapParty, defender: MapParty) -> void:
 	var battle := _load_battle(attacker, defender)
 	await _play_effect(defender.global_position)
 	
-	_switch_to_battle(battle)
+	await _switch_to_battle(battle)
 	attacker.update_parameters()
 	defender.update_parameters()
 
@@ -272,7 +272,7 @@ func _move_active_party(coords: Vector2i) -> void:
 	if active_party.is_moving:
 		active_party.abort_moving()
 		return
-	await active_party.walk_along_path(event_handler.get_highlighted_tiles())
+	await active_party.control.walk_along_path(event_handler.get_highlighted_tiles())
 	event_handler._reset_highlights()
 
 ## Determines interaction for the active party at the specified

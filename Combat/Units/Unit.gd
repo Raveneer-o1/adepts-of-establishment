@@ -508,7 +508,7 @@ func activate() -> void:
 	if active: return
 	active = true
 
-func resurrect() -> void:
+func resurrect(message: String = "Revived!") -> void:
 	var sp := get_parent().get_parent()
 	if sp is UnitSpot:
 		if spot.unit != null:
@@ -526,7 +526,7 @@ func resurrect() -> void:
 	death_visualized = false
 	animation_handle.play(&"default")
 	
-	system.display_text_near_unit(self, "Revived!")
+	system.display_text_near_unit(self, message)
 	EventBus.unit_revived.emit(self)
 
 ## Restores health to the unit and plays associated animations and sounds. [br]
