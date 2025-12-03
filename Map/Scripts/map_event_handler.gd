@@ -44,24 +44,13 @@ func _handle_mouse_hovering() -> void:
 	if not tile_data: 
 		return
 	
-	#var objects := map.get_objects_on_tile(mouse_coords)
-	var interaction := false
-	for o in map.get_objects_on_tile(mouse_coords):
-		if o.request_interaction(map.active_party): interaction = true; break
-	
 	var path := map.find_path(
 		map.active_party.tile_position,
 		mouse_coords
 	)
 	
-	if not interaction:
-		for tile in path:
-			if map.get_first_interactable_object(tile):
-				interaction = true
-				break
-	
 	_last_target_tile = mouse_coords
-	_highlight_tiles(path, interaction)
+	highlight_tiles(path, map.active_party)
 	get_viewport().set_input_as_handled()
 
 func _process_click() -> void:
@@ -128,10 +117,13 @@ func _reset_highlights() -> void:
 		map.highlight_layer.set_cell(t)
 	_highlighted_tiles.clear()
 
-func _highlight_tiles(tiles: Array[Vector2i], interaction: bool = false) -> void:
+func _highlight_tiles_w_detection(tiles: Array[Vector2i], party: MapParty) -> void:
+	var interacting := false
 	for t in tiles:
+		if map.get_first_interactable_object(t, party):
+			interacting = true
 		var atlas_coords := Vector2i(0, 0)
-		if interaction:
+		if interacting:
 			atlas_coords = _INTERACTION_ATLAS_COORDS
 		else:
 			var data := terrain_layer.get_cell_tile_data(t)
@@ -140,3 +132,23 @@ func _highlight_tiles(tiles: Array[Vector2i], interaction: bool = false) -> void
 				atlas_coords = _ALTERNATIVE_COLOR.get(color_name, atlas_coords)
 		map.highlight_layer.set_cell(t, _TILE_HIGHLIGHT_ATLAS_ID, atlas_coords)
 	_highlighted_tiles.append_array(tiles)
+
+func _highlight_tiles_simple(tiles: Array[Vector2i]) -> void:
+	for t in tiles:
+		var atlas_coords := Vector2i(0, 0)
+		var data := terrain_layer.get_cell_tile_data(t)
+		if data:
+			var color_name: StringName = data.get_custom_data("color_identifier")
+			atlas_coords = _ALTERNATIVE_COLOR.get(color_name, atlas_coords)
+		map.highlight_layer.set_cell(t, _TILE_HIGHLIGHT_ATLAS_ID, atlas_coords)
+	_highlighted_tiles.append_array(tiles)
+	
+
+## Highlights the specified [param tiles] by setting cells in [member Map.highlight_layer].
+## [br][br]
+## If [param party] is provided, automatically detects interaction points along the path
+## and adjusts tile highlighting from that interaction onward.
+## This feature requires the tile array to be ordered sequentially.
+func highlight_tiles(tiles: Array[Vector2i], party: MapParty = null) -> void:
+	if not party: _highlight_tiles_simple(tiles)
+	else: _highlight_tiles_w_detection(tiles, party)

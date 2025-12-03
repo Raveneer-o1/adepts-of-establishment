@@ -167,4 +167,4 @@ func _get_next_node(open_set: Dictionary[Vector2i, PathNode], goal: Vector2i) ->
 	return result
 
 func _visualize_current_tile(tile_coords: Vector2i) -> void:
-	map._highlight_tiles([tile_coords])
+	map.event_handler.highlight_tiles([tile_coords])
