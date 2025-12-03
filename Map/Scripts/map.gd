@@ -279,8 +279,7 @@ func _move_active_party(coords: Vector2i) -> void:
 ## [param coordinates] and performs that action
 func request_active_party_interaction(coordinates: Vector2i) -> void:
 	if not active_party: return
-	await active_party.walk_along_path(event_handler.get_highlighted_tiles())
-	event_handler._reset_highlights()
+	await _move_active_party(coordinates)
 
 ## Handles player interaction when no active party is selected
 func request_player_interaction(coords: Vector2i) -> void:

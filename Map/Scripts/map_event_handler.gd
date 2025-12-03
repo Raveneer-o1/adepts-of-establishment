@@ -55,16 +55,26 @@ func _handle_mouse_hovering() -> void:
 
 func _process_click() -> void:
 	var tile := terrain_layer.local_to_map(terrain_layer.get_local_mouse_position())
+	get_viewport().set_input_as_handled()
 	if map.active_party:
 		map.request_active_party_interaction(tile)
-		get_viewport().set_input_as_handled()
 		return
 	map.request_player_interaction(tile)
+
+func _process_left_click() -> void:
+	var tile := terrain_layer.local_to_map(terrain_layer.get_local_mouse_position())
+	if map.active_party and map.active_party.is_moving:
+		map.request_active_party_interaction(tile)
+	map.set_active_party(null)
+	_reset_highlights()
+	get_viewport().set_input_as_handled()
 
 func _handle_mouse_input(event: InputEventMouseButton) -> void:
 	match event.button_index:
 		MouseButton.MOUSE_BUTTON_LEFT:
 			_process_click()
+		MouseButton.MOUSE_BUTTON_RIGHT:
+			_process_left_click()
 		MouseButton.MOUSE_BUTTON_WHEEL_DOWN:
 			camera.zoom_out()
 			get_viewport().set_input_as_handled()
