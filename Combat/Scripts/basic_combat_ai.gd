@@ -64,6 +64,7 @@ func choose_action(unit: Unit) -> void:
 	var avaliable_targets := api.combat_system.find_avaliable_targets()
 	if avaliable_targets.is_empty():
 		api.use_defense_stance()
+		return
 	
 	var targets_need := unit.current_attack.targets_needed
 	while targets_need > 0:
