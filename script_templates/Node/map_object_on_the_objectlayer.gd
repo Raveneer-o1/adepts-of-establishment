@@ -9,7 +9,7 @@ extends ObjectLayerObject
 #	# place your object at (0,0) and note coordinates of all occupied tiles.
 #
 #	# Example: An object forming a triangle that occupies the main hex (0,0),
-#	# the hex directly above (0,-1), and the hex above-right (1,-1):
+#	# the hex above-left (0,-1), and the hex above-right (1,-1):
 #	return [
 #		main,
 #		main + Vector2i(0, -1),
