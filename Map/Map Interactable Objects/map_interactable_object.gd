@@ -5,17 +5,17 @@ extends Node2D
 ## Abstract base class for all interactive objects on the map.
 ##
 ## Instances of this class should not be freed during runtime. If you need to 
-## remove a MapInteractableObject, consider these alternatives: [br]
+## remove a [MapInteractableObject], consider these alternatives: [br]
 ## - Preserve the object and store its data elsewhere. For example: defeated parties
 ## can generate graves that store the party data as child nodes 
-## [i](for future future resurrection or statistic gathering)[/i]. [br]
+## [i](for future resurrection or statistic gathering)[/i]. [br]
 ## - Utilize the object layer system. [MapObjectsLayer] provides management wrappers
 ## (see [method MapObjectsLayer.set_tile]) that handle object lifecycle automatically.
 ## This approach suits disposable objects like treasure bags that disappear when collected.
 ## [br][br]
 ## If neither alternative works and object removal is necessary, do not use
 ## [method queue_free] directly since map nodes maintain references to all
-## MapInteractableObject instances. Instead, use [method Map.free_map_object].
+## [MapInteractableObject] instances. Instead, use [method Map.free_map_object].
 ## [br][br]
 ## [MapInteractableObject] automatically locates the [Map] node by traversing
 ## the scene tree upward. If no Map node is found (reaching the root),
@@ -58,7 +58,8 @@ var tile_position: Vector2i:
 @abstract func request_player_interaction(faction: MapFaction) -> bool
 @abstract func player_interact(faction: MapFaction) -> void
 
-## Returns an array of tiles occupied by this object. [br][br]
+## Returns an array of tiles this object would occupy if placed at the specified
+## [param main] tile. Uses the object's current tile position by default. [br][br]
 ## [color=yellow]
 ## This method assumes the [b]Stairs Right[/b] hex layout and will procude incorrect
 ## results for other grid types, including [b]Stairs Left[/b] and [b]Diamond[/b].

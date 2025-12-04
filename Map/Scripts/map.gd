@@ -277,12 +277,12 @@ func _move_active_party(coords: Vector2i) -> void:
 
 ## Determines interaction for the active party at the specified
 ## [param coordinates] and performs that action
-func request_active_party_interaction(coordinates: Vector2i) -> void:
+func request_active_party_action(coordinates: Vector2i) -> void:
 	if not active_party: return
 	await _move_active_party(coordinates)
 
 ## Handles player interaction when no active party is selected
-func request_player_interaction(coords: Vector2i) -> void:
+func request_player_action(coords: Vector2i) -> void:
 	var objects := get_objects_on_tile(coords)
 	for obj in objects:
 		if obj.request_player_interaction(active_faction):

@@ -13,6 +13,13 @@ func _clear_refs (coords: Vector2i) -> void:
 		if not is_instance_valid(o) or o.is_queued_for_deletion():
 			map.clear_object_refs(o)
 
+## Returns [ObjectLayerObject] on the specified tile on [code]null[/code]
+## if the tile is empty
+func get_object(coords: Vector2i) -> ObjectLayerObject:
+	for o in map.get_objects_on_tile(coords):
+		if o is ObjectLayerObject: return o
+	return null
+
 func set_tile(
 	coords: Vector2i,
 	scene_id: int = -1

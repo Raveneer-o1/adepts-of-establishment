@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bmp8htqi7l1i"]
 
-[ext_resource type="Script" uid="uid://bjh2fm6srs7dd" path="res://Map/Scripts/map_capital_undead.gd" id="1_xml8a"]
+[ext_resource type="Script" uid="uid://bjh2fm6srs7dd" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scripts/map_capital_undead.gd" id="1_xml8a"]
 [ext_resource type="Texture2D" uid="uid://hqdbkrdckl6p" path="res://Arts/Map objects/undead capital.png" id="2_qeal6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_naogk"]

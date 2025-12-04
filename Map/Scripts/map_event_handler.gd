@@ -6,7 +6,7 @@ extends Node
 var terrain_layer: TileMapLayer:
 	get: return map.terrain_layer
 
-var camera: Camera2D:
+var camera: MapCamera:
 	get: return map.camera
 
 # Last tile coordinates that the mouse was hovering over
@@ -62,9 +62,9 @@ func _process_click() -> void:
 	map.request_player_interaction(tile)
 
 func _process_right_click() -> void:
-	var tile := terrain_layer.local_to_map(terrain_layer.get_local_mouse_position())
-	if map.active_party and map.active_party.is_moving:
-		map.request_active_party_interaction(tile)
+	#var tile := terrain_layer.local_to_map(terrain_layer.get_local_mouse_position())
+	#if map.active_party and map.active_party.is_moving:
+		#map.request_active_party_interaction(tile)
 	map.set_active_party(null)
 	_reset_highlights()
 	get_viewport().set_input_as_handled()
@@ -152,7 +152,6 @@ func _highlight_tiles_simple(tiles: Array[Vector2i]) -> void:
 			atlas_coords = _ALTERNATIVE_COLOR.get(color_name, atlas_coords)
 		map.highlight_layer.set_cell(t, _TILE_HIGHLIGHT_ATLAS_ID, atlas_coords)
 	_highlighted_tiles.append_array(tiles)
-	
 
 ## Highlights the specified [param tiles] by setting cells in [member Map.highlight_layer].
 ## [br][br]

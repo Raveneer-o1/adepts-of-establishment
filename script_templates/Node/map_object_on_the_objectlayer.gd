@@ -1,4 +1,4 @@
-extends MapInteractableObject
+extends ObjectLayerObject
 
 
 #region Abstract Implementation
