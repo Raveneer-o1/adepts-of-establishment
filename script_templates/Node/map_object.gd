@@ -1,8 +1,6 @@
 extends MapInteractableObject
 
 
-#region Abstract Implementation
-
 # Uncomment and implement the method below if the object occupies multiple tiles
 #func _get_occupied_tiles(main: Vector2i = tile_position) -> Array[Vector2i]:
 #	# Return axial coordinates of all tiles this object occupies when placed at 'main'
@@ -18,15 +16,27 @@ extends MapInteractableObject
 #		main + Vector2i(1, -1),
 #	]
 
-func interact(party: MapParty) -> void:
-	# Implement interaction logic between the provided party and this object
-	return
+#region Abstract Implementation
 
-func request_interaction(party: MapParty) -> bool:
+func can_interact(party: MapParty) -> bool:
 	# Return whether interaction with the provided party is possible
 	# If null is provided, return the default value used for visual hints
 	if not party: return false
 	return false
+
+func accept_interaction(party: MapParty) -> void:
+	# Implement interaction logic between the provided party and this object
+	return
+
+func will_intercept(party: MapParty) -> bool:
+	# This method returns true if it intercepts passing by parties
+	# For example, enemies force battles on each other
+	return false
+
+func force_interaction_on(party: MapParty) -> void:
+	# Redefine this method if your object needs to do something different when
+	# intercepting othet parties
+	accept_interaction(party)
 
 func _can_party_pass(party: MapParty) -> bool:
 	return false

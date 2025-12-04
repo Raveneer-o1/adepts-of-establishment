@@ -208,7 +208,7 @@ func get_first_interactable_object(
 	if not party: party = active_party
 	var objects := get_objects_on_tile(coords)
 	for o in objects:
-		if o.request_interaction(party): return o
+		if o.can_interact(party): return o
 	return null
 
 ## Returns the first object on a specific tile.[br][br]

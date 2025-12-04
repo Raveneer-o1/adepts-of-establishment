@@ -66,8 +66,9 @@ func walk_along_path(
 			await _moving_finished
 		else: _jump_to(destination)
 		for o in map.get_objects_on_tile(tile_position):
-			if o.request_interaction(map_party):
-				o.interact(map_party)
+			if o == map_party: continue
+			if o.can_interact(map_party):
+				o.accept_interaction(map_party)
 				_finish_moving_animation()
 				return
 	

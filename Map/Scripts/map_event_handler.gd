@@ -57,14 +57,11 @@ func _process_click() -> void:
 	var tile := terrain_layer.local_to_map(terrain_layer.get_local_mouse_position())
 	get_viewport().set_input_as_handled()
 	if map.active_party:
-		map.request_active_party_interaction(tile)
+		map.request_active_party_action(tile)
 		return
-	map.request_player_interaction(tile)
+	map.request_player_action(tile)
 
 func _process_right_click() -> void:
-	#var tile := terrain_layer.local_to_map(terrain_layer.get_local_mouse_position())
-	#if map.active_party and map.active_party.is_moving:
-		#map.request_active_party_interaction(tile)
 	map.set_active_party(null)
 	_reset_highlights()
 	get_viewport().set_input_as_handled()

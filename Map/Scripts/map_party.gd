@@ -20,14 +20,21 @@ var is_moving: bool:
 
 #region Abstract Definitions
 
-func interact(party: MapParty) -> void:
-	if party.faction != faction:
+func accept_interaction(party: MapParty) -> void:
+	if party.faction.is_enemy(faction):
 		map.start_battle(party, self)
 
-func request_interaction(party: MapParty) -> bool:
+func force_interaction_on(party: MapParty) -> void:
+	if faction.is_enemy(party.faction):
+		map.start_battle(party, self)
+
+func will_intercept(party: MapParty) -> bool:
+	return faction.is_enemy(party.faction)
+
+func can_interact(party: MapParty) -> bool:
 	if not party: return false
 	if not faction or not party.faction: return false
-	return party.faction != faction
+	return party.faction.is_enemy(faction)
 
 func passable(party: Variant) -> bool:
 	return true

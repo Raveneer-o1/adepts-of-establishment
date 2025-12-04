@@ -45,13 +45,33 @@ var tile_position: Vector2i:
 		_move_mapping(value)
 		tile_position = value
 
-@abstract func interact(party: MapParty) -> void
+## Returns list of tiles the provided [param party] must stand on in order to
+## interact with this object.
+## @experimental: for now this method returns interaction tiles for all possible
+## events
+func get_interaction_tiles(party: MapParty = null) -> Array[Vector2i]:
+	return [tile_position]
+
+## Processes interaction initiated by the specified [param party]. [br][br]
+## Override this method in derived classes. It generally performs no validation
+## beyond basic input filtering. Use [method can_interact] to verify interaction
+## validity beforehand, or call this directly to force interaction regardless.
+@abstract func accept_interaction(party: MapParty) -> void
+## Processes interaction with the specified [param party] initiated by this object.
+## [br][br]
+## Override this method in derived classes. It generally performs no validation
+## beyond basic input filtering. Use [method can_interact] to verify interaction
+## validity beforehand, or call this directly to force interaction regardless.
+@abstract func force_interaction_on(party: MapParty) -> void
 ## Determines whether interaction with this object is currently available.
 ## Returns [code]true[/code] if the tile should highlight as interactable
 ## when the player hovers over this object with a party selected. [br][br]
 ## [b]Note:[/b] This method checks interaction availability for the [b]party[/b],
 ## not the player. For player interaction checks, use [method request_player_interaction].
-@abstract func request_interaction(party: MapParty) -> bool
+@abstract func can_interact(party: MapParty) -> bool
+## Determines whether this object should intercept parties passing by.
+## For example, enemy parties intercept parties to start a combat.
+@abstract func will_intercept(party: MapParty) -> bool
 @abstract func passable(party: Variant) -> bool
 #@abstract func click_response(active_faction: MapFaction) -> void
 
