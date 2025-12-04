@@ -18,6 +18,12 @@ var units: Array[UnitData]:
 var is_moving: bool:
 	get: return control.is_moving
 
+func get_interaction_tiles(
+	main: Vector2i = tile_position,
+	party: MapParty = null
+) -> Array[Vector2i]:
+	return map.get_neighbors(main)
+
 #region Abstract Definitions
 
 func accept_interaction(party: MapParty) -> void:

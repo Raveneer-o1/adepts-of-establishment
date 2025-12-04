@@ -38,7 +38,7 @@ extends Node2D
 ## alternative grid implementation would require reimplementing only these
 ## specific functions rather than the entire map system. [br][br]
 ##
-## Current implementation assumes [u]Stairs[/u] or [u]Diamond[/u] layout
+## Current implementation assumes [u]Stairs Right[/u] layout
 ## configurations in Godot's [TileMapLayer].
 ## [/i]
 
@@ -70,7 +70,7 @@ var min_tile := Vector2i.ZERO
 ## Maximum tile coordinate of the map bounds  
 var max_tile := Vector2i.ZERO
 
-## Mapping between tile coordinates and objects on the map
+## Mapping between tile coordinates and objects on the map. [br][br]
 ## Should be:
 ## [codeblock]
 ## Dictionary[ Vector2i, Array[MapInteractableObject] ]
@@ -78,10 +78,36 @@ var max_tile := Vector2i.ZERO
 ## But nested typed collections are not supported in Godot
 var tile_to_object: Dictionary[Vector2i, Array] = {}
 
+## @experimental: this may consume too much memory
+## Mapping between interaction points and interactable objects on the map. [br][br]
+## Should be:
+## [codeblock]
+## Dictionary[ Vector2i, Array[MapInteractableObject] ]
+## [/codeblock]
+## But nested typed collections are not supported in Godot
+var tile_to_interaction: Dictionary[Vector2i, Array] = {}
+
 func clean_hashtable() -> void:
+	# The plan is to add support for somewhat unlimited number of objects on the map
+	# so we have to consider large hashmaps with thousands entries
+	const MAX_ITERATIONS_PER_FRAME = 500
+	var i := 0
 	for k: Vector2i in tile_to_object.keys():
+		i += 1
+		if i >= MAX_ITERATIONS_PER_FRAME:
+			# if already processing too much entries, leave for next frame
+			await get_tree().process_frame
+			i = 0
 		if not tile_to_object[k]:
 			tile_to_object.erase(k)
+	
+	for k: Vector2i in tile_to_interaction.keys():
+		i += 1
+		if i >= MAX_ITERATIONS_PER_FRAME:
+			await get_tree().process_frame
+			i = 0
+		if not tile_to_interaction[k]:
+			tile_to_interaction.erase(k)
 
 ## Returns the file path to the controller scene based on controller type
 func get_controller(type: GlobalDefs.ControllerType) -> String:
@@ -107,7 +133,12 @@ func clear_object_refs(o: MapInteractableObject) -> void:
 	if not is_instance_valid(o):
 		push_error("Invalid reference passed to clear object! Did you free it somewhere else?")
 		return
-	tile_to_object.get(o.tile_position, []).erase(o)
+	for t in o.get_occupied_tiles():
+		if tile_to_object.has(t):
+			tile_to_object[t].erase(o)
+	for t in o.get_interaction_tiles():
+		if tile_to_interaction.has(t):
+			tile_to_interaction[t].erase(o)
 
 func _prefill_data(attacker: MapParty, defender: MapParty) -> void:
 	EventBus.left_units = attacker.units
@@ -191,6 +222,13 @@ func find_path(start: Vector2i, end: Vector2i, party: MapParty = null) -> Array[
 	#TODO: construct TravelData object from Party provided
 	return path_finder.A_star(start, end, TravelData.new())
 
+## Returns all objects that have the provided [param tile] set
+## as their interaction tile
+func get_interactions_on_tile(coords: Vector2i) -> Array[MapInteractableObject]:
+	var res: Array[MapInteractableObject] = []
+	res.assign(tile_to_interaction.get(coords, []))
+	return res
+
 ## Returns all interactable objects on a specific tile
 func get_objects_on_tile(coords: Vector2i) -> Array[MapInteractableObject]:
 	var res: Array[MapInteractableObject] = []
@@ -198,14 +236,12 @@ func get_objects_on_tile(coords: Vector2i) -> Array[MapInteractableObject]:
 	return res
 
 ## Returns the first object on a specific tile that the
-## provided [param party] can interact with.
-## If no party is providedm uses [member active_party] [br][br]
+## provided [param party] can interact with. [br][br]
 ## [i]See also: [method get_interactable_object_no_filter] [/i]
 func get_first_interactable_object(
 	coords: Vector2i,
-	party: MapParty = null
+	party: MapParty = active_party
 ) -> MapInteractableObject:
-	if not party: party = active_party
 	var objects := get_objects_on_tile(coords)
 	for o in objects:
 		if o.can_interact(party): return o
@@ -218,6 +254,15 @@ func get_interactable_object_no_filter(
 ) -> MapInteractableObject:
 	var objects := get_objects_on_tile(coords)
 	return objects[0] if objects else null
+
+func get_first_interception(
+	coords: Vector2i,
+	party: MapParty = active_party
+) -> MapInteractableObject:
+	var objects := get_interactions_on_tile(coords)
+	for o in objects:
+		if o.will_intercept(party): return o
+	return null
 
 
 ## Returns the bounding coordinates of the circumscribed rectangle containing
@@ -273,7 +318,10 @@ func _move_active_party(coords: Vector2i) -> void:
 		active_party.control.abort_moving()
 		return
 	await active_party.control.walk_along_path(event_handler.get_highlighted_tiles())
-	event_handler._reset_highlights()
+	event_handler.reset_highlights()
+	
+	# moving mapry creates an empty entry for each tile that party walked over
+	clean_hashtable()
 
 ## Determines interaction for the active party at the specified
 ## [param coordinates] and performs that action

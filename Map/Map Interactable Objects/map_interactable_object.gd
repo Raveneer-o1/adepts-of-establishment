@@ -28,12 +28,20 @@ func _move_mapping(destination: Vector2i) -> void:
 	for t in get_occupied_tiles():
 		if map.tile_to_object.has(t):
 			map.tile_to_object[t].erase(self)
-	
 	for t in get_occupied_tiles(destination):
 		if map.tile_to_object.has(t):
 			map.tile_to_object[t].append(self)
 		else:
 			map.tile_to_object[t] = [self]
+	
+	for t in get_interaction_tiles():
+		if map.tile_to_interaction.has(t):
+			map.tile_to_interaction[t].erase(self)
+	for t in get_interaction_tiles(destination):
+		if map.tile_to_interaction.has(t):
+			map.tile_to_interaction[t].append(self)
+		else:
+			map.tile_to_interaction[t] = [self]
 
 var tile_position: Vector2i:
 	get: return tile_position
@@ -45,12 +53,18 @@ var tile_position: Vector2i:
 		_move_mapping(value)
 		tile_position = value
 
-## Returns list of tiles the provided [param party] must stand on in order to
-## interact with this object.
-## @experimental: for now this method returns interaction tiles for all possible
-## events
-func get_interaction_tiles(party: MapParty = null) -> Array[Vector2i]:
-	return [tile_position]
+## @experimental: Currently returns tiles for all interaction types.
+## With future introduction of distinct interaction categories,
+## the implementation of this method may change. [br][br]
+## Returns tiles where [param party] must be positioned to interact with this object
+## when the object is at [param main] tile.[br][br]
+## Uses current position by default. If [param party] is not specified, returns
+## all positions available for any interaction.
+func get_interaction_tiles(
+	main: Vector2i = tile_position,
+	party: MapParty = null
+) -> Array[Vector2i]:
+	return [main]
 
 ## Processes interaction initiated by the specified [param party]. [br][br]
 ## Override this method in derived classes. It generally performs no validation

@@ -36,7 +36,7 @@ func _handle_mouse_hovering() -> void:
 	if _last_target_tile == mouse_coords: return
 	
 	if map.active_party and not map.active_party.is_moving:
-		_reset_highlights()
+		reset_highlights()
 	
 	if not map.can_move(map.active_party, mouse_coords): return
 	
@@ -63,7 +63,7 @@ func _process_click() -> void:
 
 func _process_right_click() -> void:
 	map.set_active_party(null)
-	_reset_highlights()
+	reset_highlights()
 	get_viewport().set_input_as_handled()
 
 func _handle_mouse_input(event: InputEventMouseButton) -> void:
@@ -108,7 +108,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		_handle_mouse_hovering()
 
-## Returns the currently highlighted tiles and marks them as consumed.
+## Returns the currently highlighted tiles (copy of the array) and marks them as consumed.
 ## Once tiles are marked as consumed, subsequent calls will return an empty array. [br][br]
 ##
 ## [b]Note:[/b] The original highlighted tiles array remains accessible through
@@ -118,7 +118,8 @@ func get_highlighted_tiles() -> Array[Vector2i]:
 	_highlighted_tiles_were_given = true
 	return _highlighted_tiles.duplicate()
 
-func _reset_highlights() -> void:
+## Hides highlighted tiles
+func reset_highlights() -> void:
 	_highlighted_tiles_were_given = false
 	for t in _highlighted_tiles:
 		map.highlight_layer.set_cell(t)
@@ -127,8 +128,11 @@ func _reset_highlights() -> void:
 func _highlight_tiles_w_detection(tiles: Array[Vector2i], party: MapParty) -> void:
 	var interacting := false
 	for t in tiles:
-		if map.get_first_interactable_object(t, party):
-			interacting = true
+		# "interacting" check skips calling the functions if we're already intercepting
+		if interacting or \
+			map.get_first_interception(t, party) or \
+			map.get_first_interactable_object(t, party):
+				interacting = true
 		var atlas_coords := Vector2i(0, 0)
 		if interacting:
 			atlas_coords = _INTERACTION_ATLAS_COORDS

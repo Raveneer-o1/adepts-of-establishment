@@ -1,18 +1,18 @@
 class_name PartyControl
 extends Node
 
-@onready var map_party: MapParty = $".."
+@onready var this_party: MapParty = $".."
 
 var cancel_movement: bool:
-	get: return map_party.cancel_movement
-	set(value): map_party.cancel_movement = value
+	get: return this_party.cancel_movement
+	set(value): this_party.cancel_movement = value
 var tile_position: Vector2i:
-	get: return map_party.tile_position
-	set(value): map_party.tile_position = value
+	get: return this_party.tile_position
+	set(value): this_party.tile_position = value
 var animation_handle: MapPartyAnimationHandle:
-	get: return map_party.animation_handle
+	get: return this_party.animation_handle
 var map: Map:
-	get: return map_party.map
+	get: return this_party.map
 
 ## Number of tiles the unit can traverse per second. [br]
 ## [b]Note:[/b] Actual movement time is proportional to path length -
@@ -27,12 +27,12 @@ func walk_to(
 	destination: Vector2i,
 	animate: bool = true,
 ) -> void:
-	EventBus.party_move_started.emit(map_party, destination)
+	EventBus.party_move_started.emit(this_party, destination)
 	if cancel_movement:
 		cancel_movement = false
 		_is_moving = false
 		return
-	map_party.face_tile(destination)
+	this_party.face_tile(destination)
 	tile_position = destination
 	if animate:
 		_smooth_movement = true
@@ -43,7 +43,15 @@ func walk_to(
 	else: _jump_to(destination)
 	_finish_moving_animation()
 	# safeguard against misaligned position
-	map_party.global_position = _moving_to
+	this_party.global_position = _moving_to
+
+func _check_interception() -> bool:
+	for o in map.get_interactions_on_tile(tile_position):
+		if o == this_party: continue
+		if o.will_intercept(this_party):
+			o.force_interaction_on(this_party)
+			return true
+	return false
 
 ## Moves a party along a proveded coordinates [br]
 ## [color=red]Warning:[/color] This method performs no validation - it can move
@@ -53,29 +61,29 @@ func walk_along_path(
 	animate: bool = true,
 ) -> void:
 	for destination in path:
-		EventBus.party_move_started.emit(map_party, destination)
+		EventBus.party_move_started.emit(this_party, destination)
 		if cancel_movement:
 			cancel_movement = false
 			_is_moving = false
 			return
-		map_party.face_tile(destination)
+		this_party.face_tile(destination)
 		animation_handle.play_walk()
 		tile_position = destination
 		if animate:
 			_start_moving_animation(destination)
 			await _moving_finished
 		else: _jump_to(destination)
-		for o in map.get_objects_on_tile(tile_position):
-			if o == map_party: continue
-			if o.can_interact(map_party):
-				o.accept_interaction(map_party)
-				_finish_moving_animation()
-				return
+		if _check_interception():
+			_finish_moving_animation()
+			
+			# safeguard against misaligned position
+			this_party.global_position = _moving_to
+			return
 	
 	_finish_moving_animation()
 	
 	# safeguard against misaligned position
-	map_party.global_position = _moving_to
+	this_party.global_position = _moving_to
 
 ## Equivalent to setting [member cancel_movement] to [code]true[/code].[br]
 ## Stops the party's movement after completing the current step.[br]
@@ -102,12 +110,12 @@ func _process_movement(delta: float) -> void:
 		# This provides non-linear movement which is preferable in this case
 		# The result looks better than linear interpolation and
 		# is faster than standard acceleration + velocity approaches
-		map_party.global_position = \
-			map_party.global_position.lerp(_moving_to, clampf(weight, 0.0, 1.0))
+		this_party.global_position = \
+			this_party.global_position.lerp(_moving_to, clampf(weight, 0.0, 1.0))
 		
 		if weight >= 1.0: _finish_moving()
 	else:
-		map_party.global_position += _moving_velocity * delta
+		this_party.global_position += _moving_velocity * delta
 		if _time_passed >= _time_to_reach: _finish_moving()
 
 signal _moving_finished
@@ -130,12 +138,12 @@ func _finish_moving_animation() -> void:
 
 func _start_moving_animation(p: Vector2i, time: float = 1.0 / MAP_SPEED) -> void:
 	_moving_to = map.get_global_coords(p)
-	_moving_velocity = (_moving_to - map_party.global_position) / time
+	_moving_velocity = (_moving_to - this_party.global_position) / time
 	_is_moving = true
 	_time_to_reach = time
 	_time_passed = 0.0
 
 func _jump_to(p: Vector2i) -> void:
-	map_party.global_position = map.get_global_coords(p)
+	this_party.global_position = map.get_global_coords(p)
 
 #endregion
