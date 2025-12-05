@@ -87,15 +87,19 @@ var tile_to_object: Dictionary[Vector2i, Array] = {}
 ## But nested typed collections are not supported in Godot
 var tile_to_interaction: Dictionary[Vector2i, Array] = {}
 
+var __now_cleaning: bool = false
 func clean_hashtable() -> void:
 	# The plan is to add support for somewhat unlimited number of objects on the map
 	# so we have to consider large hashmaps with thousands entries
+	if __now_cleaning: return
+	__now_cleaning = true
+	
 	const MAX_ITERATIONS_PER_FRAME = 500
 	var i := 0
 	for k: Vector2i in tile_to_object.keys():
 		i += 1
 		if i >= MAX_ITERATIONS_PER_FRAME:
-			# if already processing too much entries, leave for next frame
+			# if already processing too much entries, wait for next frame
 			await get_tree().process_frame
 			i = 0
 		if not tile_to_object[k]:
@@ -108,6 +112,8 @@ func clean_hashtable() -> void:
 			i = 0
 		if not tile_to_interaction[k]:
 			tile_to_interaction.erase(k)
+	
+	__now_cleaning = false
 
 ## Returns the file path to the controller scene based on controller type
 func get_controller(type: GlobalDefs.ControllerType) -> String:
