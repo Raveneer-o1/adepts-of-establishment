@@ -36,20 +36,24 @@ class PathNode extends RefCounted:
 ## [param travel_data]: Travel parameters that affect pathfinding[br][br]
 ## [b]Returns:[/b] Array of tile coordinates representing the path from start
 ## to end (excluding start)
-func A_star(start: Vector2i, end: Vector2i, travel_data: TravelData) -> Array[Vector2i]:
-	if start == end: 
+func A_star(start: Vector2i, end: Array[Vector2i], travel_data: TravelData) -> Array[Vector2i]:
+	if start in end: 
 		return []
 	
 	if not _are_tiles_valid(start, end, travel_data):
 		return []
 	
-	if map.get_distance(start, end) > MAX_DISTANCE:
+	for t in end:
+		if map.get_distance(start, t) < MAX_DISTANCE:
+			break
 		return []
 	
 	var current_node := PathNode.new(start, terrain_layer)
 	current_node.terrain_cost = 0
 	var closed_set: Dictionary[Vector2i, PathNode] = {}  # Tiles that have been evaluated
 	var open_set: Dictionary[Vector2i, PathNode] = {}    # Tiles to be evaluated
+	
+	var goal := start
 	
 	const MAX_ITERATIONS = 1000
 	# A* algorithm main loop, capped at MAX_ITERATIONS
@@ -63,7 +67,8 @@ func A_star(start: Vector2i, end: Vector2i, travel_data: TravelData) -> Array[Ve
 		closed_set[current_node.tile_coords] = current_node
 		
 		# Check if we reached the destination
-		if current_node.tile_coords == end: 
+		if current_node.tile_coords in end:
+			goal = current_node.tile_coords
 			break
 		
 		var next_node := _get_next_node(open_set, end)
@@ -72,10 +77,10 @@ func A_star(start: Vector2i, end: Vector2i, travel_data: TravelData) -> Array[Ve
 		else:
 			break  # No more nodes to evaluate
 	
-	if not closed_set.has(end):
+	if not closed_set.has(goal) or goal == start:
 		return []
 	
-	return _reconstruct_path(closed_set[end], start)
+	return _reconstruct_path(closed_set[goal], start)
 
 func _is_passable(tile: Vector2i, travel_data: TravelData) -> bool:
 	var data := terrain_layer.get_cell_tile_data(tile)
@@ -85,8 +90,11 @@ func _is_passable(tile: Vector2i, travel_data: TravelData) -> bool:
 		if not obj.passable(travel_data): return false
 	return true
 
-func _are_tiles_valid(start: Vector2i, end: Vector2i, travel_data: TravelData) -> bool:
-	return _is_passable(start, travel_data) and _is_passable(end, travel_data)
+func _are_tiles_valid(start: Vector2i, end: Array[Vector2i], travel_data: TravelData) -> bool:
+	if not _is_passable(start, travel_data): return false
+	for t in end:
+		if _is_passable(t, travel_data): return true
+	return false
 
 func _evaluate_repeating_neighbor(
 	neighbor_coords: Vector2i,
@@ -139,11 +147,14 @@ func _reconstruct_path(end_node: PathNode, start_coords: Vector2i) -> Array[Vect
 	return path
 
 # Heuristic function for A* (estimated cost from current position to goal)
-func _heuristic(current_pos: Vector2i, goal_pos: Vector2i) -> int:
-	return map.get_distance(current_pos, goal_pos)
+func _heuristic(current_pos: Vector2i, end: Array[Vector2i]) -> int:
+	var distances := []
+	for t in end:
+		distances.append(map.get_distance(current_pos, t))
+	return distances.min()
 
 # Finds the next node to evaluate from the open set using A* scoring
-func _get_next_node(open_set: Dictionary[Vector2i, PathNode], goal: Vector2i) -> PathNode:
+func _get_next_node(open_set: Dictionary[Vector2i, PathNode], end: Array[Vector2i]) -> PathNode:
 	if not open_set: 
 		return null 
 	
@@ -155,7 +166,7 @@ func _get_next_node(open_set: Dictionary[Vector2i, PathNode], goal: Vector2i) ->
 		var node := open_set[coords]
 		if node.came_from:
 			node.accumulated_cost = node.came_from.accumulated_cost + node.terrain_cost
-		var score := node.accumulated_cost + _heuristic(node.tile_coords, goal)
+		var score := node.accumulated_cost + _heuristic(node.tile_coords, end)
 		
 		if is_first or score < min_score:
 			min_score = score

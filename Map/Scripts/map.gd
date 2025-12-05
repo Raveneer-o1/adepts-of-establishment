@@ -88,14 +88,19 @@ var tile_to_object: Dictionary[Vector2i, Array] = {}
 var tile_to_interaction: Dictionary[Vector2i, Array] = {}
 
 var __now_cleaning: bool = false
-func clean_hashtable() -> void:
+## Removes empty entries from internal hashtables. If [param assume_iteration] is provided,
+## reduces first-frame processing by the specified amount. Values over [code]500[/code]
+## skip first-frame processing entirely.[br]
+## Use this when heavy calculations have already occurred in the current frame
+## to maintain target frame rate.
+func clean_hashtable(assume_iteration: int = 0) -> void:
 	# The plan is to add support for somewhat unlimited number of objects on the map
 	# so we have to consider large hashmaps with thousands entries
 	if __now_cleaning: return
 	__now_cleaning = true
 	
 	const MAX_ITERATIONS_PER_FRAME = 500
-	var i := 0
+	var i := assume_iteration
 	for k: Vector2i in tile_to_object.keys():
 		i += 1
 		if i >= MAX_ITERATIONS_PER_FRAME:
@@ -224,9 +229,23 @@ func set_active_party(party: MapParty) -> void:
 ## [b]Returns[/b]: Array of tile coordinates representing the path, empty if no path found
 func find_path(start: Vector2i, end: Vector2i, party: MapParty = null) -> Array[Vector2i]:
 	if not party: party = active_party
-	if not active_party: return []
+	if not party: return []
 	#TODO: construct TravelData object from Party provided
-	return path_finder.A_star(start, end, TravelData.new())
+	return path_finder.A_star(start, [end], TravelData.new())
+
+func find_path_to_object(
+	start: Vector2i,
+	end: MapInteractableObject,
+	party: MapParty = null
+) -> Array[Vector2i]:
+	if not party: party = active_party
+	if not party: return []
+	if not end: return []
+	return path_finder.A_star(
+		start,
+		end.get_interaction_tiles(end.tile_position, party),
+		TravelData.new()
+	)
 
 ## Returns all objects that have the provided [param tile] set
 ## as their interaction tile
@@ -319,6 +338,14 @@ func _ready() -> void:
 	active_faction = $Factions/Empire
 	test.call_deferred()
 
+func _move_active_party_to_object(object: MapInteractableObject) -> void:
+	if active_party.is_moving:
+		active_party.control.abort_moving()
+		return
+	await active_party.control.walk_along_path(event_handler.get_highlighted_tiles())
+	event_handler.reset_highlights()
+	clean_hashtable()
+
 func _move_active_party(coords: Vector2i) -> void:
 	if active_party.is_moving:
 		active_party.control.abort_moving()
@@ -333,7 +360,13 @@ func _move_active_party(coords: Vector2i) -> void:
 ## [param coordinates] and performs that action
 func request_active_party_action(coordinates: Vector2i) -> void:
 	if not active_party: return
-	await _move_active_party(coordinates)
+	var object := get_first_interactable_object(coordinates)
+	
+	if not object:
+		await _move_active_party(coordinates)
+		return
+	
+	await _move_active_party_to_object(object)
 
 ## Handles player interaction when no active party is selected
 func request_player_action(coords: Vector2i) -> void:
@@ -347,8 +380,8 @@ func request_player_action(coords: Vector2i) -> void:
 func can_move(party: MapParty, tile: Vector2i) -> bool:
 	if not party: return false
 	if party.is_moving: return false
-	var objects := get_objects_on_tile(tile)
-	if not objects: return true
-	for o in objects:
-		if not o.passable(party): return false
+	#var objects := get_objects_on_tile(tile)
+	#if not objects: return true
+	#for o in objects:
+		#if not o.passable(party): return false
 	return true

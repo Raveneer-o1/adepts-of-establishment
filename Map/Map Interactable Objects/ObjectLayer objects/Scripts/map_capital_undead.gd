@@ -1,8 +1,14 @@
 class_name MapCapital
 extends ObjectLayerObject
 
-
-#region Abstract Implementation
+func get_interaction_tiles(
+	main: Vector2i = tile_position,
+	party: MapParty = null
+) -> Array[Vector2i]:
+	return [
+		main + Vector2i(0, 1),
+		main + Vector2i(-1, 1),
+	]
 
 func _get_occupied_tiles(main: Vector2i = tile_position) -> Array[Vector2i]:
 	return [
@@ -18,20 +24,22 @@ func _get_occupied_tiles(main: Vector2i = tile_position) -> Array[Vector2i]:
 		main + Vector2i(2, -2),
 	]
 
+#region Abstract Implementation
+
 func can_interact(party: MapParty) -> bool:
 	# Return whether interaction with the provided party is possible
 	# If null is provided, return the default value used for visual hints
 	if not party: return false
-	return false
+	return true
 
 func accept_interaction(party: MapParty) -> void:
 	# Implement interaction logic between the provided party and this object
-	return
+	print("Hi")
 
 func will_intercept(party: MapParty) -> bool:
 	# This method returns true if it intercepts passing by parties
 	# For example, enemies force battles on each other
-	return false
+	return true
 
 func force_interaction_on(party: MapParty) -> void:
 	# Redefine this method if your object needs to do something different when

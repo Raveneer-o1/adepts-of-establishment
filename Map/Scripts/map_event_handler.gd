@@ -44,10 +44,16 @@ func _handle_mouse_hovering() -> void:
 	if not tile_data: 
 		return
 	
-	var path := map.find_path(
-		map.active_party.tile_position,
-		mouse_coords
-	)
+	var object := map.get_first_interactable_object(mouse_coords)
+	var path := \
+		map.find_path_to_object(
+			map.active_party.tile_position,
+			object
+		) if object else \
+		map.find_path(
+			map.active_party.tile_position,
+			mouse_coords
+		)
 	
 	_last_target_tile = mouse_coords
 	highlight_tiles(path, map.active_party)
