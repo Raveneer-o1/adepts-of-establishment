@@ -3,8 +3,6 @@ extends Node2D
 
 ## Map node. Handles map related actions.
 ##
-## [br][br][br]
-##
 ## The map consists of three primary components: [b]terrain layer[/b],
 ## [b]object layer[/b], and [b]interactive objects[/b].[br][br]
 ##
@@ -12,7 +10,7 @@ extends Node2D
 ## providing essential terrain data including: [br]
 ## - Terrain types (land, water, mountains, etc.) [br]
 ## - Movement costs and traversability [br]
-## - Tile ownership and claim status [br] [br]
+## - Tile ownership and claim status [br]
 ## This layer acts as the spatial reference for all map systems.[br][br]
 ##
 ## [member objects_layer] contains static, non-movable objects represented as tiles: [br]
@@ -329,14 +327,10 @@ func _initialize() -> void:
 	_check_object_layer()
 	objects_layer.map = self
 
-func test() -> void:
-	objects_layer.set_tile(Vector2i(30, 20))
-
 func _ready() -> void:
 	_initialize()
 	
 	active_faction = $Factions/Empire
-	test.call_deferred()
 
 func _move_active_party_to_object(object: MapInteractableObject) -> void:
 	if active_party.is_moving:

@@ -46,6 +46,7 @@ func _move_mapping(destination: Vector2i) -> void:
 var tile_position: Vector2i:
 	get: return tile_position
 	set(value):
+		if tile_position == value: return
 		if not map:
 			push_error("Map reference is empty! (%s)" % object_name)
 			tile_position = value
@@ -123,4 +124,4 @@ func _ready() -> void:
 		push_error("Unable to find map for object '%s'" % object_name)
 		queue_free()
 		return
-	call_deferred(&"_register_object")
+	_register_object.call_deferred()
