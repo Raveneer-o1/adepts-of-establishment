@@ -39,11 +39,11 @@ func accept_interaction(party: MapParty) -> void:
 func will_intercept(party: MapParty) -> bool:
 	# This method returns true if it intercepts passing by parties
 	# For example, enemies force battles on each other
-	return true
+	return false
 
 func force_interaction_on(party: MapParty) -> void:
 	# Redefine this method if your object needs to do something different when
-	# intercepting othet parties
+	# intercepting other parties
 	accept_interaction(party)
 
 func _can_party_pass(party: MapParty) -> bool:

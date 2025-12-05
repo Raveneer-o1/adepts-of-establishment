@@ -45,20 +45,24 @@ func walk_to(
 	# safeguard against misaligned position
 	this_party.global_position = _moving_to
 
-func _check_interception() -> bool:
+func _check_interception(target_object: MapInteractableObject = null) -> bool:
 	for o in map.get_interactions_on_tile(tile_position):
 		if o == this_party: continue
+		if o == target_object: return true
 		if o.will_intercept(this_party):
 			o.force_interaction_on(this_party)
 			return true
 	return false
 
-## Moves a party along a proveded coordinates [br]
+## Moves a party along a proveded coordinates [br][br]
+## if [param target_object] ia specified, ignores interception from that object
+## (expected to be handled by caller) [br][br]
 ## [color=red]Warning:[/color] This method performs no validation - it can move
 ## units through any tile, including non-existent or impassable locations.
 func walk_along_path(
 	path: Array[Vector2i],
 	animate: bool = true,
+	target_object: MapInteractableObject = null
 ) -> void:
 	for destination in path:
 		EventBus.party_move_started.emit(this_party, destination)
@@ -73,7 +77,7 @@ func walk_along_path(
 			_start_moving_animation(destination)
 			await _moving_finished
 		else: _jump_to(destination)
-		if _check_interception():
+		if _check_interception(target_object):
 			_finish_moving_animation()
 			
 			# safeguard against misaligned position
