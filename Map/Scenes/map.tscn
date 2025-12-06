@@ -325,6 +325,7 @@ tile_set = SubResource("TileSet_1e4ck")
 [node name="MapParty" parent="Parties" node_paths=PackedStringArray("faction") instance=ExtResource("12_kwhd2")]
 position = Vector2(761, 300)
 faction = NodePath("../../Factions/Empire")
+party_name = "Strong dudes"
 
 [node name="UnitData" type="Node" parent="Parties/MapParty"]
 script = ExtResource("21_bl7ab")

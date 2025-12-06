@@ -55,8 +55,15 @@ extends Node2D
 ## Handles user input and map events
 @onready var event_handler: MapEventHandler = $EventHandler
 
+var game: GameMap
+
 ## Currently selected party that the player controls
-var active_party: MapParty
+var active_party: MapParty:
+	get: return active_party
+	set(value):
+		game.update_active_party(value)
+		active_party = value
+
 ## Faction that currently has turn control
 var active_faction: MapFaction
 
@@ -320,6 +327,15 @@ func _check_object_layer() -> void:
 	object at: " + str(c) + "; map size: " + str(min_tile) + "-" + str(max_tile))
 
 func _initialize() -> void:
+	var next_parent := get_parent()
+	while next_parent and not game:
+		if next_parent is GameMap: game = next_parent
+		else: next_parent = next_parent.get_parent()
+	if not game:
+		push_error("Unable to find GameMap!")
+		queue_free()
+		return
+	
 	var size := get_map_size(terrain_layer)
 	min_tile = size[0]
 	max_tile = size[1]

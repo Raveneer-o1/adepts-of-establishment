@@ -6,6 +6,7 @@ extends MapInteractableObject
 @onready var control: PartyControl = $Control
 
 @export var faction: MapFaction
+@export var party_name: String
 
 var units: Array[UnitData]:
 	get:

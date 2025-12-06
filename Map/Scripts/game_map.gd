@@ -2,6 +2,12 @@ class_name GameMap
 extends Node
 
 const test_map = preload("res://Map/Scenes/map.tscn")
+@onready var _active_party_container: VBoxContainer = %ActivePartyContainer
+@onready var _party_name_label: Label = %ActivePartyContainer/PartyNameLabel
+@onready var _movement_points: ProgressBar = %ActivePartyContainer/MovementPoints
+@onready var _movement_points_label: Label = %ActivePartyContainer/MovementPoints/Label
+@onready var _party_portrait_texture_rect: TextureRect = \
+	%ActivePartyContainer/PortraitContainer/PanelContainer/PortraitTextureRect
 
 var current_map: Map
 
@@ -22,6 +28,28 @@ func temporarily_disable_map() -> Signal:
 func load_maps() -> void:
 	current_map = test_map.instantiate()
 	$MapsContainer.add_child(current_map)
+
+func _clear_active_party() -> void:
+	_movement_points.value = 0.0
+	_movement_points_label.text = ""
+	_party_name_label.text = ""
+	
+	# TODO: dynamically place textures
+	_party_portrait_texture_rect.hide()
+
+func _fill_active_party(party: MapParty) -> void:
+	var mp := party.parameters.movement_points
+	var max_mp := party.parameters.max_movement_points
+	_movement_points.value = mp
+	_movement_points.max_value = max_mp
+	_movement_points_label.text = "%d/%d" % [mp, max_mp]
+	_party_name_label.text = party.party_name
+	
+	_party_portrait_texture_rect.show()
+
+func update_active_party(party: MapParty) -> void:
+	if not party: _clear_active_party()
+	else: _fill_active_party(party)
 
 func _ready() -> void:
 	load_maps()

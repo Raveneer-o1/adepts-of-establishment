@@ -21,7 +21,6 @@ script = ExtResource("1_mp6yi")
 script = ExtResource("2_jwoqq")
 
 [node name="Main" type="CanvasLayer" parent="UILayers"]
-visible = false
 
 [node name="PanelContainer" type="PanelContainer" parent="UILayers/Main"]
 anchors_preset = 11
@@ -42,6 +41,7 @@ layout_mode = 2
 text = "Quit"
 
 [node name="ActivePartyContainer" type="VBoxContainer" parent="UILayers/Main/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="PartyNameLabel" type="Label" parent="UILayers/Main/PanelContainer/VBoxContainer/ActivePartyContainer"]
@@ -59,12 +59,17 @@ layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="PortraitTextureRect" type="TextureRect" parent="UILayers/Main/PanelContainer/VBoxContainer/ActivePartyContainer/PortraitContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="UILayers/Main/PanelContainer/VBoxContainer/ActivePartyContainer/PortraitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="PortraitTextureRect" type="TextureRect" parent="UILayers/Main/PanelContainer/VBoxContainer/ActivePartyContainer/PortraitContainer/PanelContainer"]
 layout_mode = 2
 texture = ExtResource("3_ankfc")
 expand_mode = 2
 
-[node name="Disclaimer" type="Label" parent="UILayers/Main/PanelContainer/VBoxContainer/ActivePartyContainer/PortraitContainer/PortraitTextureRect"]
+[node name="Disclaimer" type="Label" parent="UILayers/Main/PanelContainer/VBoxContainer/ActivePartyContainer/PortraitContainer/PanelContainer/PortraitTextureRect"]
 layout_mode = 0
 offset_left = -5.0
 offset_top = 77.0
@@ -81,14 +86,14 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ProgressBar" type="ProgressBar" parent="UILayers/Main/PanelContainer/VBoxContainer/ActivePartyContainer"]
+[node name="MovementPoints" type="ProgressBar" parent="UILayers/Main/PanelContainer/VBoxContainer/ActivePartyContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 tooltip_text = "Movement points"
 step = 1.0
 show_percentage = false
 
-[node name="Label" type="Label" parent="UILayers/Main/PanelContainer/VBoxContainer/ActivePartyContainer/ProgressBar"]
+[node name="Label" type="Label" parent="UILayers/Main/PanelContainer/VBoxContainer/ActivePartyContainer/MovementPoints"]
 layout_mode = 0
 offset_right = 236.0
 offset_bottom = 23.0
@@ -152,6 +157,7 @@ layout_mode = 2
 text = "100"
 
 [node name="Party" type="CanvasLayer" parent="UILayers"]
+visible = false
 
 [node name="HBoxContainer" type="MarginContainer" parent="UILayers/Party"]
 anchors_preset = 15
@@ -299,5 +305,5 @@ layout_mode = 2
 [node name="MapsContainer" type="Node" parent="."]
 
 [connection signal="pressed" from="UILayers/Main/PanelContainer/VBoxContainer/QuitButton" to="UILayers" method="_on_quit_button_pressed"]
-[connection signal="gui_input" from="UILayers/Main/PanelContainer/VBoxContainer/ActivePartyContainer/PortraitContainer/PortraitTextureRect" to="UILayers" method="_on_portrait_texture_rect_gui_input"]
+[connection signal="gui_input" from="UILayers/Main/PanelContainer/VBoxContainer/ActivePartyContainer/PortraitContainer/PanelContainer/PortraitTextureRect" to="UILayers" method="_on_portrait_texture_rect_gui_input"]
 [connection signal="gui_input" from="UILayers/Party/HBoxContainer" to="UILayers" method="_on_h_box_container_gui_input"]
