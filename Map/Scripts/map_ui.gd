@@ -1,5 +1,50 @@
-extends CanvasLayer
+class_name MapUI
+extends Node
 
+var current_ui: CanvasLayer
+@onready var game_map: GameMap = $".."
+
+func _switch_ui(target_ui: CanvasLayer) -> void:
+	if current_ui:
+		current_ui.hide()
+		current_ui.set_process(false)
+	target_ui.show()
+	target_ui.set_process(true)
+	current_ui = target_ui
+
+func switch_to(ui: StringName) -> void:
+	var target_ui: CanvasLayer = find_child(ui)
+	if not target_ui:
+		push_error("Unknown UI type: %s" % ui)
+		return
+	if target_ui == current_ui: return
+	
+	if ui == &"Main": game_map.enable_map()
+	else:
+		game_map.temporarily_disable_map().connect(switch_to.bind(&"Main"))
+	
+	_switch_ui(target_ui)
+
+func _ready() -> void:
+	for child: CanvasLayer in get_children():
+		child.hide()
+		child.set_process(false)
+	switch_to.call_deferred(&"Main")
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_portrait_texture_rect_gui_input(event: InputEvent) -> void:
+	if event is not InputEventMouseButton: return
+	if (event as InputEventMouseButton).pressed:
+		switch_to(&"Party")
+
+
+#func _on_h_box_container_gui_input(event: InputEvent) -> void:
+	#var switching := false
+	#if event is InputEventMouseButton: 
+		#if event.button_index == MOUSE_BUTTON_LEFT or \
+		#event.button_index == MOUSE_BUTTON_RIGHT:
+			#switching = true
+	#if switching: switch_to(&"Main")
