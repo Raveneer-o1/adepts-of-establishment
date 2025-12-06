@@ -1,10 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://cy8rh77mxkncn"]
+[gd_scene load_steps=9 format=3 uid="uid://cy8rh77mxkncn"]
 
 [ext_resource type="Script" uid="uid://cium5533y6jdp" path="res://Map/Scripts/game_map.gd" id="1_mp6yi"]
 [ext_resource type="Script" uid="uid://ymq5kwxdp6r3" path="res://Map/Scripts/map_ui.gd" id="2_jwoqq"]
 [ext_resource type="Texture2D" uid="uid://b6vh1ulubj26i" path="res://Arts/Placeholders/Army.jpg" id="3_ankfc"]
 [ext_resource type="Texture2D" uid="uid://by3bbk6m8geey" path="res://Arts/itch assets/Pixel Art Icon Pack - RPG [Cainos]/Misc/Golden Coin.png" id="4_ru5ay"]
 [ext_resource type="Texture2D" uid="uid://cvcocjvddoc5d" path="res://Arts/itch assets/Pixel Art Icon Pack - RPG [Cainos]/Ore & Gem/Crystal.png" id="5_3g8al"]
+[ext_resource type="PackedScene" uid="uid://dqwc116n3br4m" path="res://Map/UI/Scenes/party_editor_unit_position.tscn" id="6_3g8al"]
+[ext_resource type="PackedScene" uid="uid://dgs5tkpmxvrcq" path="res://Map/UI/Scenes/party_editor_item.tscn" id="7_rwvpl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ru5ay"]
+font_size = 19
+font_color = Color(1, 0.25, 0.48749995, 0.68235296)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Game" type="Node"]
 script = ExtResource("1_mp6yi")
@@ -13,6 +21,7 @@ script = ExtResource("1_mp6yi")
 script = ExtResource("2_jwoqq")
 
 [node name="Main" type="CanvasLayer" parent="UILayers"]
+visible = false
 
 [node name="PanelContainer" type="PanelContainer" parent="UILayers/Main"]
 anchors_preset = 11
@@ -55,6 +64,19 @@ layout_mode = 2
 texture = ExtResource("3_ankfc")
 expand_mode = 2
 
+[node name="Disclaimer" type="Label" parent="UILayers/Main/PanelContainer/VBoxContainer/ActivePartyContainer/PortraitContainer/PortraitTextureRect"]
+layout_mode = 0
+offset_left = -5.0
+offset_top = 77.0
+offset_right = 114.0
+offset_bottom = 134.0
+rotation = -0.70302343
+text = "AI-generated
+Placeholder"
+label_settings = SubResource("LabelSettings_ru5ay")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="VBoxContainer2" type="VBoxContainer" parent="UILayers/Main/PanelContainer/VBoxContainer/ActivePartyContainer/PortraitContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -73,59 +95,59 @@ offset_bottom = 23.0
 text = "20/20"
 horizontal_alignment = 1
 
-[node name="PanelContainer2" type="PanelContainer" parent="UILayers/Main"]
+[node name="ResourcesPanel" type="PanelContainer" parent="UILayers/Main"]
 offset_right = 28.0
 offset_bottom = 55.0
 
-[node name="MarginContainer" type="MarginContainer" parent="UILayers/Main/PanelContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="UILayers/Main/ResourcesPanel"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UILayers/Main/PanelContainer2/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayers/Main/ResourcesPanel/MarginContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="UILayers/Main/PanelContainer2/MarginContainer/HBoxContainer"]
+[node name="Gold" type="MarginContainer" parent="UILayers/Main/ResourcesPanel/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="UILayers/Main/PanelContainer2/MarginContainer/HBoxContainer/MarginContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="UILayers/Main/ResourcesPanel/MarginContainer/HBoxContainer/Gold"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="UILayers/Main/PanelContainer2/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer2"]
+[node name="TextureRect" type="TextureRect" parent="UILayers/Main/ResourcesPanel/MarginContainer/HBoxContainer/Gold/VBoxContainer2"]
 layout_mode = 2
 texture = ExtResource("4_ru5ay")
 expand_mode = 5
 
-[node name="Label" type="Label" parent="UILayers/Main/PanelContainer2/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer2"]
+[node name="Label" type="Label" parent="UILayers/Main/ResourcesPanel/MarginContainer/HBoxContainer/Gold/VBoxContainer2"]
 layout_mode = 2
 text = "100"
 
-[node name="MarginContainer2" type="MarginContainer" parent="UILayers/Main/PanelContainer2/MarginContainer/HBoxContainer"]
+[node name="Crystals" type="MarginContainer" parent="UILayers/Main/ResourcesPanel/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/Main/PanelContainer2/MarginContainer/HBoxContainer/MarginContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/Main/ResourcesPanel/MarginContainer/HBoxContainer/Crystals"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="UILayers/Main/PanelContainer2/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="UILayers/Main/ResourcesPanel/MarginContainer/HBoxContainer/Crystals/VBoxContainer"]
 layout_mode = 2
 texture = ExtResource("5_3g8al")
 expand_mode = 5
 
-[node name="Label" type="Label" parent="UILayers/Main/PanelContainer2/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
+[node name="Label" type="Label" parent="UILayers/Main/ResourcesPanel/MarginContainer/HBoxContainer/Crystals/VBoxContainer"]
 layout_mode = 2
 text = "100"
 
@@ -149,19 +171,100 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="UILayers/Party/HBoxContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="UnitsCpntainer" type="HBoxContainer" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer"]
+[node name="UnitsContainer" type="HBoxContainer" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="BacklineContainer" type="VBoxContainer" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/UnitsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="PartyEditorUnitPosition" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/UnitsContainer/BacklineContainer" instance=ExtResource("6_3g8al")]
+layout_mode = 2
+
+[node name="PartyEditorUnitPosition2" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/UnitsContainer/BacklineContainer" instance=ExtResource("6_3g8al")]
+layout_mode = 2
+
+[node name="PartyEditorUnitPosition3" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/UnitsContainer/BacklineContainer" instance=ExtResource("6_3g8al")]
+layout_mode = 2
+
+[node name="FrontlineContainer" type="VBoxContainer" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/UnitsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="PartyEditorUnitPosition" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/UnitsContainer/FrontlineContainer" instance=ExtResource("6_3g8al")]
+layout_mode = 2
+
+[node name="PartyEditorUnitPosition2" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/UnitsContainer/FrontlineContainer" instance=ExtResource("6_3g8al")]
+layout_mode = 2
+
+[node name="PartyEditorUnitPosition3" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/UnitsContainer/FrontlineContainer" instance=ExtResource("6_3g8al")]
+layout_mode = 2
+
+[node name="PartyEditorUnitPosition4" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/UnitsContainer/FrontlineContainer" instance=ExtResource("6_3g8al")]
+layout_mode = 2
 
 [node name="InfoContainer" type="VBoxContainer" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="PortraitContainer" type="PanelContainer" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/InfoContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/InfoContainer/PortraitContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureRect" type="TextureRect" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/InfoContainer/PortraitContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("3_ankfc")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="EffectsContainer" type="PanelContainer" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/InfoContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="FoldableContainer" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/InfoContainer/EffectsContainer"]
+layout_mode = 2
+title = "Effects"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/InfoContainer/EffectsContainer/MarginContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "* [b]Very mighty[/b]: strong party
+* [b]Legs[/b]: has legs
+
+"
+fit_content = true
+
+[node name="LongTextContainer" type="FoldableContainer" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/InfoContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+folded = true
+title = "Long Text"
+title_position = 1
+
+[node name="LongTextLabel" type="RichTextLabel" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/InfoContainer/LongTextContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+fit_content = true
+
 [node name="ItemsContainer" type="VBoxContainer" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
 
-[node name="PanelContainer" type="PanelContainer" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/ItemsContainer"]
+[node name="EquipmentContainer" type="PanelContainer" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/ItemsContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
@@ -175,23 +278,23 @@ mouse_filter = 0
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="InventoryItem" type="PanelContainer" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/ItemsContainer/InventoryScroller/InventoryContainer"]
-custom_minimum_size = Vector2(250, 0)
+[node name="PartyEditorItem" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/ItemsContainer/InventoryScroller/InventoryContainer" instance=ExtResource("7_rwvpl")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
-[node name="InventoryItem2" type="PanelContainer" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/ItemsContainer/InventoryScroller/InventoryContainer"]
-custom_minimum_size = Vector2(250, 0)
+[node name="PartyEditorItem2" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/ItemsContainer/InventoryScroller/InventoryContainer" instance=ExtResource("7_rwvpl")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
-[node name="InventoryItem3" type="PanelContainer" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/ItemsContainer/InventoryScroller/InventoryContainer"]
-custom_minimum_size = Vector2(250, 0)
+[node name="PartyEditorItem3" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/ItemsContainer/InventoryScroller/InventoryContainer" instance=ExtResource("7_rwvpl")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+
+[node name="PartyEditorItem4" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/ItemsContainer/InventoryScroller/InventoryContainer" instance=ExtResource("7_rwvpl")]
+layout_mode = 2
+
+[node name="PartyEditorItem5" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/ItemsContainer/InventoryScroller/InventoryContainer" instance=ExtResource("7_rwvpl")]
+layout_mode = 2
+
+[node name="PartyEditorItem6" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/ItemsContainer/InventoryScroller/InventoryContainer" instance=ExtResource("7_rwvpl")]
+layout_mode = 2
 
 [node name="MapsContainer" type="Node" parent="."]
 
