@@ -9,6 +9,8 @@ const test_map = preload("res://Map/Scenes/map.tscn")
 @onready var _party_portrait_texture_rect: TextureRect = \
 	%ActivePartyContainer/PortraitContainer/PanelContainer/PortraitTextureRect
 
+@onready var ui_layers: MapUI = $UILayers
+
 var current_map: Map
 
 func enable_map() -> void:

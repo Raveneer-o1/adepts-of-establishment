@@ -13,37 +13,25 @@ var animation_handle: MapPartyAnimationHandle:
 	get: return this_party.animation_handle
 var map: Map:
 	get: return this_party.map
+var game: GameMap:
+	get: return this_party.map.game
 
 ## Number of tiles the unit can traverse per second. [br]
 ## [b]Note:[/b] Actual movement time is proportional to path length -
 ## the movement timer restarts after reaching each tile in the path.
 const MAP_SPEED = 5.0
 
-## Moves the party to the specified coordinates. [br]
-## If [param animate] is [code]false[/code], the unit teleports instantly to the destination.[br]
-## [color=red]Warning:[/color] This method performs no validation - it can move
-## units to any tile, including non-existent or impassable locations.
-func walk_to(
-	destination: Vector2i,
-	animate: bool = true,
-) -> void:
-	EventBus.party_move_started.emit(this_party, destination)
-	if cancel_movement:
-		cancel_movement = false
-		_is_moving = false
-		return
-	this_party.face_tile(destination)
-	tile_position = destination
-	if animate:
-		_smooth_movement = true
-		animation_handle.play_walk()
-		_start_moving_animation(destination)
-		await _moving_finished
-		_smooth_movement = false
-	else: _jump_to(destination)
-	_finish_moving_animation()
-	# safeguard against misaligned position
-	this_party.global_position = _moving_to
+func _handle_step(destination: Vector2i) -> bool:
+	if this_party.parameters.movement_points <= 0: return false
+	var tile_data := map.terrain_layer.get_cell_tile_data(destination)
+	if not tile_data:
+		push_error("Trying to move on an empty spot!")
+		return false
+	var cost: int = tile_data.get_custom_data("traverse_cost")
+	this_party.parameters.movement_points -= \
+		cost * this_party.parameters.get_movement_multiplier()
+	game.update_active_party(this_party)
+	return true
 
 func _check_interception(target_object: MapInteractableObject = null) -> bool:
 	for o in map.get_interactions_on_tile(tile_position):
@@ -53,6 +41,37 @@ func _check_interception(target_object: MapInteractableObject = null) -> bool:
 			o.force_interaction_on(this_party)
 			return true
 	return false
+
+# Moves the party to the specified coordinates. [br]
+# If [param animate] is [code]false[/code], the unit teleports instantly to the destination.[br]
+# [color=red]Warning:[/color] This method performs no validation - it can move
+# units to any tile, including non-existent or impassable locations.
+#func walk_to(
+	#destination: Vector2i,
+	#animate: bool = true,
+#) -> void:
+	#EventBus.party_move_started.emit(this_party, destination)
+	#if cancel_movement:
+		#cancel_movement = false
+		#_is_moving = false
+		#return
+	#this_party.face_tile(destination)
+	#tile_position = destination
+	#if animate:
+		#_smooth_movement = true
+		#animation_handle.play_walk()
+		#_start_moving_animation(destination)
+		#await _moving_finished
+		#_smooth_movement = false
+	#else: _jump_to(destination)
+	#_finish_moving_animation()
+	## safeguard against misaligned position
+	#this_party.global_position = _moving_to
+
+func _return_from_moving() -> void:
+	_finish_moving_animation()
+	# safeguard against misaligned position
+	this_party.global_position = _moving_to
 
 ## Moves a party along a proveded coordinates [br][br]
 ## if [param target_object] ia specified, ignores interception from that object
@@ -68,7 +87,10 @@ func walk_along_path(
 		EventBus.party_move_started.emit(this_party, destination)
 		if cancel_movement:
 			cancel_movement = false
-			_is_moving = false
+			_return_from_moving()
+			return
+		if not _handle_step(destination): 
+			_return_from_moving()
 			return
 		this_party.face_tile(destination)
 		animation_handle.play_walk()
@@ -78,16 +100,10 @@ func walk_along_path(
 			await _moving_finished
 		else: _jump_to(destination)
 		if _check_interception(target_object):
-			_finish_moving_animation()
-			
-			# safeguard against misaligned position
-			this_party.global_position = _moving_to
+			_return_from_moving()
 			return
 	
-	_finish_moving_animation()
-	
-	# safeguard against misaligned position
-	this_party.global_position = _moving_to
+	_return_from_moving()
 
 ## Equivalent to setting [member cancel_movement] to [code]true[/code].[br]
 ## Stops the party's movement after completing the current step.[br]

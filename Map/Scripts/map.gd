@@ -178,11 +178,11 @@ func _switch_to_battle(battle: Control) -> void:
 	(battle.find_child("Camera2D", false) as Camera2D).make_current()
 	
 	battle.show()
+	game.ui_layers.switch_to(&"Battle")
 	process_mode = Node.PROCESS_MODE_DISABLED
-	set_process(false)
 	
 	await EventBus.battle_ended
-	set_process(true)
+	game.ui_layers.switch_to(&"Main")
 	battle.queue_free()
 	process_mode = Node.PROCESS_MODE_PAUSABLE
 	camera.make_current()

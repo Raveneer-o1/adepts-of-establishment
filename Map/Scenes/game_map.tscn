@@ -302,6 +302,9 @@ layout_mode = 2
 [node name="PartyEditorItem6" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/ItemsContainer/InventoryScroller/InventoryContainer" instance=ExtResource("7_rwvpl")]
 layout_mode = 2
 
+[node name="Battle" type="CanvasLayer" parent="UILayers"]
+visible = false
+
 [node name="MapsContainer" type="Node" parent="."]
 
 [connection signal="pressed" from="UILayers/Main/PanelContainer/VBoxContainer/QuitButton" to="UILayers" method="_on_quit_button_pressed"]
