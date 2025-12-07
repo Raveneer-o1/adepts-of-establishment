@@ -19,8 +19,8 @@ extends ObjectLayerObject
 # Uncomment and implement the method below if the object interacts with parties
 # on tiles other than its current position
 #func get_interaction_tiles(
+#	party: MapParty = null,
 #	main: Vector2i = tile_position,
-#	party: MapParty = null
 #) -> Array[Vector2i]:
 #	# Example: Enables interaction from neighboring tiles
 #	return map.get_neighbors(main)

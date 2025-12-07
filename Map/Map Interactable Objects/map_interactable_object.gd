@@ -37,7 +37,7 @@ func _move_mapping(destination: Vector2i) -> void:
 	for t in get_interaction_tiles():
 		if map.tile_to_interaction.has(t):
 			map.tile_to_interaction[t].erase(self)
-	for t in get_interaction_tiles(destination):
+	for t in get_interaction_tiles(null, destination):
 		if map.tile_to_interaction.has(t):
 			map.tile_to_interaction[t].append(self)
 		else:
@@ -62,8 +62,8 @@ var tile_position: Vector2i:
 ## Uses current position by default. If [param party] is not specified, returns
 ## all positions available for any interaction.
 func get_interaction_tiles(
+	party: MapParty = null,
 	main: Vector2i = tile_position,
-	party: MapParty = null
 ) -> Array[Vector2i]:
 	return [main]
 
@@ -81,6 +81,9 @@ func get_interaction_tiles(
 ## Determines whether interaction with this object is currently available.
 ## Returns [code]true[/code] if the tile should highlight as interactable
 ## when the player hovers over this object with a party selected. [br][br]
+## [b]Important:[/b] This method does not validate the party's position.
+## Verify valid interaction locations using [method get_interaction_tiles]
+## or use [method validate_and_interact] for automatic validation. [br][br]
 ## [b]Note:[/b] This method checks interaction availability for the [b]party[/b],
 ## not the player. For player interaction checks, use [method request_player_interaction].
 @abstract func can_interact(party: MapParty) -> bool
@@ -95,6 +98,17 @@ func get_interaction_tiles(
 
 func _initialize() -> void:
 	pass
+
+## Attempts interaction with the specified [param party] if conditions permit.
+## Returns [code]true[/code] if interaction occurred successfully.
+## If [param forced] is [code]true[/code], uses [method force_interaction_on];
+## otherwise uses [method accept_interaction].
+func validate_and_interact(party: MapParty, forced: bool = false) -> bool:
+	if not can_interact(party): return false
+	if party.tile_position not in get_interaction_tiles(party): return false
+	if forced: force_interaction_on(party)
+	else: accept_interaction(party)
+	return true
 
 ## Returns an array of tiles this object would occupy if placed at the specified
 ## [param main] tile. Uses the object's current tile position by default. [br][br]

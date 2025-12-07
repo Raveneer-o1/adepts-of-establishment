@@ -248,7 +248,7 @@ func find_path_to_object(
 	if not end: return []
 	return path_finder.A_star(
 		start,
-		end.get_interaction_tiles(end.tile_position, party),
+		end.get_interaction_tiles(party),
 		TravelData.new()
 	)
 
@@ -359,7 +359,7 @@ func _move_active_party_to_object(object: MapInteractableObject) -> void:
 	)
 	event_handler.reset_highlights()
 	clean_hashtable()
-	object.accept_interaction(active_party)
+	object.validate_and_interact(active_party)
 
 func _move_active_party(coords: Vector2i) -> void:
 	if active_party.is_moving:

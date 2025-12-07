@@ -2,8 +2,8 @@ class_name MapCapital
 extends ObjectLayerObject
 
 func get_interaction_tiles(
+	party: MapParty = null,
 	main: Vector2i = tile_position,
-	party: MapParty = null
 ) -> Array[Vector2i]:
 	return [
 		main + Vector2i(0, 1),

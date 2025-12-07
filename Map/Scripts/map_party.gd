@@ -23,8 +23,8 @@ var is_moving: bool:
 	get: return control.is_moving
 
 func get_interaction_tiles(
+	party: MapParty = null,
 	main: Vector2i = tile_position,
-	party: MapParty = null
 ) -> Array[Vector2i]:
 	return map.get_neighbors(main)
 
