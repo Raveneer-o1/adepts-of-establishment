@@ -93,6 +93,9 @@ func get_interaction_tiles(
 @abstract func request_player_interaction(faction: MapFaction) -> bool
 @abstract func player_interact(faction: MapFaction) -> void
 
+func _initialize() -> void:
+	pass
+
 ## Returns an array of tiles this object would occupy if placed at the specified
 ## [param main] tile. Uses the object's current tile position by default. [br][br]
 ## [color=yellow]
@@ -114,6 +117,7 @@ func _register_object() -> void:
 	tile_position = map.objects_layer.local_to_map(
 		map.objects_layer.to_local(global_position)
 	)
+	_initialize()
 
 func _ready() -> void:
 	var next_parent := get_parent()

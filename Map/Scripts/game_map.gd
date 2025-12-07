@@ -47,6 +47,8 @@ func _fill_active_party(party: MapParty) -> void:
 	_movement_points_label.text = "%d/%d" % [mp, max_mp]
 	_party_name_label.text = party.party_name
 	
+	if _party_portrait_texture_rect.texture != party.loaded_portrait:
+		_party_portrait_texture_rect.texture = party.loaded_portrait
 	_party_portrait_texture_rect.show()
 
 func update_active_party(party: MapParty) -> void:
@@ -59,6 +61,7 @@ func _ready() -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_pressed(): return
 	if _temporarily_disabled:
+		get_viewport().set_input_as_handled()
 		if (event as InputEventKey).keycode == Key.KEY_ESCAPE:
 			enable_map()
 			_temp_disabled_ended.emit()

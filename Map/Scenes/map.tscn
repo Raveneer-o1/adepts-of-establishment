@@ -326,6 +326,7 @@ tile_set = SubResource("TileSet_1e4ck")
 position = Vector2(761, 300)
 faction = NodePath("../../Factions/Empire")
 party_name = "Strong dudes"
+portrait_texture = "res://Arts/Placeholders/Army.jpg"
 
 [node name="UnitData" type="Node" parent="Parties/MapParty"]
 script = ExtResource("21_bl7ab")
@@ -375,9 +376,49 @@ unit_name = &"Angel Knight"
 max_hp = 100
 metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 
+[node name="MapParty3" parent="Parties" node_paths=PackedStringArray("faction") instance=ExtResource("12_kwhd2")]
+position = Vector2(891, 257)
+faction = NodePath("../../Factions/Empire")
+party_name = "Fast af"
+portrait_texture = "res://Arts/Placeholders/Army alt.jpg"
+
+[node name="UnitData" type="Node" parent="Parties/MapParty3"]
+script = ExtResource("21_bl7ab")
+party_position = 0
+current_hp = 100
+unit_name = &"Paladin"
+max_hp = 100
+metadata/_custom_type_script = "uid://mn0dy1cf0p65"
+
+[node name="UnitData3" type="Node" parent="Parties/MapParty3"]
+script = ExtResource("21_bl7ab")
+party_position = 2
+current_hp = 100
+unit_name = &"Blade Saint"
+max_hp = 100
+metadata/_custom_type_script = "uid://mn0dy1cf0p65"
+
+[node name="UnitData5" type="Node" parent="Parties/MapParty3"]
+script = ExtResource("21_bl7ab")
+party_position = 3
+current_hp = 100
+unit_name = &"Archer"
+max_hp = 100
+metadata/_custom_type_script = "uid://mn0dy1cf0p65"
+
+[node name="UnitData2" type="Node" parent="Parties/MapParty3"]
+script = ExtResource("21_bl7ab")
+party_position = 4
+current_hp = 100
+unit_name = &"Angel Knight"
+max_hp = 100
+metadata/_custom_type_script = "uid://mn0dy1cf0p65"
+
 [node name="MapParty2" parent="Parties" node_paths=PackedStringArray("faction") instance=ExtResource("12_kwhd2")]
 position = Vector2(826, 364)
 faction = NodePath("../../Factions/Neutral")
+party_name = "Thieves"
+portrait_texture = "res://Arts/Placeholders/Army.jpg"
 
 [node name="UnitData2" type="Node" parent="Parties/MapParty2"]
 script = ExtResource("21_bl7ab")

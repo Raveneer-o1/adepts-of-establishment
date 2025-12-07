@@ -78,3 +78,9 @@ func player_interact(faction: MapFaction) -> void:
 	return
 
 #endregion
+
+func _initialize() -> void:
+	# This method is called in _ready()
+	# You can not override _ready() as it contains vital validation checks and 
+	# reference initialization
+	pass

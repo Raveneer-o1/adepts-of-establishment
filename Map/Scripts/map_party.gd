@@ -7,6 +7,9 @@ extends MapInteractableObject
 
 @export var faction: MapFaction
 @export var party_name: String
+@export_file_path("*") var portrait_texture: String
+
+var loaded_portrait: Resource
 
 var units: Array[UnitData]:
 	get:
@@ -26,6 +29,9 @@ func get_interaction_tiles(
 	return map.get_neighbors(main)
 
 #region Abstract Definitions
+
+func _initialize() -> void:
+	loaded_portrait = load(portrait_texture)
 
 func accept_interaction(party: MapParty) -> void:
 	if party.faction.is_enemy(faction):

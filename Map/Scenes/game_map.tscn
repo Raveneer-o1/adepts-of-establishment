@@ -66,7 +66,6 @@ size_flags_stretch_ratio = 2.0
 
 [node name="PortraitTextureRect" type="TextureRect" parent="UILayers/Main/PanelContainer/VBoxContainer/ActivePartyContainer/PortraitContainer/PanelContainer"]
 layout_mode = 2
-texture = ExtResource("3_ankfc")
 expand_mode = 2
 
 [node name="Disclaimer" type="Label" parent="UILayers/Main/PanelContainer/VBoxContainer/ActivePartyContainer/PortraitContainer/PanelContainer/PortraitTextureRect"]
