@@ -19,9 +19,15 @@ class PathNode extends RefCounted:
 	var terrain_cost: int
 	var accumulated_cost: int
 	
-	func _init(coords: Vector2i, terrain_layer: TileMapLayer, from: PathNode = null) -> void:
+	func _init(
+		coords: Vector2i,
+		terrain_layer: TileMapLayer,
+		travel_data: TravelData,
+		from: PathNode = null
+	) -> void:
 		var tile_data := terrain_layer.get_cell_tile_data(coords)
-		terrain_cost = tile_data.get_custom_data("traverse_cost")
+		terrain_cost = tile_data.get_custom_data("traverse_cost") * \
+			travel_data.get_cost_multiplier(tile_data)
 		tile_coords = coords
 		came_from = from
 		
@@ -48,7 +54,7 @@ func A_star(start: Vector2i, end: Array[Vector2i], travel_data: TravelData) -> A
 			break
 		return []
 	
-	var current_node := PathNode.new(start, terrain_layer)
+	var current_node := PathNode.new(start, terrain_layer, travel_data)
 	current_node.terrain_cost = 0
 	var closed_set: Dictionary[Vector2i, PathNode] = {}  # Tiles that have been evaluated
 	var open_set: Dictionary[Vector2i, PathNode] = {}    # Tiles to be evaluated
@@ -88,7 +94,7 @@ func _is_passable(tile: Vector2i, travel_data: TravelData) -> bool:
 	if data.get_custom_data("traverse_cost") < 0: return false
 	for obj in map.get_objects_on_tile(tile):
 		if not obj.passable(travel_data): return false
-	return true
+	return travel_data.can_traverse(data)
 
 func _are_tiles_valid(start: Vector2i, end: Array[Vector2i], travel_data: TravelData) -> bool:
 	if not _is_passable(start, travel_data): return false
@@ -132,7 +138,7 @@ func _evaluate_neighbors(
 			if not _is_passable(neighbor_coords, travel_data): continue
 			
 			open_set[neighbor_coords] = \
-				PathNode.new(neighbor_coords, terrain_layer, current_node)
+				PathNode.new(neighbor_coords, terrain_layer, travel_data, current_node)
 
 
 func _reconstruct_path(end_node: PathNode, start_coords: Vector2i) -> Array[Vector2i]:

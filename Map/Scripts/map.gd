@@ -352,8 +352,12 @@ func _move_active_party_to_object(object: MapInteractableObject) -> void:
 	if active_party.is_moving:
 		active_party.control.abort_moving()
 		return
+	var path := event_handler.get_highlighted_tiles()
+	if not path:
+		event_handler.reset_highlights()
+		return
 	await active_party.control.walk_along_path(
-		event_handler.get_highlighted_tiles(),
+		path,
 		true,
 		object
 	)
@@ -365,8 +369,11 @@ func _move_active_party(coords: Vector2i) -> void:
 	if active_party.is_moving:
 		active_party.control.abort_moving()
 		return
-	await active_party.control.walk_along_path(
-		event_handler.get_highlighted_tiles())
+	var path := event_handler.get_highlighted_tiles()
+	if not path:
+		event_handler.reset_highlights()
+		return
+	await active_party.control.walk_along_path(path)
 	event_handler.reset_highlights()
 	
 	# moving mapry creates an empty entry for each tile that party walked over
