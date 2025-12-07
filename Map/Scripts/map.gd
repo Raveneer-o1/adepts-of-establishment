@@ -157,8 +157,8 @@ func clear_object_refs(o: MapInteractableObject) -> void:
 			tile_to_interaction[t].erase(o)
 
 func _prefill_data(attacker: MapParty, defender: MapParty) -> void:
-	EventBus.left_units = attacker.units
-	EventBus.right_units = defender.units
+	EventBus.left_units = attacker.parameters.get_unit_data()
+	EventBus.right_units = defender.parameters.get_unit_data()
 	EventBus.left_controller = load(get_controller(attacker.faction.controller))
 	EventBus.right_controller = load(get_controller(defender.faction.controller))
 

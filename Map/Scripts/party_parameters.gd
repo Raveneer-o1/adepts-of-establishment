@@ -64,7 +64,7 @@ var accumulated_value: Variant = null
 ## External systems should listen for this signal and set [member accumulated_value].
 signal unit_data_requested
 
-## Emitted when movement multiplier is requested via [methof get_movement_multiplier].
+## Emitted when movement multiplier is requested via [method get_movement_multiplier].
 ## External systems should listen for this signal and set [member accumulated_value].
 signal movement_multiplier_requested
 
@@ -77,11 +77,6 @@ var movement_points: int = max_movement_points:
 	get: return movement_points
 	set(value): movement_points = clampi(value, 0, max_movement_points)
 
-func get_unit_data() -> Array[UnitData]:
-	return []
-
-const DEFAULT_MOVEMENT_MULTIPLIER = 1
-
 func _get_accumulated_value(default: Variant) -> Variant:
 	if accumulated_value == null: return default
 	if typeof(accumulated_value) == typeof(default):
@@ -90,7 +85,11 @@ func _get_accumulated_value(default: Variant) -> Variant:
 		return res
 	return default
 
+func get_unit_data() -> Array[UnitData]:
+	unit_data_requested.emit()
+	return _get_accumulated_value(units)
+
+const DEFAULT_MOVEMENT_MULTIPLIER = 1
 func get_movement_multiplier() -> int:
-	if 1 is Variant: pass
 	movement_multiplier_requested.emit()
 	return _get_accumulated_value(DEFAULT_MOVEMENT_MULTIPLIER)

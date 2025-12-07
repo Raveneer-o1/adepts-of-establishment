@@ -21,7 +21,10 @@ func switch_to(ui: StringName) -> void:
 	
 	if ui == &"Main": game_map.enable_map()
 	else:
-		game_map.temporarily_disable_map().connect(switch_to.bind(&"Main"))
+		var end_menu_signal := game_map.temporarily_disable_map()
+		var switch_callable := switch_to.bind(&"Main")
+		if not end_menu_signal.is_connected(switch_callable):
+			end_menu_signal.connect(switch_callable)
 	
 	_switch_ui(target_ui)
 
