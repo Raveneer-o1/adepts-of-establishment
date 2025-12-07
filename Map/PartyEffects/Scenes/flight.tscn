@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgtus55hjs5uh"]
+
+[ext_resource type="Script" uid="uid://1ehj4xg0n4yt" path="res://Map/PartyEffects/Scripts/flight.gd" id="1_uvvif"]
+
+[node name="Flight" type="Node"]
+script = ExtResource("1_uvvif")

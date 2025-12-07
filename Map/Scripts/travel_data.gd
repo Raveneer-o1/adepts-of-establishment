@@ -22,6 +22,11 @@ var custom_pass_check: Callable
 ## [/codeblock]
 var custom_cost_multiplier: Callable
 
+func _init(party: MapParty) -> void:
+	if not party: return
+	_default_cost_multiplier = party.parameters.get_movement_multiplier()
+	
+
 func get_cost_multiplier(tile_data: TileData) -> int:
 	if custom_cost_multiplier.is_valid(): return custom_cost_multiplier.call(tile_data)
 	return _default_cost_multiplier

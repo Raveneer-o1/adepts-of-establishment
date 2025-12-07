@@ -236,7 +236,7 @@ func find_path(start: Vector2i, end: Vector2i, party: MapParty = null) -> Array[
 	if not party: party = active_party
 	if not party: return []
 	#TODO: construct TravelData object from Party provided
-	return path_finder.A_star(start, [end], TravelData.new())
+	return path_finder.A_star(start, [end], TravelData.new(party))
 
 func find_path_to_object(
 	start: Vector2i,
@@ -249,7 +249,7 @@ func find_path_to_object(
 	return path_finder.A_star(
 		start,
 		end.get_interaction_tiles(party),
-		TravelData.new()
+		TravelData.new(party)
 	)
 
 ## Returns all objects that have the provided [param tile] set
