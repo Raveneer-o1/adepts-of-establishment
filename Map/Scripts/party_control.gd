@@ -66,13 +66,8 @@ func _check_interception(target_object: MapInteractableObject = null) -> bool:
 		#_smooth_movement = false
 	#else: _jump_to(destination)
 	#_finish_moving_animation()
-	## safeguard against misaligned position
-	#this_party.global_position = _moving_to
-
-func _return_from_moving() -> void:
-	_finish_moving_animation()
 	# safeguard against misaligned position
-	this_party.global_position = _moving_to
+	#this_party.global_position = _moving_to
 
 ## Moves a party along a proveded coordinates [br][br]
 ## if [param target_object] ia specified, ignores interception from that object
@@ -84,14 +79,22 @@ func walk_along_path(
 	animate: bool = true,
 	target_object: MapInteractableObject = null
 ) -> void:
+	await _walk_along_path(path, animate, target_object)
+	_finish_moving_animation()
+	# safeguard against misaligned position
+	this_party.global_position = _moving_to
+
+func _walk_along_path(
+	path: Array[Vector2i],
+	animate: bool = true,
+	target_object: MapInteractableObject = null
+) -> void:
 	for destination in path:
 		EventBus.party_move_started.emit(this_party, destination)
 		if cancel_movement:
 			cancel_movement = false
-			_return_from_moving()
 			return
 		if not _handle_step(destination): 
-			_return_from_moving()
 			return
 		this_party.face_tile(destination)
 		animation_handle.play_walk()
@@ -101,10 +104,7 @@ func walk_along_path(
 			await _moving_finished
 		else: _jump_to(destination)
 		if _check_interception(target_object):
-			_return_from_moving()
 			return
-	
-	_return_from_moving()
 
 ## Equivalent to setting [member cancel_movement] to [code]true[/code].[br]
 ## Stops the party's movement after completing the current step.[br]
