@@ -36,6 +36,12 @@ class PathNode extends RefCounted:
 		else:
 			accumulated_cost = absi(terrain_cost)
 
+func _check_distances(start: Vector2i, end: Array[Vector2i]) -> bool:
+	for t in end:
+		if map.get_distance(start, t) < MAX_DISTANCE:
+			return true
+	return false
+
 ## Finds a path from start to end using A* algorithm [br][br]
 ## [param start]: Starting tile coordinates[br]
 ## [param end]: Destination tile coordinates[br]
@@ -49,10 +55,7 @@ func A_star(start: Vector2i, end: Array[Vector2i], travel_data: TravelData) -> A
 	if not _are_tiles_valid(start, end, travel_data):
 		return []
 	
-	for t in end:
-		if map.get_distance(start, t) < MAX_DISTANCE:
-			break
-		return []
+	if not _check_distances(start, end): return []
 	
 	var current_node := PathNode.new(start, terrain_layer, travel_data)
 	current_node.terrain_cost = 0
@@ -154,10 +157,11 @@ func _reconstruct_path(end_node: PathNode, start_coords: Vector2i) -> Array[Vect
 
 # Heuristic function for A* (estimated cost from current position to goal)
 func _heuristic(current_pos: Vector2i, end: Array[Vector2i]) -> int:
-	var distances := []
+	var res := -1
 	for t in end:
-		distances.append(map.get_distance(current_pos, t))
-	return distances.min()
+		var distance := map.get_distance(current_pos, t)
+		if res < 0 or distance < res: res = distance
+	return res
 
 # Finds the next node to evaluate from the open set using A* scoring
 func _get_next_node(open_set: Dictionary[Vector2i, PathNode], end: Array[Vector2i]) -> PathNode:

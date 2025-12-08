@@ -30,10 +30,41 @@ const _TILE_HIGHLIGHT_ATLAS_ID = 2
 # Atlas coordinates for interaction highlight tiles
 const _INTERACTION_ATLAS_COORDS = Vector2i(2, 0)
 
+# Pathfinding operates with regional segmentation to avoid excessive computation.
+# If the player moves the mouse rapidly over tiles far away from the active party,
+# algorithm execution is delayed until the cursor position stabilizes.
+const _MOUSE_DISTANCE_REGIONS = [
+	[15, -1.0],
+	[30, 0.05],
+	[40, 0.1],
+	[50, 0.2],
+]
+const _MAX_TIMER = 0.5
+
+var _hovering_mouse_coords: Vector2i
+var _hovering_timer_active: bool
+var _hovering_timer: float
+
+func _set_hovering_timer(t: float) -> void:
+	_hovering_timer_active = true
+	_hovering_timer = t
+
 # Handles mouse hovering to show pathfinding preview and interactions
 func _handle_mouse_hovering() -> void:
-	var mouse_coords := terrain_layer.local_to_map(terrain_layer.get_local_mouse_position())
-	if _last_target_tile == mouse_coords: return
+	if not map.active_party: return
+	_hovering_mouse_coords = \
+		terrain_layer.local_to_map(terrain_layer.get_local_mouse_position())
+	if _last_target_tile == _hovering_mouse_coords: return
+	_last_target_tile = _hovering_mouse_coords
+	var dist := map.get_distance(map.active_party.tile_position, _hovering_mouse_coords)
+	for region: Array in _MOUSE_DISTANCE_REGIONS:
+		if dist < region[0]:
+			if region[1] > 0.0: _set_hovering_timer(region[1])
+			else: _draw_path()
+			break
+
+func _draw_path() -> void:
+	var mouse_coords := _hovering_mouse_coords
 	
 	if map.active_party and not map.active_party.is_moving:
 		reset_highlights()
@@ -55,7 +86,6 @@ func _handle_mouse_hovering() -> void:
 			mouse_coords
 		)
 	
-	_last_target_tile = mouse_coords
 	highlight_tiles(path, map.active_party)
 	get_viewport().set_input_as_handled()
 
@@ -168,3 +198,10 @@ func _highlight_tiles_simple(tiles: Array[Vector2i]) -> void:
 func highlight_tiles(tiles: Array[Vector2i], party: MapParty = null) -> void:
 	if not party: _highlight_tiles_simple(tiles)
 	else: _highlight_tiles_w_detection(tiles, party)
+
+func _process(delta: float) -> void:
+	if not _hovering_timer_active: return
+	_hovering_timer -= delta
+	if _hovering_timer <= 0.0:
+		_draw_path()
+		_hovering_timer_active = false
