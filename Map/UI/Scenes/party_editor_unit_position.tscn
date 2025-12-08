@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bvjvup3pdb4lf" path="res://Map/UI/Scripts/party_editor_unit_position.gd" id="1_nxgnm"]
 [ext_resource type="Texture2D" uid="uid://c1lw1c3qt0mc8" path="res://Arts/hex hint 64.png" id="2_3mjnh"]
 
-[node name="TextureRect" type="TextureRect"]
+[node name="PartyEditorUnitPosition" type="TextureRect"]
 custom_minimum_size = Vector2(0, 200)
 anchors_preset = 15
 anchor_right = 1.0

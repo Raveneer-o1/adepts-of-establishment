@@ -3,6 +3,12 @@ extends Node
 
 var current_ui: CanvasLayer
 @onready var game_map: GameMap = $".."
+@onready var party_layer: CanvasLayer = $Party
+
+var last_requested_party: MapParty = null
+
+func fill_active_party(party: MapParty) -> void:
+	last_requested_party = party
 
 func _switch_ui(target_ui: CanvasLayer) -> void:
 	if current_ui:

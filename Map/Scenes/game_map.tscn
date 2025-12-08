@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cy8rh77mxkncn"]
+[gd_scene load_steps=10 format=3 uid="uid://cy8rh77mxkncn"]
 
 [ext_resource type="Script" uid="uid://cium5533y6jdp" path="res://Map/Scripts/game_map.gd" id="1_mp6yi"]
 [ext_resource type="Script" uid="uid://ymq5kwxdp6r3" path="res://Map/Scripts/map_ui.gd" id="2_jwoqq"]
 [ext_resource type="Texture2D" uid="uid://b6vh1ulubj26i" path="res://Arts/Placeholders/Army.jpg" id="3_ankfc"]
 [ext_resource type="Texture2D" uid="uid://by3bbk6m8geey" path="res://Arts/itch assets/Pixel Art Icon Pack - RPG [Cainos]/Misc/Golden Coin.png" id="4_ru5ay"]
 [ext_resource type="Texture2D" uid="uid://cvcocjvddoc5d" path="res://Arts/itch assets/Pixel Art Icon Pack - RPG [Cainos]/Ore & Gem/Crystal.png" id="5_3g8al"]
+[ext_resource type="Script" uid="uid://cxswnm25ylr5" path="res://Map/Scripts/party_ui_manager.gd" id="5_t0dwr"]
 [ext_resource type="PackedScene" uid="uid://dqwc116n3br4m" path="res://Map/UI/Scenes/party_editor_unit_position.tscn" id="6_3g8al"]
 [ext_resource type="PackedScene" uid="uid://dgs5tkpmxvrcq" path="res://Map/UI/Scenes/party_editor_item.tscn" id="7_rwvpl"]
 
@@ -21,6 +22,7 @@ script = ExtResource("1_mp6yi")
 script = ExtResource("2_jwoqq")
 
 [node name="Main" type="CanvasLayer" parent="UILayers"]
+visible = false
 
 [node name="PanelContainer" type="PanelContainer" parent="UILayers/Main"]
 anchors_preset = 11
@@ -156,7 +158,7 @@ layout_mode = 2
 text = "100"
 
 [node name="Party" type="CanvasLayer" parent="UILayers"]
-visible = false
+script = ExtResource("5_t0dwr")
 
 [node name="HBoxContainer" type="MarginContainer" parent="UILayers/Party"]
 anchors_preset = 15
@@ -185,14 +187,17 @@ layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="PartyEditorUnitPosition" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/UnitsContainer/BacklineContainer" instance=ExtResource("6_3g8al")]
+[node name="PartyEditorUnitPosition1" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/UnitsContainer/BacklineContainer" instance=ExtResource("6_3g8al")]
 layout_mode = 2
-
-[node name="PartyEditorUnitPosition2" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/UnitsContainer/BacklineContainer" instance=ExtResource("6_3g8al")]
-layout_mode = 2
+party_position = 1
 
 [node name="PartyEditorUnitPosition3" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/UnitsContainer/BacklineContainer" instance=ExtResource("6_3g8al")]
 layout_mode = 2
+party_position = 3
+
+[node name="PartyEditorUnitPosition5" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/UnitsContainer/BacklineContainer" instance=ExtResource("6_3g8al")]
+layout_mode = 2
+party_position = 5
 
 [node name="FrontlineContainer" type="VBoxContainer" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/UnitsContainer"]
 layout_mode = 2
@@ -204,12 +209,15 @@ layout_mode = 2
 
 [node name="PartyEditorUnitPosition2" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/UnitsContainer/FrontlineContainer" instance=ExtResource("6_3g8al")]
 layout_mode = 2
-
-[node name="PartyEditorUnitPosition3" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/UnitsContainer/FrontlineContainer" instance=ExtResource("6_3g8al")]
-layout_mode = 2
+party_position = 2
 
 [node name="PartyEditorUnitPosition4" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/UnitsContainer/FrontlineContainer" instance=ExtResource("6_3g8al")]
 layout_mode = 2
+party_position = 4
+
+[node name="PartyEditorUnitPosition6" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/UnitsContainer/FrontlineContainer" instance=ExtResource("6_3g8al")]
+layout_mode = 2
+party_position = 6
 
 [node name="InfoContainer" type="VBoxContainer" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
@@ -308,4 +316,5 @@ visible = false
 
 [connection signal="pressed" from="UILayers/Main/PanelContainer/VBoxContainer/QuitButton" to="UILayers" method="_on_quit_button_pressed"]
 [connection signal="gui_input" from="UILayers/Main/PanelContainer/VBoxContainer/ActivePartyContainer/PortraitContainer/PanelContainer/PortraitTextureRect" to="UILayers" method="_on_portrait_texture_rect_gui_input"]
+[connection signal="visibility_changed" from="UILayers/Party" to="UILayers/Party" method="_on_visibility_changed"]
 [connection signal="gui_input" from="UILayers/Party/HBoxContainer" to="UILayers" method="_on_h_box_container_gui_input"]

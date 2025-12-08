@@ -1,11 +1,35 @@
+class_name PartyEditorUnitPosition
 extends TextureRect
 
+@export var party_position: int
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+var unit: PartyEditorUnit
 
+const PARTY_EDITOR_UNIT_PREFAB = preload("res://Map/UI/Scenes/party_editor_unit.tscn")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func add_unit(data: UnitData) -> void:
+	if not data: return
+	if unit: return
+	unit = PARTY_EDITOR_UNIT_PREFAB.instantiate()
+	unit.unit_data = data
+	add_child(unit)
+	if unit.is_queued_for_deletion(): unit = null
+
+func remove_unit() -> void:
+	if unit: unit.queue_free()
+	unit = null
+
+func _move_unit(o: PartyEditorUnit) -> void:
+	if unit:
+		var other_place: PartyEditorUnitPosition = o.get_parent()
+		unit.reparent(other_place, false)
+		unit.unit_data.party_position = other_place.party_position
+	o.reparent(self, false)
+	o.unit_data.party_position = party_position
+
+func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
+	return data is PartyEditorUnit
+
+func _drop_data(at_position: Vector2, data: Variant) -> void:
+	if data is PartyEditorUnit:
+		_move_unit(data)

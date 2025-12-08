@@ -50,6 +50,8 @@ func _fill_active_party(party: MapParty) -> void:
 	if _party_portrait_texture_rect.texture != party.loaded_portrait:
 		_party_portrait_texture_rect.texture = party.loaded_portrait
 	_party_portrait_texture_rect.show()
+	
+	ui_layers.fill_active_party(party)
 
 func update_active_party(party: MapParty) -> void:
 	if not party: _clear_active_party()
