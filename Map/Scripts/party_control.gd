@@ -37,9 +37,10 @@ func _check_interception(target_object: MapInteractableObject = null) -> bool:
 	for o in map.get_interactions_on_tile(tile_position):
 		if o == this_party: continue
 		if o == target_object: return true
-		if o.will_intercept(this_party):
-			o.force_interaction_on(this_party)
-			return true
+		var cost := o.validate_and_interact(this_party, true)
+		if cost < 0: continue
+		this_party.parameters.subtract_mp(cost)
+		return true
 	return false
 
 # Moves the party to the specified coordinates. [br]

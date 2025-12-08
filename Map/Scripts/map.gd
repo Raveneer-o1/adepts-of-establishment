@@ -363,7 +363,8 @@ func _move_active_party_to_object(object: MapInteractableObject) -> void:
 	)
 	event_handler.reset_highlights()
 	clean_hashtable()
-	object.validate_and_interact(active_party)
+	var cost := object.validate_and_interact(active_party)
+	if cost > 0: active_party.parameters.subtract_mp(cost)
 
 func _move_active_party(coords: Vector2i) -> void:
 	if active_party.is_moving:

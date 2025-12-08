@@ -33,13 +33,15 @@ func get_interaction_tiles(
 func _initialize() -> void:
 	loaded_portrait = load(portrait_texture)
 
-func accept_interaction(party: MapParty) -> void:
+func accept_interaction(party: MapParty) -> int:
 	if party.faction.is_enemy(faction):
 		map.start_battle(party, self)
+	return party.parameters.max_movement_points
 
-func force_interaction_on(party: MapParty) -> void:
+func force_interaction_on(party: MapParty) -> int:
 	if faction.is_enemy(party.faction):
 		map.start_battle(party, self)
+	return party.parameters.max_movement_points
 
 func will_intercept(party: MapParty) -> bool:
 	return faction.is_enemy(party.faction)

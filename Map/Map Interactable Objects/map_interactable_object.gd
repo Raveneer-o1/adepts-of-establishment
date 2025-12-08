@@ -54,62 +54,6 @@ var tile_position: Vector2i:
 		_move_mapping(value)
 		tile_position = value
 
-## @experimental: Currently returns tiles for all interaction types.
-## With future introduction of distinct interaction categories,
-## the implementation of this method may change. [br][br]
-## Returns tiles where [param party] must be positioned to interact with this object
-## when the object is at [param main] tile.[br][br]
-## Uses current position by default. If [param party] is not specified, returns
-## all positions available for any interaction.
-func get_interaction_tiles(
-	party: MapParty = null,
-	main: Vector2i = tile_position,
-) -> Array[Vector2i]:
-	return [main]
-
-## Processes interaction initiated by the specified [param party]. [br][br]
-## Override this method in derived classes. It generally performs no validation
-## beyond basic input filtering. Use [method can_interact] to verify interaction
-## validity beforehand, or call this directly to force interaction regardless.
-@abstract func accept_interaction(party: MapParty) -> void
-## Processes interaction with the specified [param party] initiated by this object.
-## [br][br]
-## Override this method in derived classes. It generally performs no validation
-## beyond basic input filtering. Use [method can_interact] to verify interaction
-## validity beforehand, or call this directly to force interaction regardless.
-@abstract func force_interaction_on(party: MapParty) -> void
-## Determines whether interaction with this object is currently available.
-## Returns [code]true[/code] if the tile should highlight as interactable
-## when the player hovers over this object with a party selected. [br][br]
-## [b]Important:[/b] This method does not validate the party's position.
-## Verify valid interaction locations using [method get_interaction_tiles]
-## or use [method validate_and_interact] for automatic validation. [br][br]
-## [b]Note:[/b] This method checks interaction availability for the [b]party[/b],
-## not the player. For player interaction checks, use [method request_player_interaction].
-@abstract func can_interact(party: MapParty) -> bool
-## Determines whether this object should intercept parties passing by.
-## For example, enemy parties intercept parties to start a combat.
-@abstract func will_intercept(party: MapParty) -> bool
-@abstract func passable(party: Variant) -> bool
-#@abstract func click_response(active_faction: MapFaction) -> void
-
-@abstract func request_player_interaction(faction: MapFaction) -> bool
-@abstract func player_interact(faction: MapFaction) -> void
-
-func _initialize() -> void:
-	pass
-
-## Attempts interaction with the specified [param party] if conditions permit.
-## Returns [code]true[/code] if interaction occurred successfully.
-## If [param forced] is [code]true[/code], uses [method force_interaction_on];
-## otherwise uses [method accept_interaction].
-func validate_and_interact(party: MapParty, forced: bool = false) -> bool:
-	if not can_interact(party): return false
-	if party.tile_position not in get_interaction_tiles(party): return false
-	if forced: force_interaction_on(party)
-	else: accept_interaction(party)
-	return true
-
 ## Returns an array of tiles this object would occupy if placed at the specified
 ## [param main] tile. Uses the object's current tile position by default. [br][br]
 ## [color=yellow]
@@ -126,6 +70,66 @@ func get_occupied_tiles(main: Vector2i = tile_position) -> Array[Vector2i]:
 
 func _get_occupied_tiles(main: Vector2i = tile_position) -> Array[Vector2i]:
 	return [main]
+
+## @experimental: Currently returns tiles for all interaction types.
+## With future introduction of distinct interaction categories,
+## the implementation of this method may change. [br][br]
+## Returns tiles where [param party] must be positioned to interact with this object
+## when the object is at [param main] tile.[br][br]
+## Uses current position by default. If [param party] is not specified, returns
+## all positions available for any interaction.
+func get_interaction_tiles(
+	party: MapParty = null,
+	main: Vector2i = tile_position,
+) -> Array[Vector2i]:
+	return get_occupied_tiles(main)
+
+## Processes interaction initiated by the specified [param party]. [br][br]
+## It generally performs no validation beyond basic input filtering.
+## Use [method can_interact] to verify interaction validity beforehand,
+## or call this directly to force interaction regardless. [br][br]
+## [b]Returns:[/b] Interaction cost in movement points.
+## Does not deduct movement points from the party - caller must handle this.
+@abstract func accept_interaction(party: MapParty) -> int
+## Processes interaction with the specified [param party] initiated by this object.
+## [br][br]
+## It generally performs no validation beyond basic input filtering.
+## Use [method can_interact] to verify interaction validity beforehand,
+## or call this directly to force interaction regardless. [br][br]
+## [b]Returns:[/b] Interaction cost in movement points.
+## Does not deduct movement points from the party - caller must handle this.
+@abstract func force_interaction_on(party: MapParty) -> int
+## Determines whether interaction with this object is currently available.
+## Returns [code]true[/code] if the tile should highlight as interactable
+## when the player hovers over this object with a party selected. [br][br]
+## [b]Important:[/b] This method does not validate the party's position.
+## Verify valid interaction locations using [method get_interaction_tiles]
+## or use [method validate_and_interact] for automatic validation. [br][br]
+## [b]Note:[/b] This method checks interaction availability for the [b]party[/b],
+## not the player. For player interaction checks, use [method request_player_interaction].
+@abstract func can_interact(party: MapParty) -> bool
+## Determines whether this object should intercept parties passing by.
+## For example, enemy parties intercept parties to start a combat.
+@abstract func will_intercept(party: MapParty) -> bool
+@abstract func passable(party: Variant) -> bool
+
+@abstract func request_player_interaction(faction: MapFaction) -> bool
+@abstract func player_interact(faction: MapFaction) -> void
+
+func _initialize() -> void:
+	pass
+
+## Attempts interaction with the specified [param party] if conditions permit.
+## Returns the interaction cost if successful, or [code]-1[/code] otherwise.[br][br]
+## Similar to [method accept_interaction] and [method force_interaction_on],
+## this method does not deduct movement points - the caller must handle this.[br][br]
+## If [param forced] is [code]true[/code], uses [method force_interaction_on];
+## otherwise uses [method accept_interaction].
+func validate_and_interact(party: MapParty, forced: bool = false) -> int:
+	if not can_interact(party): return -1
+	if party.tile_position not in get_interaction_tiles(party): return -1
+	if forced: return force_interaction_on(party)
+	return accept_interaction(party)
 
 func _register_object() -> void:
 	tile_position = map.objects_layer.local_to_map(

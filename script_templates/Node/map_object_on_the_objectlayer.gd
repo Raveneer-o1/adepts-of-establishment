@@ -33,19 +33,28 @@ func can_interact(party: MapParty) -> bool:
 	if not party: return false
 	return false
 
-func accept_interaction(party: MapParty) -> void:
-	# Implement interaction logic between the provided party and this object
-	return
+func accept_interaction(party: MapParty) -> int:
+	# Implement interaction logic between the provided party and this object.
+	# This method should not validate interaction availability - only perform
+	# invalid input checks. This enables forced interactions that must occur
+	# regardless of normal conditions (e.g., scripted events).
+	
+	# Return the interaction cost in movement points.
+	# To consume all movement points (e.g., initiating combat), use:
+	#return party.parameters.max_movement_points
+	return 0
 
 func will_intercept(party: MapParty) -> bool:
 	# This method returns true if it intercepts passing by parties
 	# For example, enemies force battles on each other
 	return false
 
-func force_interaction_on(party: MapParty) -> void:
+func force_interaction_on(party: MapParty) -> int:
 	# Redefine this method if your object needs to do something different when
-	# intercepting othet parties
-	accept_interaction(party)
+	# intercepting other parties.
+	# Same rules apply as with accept_interaction()
+	
+	return accept_interaction(party)
 
 func _can_party_pass(party: MapParty) -> bool:
 	return false

@@ -63,19 +63,30 @@ var accumulated_value: Variant = null
 ## Emitted when unit data is requested via [method get_unit_data].
 ## External systems should listen for this signal and set [member accumulated_value].
 signal unit_data_requested
-
 ## Emitted when movement multiplier is requested via [method get_movement_multiplier].
 ## External systems should listen for this signal and set [member accumulated_value].
 signal movement_multiplier_requested
-
 ## Emitted when movement cost for a specific tile is requested.
 ## External systems should listen for this signal and set [member accumulated_value].
 signal movement_cost_requested(tile_data: TileData)
+## Emitted when maximum movement points value is requested.
+## External systems should listen for this signal and set [member accumulated_value].
+signal max_mp_requested(tile_data: TileData)
 
-var max_movement_points: int = 20
+var _max_movement_points: int = 20
+## This property automatically manages mp values by calling [method get_max_movement_points]
+var max_movement_points: int:
+	get: return get_max_movement_points()
+	set(value): _max_movement_points = value
 var movement_points: int = max_movement_points:
 	get: return movement_points
 	set(value): movement_points = clampi(value, 0, max_movement_points)
+
+## Equivalent to just subtracting [param value] from [member movement_points]
+## but checks if it is non-negative.
+func subtract_mp(value: int) -> void:
+	if value < 0: return
+	movement_points -= value
 
 func _get_accumulated_value(default: Variant) -> Variant:
 	if accumulated_value == null: return default
@@ -84,6 +95,10 @@ func _get_accumulated_value(default: Variant) -> Variant:
 		accumulated_value = null
 		return res
 	return default
+
+func get_max_movement_points() -> int:
+	max_mp_requested.emit()
+	return _get_accumulated_value(_max_movement_points)
 
 func get_unit_data() -> Array[UnitData]:
 	unit_data_requested.emit()
