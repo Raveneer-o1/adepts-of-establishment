@@ -63,13 +63,18 @@ func _handle_mouse_hovering() -> void:
 			else: _draw_path()
 			break
 
+func _should_draw(party: MapParty, tile: Vector2i) -> bool:
+	if not party: return false
+	if party.is_moving: return false
+	return true
+
 func _draw_path() -> void:
 	var mouse_coords := _hovering_mouse_coords
 	
 	if map.active_party and not map.active_party.is_moving:
 		reset_highlights()
 	
-	if not map.can_move(map.active_party, mouse_coords): return
+	if not _should_draw(map.active_party, mouse_coords): return
 	
 	var tile_data := terrain_layer.get_cell_tile_data(mouse_coords)
 	if not tile_data: 

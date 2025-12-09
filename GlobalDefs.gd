@@ -65,6 +65,18 @@ enum Faction {
 	Custom,
 }
 
+## Returns the file path to the controller scene based on controller type
+func get_controller(type: GlobalDefs.ControllerType) -> String:
+	match type:
+		GlobalDefs.ControllerType.Human:
+			return "res://Combat/Scenes/player_controller.tscn"
+		GlobalDefs.ControllerType.BasicAI:
+			return "res://Combat/Scenes/basic_combat_ai.tscn"
+		GlobalDefs.ControllerType.StandardAI:
+			return "res://Combat/Scenes/standard_combat_ai.tscn"
+	push_error("Unknown Controller type!")
+	return ""
+
 var rolls_statistic: Dictionary[Party, int]
 
 func _increase_roll_statistics(party: Party) -> void:

@@ -54,6 +54,8 @@ extends Node2D
 @onready var path_finder: PathFinder = $PathFinder
 ## Handles user input and map events
 @onready var event_handler: MapEventHandler = $EventHandler
+## Handles the actual execution of map operations that serve as API endpoints.
+@onready var worker: MapWorker = $Worker
 
 var game: GameMap
 
@@ -125,18 +127,6 @@ func clean_hashtable(assume_iteration: int = 0) -> void:
 	
 	__now_cleaning = false
 
-## Returns the file path to the controller scene based on controller type
-func get_controller(type: GlobalDefs.ControllerType) -> String:
-	match type:
-		GlobalDefs.ControllerType.Human:
-			return "res://Combat/Scenes/player_controller.tscn"
-		GlobalDefs.ControllerType.BasicAI:
-			return "res://Combat/Scenes/basic_combat_ai.tscn"
-		GlobalDefs.ControllerType.StandardAI:
-			return "res://Combat/Scenes/standard_combat_ai.tscn"
-	push_error("Unknown Controller type!")
-	return ""
-
 ## Safely removes the object and clears any references preserved by the map. [br][br]
 ## Use this method as a last resort only, since [MapInteractableObject] instances
 ## are generally not designed to be freed during runtime.
@@ -156,59 +146,11 @@ func clear_object_refs(o: MapInteractableObject) -> void:
 		if tile_to_interaction.has(t):
 			tile_to_interaction[t].erase(o)
 
-func _prefill_data(attacker: MapParty, defender: MapParty) -> void:
-	EventBus.left_units = attacker.parameters.get_unit_data()
-	EventBus.right_units = defender.parameters.get_unit_data()
-	EventBus.left_controller = load(get_controller(attacker.faction.controller))
-	EventBus.right_controller = load(get_controller(defender.faction.controller))
-
-func _load_battle(attacker: MapParty, defender: MapParty) -> Node:
-	var battle: Control = battle_scene.instantiate()
-	battle.process_mode = Node.PROCESS_MODE_ALWAYS
-	battle.hide()
-	
-	# combat starts here because this is when combat scene enters
-	# the tree and _ready() is called
-	add_sibling(battle)
-	return battle
-
-const battle_effect = preload("res://Map/Scenes/visual_effect.tscn")
-
-func _switch_to_battle(battle: Control) -> void:
-	(battle.find_child("Camera2D", false) as Camera2D).make_current()
-	
-	battle.show()
-	game.ui_layers.switch_to(&"Battle")
-	process_mode = Node.PROCESS_MODE_DISABLED
-	
-	await EventBus.battle_ended
-	game.ui_layers.switch_to(&"Main")
-	battle.queue_free()
-	process_mode = Node.PROCESS_MODE_PAUSABLE
-	camera.make_current()
-
-func _play_effect(pos: Vector2) -> void:
-	var effect := battle_effect.instantiate() as TemporaryEffect
-	add_child(effect)
-	effect.global_position = pos
-	await effect.effect_finished
-
 ## Initiates a battle between two parties. [br]
 ## [param attacker]: The party initiating the combat encounter[br]
 ## [param defender]: The party being attacked
 func start_battle(attacker: MapParty, defender: MapParty) -> void:
-	_prefill_data(attacker, defender)
-	
-	attacker.face_tile(defender.tile_position)
-	defender.face_tile(attacker.tile_position)
-	
-	var battle := _load_battle(attacker, defender)
-	await _play_effect(defender.global_position)
-	
-	await _switch_to_battle(battle)
-	attacker.update_parameters()
-	defender.update_parameters()
-	
+	await worker.do_combat(attacker, defender)
 	game.update_active_party(active_party)
 
 ## Returns the global coordinates for the specified tile (coordinates of the center)
@@ -357,38 +299,6 @@ func _ready() -> void:
 	
 	active_faction = $Factions/Empire
 
-func _move_active_party_to_object(object: MapInteractableObject) -> void:
-	if active_party.is_moving:
-		active_party.control.abort_moving()
-		return
-	var path := event_handler.get_highlighted_tiles()
-	if not path:
-		event_handler.reset_highlights()
-		return
-	await active_party.control.walk_along_path(
-		path,
-		true,
-		object
-	)
-	event_handler.reset_highlights()
-	clean_hashtable()
-	var cost := object.validate_and_interact(active_party)
-	if cost > 0: active_party.parameters.subtract_mp(cost)
-
-func _move_active_party(coords: Vector2i) -> void:
-	if active_party.is_moving:
-		active_party.control.abort_moving()
-		return
-	var path := event_handler.get_highlighted_tiles()
-	if not path:
-		event_handler.reset_highlights()
-		return
-	await active_party.control.walk_along_path(path)
-	event_handler.reset_highlights()
-	
-	# moving mapry creates an empty entry for each tile that party walked over
-	clean_hashtable()
-
 ## Determines interaction for the active party at the specified
 ## [param coordinates] and performs that action
 func request_active_party_action(coordinates: Vector2i) -> void:
@@ -396,10 +306,10 @@ func request_active_party_action(coordinates: Vector2i) -> void:
 	var object := get_first_interactable_object(coordinates)
 	
 	if not object:
-		await _move_active_party(coordinates)
+		await worker.move_active_party(coordinates)
 		return
 	
-	await _move_active_party_to_object(object)
+	await worker.move_active_party_to_object(object)
 
 ## Handles player interaction when no active party is selected
 func request_player_action(coords: Vector2i) -> void:
@@ -408,13 +318,3 @@ func request_player_action(coords: Vector2i) -> void:
 		if obj.request_player_interaction(active_faction):
 			obj.player_interact(active_faction)
 			return
-
-## Checks if a party can move to the given [param tile]
-func can_move(party: MapParty, tile: Vector2i) -> bool:
-	if not party: return false
-	if party.is_moving: return false
-	#var objects := get_objects_on_tile(tile)
-	#if not objects: return true
-	#for o in objects:
-		#if not o.passable(party): return false
-	return true
