@@ -257,9 +257,9 @@ func choose_action(unit: Unit) -> void:
 		api.use_defense_stance()
 		return
 	
-	#if unit.unit_type == "Healer":
-		#choose_healer_action(unit, avaliable_targets)
-		#return
+	if unit.unit_type == GlobalDefs.UnitType.Support:
+		choose_healer_action(unit, avaliable_targets)
+		return
 	
 	choose_warrior_action(unit, avaliable_targets)
 
