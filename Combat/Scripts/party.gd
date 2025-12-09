@@ -110,14 +110,15 @@ func place_spots() -> void:
 
 ## Places units based on a list of unit names.
 func place_units(list: Array[UnitData]) -> void:
-	place_spots()
-	
 	if list.size() > MAX_UNITS_NUMBER:
 		push_error("Unit list exceeds the maximum allowed number of units!
 %d proveded, only %d is allowed!" % [list.size(), MAX_UNITS_NUMBER])
 		return
 	
+	place_spots()
+	
 	for unit_data: UnitData in list:
+		await get_tree().process_frame
 		var i := unit_data.party_position
 		var path := unit_data.scene_path
 		if path.is_empty(): continue

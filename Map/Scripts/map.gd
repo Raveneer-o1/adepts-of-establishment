@@ -163,7 +163,7 @@ func _prefill_data(attacker: MapParty, defender: MapParty) -> void:
 	EventBus.right_controller = load(get_controller(defender.faction.controller))
 
 func _load_battle(attacker: MapParty, defender: MapParty) -> Node:
-	var battle: Control = battle_scene.instantiate(PackedScene.GEN_EDIT_STATE_MAIN)
+	var battle: Control = battle_scene.instantiate()
 	battle.process_mode = Node.PROCESS_MODE_ALWAYS
 	battle.hide()
 	

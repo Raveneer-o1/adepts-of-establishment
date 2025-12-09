@@ -402,14 +402,13 @@ func load_unit_list(list: Array[UnitData]) -> void:
 		var path := unit_data.scene_path
 		if not path.is_empty() and not loaded_units.has(path):
 			var resource := load(path)
-			if resource != null:
-				loaded_units[path] = resource
-			else:
-				print_debug("Resource not found: " + path)
+			if resource: loaded_units[path] = resource
+			else: push_error("Resource not found: " + path)
+			await get_tree().process_frame
 
 func load_units() -> void:
-	load_unit_list(left_party_units)
-	load_unit_list(right_party_units)
+	await load_unit_list(left_party_units)
+	await load_unit_list(right_party_units)
 
 func check_refs_validity() -> bool:
 	var are_refs_valid: bool = true
@@ -445,9 +444,6 @@ func initialize_variables() -> void:
 		end_scene()
 		return
 	
-	# randomize positions of temporary labels
-	#label_positions.shuffle()
-	
 	left_party.main_system = self
 	left_party.other_party = right_party
 	left_party.player = left_player
@@ -473,13 +469,20 @@ func initialize_variables() -> void:
 	right_party_units = EventBus.right_units
 
 func place_units() -> void:
-	right_party.place_units(right_party_units)
-	left_party.place_units(left_party_units)
+	await right_party.place_units(right_party_units)
+	await left_party.place_units(left_party_units)
 
 func _ready() -> void:
 	initialize_variables()
-	load_units()
-	place_units()
+	
+	# loading the scene combat with pauses for one frame after each heavy iteration
+	# this doesn't always work and starting combat does introduce some stutter
+	# but threads are more complicated to implement - this will do for now
+	await get_tree().process_frame
+	await load_units()
+	await get_tree().process_frame
+	await place_units()
+	await get_tree().process_frame
 	combat_logic.start_battle()
 #endregion
 

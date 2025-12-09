@@ -67,7 +67,13 @@ func add_unit(loaded_unit: Resource, data: UnitData) -> Unit:
 		push_error("Trying to add unit on top of already existing one!")
 		return
 	var u: Unit = loaded_unit.instantiate()
+	if not u:
+		push_error("Failed to instantiate unit scene!")
+		return null
 	assign_unit(u)
+	if not unit:
+		push_error("Unit is not assigned!")
+		return null
 	if not unit.initialize_variables(data):
 		unit.queue_free()
 		return null
@@ -81,7 +87,7 @@ func release_unit() -> void:
 		return
 	unit.party_position = -1
 	unit.spot = null
-	party.units[party_position] = null
+	#party.units[party_position] = null
 	remove_child(unit)
 	unit = null
 
