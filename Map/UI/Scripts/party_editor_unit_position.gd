@@ -19,13 +19,15 @@ func remove_unit() -> void:
 	if unit: unit.queue_free()
 	unit = null
 
-func _move_unit(o: PartyEditorUnit) -> void:
+func _move_unit(received_unit: PartyEditorUnit) -> void:
+	var other_place: PartyEditorUnitPosition = received_unit.get_parent()
+	other_place.unit = unit
 	if unit:
-		var other_place: PartyEditorUnitPosition = o.get_parent()
-		unit.reparent(other_place, false)
 		unit.unit_data.party_position = other_place.party_position
-	o.reparent(self, false)
-	o.unit_data.party_position = party_position
+		unit.reparent(other_place, false)
+	unit = received_unit
+	unit.unit_data.party_position = party_position
+	unit.reparent(self, false)
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	return data is PartyEditorUnit
