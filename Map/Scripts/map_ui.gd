@@ -7,6 +7,10 @@ var current_ui: CanvasLayer
 
 var last_requested_party: MapParty = null
 
+## Assigns [param party] to [member last_requested_party]. [br][br]
+## Does not update the party window - this occurs only when the player
+## actually opens the window. The party UI is updated by [PartyUIManager]
+## on visibility change.
 func fill_active_party(party: MapParty) -> void:
 	last_requested_party = party
 

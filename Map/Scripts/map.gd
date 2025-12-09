@@ -199,16 +199,25 @@ func _play_effect(pos: Vector2) -> void:
 func start_battle(attacker: MapParty, defender: MapParty) -> void:
 	_prefill_data(attacker, defender)
 	
+	attacker.face_tile(defender.tile_position)
+	defender.face_tile(attacker.tile_position)
+	
 	var battle := _load_battle(attacker, defender)
 	await _play_effect(defender.global_position)
 	
 	await _switch_to_battle(battle)
 	attacker.update_parameters()
 	defender.update_parameters()
+	
+	game.update_active_party(active_party)
 
 ## Returns the global coordinates for the specified tile (coordinates of the center)
 func get_global_coords(tile_coord: Vector2i) -> Vector2:
 	return terrain_layer.to_global(terrain_layer.map_to_local(tile_coord))
+
+## Converts global coordinates to tile coordinates.
+func get_tile_coords(coords: Vector2) -> Vector2i:
+	return terrain_layer.local_to_map(terrain_layer.to_local(coords))
 
 ## Returns the distance between two hex positions in axial coordinates. [br]
 ## [b]Note:[/b] This function assumes axial coordinate system

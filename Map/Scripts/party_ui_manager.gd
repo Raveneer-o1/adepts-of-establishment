@@ -1,3 +1,4 @@
+class_name PartyUIManager
 extends CanvasLayer
 
 @onready var _0: PartyEditorUnitPosition = $HBoxContainer/PanelContainer/HBoxContainer/UnitsContainer/FrontlineContainer/PartyEditorUnitPosition

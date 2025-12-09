@@ -2,6 +2,7 @@ class_name GameMap
 extends Node
 
 const test_map = preload("res://Map/Scenes/map.tscn")
+
 @onready var _active_party_container: VBoxContainer = %ActivePartyContainer
 @onready var _party_name_label: Label = %ActivePartyContainer/PartyNameLabel
 @onready var _movement_points: ProgressBar = %ActivePartyContainer/MovementPoints
@@ -13,15 +14,21 @@ const test_map = preload("res://Map/Scenes/map.tscn")
 
 var current_map: Map
 
+## Resumes map processing.
 func enable_map() -> void:
 	current_map.process_mode = Node.PROCESS_MODE_PAUSABLE
 
+## Disables map processing.
 func disable_map() -> void:
 	current_map.process_mode = Node.PROCESS_MODE_DISABLED
 
 var _temporarily_disabled := false
 signal _temp_disabled_ended
 
+## Temporarily disables map processing for an indeterminate duration.
+## Returns a signal that emits when map processing is re-enabled. [br][br]
+## Reactivation may occur via user action (e.g., pressing ESC). Useful for menus
+## where the caller cannot predict when map interaction should resume.
 func temporarily_disable_map() -> Signal:
 	disable_map()
 	_temporarily_disabled = true
@@ -53,16 +60,14 @@ func _fill_active_party(party: MapParty) -> void:
 	
 	ui_layers.fill_active_party(party)
 
+## Updates info on the active party pannel
 func update_active_party(party: MapParty) -> void:
 	if not party: _clear_active_party()
 	else: _fill_active_party(party)
 
 func _ready() -> void:
 	load_maps()
-	
-	# creating leak
-	#var leak := Object.new()
-	# this is not reported when run with --verbose
+	_clear_active_party()
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_pressed(): return
@@ -73,11 +78,3 @@ func _unhandled_key_input(event: InputEvent) -> void:
 			_temp_disabled_ended.emit()
 			for d: Dictionary in _temp_disabled_ended.get_connections():
 				_temp_disabled_ended.disconnect(d.callable)
-
-var __debug_timer := 1.0
-func _process(delta: float) -> void:
-	__debug_timer -= delta
-	if __debug_timer > 0.0: return
-	var orphans := get_orphan_node_ids()
-	if orphans: print(orphans)
-	#print_orphan_nodes()
