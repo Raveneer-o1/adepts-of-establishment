@@ -153,7 +153,6 @@ func _on_clear_button_pressed() -> void:
 		if not is_instance_valid(panel) or panel == null:
 			continue
 		(panel.get_parent() as MenuUnitPlace).clear_child_info()
-		panel.queue_free()
 
 func _ready() -> void:
 	item_list_left_controller.select(STANDARD_AI_CONTROLLER)

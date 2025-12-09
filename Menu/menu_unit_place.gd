@@ -6,7 +6,6 @@ const UNIT_PANEL = preload("res://Menu/Scenes/unit_panel.tscn")
 
 func add_new_unit(unit_name: String, dir: String) -> void:
 	if panel != null:
-		panel.queue_free()
 		clear_child_info()
 		
 	panel = UNIT_PANEL.instantiate()
@@ -20,6 +19,7 @@ func add_new_unit(unit_name: String, dir: String) -> void:
 func clear_child_info() -> void:
 	if is_instance_valid(panel):
 		remove_child(panel)
+		panel.free()
 	panel = null
 
 func switch_unit_place(unit: UnitPanel) -> void:

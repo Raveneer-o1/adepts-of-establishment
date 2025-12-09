@@ -21,6 +21,7 @@ func read_attack(parameters: Dictionary) -> void:
 	if attack_on_retaliation: attack_on_retaliation.queue_free()
 	var attack_data := UnitAttackData.from_dict(parameters)
 	attack_on_retaliation = UnitAttack.new()
+	add_child(attack_on_retaliation)
 	attack_on_retaliation.initialize(target_unit, attack_data)
 
 func read_params(params: Variant) -> void:

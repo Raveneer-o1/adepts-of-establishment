@@ -741,7 +741,9 @@ func add_persistent_effect(effect: AppliedEffect) -> void:
 
 #region Utilities
 
-## Creates an [Attack] object and returns it
+## Creates an [Attack] object and returns it. [br][br]
+## [b]Note:[/b] This method modifies the provided [param targets] array.
+## Use [method Array.duplicate] if the original array must remain unchanged.
 func create_attack(unit_attack: UnitAttack, targets: Array[UnitSpot]) -> Attack:
 	if unit_attack.additional_targets:
 		targets.append_array(
@@ -756,12 +758,27 @@ func create_attack(unit_attack: UnitAttack, targets: Array[UnitSpot]) -> Attack:
 		parameters.attack_effect
 	)
 	
+	#atck_ref = weakref(attack)
+	
 	if unit_attack.damage_policy:
 		attack.damage_policy = unit_attack.damage_policy
 	if not unit_attack.applying_effects.is_empty():
 		attack.applying_effects = unit_attack.applying_effects
 	
 	return attack
+
+#var atck_ref: WeakRef
+#var __debug_timer: float = 2.0
+#func __debug_track_ref() -> void:
+	#if atck_ref.get_ref():
+		#print("leak?")
+#
+#func _process(delta: float) -> void:
+	#if not atck_ref: return
+	#__debug_timer -= delta
+	#if __debug_timer <= 0.0:
+		#__debug_track_ref()
+		#__debug_timer = 1.0
 
 func now_attacking() -> bool:
 	if not chosen_targets.is_empty():

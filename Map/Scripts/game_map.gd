@@ -59,6 +59,10 @@ func update_active_party(party: MapParty) -> void:
 
 func _ready() -> void:
 	load_maps()
+	
+	# creating leak
+	#var leak := Object.new()
+	# this is not reported when run with --verbose
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_pressed(): return
@@ -69,3 +73,11 @@ func _unhandled_key_input(event: InputEvent) -> void:
 			_temp_disabled_ended.emit()
 			for d: Dictionary in _temp_disabled_ended.get_connections():
 				_temp_disabled_ended.disconnect(d.callable)
+
+var __debug_timer := 1.0
+func _process(delta: float) -> void:
+	__debug_timer -= delta
+	if __debug_timer > 0.0: return
+	var orphans := get_orphan_node_ids()
+	if orphans: print(orphans)
+	#print_orphan_nodes()

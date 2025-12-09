@@ -231,6 +231,7 @@ func book_damage(attack: Attack, emit: bool = true) -> void:
 	if attack.effect == null:
 		return
 	
+	# this is visual effect, plays the animation
 	for target in attack.targets:
 		var effect_object := attack.effect.instantiate() as TemporaryEffect
 		target.add_child(effect_object)
