@@ -2,6 +2,7 @@ class_name MapWorker
 extends Node
 
 @onready var map: Map = $".."
+@onready var visualizer: MapVisualizer = $"../Visualizer"
 
 var active_party: MapParty:
 	get: return map.active_party
@@ -65,16 +66,16 @@ func move_active_party_to_object(object: MapInteractableObject) -> void:
 	if active_party.is_moving:
 		active_party.control.abort_moving()
 		return
-	var path := event_handler.get_highlighted_tiles()
+	var path := visualizer.get_highlighted_tiles()
 	if not path:
-		event_handler.reset_highlights()
+		visualizer.reset_highlights()
 		return
 	await active_party.control.walk_along_path(
 		path,
 		true,
 		object
 	)
-	event_handler.reset_highlights()
+	visualizer.reset_highlights()
 	map.clean_hashtable()
 	var cost := object.validate_and_interact(active_party)
 	if cost > 0: active_party.parameters.subtract_mp(cost)
@@ -83,12 +84,12 @@ func move_active_party(coords: Vector2i) -> void:
 	if active_party.is_moving:
 		active_party.control.abort_moving()
 		return
-	var path := event_handler.get_highlighted_tiles()
+	var path := visualizer.get_highlighted_tiles()
 	if not path:
-		event_handler.reset_highlights()
+		visualizer.reset_highlights()
 		return
 	await active_party.control.walk_along_path(path)
-	event_handler.reset_highlights()
+	visualizer.reset_highlights()
 	
 	# moving mapry creates an empty entry for each tile that party walked over
 	map.clean_hashtable()
