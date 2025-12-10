@@ -157,8 +157,9 @@ func start_battle(attacker: MapParty, defender: MapParty) -> void:
 func get_global_coords(tile_coord: Vector2i) -> Vector2:
 	return terrain_layer.to_global(terrain_layer.map_to_local(tile_coord))
 
-## Converts global coordinates to tile coordinates.
-func get_tile_coords(coords: Vector2) -> Vector2i:
+## Converts global [param coords] to tile coordinates.
+## If nothig is provided, uses current mouse position.
+func get_tile_coords(coords: Vector2 = get_global_mouse_position()) -> Vector2i:
 	return terrain_layer.local_to_map(terrain_layer.to_local(coords))
 
 ## Returns the distance between two hex positions in axial coordinates. [br]

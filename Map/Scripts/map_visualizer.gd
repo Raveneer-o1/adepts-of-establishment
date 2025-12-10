@@ -26,9 +26,15 @@ func _should_draw(party: MapParty, tile: Vector2i) -> bool:
 	if party.is_moving: return false
 	return true
 
-func draw_path(party: MapParty, start: Vector2i, end: Vector2i) -> void:
-	#var mouse_coords := _hovering_mouse_coords
-	
+## Draws a path for the specified [param party] to [param end] from [param start].
+## Note operand order: draws path TO end FROM start. [br]
+## If [param start] is omitted, uses [member MapParty.tile_position], requiring
+## [param party] to be non-null or the game will crash. Caller must verify this condition.
+func draw_path(
+	party: MapParty,
+	end: Vector2i,
+	start: Vector2i = party.tile_position
+) -> void:
 	if party and not party.is_moving:
 		reset_highlights()
 	

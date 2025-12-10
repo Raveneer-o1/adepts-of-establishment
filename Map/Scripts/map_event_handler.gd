@@ -10,6 +10,37 @@ var terrain_layer: TileMapLayer:
 var camera: MapCamera:
 	get: return map.camera
 
+var _game_access_allowed := false
+
+## Returns [member Map.active_party] if game access is permitted or
+## [code]null[/code] otherwise. [br][br]
+##
+## Design rationale: Direct access to game systems is restricted by default,
+## with [Faction] classes serving as the primary API for external controllers.
+## However, requiring all active-party interactions to go through controllers
+## is impractical for [MapEventHandler] methods. [br][br]
+##
+## Instead, [MapEventHandler] methods can be temporarily granted access via
+## [method allow_game_access] and [method forbid_game_access] toggles.
+var active_party: MapParty:
+	get: return map.active_party if _game_access_allowed else null
+
+## @experimental: currently access permissions are not removed automatically
+## Grants [MapEventHandler] direct access to game fields, enabling automatic
+## retrieval of properties like [member Map.active_party] during mouse hover,
+## click processing, and other player interactions, bypassing the [Faction] API.
+## [br][br]
+## Incorrect usage may permit unauthorized access or manipulation of other players' data.
+func allow_game_access() -> void:
+	_game_access_allowed = true
+	# TODO: implement automatic access removal
+
+## Revokes direct access to game fields, disabling game-related interactions.
+## Only meta-level operations remain available, such as information requests
+## or menu navigation.
+func forbid_game_access() -> void:
+	_game_access_allowed = false
+
 # Last tile coordinates that the mouse was hovering over
 var _last_target_tile: Vector2i
 
@@ -34,26 +65,27 @@ func _set_hovering_timer(t: float) -> void:
 
 # Handles mouse hovering to show pathfinding preview and interactions
 func _handle_mouse_hovering() -> void:
-	if not map.active_party: return
+	var party := active_party
+	if not party: return
 	_hovering_mouse_coords = \
 		terrain_layer.local_to_map(terrain_layer.get_local_mouse_position())
 	if _last_target_tile == _hovering_mouse_coords: return
 	_last_target_tile = _hovering_mouse_coords
-	var dist := map.get_distance(map.active_party.tile_position, _hovering_mouse_coords)
+	var dist := map.get_distance(active_party.tile_position, _hovering_mouse_coords)
 	for region: Array in _MOUSE_DISTANCE_REGIONS:
 		if dist < region[0]:
 			if region[1] > 0.0: _set_hovering_timer(region[1])
 			else: visualizer.draw_path(
-				map.active_party,
-				map.active_party.tile_position,
+				active_party,
 				_hovering_mouse_coords
 			)
 			break
 
 func _process_click() -> void:
-	var tile := terrain_layer.local_to_map(terrain_layer.get_local_mouse_position())
+	# TODO: reroute through API
+	var tile := map.get_tile_coords()
 	get_viewport().set_input_as_handled()
-	if map.active_party:
+	if active_party:
 		map.request_active_party_action(tile)
 		return
 	map.request_player_action(tile)
@@ -110,8 +142,7 @@ func _process(delta: float) -> void:
 	_hovering_timer -= delta
 	if _hovering_timer <= 0.0:
 		visualizer.draw_path(
-			map.active_party,
-			map.active_party.tile_position,
+			active_party,
 			_hovering_mouse_coords
 		)
 		_hovering_timer_active = false
