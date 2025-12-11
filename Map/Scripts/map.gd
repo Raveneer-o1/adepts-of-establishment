@@ -298,6 +298,7 @@ func _initialize() -> void:
 func _ready() -> void:
 	_initialize()
 	
+	event_handler.allow_game_access()
 	active_faction = $Factions/Empire
 
 ## Determines interaction for the active party at the specified

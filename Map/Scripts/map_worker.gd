@@ -91,5 +91,5 @@ func move_active_party(coords: Vector2i) -> void:
 	await active_party.control.walk_along_path(path)
 	visualizer.reset_highlights()
 	
-	# moving mapry creates an empty entry for each tile that party walked over
+	# moving party creates an empty entry for each tile that party walked over
 	map.clean_hashtable()

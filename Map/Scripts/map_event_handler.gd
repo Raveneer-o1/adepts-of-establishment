@@ -71,12 +71,12 @@ func _handle_mouse_hovering() -> void:
 		terrain_layer.local_to_map(terrain_layer.get_local_mouse_position())
 	if _last_target_tile == _hovering_mouse_coords: return
 	_last_target_tile = _hovering_mouse_coords
-	var dist := map.get_distance(active_party.tile_position, _hovering_mouse_coords)
+	var dist := map.get_distance(party.tile_position, _hovering_mouse_coords)
 	for region: Array in _MOUSE_DISTANCE_REGIONS:
 		if dist < region[0]:
 			if region[1] > 0.0: _set_hovering_timer(region[1])
 			else: visualizer.draw_path(
-				active_party,
+				party,
 				_hovering_mouse_coords
 			)
 			break

@@ -79,10 +79,10 @@ func reset_highlights() -> void:
 func _highlight_tiles_w_detection(tiles: Array[Vector2i], party: MapParty) -> void:
 	var interacting := false
 	for t in tiles:
-		# "interacting" check skips calling the functions if we're already intercepting
-		if interacting or \
-			map.get_first_interception(t, party) or \
-			map.get_first_interactable_object(t, party):
+	# "interacting" check skips calling the functions if we're already intercepting
+		if not interacting:
+			if map.get_first_interception(t, party):  # or \
+			#map.get_first_interactable_object(t, party):
 				interacting = true
 		var atlas_coords := Vector2i(0, 0)
 		if interacting:

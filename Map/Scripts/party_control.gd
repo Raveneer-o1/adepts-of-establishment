@@ -34,14 +34,15 @@ func _handle_step(destination: Vector2i) -> bool:
 	return true
 
 func _check_interception(target_object: MapInteractableObject = null) -> bool:
-	for o in map.get_interactions_on_tile(tile_position):
-		if o == this_party: continue
-		if o == target_object: return true
-		var cost := o.validate_and_interact(this_party, true)
-		if cost < 0: continue
-		this_party.parameters.subtract_mp(cost)
-		return true
-	return false
+	var o := map.get_first_interception(tile_position, this_party)
+	if not o: return false
+	# don't interact with target object
+	if o == target_object: return true
+	
+	var cost := o.force_interaction_on(this_party)
+	if cost < 0: return false
+	this_party.parameters.subtract_mp(cost)
+	return true
 
 # Moves the party to the specified coordinates. [br]
 # If [param animate] is [code]false[/code], the unit teleports instantly to the destination.[br]
