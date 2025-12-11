@@ -118,6 +118,7 @@ func _read_data(data: UnitAttackData) -> void:
 	for alt in data.alternative_actions:
 		var alternative := UnitAttack.new()
 		alternative.initialize(unit, alt)
+		add_child(alternative)
 
 func _initialize_alternative() -> void:
 	for c: UnitAttack in get_children():
@@ -160,6 +161,7 @@ func make_current() -> void:
 	unit.attacks_for_this_round[pos] = prev_atk
 	unit.current_attack = self
 
+## Returns the attack serialized as a dictionary.
 static func serialized(a: UnitAttack) -> Dictionary:
 	print("constructing attack")
 	var alternative_actions: Array[Dictionary] = []

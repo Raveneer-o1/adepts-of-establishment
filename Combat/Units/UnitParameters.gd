@@ -87,10 +87,11 @@ const _ARMOR_NEGATIVE_FACTOR = - float(_ARMOR_SCALE_COMPL) / float(ARMOR_SCALE *
 ##
 ## For positive armor values, the multiplier asymptotically approaches
 ## [constant ARMOR_MIN_MULTIPLIER].[br]
+## Adjust [constant ARMOR_SCALE] to modify the function's steepness.[br]
 ## For negative values linearly increase with no caps or restrictions.
-## Slope in this case is given by [constant ARMOR_NEGATIVE_FACTOR] [br]
-## Adjust [constant ARMOR_SCALE] to modify the function's steepness.
-## [br][br]
+## Slope in this case is calculated so the entire function is smooth
+## (i.e, slope becomes more negative with [constant ARMOR_SCALE] decrease)[br]
+## [br]
 ## [i]
 ## The idea is that players can increase
 ## armor stat indefinitely but will see diminishing returns.
@@ -387,19 +388,25 @@ func _read_data(data: UnitData) -> void:
 	level = data.level
 	large_unit = data.large_unit
 	underlying_HP = data.current_hp
-	underlying_max_HP = data.max_hp
-	underlying_immunities = data.immunities
+	if max_hp_override < 0:
+		underlying_max_HP = data.max_hp
 	
-	underlying_base_damage = data.base_damage
-	underlying_armor = data.armor
-	underlying_evasion = data.evasion
-	underlying_shielding_chance = data.shielding_chance
+	underlying_immunities = data.immunities
+	if base_damage_override < 0:
+		underlying_base_damage = data.base_damage
+	if armor_override < 0:
+		underlying_armor = data.armor
+	if evasion_override < 0:
+		underlying_evasion = data.evasion
+	if shielding_chance_override < 0:
+		underlying_shielding_chance = data.shielding_chance
 	
 	_init_effects(data.effects)
 	_init_attacks(data.attack_data)
 	
 	hp = hp  # you don't say
 	# this is needed because hp updates "dead" flag and triggers death
+	# also clamps the value to max_hp in case something went wrong with the data
 
 ## Initializes references. Returns if initializtion was successful.
 func initialize_variables(data: UnitData) -> bool:
