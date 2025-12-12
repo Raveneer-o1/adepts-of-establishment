@@ -28,10 +28,16 @@ func get_interaction_tiles(
 ) -> Array[Vector2i]:
 	return map.get_neighbors(main)
 
+func _validate_refs() -> void:
+	if not faction:
+		push_error("Unassigned faction")
+		map.free_map_object(self)
+
 #region Abstract Definitions
 
 func _initialize() -> void:
 	loaded_portrait = load(portrait_texture)
+	_validate_refs()
 
 func accept_interaction(party: MapParty) -> int:
 	if party.faction.is_enemy(faction):

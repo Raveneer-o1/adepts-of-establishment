@@ -27,8 +27,8 @@ func do_combat(attacker: MapParty, defender: MapParty) -> void:
 func _prefill_data(attacker: MapParty, defender: MapParty) -> void:
 	EventBus.left_units = attacker.parameters.get_unit_data()
 	EventBus.right_units = defender.parameters.get_unit_data()
-	EventBus.left_controller = load(GlobalDefs.get_controller(attacker.faction.controller))
-	EventBus.right_controller = load(GlobalDefs.get_controller(defender.faction.controller))
+	EventBus.left_controller = load(GlobalDefs.get_combat_controller(attacker.faction.controller))
+	EventBus.right_controller = load(GlobalDefs.get_combat_controller(defender.faction.controller))
 
 func _load_battle(attacker: MapParty, defender: MapParty) -> Node:
 	var battle: Control = map.battle_scene.instantiate()
@@ -61,7 +61,10 @@ func _play_effect(pos: Vector2) -> void:
 	effect.global_position = pos
 	await effect.effect_finished
 
-
+## Moves [Map.active_party] to the specified [param object] and triggers
+## interaction [b]if applicable[/b].[br]
+## Path which the party is to follow is expected to be highlighted:
+## it is retrieved with [method MapVisualizer.get_highlighted_tiles].
 func move_active_party_to_object(object: MapInteractableObject) -> void:
 	if active_party.is_moving:
 		active_party.control.abort_moving()

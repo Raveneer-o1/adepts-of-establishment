@@ -14,6 +14,9 @@ const test_map = preload("res://Map/Scenes/map.tscn")
 
 var current_map: Map
 
+@onready var test_faction: MapFaction = $Factions/Faction
+@onready var test_faction2: MapFaction = $Factions/Faction2
+
 ## Resumes map processing.
 func enable_map() -> void:
 	current_map.process_mode = Node.PROCESS_MODE_PAUSABLE
@@ -65,9 +68,20 @@ func update_active_party(party: MapParty) -> void:
 	if not party: _clear_active_party()
 	else: _fill_active_party(party)
 
+func _test_init() -> void:
+	var c := load(GlobalDefs.get_faction_controller(test_faction.controller))
+	test_faction.api.add_child(c.instantiate())
+	test_faction2.api.add_child(c.instantiate())
+	current_map.active_faction = test_faction
+	(current_map.find_child("MapParty") as MapParty).faction = test_faction
+	(current_map.find_child("MapParty2") as MapParty).faction = test_faction
+	(current_map.find_child("MapParty3") as MapParty).faction = test_faction2
+
 func _ready() -> void:
 	load_maps()
 	_clear_active_party()
+	
+	_test_init()
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_pressed(): return

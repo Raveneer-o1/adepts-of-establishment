@@ -299,11 +299,12 @@ func _ready() -> void:
 	_initialize()
 	
 	event_handler.allow_game_access()
-	active_faction = $Factions/Empire
 
 ## Determines interaction for the active party at the specified
 ## [param coordinates] and performs that action
+## @deprecated: only use API calls
 func request_active_party_action(coordinates: Vector2i) -> void:
+	push_error("Deprecated call")
 	if not active_party: return
 	var object := get_first_interactable_object(coordinates)
 	
@@ -314,9 +315,25 @@ func request_active_party_action(coordinates: Vector2i) -> void:
 	await worker.move_active_party_to_object(object)
 
 ## Handles player interaction when no active party is selected
+## @deprecated: only use API calls
 func request_player_action(coords: Vector2i) -> void:
+	push_error("Deprecated call")
+	if not active_faction: return
+	active_faction.api.tile_clicked.emit(coords)
+
+## Processes interaction like player's click or AI's select.[br]
+## [color=red]Important:[/color] Do [b]not[/b] call this method directly.
+## Only interact though [FactionAPI]
+func player_act(coords: Vector2i, faction: MapFaction) -> void:
 	var objects := get_objects_on_tile(coords)
 	for obj in objects:
-		if obj.request_player_interaction(active_faction):
-			obj.player_interact(active_faction)
+		if obj.request_player_interaction(faction):
+			obj.player_interact(faction)
 			return
+	if not active_party: return
+	if active_party.faction != faction: return
+	for obj in objects:
+		if obj.can_interact(active_party):
+			await worker.move_active_party_to_object(obj)
+			return
+	worker.move_active_party(coords)

@@ -1,13 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://cy8rh77mxkncn"]
+[gd_scene load_steps=11 format=3 uid="uid://cy8rh77mxkncn"]
 
 [ext_resource type="Script" uid="uid://cium5533y6jdp" path="res://Map/Scripts/game_map.gd" id="1_mp6yi"]
 [ext_resource type="Script" uid="uid://ymq5kwxdp6r3" path="res://Map/Scripts/map_ui.gd" id="2_jwoqq"]
 [ext_resource type="Texture2D" uid="uid://b6vh1ulubj26i" path="res://Arts/Placeholders/Army.jpg" id="3_ankfc"]
 [ext_resource type="Texture2D" uid="uid://by3bbk6m8geey" path="res://Arts/itch assets/Pixel Art Icon Pack - RPG [Cainos]/Misc/Golden Coin.png" id="4_ru5ay"]
 [ext_resource type="Texture2D" uid="uid://cvcocjvddoc5d" path="res://Arts/itch assets/Pixel Art Icon Pack - RPG [Cainos]/Ore & Gem/Crystal.png" id="5_3g8al"]
-[ext_resource type="Script" uid="uid://cxswnm25ylr5" path="res://Map/Scripts/party_ui_manager.gd" id="5_t0dwr"]
+[ext_resource type="Script" uid="uid://cxswnm25ylr5" path="res://Map/Scripts/Party/party_ui_manager.gd" id="5_t0dwr"]
 [ext_resource type="PackedScene" uid="uid://dqwc116n3br4m" path="res://Map/UI/Scenes/party_editor_unit_position.tscn" id="6_3g8al"]
 [ext_resource type="PackedScene" uid="uid://dgs5tkpmxvrcq" path="res://Map/UI/Scenes/party_editor_item.tscn" id="7_rwvpl"]
+[ext_resource type="PackedScene" uid="uid://1vr0gdex77rx" path="res://Map/Scenes/faction.tscn" id="9_tjube"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ru5ay"]
 font_size = 19
@@ -313,6 +314,12 @@ layout_mode = 2
 visible = false
 
 [node name="MapsContainer" type="Node" parent="."]
+
+[node name="Factions" type="Node" parent="."]
+
+[node name="Faction" parent="Factions" instance=ExtResource("9_tjube")]
+
+[node name="Faction2" parent="Factions" instance=ExtResource("9_tjube")]
 
 [connection signal="pressed" from="UILayers/Main/PanelContainer/VBoxContainer/QuitButton" to="UILayers" method="_on_quit_button_pressed"]
 [connection signal="gui_input" from="UILayers/Main/PanelContainer/VBoxContainer/ActivePartyContainer/PortraitContainer/PanelContainer/PortraitTextureRect" to="UILayers" method="_on_portrait_texture_rect_gui_input"]

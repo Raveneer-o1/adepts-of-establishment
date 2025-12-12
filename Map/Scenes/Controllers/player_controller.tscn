@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bq0xkw1ex2nxu"]
+
+[ext_resource type="Script" uid="uid://u4lhfj60berb" path="res://Map/Scripts/Faction/Controllers/player_controller.gd" id="1_acpp3"]
+
+[node name="PlayerController" type="Node"]
+script = ExtResource("1_acpp3")

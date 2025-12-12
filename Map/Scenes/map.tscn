@@ -1,13 +1,13 @@
-[gd_scene load_steps=47 format=4 uid="uid://dlu3vl2ltauc0"]
+[gd_scene load_steps=46 format=4 uid="uid://dlu3vl2ltauc0"]
 
-[ext_resource type="Script" uid="uid://dvi42dc2k0m2h" path="res://Map/Scripts/map.gd" id="1_q0qov"]
+[ext_resource type="Script" uid="uid://dvi42dc2k0m2h" path="res://Map/Scripts/Map/map.gd" id="1_q0qov"]
 [ext_resource type="Texture2D" uid="uid://c462nhclviryl" path="res://Arts/Map objects/dis tiles (1).png" id="1_xec2n"]
 [ext_resource type="Texture2D" uid="uid://d1pq5a63j8amt" path="res://Arts/Map objects/mana sources.png" id="2_fsm7x"]
 [ext_resource type="PackedScene" uid="uid://6lq6f06hma7" path="res://test.tscn" id="2_pqwdj"]
 [ext_resource type="Texture2D" uid="uid://bugwls130mkxq" path="res://Arts/Map objects/objects.png" id="2_q0qov"]
-[ext_resource type="Script" uid="uid://cy3qdta1wg1jq" path="res://Map/Scripts/map_event_handler.gd" id="3_1tmes"]
+[ext_resource type="Script" uid="uid://cy3qdta1wg1jq" path="res://Map/Scripts/Map/map_event_handler.gd" id="3_1tmes"]
 [ext_resource type="Texture2D" uid="uid://b2v51mrky8rhp" path="res://Arts/Map objects/o02 village .png" id="3_b45i2"]
-[ext_resource type="Script" uid="uid://cag3bdpjtf3q7" path="res://Map/Scripts/map_worker.gd" id="3_ykca1"]
+[ext_resource type="Script" uid="uid://cag3bdpjtf3q7" path="res://Map/Scripts/Map/map_worker.gd" id="3_ykca1"]
 [ext_resource type="Texture2D" uid="uid://cbm3wlhrsci2y" path="res://Arts/Map objects/o03 stuff.png" id="4_xec2n"]
 [ext_resource type="Texture2D" uid="uid://qbtgdgqgc535" path="res://Arts/Map objects/tree.png" id="5_q0qov"]
 [ext_resource type="Texture2D" uid="uid://73u46mcqeqgi" path="res://Arts/Map objects/tower with crystals.png" id="5_wp3p1"]
@@ -21,13 +21,12 @@
 [ext_resource type="PackedScene" uid="uid://bmp8htqi7l1i" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scenes/map_capital_undead.tscn" id="12_l17lq"]
 [ext_resource type="Texture2D" uid="uid://518ilab6qsv7" path="res://Arts/Map/tile highlight.png" id="16_ab646"]
 [ext_resource type="Texture2D" uid="uid://dj7bwp2kwlwe6" path="res://Arts/Map/tile highlights atlas.png" id="17_aku2f"]
-[ext_resource type="Script" uid="uid://ijg56utnmlvn" path="res://Map/Scripts/path_finder.gd" id="18_jtf36"]
-[ext_resource type="Script" uid="uid://bx6fsao0crbjq" path="res://Map/Scripts/map_camera.gd" id="19_gdowr"]
-[ext_resource type="Script" uid="uid://pn3mawujeix2" path="res://Map/Scripts/objects_layer.gd" id="20_1e4ck"]
-[ext_resource type="Script" uid="uid://bjfntvb3r7vr8" path="res://Map/Scripts/map_faction.gd" id="20_xno3x"]
+[ext_resource type="Script" uid="uid://ijg56utnmlvn" path="res://Map/Scripts/Map/path_finder.gd" id="18_jtf36"]
+[ext_resource type="Script" uid="uid://bx6fsao0crbjq" path="res://Map/Scripts/Map/map_camera.gd" id="19_gdowr"]
+[ext_resource type="Script" uid="uid://pn3mawujeix2" path="res://Map/Scripts/Map/objects_layer.gd" id="20_1e4ck"]
 [ext_resource type="Script" uid="uid://mn0dy1cf0p65" path="res://Map/Scripts/unit_data.gd" id="21_bl7ab"]
 [ext_resource type="PackedScene" uid="uid://dgtus55hjs5uh" path="res://Map/PartyEffects/Scenes/flight.tscn" id="25_l17lq"]
-[ext_resource type="Script" uid="uid://vp2g1mt8y24x" path="res://Map/Scripts/map_visualizer.gd" id="28_esgc1"]
+[ext_resource type="Script" uid="uid://vp2g1mt8y24x" path="res://Map/Scripts/Map/map_visualizer.gd" id="28_esgc1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iq1o3"]
 texture = ExtResource("1_xec2n")
@@ -369,9 +368,8 @@ tile_set = SubResource("TileSet_1e4ck")
 
 [node name="Parties" type="Node" parent="."]
 
-[node name="MapParty" parent="Parties" node_paths=PackedStringArray("faction") instance=ExtResource("12_kwhd2")]
+[node name="MapParty" parent="Parties" instance=ExtResource("12_kwhd2")]
 position = Vector2(761, 300)
-faction = NodePath("../../Factions/Empire")
 party_name = "Strong dudes"
 portrait_texture = "res://Arts/Placeholders/Army.jpg"
 
@@ -423,9 +421,8 @@ unit_name = &"Angel Knight"
 max_hp = 100
 metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 
-[node name="MapParty3" parent="Parties" node_paths=PackedStringArray("faction") instance=ExtResource("12_kwhd2")]
+[node name="MapParty3" parent="Parties" instance=ExtResource("12_kwhd2")]
 position = Vector2(891, 257)
-faction = NodePath("../../Factions/Empire")
 party_name = "Fast af"
 portrait_texture = "res://Arts/Placeholders/Army alt.jpg"
 
@@ -463,9 +460,8 @@ metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 
 [node name="Flight" parent="Parties/MapParty3" instance=ExtResource("25_l17lq")]
 
-[node name="MapParty2" parent="Parties" node_paths=PackedStringArray("faction") instance=ExtResource("12_kwhd2")]
+[node name="MapParty2" parent="Parties" instance=ExtResource("12_kwhd2")]
 position = Vector2(826, 364)
-faction = NodePath("../../Factions/Neutral")
 party_name = "Thieves"
 portrait_texture = "res://Arts/Placeholders/Army.jpg"
 
@@ -484,19 +480,3 @@ current_hp = 100
 unit_name = &"Thief"
 max_hp = 100
 metadata/_custom_type_script = "uid://mn0dy1cf0p65"
-
-[node name="Factions" type="Node" parent="."]
-
-[node name="Neutral" type="Node" parent="Factions"]
-script = ExtResource("20_xno3x")
-base_faction = 5
-controller = 1
-
-[node name="Empire" type="Node" parent="Factions"]
-script = ExtResource("20_xno3x")
-base_faction = 1
-
-[node name="Undead" type="Node" parent="Factions"]
-script = ExtResource("20_xno3x")
-base_faction = 2
-controller = 2

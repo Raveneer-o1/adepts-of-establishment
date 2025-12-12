@@ -1,6 +1,23 @@
 class_name MapEventHandler
 extends Node
 
+## Handles player input and interactions on the game map, including mouse and keyboard controls.
+##
+## The [MapEventHandler] class processes all player inputs related to map
+## interaction. [br][br]
+##
+## By default, direct access to game systems is restricted. The class implements a
+## permission system using [method allow_game_access] and [method forbid_game_access]
+## to temporarily grant access to sensitive game data like [member Map.active_party].
+## This allows input handling methods to work with current game state while maintaining
+## the overall architecture where [Faction] classes serve as the primary API for
+## external controllers.
+##
+## The class automatically connects to input events and processes them each frame.
+## Game access should be explicitly granted via [method allow_game_access] when
+## player interactions require current game state, and revoked with
+## [method forbid_game_access] when returning to meta-level operations.
+
 @onready var map: Map = $".."
 @onready var visualizer: MapVisualizer = $"../Visualizer"
 
@@ -82,15 +99,13 @@ func _handle_mouse_hovering() -> void:
 			break
 
 func _process_click() -> void:
-	# TODO: reroute through API
 	var tile := map.get_tile_coords()
+	if map.active_faction: map.active_faction.api.tile_clicked.emit(tile)
 	get_viewport().set_input_as_handled()
-	if active_party:
-		map.request_active_party_action(tile)
-		return
-	map.request_player_action(tile)
 
 func _process_right_click() -> void:
+	if not active_party: return
+	if active_party.is_moving: return
 	map.set_active_party(null)
 	visualizer.reset_highlights()
 	get_viewport().set_input_as_handled()
