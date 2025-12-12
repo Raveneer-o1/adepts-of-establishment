@@ -68,6 +68,8 @@ signal unit_data_requested
 signal movement_multiplier_requested
 ## Emitted when movement cost for a specific tile is requested.
 ## External systems should listen for this signal and set [member accumulated_value].
+## This value has a priority over movement_multiplier: if this one is set,
+## the latter will be ignored.
 signal movement_cost_requested(tile_data: TileData)
 ## Emitted when maximum movement points value is requested.
 ## External systems should listen for this signal and set [member accumulated_value].

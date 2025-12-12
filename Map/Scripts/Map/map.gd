@@ -43,7 +43,7 @@ extends Node2D
 ## This layer should contain [code]traverse_cost[/code] custom
 ## data layer with [b]int[/b] type (value of -1 means the tile is not traversable)
 @onready var terrain_layer : TileMapLayer = %TerrainLayer
-## Layer containing map objects like parties, interactables, etc.
+## Layer containing map ommovable objects like cities, mines, etc.
 @onready var objects_layer : MapObjectsLayer = %ObjectsLayer
 ## Layer used for highlighting tiles during pathfinding and interactions
 @onready var highlight_layer: TileMapLayer = %HighlightLayer

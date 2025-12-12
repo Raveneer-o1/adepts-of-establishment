@@ -44,7 +44,8 @@ func _check_distances(start: Vector2i, end: Array[Vector2i]) -> bool:
 
 ## Finds a path from start to end using A* algorithm [br][br]
 ## [param start]: Starting tile coordinates[br]
-## [param end]: Destination tile coordinates[br]
+## [param end]: Array of destination tile coordinates. Algorithm will find a path to
+## the one of the provided coordinates.[br]
 ## [param travel_data]: Travel parameters that affect pathfinding[br][br]
 ## [b]Returns:[/b] Array of tile coordinates representing the path from start
 ## to end (excluding start)
@@ -86,7 +87,7 @@ func A_star(start: Vector2i, end: Array[Vector2i], travel_data: TravelData) -> A
 		else:
 			break  # No more nodes to evaluate
 	
-	if not closed_set.has(goal) or goal == start:
+	if goal == start or not closed_set.has(goal):
 		return []
 	
 	return _reconstruct_path(closed_set[goal], start)
