@@ -101,7 +101,6 @@ func _process_right_click() -> void:
 	if not active_party: return
 	if active_party.is_moving: return
 	map.set_active_party(null)
-	visualizer.reset_highlights()
 	get_viewport().set_input_as_handled()
 
 func _handle_mouse_input(event: InputEventMouseButton) -> void:

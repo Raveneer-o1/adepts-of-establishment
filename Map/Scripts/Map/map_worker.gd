@@ -101,3 +101,13 @@ func abort_active_actions() -> void:
 	if active_party and active_party.is_moving:
 		await active_party.control.abort_moving()
 	visualizer.reset_highlights()
+
+
+func check_object_layer() -> void:
+	var min_tile := map.min_tile
+	var max_tile := map.max_tile
+	for c in map.objects_layer.get_used_cells():
+		if c.x < min_tile.x or \
+			c.x > max_tile.x:
+				push_error("Object layer is bigger than terrain layer!
+	object at: " + str(c) + "; map size: " + str(min_tile) + "-" + str(max_tile))

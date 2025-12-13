@@ -276,13 +276,6 @@ func get_map_size(layer: TileMapLayer) -> Array[Vector2i]:
 		if c.y > _max.y: _max.y = c.y
 	return [_min, _max]
 
-func _check_object_layer() -> void:
-	for c in objects_layer.get_used_cells():
-		if c.x < min_tile.x or \
-			c.x > max_tile.x:
-				push_error("Object layer is bigger than terrain layer!
-	object at: " + str(c) + "; map size: " + str(min_tile) + "-" + str(max_tile))
-
 func _initialize() -> void:
 	var next_parent := get_parent()
 	while next_parent and not game:
@@ -297,7 +290,7 @@ func _initialize() -> void:
 	min_tile = size[0]
 	max_tile = size[1]
 	
-	_check_object_layer()
+	worker.check_object_layer()
 	objects_layer.map = self
 	EventBus.map_turn_ended.connect(new_turn)
 
@@ -318,11 +311,16 @@ func abort_actions() -> void:
 ## Only interact though [FactionAPI]
 func player_act(coords: Vector2i, faction: MapFaction) -> void:
 	var objects := get_objects_on_tile(coords)
+	var obj_interaction := false
 	for obj in objects:
 		if obj.request_player_interaction(faction):
 			obj.player_interact(faction)
-			return
+			obj_interaction = true
+			break
 	if not active_party: return
+	if active_party.is_moving:
+		abort_actions()
+	if obj_interaction: return
 	if active_party.faction != faction: return
 	for obj in objects:
 		if obj.can_interact(active_party):
