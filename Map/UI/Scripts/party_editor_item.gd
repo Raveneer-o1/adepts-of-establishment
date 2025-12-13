@@ -1,11 +1,11 @@
+class_name PartyEditorItem
 extends Control
 
+@onready var texture_rect: TextureRect = $TextureRect
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+var item: MapItem
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+## This method should be called [b]after[/b] [method Node.add_child]
+func initialize(_item: MapItem) -> void:
+	texture_rect.texture = ImageBuffer.get_image(_item.image_path)
+	item = _item

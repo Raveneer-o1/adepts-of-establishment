@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dgs5tkpmxvrcq"]
+[gd_scene load_steps=2 format=3 uid="uid://dgs5tkpmxvrcq"]
 
 [ext_resource type="Script" uid="uid://d0recuysr2t8b" path="res://Map/UI/Scripts/party_editor_item.gd" id="1_w8vip"]
-[ext_resource type="Texture2D" uid="uid://cx4epddgcjvg8" path="res://Arts/itch assets/Pixel Art Icon Pack - RPG [Cainos]/Potion/Water Bottle.png" id="2_bv2a6"]
 
 [node name="PartyEditorItem" type="PanelContainer"]
 custom_minimum_size = Vector2(150, 0)
@@ -11,5 +10,4 @@ script = ExtResource("1_w8vip")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2
-texture = ExtResource("2_bv2a6")
 stretch_mode = 5

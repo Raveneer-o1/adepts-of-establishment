@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://2kk6w327nvk"]
+[gd_scene load_steps=17 format=3 uid="uid://2kk6w327nvk"]
 
 [ext_resource type="Script" uid="uid://ckonqee8nxgfi" path="res://Map/Scripts/Party/map_party.gd" id="1_rleo8"]
 [ext_resource type="Texture2D" uid="uid://djapeb4rjrhbe" path="res://Arts/Map/Parties/hero knight idle.png" id="2_jf7u3"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dkh6kgop0svm7" path="res://Map/Scripts/map_party_animation_handle.gd" id="4_eib2m"]
 [ext_resource type="Script" uid="uid://cdhc27wpom1un" path="res://Map/Scripts/Party/party_parameters.gd" id="5_lo4k0"]
 [ext_resource type="Script" uid="uid://b304u0scivrix" path="res://Map/Scripts/Party/party_control.gd" id="6_eib2m"]
+[ext_resource type="Script" uid="uid://4p5ey7k5oyex" path="res://Map/Scripts/Party/party_inventory.gd" id="7_s3wsb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s3wsb"]
 atlas = ExtResource("2_jf7u3")
@@ -90,3 +91,6 @@ script = ExtResource("5_lo4k0")
 
 [node name="Control" type="Node" parent="."]
 script = ExtResource("6_eib2m")
+
+[node name="Inventory" type="Node" parent="."]
+script = ExtResource("7_s3wsb")

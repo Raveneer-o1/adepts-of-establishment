@@ -18,8 +18,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-EventBus="*res://Combat/Scripts/EventBus.gd"
-GlobalDefs="*res://GlobalDefs.gd"
+EventBus="*res://Autoload/EventBus.gd"
+GlobalDefs="*res://Autoload/GlobalDefs.gd"
+ImageBuffer="*res://Autoload/ImageBuffer.gd"
 
 [debug]
 

@@ -4,6 +4,7 @@ extends MapInteractableObject
 @onready var animation_handle: MapPartyAnimationHandle = $AnimationHandle
 @onready var parameters: PartyParameters = $PartyParameters
 @onready var control: PartyControl = $Control
+@onready var inventory: PartyInventory = $Inventory
 
 @export var faction: MapFaction
 @export var party_name: String

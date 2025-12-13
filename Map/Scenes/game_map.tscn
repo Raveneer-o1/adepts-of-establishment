@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cy8rh77mxkncn"]
+[gd_scene load_steps=12 format=3 uid="uid://cy8rh77mxkncn"]
 
 [ext_resource type="Script" uid="uid://cium5533y6jdp" path="res://Map/Scripts/game_map.gd" id="1_mp6yi"]
 [ext_resource type="Script" uid="uid://ymq5kwxdp6r3" path="res://Map/Scripts/map_ui.gd" id="2_jwoqq"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://cvcocjvddoc5d" path="res://Arts/itch assets/Pixel Art Icon Pack - RPG [Cainos]/Ore & Gem/Crystal.png" id="5_3g8al"]
 [ext_resource type="Script" uid="uid://cxswnm25ylr5" path="res://Map/UI/Scripts/party_ui_manager.gd" id="5_t0dwr"]
 [ext_resource type="PackedScene" uid="uid://dqwc116n3br4m" path="res://Map/UI/Scenes/party_editor_unit_position.tscn" id="6_3g8al"]
-[ext_resource type="PackedScene" uid="uid://dgs5tkpmxvrcq" path="res://Map/UI/Scenes/party_editor_item.tscn" id="7_rwvpl"]
 [ext_resource type="Script" uid="uid://byrx58pdoch0v" path="res://Map/UI/Scripts/city_ui_manager.gd" id="9_bqemh"]
 [ext_resource type="PackedScene" uid="uid://1vr0gdex77rx" path="res://Map/Scenes/faction.tscn" id="9_tjube"]
 [ext_resource type="Script" uid="uid://c6lmuhpypmu08" path="res://Map/Scripts/turn_manager.gd" id="10_5bpsg"]
@@ -165,7 +164,6 @@ layout_mode = 2
 text = "100"
 
 [node name="Party" type="CanvasLayer" parent="UILayers"]
-visible = false
 script = ExtResource("5_t0dwr")
 
 [node name="HBoxContainer" type="MarginContainer" parent="UILayers/Party"]
@@ -296,31 +294,15 @@ size_flags_vertical = 3
 mouse_filter = 0
 
 [node name="InventoryContainer" type="HBoxContainer" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/ItemsContainer/InventoryScroller"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="PartyEditorItem" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/ItemsContainer/InventoryScroller/InventoryContainer" instance=ExtResource("7_rwvpl")]
-layout_mode = 2
-
-[node name="PartyEditorItem2" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/ItemsContainer/InventoryScroller/InventoryContainer" instance=ExtResource("7_rwvpl")]
-layout_mode = 2
-
-[node name="PartyEditorItem3" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/ItemsContainer/InventoryScroller/InventoryContainer" instance=ExtResource("7_rwvpl")]
-layout_mode = 2
-
-[node name="PartyEditorItem4" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/ItemsContainer/InventoryScroller/InventoryContainer" instance=ExtResource("7_rwvpl")]
-layout_mode = 2
-
-[node name="PartyEditorItem5" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/ItemsContainer/InventoryScroller/InventoryContainer" instance=ExtResource("7_rwvpl")]
-layout_mode = 2
-
-[node name="PartyEditorItem6" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/ItemsContainer/InventoryScroller/InventoryContainer" instance=ExtResource("7_rwvpl")]
-layout_mode = 2
 
 [node name="Battle" type="CanvasLayer" parent="UILayers"]
 visible = false
 
 [node name="City" type="CanvasLayer" parent="UILayers"]
+visible = false
 script = ExtResource("9_bqemh")
 
 [node name="PanelContainer" type="PanelContainer" parent="UILayers/City"]
