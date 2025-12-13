@@ -237,9 +237,14 @@ func get_first_interactable_object(
 	party: MapParty = active_party
 ) -> MapInteractableObject:
 	var objects := get_objects_on_tile(coords)
+	var res: MapInteractableObject = null
+	var max_priority := 0
 	for o in objects:
-		if o.can_interact(party): return o
-	return null
+		if not o.can_interact(party): continue
+		if not res or o.party_interaction_priority > max_priority:
+			max_priority = o.party_interaction_priority
+			res = o
+	return res
 
 ## Returns the first object on a specific tile.[br][br]
 ## [i]See also: [method get_first_interactable_object] [/i]
@@ -247,7 +252,13 @@ func get_interactable_object_no_filter(
 	coords: Vector2i
 ) -> MapInteractableObject:
 	var objects := get_objects_on_tile(coords)
-	return objects[0] if objects else null
+	var res: MapInteractableObject = null
+	var max_priority := 0
+	for o in objects:
+		if not res or o.player_interaction_priority > max_priority:
+			max_priority = o.player_interaction_priority
+			res = o
+	return res
 
 ## Returns the first object that will intercept provided [param party]
 ## on the specified [param coords]
@@ -256,9 +267,14 @@ func get_first_interception(
 	party: MapParty = active_party
 ) -> MapInteractableObject:
 	var objects := get_interactions_on_tile(coords)
+	var res: MapInteractableObject = null
+	var max_priority := 0
 	for o in objects:
-		if o.will_intercept(party): return o
-	return null
+		if not o.will_intercept(party): continue
+		if not res or o.party_interaction_priority > max_priority:
+			max_priority = o.party_interaction_priority
+			res = o
+	return res
 
 ## Returns the bounding coordinates of the circumscribed rectangle containing
 ## the entire map. [br]

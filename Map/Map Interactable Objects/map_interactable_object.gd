@@ -24,6 +24,13 @@ extends Node2D
 var map: Map
 var object_name: String = ""
 
+## Determines interaction priority when multiple objects occupy the same tile.
+## Higher values receive priority; negative values are permitted.
+var player_interaction_priority: int = 0
+## Determines interaction priority when party can interact with multiple objects.
+## Higher values receive priority; negative values are permitted.
+var party_interaction_priority: int = 0
+
 func _move_mapping(destination: Vector2i) -> void:
 	for t in get_occupied_tiles():
 		if map.tile_to_object.has(t):
