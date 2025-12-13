@@ -20,6 +20,8 @@ func get_object(coords: Vector2i) -> ObjectLayerObject:
 		if o is ObjectLayerObject: return o
 	return null
 
+## Changes the cell at specified [param coords] to [param scene_id].
+## IDs can be found in the [TileSet] settings. Value of [code]-1[/code] erases the tile.
 func set_tile(
 	coords: Vector2i,
 	scene_id: int = -1

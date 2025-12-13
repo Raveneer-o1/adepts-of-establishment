@@ -11,6 +11,8 @@ var event_handler: MapEventHandler:
 var game: GameMap:
 	get: return map.game
 
+const battle_effect = preload("res://Map/Scenes/visual_effect.tscn")
+
 func do_combat(attacker: MapParty, defender: MapParty) -> void:
 	_prefill_data(attacker, defender)
 	
@@ -40,7 +42,6 @@ func _load_battle(attacker: MapParty, defender: MapParty) -> Node:
 	map.add_sibling(battle)
 	return battle
 
-const battle_effect = preload("res://Map/Scenes/visual_effect.tscn")
 
 func _switch_to_battle(battle: Control) -> void:
 	(battle.find_child("Camera2D", false) as Camera2D).make_current()

@@ -249,6 +249,8 @@ func get_interactable_object_no_filter(
 	var objects := get_objects_on_tile(coords)
 	return objects[0] if objects else null
 
+## Returns the first object that will intercept provided [param party]
+## on the specified [param coords]
 func get_first_interception(
 	coords: Vector2i,
 	party: MapParty = active_party
@@ -303,9 +305,10 @@ func _initialize() -> void:
 func _ready() -> void:
 	_initialize()
 
+## Updates values for new turn. Does not start the turn,
+## this is done through [GameMap] class
 func new_turn(f: MapFaction) -> void:
 	active_party = null
-	game.update_active_party(active_party)
 
 ## Cancels all currently active map actions (e.g., party movement).
 ## Use with [code]await[/code] to wait for animations to complete before proceeding.

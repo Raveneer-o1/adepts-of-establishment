@@ -2,5 +2,8 @@
 class_name ObjectLayerObject
 extends MapInteractableObject
 
+var layer: MapObjectsLayer:
+	get: return map.objects_layer
+
 func destroy() -> void:
-	map.free_map_object(self)
+	layer.set_tile(tile_position)
