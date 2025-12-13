@@ -1,6 +1,9 @@
 class_name MapCity
 extends ObjectLayerObject
 
+## @experimental: currently not implemented
+var city_owner: MapFaction = null
+
 func get_interaction_tiles(
 	party: MapParty = null,
 	main: Vector2i = tile_position,
@@ -27,9 +30,13 @@ func can_interact(party: MapParty) -> bool:
 	return true
 
 func accept_interaction(party: MapParty) -> int:
-	# WARNING: temporary solution, for testing only
-	party_inside = party
-	#party.map.game.ui_layers.show_city_window(self)
+	# TODO: implement this
+	#if city_owner.is_enemy(party.faction):
+		#map.start_siege()
+		#return 0
+	
+	if party_inside: return 0
+	party.enter_city(self)
 	return 0
 
 func will_intercept(party: MapParty) -> bool:

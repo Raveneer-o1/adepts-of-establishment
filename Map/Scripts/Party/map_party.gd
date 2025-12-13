@@ -9,7 +9,11 @@ extends MapInteractableObject
 @export var party_name: String
 @export_file_path("*") var portrait_texture: String
 
+## When set to [code]true[/code], the next movement attempt is canceled and
+## this flag automatically resets to [code]false[/code].
+var cancel_movement: bool = false
 var loaded_portrait: Resource
+var inside_city: MapCity = null
 
 var units: Array[UnitData]:
 	get:
@@ -87,11 +91,6 @@ func get_battle_ready_units() -> Array[UnitData]:
 		i = d.party_position
 	return res
 
-
-## When set to [code]true[/code], the next movement attempt is canceled and
-## this flag automatically resets to [code]false[/code].
-var cancel_movement: bool = false
-
 ## Flips the sprite to face the specified [param target] tile. [br]
 ## This method assumes axial coordinates (Godot's [b]Stairs[/b] or
 ## [b]Diamond[/b] layouts) and will produce incorrect results with offset
@@ -111,3 +110,19 @@ func update_parameters() -> void:
 
 func die() -> void:
 	map.free_map_object(self)
+
+func exit_city(tile: Vector2i) -> void:
+	if not inside_city: return
+	if tile not in inside_city.get_interaction_tiles(self):
+		push_error("Unable to exit city on this tile: " + str(tile))
+		return
+	inside_city.party_inside = null
+	inside_city = null
+	control.walk_to(tile)
+
+func enter_city(city: MapCity) -> void:
+	if not city: return
+	if city.party_inside: return
+	inside_city = city
+	city.party_inside = self
+	control.walk_to(city.tile_position)

@@ -91,7 +91,7 @@ func A_star(start: Vector2i, end: Array[Vector2i], travel_data: TravelData) -> A
 	
 	return _reconstruct_path(closed_set[goal], start)
 
-func _is_passable(tile: Vector2i, travel_data: TravelData) -> bool:
+func is_passable(tile: Vector2i, travel_data: TravelData) -> bool:
 	var data := terrain_layer.get_cell_tile_data(tile)
 	if not data: return false
 	if data.get_custom_data("traverse_cost") < 0: return false

@@ -190,25 +190,52 @@ func set_active_party(party: MapParty) -> void:
 ## Finds a path from [param start] to [param end] for a given [param party]. [br]
 ## If [param party] is not provided, uses [member active_party].
 ## [b]Returns[/b]: Array of tile coordinates representing the path, empty if no path found
-func find_path(start: Vector2i, end: Vector2i, party: MapParty = null) -> Array[Vector2i]:
-	if not party: party = active_party
-	if not party: return []
-	#TODO: construct TravelData object from Party provided
-	return path_finder.A_star(start, [end], TravelData.new(party))
-
-func find_path_to_object(
-	start: Vector2i,
-	end: MapInteractableObject,
-	party: MapParty = null
+func find_path(
+	starts: Array[Vector2i],
+	end: Vector2i,
+	party: MapParty = null,
+	include_start: bool = false
 ) -> Array[Vector2i]:
 	if not party: party = active_party
 	if not party: return []
+	#TODO: construct TravelData object from Party provided
+	var path : Array[Vector2i] = []
+	var _start := Vector2i.ZERO
+	var travel_data := TravelData.new(party)
+	for start in starts:
+		if not path_finder.is_passable(start, travel_data): continue
+		var new_path := path_finder.A_star(start, [end], travel_data)
+		if not path or new_path.size() < path.size():
+			path = new_path
+			_start = start
+	if not path: return []
+	if include_start: path.assign([_start] + path)
+	return path
+
+func find_path_to_object(
+	starts: Array[Vector2i],
+	end: MapInteractableObject,
+	party: MapParty = active_party,
+	include_start: bool = false
+) -> Array[Vector2i]:
+	if not party: return []
 	if not end: return []
-	return path_finder.A_star(
-		start,
-		end.get_interaction_tiles(party),
-		TravelData.new(party)
-	)
+	var path : Array[Vector2i] = []
+	var _start := Vector2i.ZERO
+	var travel_data := TravelData.new(party)
+	for start in starts:
+		if not path_finder.is_passable(start, travel_data): continue
+		var new_path := path_finder.A_star(
+			start,
+			end.get_interaction_tiles(party),
+			travel_data
+		)
+		if not path or new_path.size() < path.size():
+			path = new_path
+			_start = start
+	if not path: return []
+	if include_start: path.assign([_start] + path)
+	return path
 
 ## Returns all objects that have the provided [param tile] set
 ## as their interaction tile

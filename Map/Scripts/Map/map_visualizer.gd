@@ -26,6 +26,27 @@ func _should_draw(party: MapParty, tile: Vector2i) -> bool:
 	if party.is_moving: return false
 	return true
 
+func _find_path(party: MapParty, destination: Vector2i) -> Array[Vector2i]:
+	var object := map.get_first_interactable_object(destination)
+	var start: Array[Vector2i] = [party.tile_position]
+	var include_start := false
+	if party.inside_city:
+		start = party.inside_city.get_interaction_tiles(party)
+		include_start = true
+	return \
+		map.find_path_to_object(
+			start,
+			object,
+			party,
+			include_start
+		) if object else \
+		map.find_path(
+			start,
+			destination,
+			party,
+			include_start
+		)
+
 ## Draws a path for the specified [param party] to [param end] from [param start].
 ## Note operand order: draws path TO end FROM start. [br]
 ## If [param start] is omitted, uses [member MapParty.tile_position], requiring
@@ -44,16 +65,7 @@ func draw_path(
 	if not tile_data: 
 		return
 	
-	var object := map.get_first_interactable_object(end)
-	var path := \
-		map.find_path_to_object(
-			party.tile_position,
-			object
-		) if object else \
-		map.find_path(
-			party.tile_position,
-			end
-		)
+	var path := _find_path(party, end)
 	
 	highlight_tiles(path, party)
 	get_viewport().set_input_as_handled()

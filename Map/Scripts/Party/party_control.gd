@@ -44,42 +44,51 @@ func _check_interception(target_object: MapInteractableObject = null) -> bool:
 	this_party.parameters.subtract_mp(cost)
 	return true
 
-# Moves the party to the specified coordinates. [br]
-# If [param animate] is [code]false[/code], the unit teleports instantly to the destination.[br]
-# [color=red]Warning:[/color] This method performs no validation - it can move
-# units to any tile, including non-existent or impassable locations.
-#func walk_to(
-	#destination: Vector2i,
-	#animate: bool = true,
-#) -> void:
-	#EventBus.party_move_started.emit(this_party, destination)
-	#if cancel_movement:
-		#cancel_movement = false
-		#_is_moving = false
-		#return
-	#this_party.face_tile(destination)
-	#tile_position = destination
-	#if animate:
-		#_smooth_movement = true
-		#animation_handle.play_walk()
-		#_start_moving_animation(destination)
-		#await _moving_finished
-		#_smooth_movement = false
-	#else: _jump_to(destination)
-	#_finish_moving_animation()
+## Moves the party to the specified coordinates. [br]
+## If [param animate] is [code]false[/code], the unit teleports instantly to the destination.[br]
+## [color=red]Warning:[/color] This method performs no validation - it can move
+## units to any tile, including non-existent or impassable locations.
+func walk_to(
+	destination: Vector2i,
+	animate: bool = true,
+) -> void:
+	await _walk_to(destination, animate)
+	_finish_moving_animation()
 	# safeguard against misaligned position
-	#this_party.global_position = _moving_to
+	this_party.global_position = _moving_to
+
+## Moves a party to a proveded coordinates [br][br]
+## [color=red]Warning:[/color] This method performs no validation - it can move
+## units through any tile, including non-existent or impassable locations.
+func _walk_to(
+	destination: Vector2i,
+	animate: bool,
+) -> void:
+	EventBus.party_move_started.emit(this_party, destination)
+	if cancel_movement:
+		cancel_movement = false
+		_is_moving = false
+		return
+	this_party.face_tile(destination)
+	tile_position = destination
+	if animate:
+		_smooth_movement = true
+		animation_handle.play_walk()
+		_start_moving_animation(destination)
+		await _moving_finished
+		_smooth_movement = false
+	else: _jump_to(destination)
 
 ## Moves a party along a proveded coordinates [br][br]
 ## if [param target_object] ia specified, ignores interception from that object
-## (expected to be handled by caller) [br][br]
-## [color=red]Warning:[/color] This method performs no validation - it can move
-## units through any tile, including non-existent or impassable locations.
+## (expected to be handled by caller)
 func walk_along_path(
 	path: Array[Vector2i],
 	animate: bool = true,
 	target_object: MapInteractableObject = null
 ) -> void:
+	if not path: return
+	if this_party.inside_city: this_party.exit_city(path[0])
 	await _walk_along_path(path, animate, target_object)
 	_finish_moving_animation()
 	# safeguard against misaligned position
@@ -119,6 +128,7 @@ func _walk_along_path(
 func abort_moving() -> void:
 	cancel_movement = true
 	if _is_moving: await _moving_finished
+
 
 func _process(delta: float) -> void:
 	if _is_moving: _process_movement(delta)
