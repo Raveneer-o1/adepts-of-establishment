@@ -102,6 +102,25 @@ func abort_active_actions() -> void:
 		await active_party.control.abort_moving()
 	visualizer.reset_highlights()
 
+func find_path(
+	starts: Array[Vector2i],
+	end: Array[Vector2i],
+	party: MapParty,
+	include_start: bool
+) -> Array[Vector2i]:
+	if not party: return []
+	var path : Array[Vector2i] = []
+	var _start := Vector2i.ZERO
+	var travel_data := TravelData.new(party)
+	for start in starts:
+		if not map.path_finder.is_passable(start, travel_data): continue
+		var new_path := map.path_finder.A_star(start, end, travel_data)
+		if not path or new_path.size() < path.size():
+			path = new_path
+			_start = start
+	if not path: return []
+	if include_start: path.assign([_start] + path)
+	return path
 
 func check_object_layer() -> void:
 	var min_tile := map.min_tile

@@ -100,9 +100,9 @@ func is_passable(tile: Vector2i, travel_data: TravelData) -> bool:
 	return travel_data.can_traverse(data)
 
 func _are_tiles_valid(start: Vector2i, end: Array[Vector2i], travel_data: TravelData) -> bool:
-	if not _is_passable(start, travel_data): return false
+	if not is_passable(start, travel_data): return false
 	for t in end:
-		if _is_passable(t, travel_data): return true
+		if is_passable(t, travel_data): return true
 	return false
 
 func _evaluate_repeating_neighbor(
@@ -138,7 +138,7 @@ func _evaluate_neighbors(
 			if neighbor_coords in open_set:
 				continue
 			
-			if not _is_passable(neighbor_coords, travel_data): continue
+			if not is_passable(neighbor_coords, travel_data): continue
 			
 			open_set[neighbor_coords] = \
 				PathNode.new(neighbor_coords, terrain_layer, travel_data, current_node)
