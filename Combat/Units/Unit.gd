@@ -101,7 +101,8 @@ var displayed_icons: Dictionary[TextureRect, AppliedEffect]
 
 ## Position in the party. Even numbers represent fron line, odd numbers - back line.
 ## Position is also index of this unit in the [member Party.unit_spots] and [member Party.units]
-var party_position: int
+var party_position: int:
+	get: return spot.party_position
 
 ## List of targets player or AI have chosen. This list is passed as an argument to a new [Attack]
 ## when [method start_attacking] is called.
