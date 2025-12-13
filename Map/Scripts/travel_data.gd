@@ -10,7 +10,6 @@ extends RefCounted
 ## [code]&"forest"[/code][br]
 ## [code]&"mountain"[/code][br]
 
-# TODO: traversable tiles mask
 var _default_cost_multiplier: int = 1
 
 ## [codeblock]
@@ -21,15 +20,23 @@ var custom_pass_check: Callable
 ## func (tile_data: TileData) -> int
 ## [/codeblock]
 var custom_cost_multiplier: Callable
+## [codeblock]
+## func (tile_data: TileData) -> int
+## [/codeblock]
+var custom_cost: Callable
 
 func _init(party: MapParty) -> void:
 	if not party: return
 	_default_cost_multiplier = party.parameters.get_movement_multiplier()
-	
+	custom_cost = party.parameters.get_movement_cost
 
 func get_cost_multiplier(tile_data: TileData) -> int:
 	if custom_cost_multiplier.is_valid(): return custom_cost_multiplier.call(tile_data)
 	return _default_cost_multiplier
+
+func get_cost(tile_data: TileData) -> int:
+	if custom_cost.is_valid(): return custom_cost.call(tile_data)
+	return tile_data.get_custom_data("traverse_cost") * get_cost_multiplier(tile_data)
 
 func _default_traversability(tile_data: TileData) -> bool:
 	var tile_type: StringName = tile_data.get_custom_data("tile_type")

@@ -68,12 +68,12 @@ signal unit_data_requested
 signal movement_multiplier_requested
 ## Emitted when movement cost for a specific tile is requested.
 ## External systems should listen for this signal and set [member accumulated_value].
-## This value has a priority over movement_multiplier: if this one is set,
+## This value has a priority over movement multiplier: if this one is set,
 ## the latter will be ignored.
 signal movement_cost_requested(tile_data: TileData)
 ## Emitted when maximum movement points value is requested.
 ## External systems should listen for this signal and set [member accumulated_value].
-signal max_mp_requested(tile_data: TileData)
+signal max_mp_requested()
 
 var _max_movement_points: int = 20
 ## This property automatically manages mp values by calling [method get_max_movement_points]
@@ -89,6 +89,12 @@ var movement_points: int = max_movement_points:
 func subtract_mp(value: int) -> void:
 	if value < 0: return
 	movement_points -= value
+
+func get_movement_cost(tile_data: TileData) -> int:
+	movement_cost_requested.emit(tile_data)
+	var cost: int = _get_accumulated_value(-1)
+	if cost >= 0: return cost
+	return get_movement_multiplier() * tile_data.get_custom_data("traverse_cost")
 
 func _get_accumulated_value(default: Variant) -> Variant:
 	if accumulated_value == null: return default

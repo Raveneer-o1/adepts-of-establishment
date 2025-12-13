@@ -74,8 +74,8 @@ func _test_init() -> void:
 	test_faction2.api.add_child(c.instantiate())
 	current_map.active_faction = test_faction
 	(current_map.find_child("MapParty") as MapParty).faction = test_faction
-	(current_map.find_child("MapParty2") as MapParty).faction = test_faction
-	(current_map.find_child("MapParty3") as MapParty).faction = test_faction2
+	(current_map.find_child("MapParty2") as MapParty).faction = test_faction2
+	(current_map.find_child("MapParty3") as MapParty).faction = test_faction
 
 func _ready() -> void:
 	load_maps()

@@ -26,8 +26,7 @@ class PathNode extends RefCounted:
 		from: PathNode = null
 	) -> void:
 		var tile_data := terrain_layer.get_cell_tile_data(coords)
-		terrain_cost = tile_data.get_custom_data("traverse_cost") * \
-			travel_data.get_cost_multiplier(tile_data)
+		terrain_cost = travel_data.get_cost(tile_data)
 		tile_coords = coords
 		came_from = from
 		

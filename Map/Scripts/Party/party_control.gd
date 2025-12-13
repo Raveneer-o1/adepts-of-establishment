@@ -27,9 +27,9 @@ func _handle_step(destination: Vector2i) -> bool:
 	if not tile_data:
 		push_error("Trying to move on an empty spot!")
 		return false
-	var cost: int = tile_data.get_custom_data("traverse_cost")
-	this_party.parameters.movement_points -= \
-		cost * this_party.parameters.get_movement_multiplier()
+	this_party.parameters.subtract_mp(
+		this_party.parameters.get_movement_cost(tile_data)
+	)
 	game.update_active_party(this_party)
 	return true
 
