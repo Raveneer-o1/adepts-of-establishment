@@ -1,8 +1,15 @@
 class_name MapCity
 extends ObjectLayerObject
 
+func get_interaction_tiles(
+	party: MapParty = null,
+	main: Vector2i = tile_position,
+) -> Array[Vector2i]:
+	return [
+		main + Vector2i(0, 1),
+		main + Vector2i(-1, 1),
+	]
 
-# Uncomment and implement the method below if the object occupies multiple tiles
 func _get_occupied_tiles(main: Vector2i = tile_position) -> Array[Vector2i]:
 	return [
 		main,
@@ -17,9 +24,12 @@ func _get_occupied_tiles(main: Vector2i = tile_position) -> Array[Vector2i]:
 
 func can_interact(party: MapParty) -> bool:
 	if not party: return false
-	return false
+	return true
 
 func accept_interaction(party: MapParty) -> int:
+	# WARNING: temporary solution, for testing only
+	party_inside = party
+	#party.map.game.ui_layers.show_city_window(self)
 	return 0
 
 func will_intercept(party: MapParty) -> bool:
@@ -59,3 +69,13 @@ func player_interact(faction: MapFaction) -> void:
 	return
 
 #endregion
+
+var units: Array[UnitData]:
+	get:
+		var res: Array[UnitData] = []
+		for c in get_children():
+			if c is UnitData:
+				res.append(c)
+		return res
+
+var party_inside: MapParty

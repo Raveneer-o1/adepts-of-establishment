@@ -2,8 +2,10 @@ class_name PartyEditorUnitPosition
 extends TextureRect
 
 @export var party_position: int
+@export var reparent_data := false
 
 var unit: PartyEditorUnit
+var parent: Node
 
 const PARTY_EDITOR_UNIT_PREFAB = preload("res://Map/UI/Scenes/party_editor_unit.tscn")
 
@@ -32,6 +34,8 @@ func _move_unit(received_unit: PartyEditorUnit) -> void:
 	unit = received_unit
 	unit.unit_data.party_position = party_position
 	unit.reparent(self, false)
+	if reparent_data:
+		unit.unit_data.reparent(parent)
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	return data is PartyEditorUnit

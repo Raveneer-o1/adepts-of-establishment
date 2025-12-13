@@ -4,6 +4,7 @@ extends Node
 var current_ui: CanvasLayer
 @onready var game_map: GameMap = $".."
 @onready var party_layer: CanvasLayer = $Party
+@onready var city_layer: CityUIManager = $City
 
 @onready var _active_party_container: VBoxContainer = %ActivePartyContainer
 @onready var _party_name_label: Label = %ActivePartyContainer/PartyNameLabel
@@ -19,8 +20,12 @@ func clear_active_party() -> void:
 	_movement_points_label.text = ""
 	_party_name_label.text = ""
 	
-	# TODO: dynamically place textures
 	_party_portrait_texture_rect.hide()
+
+
+func show_city_window(city: MapCity) -> void:
+	city_layer.fill_city_data(city)
+	switch_to(&"City")
 
 ## Assigns [param party] to [member last_requested_party]. [br][br]
 ## Does not update the party window - this occurs only when the player
@@ -72,7 +77,6 @@ func _ready() -> void:
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
-
 
 func _on_portrait_texture_rect_gui_input(event: InputEvent) -> void:
 	if event is not InputEventMouseButton: return

@@ -98,10 +98,17 @@ func _process_click() -> void:
 	get_viewport().set_input_as_handled()
 
 func _process_right_click() -> void:
+	var objects := map.get_objects_on_tile(map.get_tile_coords())
+	for o in objects:
+		if o is MapCity:
+			map.game.ui_layers.show_city_window(o)
+			get_viewport().set_input_as_handled()
+			return
+	
 	if not active_party: return
 	if active_party.is_moving: return
-	map.set_active_party(null)
 	get_viewport().set_input_as_handled()
+	map.set_active_party(null)
 
 func _handle_mouse_input(event: InputEventMouseButton) -> void:
 	match event.button_index:
