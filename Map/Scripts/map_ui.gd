@@ -5,13 +5,39 @@ var current_ui: CanvasLayer
 @onready var game_map: GameMap = $".."
 @onready var party_layer: CanvasLayer = $Party
 
+@onready var _active_party_container: VBoxContainer = %ActivePartyContainer
+@onready var _party_name_label: Label = %ActivePartyContainer/PartyNameLabel
+@onready var _movement_points: ProgressBar = %ActivePartyContainer/MovementPoints
+@onready var _movement_points_label: Label = %ActivePartyContainer/MovementPoints/Label
+@onready var _party_portrait_texture_rect: TextureRect = \
+	%ActivePartyContainer/PortraitContainer/PanelContainer/PortraitTextureRect
+
 var last_requested_party: MapParty = null
+
+func clear_active_party() -> void:
+	_movement_points.value = 0.0
+	_movement_points_label.text = ""
+	_party_name_label.text = ""
+	
+	# TODO: dynamically place textures
+	_party_portrait_texture_rect.hide()
 
 ## Assigns [param party] to [member last_requested_party]. [br][br]
 ## Does not update the party window - this occurs only when the player
 ## actually opens the window. The party UI is updated by [PartyUIManager]
 ## on visibility change.
 func fill_active_party(party: MapParty) -> void:
+	var mp := party.parameters.movement_points
+	var max_mp := party.parameters.max_movement_points
+	_movement_points.value = mp
+	_movement_points.max_value = max_mp
+	_movement_points_label.text = "%d/%d" % [mp, max_mp]
+	_party_name_label.text = party.party_name
+	
+	if _party_portrait_texture_rect.texture != party.loaded_portrait:
+		_party_portrait_texture_rect.texture = party.loaded_portrait
+	_party_portrait_texture_rect.show()
+	
 	last_requested_party = party
 
 func _switch_ui(target_ui: CanvasLayer) -> void:
