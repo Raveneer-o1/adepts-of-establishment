@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cy8rh77mxkncn"]
+[gd_scene load_steps=12 format=3 uid="uid://cy8rh77mxkncn"]
 
 [ext_resource type="Script" uid="uid://cium5533y6jdp" path="res://Map/Scripts/game_map.gd" id="1_mp6yi"]
 [ext_resource type="Script" uid="uid://ymq5kwxdp6r3" path="res://Map/Scripts/map_ui.gd" id="2_jwoqq"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dqwc116n3br4m" path="res://Map/UI/Scenes/party_editor_unit_position.tscn" id="6_3g8al"]
 [ext_resource type="PackedScene" uid="uid://dgs5tkpmxvrcq" path="res://Map/UI/Scenes/party_editor_item.tscn" id="7_rwvpl"]
 [ext_resource type="PackedScene" uid="uid://1vr0gdex77rx" path="res://Map/Scenes/faction.tscn" id="9_tjube"]
+[ext_resource type="Script" uid="uid://c6lmuhpypmu08" path="res://Map/Scripts/turn_manager.gd" id="10_5bpsg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ru5ay"]
 font_size = 19
@@ -23,7 +24,6 @@ script = ExtResource("1_mp6yi")
 script = ExtResource("2_jwoqq")
 
 [node name="Main" type="CanvasLayer" parent="UILayers"]
-visible = false
 
 [node name="PanelContainer" type="PanelContainer" parent="UILayers/Main"]
 anchors_preset = 11
@@ -102,6 +102,10 @@ offset_bottom = 23.0
 text = "20/20"
 horizontal_alignment = 1
 
+[node name="EndTurnButton" type="Button" parent="UILayers/Main/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "End turn"
+
 [node name="ResourcesPanel" type="PanelContainer" parent="UILayers/Main"]
 offset_right = 28.0
 offset_bottom = 55.0
@@ -159,6 +163,7 @@ layout_mode = 2
 text = "100"
 
 [node name="Party" type="CanvasLayer" parent="UILayers"]
+visible = false
 script = ExtResource("5_t0dwr")
 
 [node name="HBoxContainer" type="MarginContainer" parent="UILayers/Party"]
@@ -321,7 +326,11 @@ visible = false
 
 [node name="Faction2" parent="Factions" instance=ExtResource("9_tjube")]
 
+[node name="TurnManager" type="Node" parent="."]
+script = ExtResource("10_5bpsg")
+
 [connection signal="pressed" from="UILayers/Main/PanelContainer/VBoxContainer/QuitButton" to="UILayers" method="_on_quit_button_pressed"]
 [connection signal="gui_input" from="UILayers/Main/PanelContainer/VBoxContainer/ActivePartyContainer/PortraitContainer/PanelContainer/PortraitTextureRect" to="UILayers" method="_on_portrait_texture_rect_gui_input"]
+[connection signal="pressed" from="UILayers/Main/PanelContainer/VBoxContainer/EndTurnButton" to="UILayers" method="_on_end_turn_button_pressed"]
 [connection signal="visibility_changed" from="UILayers/Party" to="UILayers/Party" method="_on_visibility_changed"]
 [connection signal="gui_input" from="UILayers/Party/HBoxContainer" to="UILayers" method="_on_h_box_container_gui_input"]

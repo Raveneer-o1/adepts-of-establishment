@@ -116,3 +116,10 @@ const DEFAULT_MOVEMENT_MULTIPLIER = 1
 func get_movement_multiplier() -> int:
 	movement_multiplier_requested.emit()
 	return _get_accumulated_value(DEFAULT_MOVEMENT_MULTIPLIER)
+
+func _ready() -> void:
+	EventBus.map_turn_started.connect(
+		func (f: MapFaction) -> void:
+			if f == this_party.faction:
+				movement_points = max_movement_points
+	)

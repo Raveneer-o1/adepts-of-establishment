@@ -5,4 +5,5 @@ func turn_start_reaction() -> void:
 
 func _initialize() -> void:
 	api.tile_clicked.connect(api.choose_tile)
+	api.end_turn_clicked.connect(api.end_turn)
 	api.turn_started.connect(turn_start_reaction)

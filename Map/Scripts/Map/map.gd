@@ -56,6 +56,8 @@ extends Node2D
 @onready var event_handler: MapEventHandler = $EventHandler
 ## Handles the actual execution of map operations that serve as API endpoints.
 @onready var worker: MapWorker = $Worker
+## Shows the information (like highlights) to the player
+@onready var visualizer: MapVisualizer = $Visualizer
 
 var game: GameMap
 
@@ -67,7 +69,9 @@ var active_party: MapParty:
 		active_party = value
 
 ## Faction that currently has turn control
-var active_faction: MapFaction
+var active_faction: MapFaction:
+	get: return game.turn_manager.active_faction
+	set(value): game.turn_manager.active_faction = value
 
 ## Reference to the battle scene to instantiate when combat starts
 @export var battle_scene: PackedScene
@@ -177,9 +181,11 @@ func get_distance(pos1: Vector2i, pos2: Vector2i) -> int:
 func get_neighbors(coords: Vector2i) -> Array[Vector2i]:
 	return terrain_layer.get_surrounding_cells(coords)
 
-## Sets the active party
+## Sets the active party. Can be set to [code]null[/code] to clear
+## active party selection
 func set_active_party(party: MapParty) -> void:
 	active_party = party
+	visualizer.reset_highlights()
 
 ## Finds a path from [param start] to [param end] for a given [param party]. [br]
 ## If [param party] is not provided, uses [member active_party].
@@ -294,9 +300,14 @@ func _initialize() -> void:
 	
 	_check_object_layer()
 	objects_layer.map = self
+	EventBus.map_turn_ended.connect(new_turn)
 
 func _ready() -> void:
 	_initialize()
+
+func new_turn(f: MapFaction) -> void:
+	active_party = null
+	game.update_active_party(active_party)
 
 ## Determines interaction for the active party at the specified
 ## [param coordinates] and performs that action

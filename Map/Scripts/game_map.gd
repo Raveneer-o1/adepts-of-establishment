@@ -11,6 +11,7 @@ const test_map = preload("res://Map/Scenes/map.tscn")
 	%ActivePartyContainer/PortraitContainer/PanelContainer/PortraitTextureRect
 
 @onready var ui_layers: MapUI = $UILayers
+@onready var turn_manager: MapTurnManager = $TurnManager
 
 var current_map: Map
 

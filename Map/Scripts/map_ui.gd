@@ -53,11 +53,6 @@ func _on_portrait_texture_rect_gui_input(event: InputEvent) -> void:
 	if (event as InputEventMouseButton).pressed:
 		switch_to(&"Party")
 
-
-#func _on_h_box_container_gui_input(event: InputEvent) -> void:
-	#var switching := false
-	#if event is InputEventMouseButton: 
-		#if event.button_index == MOUSE_BUTTON_LEFT or \
-		#event.button_index == MOUSE_BUTTON_RIGHT:
-			#switching = true
-	#if switching: switch_to(&"Main")
+func _on_end_turn_button_pressed() -> void:
+	var active_faction := game_map.turn_manager.active_faction
+	if active_faction: active_faction.api.end_turn_clicked.emit()

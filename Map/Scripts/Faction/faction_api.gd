@@ -50,6 +50,14 @@ signal tile_clicked(tile: Vector2i)
 ## exclusively through the API.
 signal turn_started
 
+## Emitted when end of turn button is clicked by player.
+## The turn is not ended when the signal is emitted, it is the responsibility of
+## the controller to call [method end_turn].
+signal end_turn_clicked
+
+func end_turn() -> void:
+	game.turn_manager.next_turn()
+
 ## Enables player input processing for human-controlled factions.
 ## Should only be called by controllers representing human players.
 ## This permits the game to emit [signal tile_clicked] when players click tiles.
