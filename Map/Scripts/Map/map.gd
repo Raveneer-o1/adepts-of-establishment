@@ -252,7 +252,6 @@ func get_first_interception(
 		if o.will_intercept(party): return o
 	return null
 
-
 ## Returns the bounding coordinates of the circumscribed rectangle containing
 ## the entire map. [br]
 ## For square or offset hex maps this is a rectangle;
@@ -308,27 +307,6 @@ func _ready() -> void:
 func new_turn(f: MapFaction) -> void:
 	active_party = null
 	game.update_active_party(active_party)
-
-## Determines interaction for the active party at the specified
-## [param coordinates] and performs that action
-## @deprecated: only use API calls
-func request_active_party_action(coordinates: Vector2i) -> void:
-	push_error("Deprecated call")
-	if not active_party: return
-	var object := get_first_interactable_object(coordinates)
-	
-	if not object:
-		await worker.move_active_party(coordinates)
-		return
-	
-	await worker.move_active_party_to_object(object)
-
-## Handles player interaction when no active party is selected
-## @deprecated: only use API calls
-func request_player_action(coords: Vector2i) -> void:
-	push_error("Deprecated call")
-	if not active_faction: return
-	active_faction.api.tile_clicked.emit(coords)
 
 ## Cancels all currently active map actions (e.g., party movement).
 ## Use with [code]await[/code] to wait for animations to complete before proceeding.
