@@ -23,5 +23,9 @@ func next_turn() -> void:
 	EventBus.map_turn_started.emit(active_faction)
 	active_faction.api.turn_started.emit()
 
+func request_turn_end() -> void:
+	await game.current_map.abort_actions()
+	if active_faction: active_faction.api.end_turn_clicked.emit()
+
 func _ready() -> void:
 	factions.assign($"../Factions".get_children())

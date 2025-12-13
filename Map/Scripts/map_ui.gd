@@ -54,5 +54,4 @@ func _on_portrait_texture_rect_gui_input(event: InputEvent) -> void:
 		switch_to(&"Party")
 
 func _on_end_turn_button_pressed() -> void:
-	var active_faction := game_map.turn_manager.active_faction
-	if active_faction: active_faction.api.end_turn_clicked.emit()
+	game_map.turn_manager.request_turn_end()

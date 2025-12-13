@@ -118,6 +118,7 @@ func _walk_along_path(
 ## canceled entirely since the signal fires before movement begins.[/i]
 func abort_moving() -> void:
 	cancel_movement = true
+	if _is_moving: await _moving_finished
 
 func _process(delta: float) -> void:
 	if _is_moving: _process_movement(delta)

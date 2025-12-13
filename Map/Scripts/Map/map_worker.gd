@@ -96,3 +96,8 @@ func move_active_party(coords: Vector2i) -> void:
 	
 	# moving party creates an empty entry for each tile that party walked over
 	map.clean_hashtable()
+
+func abort_active_actions() -> void:
+	if active_party and active_party.is_moving:
+		await active_party.control.abort_moving()
+	visualizer.reset_highlights()

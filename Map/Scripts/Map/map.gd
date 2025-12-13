@@ -330,6 +330,11 @@ func request_player_action(coords: Vector2i) -> void:
 	if not active_faction: return
 	active_faction.api.tile_clicked.emit(coords)
 
+## Cancels all currently active map actions (e.g., party movement).
+## Use with [code]await[/code] to wait for animations to complete before proceeding.
+func abort_actions() -> void:
+	await worker.abort_active_actions()
+
 ## Processes interaction like player's click or AI's select.[br]
 ## [color=red]Important:[/color] Do [b]not[/b] call this method directly.
 ## Only interact though [FactionAPI]
