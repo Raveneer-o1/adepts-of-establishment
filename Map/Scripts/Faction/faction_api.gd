@@ -45,6 +45,17 @@ func choose_tile(tile: Vector2i) -> void:
 ## Controllers listen for this signal and should not emit it.
 signal tile_clicked(tile: Vector2i)
 
+## Emitted when this faction's turn begins. Mirrors [signal EventBus.map_turn_started]
+## to avoid controller dependency on game structure - controllers should interact
+## exclusively through the API.
+signal turn_started
+
+## Enables player input processing for human-controlled factions.
+## Should only be called by controllers representing human players.
+## This permits the game to emit [signal tile_clicked] when players click tiles.
+func access_player_input() -> void:
+	map.event_handler.allow_game_access()
+
 func _ready() -> void:
 	var next_parent := get_parent()
 	while next_parent and not game:

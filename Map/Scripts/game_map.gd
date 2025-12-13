@@ -76,6 +76,8 @@ func _test_init() -> void:
 	(current_map.find_child("MapParty") as MapParty).faction = test_faction
 	(current_map.find_child("MapParty2") as MapParty).faction = test_faction2
 	(current_map.find_child("MapParty3") as MapParty).faction = test_faction
+	EventBus.map_turn_started.emit(test_faction)
+	test_faction.api.turn_started.emit()
 
 func _ready() -> void:
 	load_maps()

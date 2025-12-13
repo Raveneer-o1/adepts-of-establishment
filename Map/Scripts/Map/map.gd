@@ -297,8 +297,6 @@ func _initialize() -> void:
 
 func _ready() -> void:
 	_initialize()
-	
-	event_handler.allow_game_access()
 
 ## Determines interaction for the active party at the specified
 ## [param coordinates] and performs that action

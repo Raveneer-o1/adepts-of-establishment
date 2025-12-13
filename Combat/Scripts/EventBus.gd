@@ -46,4 +46,6 @@ signal damage_taken(unit: Unit, dmg: int)
 ## Movement can be canceled by setting [code]party.cancel_movement[/code] to [code]true[/code].
 ## [i](cancel_movement is automatically reset to false after signal processing)[/i]
 signal party_move_started(party: MapParty, destination: Vector2i)
+signal map_turn_started(faction: MapFaction)
+signal map_turn_ended(faction: MapFaction)
 #endregion

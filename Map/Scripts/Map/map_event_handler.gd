@@ -6,17 +6,13 @@ extends Node
 ## The [MapEventHandler] class processes all player inputs related to map
 ## interaction. [br][br]
 ##
-## By default, direct access to game systems is restricted. The class implements a
-## permission system using [method allow_game_access] and [method forbid_game_access]
-## to temporarily grant access to sensitive game data like [member Map.active_party].
-## This allows input handling methods to work with current game state while maintaining
-## the overall architecture where [Faction] classes serve as the primary API for
-## external controllers.
+## By default, direct access to game systems is restricted,
+## with [Faction] classes serving as the primary API for external controllers.
+## However, requiring all active-party interactions to go through controllers
+## is impractical for [MapEventHandler] methods. [br][br]
 ##
-## The class automatically connects to input events and processes them each frame.
-## Game access should be explicitly granted via [method allow_game_access] when
-## player interactions require current game state, and revoked with
-## [method forbid_game_access] when returning to meta-level operations.
+## Instead, this node can be temporarily granted access via
+## [method allow_game_access] and [method forbid_game_access] toggles.
 
 @onready var map: Map = $".."
 @onready var visualizer: MapVisualizer = $"../Visualizer"
@@ -30,19 +26,16 @@ var camera: MapCamera:
 var _game_access_allowed := false
 
 ## Returns [member Map.active_party] if game access is permitted or
-## [code]null[/code] otherwise. [br][br]
-##
-## Design rationale: Direct access to game systems is restricted by default,
-## with [Faction] classes serving as the primary API for external controllers.
-## However, requiring all active-party interactions to go through controllers
-## is impractical for [MapEventHandler] methods. [br][br]
-##
-## Instead, [MapEventHandler] methods can be temporarily granted access via
-## [method allow_game_access] and [method forbid_game_access] toggles.
+## [code]null[/code] otherwise.
 var active_party: MapParty:
 	get: return map.active_party if _game_access_allowed else null
 
-## @experimental: currently access permissions are not removed automatically
+## Returns [member Map.active_faction] if game access is permitted or
+## [code]null[/code] otherwise.
+var active_faction: MapFaction:
+	get: return map.active_faction if _game_access_allowed else null
+
+## @experimental: currently access permissions are removed only on [signal EventBus.map_turn_ended]
 ## Grants [MapEventHandler] direct access to game fields, enabling automatic
 ## retrieval of properties like [member Map.active_party] during mouse hover,
 ## click processing, and other player interactions, bypassing the [Faction] API.
@@ -99,8 +92,9 @@ func _handle_mouse_hovering() -> void:
 			break
 
 func _process_click() -> void:
-	var tile := map.get_tile_coords()
-	if map.active_faction: map.active_faction.api.tile_clicked.emit(tile)
+	if active_faction:
+		var tile := map.get_tile_coords()
+		active_faction.api.tile_clicked.emit(tile)
 	get_viewport().set_input_as_handled()
 
 func _process_right_click() -> void:
@@ -161,3 +155,8 @@ func _process(delta: float) -> void:
 			_hovering_mouse_coords
 		)
 		_hovering_timer_active = false
+
+func _ready() -> void:
+	EventBus.map_turn_ended.connect(
+		func (f: MapFaction) -> void: forbid_game_access()
+	)
