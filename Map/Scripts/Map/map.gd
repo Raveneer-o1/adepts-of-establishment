@@ -154,8 +154,11 @@ func clear_object_refs(o: MapInteractableObject) -> void:
 ## [param attacker]: The party initiating the combat encounter[br]
 ## [param defender]: The party being attacked
 func start_battle(attacker: MapParty, defender: MapParty) -> void:
-	await worker.do_combat(attacker, defender)
+	var winner := await worker.do_combat(attacker, defender)
 	game.update_active_party(active_party)
+	if not winner: return
+	var loser := defender if winner == attacker else attacker
+	loser.inventory.transfer_all_items(winner.inventory)
 
 ## Returns the global coordinates for the specified tile (coordinates of the center)
 func get_global_coords(tile_coord: Vector2i) -> Vector2:

@@ -112,6 +112,10 @@ func update_parameters() -> void:
 func die() -> void:
 	map.free_map_object(self)
 
+func is_dead() -> bool:
+	# TODO: implement this
+	return is_queued_for_deletion()
+
 func exit_city(tile: Vector2i) -> void:
 	if not inside_city: return
 	if tile not in inside_city.get_interaction_tiles(self):

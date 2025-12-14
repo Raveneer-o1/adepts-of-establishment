@@ -3,8 +3,10 @@
 [ext_resource type="Script" uid="uid://d0recuysr2t8b" path="res://Map/UI/Scripts/party_editor_item.gd" id="1_w8vip"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_w8vip"]
-font_size = 12
-font_color = Color(0.57700837, 0.5770084, 0.57700837, 1)
+font_size = 18
+font_color = Color(0.25839996, 0.76, 0.31692004, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
 
 [node name="PartyEditorItem" type="PanelContainer"]
 custom_minimum_size = Vector2(150, 0)
@@ -20,3 +22,5 @@ stretch_mode = 5
 layout_mode = 2
 text = "Placeholder"
 label_settings = SubResource("LabelSettings_w8vip")
+horizontal_alignment = 1
+vertical_alignment = 1

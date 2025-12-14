@@ -13,7 +13,7 @@ var game: GameMap:
 
 const battle_effect = preload("res://Map/Scenes/visual_effect.tscn")
 
-func do_combat(attacker: MapParty, defender: MapParty) -> void:
+func do_combat(attacker: MapParty, defender: MapParty) -> MapParty:
 	_prefill_data(attacker, defender)
 	
 	attacker.face_tile(defender.tile_position)
@@ -25,6 +25,10 @@ func do_combat(attacker: MapParty, defender: MapParty) -> void:
 	await _switch_to_battle(battle)
 	attacker.update_parameters()
 	defender.update_parameters()
+	var attacker_dead := attacker.is_dead()
+	var defender_dead := defender.is_dead()
+	if attacker_dead == defender_dead: return null
+	return attacker if defender_dead else defender
 
 func _prefill_data(attacker: MapParty, defender: MapParty) -> void:
 	EventBus.left_units = attacker.parameters.get_unit_data()

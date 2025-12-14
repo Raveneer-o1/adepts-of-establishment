@@ -1,12 +1,22 @@
 class_name MapItem
 extends Node
 
-## Base class for all items like potions, scrolls, equipment, etc.
+## Base class for all items including potions, scrolls, equipment, etc.
 ##
-## This class can be inherited and extended to create more complex behavior.
-## Base class allows to create only valuables
-## (items for selling that don't have any effect).
-## See [ConsumableMapItem] implementation as an example of [MapItem] extention
+## Inherit and extend this class to implement complex item behaviors.
+## The base class supports only valuables (sellable items without special effects).
+## See [ConsumableMapItem] for an example of extended functionality.
+## [br][br]
+## [b]Important:[/b] This class is designed for high mobility - [MapItem] nodes
+## frequently change parent nodes without centralized tracking.
+## This means two things:[br]
+## 1. Transfer items by simply calling [method Node.reparent] -
+## containers automatically scan children to find items.[br]
+## 2. Do not store [MapItem] references to track inventory contents - these
+## references remain valid after movement but point to items in different containers.[br]
+## Additional rationale against storing references: Items can be destroyed
+## (e.g., through consumption), and the game provides no mechanism to track
+## and clean up external references to invalidated items.
 
 @export var item_name: String
 @export_file_path("*.*") var image_path: String

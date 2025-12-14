@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cy8rh77mxkncn"]
+[gd_scene load_steps=13 format=3 uid="uid://cy8rh77mxkncn"]
 
 [ext_resource type="Script" uid="uid://cium5533y6jdp" path="res://Map/Scripts/game_map.gd" id="1_mp6yi"]
 [ext_resource type="Script" uid="uid://ymq5kwxdp6r3" path="res://Map/Scripts/map_ui.gd" id="2_jwoqq"]
@@ -17,6 +17,12 @@ font_color = Color(1, 0.25, 0.48749995, 0.68235296)
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_5bpsg"]
+font_size = 50
+font_color = Color(1, 0.25, 0.48749995, 0.68235296)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Game" type="Node"]
 script = ExtResource("1_mp6yi")
 
@@ -24,7 +30,6 @@ script = ExtResource("1_mp6yi")
 script = ExtResource("2_jwoqq")
 
 [node name="Main" type="CanvasLayer" parent="UILayers"]
-visible = false
 
 [node name="PanelContainer" type="PanelContainer" parent="UILayers/Main"]
 anchors_preset = 11
@@ -164,6 +169,7 @@ layout_mode = 2
 text = "100"
 
 [node name="Party" type="CanvasLayer" parent="UILayers"]
+visible = false
 script = ExtResource("5_t0dwr")
 
 [node name="HBoxContainer" type="MarginContainer" parent="UILayers/Party"]
@@ -245,6 +251,17 @@ layout_mode = 2
 texture = ExtResource("3_ankfc")
 expand_mode = 4
 stretch_mode = 5
+
+[node name="Label" type="Label" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/InfoContainer/PortraitContainer/MarginContainer/TextureRect"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 233.0
+offset_right = 357.0
+offset_bottom = 388.0
+rotation = -0.7853982
+text = "AI-generated
+Placeholder"
+label_settings = SubResource("LabelSettings_5bpsg")
 
 [node name="EffectsContainer" type="PanelContainer" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/InfoContainer"]
 layout_mode = 2
