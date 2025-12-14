@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dgs5tkpmxvrcq"]
+[gd_scene load_steps=3 format=3 uid="uid://dgs5tkpmxvrcq"]
 
 [ext_resource type="Script" uid="uid://d0recuysr2t8b" path="res://Map/UI/Scripts/party_editor_item.gd" id="1_w8vip"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_w8vip"]
+font_size = 12
+font_color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 
 [node name="PartyEditorItem" type="PanelContainer"]
 custom_minimum_size = Vector2(150, 0)
@@ -11,3 +15,8 @@ script = ExtResource("1_w8vip")
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2
 stretch_mode = 5
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Placeholder"
+label_settings = SubResource("LabelSettings_w8vip")

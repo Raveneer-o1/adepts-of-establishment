@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://chn5m1m7s8jrk"]
+
+[ext_resource type="Script" uid="uid://bu2y4s2tstyfm" path="res://Map/Items/map_item.gd" id="1_qg0oq"]
+
+[node name="MapItem" type="Node"]
+script = ExtResource("1_qg0oq")
+item_name = "Item"
+image_path = "res://Arts/itch assets/Pixel Art Icon Pack - RPG [Cainos]/Potion/Water Bottle.png"
+description = "Placeholder description"
