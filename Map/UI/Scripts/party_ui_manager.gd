@@ -19,7 +19,9 @@ var currently_filled_party: MapParty = null
 const ITEM_PREFAB = preload("res://Map/UI/Scenes/party_editor_item.tscn")
 
 func _update_values() -> void:
-	pass
+	# TODO: replace with more optimized version
+	# (this one requires freeing and instantiating a lot of objects)
+	_fill_party(currently_filled_party)
 
 func _fill_units(party: MapParty) -> void:
 	for place in places:

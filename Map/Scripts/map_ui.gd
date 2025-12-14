@@ -83,6 +83,7 @@ func _ready() -> void:
 	switch_to.call_deferred(&"Main")
 	EventBus.popup_requested.connect(handle_popup_request)
 
+
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
 

@@ -57,12 +57,19 @@ func _ready() -> void:
 	
 	_test_init()
 
+func _end_temporary_disable() -> void:
+	enable_map()
+	_temporarily_disabled = false
+	_temp_disabled_ended.emit()
+	for d: Dictionary in _temp_disabled_ended.get_connections():
+		_temp_disabled_ended.disconnect(d.callable)
+
+func _on_h_box_container_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton: _end_temporary_disable()
+
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_pressed(): return
 	if _temporarily_disabled:
 		get_viewport().set_input_as_handled()
 		if (event as InputEventKey).keycode == Key.KEY_ESCAPE:
-			enable_map()
-			_temp_disabled_ended.emit()
-			for d: Dictionary in _temp_disabled_ended.get_connections():
-				_temp_disabled_ended.disconnect(d.callable)
+			_end_temporary_disable()

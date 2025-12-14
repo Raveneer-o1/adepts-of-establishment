@@ -521,5 +521,5 @@ script = ExtResource("10_5bpsg")
 [connection signal="gui_input" from="UILayers/Main/PanelContainer/VBoxContainer/ActivePartyContainer/PortraitContainer/PanelContainer/PortraitTextureRect" to="UILayers" method="_on_portrait_texture_rect_gui_input"]
 [connection signal="pressed" from="UILayers/Main/PanelContainer/VBoxContainer/EndTurnButton" to="UILayers" method="_on_end_turn_button_pressed"]
 [connection signal="visibility_changed" from="UILayers/Party" to="UILayers/Party" method="_on_visibility_changed"]
-[connection signal="gui_input" from="UILayers/Party/HBoxContainer" to="UILayers" method="_on_h_box_container_gui_input"]
+[connection signal="gui_input" from="UILayers/Party/HBoxContainer" to="." method="_on_h_box_container_gui_input"]
 [connection signal="gui_input" from="UILayers/ItemInfoPopup/Root" to="UILayers/ItemInfoPopup" method="_on_root_gui_input"]
