@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cy8rh77mxkncn"]
+[gd_scene load_steps=15 format=3 uid="uid://cy8rh77mxkncn"]
 
 [ext_resource type="Script" uid="uid://cium5533y6jdp" path="res://Map/Scripts/game_map.gd" id="1_mp6yi"]
 [ext_resource type="Script" uid="uid://ymq5kwxdp6r3" path="res://Map/Scripts/map_ui.gd" id="2_jwoqq"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://cxswnm25ylr5" path="res://Map/UI/Scripts/party_ui_manager.gd" id="5_t0dwr"]
 [ext_resource type="PackedScene" uid="uid://dqwc116n3br4m" path="res://Map/UI/Scenes/party_editor_unit_position.tscn" id="6_3g8al"]
 [ext_resource type="Script" uid="uid://byrx58pdoch0v" path="res://Map/UI/Scripts/city_ui_manager.gd" id="9_bqemh"]
+[ext_resource type="Script" uid="uid://db2fl4l22gmmv" path="res://Map/UI/Scripts/item_info_popup.gd" id="9_ommir"]
 [ext_resource type="PackedScene" uid="uid://1vr0gdex77rx" path="res://Map/Scenes/faction.tscn" id="9_tjube"]
 [ext_resource type="Script" uid="uid://c6lmuhpypmu08" path="res://Map/Scripts/turn_manager.gd" id="10_5bpsg"]
 
@@ -22,6 +23,9 @@ font_size = 50
 font_color = Color(1, 0.25, 0.48749995, 0.68235296)
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bqemh"]
+font_size = 20
 
 [node name="Game" type="Node"]
 script = ExtResource("1_mp6yi")
@@ -444,6 +448,64 @@ layout_mode = 2
 party_position = 6
 reparent_data = true
 
+[node name="ItemInfoPopup" type="CanvasLayer" parent="UILayers"]
+script = ExtResource("9_ommir")
+
+[node name="Root" type="Control" parent="UILayers/ItemInfoPopup"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="UILayers/ItemInfoPopup/Root"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -160.0
+offset_right = 300.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayers/ItemInfoPopup/Root/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/ItemInfoPopup/Root/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayers/ItemInfoPopup/Root/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayers/ItemInfoPopup/Root/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Name"
+label_settings = SubResource("LabelSettings_bqemh")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UILayers/ItemInfoPopup/Root/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UILayers/ItemInfoPopup/Root/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+bbcode_enabled = true
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+fit_content = true
+
 [node name="MapsContainer" type="Node" parent="."]
 
 [node name="Factions" type="Node" parent="."]
@@ -460,3 +522,4 @@ script = ExtResource("10_5bpsg")
 [connection signal="pressed" from="UILayers/Main/PanelContainer/VBoxContainer/EndTurnButton" to="UILayers" method="_on_end_turn_button_pressed"]
 [connection signal="visibility_changed" from="UILayers/Party" to="UILayers/Party" method="_on_visibility_changed"]
 [connection signal="gui_input" from="UILayers/Party/HBoxContainer" to="UILayers" method="_on_h_box_container_gui_input"]
+[connection signal="gui_input" from="UILayers/ItemInfoPopup/Root" to="UILayers/ItemInfoPopup" method="_on_root_gui_input"]

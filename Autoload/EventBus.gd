@@ -48,4 +48,6 @@ signal damage_taken(unit: Unit, dmg: int)
 signal party_move_started(party: MapParty, destination: Vector2i)
 signal map_turn_started(faction: MapFaction)
 signal map_turn_ended(faction: MapFaction)
+
+signal popup_requested(caller: Variant)
 #endregion
