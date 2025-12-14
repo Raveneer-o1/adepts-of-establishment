@@ -49,5 +49,16 @@ signal party_move_started(party: MapParty, destination: Vector2i)
 signal map_turn_started(faction: MapFaction)
 signal map_turn_ended(faction: MapFaction)
 
-signal popup_requested(caller: Variant)
+## Requests a popup to display information to the player.
+## Popups typically show player-requested information (e.g., right-clicking an object).
+## Distinct from [signal window_requested] - see that signal's documentation.
+signal popup_requested(object: Variant)
+## Requests a window to display information to the player.
+## Windows show system-initiated information
+## (e.g., resource deficiency notifications, item discovery alerts).
+## Distinct from [signal popup_requested] - see that signal's documentation.
+signal window_requested(info: Variant)
+## @experimental: Will be replaced with proper array handling in [signal window_requested].
+## Emitted when a window opened via [signal window_requested] is closed by the player.
+signal window_closed
 #endregion

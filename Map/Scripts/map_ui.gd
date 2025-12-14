@@ -13,6 +13,7 @@ var current_ui: CanvasLayer
 @onready var _party_portrait_texture_rect: TextureRect = \
 	%ActivePartyContainer/PortraitContainer/PanelContainer/PortraitTextureRect
 @onready var item_info_popup: ItemInfoPopup = $ItemInfoPopup
+@onready var pick_up_window: PickUpWindow = $PickUpWindow
 
 var last_requested_party: MapParty = null
 
@@ -22,9 +23,6 @@ func clear_active_party() -> void:
 	_party_name_label.text = ""
 	
 	_party_portrait_texture_rect.hide()
-
-func show_item_popup(item: MapItem) -> void:
-	item_info_popup.show_item(item)
 
 func show_city_window(city: MapCity) -> void:
 	city_layer.fill_city_data(city)
@@ -74,7 +72,11 @@ func switch_to(ui: StringName) -> void:
 
 func handle_popup_request(info_object: Variant) -> void:
 	if info_object is MapItem:
-		show_item_popup(info_object)
+		item_info_popup.show_item(info_object)
+
+func handle_window_request(info: Variant) -> void:
+	if info is MapItem:
+		pick_up_window.show_item(info)
 
 func _ready() -> void:
 	for child: CanvasLayer in get_children():
@@ -82,7 +84,7 @@ func _ready() -> void:
 		child.set_process(false)
 	switch_to.call_deferred(&"Main")
 	EventBus.popup_requested.connect(handle_popup_request)
-
+	EventBus.window_requested.connect(handle_window_request)
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()

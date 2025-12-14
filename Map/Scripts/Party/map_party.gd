@@ -131,3 +131,15 @@ func enter_city(city: MapCity) -> void:
 	inside_city = city
 	city.party_inside = self
 	control.walk_to(city.tile_position)
+
+## Moves specified [param item] to this party's inventory.
+## [br][br]
+## [b]Note:[/b] This method does not perform any validation:
+## it can steal items from any location in the scene tree
+func pick_up(item: MapItem) -> void:
+	if not item: return
+	if item.get_parent():
+		item.reparent(inventory)
+	else:
+		inventory.add_child(item)
+	EventBus.window_requested.emit(item)

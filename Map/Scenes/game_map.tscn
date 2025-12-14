@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cy8rh77mxkncn"]
+[gd_scene load_steps=16 format=3 uid="uid://cy8rh77mxkncn"]
 
 [ext_resource type="Script" uid="uid://cium5533y6jdp" path="res://Map/Scripts/game_map.gd" id="1_mp6yi"]
 [ext_resource type="Script" uid="uid://ymq5kwxdp6r3" path="res://Map/Scripts/map_ui.gd" id="2_jwoqq"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://db2fl4l22gmmv" path="res://Map/UI/Scripts/item_info_popup.gd" id="9_ommir"]
 [ext_resource type="PackedScene" uid="uid://1vr0gdex77rx" path="res://Map/Scenes/faction.tscn" id="9_tjube"]
 [ext_resource type="Script" uid="uid://c6lmuhpypmu08" path="res://Map/Scripts/turn_manager.gd" id="10_5bpsg"]
+[ext_resource type="Script" uid="uid://dna40ld5lhlp6" path="res://Map/UI/Scripts/pick_up_popup.gd" id="10_ommir"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ru5ay"]
 font_size = 19
@@ -449,6 +450,7 @@ party_position = 6
 reparent_data = true
 
 [node name="ItemInfoPopup" type="CanvasLayer" parent="UILayers"]
+visible = false
 script = ExtResource("9_ommir")
 
 [node name="Root" type="Control" parent="UILayers/ItemInfoPopup"]
@@ -506,6 +508,58 @@ bbcode_enabled = true
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 fit_content = true
 
+[node name="PickUpWindow" type="CanvasLayer" parent="UILayers"]
+script = ExtResource("10_ommir")
+
+[node name="Root" type="Control" parent="UILayers/PickUpWindow"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="UILayers/PickUpWindow/Root"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayers/PickUpWindow/Root/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/PickUpWindow/Root/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="FoundLabel" type="Label" parent="UILayers/PickUpWindow/Root/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "You found:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayers/PickUpWindow/Root/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="UILayers/PickUpWindow/Root/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Name"
+
+[node name="TextureRect" type="TextureRect" parent="UILayers/PickUpWindow/Root/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 4
+
 [node name="MapsContainer" type="Node" parent="."]
 
 [node name="Factions" type="Node" parent="."]
@@ -523,3 +577,5 @@ script = ExtResource("10_5bpsg")
 [connection signal="visibility_changed" from="UILayers/Party" to="UILayers/Party" method="_on_visibility_changed"]
 [connection signal="gui_input" from="UILayers/Party/HBoxContainer" to="." method="_on_h_box_container_gui_input"]
 [connection signal="gui_input" from="UILayers/ItemInfoPopup/Root" to="UILayers/ItemInfoPopup" method="_on_root_gui_input"]
+[connection signal="gui_input" from="UILayers/PickUpWindow/Root" to="UILayers/PickUpWindow" method="_on_root_gui_input"]
+[connection signal="gui_input" from="UILayers/PickUpWindow/Root/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" to="UILayers/PickUpWindow" method="_on_h_box_container_gui_input"]
