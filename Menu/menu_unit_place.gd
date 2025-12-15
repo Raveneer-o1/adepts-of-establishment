@@ -14,12 +14,12 @@ func add_new_unit(unit_name: String, dir: String) -> void:
 	
 	add_child(panel)
 	# set the owner to save the state for reloading after combat
-	panel.owner = owner
+	#panel.owner = owner
 
-func clear_child_info() -> void:
+func clear_child_info(free_child: bool = true) -> void:
 	if is_instance_valid(panel):
 		remove_child(panel)
-		panel.free()
+		if free_child: panel.free()
 	panel = null
 
 func switch_unit_place(unit: UnitPanel) -> void:
@@ -30,18 +30,17 @@ func switch_unit_place(unit: UnitPanel) -> void:
 	
 	var this_unit := panel
 	
-	other_place.clear_child_info()
-	clear_child_info()
+	other_place.clear_child_info(false)
+	clear_child_info(false)
 	
 	panel = unit
 	add_child(unit)
-	unit.owner = owner
+	#unit.owner = owner
 	
 	if this_unit != null:
 		other_place.panel = this_unit
 		other_place.add_child(this_unit)
-		this_unit.owner = other_place.owner
-
+		#this_unit.owner = other_place.owner
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	return true
