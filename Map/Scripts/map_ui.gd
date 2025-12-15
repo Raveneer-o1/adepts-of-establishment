@@ -14,6 +14,7 @@ var current_ui: CanvasLayer
 	%ActivePartyContainer/PortraitContainer/PanelContainer/PortraitTextureRect
 @onready var item_info_popup: ItemInfoPopup = $ItemInfoPopup
 @onready var pick_up_window: PickUpWindow = $PickUpWindow
+@onready var party_info_popup: PartyInfoPopup = $PartyInfoPopup
 
 var last_requested_party: MapParty = null
 
@@ -73,6 +74,12 @@ func switch_to(ui: StringName) -> void:
 func handle_popup_request(info_object: Variant) -> void:
 	if info_object is MapItem:
 		item_info_popup.show_item(info_object)
+	elif info_object is MapParty:
+		party_info_popup.show_party(info_object)
+	elif info_object is MapCity:
+		# TODO: replace with city popup
+		show_city_window(info_object)
+
 
 func handle_window_request(info: Variant) -> void:
 	if info is MapItem:

@@ -100,8 +100,9 @@ func _process_click() -> void:
 func _process_right_click() -> void:
 	var objects := map.get_objects_on_tile(map.get_tile_coords())
 	for o in objects:
-		if o is MapCity:
-			map.game.ui_layers.show_city_window(o)
+		# TODO: replace with just passing thw whole array to the signal
+		if o is MapCity or o is MapParty:
+			EventBus.popup_requested.emit(o)
 			get_viewport().set_input_as_handled()
 			return
 	
