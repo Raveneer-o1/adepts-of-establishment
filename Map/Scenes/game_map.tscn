@@ -781,6 +781,7 @@ vertical_alignment = 1
 [node name="Faction" parent="Factions" instance=ExtResource("9_tjube")]
 
 [node name="Faction2" parent="Factions" instance=ExtResource("9_tjube")]
+controller = 1
 
 [node name="TurnManager" type="Node" parent="."]
 script = ExtResource("10_5bpsg")

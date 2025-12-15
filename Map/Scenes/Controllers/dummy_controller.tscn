@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c06fl25waavyk"]
+
+[ext_resource type="Script" uid="uid://xox7bl1wuxu3" path="res://Map/Scripts/Faction/Controllers/dummy_controller.gd" id="1_fxx5f"]
+
+[node name="DummyController" type="Node"]
+script = ExtResource("1_fxx5f")

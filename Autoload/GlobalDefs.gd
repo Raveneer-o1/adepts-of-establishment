@@ -83,9 +83,9 @@ func get_faction_controller(type: GlobalDefs.ControllerType) -> String:
 		GlobalDefs.ControllerType.Human:
 			return "res://Map/Scenes/Controllers/player_controller.tscn"
 		GlobalDefs.ControllerType.BasicAI:
-			return "res://Map/Scenes/Controllers/player_controller.tscn"
+			return "res://Map/Scenes/Controllers/dummy_controller.tscn"
 		GlobalDefs.ControllerType.StandardAI:
-			return "res://Map/Scenes/Controllers/player_controller.tscn"
+			return "res://Map/Scenes/Controllers/dummy_controller.tscn"
 	push_error("Unknown Controller type!")
 	return ""
 

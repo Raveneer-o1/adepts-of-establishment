@@ -42,8 +42,9 @@ func update_active_party(party: MapParty) -> void:
 
 func _test_init() -> void:
 	var c := load(GlobalDefs.get_faction_controller(test_faction.controller))
+	var c2 := load(GlobalDefs.get_faction_controller(test_faction2.controller))
 	test_faction.api.add_child(c.instantiate())
-	test_faction2.api.add_child(c.instantiate())
+	test_faction2.api.add_child(c2.instantiate())
 	current_map.active_faction = test_faction
 	(current_map.find_child("MapParty") as MapParty).faction = test_faction
 	(current_map.find_child("MapParty2") as MapParty).faction = test_faction2
