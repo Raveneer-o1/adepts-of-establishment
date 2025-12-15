@@ -94,7 +94,8 @@ func _ready() -> void:
 	EventBus.window_requested.connect(handle_window_request)
 
 func _on_quit_button_pressed() -> void:
-	get_tree().quit()
+	get_tree().change_scene_to_file("res://Menu/Scenes/menu.tscn")
+	#get_tree().quit()
 
 func _on_portrait_texture_rect_gui_input(event: InputEvent) -> void:
 	if event is not InputEventMouseButton: return

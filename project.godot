@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="Adepts of Establishment"
-config/version="v0.1.0"
-run/main_scene="uid://cy8rh77mxkncn"
+config/version="v0.2.0"
+run/main_scene="uid://rhljgisluynr"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 

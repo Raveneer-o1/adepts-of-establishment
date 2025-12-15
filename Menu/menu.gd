@@ -158,3 +158,11 @@ func _ready() -> void:
 	item_list_left_controller.select(STANDARD_AI_CONTROLLER)
 	item_list_right_controller.select(PLAYER_CONTROLLER)
 	%VesrionLabel.text = ProjectSettings.get_setting("application/config/version")
+
+const MAP_PATH = "res://Map/Scenes/game_map.tscn"
+
+func _on_map_button_pressed() -> void:
+	get_tree().change_scene_to_file(MAP_PATH)
+
+func _on_quit_button_pressed() -> void:
+	get_tree().quit()
