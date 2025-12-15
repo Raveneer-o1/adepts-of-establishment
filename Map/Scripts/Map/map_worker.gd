@@ -62,7 +62,7 @@ func _switch_to_battle(battle: Control) -> void:
 
 func _play_effect(pos: Vector2) -> void:
 	var effect := battle_effect.instantiate() as TemporaryEffect
-	add_child(effect)
+	map.add_child(effect)
 	effect.global_position = pos
 	await effect.effect_finished
 
