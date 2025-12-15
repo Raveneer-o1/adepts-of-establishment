@@ -1250,6 +1250,7 @@ text = "Clear"
 [node name="Map Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer5"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+tooltip_text = "Map demo. There's currently very little to see there."
 text = "Map"
 
 [node name="Quit Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer5"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cy8rh77mxkncn"]
+[gd_scene load_steps=19 format=3 uid="uid://cy8rh77mxkncn"]
 
 [ext_resource type="Script" uid="uid://cium5533y6jdp" path="res://Map/Scripts/game_map.gd" id="1_mp6yi"]
 [ext_resource type="Script" uid="uid://ymq5kwxdp6r3" path="res://Map/Scripts/map_ui.gd" id="2_jwoqq"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://dna40ld5lhlp6" path="res://Map/UI/Scripts/pick_up_window.gd" id="10_ommir"]
 [ext_resource type="Script" uid="uid://bw5dga2dtg5d0" path="res://Map/UI/Scripts/party_info_popup.gd" id="11_dawxx"]
 [ext_resource type="Texture2D" uid="uid://c1lw1c3qt0mc8" path="res://Arts/hex hint 64.png" id="12_20b7o"]
+[ext_resource type="Script" uid="uid://dsb2ra0pfxg7a" path="res://Map/UI/Scripts/greeting.gd" id="13_ofx6v"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ru5ay"]
 font_size = 19
@@ -564,6 +565,7 @@ expand_mode = 3
 stretch_mode = 4
 
 [node name="PartyInfoPopup" type="CanvasLayer" parent="UILayers"]
+visible = false
 script = ExtResource("11_dawxx")
 
 [node name="Control" type="Control" parent="UILayers/PartyInfoPopup"]
@@ -774,6 +776,50 @@ text = "Unit name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Greeting" type="CanvasLayer" parent="UILayers"]
+script = ExtResource("13_ofx6v")
+
+[node name="Control" type="Control" parent="UILayers/Greeting"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="UILayers/Greeting/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -568.0
+offset_top = -134.0
+offset_right = 484.0
+offset_bottom = 169.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UILayers/Greeting/Control/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "[b]MAP PREVIEW MODE[/b]
+
+This strategic map is in early development. Only three interactions are currently active:
+1. Initiate combat with enemy parties.
+2. Enter/Exit cities.
+3. Pick up items from chests (look closely - they blend in with the enviroment).
+
+Everything else is static scenery.
+
+Click with right mouse button on objects to see information (you can look at parties, cities and items)
+
+WASD to move camera, wheel to zoom in/out"
+fit_content = true
+
 [node name="MapsContainer" type="Node" parent="."]
 
 [node name="Factions" type="Node" parent="."]
@@ -795,3 +841,4 @@ script = ExtResource("10_5bpsg")
 [connection signal="gui_input" from="UILayers/PickUpWindow/Root" to="UILayers/PickUpWindow" method="_on_root_gui_input"]
 [connection signal="gui_input" from="UILayers/PickUpWindow/Root/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" to="UILayers/PickUpWindow" method="_on_h_box_container_gui_input"]
 [connection signal="gui_input" from="UILayers/PartyInfoPopup/Control" to="UILayers/PartyInfoPopup" method="_on_control_gui_input"]
+[connection signal="gui_input" from="UILayers/Greeting/Control" to="UILayers/Greeting" method="_on_control_gui_input"]

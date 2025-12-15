@@ -44,6 +44,10 @@ movie_writer/movie_file="/home/vikasu/godot/projects/adepts-of-establishment/rec
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 
+[gui]
+
+timers/tooltip_delay_sec=0.1
+
 [importer_defaults]
 
 wav={

@@ -89,7 +89,7 @@ func _ready() -> void:
 	for child: CanvasLayer in get_children():
 		child.hide()
 		child.set_process(false)
-	switch_to.call_deferred(&"Main")
+	switch_to.call_deferred(&"Greeting")
 	EventBus.popup_requested.connect(handle_popup_request)
 	EventBus.window_requested.connect(handle_window_request)
 
