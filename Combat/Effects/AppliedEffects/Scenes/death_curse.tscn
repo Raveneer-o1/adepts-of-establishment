@@ -7,5 +7,6 @@ script = ExtResource("1_umqcq")
 color_effect = Color(0, 0, 0, 1)
 effect_name = "Death curse"
 icon_index = 16
+negative_effect = true
 description = "Deals %d damage at the start of unit's turn. Stacks indefinitely."
 stackable = true

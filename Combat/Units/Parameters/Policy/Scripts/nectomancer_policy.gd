@@ -9,7 +9,12 @@ extends BasePolicy
 
 func _apply_policy(attack: Attack, finalize: bool) -> void:
 	if not attack.target_references: return
-	var first_position: int = attack.target_references[0].spot.party_position
+	var first_position: int = -1
+	for ref in attack.target_references:
+		if not ref: continue
+		first_position = ref.spot.party_position
+		break
+	assert(first_position >= 0)
 	var new_refs: Array[UnitSpotReference] = []
 	for t: UnitSpotReference in attack.target_references:
 		if not t: continue

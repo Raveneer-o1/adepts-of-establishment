@@ -29,7 +29,7 @@ func read_params(params: Variant) -> void:
 	if params is not Array: return
 	if params.size() != 2: return
 	summon = load(params[0])
-	effects = params[1]
+	effects.assign(params[1])
 
 func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
 	if other_effect: return [other_effect.summon.resource_path, other_effect.effects]
