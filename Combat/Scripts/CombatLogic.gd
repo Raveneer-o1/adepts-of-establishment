@@ -164,7 +164,9 @@ func next_stage(remove_miniature: bool = true) -> void:
 	main_system.check_winner()
 	if not battle_in_progress:
 		return
-	
+	_move_to_next_stage.call_deferred(remove_miniature)
+
+func _move_to_next_stage(remove_miniature: bool) -> void:
 	start_turn(remove_miniature)
 	# if start_turn didn't set current_unit, there's no units left in queue
 	if main_system.current_unit == null:
