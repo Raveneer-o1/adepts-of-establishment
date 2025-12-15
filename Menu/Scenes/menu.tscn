@@ -886,11 +886,10 @@ default_color = Color(0.187176, 0.187176, 0.187176, 1)
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 3
+current_tab = 0
 metadata/_tab_index = 1
 
 [node name="Melee" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -914,6 +913,10 @@ layout_mode = 2
 unit_name = "Zombie"
 path = "res://Combat/Units/Derived units/Undead/u02_Zombie.tscn"
 
+[node name="padding" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Melee/Lvl2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
 [node name="Tree Item Unit2" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Melee/Lvl2" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Templar"
@@ -934,20 +937,36 @@ layout_mode = 2
 unit_name = "Skeleton"
 path = "res://Combat/Units/Derived units/Undead/u05_skeleton.tscn"
 
+[node name="padding" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Melee/Lvl3"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
 [node name="Tree Item Unit3" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Melee/Lvl3" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Fallen Inquisitor"
 path = "res://Combat/Units/Derived units/Undead/u06_fallen_inquisitor.tscn"
+
+[node name="padding2" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Melee/Lvl3"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
 
 [node name="Lvl4" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Melee"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
+[node name="padding" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Melee/Lvl4"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
 [node name="Tree Item Unit" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Melee/Lvl4" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Skeleton warrior"
 path = "res://Combat/Units/Derived units/Undead/u07_skeleton_warrior.tscn"
+
+[node name="padding2" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Melee/Lvl4"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
 
 [node name="Tree Item Unit2" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Melee/Lvl4" instance=ExtResource("2_r33n7")]
 layout_mode = 2
@@ -963,6 +982,10 @@ alignment = 1
 layout_mode = 2
 unit_name = "Skeleton Hero"
 path = "res://Combat/Units/Derived units/Undead/u09_skeleton_hero.tscn"
+
+[node name="padding" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Melee/Lvl5"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
 
 [node name="Mages" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead"]
 visible = false
@@ -989,6 +1012,10 @@ layout_mode = 2
 unit_name = "Dark Mage"
 path = "res://Combat/Units/Derived units/Undead/u12_dark_mage.tscn"
 
+[node name="padding" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Mages/Lvl2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
 [node name="Tree Item Unit2" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Mages/Lvl2" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Necromancer"
@@ -1009,10 +1036,18 @@ layout_mode = 2
 unit_name = "Vampire"
 path = "res://Combat/Units/Derived units/Undead/u13_vampire.tscn"
 
+[node name="padding" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Mages/Lvl3"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
 [node name="Tree Item Unit3" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Mages/Lvl3" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Wraith"
 path = "res://Combat/Units/Derived units/Undead/u15_wraith.tscn"
+
+[node name="padding2" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Mages/Lvl3"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
 
 [node name="Lvl4" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Mages"]
 layout_mode = 2
@@ -1029,10 +1064,18 @@ layout_mode = 2
 unit_name = "Elder vampire"
 path = "res://Combat/Units/Derived units/Undead/u16_elder_vampire.tscn"
 
+[node name="padding" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Mages/Lvl4"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
 [node name="Tree Item Unit3" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Mages/Lvl4" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Herald of Death"
 path = "res://Combat/Units/Derived units/Undead/u18_herald_of_death.tscn"
+
+[node name="padding2" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Mages/Lvl4"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
 
 [node name="Lvl5" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Mages"]
 layout_mode = 2
@@ -1048,6 +1091,10 @@ path = "res://Combat/Units/Derived units/Undead/u19_blood_spawn.tscn"
 layout_mode = 2
 unit_name = "Vampire Lord"
 path = "uid://c4wmjlxgojxgm"
+
+[node name="padding" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Mages/Lvl5"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
 
 [node name="Archers" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead"]
 visible = false
@@ -1110,6 +1157,7 @@ size_flags_vertical = 3
 alignment = 1
 
 [node name="Special" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 
@@ -1168,7 +1216,7 @@ layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="padding" type="Container" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Special/Lvl5"]
+[node name="padding" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Special/Lvl5"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
