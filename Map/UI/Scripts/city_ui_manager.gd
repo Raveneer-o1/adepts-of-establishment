@@ -38,8 +38,10 @@ var currently_filled_city: MapCity = null
 
 func fill_city_data(city: MapCity) -> void:
 	for place in places:
+		if place.unit: place.unit.free()
 		place.parent = city
 	for place in party_places:
+		if place.unit: place.unit.free()
 		place.parent = city.party_inside
 	%PartyUnitsContainer.visible = true if city.party_inside else false
 	for data in city.units:

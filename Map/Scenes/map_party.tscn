@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://2kk6w327nvk"]
+[gd_scene load_steps=40 format=3 uid="uid://2kk6w327nvk"]
 
 [ext_resource type="Script" uid="uid://ckonqee8nxgfi" path="res://Map/Scripts/Party/map_party.gd" id="1_rleo8"]
 [ext_resource type="Texture2D" uid="uid://djapeb4rjrhbe" path="res://Arts/Map/Parties/hero knight idle.png" id="2_jf7u3"]
@@ -8,6 +8,10 @@
 [ext_resource type="Script" uid="uid://b304u0scivrix" path="res://Map/Scripts/Party/party_control.gd" id="6_eib2m"]
 [ext_resource type="Script" uid="uid://4p5ey7k5oyex" path="res://Map/Scripts/Party/party_inventory.gd" id="7_s3wsb"]
 [ext_resource type="PackedScene" uid="uid://chn5m1m7s8jrk" path="res://Map/Items/map_item.tscn" id="8_dkfds"]
+[ext_resource type="Script" uid="uid://3adojdwpeuss" path="res://Map/Scripts/Party/party_faction_banner.gd" id="9_xbt6h"]
+[ext_resource type="Texture2D" uid="uid://b1e761x812u2v" path="res://Arts/Map objects/o04 blue flag .png" id="10_vtpw4"]
+[ext_resource type="Texture2D" uid="uid://cw1mmmtf7365" path="res://Arts/Map objects/o04 red flag.png" id="11_yfams"]
+[ext_resource type="Texture2D" uid="uid://bmmttflr3ye3d" path="res://Arts/Map objects/o04 white flag.png" id="12_8r1ka"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s3wsb"]
 atlas = ExtResource("2_jf7u3")
@@ -78,6 +82,135 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_5pwpc"]
+atlas = ExtResource("10_vtpw4")
+region = Rect2(0, 0, 39, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_au1b1"]
+atlas = ExtResource("10_vtpw4")
+region = Rect2(0, 39, 39, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fb8he"]
+atlas = ExtResource("10_vtpw4")
+region = Rect2(0, 78, 39, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7fde"]
+atlas = ExtResource("10_vtpw4")
+region = Rect2(0, 117, 39, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6dhlb"]
+atlas = ExtResource("10_vtpw4")
+region = Rect2(0, 156, 39, 39)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_akuh1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5pwpc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_au1b1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fb8he")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7fde")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6dhlb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_imgnw"]
+atlas = ExtResource("11_yfams")
+region = Rect2(0, 0, 39, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6o78"]
+atlas = ExtResource("11_yfams")
+region = Rect2(0, 39, 39, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_di53b"]
+atlas = ExtResource("11_yfams")
+region = Rect2(0, 78, 39, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukjng"]
+atlas = ExtResource("11_yfams")
+region = Rect2(0, 117, 39, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ltrv"]
+atlas = ExtResource("11_yfams")
+region = Rect2(0, 156, 39, 39)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0qw4p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_imgnw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6o78")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_di53b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukjng")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ltrv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mlawy"]
+atlas = ExtResource("12_8r1ka")
+region = Rect2(0, 0, 39, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uc2sx"]
+atlas = ExtResource("12_8r1ka")
+region = Rect2(0, 39, 39, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6ye5"]
+atlas = ExtResource("12_8r1ka")
+region = Rect2(0, 78, 39, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7uoot"]
+atlas = ExtResource("12_8r1ka")
+region = Rect2(0, 117, 39, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v03vr"]
+atlas = ExtResource("12_8r1ka")
+region = Rect2(0, 156, 39, 39)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0eg71"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mlawy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uc2sx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u6ye5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7uoot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v03vr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="MapParty" type="Node2D"]
 script = ExtResource("1_rleo8")
 
@@ -97,3 +230,24 @@ script = ExtResource("6_eib2m")
 script = ExtResource("7_s3wsb")
 
 [node name="MapItem" parent="Inventory" instance=ExtResource("8_dkfds")]
+
+[node name="FactionBanner" type="Node2D" parent="."]
+script = ExtResource("9_xbt6h")
+
+[node name="blue" type="AnimatedSprite2D" parent="FactionBanner"]
+visible = false
+position = Vector2(-11, -6)
+sprite_frames = SubResource("SpriteFrames_akuh1")
+autoplay = "default"
+
+[node name="red" type="AnimatedSprite2D" parent="FactionBanner"]
+visible = false
+position = Vector2(-11, -6)
+sprite_frames = SubResource("SpriteFrames_0qw4p")
+autoplay = "default"
+
+[node name="white" type="AnimatedSprite2D" parent="FactionBanner"]
+visible = false
+position = Vector2(-11, -6)
+sprite_frames = SubResource("SpriteFrames_0eg71")
+autoplay = "default"

@@ -1349,7 +1349,7 @@ path = "res://Combat/Units/Derived units/Heroes/dame_seraphine.tscn"
 
 [node name="grave_whisperer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Heroes/Undead" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "Grave whispere"
+unit_name = "Grave whisperer"
 path = "res://Combat/Units/Derived units/Heroes/grave_whisperer.tscn"
 
 [node name="margrave_solreth" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Heroes/Undead" instance=ExtResource("2_r33n7")]

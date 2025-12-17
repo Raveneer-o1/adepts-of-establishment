@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bmp8htqi7l1i"]
+[gd_scene load_steps=11 format=3 uid="uid://bmp8htqi7l1i"]
 
-[ext_resource type="Script" uid="uid://bjh2fm6srs7dd" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scripts/map_capital_undead.gd" id="1_xml8a"]
+[ext_resource type="Script" uid="uid://bjh2fm6srs7dd" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scripts/map_capital.gd" id="1_xml8a"]
 [ext_resource type="Texture2D" uid="uid://hqdbkrdckl6p" path="res://Arts/Map objects/undead capital.png" id="2_qeal6"]
+[ext_resource type="Script" uid="uid://mn0dy1cf0p65" path="res://Map/Scripts/unit_data.gd" id="3_v86wr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_naogk"]
 atlas = ExtResource("2_qeal6")
@@ -60,3 +61,27 @@ script = ExtResource("1_xml8a")
 sprite_frames = SubResource("SpriteFrames_3d4ut")
 autoplay = "default"
 offset = Vector2(0, -46)
+
+[node name="UnitData" type="Node" parent="."]
+script = ExtResource("3_v86wr")
+party_position = 2
+unit_name = &"Templar"
+metadata/_custom_type_script = "uid://mn0dy1cf0p65"
+
+[node name="UnitData2" type="Node" parent="."]
+script = ExtResource("3_v86wr")
+party_position = 3
+unit_name = &"Archlich"
+metadata/_custom_type_script = "uid://mn0dy1cf0p65"
+
+[node name="UnitData3" type="Node" parent="."]
+script = ExtResource("3_v86wr")
+party_position = 4
+unit_name = &"Blood spawn"
+metadata/_custom_type_script = "uid://mn0dy1cf0p65"
+
+[node name="UnitData4" type="Node" parent="."]
+script = ExtResource("3_v86wr")
+party_position = 6
+unit_name = &"Skeleton Hero"
+metadata/_custom_type_script = "uid://mn0dy1cf0p65"

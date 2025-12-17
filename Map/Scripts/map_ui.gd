@@ -86,12 +86,14 @@ func handle_window_request(info: Variant) -> void:
 		pick_up_window.show_item(info)
 
 func _ready() -> void:
-	for child: CanvasLayer in get_children():
+	for child in get_children():
+		if child is not CanvasLayer: continue
 		child.hide()
 		child.set_process(false)
 	switch_to.call_deferred(&"Greeting")
 	EventBus.popup_requested.connect(handle_popup_request)
 	EventBus.window_requested.connect(handle_window_request)
+	%VersionLabel.text = ProjectSettings.get_setting("application/config/version")
 
 func _on_quit_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Menu/Scenes/menu.tscn")

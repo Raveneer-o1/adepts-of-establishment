@@ -74,6 +74,11 @@ func player_interact(player: MapFaction) -> void:
 
 #endregion
 
+## @experimental: this will be redesigned
+func init_party_parameters(f: MapFaction) -> void:
+	faction = f
+	$FactionBanner.set_color(f)
+
 func get_battle_ready_units() -> Array[UnitData]:
 	var res: Array[UnitData] = []
 	for ch in get_children():

@@ -815,9 +815,11 @@ This strategic map is in early development. Only three interactions are currentl
 
 Everything else is static scenery.
 
-Click with right mouse button on objects to see information (you can look at parties, cities and items)
+Click with right mouse button on objects to see information (you can look at parties, cities and items).
 
-WASD to move camera, wheel to zoom in/out"
+WASD to move camera, wheel to zoom in/out.
+
+Your color is blue."
 fit_content = true
 
 [node name="MapsContainer" type="Node" parent="."]
@@ -828,9 +830,22 @@ fit_content = true
 
 [node name="Faction2" parent="Factions" instance=ExtResource("9_tjube")]
 controller = 1
+main_color = 1
 
 [node name="TurnManager" type="Node" parent="."]
 script = ExtResource("10_5bpsg")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VersionLabel" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 57.0
+grow_vertical = 0
+text = "version"
 
 [connection signal="pressed" from="UILayers/Main/PanelContainer/VBoxContainer/QuitButton" to="UILayers" method="_on_quit_button_pressed"]
 [connection signal="gui_input" from="UILayers/Main/PanelContainer/VBoxContainer/ActivePartyContainer/PortraitContainer/PanelContainer/PortraitTextureRect" to="UILayers" method="_on_portrait_texture_rect_gui_input"]
