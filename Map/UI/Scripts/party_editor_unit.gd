@@ -4,6 +4,10 @@ extends Control
 @onready var label: Label = $PanelContainer/Label
 var unit_data: UnitData
 
+func update_data() -> void:
+	# TODO: implement visual representatoin of a unit and update it here
+	pass
+
 func _ready() -> void:
 	if not unit_data: queue_free()
 	else: label.text = unit_data.unit_name

@@ -18,28 +18,76 @@ var currently_filled_party: MapParty = null
 
 const ITEM_PREFAB = preload("res://Map/UI/Scenes/party_editor_item.tscn")
 
-func _update_values() -> void:
-	# TODO: replace with more optimized version
-	# (this one requires freeing and instantiating a lot of objects)
-	_fill_party(currently_filled_party)
 
-func _fill_units(party: MapParty) -> void:
+func _create_mapping() -> Dictionary[PartyEditorUnitPosition, UnitData]:
+	var res: Dictionary[PartyEditorUnitPosition, UnitData] = {}
+	var size := places.size()
+	for data in currently_filled_party.units:
+		if data.party_position < 0: continue
+		if data.party_position >= size: continue
+		var pos := places[data.party_position]
+		if res.has(pos):
+			# Detected duplicate position assignment -
+			# revert to complete object cleanup and reinstantiation
+			push_error("Double assignment to position detected!")
+			return {}
+		res[pos] = data
+	
+	return res
+
+func _is_place_ok(place: PartyEditorUnitPosition) -> bool:
+	if not place.unit: return true
+	place.update_data()
+	return true
+
+func _find_position(data: UnitData) -> PartyEditorUnitPosition:
+	for place in places:
+		if not place.unit: continue
+		if place.unit.unit_data == data: return place
+	return null
+
+func _update_values() -> void:
+	if not currently_filled_party: return
+	var mapping := _create_mapping()
+	if mapping.is_empty():
+		_fill_party(currently_filled_party)
+		return
+	
+	var vacant_spots: Array[PartyEditorUnitPosition] = []
+	for place in places:
+		if place not in mapping:
+			if place.unit: vacant_spots.append(place)
+			continue
+		if not place.unit or place.unit.unit_data != mapping[place]:
+			var pos := _find_position(mapping[place])
+			if not pos:
+				place.remove_unit()
+				place.add_unit(mapping[place])
+			else:
+				place.move_unit(pos.unit)
+			continue
+		place.update_data()
+
+func _remove_data() -> void:
 	for place in places:
 		place.remove_unit()
+	for c in inventory_container.get_children():
+		c.queue_free()
+
+func _fill_units(party: MapParty) -> void:
 	for data in party.units:
 		if data.party_position < 0: continue
-		if data.party_position > places.size(): continue
+		if data.party_position >= places.size(): continue
 		places[data.party_position].add_unit(data)
 
 func _fill_items(party: MapParty) -> void:
-	for c in inventory_container.get_children():
-		c.queue_free()
 	for item in party.inventory.items:
 		var node: PartyEditorItem = ITEM_PREFAB.instantiate()
 		inventory_container.add_child(node)
 		node.initialize(item)
 
 func _fill_party(party: MapParty) -> void:
+	_remove_data()
 	_fill_units(party)
 	_fill_items(party)
 	currently_filled_party = party

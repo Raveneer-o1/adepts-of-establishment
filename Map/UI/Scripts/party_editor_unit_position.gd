@@ -9,6 +9,9 @@ var parent: Node
 
 const PARTY_EDITOR_UNIT_PREFAB = preload("res://Map/UI/Scenes/party_editor_unit.tscn")
 
+func update_data() -> void:
+	if unit: unit.update_data()
+
 ## Instantiates and adds a new [PartyEditorUnit] object to this spot.
 ## Has no effect if [member unit] is already present.
 func add_unit(data: UnitData) -> void:
@@ -24,7 +27,7 @@ func remove_unit() -> void:
 	if unit: unit.queue_free()
 	unit = null
 
-func _move_unit(received_unit: PartyEditorUnit) -> void:
+func move_unit(received_unit: PartyEditorUnit) -> void:
 	var other_place: PartyEditorUnitPosition = received_unit.get_parent()
 	if other_place == self: return
 	other_place.unit = unit
@@ -42,4 +45,4 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 
 func _drop_data(at_position: Vector2, data: Variant) -> void:
 	if data is PartyEditorUnit:
-		_move_unit(data)
+		move_unit(data)
