@@ -7,6 +7,7 @@ extends MapInteractableObject
 @onready var inventory: PartyInventory = $Inventory
 
 @export var faction: MapFaction
+## @experimental: will be replaced with a formatted [member object_name] + leader name
 @export var party_name: String
 @export_file_path("*") var portrait_texture: String
 
@@ -37,6 +38,10 @@ func _validate_refs() -> void:
 	if not faction:
 		push_error("Unassigned faction")
 		map.free_map_object(self)
+
+func right_click_processed() -> bool:
+	EventBus.popup_requested.emit(self)
+	return true
 
 #region Abstract Definitions
 

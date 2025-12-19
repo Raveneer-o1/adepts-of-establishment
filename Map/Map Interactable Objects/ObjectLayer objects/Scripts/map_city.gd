@@ -23,6 +23,10 @@ func _get_occupied_tiles(main: Vector2i = tile_position) -> Array[Vector2i]:
 		main + Vector2i(2, -2),
 	]
 
+func right_click_processed() -> bool:
+	EventBus.popup_requested.emit(self)
+	return true
+
 #region Abstract Implementation
 
 func can_interact(party: MapParty) -> bool:

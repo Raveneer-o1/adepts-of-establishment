@@ -31,10 +31,16 @@ var is_active: bool = true
 
 ## Determines interaction priority when multiple objects occupy the same tile.
 ## Higher values receive priority; negative values are permitted.
-var player_interaction_priority: int = 0
+var interaction_priority: int = 0
 ## Determines interaction priority when party can interact with multiple objects.
 ## Higher values receive priority; negative values are permitted.
 var party_interaction_priority: int = 0
+
+## Processes right-click interaction with this object.
+## Returns [code]true[/code] if the right-click was consumed.
+## Intended to prevent multiple windows or popups from a single input.
+func right_click_processed() -> bool:
+	return false
 
 func _move_mapping(destination: Vector2i) -> void:
 	for t in get_occupied_tiles():

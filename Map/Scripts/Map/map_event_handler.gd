@@ -43,7 +43,6 @@ var active_faction: MapFaction:
 ## Incorrect usage may permit unauthorized access or manipulation of other players' data.
 func allow_game_access() -> void:
 	_game_access_allowed = true
-	# TODO: implement automatic access removal
 
 ## Revokes direct access to game fields, disabling game-related interactions.
 ## Only meta-level operations remain available, such as information requests
@@ -100,11 +99,8 @@ func _process_click() -> void:
 func _process_right_click() -> void:
 	var objects := map.get_objects_on_tile(map.get_tile_coords())
 	for o in objects:
-		# TODO: replace with just passing thw whole array to the signal
-		if o is MapCity or o is MapParty:
-			EventBus.popup_requested.emit(o)
-			get_viewport().set_input_as_handled()
-			return
+		# TODO: replace with just passing the whole array to the signal
+		if o.right_click_processed(): return
 	
 	if not active_party: return
 	if active_party.is_moving: return

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cy8rh77mxkncn"]
+[gd_scene load_steps=20 format=3 uid="uid://cy8rh77mxkncn"]
 
 [ext_resource type="Script" uid="uid://cium5533y6jdp" path="res://Map/Scripts/game_map.gd" id="1_mp6yi"]
 [ext_resource type="Script" uid="uid://ymq5kwxdp6r3" path="res://Map/Scripts/map_ui.gd" id="2_jwoqq"]
@@ -8,12 +8,13 @@
 [ext_resource type="Script" uid="uid://cxswnm25ylr5" path="res://Map/UI/Scripts/party_ui_manager.gd" id="5_t0dwr"]
 [ext_resource type="PackedScene" uid="uid://dqwc116n3br4m" path="res://Map/UI/Scenes/party_editor_unit_position.tscn" id="6_3g8al"]
 [ext_resource type="Script" uid="uid://byrx58pdoch0v" path="res://Map/UI/Scripts/city_ui_manager.gd" id="9_bqemh"]
-[ext_resource type="Script" uid="uid://db2fl4l22gmmv" path="res://Map/UI/Scripts/item_info_popup.gd" id="9_ommir"]
+[ext_resource type="Script" uid="uid://db2fl4l22gmmv" path="res://Map/UI/Scripts/Popups/item_info_popup.gd" id="9_ommir"]
 [ext_resource type="PackedScene" uid="uid://1vr0gdex77rx" path="res://Map/Scenes/faction.tscn" id="9_tjube"]
 [ext_resource type="Script" uid="uid://c6lmuhpypmu08" path="res://Map/Scripts/turn_manager.gd" id="10_5bpsg"]
 [ext_resource type="Script" uid="uid://dna40ld5lhlp6" path="res://Map/UI/Scripts/pick_up_window.gd" id="10_ommir"]
-[ext_resource type="Script" uid="uid://bw5dga2dtg5d0" path="res://Map/UI/Scripts/party_info_popup.gd" id="11_dawxx"]
+[ext_resource type="Script" uid="uid://bw5dga2dtg5d0" path="res://Map/UI/Scripts/Popups/party_info_popup.gd" id="11_dawxx"]
 [ext_resource type="Texture2D" uid="uid://c1lw1c3qt0mc8" path="res://Arts/hex hint 64.png" id="12_20b7o"]
+[ext_resource type="Script" uid="uid://dd03w7tnrgkwj" path="res://Map/UI/Scripts/Popups/grave_info_popup.gd" id="13_gtybc"]
 [ext_resource type="Script" uid="uid://dsb2ra0pfxg7a" path="res://Map/UI/Scripts/greeting.gd" id="13_ofx6v"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ru5ay"]
@@ -452,331 +453,8 @@ layout_mode = 2
 party_position = 6
 reparent_data = true
 
-[node name="ItemInfoPopup" type="CanvasLayer" parent="UILayers"]
-visible = false
-script = ExtResource("9_ommir")
-
-[node name="Root" type="Control" parent="UILayers/ItemInfoPopup"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="UILayers/ItemInfoPopup/Root"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -160.0
-offset_right = 300.0
-offset_bottom = 160.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="UILayers/ItemInfoPopup/Root/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/ItemInfoPopup/Root/PanelContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UILayers/ItemInfoPopup/Root/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UILayers/ItemInfoPopup/Root/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Name"
-label_settings = SubResource("LabelSettings_bqemh")
-horizontal_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="UILayers/ItemInfoPopup/Root/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-expand_mode = 3
-stretch_mode = 5
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UILayers/ItemInfoPopup/Root/PanelContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
-bbcode_enabled = true
-text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-fit_content = true
-
-[node name="PickUpWindow" type="CanvasLayer" parent="UILayers"]
-visible = false
-script = ExtResource("10_ommir")
-
-[node name="Root" type="Control" parent="UILayers/PickUpWindow"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="UILayers/PickUpWindow/Root"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="UILayers/PickUpWindow/Root/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/PickUpWindow/Root/PanelContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="FoundLabel" type="Label" parent="UILayers/PickUpWindow/Root/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "You found:"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UILayers/PickUpWindow/Root/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="NameLabel" type="Label" parent="UILayers/PickUpWindow/Root/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Name"
-
-[node name="TextureRect" type="TextureRect" parent="UILayers/PickUpWindow/Root/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-expand_mode = 3
-stretch_mode = 4
-
-[node name="PartyInfoPopup" type="CanvasLayer" parent="UILayers"]
-visible = false
-script = ExtResource("11_dawxx")
-
-[node name="Control" type="Control" parent="UILayers/PartyInfoPopup"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="UILayers/PartyInfoPopup/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="UILayers/PartyInfoPopup/Control/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UILayers/PartyInfoPopup/Control/PanelContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="Backline" type="VBoxContainer" parent="UILayers/PartyInfoPopup/Control/PanelContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="1" type="TextureRect" parent="UILayers/PartyInfoPopup/Control/PanelContainer/MarginContainer/HBoxContainer/Backline"]
-custom_minimum_size = Vector2(120, 0)
-layout_mode = 2
-texture = ExtResource("12_20b7o")
-expand_mode = 5
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="UILayers/PartyInfoPopup/Control/PanelContainer/MarginContainer/HBoxContainer/Backline/1"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Unit name"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="3" type="TextureRect" parent="UILayers/PartyInfoPopup/Control/PanelContainer/MarginContainer/HBoxContainer/Backline"]
-custom_minimum_size = Vector2(120, 0)
-layout_mode = 2
-texture = ExtResource("12_20b7o")
-expand_mode = 5
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="UILayers/PartyInfoPopup/Control/PanelContainer/MarginContainer/HBoxContainer/Backline/3"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Unit name"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="5" type="TextureRect" parent="UILayers/PartyInfoPopup/Control/PanelContainer/MarginContainer/HBoxContainer/Backline"]
-custom_minimum_size = Vector2(120, 0)
-layout_mode = 2
-texture = ExtResource("12_20b7o")
-expand_mode = 5
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="UILayers/PartyInfoPopup/Control/PanelContainer/MarginContainer/HBoxContainer/Backline/5"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Unit name"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Frontline" type="VBoxContainer" parent="UILayers/PartyInfoPopup/Control/PanelContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="0" type="TextureRect" parent="UILayers/PartyInfoPopup/Control/PanelContainer/MarginContainer/HBoxContainer/Frontline"]
-custom_minimum_size = Vector2(120, 0)
-layout_mode = 2
-texture = ExtResource("12_20b7o")
-expand_mode = 5
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="UILayers/PartyInfoPopup/Control/PanelContainer/MarginContainer/HBoxContainer/Frontline/0"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Unit name"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="2" type="TextureRect" parent="UILayers/PartyInfoPopup/Control/PanelContainer/MarginContainer/HBoxContainer/Frontline"]
-custom_minimum_size = Vector2(120, 0)
-layout_mode = 2
-texture = ExtResource("12_20b7o")
-expand_mode = 5
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="UILayers/PartyInfoPopup/Control/PanelContainer/MarginContainer/HBoxContainer/Frontline/2"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Unit name"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="4" type="TextureRect" parent="UILayers/PartyInfoPopup/Control/PanelContainer/MarginContainer/HBoxContainer/Frontline"]
-custom_minimum_size = Vector2(120, 0)
-layout_mode = 2
-texture = ExtResource("12_20b7o")
-expand_mode = 5
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="UILayers/PartyInfoPopup/Control/PanelContainer/MarginContainer/HBoxContainer/Frontline/4"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Unit name"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="6" type="TextureRect" parent="UILayers/PartyInfoPopup/Control/PanelContainer/MarginContainer/HBoxContainer/Frontline"]
-custom_minimum_size = Vector2(120, 0)
-layout_mode = 2
-texture = ExtResource("12_20b7o")
-expand_mode = 5
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="UILayers/PartyInfoPopup/Control/PanelContainer/MarginContainer/HBoxContainer/Frontline/6"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Unit name"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Greeting" type="CanvasLayer" parent="UILayers"]
+visible = false
 script = ExtResource("13_ofx6v")
 
 [node name="Control" type="Control" parent="UILayers/Greeting"]
@@ -822,6 +500,368 @@ WASD to move camera, wheel to zoom in/out.
 Your color is blue."
 fit_content = true
 
+[node name="Popups" type="Node" parent="UILayers"]
+
+[node name="PartyInfoPopup" type="CanvasLayer" parent="UILayers/Popups"]
+visible = false
+script = ExtResource("11_dawxx")
+
+[node name="Control" type="Control" parent="UILayers/Popups/PartyInfoPopup"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="UILayers/Popups/PartyInfoPopup/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Backline" type="VBoxContainer" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="1" type="TextureRect" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/HBoxContainer/Backline"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+texture = ExtResource("12_20b7o")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/HBoxContainer/Backline/1"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Unit name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="3" type="TextureRect" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/HBoxContainer/Backline"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+texture = ExtResource("12_20b7o")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/HBoxContainer/Backline/3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Unit name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="5" type="TextureRect" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/HBoxContainer/Backline"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+texture = ExtResource("12_20b7o")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/HBoxContainer/Backline/5"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Unit name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Frontline" type="VBoxContainer" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="0" type="TextureRect" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/HBoxContainer/Frontline"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+texture = ExtResource("12_20b7o")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/HBoxContainer/Frontline/0"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Unit name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="2" type="TextureRect" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/HBoxContainer/Frontline"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+texture = ExtResource("12_20b7o")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/HBoxContainer/Frontline/2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Unit name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="4" type="TextureRect" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/HBoxContainer/Frontline"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+texture = ExtResource("12_20b7o")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/HBoxContainer/Frontline/4"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Unit name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="6" type="TextureRect" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/HBoxContainer/Frontline"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+texture = ExtResource("12_20b7o")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/HBoxContainer/Frontline/6"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Unit name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ItemInfoPopup" type="CanvasLayer" parent="UILayers/Popups"]
+visible = false
+script = ExtResource("9_ommir")
+
+[node name="Root" type="Control" parent="UILayers/Popups/ItemInfoPopup"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="UILayers/Popups/ItemInfoPopup/Root"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -160.0
+offset_right = 300.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayers/Popups/ItemInfoPopup/Root/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/Popups/ItemInfoPopup/Root/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayers/Popups/ItemInfoPopup/Root/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayers/Popups/ItemInfoPopup/Root/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Name"
+label_settings = SubResource("LabelSettings_bqemh")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UILayers/Popups/ItemInfoPopup/Root/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UILayers/Popups/ItemInfoPopup/Root/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+bbcode_enabled = true
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+fit_content = true
+
+[node name="GraveInfoPopup" type="CanvasLayer" parent="UILayers/Popups"]
+visible = false
+script = ExtResource("13_gtybc")
+
+[node name="Root" type="Control" parent="UILayers/Popups/GraveInfoPopup"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="UILayers/Popups/GraveInfoPopup/Root"]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayers/Popups/GraveInfoPopup/Root/PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/Popups/GraveInfoPopup/Root/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Windows" type="Node" parent="UILayers"]
+
+[node name="PickUpWindow" type="CanvasLayer" parent="UILayers/Windows"]
+visible = false
+script = ExtResource("10_ommir")
+
+[node name="Root" type="Control" parent="UILayers/Windows/PickUpWindow"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="UILayers/Windows/PickUpWindow/Root"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayers/Windows/PickUpWindow/Root/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/Windows/PickUpWindow/Root/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="FoundLabel" type="Label" parent="UILayers/Windows/PickUpWindow/Root/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "You found:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayers/Windows/PickUpWindow/Root/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="UILayers/Windows/PickUpWindow/Root/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Name"
+
+[node name="TextureRect" type="TextureRect" parent="UILayers/Windows/PickUpWindow/Root/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 4
+
 [node name="MapsContainer" type="Node" parent="."]
 
 [node name="Factions" type="Node" parent="."]
@@ -852,8 +892,9 @@ text = "version"
 [connection signal="pressed" from="UILayers/Main/PanelContainer/VBoxContainer/EndTurnButton" to="UILayers" method="_on_end_turn_button_pressed"]
 [connection signal="visibility_changed" from="UILayers/Party" to="UILayers/Party" method="_on_visibility_changed"]
 [connection signal="gui_input" from="UILayers/Party/HBoxContainer" to="." method="_on_h_box_container_gui_input"]
-[connection signal="gui_input" from="UILayers/ItemInfoPopup/Root" to="UILayers/ItemInfoPopup" method="_on_root_gui_input"]
-[connection signal="gui_input" from="UILayers/PickUpWindow/Root" to="UILayers/PickUpWindow" method="_on_root_gui_input"]
-[connection signal="gui_input" from="UILayers/PickUpWindow/Root/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" to="UILayers/PickUpWindow" method="_on_h_box_container_gui_input"]
-[connection signal="gui_input" from="UILayers/PartyInfoPopup/Control" to="UILayers/PartyInfoPopup" method="_on_control_gui_input"]
 [connection signal="gui_input" from="UILayers/Greeting/Control" to="UILayers/Greeting" method="_on_control_gui_input"]
+[connection signal="gui_input" from="UILayers/Popups/PartyInfoPopup/Control" to="UILayers/Popups/PartyInfoPopup" method="_on_control_gui_input"]
+[connection signal="gui_input" from="UILayers/Popups/ItemInfoPopup/Root" to="UILayers/Popups/ItemInfoPopup" method="_on_root_gui_input"]
+[connection signal="gui_input" from="UILayers/Popups/GraveInfoPopup/Root" to="UILayers/Popups/GraveInfoPopup" method="_on_root_gui_input"]
+[connection signal="gui_input" from="UILayers/Windows/PickUpWindow/Root" to="UILayers/Windows/PickUpWindow" method="_on_root_gui_input"]
+[connection signal="gui_input" from="UILayers/Windows/PickUpWindow/Root/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" to="UILayers/Windows/PickUpWindow" method="_on_h_box_container_gui_input"]

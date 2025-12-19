@@ -26,6 +26,10 @@ extends MapInteractableObject
 #	# Example: Enables interaction from neighboring tiles
 #	return map.get_neighbors(main)
 
+func right_click_processed() -> bool:
+	EventBus.popup_requested.emit(self)
+	return true
+
 #region Abstract Implementation
 
 func can_interact(party: MapParty) -> bool:

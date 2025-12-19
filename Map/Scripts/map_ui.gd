@@ -12,9 +12,10 @@ var current_ui: CanvasLayer
 @onready var _movement_points_label: Label = %ActivePartyContainer/MovementPoints/Label
 @onready var _party_portrait_texture_rect: TextureRect = \
 	%ActivePartyContainer/PortraitContainer/PanelContainer/PortraitTextureRect
-@onready var item_info_popup: ItemInfoPopup = $ItemInfoPopup
-@onready var pick_up_window: PickUpWindow = $PickUpWindow
-@onready var party_info_popup: PartyInfoPopup = $PartyInfoPopup
+@onready var item_info_popup: ItemInfoPopup = $Popups/ItemInfoPopup
+@onready var pick_up_window: PickUpWindow = $Windows/PickUpWindow
+@onready var party_info_popup: PartyInfoPopup = $Popups/PartyInfoPopup
+@onready var grave_info_popup: GraveInfoPopup = $Popups/GraveInfoPopup
 
 var last_requested_party: MapParty = null
 
@@ -79,6 +80,8 @@ func handle_popup_request(info_object: Variant) -> void:
 	elif info_object is MapCity:
 		# TODO: replace with city popup
 		show_city_window(info_object)
+	elif info_object is MapPartyGrave:
+		grave_info_popup.show_grave(info_object)
 
 
 func handle_window_request(info: Variant) -> void:

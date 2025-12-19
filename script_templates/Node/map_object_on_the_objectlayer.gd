@@ -25,6 +25,11 @@ extends ObjectLayerObject
 #	# Example: Enables interaction from neighboring tiles
 #	return map.get_neighbors(main)
 
+# Uncomment and implement the method below if the object should respond to right-click
+#func right_click_processed() -> bool:
+#	EventBus.popup_requested.emit(self)
+#	return true
+
 #region Abstract Implementation
 
 func can_interact(party: MapParty) -> bool:
