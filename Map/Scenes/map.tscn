@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://dlu3vl2ltauc0"]
+[gd_scene load_steps=48 format=4 uid="uid://dlu3vl2ltauc0"]
 
 [ext_resource type="Script" uid="uid://dvi42dc2k0m2h" path="res://Map/Scripts/Map/map.gd" id="1_q0qov"]
 [ext_resource type="Texture2D" uid="uid://c462nhclviryl" path="res://Arts/Map objects/dis tiles (1).png" id="1_xec2n"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bugwls130mkxq" path="res://Arts/Map objects/objects.png" id="2_q0qov"]
 [ext_resource type="Script" uid="uid://cy3qdta1wg1jq" path="res://Map/Scripts/Map/map_event_handler.gd" id="3_1tmes"]
 [ext_resource type="Texture2D" uid="uid://b2v51mrky8rhp" path="res://Arts/Map objects/o02 village .png" id="3_b45i2"]
+[ext_resource type="Script" uid="uid://rp8ik3vnvsts" path="res://Map/Scripts/Map/object_manager.gd" id="3_ue3ts"]
 [ext_resource type="Script" uid="uid://cag3bdpjtf3q7" path="res://Map/Scripts/Map/map_worker.gd" id="3_ykca1"]
 [ext_resource type="Texture2D" uid="uid://cbm3wlhrsci2y" path="res://Arts/Map objects/o03 stuff.png" id="4_xec2n"]
 [ext_resource type="Texture2D" uid="uid://qbtgdgqgc535" path="res://Arts/Map objects/tree.png" id="5_q0qov"]
@@ -368,6 +369,9 @@ script = ExtResource("20_1e4ck")
 [node name="HighlightLayer" type="TileMapLayer" parent="MapLayers"]
 unique_name_in_owner = true
 tile_set = SubResource("TileSet_1e4ck")
+
+[node name="ObjectManager" type="Node" parent="."]
+script = ExtResource("3_ue3ts")
 
 [node name="Parties" type="Node" parent="."]
 

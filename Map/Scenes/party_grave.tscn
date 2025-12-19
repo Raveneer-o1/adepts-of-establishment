@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyvio82n23340"]
+
+[ext_resource type="Script" uid="uid://cwodsapwnbciq" path="res://Map/Scripts/Party/party_grave.gd" id="1_iat2w"]
+[ext_resource type="Texture2D" uid="uid://cbi1oficwo3fg" path="res://Arts/itch assets/Pixel Art Icon Pack - RPG [Cainos]/Monster Part/Skull.png" id="2_ds6n0"]
+
+[node name="PartyGrave" type="Node2D"]
+script = ExtResource("1_iat2w")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ds6n0")

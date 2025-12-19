@@ -114,12 +114,22 @@ func update_parameters() -> void:
 		if not u.is_dead: return
 	die()
 
-func die() -> void:
-	map.free_map_object(self)
+const GRAVE_PREFAB = preload("res://Map/Scenes/party_grave.tscn")
 
-func is_dead() -> bool:
-	# TODO: implement this
-	return is_queued_for_deletion()
+func die() -> void:
+	is_dead = true
+	is_active = false
+	for object in map.get_objects_on_tile(tile_position):
+		if object is MapPartyGrave:
+			object.bury_party(self)
+			return
+	var grave := map.object_manager.add_object(GRAVE_PREFAB, tile_position)
+	if grave: grave.bury_party(self)
+	else:
+		push_error("Unable to instantiate a grave! Party will be deleted")
+		map.free_map_object(self)
+
+var is_dead: bool
 
 func exit_city(tile: Vector2i) -> void:
 	if not inside_city: return

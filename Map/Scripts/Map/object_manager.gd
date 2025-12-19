@@ -1,0 +1,25 @@
+class_name MapObjectManager
+extends Node
+
+@onready var map: Map = $".."
+
+
+## instantiates provided [param prefab], adds is as a vhild to the
+## [MapObjectManager].[br]
+## Returns instantiated object or [code]null[/code] if failed
+func add_object(prefab: PackedScene, coords: Vector2i) -> MapInteractableObject:
+	if not prefab: return null
+	if not prefab.can_instantiate(): return null
+	var object := prefab.instantiate()
+	if object is not MapInteractableObject:
+		push_error("Provided scene is not a 'MapObjectManager'")
+		object.free()
+		return null
+	var interactable: MapInteractableObject = object
+	
+	# MapObjectManager is a plain Node, it doesn't have transform or position,
+	# so assigning objects as children won't inadvertently relocate them.
+	interactable.global_position = map.get_global_coords(coords)
+	add_child(interactable)
+	
+	return object

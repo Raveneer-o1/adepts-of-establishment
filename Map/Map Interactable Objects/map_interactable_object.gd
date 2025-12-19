@@ -23,6 +23,11 @@ extends Node2D
 
 var map: Map
 var object_name: String = ""
+## Determines whether the object is considered by the [Map] node during
+## interaction calculations. Does not prevent direct calls to
+## [method accept_interaction] or [method force_interaction_on],
+## only controls whether the map automatically triggers these methods.
+var is_active: bool = true
 
 ## Determines interaction priority when multiple objects occupy the same tile.
 ## Higher values receive priority; negative values are permitted.

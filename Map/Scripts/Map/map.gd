@@ -58,6 +58,8 @@ extends Node2D
 @onready var worker: MapWorker = $Worker
 ## Shows the information (like highlights) to the player
 @onready var visualizer: MapVisualizer = $Visualizer
+## Handles "free" objects - objects that are not part of the [member objects_layer]
+@onready var object_manager: MapObjectManager = $ObjectManager
 
 var game: GameMap
 
@@ -220,16 +222,23 @@ func find_path_to_object(
 	)
 
 ## Returns all objects that have the provided [param tile] set
-## as their interaction tile
+## as their interaction tile. Inactive objects are skipped
+## (see [member MapInteractableObject.is_active])
 func get_interactions_on_tile(coords: Vector2i) -> Array[MapInteractableObject]:
 	var res: Array[MapInteractableObject] = []
 	res.assign(tile_to_interaction.get(coords, []))
+	for obj: MapInteractableObject in res.duplicate():
+		if not obj.is_active: res.erase(obj)
+	
 	return res
 
-## Returns all interactable objects on a specific tile
+## Returns all interactable objects on a specific tile. Inactive objects are
+## skipped (see [member MapInteractableObject.is_active])
 func get_objects_on_tile(coords: Vector2i) -> Array[MapInteractableObject]:
 	var res: Array[MapInteractableObject] = []
 	res.assign(tile_to_object.get(coords, []))
+	for obj: MapInteractableObject in res.duplicate():
+		if not obj.is_active: res.erase(obj)
 	return res
 
 ## Returns the first object on a specific tile that the
