@@ -9,7 +9,3 @@ func show_item(item: MapItem) -> void:
 	name_label.text = item.item_name
 	texture_rect.texture = ImageBuffer.get_image(item.image_path)
 	show()
-
-func _on_root_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		hide_popup()

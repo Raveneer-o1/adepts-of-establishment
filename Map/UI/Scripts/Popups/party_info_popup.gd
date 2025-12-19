@@ -20,7 +20,3 @@ func show_party(party: MapParty) -> void:
 		if labels[pos].text: continue
 		labels[pos].text = unit.unit_name
 	show()
-
-func _on_control_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		hide_popup()

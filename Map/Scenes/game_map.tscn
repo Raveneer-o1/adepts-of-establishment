@@ -527,6 +527,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer"]
 layout_mode = 2
@@ -739,6 +740,7 @@ offset_right = 300.0
 offset_bottom = 160.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="UILayers/Popups/ItemInfoPopup/Root/PanelContainer"]
 layout_mode = 2
@@ -893,8 +895,5 @@ text = "version"
 [connection signal="visibility_changed" from="UILayers/Party" to="UILayers/Party" method="_on_visibility_changed"]
 [connection signal="gui_input" from="UILayers/Party/HBoxContainer" to="." method="_on_h_box_container_gui_input"]
 [connection signal="gui_input" from="UILayers/Greeting/Control" to="UILayers/Greeting" method="_on_control_gui_input"]
-[connection signal="gui_input" from="UILayers/Popups/PartyInfoPopup/Control" to="UILayers/Popups/PartyInfoPopup" method="_on_control_gui_input"]
-[connection signal="gui_input" from="UILayers/Popups/ItemInfoPopup/Root" to="UILayers/Popups/ItemInfoPopup" method="_on_root_gui_input"]
-[connection signal="gui_input" from="UILayers/Popups/GraveInfoPopup/Root" to="UILayers/Popups/GraveInfoPopup" method="_on_root_gui_input"]
 [connection signal="gui_input" from="UILayers/Windows/PickUpWindow/Root" to="UILayers/Windows/PickUpWindow" method="_on_root_gui_input"]
 [connection signal="gui_input" from="UILayers/Windows/PickUpWindow/Root/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" to="UILayers/Windows/PickUpWindow" method="_on_h_box_container_gui_input"]

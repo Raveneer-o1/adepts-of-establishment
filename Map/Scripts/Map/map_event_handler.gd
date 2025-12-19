@@ -98,8 +98,9 @@ func _process_click() -> void:
 
 func _process_right_click() -> void:
 	var objects := map.get_objects_on_tile(map.get_tile_coords())
+	# should not pass the entire array to the signal because popups
+	# should be created one at a time as they react to player's single click
 	for o in objects:
-		# TODO: replace with just passing the whole array to the signal
 		if o.right_click_processed(): return
 	
 	if not active_party: return
