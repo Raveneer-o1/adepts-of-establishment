@@ -75,18 +75,28 @@ func switch_to(ui: StringName) -> void:
 func handle_popup_request(info_object: Variant) -> void:
 	if info_object is MapItem:
 		item_info_popup.show_item(info_object)
+		await item_info_popup.popup_closed
 	elif info_object is MapParty:
 		party_info_popup.show_party(info_object)
+		await party_info_popup.popup_closed
 	elif info_object is MapCity:
 		# TODO: replace with city popup
 		show_city_window(info_object)
 	elif info_object is MapPartyGrave:
 		grave_info_popup.show_grave(info_object)
+		await grave_info_popup.popup_closed
+	elif info_object is Array:
+		for inner_obj: Variant in info_object:
+			await handle_popup_request(inner_obj)
 
 
 func handle_window_request(info: Variant) -> void:
 	if info is MapItem:
 		pick_up_window.show_item(info)
+		await pick_up_window.window_closed
+	elif info is Array:
+		for inner_info: Variant in info:
+			await handle_window_request(inner_info)
 
 func _ready() -> void:
 	for child in get_children():

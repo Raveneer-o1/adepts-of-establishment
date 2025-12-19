@@ -1,5 +1,5 @@
 class_name PickUpWindow
-extends CanvasLayer
+extends WindowBase
 
 var currently_shown: Variant
 
@@ -16,8 +16,7 @@ func show_item(item: MapItem) -> void:
 
 func _on_root_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		hide()
-		EventBus.window_closed.emit()
+		hide_window()
 
 func _on_h_box_container_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:

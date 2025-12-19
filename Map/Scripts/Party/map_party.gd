@@ -156,10 +156,11 @@ func enter_city(city: MapCity) -> void:
 ## [br][br]
 ## [b]Note:[/b] This method does not perform any validation:
 ## it can steal items from any location in the scene tree
-func pick_up(item: MapItem) -> void:
-	if not item: return
-	if item.get_parent():
-		item.reparent(inventory)
-	else:
-		inventory.add_child(item)
-	EventBus.window_requested.emit(item)
+func pick_up(items: Array[MapItem]) -> void:
+	for item in items:
+		if not item: continue
+		if item.get_parent():
+			item.reparent(inventory)
+		else:
+			inventory.add_child(item)
+	EventBus.window_requested.emit(items)

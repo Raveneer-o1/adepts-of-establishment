@@ -1,5 +1,5 @@
 class_name GraveInfoPopup
-extends CanvasLayer
+extends PopupBase
 
 @onready var labels_container: VBoxContainer = $Root/PanelContainer/MarginContainer/VBoxContainer
 
@@ -14,6 +14,6 @@ func show_grave(grave: MapPartyGrave) -> void:
 
 func _on_root_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		hide()
 		for label in labels_container.get_children():
 			label.queue_free()
+		hide_popup()

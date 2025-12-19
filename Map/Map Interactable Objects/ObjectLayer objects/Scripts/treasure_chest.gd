@@ -8,8 +8,8 @@ func can_interact(party: MapParty) -> bool:
 	return true if contents else false
 
 func accept_interaction(party: MapParty) -> int:
-	_pick_up_items(party)
 	state = ChestState.open
+	_pick_up_items(party)
 	return 0
 
 func will_intercept(party: MapParty) -> bool:
@@ -81,8 +81,5 @@ var contents: Array[MapItem]:
 		return res
 
 func _pick_up_items(party: MapParty) -> void:
-	for item in contents:
-		party.pick_up(item)
-		# TODO: replace with proper array handling
-		await EventBus.window_closed
+	party.pick_up(contents)
 	state = ChestState.empty

@@ -1,5 +1,5 @@
 class_name PartyInfoPopup
-extends CanvasLayer
+extends PopupBase
 
 @onready var _0: Label = $"Control/PanelContainer/MarginContainer/HBoxContainer/Frontline/0/Label"
 @onready var _1: Label = $"Control/PanelContainer/MarginContainer/HBoxContainer/Backline/1/Label"
@@ -23,4 +23,4 @@ func show_party(party: MapParty) -> void:
 
 func _on_control_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		hide()
+		hide_popup()

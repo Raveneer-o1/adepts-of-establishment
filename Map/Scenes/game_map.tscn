@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://db2fl4l22gmmv" path="res://Map/UI/Scripts/Popups/item_info_popup.gd" id="9_ommir"]
 [ext_resource type="PackedScene" uid="uid://1vr0gdex77rx" path="res://Map/Scenes/faction.tscn" id="9_tjube"]
 [ext_resource type="Script" uid="uid://c6lmuhpypmu08" path="res://Map/Scripts/turn_manager.gd" id="10_5bpsg"]
-[ext_resource type="Script" uid="uid://dna40ld5lhlp6" path="res://Map/UI/Scripts/pick_up_window.gd" id="10_ommir"]
+[ext_resource type="Script" uid="uid://dna40ld5lhlp6" path="res://Map/UI/Scripts/Windows/pick_up_window.gd" id="10_ommir"]
 [ext_resource type="Script" uid="uid://bw5dga2dtg5d0" path="res://Map/UI/Scripts/Popups/party_info_popup.gd" id="11_dawxx"]
 [ext_resource type="Texture2D" uid="uid://c1lw1c3qt0mc8" path="res://Arts/hex hint 64.png" id="12_20b7o"]
 [ext_resource type="Script" uid="uid://dd03w7tnrgkwj" path="res://Map/UI/Scripts/Popups/grave_info_popup.gd" id="13_gtybc"]

@@ -1,5 +1,5 @@
 class_name ItemInfoPopup
-extends CanvasLayer
+extends PopupBase
 
 @onready var name_label: Label = $Root/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Label
 @onready var texture_rect: TextureRect = $Root/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TextureRect
@@ -12,4 +12,4 @@ func show_item(item: MapItem) -> void:
 
 func _on_root_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		hide()
+		hide_popup()

@@ -58,7 +58,4 @@ signal popup_requested(object: Variant)
 ## (e.g., resource deficiency notifications, item discovery alerts).
 ## Distinct from [signal popup_requested] - see that signal's documentation.
 signal window_requested(info: Variant)
-## @experimental: Will be replaced with proper array handling in [signal window_requested].
-## Emitted when a window opened via [signal window_requested] is closed by the player.
-signal window_closed
 #endregion
