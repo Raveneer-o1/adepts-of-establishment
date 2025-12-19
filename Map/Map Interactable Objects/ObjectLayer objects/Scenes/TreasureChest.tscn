@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bugwls130mkxq" path="res://Arts/Map objects/objects.png" id="2_wee0j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vriql"]
+resource_local_to_scene = true
 atlas = ExtResource("2_wee0j")
 region = Rect2(3, 0, 32, 32)
 
