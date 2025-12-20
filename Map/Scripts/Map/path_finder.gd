@@ -44,7 +44,7 @@ func _check_distances(start: Vector2i, end: Array[Vector2i]) -> bool:
 ## Finds a path from start to end using A* algorithm [br][br]
 ## [param start]: Starting tile coordinates[br]
 ## [param end]: Array of destination tile coordinates. Algorithm will find a path to
-## the one of the provided coordinates.[br]
+## one of the provided coordinates.[br]
 ## [param travel_data]: Travel parameters that affect pathfinding[br][br]
 ## [b]Returns:[/b] Array of tile coordinates representing the path from start
 ## to end (excluding start)

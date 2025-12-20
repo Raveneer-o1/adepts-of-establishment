@@ -1,6 +1,10 @@
 class_name MapUI
 extends Node
 
+## Manages the user interface layers and transitions in the game map.
+## Handles switching between different UI modes (Main, City, Party, etc.),
+## displaying popups/windows for map objects, and tracking active party information.
+
 var current_ui: CanvasLayer
 @onready var game_map: GameMap = $".."
 @onready var party_layer: PartyUIManager = $Party
@@ -20,6 +24,8 @@ var current_ui: CanvasLayer
 
 var last_requested_party: MapParty = null
 
+## Clears the active party display, resetting all UI elements to empty/default states.
+## Hides the party portrait and clears movement points and party name displays.
 func clear_active_party() -> void:
 	_movement_points.value = 0.0
 	_movement_points_label.text = ""
@@ -27,14 +33,17 @@ func clear_active_party() -> void:
 	
 	_party_portrait_texture_rect.hide()
 
+## Switches the UI to city mode and populates it with data from the specified [param city]
 func switch_to_city(city: MapCity) -> void:
 	city_layer.fill_city_data(city)
 	switch_to(&"City")
 
-## Assigns [param party] to [member last_requested_party]. [br][br]
-## Does not update the party window - this occurs only when the player
-## actually opens the window. The party UI is updated by [PartyUIManager]
-## on visibility change.
+## Updates the active party display with information from the specified party.
+## Displays movement points, party name, and portrait. Stores the party reference
+## in [member last_requested_party] for later use.
+## [br][br]
+## Note: This only updates the UI display. The party window itself is updated
+## by [PartyUIManager] when the window becomes visible.
 func fill_active_party(party: MapParty) -> void:
 	var mp := party.parameters.movement_points
 	var max_mp := party.parameters.max_movement_points
@@ -57,6 +66,10 @@ func _switch_ui(target_ui: CanvasLayer) -> void:
 	target_ui.set_process(true)
 	current_ui = target_ui
 
+## Switches the current UI mode to the specified interface type.
+## [br][br]
+## When switching away from "Main" mode, the map is temporarily disabled
+## and will automatically re-enable when returning to "Main" mode.
 func switch_to(ui: StringName) -> void:
 	var target_ui: CanvasLayer = find_child(ui)
 	if not target_ui:
@@ -73,6 +86,13 @@ func switch_to(ui: StringName) -> void:
 	
 	_switch_ui(target_ui)
 
+## Handles requests to display popups for various map objects.
+## Routes the request to the appropriate popup based on the object type.
+## 
+## Note: This function waits for each popup to close before continuing,
+## ensuring popups are shown one at a time.
+## This also means that you can call it with [code]await[/code] 
+## to continue your execution after the popup is closed.
 func handle_popup_request(info_object: Variant) -> void:
 	if info_object is MapItem:
 		item_info_popup.show_item(info_object)
@@ -88,8 +108,15 @@ func handle_popup_request(info_object: Variant) -> void:
 	elif info_object is Array:
 		for inner_obj: Variant in info_object:
 			await handle_popup_request(inner_obj)
+	await get_tree().process_frame
 
-
+## Handles requests to display windows for various map objects.
+## Routes the request to the appropriate window based on the object type.
+## [br][br]
+## Note: This function waits for each window to close before continuing,
+## ensuring windows are shown one at a time.
+## This also means that you can call it with [code]await[/code] 
+## to continue your execution after the window is closed.
 func handle_window_request(info: Variant) -> void:
 	if info is MapItem:
 		pick_up_window.show_item(info)

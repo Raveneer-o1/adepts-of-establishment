@@ -141,16 +141,17 @@ func free_map_object(o: MapInteractableObject) -> void:
 	clear_object_refs(o)
 	o.queue_free()
 
-func clear_object_refs(o: MapInteractableObject) -> void:
-	if not is_instance_valid(o):
+## Clears references stored by the [Map] node to the provided [param object]
+func clear_object_refs(object: MapInteractableObject) -> void:
+	if not is_instance_valid(object):
 		push_error("Invalid reference passed to clear object! Did you free it somewhere else?")
 		return
-	for t in o.get_occupied_tiles():
+	for t in object.get_occupied_tiles():
 		if tile_to_object.has(t):
-			tile_to_object[t].erase(o)
-	for t in o.get_interaction_tiles():
+			tile_to_object[t].erase(object)
+	for t in object.get_interaction_tiles():
 		if tile_to_interaction.has(t):
-			tile_to_interaction[t].erase(o)
+			tile_to_interaction[t].erase(object)
 
 ## Initiates a battle between two parties. [br]
 ## [param attacker]: The party initiating the combat encounter[br]
@@ -208,12 +209,15 @@ func find_path(
 		include_start
 	)
 
+## Same as [method find_path] but accepts [MapInteractableObject] as the goal.
+## The path targets tiles provided by [method MapInteractableObject.get_interaction_tiles].
 func find_path_to_object(
 	starts: Array[Vector2i],
 	end: MapInteractableObject,
 	party: MapParty = active_party,
 	include_start: bool = false
 ) -> Array[Vector2i]:
+	if not end: return []
 	return worker.find_path(
 		starts,
 		end.get_interaction_tiles(party),
