@@ -3,7 +3,7 @@ extends Node
 
 var current_ui: CanvasLayer
 @onready var game_map: GameMap = $".."
-@onready var party_layer: CanvasLayer = $Party
+@onready var party_layer: PartyUIManager = $Party
 @onready var city_layer: CityUIManager = $City
 
 @onready var _active_party_container: VBoxContainer = %ActivePartyContainer
@@ -16,6 +16,7 @@ var current_ui: CanvasLayer
 @onready var pick_up_window: PickUpWindow = $Windows/PickUpWindow
 @onready var party_info_popup: PartyInfoPopup = $Popups/PartyInfoPopup
 @onready var grave_info_popup: GraveInfoPopup = $Popups/GraveInfoPopup
+@onready var city_popup: CityInfoPopup = $Popups/CityPopup
 
 var last_requested_party: MapParty = null
 
@@ -26,7 +27,7 @@ func clear_active_party() -> void:
 	
 	_party_portrait_texture_rect.hide()
 
-func show_city_window(city: MapCity) -> void:
+func switch_to_city(city: MapCity) -> void:
 	city_layer.fill_city_data(city)
 	switch_to(&"City")
 
@@ -80,8 +81,7 @@ func handle_popup_request(info_object: Variant) -> void:
 		party_info_popup.show_party(info_object)
 		await party_info_popup.popup_closed
 	elif info_object is MapCity:
-		# TODO: replace with city popup
-		show_city_window(info_object)
+		city_popup.show_city(info_object)
 	elif info_object is MapPartyGrave:
 		grave_info_popup.show_grave(info_object)
 		await grave_info_popup.popup_closed
@@ -97,6 +97,7 @@ func handle_window_request(info: Variant) -> void:
 	elif info is Array:
 		for inner_info: Variant in info:
 			await handle_window_request(inner_info)
+	await get_tree().process_frame
 
 func _ready() -> void:
 	for child in get_children():
@@ -115,7 +116,9 @@ func _on_quit_button_pressed() -> void:
 func _on_portrait_texture_rect_gui_input(event: InputEvent) -> void:
 	if event is not InputEventMouseButton: return
 	if (event as InputEventMouseButton).pressed:
-		switch_to(&"Party")
+		if last_requested_party.inside_city:
+			switch_to_city(last_requested_party.inside_city)
+		else: switch_to(&"Party")
 
 func _on_end_turn_button_pressed() -> void:
 	game_map.turn_manager.request_turn_end()
