@@ -484,6 +484,7 @@ func _ready() -> void:
 	await place_units()
 	await get_tree().process_frame
 	combat_logic.start_battle()
+	EventBus.is_battle_ready = true
 #endregion
 
 #region Utilities

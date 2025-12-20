@@ -9,7 +9,14 @@ var right_units: Array[UnitData] = []
 var packed_menu: PackedScene
 
 #region Combat
+var is_battle_ready: bool:
+	get: return is_battle_ready
+	set(value):
+		if value: battle_ready.emit()
+		is_battle_ready = value
+
 signal battle_ended()
+signal battle_ready()
 
 signal spot_clicked(spot: UnitSpot)
 signal wait_clicked()

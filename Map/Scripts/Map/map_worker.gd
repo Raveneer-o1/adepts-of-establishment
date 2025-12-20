@@ -49,6 +49,7 @@ func _prefill_data(attacker: MapParty, defender: MapParty) -> void:
 	EventBus.right_controller = load(GlobalDefs.get_combat_controller(defender.faction.controller))
 
 func _load_battle() -> Node:
+	EventBus.is_battle_ready = false
 	var battle: Control = map.battle_scene.instantiate()
 	battle.process_mode = Node.PROCESS_MODE_ALWAYS
 	battle.hide()
@@ -60,16 +61,18 @@ func _load_battle() -> Node:
 
 
 func _switch_to_battle(battle: Control) -> void:
+	if not EventBus.is_battle_ready:
+		await EventBus.battle_ready
 	(battle.find_child("Camera2D", false) as Camera2D).make_current()
-	
 	battle.show()
+	
 	game.ui_layers.switch_to(&"Battle")
-	process_mode = Node.PROCESS_MODE_DISABLED
+	map.process_mode = Node.PROCESS_MODE_DISABLED
 	
 	await EventBus.battle_ended
 	game.ui_layers.switch_to(&"Main")
 	battle.queue_free()
-	process_mode = Node.PROCESS_MODE_PAUSABLE
+	map.process_mode = Node.PROCESS_MODE_PAUSABLE
 	map.camera.make_current()
 
 func _play_effect(pos: Vector2) -> void:
