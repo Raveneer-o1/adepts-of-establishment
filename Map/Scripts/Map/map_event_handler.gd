@@ -152,6 +152,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _process(delta: float) -> void:
 	if not _hovering_timer_active: return
+	if not active_party:
+		_hovering_timer_active = false
+		return
 	_hovering_timer -= delta
 	if _hovering_timer <= 0.0:
 		visualizer.draw_path(
