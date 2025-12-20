@@ -13,13 +13,21 @@ var game: GameMap:
 
 const battle_effect = preload("res://Map/Scenes/visual_effect.tscn")
 
+## Returns if siege was successful
+func do_siege(attacker: MapParty, defender: MapCity) -> bool:
+	_prefill_data_siege(attacker, defender)
+	var battle := _load_battle()
+	await _switch_to_battle(battle)
+	attacker.update_parameters()
+	return not attacker.is_dead
+
 func do_combat(attacker: MapParty, defender: MapParty) -> MapParty:
 	_prefill_data(attacker, defender)
 	
 	attacker.face_tile(defender.tile_position)
 	defender.face_tile(attacker.tile_position)
 	
-	var battle := _load_battle(attacker, defender)
+	var battle := _load_battle()
 	await _play_effect(defender.global_position)
 	
 	await _switch_to_battle(battle)
@@ -28,13 +36,19 @@ func do_combat(attacker: MapParty, defender: MapParty) -> MapParty:
 	if attacker.is_dead == defender.is_dead: return null
 	return attacker if defender.is_dead else defender
 
+func _prefill_data_siege(attacker: MapParty, defender: MapCity) -> void:
+	EventBus.left_units = attacker.parameters.get_unit_data()
+	EventBus.right_units = defender.units
+	EventBus.left_controller = load(GlobalDefs.get_combat_controller(attacker.faction.controller))
+	EventBus.right_controller = load(GlobalDefs.get_combat_controller(defender.city_owner.controller))
+
 func _prefill_data(attacker: MapParty, defender: MapParty) -> void:
 	EventBus.left_units = attacker.parameters.get_unit_data()
 	EventBus.right_units = defender.parameters.get_unit_data()
 	EventBus.left_controller = load(GlobalDefs.get_combat_controller(attacker.faction.controller))
 	EventBus.right_controller = load(GlobalDefs.get_combat_controller(defender.faction.controller))
 
-func _load_battle(attacker: MapParty, defender: MapParty) -> Node:
+func _load_battle() -> Node:
 	var battle: Control = map.battle_scene.instantiate()
 	battle.process_mode = Node.PROCESS_MODE_ALWAYS
 	battle.hide()

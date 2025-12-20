@@ -34,10 +34,12 @@ func can_interact(party: MapParty) -> bool:
 	return true
 
 func accept_interaction(party: MapParty) -> int:
-	# TODO: implement this
-	#if city_owner.is_enemy(party.faction):
-		#map.start_siege()
-		#return 0
+	if city_owner.is_enemy(party.faction):
+		if party_inside:
+			map.start_battle(party, party_inside)
+			return party.parameters.max_movement_points
+		map.start_siege(party, self)
+		return party.parameters.max_movement_points
 	
 	if party_inside: return 0
 	party.enter_city(self)
@@ -90,3 +92,7 @@ var units: Array[UnitData]:
 		return res
 
 var party_inside: MapParty
+
+func _initialize() -> void:
+	# TODO: replace with faction index
+	city_owner = map.game.test_faction2

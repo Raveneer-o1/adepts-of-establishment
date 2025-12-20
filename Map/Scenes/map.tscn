@@ -376,7 +376,7 @@ script = ExtResource("3_ue3ts")
 [node name="Parties" type="Node" parent="."]
 
 [node name="MapParty" parent="Parties" instance=ExtResource("12_kwhd2")]
-position = Vector2(1339, 754)
+position = Vector2(579, 611)
 party_name = "Strong dudes"
 portrait_texture = "res://Arts/Placeholders/Army.jpg"
 

@@ -150,9 +150,8 @@ func validate_and_interact(party: MapParty, forced: bool = false) -> int:
 	return accept_interaction(party)
 
 func _register_object() -> void:
-	tile_position = map.objects_layer.local_to_map(
-		map.objects_layer.to_local(global_position)
-	)
+	tile_position = map.get_tile_coords(global_position)
+	
 	_initialize()
 
 func _ready() -> void:

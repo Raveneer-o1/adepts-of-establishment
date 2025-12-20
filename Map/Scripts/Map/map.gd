@@ -153,6 +153,13 @@ func clear_object_refs(object: MapInteractableObject) -> void:
 		if tile_to_interaction.has(t):
 			tile_to_interaction[t].erase(object)
 
+func start_siege(attacker: MapParty, defender: MapCity) -> void:
+	var successful := await worker.do_siege(attacker, defender)
+	game.update_active_party(active_party)
+	if not successful: return
+	defender.city_owner = attacker.faction
+	attacker.enter_city(defender)
+
 ## Initiates a battle between two parties. [br]
 ## [param attacker]: The party initiating the combat encounter[br]
 ## [param defender]: The party being attacked
