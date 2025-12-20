@@ -36,6 +36,13 @@ extends Node
 @export var attack_data: Array[UnitAttackData]
 @export var large_unit: bool
 @export var immunities: Array[GlobalDefs.AttackType]
+## [codeblock]
+## {
+##     &"effect_name": String,
+##     &"effect_path": String,
+##     &"args": Variant,
+## }
+## [/codeblock]
 @export var effects: Array[Dictionary]
 @export var needed_xp: int
 

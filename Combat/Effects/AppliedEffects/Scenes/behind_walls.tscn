@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0ou87tmajk5v"]
+
+[ext_resource type="Script" uid="uid://gapku532fqg2" path="res://Combat/Effects/AppliedEffects/Scripts/behind_walls.gd" id="1_sqt3f"]
+
+[node name="BehindWalls" type="Node"]
+script = ExtResource("1_sqt3f")
+liftable = false
+silencable = false
+effect_name = "Behind walls"
+icon_index = 4
+description = "This unit is ptotecting the city: armor is increased by %d"

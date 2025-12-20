@@ -145,6 +145,7 @@ func exit_city(tile: Vector2i) -> void:
 	inside_city = null
 	control.walk_to(tile)
 
+
 func enter_city(city: MapCity) -> void:
 	if not city: return
 	if city.party_inside: return

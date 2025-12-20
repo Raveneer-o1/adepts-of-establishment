@@ -117,6 +117,25 @@ func get_movement_multiplier() -> int:
 	movement_multiplier_requested.emit()
 	return _get_accumulated_value(DEFAULT_MOVEMENT_MULTIPLIER)
 
+func apply_effect(path: String) -> PartyEffect:
+	if not FileAccess.file_exists(path):
+		push_error("file '%s' does not exist" % path)
+		return null
+	var res := load(path)
+	if res is not PackedScene:
+		push_error("'%s' is not a PackedScene!" % path)
+		return null
+	var node := (res as PackedScene).instantiate()
+	if not node:
+		push_error("Unable to instantiate '%s'" % path)
+		return null
+	if node is not PartyEffect:
+		push_error("'%s' is not a PartyEffect node!" % path)
+		node.free()
+		return null
+	this_party.add_child(node)
+	return node
+
 func _ready() -> void:
 	EventBus.map_turn_started.connect(
 		func (f: MapFaction) -> void:

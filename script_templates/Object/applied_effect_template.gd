@@ -32,6 +32,7 @@ func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
 	# if "other_effect" is specified, method should return the exact same structure
 	# but with values fetched from "other_effect" 
 	# (e.g. [other_effect.value1, other_effect.value2])
+	if other_effect: return [other_effect.value]
 	return [value]
 
 func _apply_effect(params: Variant) -> void:

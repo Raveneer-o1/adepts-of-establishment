@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bu1u102e3adh2"]
+
+[ext_resource type="Script" uid="uid://bgkyvpswlwcdr" path="res://Map/PartyEffects/Scripts/behind_walls.gd" id="1_vfppr"]
+
+[node name="BehindWalls" type="Node"]
+script = ExtResource("1_vfppr")
