@@ -161,7 +161,7 @@ var original_data: UnitData = null
 #region API
 
 func _read_data(data: UnitData) -> void:
-	original_data = data.origianl if data.origianl else data
+	original_data = data.original if data.original else data
 	unit_name = data.personal_name if data.personal_name else unit_name
 	needed_xp = data.needed_xp
 	unit_type = data.unit_type

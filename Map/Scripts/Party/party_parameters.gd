@@ -125,7 +125,7 @@ func get_unit_list_copy() -> Array[UnitData]:
 	for data in units_original:
 		_unit_list_copy.append(data.duplicate())
 	for i in range(units_original.size()):
-		_unit_list_copy[i].origianl = units_original[i]
+		_unit_list_copy[i].original = units_original[i]
 	return _unit_list_copy
 
 ## Equivalent to just subtracting [param value] from [member movement_points]

@@ -74,7 +74,7 @@ var is_dead: bool:
 	get: return current_hp <= 0
 
 ## If this is not [code]null[/code], this object is considered a copy of this original one
-var origianl: UnitData = null
+var original: UnitData = null
 
 ## Returns the file path to the unit scene resource.
 ## This path must be added to either [member EventBus.left_units] or
@@ -180,7 +180,7 @@ func add_effect(effect: AppliedEffect) -> void:
 	if not effect: return
 	var full_data := effect.get_full_data()
 	UnitData.filter_data(full_data)
-	(origianl.effects if origianl else effects).append(full_data)
+	(original.effects if original else effects).append(full_data)
 
 func update_values(u: Unit) -> void:
 	if not u: return

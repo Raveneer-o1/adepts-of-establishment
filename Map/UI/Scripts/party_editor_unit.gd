@@ -2,7 +2,12 @@ class_name PartyEditorUnit
 extends Control
 
 @onready var label: Label = $PanelContainer/Label
-var unit_data: UnitData
+var unit_data: UnitData:
+	get: return unit_data.original \
+		if unit_data and unit_data.original \
+		else unit_data
+	set(value):
+		unit_data = value
 
 func update_data() -> void:
 	# TODO: implement visual representatoin of a unit and update it here
