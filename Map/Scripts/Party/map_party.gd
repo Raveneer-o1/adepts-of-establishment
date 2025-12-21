@@ -28,6 +28,8 @@ var units: Array[UnitData]:
 var is_moving: bool:
 	get: return control.is_moving
 
+var _behind_walls_effect: BehindWallsPartyEffect
+
 func get_interaction_tiles(
 	party: MapParty = null,
 	main: Vector2i = tile_position,
@@ -60,6 +62,7 @@ func force_interaction_on(party: MapParty) -> int:
 	return party.parameters.max_movement_points
 
 func will_intercept(party: MapParty) -> bool:
+	if inside_city: return false
 	return faction.is_enemy(party.faction)
 
 func can_interact(party: MapParty) -> bool:
@@ -144,7 +147,7 @@ func exit_city(tile: Vector2i) -> void:
 	inside_city.party_inside = null
 	inside_city = null
 	control.walk_to(tile)
-
+	if _behind_walls_effect: _behind_walls_effect.remove_effect()
 
 func enter_city(city: MapCity) -> void:
 	if not city: return
@@ -152,6 +155,10 @@ func enter_city(city: MapCity) -> void:
 	inside_city = city
 	city.party_inside = self
 	control.walk_to(city.tile_position)
+	_behind_walls_effect = \
+		parameters.apply_effect(
+			"res://Map/PartyEffects/Scenes/behind_walls.tscn"
+		)
 
 ## Moves specified [param item] to this party's inventory.
 ## [br][br]

@@ -73,6 +73,9 @@ var unit_type: GlobalDefs.UnitType:
 var is_dead: bool:
 	get: return current_hp <= 0
 
+## If this is not [code]null[/code], this object is considered a copy of this original one
+var origianl: UnitData = null
+
 ## Returns the file path to the unit scene resource.
 ## This path must be added to either [member EventBus.left_units] or
 ## [member EventBus.right_units] to instantiate the unit when battle begins.
@@ -154,12 +157,30 @@ func initialize(personal: String = "") -> void:
 	
 	current_xp = 0
 
+func duplicate_data() -> UnitData:
+	var res := UnitData.new()
+	res.level = level
+	res.needed_xp = needed_xp
+	res.large_unit = large_unit
+	res.immunities = immunities.duplicate(true)
+	res.personal_name = personal_name
+	res.current_hp = current_hp
+	res.base_damage = base_damage
+	res.max_hp = max_hp
+	res.armor = armor
+	res.evasion = evasion
+	res.shielding_chance = shielding_chance
+	res.attack_data = attack_data.duplicate(true)
+	res.effects = effects.duplicate(true)
+	
+	return res
+
 ## This method performs no validation - duplicate effects may be added without checks.
 func add_effect(effect: AppliedEffect) -> void:
 	if not effect: return
 	var full_data := effect.get_full_data()
 	UnitData.filter_data(full_data)
-	effects.append(full_data)
+	(origianl.effects if origianl else effects).append(full_data)
 
 func update_values(u: Unit) -> void:
 	if not u: return

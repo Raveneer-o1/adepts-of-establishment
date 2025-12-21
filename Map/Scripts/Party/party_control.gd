@@ -81,31 +81,33 @@ func _walk_to(
 
 ## Moves a party along a proveded coordinates [br][br]
 ## if [param target_object] ia specified, ignores interception from that object
-## (expected to be handled by caller)
+## (expected to be handled by caller) [br][br]
+## Returns if the party reached the destination without interruptions.
 func walk_along_path(
 	path: Array[Vector2i],
 	animate: bool = true,
 	target_object: MapInteractableObject = null
-) -> void:
-	if not path: return
+) -> bool:
+	if not path: return true
 	if this_party.inside_city: this_party.exit_city(path[0])
-	await _walk_along_path(path, animate, target_object)
+	var interrupted := await _walk_along_path(path, animate, target_object)
 	_finish_moving_animation()
 	# safeguard against misaligned position
 	this_party.global_position = _moving_to
+	return not interrupted
 
 func _walk_along_path(
 	path: Array[Vector2i],
 	animate: bool = true,
 	target_object: MapInteractableObject = null
-) -> void:
+) -> bool:
 	for destination in path:
 		EventBus.party_move_started.emit(this_party, destination)
 		if cancel_movement:
 			cancel_movement = false
-			return
+			return true
 		if not _handle_step(destination): 
-			return
+			return true
 		this_party.face_tile(destination)
 		animation_handle.play_walk()
 		tile_position = destination
@@ -114,7 +116,9 @@ func _walk_along_path(
 			await _moving_finished
 		else: _jump_to(destination)
 		if _check_interception(target_object):
-			return
+			return true
+	
+	return false
 
 ## Equivalent to setting [member cancel_movement] to [code]true[/code].[br]
 ## Stops the party's movement after completing the current step.[br]

@@ -43,10 +43,6 @@ func accept_interaction(party: MapParty) -> int:
 	
 	if party_inside: return 0
 	party.enter_city(self)
-	_behind_walls_effect = \
-		party.parameters.apply_effect(
-			"res://Map/PartyEffects/Scenes/behind_walls.tscn"
-		)
 	return 0
 
 func will_intercept(party: MapParty) -> bool:
@@ -95,15 +91,8 @@ var units: Array[UnitData]:
 				res.append(c)
 		return res
 
-var party_inside: MapParty:
-	get: return party_inside
-	set(value):
-		if value != party_inside:
-			if _behind_walls_effect: _behind_walls_effect.queue_free()
-		party_inside = value
-
-var _behind_walls_effect: BehindWallsPartyEffect
+var party_inside: MapParty
 
 func _initialize() -> void:
 	# TODO: replace with faction index
-	city_owner = map.game.test_faction2
+	city_owner = map.game.test_faction

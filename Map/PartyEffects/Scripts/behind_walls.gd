@@ -13,15 +13,14 @@ var effect: Dictionary:
 			&"args": args,
 		}
 
-func get_unit_data() -> void:
+func modify_unit_data() -> void:
 	if not party_parameters.this_party.inside_city: return
 	var current_array: Array[UnitData] = party_parameters.accumulated_value \
 		if party_parameters.accumulated_value is Array[UnitData] \
-		else party_parameters.units
-	current_array = current_array.duplicate(true)
+		else party_parameters.get_unit_list_copy()
 	for data in current_array:
 		data.effects.append(effect)
 	party_parameters.accumulated_value = current_array
 
 func _apply_effect() -> void:
-	party_parameters.unit_data_requested.connect(get_unit_data)
+	party_parameters.unit_data_requested.connect(modify_unit_data)

@@ -3,6 +3,9 @@ extends Node
 
 @onready var this_party: MapParty = $".."
 
+## List of all units before applying any modifiers or effects.
+## Avoid direct access to this array - use [method get_unit_data] for safe
+## retrieval of processed unit information with all active effects applied.
 @export var units: Array[UnitData]:
 	get:
 		return this_party.units
@@ -61,18 +64,32 @@ extends Node
 var accumulated_value: Variant = null
 
 ## Emitted when unit data is requested via [method get_unit_data].
-## External systems should listen for this signal and set [member accumulated_value].
+## External systems should listen for this signal and populate [member accumulated_value].
+## [br][br]
+## [color=red][b]Critical:[/b] Be careful with this signal.[/color][br]
+## If [member accumulated_value] is already populated when your effect triggers,
+## modify that list. Otherwise, you must create deep copy of [member units] list
+## to avoid modifying original [UnitData] objects. Use [method get_unit_list_copy]
+## to get propertly copied list.
+## [br][br]
+## Expected [member accumulated_value] type: [code]Array[UnitData][/code]
 signal unit_data_requested
 ## Emitted when movement multiplier is requested via [method get_movement_multiplier].
 ## External systems should listen for this signal and set [member accumulated_value].
+## [br][br]
+## Expected [member accumulated_value] type: [code]int[/code]
 signal movement_multiplier_requested
 ## Emitted when movement cost for a specific tile is requested.
 ## External systems should listen for this signal and set [member accumulated_value].
 ## This value has a priority over movement multiplier: if this one is set,
 ## the latter will be ignored.
+## [br][br]
+## Expected [member accumulated_value] type: [code]int[/code]
 signal movement_cost_requested(tile_data: TileData)
 ## Emitted when maximum movement points value is requested.
 ## External systems should listen for this signal and set [member accumulated_value].
+## [br][br]
+## Expected [member accumulated_value] type: [code]int[/code]
 signal max_mp_requested()
 
 var _max_movement_points: int = 20
@@ -83,6 +100,33 @@ var max_movement_points: int:
 var movement_points: int = max_movement_points:
 	get: return movement_points
 	set(value): movement_points = clampi(value, 0, max_movement_points)
+
+var _unit_list_copy: Array[UnitData] = []
+var _unit_list_copy_for_freeing: Array[UnitData] = []
+
+## Frees duplicate objects created by [method get_unit_list_copy].
+## Processes one object per frame to avoid performance spikes.
+## Use [code]await[/code] if you need to wait for complete removal.
+func free_units_list() -> void:
+	_unit_list_copy_for_freeing = _unit_list_copy.duplicate()
+	_unit_list_copy = []
+	for data in _unit_list_copy_for_freeing:
+		await get_tree().process_frame
+		data.queue_free()
+
+## Returns a deep copy of the [member units] array.
+## The duplicated objects become orphans but do not require manual freeing -
+## previously generated copies are automatically cleaned up when this method is called.
+## [br][br]
+## If you need to free the entire party scene, call [method free_units_list] manually.
+func get_unit_list_copy() -> Array[UnitData]:
+	free_units_list()
+	var units_original := units
+	for data in units_original:
+		_unit_list_copy.append(data.duplicate())
+	for i in range(units_original.size()):
+		_unit_list_copy[i].origianl = units_original[i]
+	return _unit_list_copy
 
 ## Equivalent to just subtracting [param value] from [member movement_points]
 ## but checks if it is non-negative.
