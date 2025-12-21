@@ -83,6 +83,8 @@ func player_interact(faction: MapFaction) -> void:
 
 #endregion
 
+@export var faction_index: int
+
 var units: Array[UnitData]:
 	get:
 		var res: Array[UnitData] = []
@@ -94,5 +96,4 @@ var units: Array[UnitData]:
 var party_inside: MapParty
 
 func _initialize() -> void:
-	# TODO: replace with faction index
-	city_owner = map.game.test_faction
+	city_owner = map.game.get_faction(faction_index)

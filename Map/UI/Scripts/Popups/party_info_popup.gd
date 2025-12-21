@@ -22,7 +22,7 @@ extends PopupBase
 func show_party(party: MapParty) -> void:
 	for label in labels: label.text = ""
 	party_name.text = party.party_name
-	for unit in party.units:
+	for unit in party.parameters.get_unit_data():
 		var pos := unit.party_position
 		if pos < 0: continue
 		if pos > labels.size(): continue

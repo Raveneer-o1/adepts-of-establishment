@@ -49,7 +49,7 @@ func fill_city_data(city: MapCity) -> void:
 		if data.party_position > places.size(): continue
 		places[data.party_position].add_unit(data)
 	if city.party_inside:
-		for data in city.party_inside.units:
+		for data in city.party_inside.parameters.get_unit_data():
 			if data.party_position < 0: continue
 			if data.party_position > party_places.size(): continue
 			party_places[data.party_position].add_unit(data)

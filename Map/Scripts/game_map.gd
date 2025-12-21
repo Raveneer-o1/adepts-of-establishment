@@ -76,3 +76,12 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 		if (event as InputEventKey).keycode == Key.KEY_ESCAPE:
 			_end_temporary_disable()
+
+func get_faction(index: int) -> MapFaction:
+	if index < 0:
+		push_error("Negative faction index")
+		return null
+	if index >= $Factions.get_child_count():
+		push_error("Faction index outside bounds")
+		return null
+	return $Factions.get_child(index)

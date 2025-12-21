@@ -28,7 +28,7 @@ func show_city(city: MapCity) -> void:
 		for l in party_labels:
 			l.text = ""
 		party_container.show()
-		for data in city.party_inside.units:
+		for data in city.party_inside.parameters.get_unit_data():
 			var pos := data.party_position
 			if pos > party_labels.size(): continue
 			if pos < 0: continue
