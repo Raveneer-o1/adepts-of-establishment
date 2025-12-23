@@ -2,6 +2,13 @@ class_name PartyEditorUnit
 extends Control
 
 @onready var label: Label = $PanelContainer/Label
+
+## @experimental: may be changed to always return the [UnitData] object.
+## Returns the [UnitData] object associated with this node, or 
+## [member UnitData.original] if that field is set. [br]
+## Currently returns the original reference to support the data refresh algorithm
+## (see [method PartyUIManager._update_values]), but this implementation may evolve
+## as other systems may require access to the modified data.
 var unit_data: UnitData:
 	get: return unit_data.original \
 		if unit_data and unit_data.original \

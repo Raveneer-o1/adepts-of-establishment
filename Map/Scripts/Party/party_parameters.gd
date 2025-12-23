@@ -70,7 +70,7 @@ var accumulated_value: Variant = null
 ## If [member accumulated_value] is already populated when your effect triggers,
 ## modify that list. Otherwise, you must create deep copy of [member units] list
 ## to avoid modifying original [UnitData] objects. Use [method get_unit_list_copy]
-## to get propertly copied list.
+## to get properly copied list.
 ## [br][br]
 ## Expected [member accumulated_value] type: [code]Array[UnitData][/code]
 signal unit_data_requested

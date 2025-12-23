@@ -157,24 +157,6 @@ func initialize(personal: String = "") -> void:
 	
 	current_xp = 0
 
-func duplicate_data() -> UnitData:
-	var res := UnitData.new()
-	res.level = level
-	res.needed_xp = needed_xp
-	res.large_unit = large_unit
-	res.immunities = immunities.duplicate(true)
-	res.personal_name = personal_name
-	res.current_hp = current_hp
-	res.base_damage = base_damage
-	res.max_hp = max_hp
-	res.armor = armor
-	res.evasion = evasion
-	res.shielding_chance = shielding_chance
-	res.attack_data = attack_data.duplicate(true)
-	res.effects = effects.duplicate(true)
-	
-	return res
-
 ## This method performs no validation - duplicate effects may be added without checks.
 func add_effect(effect: AppliedEffect) -> void:
 	if not effect: return

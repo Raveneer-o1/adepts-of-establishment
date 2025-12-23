@@ -58,7 +58,8 @@ extends Node2D
 @onready var worker: MapWorker = $Worker
 ## Shows the information (like highlights) to the player
 @onready var visualizer: MapVisualizer = $Visualizer
-## Handles "free" objects - objects that are not part of the [member objects_layer]
+## Handles "free" objects - objects that are not part of the [member objects_layer].
+## [Party] objects are not managed by this node: they are managed separetly.
 @onready var object_manager: MapObjectManager = $ObjectManager
 
 var game: GameMap
