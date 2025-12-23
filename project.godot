@@ -21,6 +21,7 @@ config/icon="res://icon.svg"
 EventBus="*res://Autoload/EventBus.gd"
 GlobalDefs="*res://Autoload/GlobalDefs.gd"
 ImageBuffer="*res://Autoload/ImageBuffer.gd"
+GameSettings="*res://Autoload/GameSettings.gd"
 
 [debug]
 

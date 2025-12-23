@@ -11,6 +11,7 @@ extends MapInteractableObject
 @export var party_name: String
 @export_file_path("*") var portrait_texture: String
 
+
 ## When set to [code]true[/code], the next movement attempt is canceled and
 ## this flag automatically resets to [code]false[/code].
 var cancel_movement: bool = false
@@ -50,6 +51,7 @@ func right_click_processed() -> bool:
 func _initialize() -> void:
 	loaded_portrait = load(portrait_texture)
 	_validate_refs()
+	object_name = "Party (%s)" % party_name
 
 func accept_interaction(party: MapParty) -> int:
 	if party.faction.is_enemy(faction):

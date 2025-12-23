@@ -64,14 +64,14 @@ func A_star(start: Vector2i, end: Array[Vector2i], travel_data: TravelData) -> A
 	
 	var goal := start
 	
-	const MAX_ITERATIONS = 1000
 	# A* algorithm main loop, capped at MAX_ITERATIONS
+	const MAX_ITERATIONS = 1000
 	for iteration in range(MAX_ITERATIONS):
 		#_visualize_current_tile(current_node.tile_coords)
 		#await get_tree().create_timer(0.1).timeout
 		
 		# Evaluate all neighbors of the current tile
-		_evaluate_neighbors(current_node, open_set, closed_set, travel_data)
+		_evaluate_neighbors(current_node, open_set, closed_set, travel_data, end)
 		
 		closed_set[current_node.tile_coords] = current_node
 		
@@ -91,18 +91,27 @@ func A_star(start: Vector2i, end: Array[Vector2i], travel_data: TravelData) -> A
 	
 	return _reconstruct_path(closed_set[goal], start)
 
-func is_passable(tile: Vector2i, travel_data: TravelData) -> bool:
+func _is_tile_safe(tile: Vector2i, travel_data: TravelData) -> bool:
+	if not travel_data.travelling_party:
+		return true
+	var interception := map.get_first_interception(tile, travel_data.travelling_party)
+	return interception == null
+
+func is_passable(tile: Vector2i, travel_data: TravelData, end: Array[Vector2i]) -> bool:
 	var data := terrain_layer.get_cell_tile_data(tile)
 	if not data: return false
 	if data.get_custom_data("traverse_cost") < 0: return false
 	for obj in map.get_objects_on_tile(tile):
 		if not obj.passable(travel_data): return false
+	if travel_data.safe_travel and tile not in end:
+		if not _is_tile_safe(tile, travel_data):
+			return false
 	return travel_data.can_traverse(data)
 
 func _are_tiles_valid(start: Vector2i, end: Array[Vector2i], travel_data: TravelData) -> bool:
-	if not is_passable(start, travel_data): return false
+	if not is_passable(start, travel_data, end): return false
 	for t in end:
-		if is_passable(t, travel_data): return true
+		if is_passable(t, travel_data, end): return true
 	return false
 
 func _evaluate_repeating_neighbor(
@@ -122,7 +131,8 @@ func _evaluate_neighbors(
 	current_node: PathNode,
 	open_set: Dictionary,
 	closed_set: Dictionary,
-	travel_data: TravelData
+	travel_data: TravelData,
+	end: Array[Vector2i]
 ) -> void:
 	for neighbor_coords in map.get_neighbors(current_node.tile_coords):
 		if neighbor_coords in closed_set:
@@ -138,7 +148,7 @@ func _evaluate_neighbors(
 			if neighbor_coords in open_set:
 				continue
 			
-			if not is_passable(neighbor_coords, travel_data): continue
+			if not is_passable(neighbor_coords, travel_data, end): continue
 			
 			open_set[neighbor_coords] = \
 				PathNode.new(neighbor_coords, terrain_layer, travel_data, current_node)

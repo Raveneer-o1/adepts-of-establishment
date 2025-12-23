@@ -292,6 +292,7 @@ func get_first_interception(
 ) -> MapInteractableObject:
 	var objects := get_interactions_on_tile(coords)
 	for o in objects:
+		if o == party: continue
 		if not o.will_intercept(party): continue
 		return o
 	return null

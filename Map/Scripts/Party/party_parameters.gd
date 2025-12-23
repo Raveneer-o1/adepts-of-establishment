@@ -1,15 +1,21 @@
 class_name PartyParameters
 extends Node
 
+## When [code]true[/code], overrides [member GameSettings.safe_travel] with
+## [member safe_travel] during pathfinding calculations.
+@export var safe_travel_override: bool = false
+## Determines whether the party avoids forced interactions.
+## Has no effect if [member safe_travel_override] is set to [code]false[/code].
+@export var safe_travel: bool = true
+
 @onready var this_party: MapParty = $".."
 
 ## List of all units before applying any modifiers or effects.
 ## Avoid direct access to this array - use [method get_unit_data] for safe
 ## retrieval of processed unit information with all active effects applied.
-@export var units: Array[UnitData]:
+var units: Array[UnitData]:
 	get:
 		return this_party.units
-
 
 ## Accumulated value for data exchange between signal emission and receiver callbacks.
 ## When a request signal is emitted (e.g., [signal movement_multiplier_requested]),

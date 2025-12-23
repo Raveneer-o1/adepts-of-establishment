@@ -133,7 +133,7 @@ func find_path(
 	var _start := Vector2i.ZERO
 	var travel_data := TravelData.new(party)
 	for start in starts:
-		if not map.path_finder.is_passable(start, travel_data): continue
+		if not map.path_finder.is_passable(start, travel_data, end): continue
 		var new_path := map.path_finder.A_star(start, end, travel_data)
 		if not path or new_path.size() < path.size():
 			path = new_path

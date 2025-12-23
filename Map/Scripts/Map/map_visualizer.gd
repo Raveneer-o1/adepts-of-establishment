@@ -50,7 +50,8 @@ func _find_path(party: MapParty, destination: Vector2i) -> Array[Vector2i]:
 ## Draws a path for the specified [param party] to [param end] from [param start].
 ## Note operand order: draws path TO end FROM start. [br]
 ## If [param start] is omitted, uses [member MapParty.tile_position], requiring
-## [param party] to be non-null or the game will crash. Caller must verify this condition.
+## [param party] to be non-null or the game will crash.
+## [color=red]Caller must verify this condition.[/color]
 func draw_path(
 	party: MapParty,
 	end: Vector2i,

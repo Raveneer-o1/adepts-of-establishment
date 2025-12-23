@@ -10,7 +10,11 @@ extends RefCounted
 ## [code]&"forest"[/code][br]
 ## [code]&"mountain"[/code][br]
 
-var _default_cost_multiplier: int = 1
+var safe_travel: bool
+## @experimental: cen be [code]null[/code]
+var travelling_party: MapParty
+
+var _cost_multiplier: int = 1
 
 ## [codeblock]
 ## func (tile_data: TileData) -> bool
@@ -19,24 +23,23 @@ var custom_pass_check: Callable
 ## [codeblock]
 ## func (tile_data: TileData) -> int
 ## [/codeblock]
-var custom_cost_multiplier: Callable
-## [codeblock]
-## func (tile_data: TileData) -> int
-## [/codeblock]
 var custom_cost: Callable
 
 func _init(party: MapParty) -> void:
-	if not party: return
-	_default_cost_multiplier = party.parameters.get_movement_multiplier()
-	custom_cost = party.parameters.get_movement_cost
-
-func get_cost_multiplier(tile_data: TileData) -> int:
-	if custom_cost_multiplier.is_valid(): return custom_cost_multiplier.call(tile_data)
-	return _default_cost_multiplier
+	if not party:
+		push_error("Party is not provided")
+		return
+	var parameters := party.parameters
+	_cost_multiplier = parameters.get_movement_multiplier()
+	custom_cost = parameters.get_movement_cost
+	safe_travel = parameters.safe_travel if \
+		parameters.safe_travel_override else \
+		GameSettings.safe_travel
+	travelling_party = party
 
 func get_cost(tile_data: TileData) -> int:
 	if custom_cost.is_valid(): return custom_cost.call(tile_data)
-	return tile_data.get_custom_data("traverse_cost") * get_cost_multiplier(tile_data)
+	return tile_data.get_custom_data("traverse_cost") * _cost_multiplier
 
 func _default_traversability(tile_data: TileData) -> bool:
 	var tile_type: StringName = tile_data.get_custom_data("tile_type")

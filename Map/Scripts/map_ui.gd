@@ -149,3 +149,7 @@ func _on_portrait_texture_rect_gui_input(event: InputEvent) -> void:
 
 func _on_end_turn_button_pressed() -> void:
 	game_map.turn_manager.request_turn_end()
+
+
+func _on_safe_travel_check_box_toggled(toggled_on: bool) -> void:
+	GameSettings.safe_travel = toggled_on
