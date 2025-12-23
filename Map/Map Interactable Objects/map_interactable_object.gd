@@ -129,6 +129,8 @@ func get_interaction_tiles(
 ## Determines whether this object should intercept parties passing by.
 ## For example, enemy parties intercept parties to start a combat.
 @abstract func will_intercept(party: MapParty) -> bool
+## Returns if the object is passable to the specified [param party].
+## Argument can be either [MapParty] or [TravelData].
 @abstract func passable(party: Variant) -> bool
 
 @abstract func request_player_interaction(faction: MapFaction) -> bool

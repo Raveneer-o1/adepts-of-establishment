@@ -73,7 +73,7 @@ func can_interact(party: MapParty) -> bool:
 	return party.faction.is_enemy(faction)
 
 func passable(party: Variant) -> bool:
-	return true
+	return false
 
 func request_player_interaction(player: MapFaction) -> bool:
 	return player == faction

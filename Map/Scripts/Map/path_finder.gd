@@ -109,10 +109,9 @@ func is_passable(tile: Vector2i, travel_data: TravelData, end: Array[Vector2i]) 
 	return travel_data.can_traverse(data)
 
 func _are_tiles_valid(start: Vector2i, end: Array[Vector2i], travel_data: TravelData) -> bool:
-	if not is_passable(start, travel_data, end): return false
 	for t in end:
-		if is_passable(t, travel_data, end): return true
-	return false
+		if not is_passable(t, travel_data, end): return false
+	return true
 
 func _evaluate_repeating_neighbor(
 	neighbor_coords: Vector2i,
