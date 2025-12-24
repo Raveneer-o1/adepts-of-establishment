@@ -114,6 +114,13 @@ func _walk_along_path(
 		if animate:
 			_start_moving_animation(destination)
 			await _moving_finished
+			# might want to add checks after the control returns to this function
+			# theoretically, during the step process, party could've
+			# been changed or even freed
+			
+			# Raveneer-o1 24.12.2025
+			# won't happen with current implementation but worth considering for
+			# future features
 		else: _jump_to(destination)
 		if _check_interception(target_object):
 			return true
@@ -132,6 +139,7 @@ func _walk_along_path(
 func abort_moving() -> void:
 	cancel_movement = true
 	if _is_moving: await _moving_finished
+	else: cancel_movement = false
 
 
 func _process(delta: float) -> void:

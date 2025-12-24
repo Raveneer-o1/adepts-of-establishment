@@ -68,8 +68,8 @@ var game: GameMap
 var active_party: MapParty:
 	get: return active_party
 	set(value):
-		game.update_active_party(value)
 		active_party = value
+		game.update_active_party(value)
 
 ## Faction that currently has turn control
 var active_faction: MapFaction:
@@ -113,6 +113,8 @@ func clean_hashtable(assume_iteration: int = 0) -> void:
 	if __now_cleaning: return
 	__now_cleaning = true
 	
+	# NOTE: this value is chosen arbitrarily
+	#       ideally, it should be calculated from hardware specs
 	const MAX_ITERATIONS_PER_FRAME = 500
 	var i := assume_iteration
 	for k: Vector2i in tile_to_object.keys():
@@ -233,9 +235,14 @@ func find_path_to_object(
 		include_start
 	)
 
-## Returns all objects that have the provided [param tile] set
-## as their interaction tile. Inactive objects are skipped
-## (see [member MapInteractableObject.is_active])
+## Returns all objects that have the specified [param coords] as an interaction tile,
+## sorted by [member MapInteractableObject.interaction_priority].
+## Inactive objects are excluded (see [member MapInteractableObject.is_active]). [br][br]
+## [b]Note:[/b] This method can be slow on maps with many overlapping objects.
+## For faster, unsorted, untyped access, use:
+## [codeblock]
+## tile_to_interaction.get(coords, [])
+## [/codeblock]
 func get_interactions_on_tile(coords: Vector2i) -> Array[MapInteractableObject]:
 	var res: Array[MapInteractableObject] = []
 	res.assign(tile_to_interaction.get(coords, []))
@@ -248,8 +255,14 @@ func get_interactions_on_tile(coords: Vector2i) -> Array[MapInteractableObject]:
 	
 	return res
 
-## Returns all interactable objects on a specific tile. Inactive objects are
-## skipped (see [member MapInteractableObject.is_active])
+## Returns all interactable objects on a specific tile,
+## sorted by [member MapInteractableObject.interaction_priority].
+## Inactive objects are excluded (see [member MapInteractableObject.is_active]). [br][br]
+## [b]Note:[/b] This method can be slow on maps with many overlapping objects.
+## For faster, unsorted, untyped access, use:
+## [codeblock]
+## tile_to_interaction.get(coords, [])
+## [/codeblock]
 func get_objects_on_tile(coords: Vector2i) -> Array[MapInteractableObject]:
 	var res: Array[MapInteractableObject] = []
 	res.assign(tile_to_object.get(coords, []))

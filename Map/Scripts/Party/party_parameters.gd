@@ -117,16 +117,25 @@ var movement_points: int = max_movement_points:
 
 var _unit_list_copy: Array[UnitData] = []
 var _unit_list_copy_for_freeing: Array[UnitData] = []
+signal __freing_units_finished
+var __freing_units: bool = false:
+	get: return __freing_units
+	set(value):
+		if not value: __freing_units_finished.emit()
+		__freing_units = value
 
 ## Frees duplicate objects created by [method get_unit_list_copy].
 ## Processes one object per frame to avoid performance spikes.
 ## Use [code]await[/code] if you need to wait for complete removal.
 func free_units_list() -> void:
+	if __freing_units: await __freing_units_finished
+	__freing_units = true
 	_unit_list_copy_for_freeing = _unit_list_copy.duplicate()
 	_unit_list_copy = []
 	for data in _unit_list_copy_for_freeing:
 		await get_tree().process_frame
 		data.queue_free()
+	__freing_units = false
 
 ## Returns a deep copy of the [member units] array.
 ## The duplicated objects become orphans but do not require manual freeing -
