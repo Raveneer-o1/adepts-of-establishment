@@ -92,6 +92,14 @@ signal movement_multiplier_requested
 ## [br][br]
 ## Expected [member accumulated_value] type: [code]int[/code]
 signal movement_cost_requested(tile_data: TileData)
+## Emitted when check if a specific tile is passable is requested.
+## External systems should listen for this signal and set [member accumulated_value].
+## [br][br]
+## [b]Note:[/b] Tiles with negative [code]"traverse_cost"[/code] values bypass
+## this check and are considered universally impassable.
+## [br][br]
+## Expected [member accumulated_value] type: [code]bool[/code]
+signal movement_pass_check_requested(tile_data: TileData)
 ## Emitted when maximum movement points value is requested.
 ## External systems should listen for this signal and set [member accumulated_value].
 ## [br][br]
@@ -167,6 +175,15 @@ func get_movement_multiplier() -> int:
 	movement_multiplier_requested.emit()
 	return _get_accumulated_value(DEFAULT_MOVEMENT_MULTIPLIER)
 
+## By default, all tiles are passable. Effects can connect to
+## [signal movement_pass_check_requested] to block certain tile types
+const DEFAULT_PASS = true
+func check_pass(tile_data: TileData) -> bool:
+	movement_pass_check_requested.emit(tile_data)
+	return _get_accumulated_value(DEFAULT_PASS)
+
+## Instantiates a [PartyEffect] scene from the specified [param path]
+## and adds it to this party.
 func apply_effect(path: String) -> PartyEffect:
 	if not FileAccess.file_exists(path):
 		push_error("file '%s' does not exist" % path)

@@ -36,6 +36,7 @@ func _init(party: MapParty) -> void:
 		parameters.safe_travel_override else \
 		GameSettings.safe_travel
 	travelling_party = party
+	custom_pass_check = parameters.check_pass
 
 func get_cost(tile_data: TileData) -> int:
 	if custom_cost.is_valid(): return custom_cost.call(tile_data)
