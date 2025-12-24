@@ -69,7 +69,7 @@ func draw_path(
 	var path := _find_path(party, end)
 	
 	highlight_tiles(path, party)
-	get_viewport().set_input_as_handled()
+	#get_viewport().set_input_as_handled()
 
 
 ## Returns the currently highlighted tiles (copy of the array) and marks them as consumed.

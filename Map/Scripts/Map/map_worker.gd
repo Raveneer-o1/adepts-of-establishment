@@ -90,14 +90,12 @@ func move_active_party_to_object(object: MapInteractableObject) -> void:
 		active_party.control.abort_moving()
 		return
 	var path := visualizer.get_highlighted_tiles()
-	if not path:
-		visualizer.reset_highlights()
-		return
-	await active_party.control.walk_along_path(
-		path,
-		true,
-		object
-	)
+	if path:
+		await active_party.control.walk_along_path(
+			path,
+			true,
+			object
+		)
 	visualizer.reset_highlights()
 	map.clean_hashtable()
 	var cost := object.validate_and_interact(active_party)
@@ -122,6 +120,16 @@ func abort_active_actions() -> void:
 		await active_party.control.abort_moving()
 	visualizer.reset_highlights()
 
+func _check_if_end_in_start(
+	starts: Array[Vector2i],
+	end: Array[Vector2i],
+) -> int:
+	var i := 0
+	for s in starts:
+		if s in end: return i
+		i += 1
+	return -1
+
 func find_path(
 	starts: Array[Vector2i],
 	end: Array[Vector2i],
@@ -130,9 +138,19 @@ func find_path(
 ) -> Array[Vector2i]:
 	if not party: return []
 	var path : Array[Vector2i] = []
+	var start_index := _check_if_end_in_start(starts, end)
+	if start_index >= 0:
+		var closest_start := starts[start_index]
+		if include_start: path.append(closest_start)
+		return path
+	
+	
 	var _start := Vector2i.ZERO
 	var travel_data := TravelData.new(party)
 	for start in starts:
+		if include_start and \
+			not map.path_finder.is_passable(start, travel_data, end):
+				continue
 		var new_path := map.path_finder.A_star(start, end, travel_data)
 		if not path or new_path.size() < path.size():
 			path = new_path
