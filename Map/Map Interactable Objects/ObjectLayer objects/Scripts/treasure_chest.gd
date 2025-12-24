@@ -51,9 +51,9 @@ func player_interact(faction: MapFaction) -> void:
 #endregion
 
 enum ChestState{
-	closed,
-	open,
-	empty
+	closed = 0,
+	open = 1,
+	empty = 2
 }
 
 var state: ChestState:

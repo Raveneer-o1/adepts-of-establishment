@@ -23,6 +23,20 @@ extends Node2D
 ## an error is generated and the object is freed.
 var map: Map
 var object_name: String = ""
+
+## Reserved for derived class implementations - not used by arbitrary objects.
+## If [member ownable] is [code]false[/code], always returns [code]null[/code].
+## When ownership is enabled, tracks the controlling faction.
+## Can be [code]null[/code] even for ownable objects, indicating unclaimed status.
+var object_owner: MapFaction = null:
+	get: return object_owner if ownable else null
+	set(value): object_owner = value
+
+## Determines whether this object can be owned by a faction.
+## When [code]false[/code], [member object_owner] always returns [code]null[/code]
+## regardless of assignment attempts.
+var ownable: bool = false
+
 ## Determines whether the object is considered by the [Map] node during
 ## interaction calculations. Does not prevent direct calls to
 ## [method accept_interaction] or [method force_interaction_on],

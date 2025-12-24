@@ -190,7 +190,8 @@ func check_pass(tile_data: TileData) -> bool:
 	return _get_accumulated_value(TravelData.default_traversability(tile_data))
 
 ## Instantiates a [PartyEffect] scene from the specified [param path]
-## and adds it to this party.
+## and adds it to this party. [br]
+## Returns the instatiated node.
 func apply_effect(path: String) -> PartyEffect:
 	if not FileAccess.file_exists(path):
 		push_error("file '%s' does not exist" % path)

@@ -6,11 +6,15 @@ extends MapInteractableObject
 @onready var control: PartyControl = $Control
 @onready var inventory: PartyInventory = $Inventory
 
-@export var faction: MapFaction
 ## @experimental: will be replaced with a formatted [member object_name] + leader name
 @export var party_name: String
 @export_file_path("*") var portrait_texture: String
 
+## @deprecated: use [member MapInteractableObject.object_owner] instead
+## Returns [member MapInteractableObject.object_owner]
+var faction: MapFaction:
+	get: return object_owner
+	set(value): object_owner = value
 
 ## When set to [code]true[/code], the next movement attempt is canceled and
 ## this flag automatically resets to [code]false[/code].
@@ -49,6 +53,7 @@ func right_click_processed() -> bool:
 #region Abstract Definitions
 
 func _initialize() -> void:
+	ownable = true
 	loaded_portrait = load(portrait_texture)
 	_validate_refs()
 	object_name = "Party (%s)" % party_name

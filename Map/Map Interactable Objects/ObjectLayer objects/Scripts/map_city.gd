@@ -1,8 +1,11 @@
 class_name MapCity
 extends ObjectLayerObject
 
-## @experimental: currently not implemented
-var city_owner: MapFaction = null
+## @deprecated: use [member MapInteractableObject.object_owner] instead
+## Returns [member MapInteractableObject.object_owner]
+var city_owner: MapFaction:
+	get: return object_owner
+	set(value): object_owner = value
 
 func get_interaction_tiles(
 	party: MapParty = null,
@@ -96,4 +99,5 @@ var units: Array[UnitData]:
 var party_inside: MapParty
 
 func _initialize() -> void:
-	city_owner = map.game.get_faction(faction_index)
+	ownable = true
+	object_owner = map.game.get_faction(faction_index)
