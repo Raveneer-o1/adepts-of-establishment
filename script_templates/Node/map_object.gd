@@ -28,13 +28,16 @@ extends MapInteractableObject
 # Uncomment and implement the method below if the object should respond to right-click
 #func right_click_processed() -> bool:
 #	EventBus.popup_requested.emit(self)
-#	return true
+#	return true  # return true to stop further calls to other objects
 
 #region Abstract Implementation
 
 func can_interact(party: MapParty) -> bool:
 	# Return whether interaction with the provided party is possible
 	# If null is provided, return the default value used for visual hints
+	
+	# This method should NOT validate party position - use get_interaction_tiles()
+	# for position validation (see above)
 	if not party: return false
 	return false
 
@@ -81,20 +84,22 @@ func request_player_interaction(faction: MapFaction) -> bool:
 	# Return whether the player can interact with this object
 	# Includes actions like selecting active party or opening capital window
 	# NOTE: Only handles "left-click" interactions
-	#       "right-click" for information and game settings are managed separately
+	#       "right-click" for information and game settings are managed
+	#       through right_click_processed() (see above)
 	return false
 
 func player_interact(faction: MapFaction) -> void:
 	# Handle player interaction with this object
 	# Includes actions like selecting active party or opening capital window
 	# NOTE: Only handles "left-click" interactions
-	#       "right-click" for information and game settings are managed separately
+	#       "right-click" for information and game settings are managed
+	#       through right_click_processed() (see above)
 	return
 
 #endregion
 
 func _initialize() -> void:
-	# This method is called in _ready()
+	# This method is called deferred in _ready()
 	# You can not override _ready() as it contains vital validation checks and 
 	# reference initialization
 	pass

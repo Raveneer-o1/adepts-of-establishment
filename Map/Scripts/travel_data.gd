@@ -11,7 +11,7 @@ extends RefCounted
 ## [code]&"mountain"[/code][br]
 
 var safe_travel: bool
-## @experimental: cen be [code]null[/code]
+## @experimental: can be [code]null[/code]
 var travelling_party: MapParty
 
 var _cost_multiplier: int = 1

@@ -16,11 +16,11 @@ extends Node2D
 ## If neither alternative works and object removal is necessary, do not use
 ## [method queue_free] directly since map nodes maintain references to all
 ## [MapInteractableObject] instances. Instead, use [method Map.free_map_object].
-## [br][br]
-## [MapInteractableObject] automatically locates the [Map] node by traversing
+
+## Reference to the [Map] node containing this object. [br]
+## [MapInteractableObject] automatically locates the this node by traversing
 ## the scene tree upward. If no Map node is found (reaching the root),
 ## an error is generated and the object is freed.
-
 var map: Map
 var object_name: String = ""
 ## Determines whether the object is considered by the [Map] node during
@@ -103,17 +103,19 @@ func get_interaction_tiles(
 	return get_occupied_tiles(main)
 
 ## Processes interaction initiated by the specified [param party]. [br][br]
-## It generally performs no validation beyond basic input filtering.
-## Use [method can_interact] to verify interaction validity beforehand,
-## or call this directly to force interaction regardless. [br][br]
+## This method performs no validation beyond basic input filtering.
+## Use [method can_interact] or [method validate_and_interact] to verify
+## interaction validity beforehand, or call this directly
+## to force interaction regardless. [br][br]
 ## [b]Returns:[/b] Interaction cost in movement points.
 ## Does not deduct movement points from the party - caller must handle this.
 @abstract func accept_interaction(party: MapParty) -> int
 ## Processes interaction with the specified [param party] initiated by this object.
 ## [br][br]
-## It generally performs no validation beyond basic input filtering.
-## Use [method can_interact] to verify interaction validity beforehand,
-## or call this directly to force interaction regardless. [br][br]
+## This method performs no validation beyond basic input filtering.
+## Use [method can_interact] or [method validate_and_interact] to verify
+## interaction validity beforehand, or call this directly
+## to force interaction regardless. [br][br]
 ## [b]Returns:[/b] Interaction cost in movement points.
 ## Does not deduct movement points from the party - caller must handle this.
 @abstract func force_interaction_on(party: MapParty) -> int

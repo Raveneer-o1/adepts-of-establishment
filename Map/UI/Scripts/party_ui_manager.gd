@@ -55,6 +55,7 @@ func _update_values() -> void:
 	
 	var vacant_spots: Array[PartyEditorUnitPosition] = []
 	for place in places:
+		place.update_data()
 		if place not in mapping:
 			if place.unit: vacant_spots.append(place)
 			continue
@@ -66,7 +67,6 @@ func _update_values() -> void:
 			else:
 				place.move_unit(pos.unit)
 			continue
-		place.update_data()
 
 func _remove_data() -> void:
 	for place in places:
