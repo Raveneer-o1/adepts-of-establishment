@@ -132,7 +132,8 @@ func free_units_list() -> void:
 ## The duplicated objects become orphans but do not require manual freeing -
 ## previously generated copies are automatically cleaned up when this method is called.
 ## [br][br]
-## If you need to free the entire party scene, call [method free_units_list] manually.
+## You can call [method free_units_list] manually if, for example,
+## you need to free the entire party scene.
 func get_unit_list_copy() -> Array[UnitData]:
 	free_units_list()
 	var units_original := units
@@ -175,12 +176,9 @@ func get_movement_multiplier() -> int:
 	movement_multiplier_requested.emit()
 	return _get_accumulated_value(DEFAULT_MOVEMENT_MULTIPLIER)
 
-## By default, all tiles are passable. Effects can connect to
-## [signal movement_pass_check_requested] to block certain tile types
-const DEFAULT_PASS = true
 func check_pass(tile_data: TileData) -> bool:
 	movement_pass_check_requested.emit(tile_data)
-	return _get_accumulated_value(DEFAULT_PASS)
+	return _get_accumulated_value(TravelData.default_traversability(tile_data))
 
 ## Instantiates a [PartyEffect] scene from the specified [param path]
 ## and adds it to this party.

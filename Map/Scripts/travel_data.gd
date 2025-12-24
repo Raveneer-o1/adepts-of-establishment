@@ -10,6 +10,19 @@ extends RefCounted
 ## [code]&"forest"[/code][br]
 ## [code]&"mountain"[/code][br]
 
+static func default_traversability(tile_data: TileData) -> bool:
+	var tile_type: StringName = tile_data.get_custom_data("tile_type")
+	match tile_type:
+		&"ground": return true
+		&"water": return true
+		&"sand": return true
+		&"forest": return true
+		#&"mountain": return false
+	
+	# white-list approach doesn't let unexpected tile types to be passable
+	return false
+
+
 var safe_travel: bool
 ## @experimental: can be [code]null[/code]
 var travelling_party: MapParty
@@ -42,18 +55,6 @@ func get_cost(tile_data: TileData) -> int:
 	if custom_cost.is_valid(): return custom_cost.call(tile_data)
 	return tile_data.get_custom_data("traverse_cost") * _cost_multiplier
 
-func _default_traversability(tile_data: TileData) -> bool:
-	var tile_type: StringName = tile_data.get_custom_data("tile_type")
-	match tile_type:
-		&"ground": return true
-		&"water": return true
-		&"sand": return true
-		&"forest": return true
-		#&"mountain": return false
-	
-	# white-list approach doesn't let unexpected tile types to be passable
-	return false
-
 func can_traverse(tile_data: TileData) -> bool:
 	if custom_pass_check.is_valid(): return custom_pass_check.call(tile_data)
-	return _default_traversability(tile_data)
+	return default_traversability(tile_data)
