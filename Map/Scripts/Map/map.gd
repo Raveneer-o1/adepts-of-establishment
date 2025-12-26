@@ -204,8 +204,14 @@ func set_active_party(party: MapParty) -> void:
 	visualizer.reset_highlights()
 
 ## Finds a path from [param start] to [param end] for a given [param party]. [br]
-## If [param party] is not provided, uses [member active_party].
+## If [param party] is not provided, uses [member active_party]. [br]
+## If [param include_start] is [code]false[/code], the starting tile is excluded
+## from both passability checks and the resulting path.[br]
 ## [b]Returns[/b]: Array of tile coordinates representing the path, empty if no path found
+## [br][br]
+## [b]Note:[/b] Not optimized for large arrays - expects [param starts]
+## and [param ends] to contain not more than 10 elements each.
+## For larger search spaces may cause performance spikes.
 func find_path(
 	starts: Array[Vector2i],
 	end: Vector2i,

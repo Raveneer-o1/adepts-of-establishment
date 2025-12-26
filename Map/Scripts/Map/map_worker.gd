@@ -130,6 +130,14 @@ func _check_if_end_in_start(
 		i += 1
 	return -1
 
+## Finds a path from any tile in [param starts] to any tile in [param ends]
+## for the specified [param party]. [br]
+## If [param include_start] is [code]false[/code], the starting tile is excluded
+## from both passability checks and the resulting path.
+## [br][br]
+## [b]Note:[/b] Not optimized for large arrays - expects [param starts]
+## and [param ends] to contain not more than 10 elements each.
+## For larger search spaces may cause performance spikes.
 func find_path(
 	starts: Array[Vector2i],
 	end: Array[Vector2i],

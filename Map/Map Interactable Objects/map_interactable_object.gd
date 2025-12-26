@@ -156,12 +156,16 @@ func _initialize() -> void:
 	pass
 
 ## Attempts interaction with the specified [param party] if conditions permit.
-## Returns the interaction cost if successful, or [code]-1[/code] otherwise.[br][br]
+## This method does not allow interactions with deactiveted parties. 
+## If you need to force the interaction, use [method accept_interaction]
+## or [method force_interaction_on] directly. [br][br]
+## Returns the interaction cost if successful, or [code]-1[/code] otherwise. [br][br]
 ## Similar to [method accept_interaction] and [method force_interaction_on],
-## this method does not deduct movement points - the caller must handle this.[br][br]
+## this method does not deduct movement points - the caller must handle this. [br][br]
 ## If [param forced] is [code]true[/code], uses [method force_interaction_on];
 ## otherwise uses [method accept_interaction].
 func validate_and_interact(party: MapParty, forced: bool = false) -> int:
+	if not is_active: return -1
 	if not can_interact(party): return -1
 	if party.tile_position not in get_interaction_tiles(party): return -1
 	if forced: return force_interaction_on(party)

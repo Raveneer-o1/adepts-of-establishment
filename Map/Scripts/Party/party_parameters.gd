@@ -116,7 +116,7 @@ var movement_points: int = max_movement_points:
 	set(value): movement_points = clampi(value, 0, max_movement_points)
 
 var _unit_list_copy: Array[UnitData] = []
-var _unit_list_copy_for_freeing: Array[UnitData] = []
+#var _unit_list_copy_for_freeing: Array[UnitData] = []
 signal __freing_units_finished
 var __freing_units: bool = false:
 	get: return __freing_units
@@ -128,11 +128,11 @@ var __freing_units: bool = false:
 ## Processes one object per frame to avoid performance spikes.
 ## Use [code]await[/code] if you need to wait for complete removal.
 func free_units_list() -> void:
+	var unit_list_copy_for_freeing := _unit_list_copy
+	_unit_list_copy = []
 	if __freing_units: await __freing_units_finished
 	__freing_units = true
-	_unit_list_copy_for_freeing = _unit_list_copy.duplicate()
-	_unit_list_copy = []
-	for data in _unit_list_copy_for_freeing:
+	for data in unit_list_copy_for_freeing:
 		await get_tree().process_frame
 		data.queue_free()
 	__freing_units = false
