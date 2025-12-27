@@ -179,13 +179,17 @@ func  _ready() -> void:
 ## - Replaces all other [Object] references with [code]null[/code] [br][br]
 ## [b]Note:[/b] Dictionary entries with [Object] keys are completely removed.
 static func filter_data(data: Variant) -> void:
+	#print(data)
 	if data is Array:
+		var i := -1
 		for entry: Variant in data:
+			i += 1
 			if entry is UnitAttack:
-				entry = UnitAttack.serialized(entry)
+				data[i] = UnitAttack.serialized(entry)
+				#print("serialized UnitAttack: " + str(entry))
 				continue
 			if entry is Object:
-				entry = null
+				data[i] = null
 				continue
 			filter_data(entry)
 	if data is Dictionary:
@@ -196,6 +200,7 @@ static func filter_data(data: Variant) -> void:
 				continue
 			if data[key] is UnitAttack:
 				data[key] = UnitAttack.serialized(data[key])
+				#print("serialized unit_attack")
 				continue
 			if data[key] is Object:
 				data[key] = null
@@ -203,3 +208,5 @@ static func filter_data(data: Variant) -> void:
 			filter_data(data[key])
 		for key: Variant in keys_for_removal:
 			data.erase(key)
+	#print("=======")
+	#print(data)

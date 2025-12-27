@@ -2,13 +2,16 @@
 extends EditorScript
 
 func construct_effect_dict(a: AppliedEffect) -> Dictionary:
-	print("constructing effect")
+	print("\nConstructing effect '%s'" % a.effect_name)
 	var dummy: AppliedEffect = a.get_script().new()
 	var data := dummy.get_full_data(a)  # what the actual f
 	
+	#print(data["args"])
 	UnitData.filter_data(data["args"])
+	#print(data["args"])
 	
 	dummy.free()
+	print("'%s' is constructed\n" % a.effect_name)
 	return data
 
 func read_unit(u: Unit, full_path: String) -> void:
@@ -101,7 +104,7 @@ func _run() -> void:
 		return
 	file.store_line("const database = {")
 	scan_directory("res://Combat/Units/Derived units/")
-	#handle_file("res://Combat/Units/Derived units/Empire/e15 Elementalist.tscn")
+	#handle_file("res://Combat/Units/Derived units/Empire/e21 Arcanist.tscn")
 	
 	print("Storing end line")
 	file.store_line("\n# end of database\n}")
