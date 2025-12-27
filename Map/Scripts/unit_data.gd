@@ -187,7 +187,7 @@ static func filter_data(data: Variant) -> void:
 			if entry is Object:
 				entry = null
 				continue
-			filter_data(data)
+			filter_data(entry)
 	if data is Dictionary:
 		var keys_for_removal := []
 		for key: Variant in data:
@@ -200,6 +200,6 @@ static func filter_data(data: Variant) -> void:
 			if data[key] is Object:
 				data[key] = null
 				continue
-			filter_data(data)
+			filter_data(data[key])
 		for key: Variant in keys_for_removal:
 			data.erase(key)
