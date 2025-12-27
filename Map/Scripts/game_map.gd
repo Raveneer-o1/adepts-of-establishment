@@ -8,6 +8,8 @@ const test_map = preload("res://Map/Scenes/map.tscn")
 
 var current_map: Map
 
+@onready var factions_in_game: int = $Factions.get_child_count()
+
 @onready var test_faction: MapFaction = $Factions/Faction
 @onready var test_faction2: MapFaction = $Factions/Faction2
 
@@ -81,7 +83,7 @@ func get_faction(index: int) -> MapFaction:
 	if index < 0:
 		#push_error("Negative faction index")
 		return null
-	if index >= $Factions.get_child_count():
+	if index >= factions_in_game:
 		push_error("Faction index outside bounds")
 		return null
 	return $Factions.get_child(index)

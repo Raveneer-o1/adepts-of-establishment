@@ -7,12 +7,24 @@ var active_faction: MapFaction
 var active_faction_index: int
 @onready var factions: Array[MapFaction]
 
+var currnt_day: int = 0
+#var _faction_turn: int = 0:
+	#get: return _faction_turn
+	#set(value):
+		#if value >= factions_in_game:
+			#currnt_turn += 1
+			#_faction_turn = 0
+			#return
+		#_faction_turn = value
+
 func _next_faction() -> MapFaction:
 	var s := factions.size()
 	if s == 0: return null
-	active_faction_index = 0 \
-		if active_faction_index + 1 >= s \
-		else active_faction_index + 1
+	active_faction_index += 1
+	if active_faction_index >= s :
+		active_faction_index = 0 
+		currnt_day += 1
+	
 	return factions[active_faction_index]
 
 func next_turn() -> void:

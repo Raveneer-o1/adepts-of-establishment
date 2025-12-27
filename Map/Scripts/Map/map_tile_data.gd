@@ -14,13 +14,32 @@ var claimable: bool
 ## Defines the difficulty of claiming this tile. Has no effect when [member claimable]
 ## is [code]false[/code] or [member loyal_to] is [code]null[/code].
 ## Only influences calculations for the faction specified in [member loyal_to].
-var loyalty: float = 1.0
+var loyalty: float = 1.0:
+	get:
+		var days_owned := map.game.turn_manager.currnt_day - claimed_day
+		if days_owned < 0: push_error("Negative days owned")
+		if days_owned <= 0: return loyalty
+		if loyal_to == tile_owner:
+			return loyalty + days_owned * LOYALTY_INCREASE
+		var accumulated := loyalty - days_owned * LOYALTY_INCREASE
+		if accumulated >= 0.0: return accumulated
+		loyalty = -accumulated
+		loyal_to = tile_owner
+		claimed_day = map.game.turn_manager.currnt_day
+		return loyalty
+	set(value): loyalty = value
+var claimed_loyalty: float = 0.0
 ## Specifies which faction receives benefits from high [member loyalty] values.
 var loyal_to: MapFaction = null
-## If this value reaches zero, the tile is claimed
+## If this value reaches zero, the tile is claimed. By default, ranges from
+## [code]0.0[/code] to [code]1.0[/code]
 var claim_status: float = 0.0
+## Turn on which this tile was claimed
+var claimed_day: int = -1
 #endregion
 
+## Each turn loyalty of all claimed tiles is increased by this amount
+const LOYALTY_INCREASE = 0.025
 const TERRAIN_ATLAS_ID = 2
 
 func _hindered_claim(faction: MapFaction, power: float) -> bool:
@@ -54,6 +73,9 @@ func _update_owner(faction: MapFaction) -> void:
 		TERRAIN_ATLAS_ID,
 		faction.tile_atlas_coords.pick_random()
 	)
+	claim_status = 1.0
+	claimed_loyalty = loyalty
+	claimed_day = map.game.turn_manager.currnt_day
 	EventBus.tile_claimed.emit(self, previous_owner)
 
 ## Tries to claim the tile. Returns if the claim was successful.

@@ -361,7 +361,7 @@ func _initialize() -> void:
 		queue_free()
 		return
 	
-	worker.create_tile_data()
+	worker.create_tile_data.call_deferred()
 	
 	var size := get_map_size(terrain_layer)
 	min_tile = size[0]
