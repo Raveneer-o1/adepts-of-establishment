@@ -30,7 +30,10 @@ var object_name: String = ""
 ## Can be [code]null[/code] even for ownable objects, indicating unclaimed status.
 var object_owner: MapFaction = null:
 	get: return object_owner if ownable else null
-	set(value): object_owner = value
+	set(value):
+		if object_owner == value: return
+		object_owner = value
+		object_changed.emit()
 
 ## Determines whether this object can be owned by a faction.
 ## When [code]false[/code], [member object_owner] always returns [code]null[/code]
@@ -151,6 +154,14 @@ func get_interaction_tiles(
 
 @abstract func request_player_interaction(faction: MapFaction) -> bool
 @abstract func player_interact(faction: MapFaction) -> void
+
+## Emitted when the object undergoes significant transformation
+## (e.g., ownership change).
+## Expected to trigger full reinitialization if required.
+signal object_changed
+## Emitted for minor object modifications that don't warrant full reinitialization.
+## May not require any response beyond internal updates.
+signal object_modified
 
 func _initialize() -> void:
 	pass

@@ -65,4 +65,5 @@ func _check_turn_start(f: MapFaction) -> void:
 func _ready() -> void:
 	EventBus.tile_claimed.connect(_check_claimed_tile)
 	EventBus.map_turn_started.connect(_check_turn_start)
+	this_object.object_changed.connect.call_deferred(set_influence_and_frontier)
 	set_influence_and_frontier.call_deferred()
