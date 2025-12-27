@@ -18,7 +18,7 @@ var loyalty: float = 1.0
 ## Specifies which faction receives benefits from high [member loyalty] values.
 var loyal_to: MapFaction = null
 ## If this value reaches zero, the tile is claimed
-var claim_status: float = 1.0
+var claim_status: float = 0.0
 #endregion
 
 const TERRAIN_ATLAS_ID = 2
@@ -47,17 +47,28 @@ func _claim(faction: MapFaction, power: float) -> bool:
 	return _regular_claim(faction, power)
 
 func _update_owner(faction: MapFaction) -> void:
+	var previous_owner := tile_owner
 	tile_owner = faction
 	map.terrain_layer.set_cell(
 		coordinates,
 		TERRAIN_ATLAS_ID,
 		faction.tile_atlas_coords.pick_random()
 	)
+	EventBus.tile_claimed.emit(self, previous_owner)
 
+## Tries to claim the tile. Returns if the claim was successful.
 func try_claiming(faction: MapFaction, power: float) -> bool:
 	var claimed := _claim(faction, power)
 	if claimed: _update_owner(faction)
 	return claimed
+
+func get_neighbors() -> Array[MapTileData]:
+	var neighbor_coords := map.get_neighbors(coordinates)
+	var res: Array[MapTileData] = []
+	for coords in neighbor_coords:
+		var data:= map.get_tile_data(coords)
+		if data: res.append(data)
+	return res
 
 func _init(coords: Vector2i, _map: Map) -> void:
 	coordinates = coords

@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bmp8htqi7l1i"]
+[gd_scene load_steps=11 format=3 uid="uid://bmp8htqi7l1i"]
 
 [ext_resource type="Script" uid="uid://bjh2fm6srs7dd" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scripts/map_capital.gd" id="1_xml8a"]
 [ext_resource type="Texture2D" uid="uid://hqdbkrdckl6p" path="res://Arts/Map objects/undead capital.png" id="2_qeal6"]
+[ext_resource type="Script" uid="uid://dl0lsoe05e0ym" path="res://Map/Map Interactable Objects/Extentions/land_claimer.gd" id="3_v86wr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_naogk"]
 atlas = ExtResource("2_qeal6")
@@ -55,8 +56,13 @@ animations = [{
 
 [node name="MapCity" type="Node2D"]
 script = ExtResource("1_xml8a")
+faction_index = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3d4ut")
 autoplay = "default"
 offset = Vector2(0, -46)
+
+[node name="LandClaimer" type="Node" parent="."]
+script = ExtResource("3_v86wr")
+metadata/_custom_type_script = "uid://dl0lsoe05e0ym"

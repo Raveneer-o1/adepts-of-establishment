@@ -67,4 +67,6 @@ signal popup_requested(object: Variant)
 ## Distinct from [signal popup_requested] - see that signal's documentation.[br][br]
 ## See also: [WindowBase]
 signal window_requested(info: Variant)
+
+signal tile_claimed(tile: MapTileData, previous_owner: MapFaction)
 #endregion

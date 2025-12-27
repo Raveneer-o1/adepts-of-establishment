@@ -79,7 +79,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 func get_faction(index: int) -> MapFaction:
 	if index < 0:
-		push_error("Negative faction index")
+		#push_error("Negative faction index")
 		return null
 	if index >= $Factions.get_child_count():
 		push_error("Faction index outside bounds")
