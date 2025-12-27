@@ -17,14 +17,21 @@ var influence: Array[MapTileData] = []
 var land_owner: MapFaction:
 	get: return this_object.object_owner
 
+## Calculates the entire area of influence and the frontier.
+## This method can be slow for large maps, avoid calling it too often.
 func set_influence_and_frontier() -> void:
 	var open_set := this_object.get_occupied_tiles()
+	# using hashtable because it's faster than arrays to check if element already exists
+	# and eliminates the need to filter out duplicates
 	var ht := {}
 	var frontier_ht := {}
 	while open_set:
 		var current_coords: Vector2i = open_set.pop_front()
 		var current_data := this_object.map.get_tile_data(current_coords)
 		if not current_data: continue
+		if current_data.tile_owner != land_owner:
+			frontier_ht[current_data] = null
+			continue
 		if ht.has(current_data): continue
 		for n in current_data.get_neighbors():
 			if ht.has(n): continue
@@ -37,6 +44,8 @@ func set_influence_and_frontier() -> void:
 	influence.assign(ht.keys())
 	frontier.assign(frontier_ht.keys())
 
+## Applies claim power (see [member claim_power]) to all tiles in the
+## [member frontier].
 func apply_claim() -> void:
 	var power := clampf(claim_power / frontier.size(), 0.0, max_claim_power)
 	for tile in frontier:
@@ -47,6 +56,7 @@ func apply_claim() -> void:
 	set_influence_and_frontier()
 
 func _check_claimed_tile(tile: MapTileData, previous_owner: MapFaction) -> void:
+	# TODO: Handle tile ownership changes
 	pass
 
 func _check_turn_start(f: MapFaction) -> void:

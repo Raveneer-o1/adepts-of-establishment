@@ -95,13 +95,6 @@ func _process_click() -> void:
 		var tile := map.get_tile_coords()
 		active_faction.api.tile_clicked.emit(tile)
 	
-		# WARNING: remove this line!
-		map.claim_tile(
-			map.get_tile_data(),
-			active_faction,
-			0.6
-		)
-	
 	get_viewport().set_input_as_handled()
 
 func _process_right_click() -> void:
