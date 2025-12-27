@@ -62,6 +62,11 @@ extends Node2D
 ## [Party] objects are not managed by this node: they are managed separetly.
 @onready var object_manager: MapObjectManager = $ObjectManager
 
+## [i][img width=24]res://icons/Raveneer-o1.png[/img] 27.12.2025:[/i][br]
+## 40x42 map [i](1680 tiles)[/i] uses 2.4 MiB of memory.
+## Not a big deal right now but may be a bottleneck for scalability
+var tile_data_hashmap: Dictionary[Vector2i, MapTileData]
+
 var game: GameMap
 
 ## Currently selected party that the player controls
@@ -181,6 +186,12 @@ func get_global_coords(tile_coord: Vector2i) -> Vector2:
 ## If nothig is provided, uses current mouse position.
 func get_tile_coords(coords: Vector2 = get_global_mouse_position()) -> Vector2i:
 	return terrain_layer.local_to_map(terrain_layer.to_local(coords))
+
+## Returns a [MapTileData] object on the specified [param coords].
+## If nothig is provided, uses current mouse position.
+## If no object exists at the specified coordinates, returns [code]null[/code].
+func get_tile_data(coords: Vector2i = get_tile_coords()) -> MapTileData:
+	return tile_data_hashmap.get(coords)
 
 ## Returns the distance between two hex positions in axial coordinates. [br]
 ## [b]Note:[/b] This function assumes axial coordinate system
@@ -350,6 +361,8 @@ func _initialize() -> void:
 		queue_free()
 		return
 	
+	worker.create_tile_data()
+	
 	var size := get_map_size(terrain_layer)
 	min_tile = size[0]
 	max_tile = size[1]
@@ -392,3 +405,7 @@ func player_act(coords: Vector2i, faction: MapFaction) -> void:
 			await worker.move_active_party_to_object(obj)
 			return
 	worker.move_active_party(coords)
+
+## @experimental: arguments type and behavior are subjects to change
+func claim_tile(tile: MapTileData, faction: MapFaction, power: float) -> bool:
+	return worker.do_tile_claim(tile, faction, power)

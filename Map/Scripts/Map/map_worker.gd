@@ -175,3 +175,23 @@ func check_object_layer() -> void:
 			c.x > max_tile.x:
 				push_error("Object layer is bigger than terrain layer!
 	object at: " + str(c) + "; map size: " + str(min_tile) + "-" + str(max_tile))
+
+
+## Initializes an empty [MapTileData] object for every terrain tile.[br]
+## This operation is computationally expensive due to the volume of objects created.
+## Should be executed behind a loading screen or other masking .
+func create_tile_data() -> void:
+	for tile in map.terrain_layer.get_used_cells():
+		map.tile_data_hashmap[tile] = MapTileData.new(tile, map)
+	
+	# this would break on negative coordinates
+	#for i in range(map.max_tile.x):
+		#var array := []
+		#for j in range(map.max_tile.y):
+			#array.append(RefCounted.new())
+		#map.tile_data.append(array)
+
+func do_tile_claim(tile: MapTileData, faction: MapFaction, power: float = 1.0) -> bool:
+	if not tile: return false
+	return tile.try_claiming(faction, power)
+	
