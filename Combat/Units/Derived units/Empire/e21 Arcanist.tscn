@@ -161,6 +161,7 @@ attack_effect = ExtResource("5_ugj4y")
 script = ExtResource("6_vhgmw")
 type = 1
 accuracy = 0.85
+initiative = 30
 target_validation = ExtResource("8_0byqf")
 additional_targets = ExtResource("9_0jddn")
 damage_policy = SubResource("Resource_xbk8a")
@@ -169,6 +170,8 @@ applying_effects = Dictionary[String, Variant]({
 })
 
 [node name="ProtectOnAttack" parent="UnitParameters" index="2" instance=ExtResource("12_1qqvb")]
+visual_path = "res://Combat/Effects/Scenes/generic_blue_effect.tscn"
+shield_visual_path = "res://Combat/Effects/Scenes/shield.tscn"
 
 [node name="Retaliation" parent="UnitParameters" index="3" node_paths=PackedStringArray("attack_on_retaliation") instance=ExtResource("13_bpv5l")]
 damage = 30

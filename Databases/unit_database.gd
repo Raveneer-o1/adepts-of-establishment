@@ -903,7 +903,7 @@ const database = {
 } 
 }]
 , &"effects": [{
- &"effect_name": "Defender", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/protect_on_attack.tscn", &"args": [50, true, 0.5, 0.3, -1]
+ &"effect_name": "Defender", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/protect_on_attack.tscn", &"args": [50, true, 0.5, 0.3, -1, "res://Combat/Effects/Scenes/generic_blue_effect.tscn", "res://Combat/Effects/Scenes/shield.tscn"]
  
 }, {
  &"effect_name": "Retaliation", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/retaliation.tscn", &"args": [30, {

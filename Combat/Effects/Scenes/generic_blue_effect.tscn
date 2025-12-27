@@ -1,0 +1,92 @@
+[gd_scene load_steps=14 format=3 uid="uid://dwn0vs5rjthal"]
+
+[ext_resource type="Script" uid="uid://dp6v1vxipfhl7" path="res://Combat/Effects/TemporaryEffect.gd" id="1_66xyp"]
+[ext_resource type="Texture2D" uid="uid://bltfbvr46kms4" path="res://Arts/Combat effects/generic buff .png" id="1_y4m1o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18pll"]
+atlas = ExtResource("1_y4m1o")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pyimw"]
+atlas = ExtResource("1_y4m1o")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w7koj"]
+atlas = ExtResource("1_y4m1o")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00yyi"]
+atlas = ExtResource("1_y4m1o")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_seutl"]
+atlas = ExtResource("1_y4m1o")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o26xx"]
+atlas = ExtResource("1_y4m1o")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_komld"]
+atlas = ExtResource("1_y4m1o")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72aoi"]
+atlas = ExtResource("1_y4m1o")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ea4tu"]
+atlas = ExtResource("1_y4m1o")
+region = Rect2(0, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mpo13"]
+atlas = ExtResource("1_y4m1o")
+region = Rect2(0, 288, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nqvnt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18pll")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pyimw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w7koj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00yyi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_seutl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o26xx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_komld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72aoi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ea4tu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mpo13")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="GenericBlueEffect" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_nqvnt")
+autoplay = "default"
+offset = Vector2(0, -20)
+script = ExtResource("1_66xyp")
+metadata/_custom_type_script = "uid://dp6v1vxipfhl7"
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]
+[connection signal="frame_changed" from="." to="." method="_on_frame_changed"]
