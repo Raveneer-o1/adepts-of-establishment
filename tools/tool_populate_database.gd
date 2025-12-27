@@ -29,15 +29,15 @@ func read_unit(u: Unit, full_path: String) -> void:
 	
 	
 	var base_paramaters := unit_parameters.base_paramaters
-	var params := {
+	var params: Dictionary[StringName, Variant] = {
 		"scene_path" = full_path,
-		"level" = unit_parameters.level,
-		"large_unit" = unit_parameters.large_unit,
-		"immunities" = unit_parameters.underlying_immunities,
-		"description" = u.full_description,
+		"level" = unit_parameters.level if unit_parameters.level else 1,
+		"large_unit" = true if unit_parameters.large_unit else false,
+		"immunities" = unit_parameters.underlying_immunities if unit_parameters.underlying_immunities else [],
+		"description" = u.full_description if u.full_description else "",
 		"faction" = u.faction,
-		"unit_type" = u.unit_type,
-		"needed_xp" = u.needed_xp,
+		"unit_type" = u.unit_type if u.unit_type else GlobalDefs.UnitType.Undefined,
+		"needed_xp" = u.needed_xp if u.needed_xp else 0,
 		"attacks" = attacks,
 		"effects" = effects,
 		"base_damage" = base_paramaters.get_indexed("base_damage"),
@@ -46,6 +46,7 @@ func read_unit(u: Unit, full_path: String) -> void:
 		"evasion" = base_paramaters.get_indexed("evasion"),
 		"shielding_chance" = base_paramaters.get_indexed("shielding_chance"),
 	}
+	#print(params)
 	
 	write_unit(u.unit_name, params)
 	dict[u.unit_name] = null
@@ -91,7 +92,7 @@ func write_unit(name: String, params: Dictionary) -> void:
 	content = content.replace("{", "{\n")
 	content = content.replace("]", "]\n")
 	file.store_string(content)
-	
+
 
 var dict: Dictionary
 var file : FileAccess
