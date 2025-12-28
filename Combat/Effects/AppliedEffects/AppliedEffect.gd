@@ -191,6 +191,12 @@ func get_full_data(other_effect: AppliedEffect = null) -> Dictionary:
 		"args" = _get_full_data(),
 	}
 
+func deactivate() -> void:
+	disconnect_callables()
+
+func activate() -> void:
+	connect_callables()
+
 ## Call to manually remove the effect (e.g., if cured or expired).
 ## Emits [member EventBus.effect_lifted]. [br]
 ## If you need to remove effect without emitting the signal (e.g. when a unit dies),
@@ -238,24 +244,19 @@ func silence_effect(time: int = -1, is_round: bool = false) -> void:
 	
 	var silenced_storage := get_parent().find_child("SilencedEffects", false)
 	if not silenced_storage:
-		print_debug("Unable to find 'SilencedEffects' node!")
+		push_error("Unable to find 'SilencedEffects' node!")
 		return
 	
 	silenced = true
 	
-	get_parent().remove_child(self)
-	silenced_storage.add_child(self)
+	reparent(silenced_storage)
 	
-	# connect timeout clock if necessary
 	if time >= 0:
 		silenced_turns = time
 		if round: EventBus.round_ended.connect(silence_count)
 		else: EventBus.turn_ended.connect(check_silence_countdown)
 	
-	# disconnect callables
-	for signal_in_pairs: Signal in _signal_function_pairs:
-		if signal_in_pairs.is_connected(_signal_function_pairs[signal_in_pairs]):
-			signal_in_pairs.disconnect(_signal_function_pairs[signal_in_pairs])
+	deactivate()
 
 ## Restores the effect to its functional state by reconnecting signals and moving
 ## it back to its original parent.
@@ -285,6 +286,12 @@ func connect_callables() -> void:
 		var c: Callable = _signal_function_pairs[signal_in_pairs]
 		if not signal_in_pairs.is_connected(c):
 			signal_in_pairs.connect(c)
+
+func disconnect_callables() -> void:
+	for signal_in_pairs: Signal in _signal_function_pairs:
+		var c: Callable = _signal_function_pairs[signal_in_pairs]
+		if signal_in_pairs.is_connected(c):
+			signal_in_pairs.disconnect(c)
 
 
 ## Called when this node is added to a unit. Automatically applies the effect.

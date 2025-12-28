@@ -529,6 +529,9 @@ func resurrect(message: String = "Revived!") -> void:
 	death_visualized = false
 	animation_handle.play(&"default")
 	
+	for effect in parameters.get_all_effects():
+		effect.activate()
+	
 	system.display_text_near_unit(self, message)
 	EventBus.unit_revived.emit(self)
 
@@ -720,6 +723,8 @@ func die() -> void:
 	#party.units[party_position] = null
 	spot.move_unit_to_graveyard()
 	death_visualized = true
+	for effect in parameters.get_all_effects():
+		effect.deactivate()
 
 #endregion
 
