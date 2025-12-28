@@ -43,8 +43,23 @@ extends Node2D
 ## This layer should contain [code]traverse_cost[/code] custom
 ## data layer with [b]int[/b] type (value of -1 means the tile is not traversable)
 @onready var terrain_layer : TileMapLayer = %TerrainLayer
-## Layer containing map ommovable objects like cities, mines, etc.
+## Layer containing map immovable objects like cities, mines, etc.
+## [br][br]
+## Note: In the current development workflow, this layer will often be empty
+## because we're editing maps directly in Godot's editor. Tile-bound objects
+## that would normally be placed here are instead treated as "free" objects
+## managed by the [member object_manager] for easier in-editor manipulation.
 @onready var objects_layer : MapObjectsLayer = %ObjectsLayer
+
+## Handles "free" objects - objects that are not part of the [member objects_layer].
+## [Party] objects are not managed by this node: they are managed separately. [br][br]
+## 
+## For the time being, most tile-bound objects are treated as "free"
+## objects and managed here rather than in [member objects_layer].
+## This allows to edit maps directly in Godot's editor without
+## implementing a separate map editor. 
+@onready var object_manager: MapObjectManager = $ObjectManager
+
 ## Layer used for highlighting tiles during pathfinding and interactions
 @onready var highlight_layer: TileMapLayer = %HighlightLayer
 
@@ -58,9 +73,6 @@ extends Node2D
 @onready var worker: MapWorker = $Worker
 ## Shows the information (like highlights) to the player
 @onready var visualizer: MapVisualizer = $Visualizer
-## Handles "free" objects - objects that are not part of the [member objects_layer].
-## [Party] objects are not managed by this node: they are managed separetly.
-@onready var object_manager: MapObjectManager = $ObjectManager
 
 ## [i][img width=24]res://icons/Raveneer-o1.png[/img] 27.12.2025:[/i][br]
 ## 40x42 map [i](1680 tiles)[/i] uses 2.4 MiB of memory.

@@ -385,7 +385,7 @@ tile_set = SubResource("TileSet_kyln5")
 
 [node name="ObjectsLayer" type="TileMapLayer" parent="MapLayers"]
 unique_name_in_owner = true
-tile_map_data = PackedByteArray("AAAgABAAAAADAAAAAAAPABgAAAAAAAIAAAAOABkAAAAAAAIAAAAKAAEABwAAAAAAAAAHAAAABwAAAAAAAAAJABkADQAAAAAAAgAPABkACgAAAAAAAAAIAA8AAgAAAAAAAAAPAAUABgAAAAAAAAAeABQADQAAAAAAAQANAAwABwAAAAAAAAAnACQABwAAAAAAAAANAAQACAAAAAAAAAAGACcACgAAAAAAAAAKACMACwAAAAAAAAAbAAAADQAAAAAAAwAGAAUADQAAAAAAAwAPAAwADQAAAAAAAwAdACUADQAAAAAAAwAHABMAAAABAAEAAAAGAA8AAAADAAAAAAAHABEAAAACAAEAAAAAACUAAAAAAAIAAAABACUAAAABAAIAAAABACYAAAABAAIAAAABACcAAAADAAEAAAAAACYAAAADAAEAAAAKABEAAAABAAIAAAAKABIAAAAAAAIAAAAKABMAAAAAAAIAAAAIABQAAAAAAAIAAAAJABQAAAAAAAIAAAAIABEAAAAAAAIAAAAPAAoAAAABAAIAAAAOAAsAAAADAAEAAAAPAAsAAAABAAIAAAAQAAsAAAADAAEAAAAPAAgAAAAAAAIAAAAOAAgAAAADAAEAAAANAAkAAAADAAEAAAAeABUAAAAAAAIAAAAdABUAAAADAAEAAAAgABQAAAAAAAIAAAAcABQAAAAAAAIAAAAQAB0AAAABAAIAAAAPAB4AAAABAAIAAAAPAB8AAAAAAAIAAAAPACAAAAADAAEAAAAQACAAAAAAAAIAAAARAB8AAAABAAIAAAASAB4AAAABAAIAAAASAB8AAAABAAIAAAARACAAAAAAAAIAAAAQACEAAAAAAAIAAAAPACIAAAABAAIAAAAPACEAAAABAAIAAAAOACEAAAADAAEAAAAMABsABQAAAAAAAAAFABQABQABAAAAAAAVAAgABQACAAAAAAAeACAADQAAAAAAAwAXACMADQAAAAAAAwAiAB4ADQAAAAAAAwAkACIADQAAAAAABAARAB0ABwAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAgABAAAAADAAAAAAAPABgAAAAAAAIAAAAOABkAAAAAAAIAAAAKAAEABwAAAAAAAAAHAAAABwAAAAAAAAAPABkACgAAAAAAAAAIAA8AAgAAAAAAAAAPAAUABgAAAAAAAAANAAwABwAAAAAAAAAnACQABwAAAAAAAAANAAQACAAAAAAAAAAGACcACgAAAAAAAAAKACMACwAAAAAAAAAbAAAADQAAAAAAAwAGAAUADQAAAAAAAwAPAAwADQAAAAAAAwAdACUADQAAAAAAAwAHABMAAAABAAEAAAAGAA8AAAADAAAAAAAHABEAAAACAAEAAAAAACUAAAAAAAIAAAABACUAAAABAAIAAAABACYAAAABAAIAAAABACcAAAADAAEAAAAAACYAAAADAAEAAAAKABEAAAABAAIAAAAKABIAAAAAAAIAAAAKABMAAAAAAAIAAAAIABQAAAAAAAIAAAAJABQAAAAAAAIAAAAIABEAAAAAAAIAAAAPAAoAAAABAAIAAAAOAAsAAAADAAEAAAAPAAsAAAABAAIAAAAQAAsAAAADAAEAAAAPAAgAAAAAAAIAAAAOAAgAAAADAAEAAAANAAkAAAADAAEAAAAeABUAAAAAAAIAAAAdABUAAAADAAEAAAAgABQAAAAAAAIAAAAcABQAAAAAAAIAAAAQAB0AAAABAAIAAAAPAB4AAAABAAIAAAAPAB8AAAAAAAIAAAAPACAAAAADAAEAAAAQACAAAAAAAAIAAAARAB8AAAABAAIAAAASAB4AAAABAAIAAAASAB8AAAABAAIAAAARACAAAAAAAAIAAAAQACEAAAAAAAIAAAAPACIAAAABAAIAAAAPACEAAAABAAIAAAAOACEAAAADAAEAAAAMABsABQAAAAAAAAAFABQABQABAAAAAAAVAAgABQACAAAAAAAeACAADQAAAAAAAwAXACMADQAAAAAAAwAiAB4ADQAAAAAAAwARAB0ABwAAAAAAAAA=")
 tile_set = SubResource("TileSet_3ily0")
 script = ExtResource("20_1e4ck")
 
@@ -396,12 +396,21 @@ tile_set = SubResource("TileSet_1e4ck")
 [node name="ObjectManager" type="Node" parent="."]
 script = ExtResource("3_ue3ts")
 
+[node name="UndeadCapital" parent="ObjectManager" instance=ExtResource("12_l17lq")]
+position = Vector2(594, 558)
+faction_index = 1
+
+[node name="EmpireCapital" parent="ObjectManager" instance=ExtResource("15_ue3ts")]
+position = Vector2(1445, 754)
+faction_index = 0
+
 [node name="Parties" type="Node" parent="."]
 
-[node name="MapParty" parent="Parties" instance=ExtResource("12_kwhd2")]
+[node name="MapParty" parent="Parties" node_paths=PackedStringArray("owner_capital") instance=ExtResource("12_kwhd2")]
 position = Vector2(567, 601)
 party_name = "Strong dudes"
 portrait_texture = "res://Arts/Placeholders/Army.jpg"
+owner_capital = NodePath("../../ObjectManager/EmpireCapital")
 
 [node name="UnitData" type="Node" parent="Parties/MapParty"]
 script = ExtResource("21_bl7ab")
@@ -447,6 +456,7 @@ metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 position = Vector2(1081, 775)
 party_name = "Thieves"
 portrait_texture = "res://Arts/Placeholders/Army.jpg"
+faction_index = 1
 
 [node name="UnitData" type="Node" parent="Parties/MapParty0"]
 script = ExtResource("21_bl7ab")
@@ -470,6 +480,7 @@ metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 position = Vector2(636, 579)
 party_name = "Thieves"
 portrait_texture = "res://Arts/Placeholders/Army.jpg"
+faction_index = 1
 
 [node name="UnitData" type="Node" parent="Parties/MapParty1"]
 script = ExtResource("21_bl7ab")
@@ -487,6 +498,7 @@ metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 position = Vector2(974, 341)
 party_name = "Thieves"
 portrait_texture = "res://Arts/Placeholders/Army.jpg"
+faction_index = 1
 
 [node name="UnitData2" type="Node" parent="Parties/MapParty2"]
 script = ExtResource("21_bl7ab")
@@ -516,6 +528,7 @@ metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 position = Vector2(1214, 732)
 party_name = "Fast af"
 portrait_texture = "res://Arts/Placeholders/Army alt.jpg"
+faction_index = 1
 
 [node name="UnitData" type="Node" parent="Parties/MapParty3"]
 script = ExtResource("21_bl7ab")
@@ -533,6 +546,7 @@ metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 position = Vector2(542, 599)
 party_name = "Thieves"
 portrait_texture = "res://Arts/Placeholders/Army.jpg"
+faction_index = 1
 
 [node name="UnitData" type="Node" parent="Parties/MapParty4"]
 script = ExtResource("21_bl7ab")
@@ -550,6 +564,7 @@ metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 position = Vector2(883, 701)
 party_name = "Thieves"
 portrait_texture = "res://Arts/Placeholders/Army.jpg"
+faction_index = 1
 
 [node name="UnitData" type="Node" parent="Parties/MapParty5"]
 script = ExtResource("21_bl7ab")
@@ -573,6 +588,7 @@ metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 position = Vector2(1068, 491)
 party_name = "Thieves"
 portrait_texture = "res://Arts/Placeholders/Army.jpg"
+faction_index = 1
 
 [node name="UnitData" type="Node" parent="Parties/MapParty6"]
 script = ExtResource("21_bl7ab")
@@ -609,6 +625,7 @@ metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 position = Vector2(394, 360)
 party_name = "Thieves"
 portrait_texture = "res://Arts/Placeholders/Army.jpg"
+faction_index = 1
 
 [node name="UnitData" type="Node" parent="Parties/MapParty7"]
 script = ExtResource("21_bl7ab")
@@ -632,6 +649,7 @@ metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 position = Vector2(675, 165)
 party_name = "Thieves"
 portrait_texture = "res://Arts/Placeholders/Army.jpg"
+faction_index = 1
 
 [node name="UnitData" type="Node" parent="Parties/MapParty8"]
 script = ExtResource("21_bl7ab")
@@ -655,6 +673,7 @@ metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 position = Vector2(449, 140)
 party_name = "Thieves"
 portrait_texture = "res://Arts/Placeholders/Army.jpg"
+faction_index = 1
 
 [node name="UnitData" type="Node" parent="Parties/MapParty9"]
 script = ExtResource("21_bl7ab")

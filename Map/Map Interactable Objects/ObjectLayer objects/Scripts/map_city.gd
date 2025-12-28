@@ -86,8 +86,6 @@ func player_interact(faction: MapFaction) -> void:
 
 #endregion
 
-@export var faction_index: int
-
 var units: Array[UnitData]:
 	get:
 		var res: Array[UnitData] = []
@@ -98,6 +96,5 @@ var units: Array[UnitData]:
 
 var party_inside: MapParty
 
-func _initialize() -> void:
-	ownable = true
-	object_owner = map.game.get_faction(faction_index)
+#func _initialize() -> void:
+	#ownable = true

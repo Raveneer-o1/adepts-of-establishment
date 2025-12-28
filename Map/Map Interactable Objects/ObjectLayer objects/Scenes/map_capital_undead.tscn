@@ -56,7 +56,9 @@ animations = [{
 
 [node name="MapCity" type="Node2D"]
 script = ExtResource("1_xml8a")
-faction_index = 1
+object_name = "Undead Capital"
+ownable = true
+interaction_priority = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3d4ut")

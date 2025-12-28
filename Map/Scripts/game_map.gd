@@ -10,8 +10,8 @@ var current_map: Map
 
 @onready var factions_in_game: int = $Factions.get_child_count()
 
-@onready var test_faction: MapFaction = $Factions/Faction
-@onready var test_faction2: MapFaction = $Factions/Faction2
+@onready var test_faction: MapFaction = $Factions/Empire
+@onready var test_faction2: MapFaction = $Factions/Necropolis
 
 ## Resumes map processing.
 func enable_map() -> void:
@@ -46,13 +46,8 @@ func _test_init() -> void:
 	var c := load(GlobalDefs.get_faction_controller(test_faction.controller))
 	var c2 := load(GlobalDefs.get_faction_controller(test_faction2.controller))
 	test_faction.api.add_child(c.instantiate())
-	test_faction2.api.add_child(c.instantiate())
+	test_faction2.api.add_child(c2.instantiate())
 	current_map.active_faction = test_faction
-	(current_map.find_child("MapParty") as MapParty).\
-		init_party_parameters(test_faction)
-	for i in range(10):
-		(current_map.find_child("MapParty%d" % i) as MapParty).\
-			init_party_parameters(test_faction2)
 	EventBus.map_turn_started.emit(test_faction)
 	test_faction.api.turn_started.emit()
 

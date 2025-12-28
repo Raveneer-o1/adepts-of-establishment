@@ -17,17 +17,30 @@ extends Node2D
 ## [method queue_free] directly since map nodes maintain references to all
 ## [MapInteractableObject] instances. Instead, use [method Map.free_map_object].
 
+## When set, automatically determines [member object_owner] during game initialization.
+## Takes precedence over [member faction_index].
+## Only affects initial setup - do not use during gameplay.
+@export var owner_capital: MapCapital
+
+## When set (non negative), automatically determines [member object_owner]
+## during game initialization. Ignored if [member owner_capital] is specified.
+## Only affects initial setup - do not use during gameplay.
+@export var faction_index: int = -1
+
 ## Reference to the [Map] node containing this object. [br]
 ## [MapInteractableObject] automatically locates the this node by traversing
 ## the scene tree upward. If no Map node is found (reaching the root),
 ## an error is generated and the object is freed.
 var map: Map
-var object_name: String = ""
+@export var object_name: String = ""
 
 ## Reserved for derived class implementations - not used by arbitrary objects.
 ## If [member ownable] is [code]false[/code], always returns [code]null[/code].
 ## When ownership is enabled, tracks the controlling faction.
 ## Can be [code]null[/code] even for ownable objects, indicating unclaimed status.
+## [br][br]
+## When editing the map, you can assign [member owner_capital] or 
+## [member faction_index] to set the owner of the object.
 var object_owner: MapFaction = null:
 	get: return object_owner if ownable else null
 	set(value):
@@ -38,7 +51,7 @@ var object_owner: MapFaction = null:
 ## Determines whether this object can be owned by a faction.
 ## When [code]false[/code], [member object_owner] always returns [code]null[/code]
 ## regardless of assignment attempts.
-var ownable: bool = false
+@export var ownable: bool = false
 
 ## Determines whether the object is considered by the [Map] node during
 ## interaction calculations. Does not prevent direct calls to
@@ -48,10 +61,10 @@ var is_active: bool = true
 
 ## Determines interaction priority when multiple objects occupy the same tile.
 ## Higher values receive priority; negative values are permitted.
-var interaction_priority: int = 0
+@export var interaction_priority: int = 0
 ## Determines interaction priority when party can interact with multiple objects.
 ## Higher values receive priority; negative values are permitted.
-var party_interaction_priority: int = 0
+@export var party_interaction_priority: int = 0
 
 ## Processes right-click interaction with this object.
 ## Returns [code]true[/code] if the right-click was consumed.
@@ -182,10 +195,20 @@ func validate_and_interact(party: MapParty, forced: bool = false) -> int:
 	if forced: return force_interaction_on(party)
 	return accept_interaction(party)
 
-func _register_object() -> void:
+var _object_registered := false
+
+func register_object() -> void:
+	if _object_registered: return
 	tile_position = map.get_tile_coords(global_position)
 	
+	if owner_capital:
+		owner_capital.register_object()
+		object_owner = owner_capital.object_owner
+	elif faction_index >= 0:
+		object_owner = map.game.get_faction(faction_index)
+	
 	_initialize()
+	_object_registered = true
 
 func _ready() -> void:
 	var next_parent := get_parent()
@@ -196,4 +219,4 @@ func _ready() -> void:
 		push_error("Unable to find map for object '%s'" % object_name)
 		queue_free()
 		return
-	_register_object.call_deferred()
+	register_object.call_deferred()
