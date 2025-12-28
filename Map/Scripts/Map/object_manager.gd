@@ -3,8 +3,7 @@ extends Node
 
 @onready var map: Map = $".."
 
-
-## instantiates provided [param prefab], adds is as a vhild to the
+## instantiates provided [param prefab], adds is as a child to the
 ## [MapObjectManager].[br]
 ## Returns instantiated object or [code]null[/code] if failed
 func add_object(prefab: PackedScene, coords: Vector2i) -> MapInteractableObject:
@@ -12,7 +11,7 @@ func add_object(prefab: PackedScene, coords: Vector2i) -> MapInteractableObject:
 	if not prefab.can_instantiate(): return null
 	var object := prefab.instantiate()
 	if object is not MapInteractableObject:
-		push_error("Provided scene is not a 'MapObjectManager'")
+		push_error("Provided scene is not a MapInteractableObject")
 		object.free()
 		return null
 	var interactable: MapInteractableObject = object
