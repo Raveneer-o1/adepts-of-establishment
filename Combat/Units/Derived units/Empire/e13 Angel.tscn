@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://dfb8a8lhxhbxv"]
+[gd_scene load_steps=48 format=3 uid="uid://dfb8a8lhxhbxv"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_ghq34"]
 [ext_resource type="Texture2D" uid="uid://dgrhklu28433n" path="res://Arts/Placeholders/Angel.jpg" id="2_cyr52"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_53ols"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_4cpgb"]
 [ext_resource type="PackedScene" uid="uid://chpw2oyl5kpky" path="res://Combat/Effects/AppliedEffects/Scenes/armor_buff_aura.tscn" id="7_fqy2s"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="7_gcojm"]
 [ext_resource type="Resource" uid="uid://brc057x45ipra" path="res://Combat/Units/Parameters/Validation/any_unit.tres" id="7_s2143"]
 [ext_resource type="Resource" uid="uid://b2x7yegiro3mn" path="res://Combat/Units/Parameters/Policy/purify_policy.tres" id="8_s2143"]
 [ext_resource type="PackedScene" uid="uid://0tk2rx2g08gt" path="res://Combat/Effects/AppliedEffects/Scenes/cheat_death.tscn" id="9_88jsi"]
@@ -189,9 +190,16 @@ base_paramaters = SubResource("Resource_ohcak")
 script = ExtResource("5_4cpgb")
 type = 1
 initiative = 40
+target_validation = ExtResource("7_gcojm")
+description = "Can purify any unit: lift all effects that unit has."
+
+[node name="UnitAttack2" type="Node" parent="UnitParameters/UnitAttack" index="0"]
+script = ExtResource("5_4cpgb")
+attack_name = "Purification"
+type = 4
+initiative = 40
 target_validation = ExtResource("7_s2143")
 damage_policy = ExtResource("8_s2143")
-description = "Can purify any unit: lift all effects that unit has."
 
 [node name="Armor buff (aura)" parent="UnitParameters" index="2" instance=ExtResource("7_fqy2s")]
 armor_increase = 30
