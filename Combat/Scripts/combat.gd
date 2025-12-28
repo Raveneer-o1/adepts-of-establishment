@@ -521,8 +521,8 @@ func find_avaliable_targets(unit: Unit = current_unit) -> Array[UnitSpot]:
 	
 	return find_targets_for_attack(unit.current_attack)
 
-## Loads menu scene as current one. If [member EventBus.packed_menu] is empty,
-## loads new scene from [code]"res://Menu/Scenes/menu.tscn"[/code]
+## Emits [signal EventBus.battle_ended].
+## Parent scene is expected to free the combat scene.
 func end_scene() -> void:
 	EventBus.battle_ended.emit()
 	#queue_free()
@@ -580,6 +580,16 @@ func _process(delta: float) -> void:
 			text_displayed_time = TEXT_DISPLAYED_ABORT_INTERVAL
 			texts_to_display.clear()
 
+@onready var switch_action_button: Button = \
+	$"../UI/ParentContainer/PanelContainer/HBoxContainer/ButtonSwitchAction"
+
+const SWITCH_ACTION_TEXT = "Switch action:\n%s"
+
+func update_switch_button_text() -> void:
+	switch_action_button.disabled = current_unit.alternative_action_count <= 0
+	switch_action_button.text = SWITCH_ACTION_TEXT % current_unit.current_attack.attack_name
+
 func _on_button_switch_action_pressed() -> void:
 	if not current_unit.try_switch_action():
-		print("unable to switch!")
+		print("Unable to switch!")
+	else: update_switch_button_text()

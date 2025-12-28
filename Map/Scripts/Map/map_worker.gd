@@ -21,6 +21,7 @@ func do_siege(attacker: MapParty, defender: MapCity) -> bool:
 	attacker.update_parameters()
 	return not attacker.is_dead
 
+## Processes combat ant return the winner or [code]null[/code] if there isn't one
 func do_combat(attacker: MapParty, defender: MapParty) -> MapParty:
 	_prefill_data(attacker, defender)
 	

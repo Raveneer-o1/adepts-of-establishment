@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dvi42dc2k0m2h" path="res://Map/Scripts/Map/map.gd" id="1_q0qov"]
 [ext_resource type="Texture2D" uid="uid://c462nhclviryl" path="res://Arts/Map objects/dis tiles (1).png" id="1_xec2n"]
 [ext_resource type="Texture2D" uid="uid://d1pq5a63j8amt" path="res://Arts/Map objects/mana sources.png" id="2_fsm7x"]
-[ext_resource type="PackedScene" uid="uid://6lq6f06hma7" path="res://test.tscn" id="2_pqwdj"]
+[ext_resource type="PackedScene" uid="uid://6lq6f06hma7" path="res://Combat/battle_scene.tscn" id="2_pqwdj"]
 [ext_resource type="Texture2D" uid="uid://bugwls130mkxq" path="res://Arts/Map objects/objects.png" id="2_q0qov"]
 [ext_resource type="Script" uid="uid://cy3qdta1wg1jq" path="res://Map/Scripts/Map/map_event_handler.gd" id="3_1tmes"]
 [ext_resource type="Texture2D" uid="uid://b2v51mrky8rhp" path="res://Arts/Map objects/o02 village .png" id="3_b45i2"]

@@ -19,7 +19,7 @@ extends Control
 @onready var item_list_right_controller: ItemList = $MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/ItemList2
 @onready var item_list_left_controller: ItemList = $MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/ItemList
 
-
+@export var battle_scene: PackedScene
 
 var right_array : Array[UnitPanel]:
 	get:
@@ -136,7 +136,7 @@ func _on_start_button_pressed() -> void:
 	
 	save_controllers()
 	
-	var battle_scene := load("res://test.tscn") as PackedScene
+	#var battle_scene := load("res://test.tscn") as PackedScene
 	var battle := battle_scene.instantiate()
 	process_mode = Node.PROCESS_MODE_DISABLED
 	battle.process_mode = Node.PROCESS_MODE_ALWAYS

@@ -177,6 +177,8 @@ func _move_to_next_stage(remove_miniature: bool) -> void:
 		# there's no units left
 		if main_system.current_unit == null:
 			end_battle()
+	
+	main_system.update_switch_button_text()
 
 func start_battle() -> void:
 	#initialize_effects()

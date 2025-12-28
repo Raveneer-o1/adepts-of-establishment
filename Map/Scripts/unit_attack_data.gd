@@ -1,6 +1,8 @@
 class_name UnitAttackData
 extends Resource
 
+## Display name for this action shown to players when selecting actions.
+@export var attack_name: String = "Attack"
 ## Multiplier to [member Unit.base_damage]. If [member damage_override] is set to 
 ## [code]true[/code], this value is cast into int and used as damage instead. [br]
 ## Similar to [member BaseParameters.base_damage], this can be set to 0 without any
@@ -51,6 +53,7 @@ extends Resource
 ## Supported dictionary fields with defaults:
 ## [codeblock]
 ## {
+##     "attack_name" = "Attack",
 ##     "damage_multiplier" = 1.0,
 ##     "damage_override" = false,
 ##     "is_heal" = false,
@@ -70,6 +73,7 @@ extends Resource
 ## [/codeblock]
 static func from_dict(dict: Dictionary) -> UnitAttackData:
 	var res := UnitAttackData.new()
+	res.attack_name = dict.get("attack_name", "Attack")
 	res.damage_multiplier = dict.get("damage_multiplier", 1.0)
 	res.damage_override = dict.get("damage_override", false)
 	res.is_heal = dict.get("is_heal", false)
@@ -86,6 +90,5 @@ static func from_dict(dict: Dictionary) -> UnitAttackData:
 	var alt_actions: Array = dict.get("alternative_actions", [])
 	for a: Variant in alt_actions:
 		if a is Dictionary:
-			a = UnitAttackData.from_dict(a)
-	res.alternative_actions.assign(alt_actions)
+			res.alternative_actions.append(UnitAttackData.from_dict(a))
 	return res

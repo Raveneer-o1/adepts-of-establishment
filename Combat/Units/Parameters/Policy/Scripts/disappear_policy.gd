@@ -21,6 +21,7 @@ func check_turn(u: Unit) -> void:
 		EventBus.turn_ended.disconnect(check_turn)
 
 func _apply_policy(attack: Attack, finalize: bool) -> void:
+	# TODO: if there's only one unit, this ends the combat, leaking the unit
 	if unit: return
 	for ref in attack.target_references:
 		if not ref: continue

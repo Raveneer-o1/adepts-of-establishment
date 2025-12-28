@@ -154,6 +154,8 @@ script = ExtResource("9_djqap")
 unit_name = "Vampire Lord"
 unit_type = 2
 faction = 2
+needed_xp = null
+brief_description = null
 full_description = "Vampire Lords are the supreme rulers of their kind, commanding legions of undead and wielding unparalleled mastery over blood magic. Their regal presence belies their monstrous strength and cunning intellect, making them both inspiring leaders and fearsome warriors. With centuries of experience and an insatiable hunger for power, Vampire Lords are the ultimate embodiment of the Necropolis's dark ambition."
 portrait_texture = ExtResource("2_8nuui")
 
@@ -186,6 +188,7 @@ Applies [b]clumsiness[/b] and [b]vulnerability[/b]."
 
 [node name="Disappear" type="Node" parent="UnitParameters/UnitAttack" index="0"]
 script = ExtResource("5_mqc6w")
+attack_name = "Disappear"
 type = 2
 accuracy = 1.0
 evadable = false

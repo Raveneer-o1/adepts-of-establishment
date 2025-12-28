@@ -25,6 +25,8 @@ class_name UnitAttack
 
 ## Unit, to which this object is attached
 var unit: Unit
+## Display name for this action shown to players when selecting actions.
+@export var attack_name: String = "Attack"
 ## Multiplier to [member Unit.base_damage]. If [member damage_override] is set to 
 ## [code]true[/code], this value is cast into int and used as damage instead. [br]
 ## Similar to [member BaseParameters.base_damage], this can be set to 0 without any
@@ -100,6 +102,7 @@ var accuracy_representation: float:
 		return 1.0 / chance_to_miss
 
 func _read_data(data: UnitAttackData) -> void:
+	attack_name = data.attack_name
 	damage_multiplier = data.damage_multiplier
 	damage_override = data.damage_override
 	is_heal = data.is_heal
@@ -168,6 +171,7 @@ static func serialized(a: UnitAttack) -> Dictionary:
 	for child: UnitAttack in a.get_children():
 		alternative_actions.append(UnitAttack.serialized(child))
 	var res := {
+		"attack_name" = a.attack_name,
 		"damage_multiplier" = a.damage_multiplier,
 		"damage_override" = a.damage_override,
 		"is_heal" = a.is_heal,

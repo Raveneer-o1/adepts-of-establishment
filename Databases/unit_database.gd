@@ -461,7 +461,7 @@ const database = {
 , "vulnerability": [3, 10]
  
 }, &"alternative_actions": [{
- &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 2, &"accuracy": 1.0, &"targets_needed": 1, &"initiative": 0, &"evadable": false, &"tags": []
+ &"attack_name": "Disappear", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 2, &"accuracy": 1.0, &"targets_needed": 1, &"initiative": 0, &"evadable": false, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/any_unit.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/disappear_policy.tres", &"applying_effects": {
   
 }, &"alternative_actions": []

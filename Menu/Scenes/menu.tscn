@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://rhljgisluynr"]
+[gd_scene load_steps=19 format=3 uid="uid://rhljgisluynr"]
 
 [ext_resource type="PackedScene" uid="uid://bt1s54jsu58q1" path="res://Menu/Scenes/menu_unit_place.tscn" id="1_3imto"]
 [ext_resource type="Script" uid="uid://chbge2rkv57yv" path="res://Menu/menu.gd" id="1_h46x8"]
 [ext_resource type="Theme" uid="uid://eh5pr46h0ubl" path="res://Themes/Theme_ETA.tres" id="1_kyvhq"]
 [ext_resource type="Script" uid="uid://cfsf6r3wkfmcg" path="res://Menu/central_part.gd" id="2_guvaa"]
+[ext_resource type="PackedScene" uid="uid://6lq6f06hma7" path="res://Combat/battle_scene.tscn" id="2_myur2"]
 [ext_resource type="PackedScene" uid="uid://c2moqu8obnwmg" path="res://Menu/Scenes/tree_item_unit.tscn" id="2_r33n7"]
 [ext_resource type="Texture2D" uid="uid://cudu0li055m7q" path="res://Arts/itch assets/Super Mountain Dusk Files/version A/sky.png" id="3_xn12a"]
 [ext_resource type="Texture2D" uid="uid://vf2q3jvy6gwy" path="res://Arts/itch assets/Super Mountain Dusk Files/version A/far-clouds.png" id="4_0dw8i"]
@@ -184,6 +185,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_h46x8")
+battle_scene = ExtResource("2_myur2")
 
 [node name="Background" type="Control" parent="."]
 layout_mode = 1
