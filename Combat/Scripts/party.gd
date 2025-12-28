@@ -120,6 +120,7 @@ func place_units(list: Array[UnitData]) -> void:
 	for unit_data: UnitData in list:
 		await get_tree().process_frame
 		var i := unit_data.party_position
+		if i < 0: continue
 		var path := unit_data.scene_path
 		if path.is_empty(): continue
 		if not main_system.loaded_units.has(path):

@@ -106,8 +106,8 @@ func _initialize_effect_data() -> void:
 		effects.append(e)
 
 func _initialize_attack_data() -> void:
-	for data in attack_data:
-		data.free()
+	#for data in attack_data:
+		#data.free()
 	attack_data.clear()
 	var attacks_array: Array[Dictionary]
 	attacks_array.assign(database_dict.get(&"attacks", []))

@@ -371,7 +371,7 @@ script = ExtResource("3_1tmes")
 script = ExtResource("18_jtf36")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(582, 610)
+position = Vector2(1379, 772)
 zoom = Vector2(1.615, 1.615)
 script = ExtResource("19_gdowr")
 movement_speed = 350.0
@@ -445,6 +445,36 @@ max_hp = 100
 metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 
 [node name="UnitData2" type="Node" parent="Parties/MapParty"]
+script = ExtResource("21_bl7ab")
+party_position = 5
+current_hp = 100
+unit_name = &"Prophetess"
+max_hp = 100
+metadata/_custom_type_script = "uid://mn0dy1cf0p65"
+
+[node name="MapParty_" parent="Parties" node_paths=PackedStringArray("owner_capital") instance=ExtResource("12_kwhd2")]
+position = Vector2(1383, 772)
+party_name = "Strong dudes"
+portrait_texture = "res://Arts/Placeholders/Army.jpg"
+owner_capital = NodePath("../../ObjectManager/EmpireCapital")
+
+[node name="UnitData3" type="Node" parent="Parties/MapParty_"]
+script = ExtResource("21_bl7ab")
+party_position = 2
+current_hp = 100
+unit_name = &"Blade Saint"
+max_hp = 100
+metadata/_custom_type_script = "uid://mn0dy1cf0p65"
+
+[node name="UnitData6" type="Node" parent="Parties/MapParty_"]
+script = ExtResource("21_bl7ab")
+party_position = 6
+current_hp = 100
+unit_name = &"Knight"
+max_hp = 100
+metadata/_custom_type_script = "uid://mn0dy1cf0p65"
+
+[node name="UnitData2" type="Node" parent="Parties/MapParty_"]
 script = ExtResource("21_bl7ab")
 party_position = 5
 current_hp = 100

@@ -1,5 +1,5 @@
 class_name PartyEditorUnit
-extends Control
+extends MarginContainer
 
 @onready var label: Label = $PanelContainer/Label
 

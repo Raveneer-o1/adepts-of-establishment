@@ -1,5 +1,5 @@
 class_name CityUIManager
-extends Node
+extends CanvasLayer
 
 @onready var _0: PartyEditorUnitPosition = \
 	%PartyUnitsContainer/FrontlineContainer/PartyEditorUnitPosition
@@ -31,27 +31,54 @@ extends Node
 @onready var g_6: PartyEditorUnitPosition = \
 	%GarrisonUnitsContainer/FrontlineContainer/PartyEditorUnitPosition6
 
+@onready var garrison_reserve_container: ReserveContainer = \
+	$PanelContainer/MarginContainer/HBoxContainer/GarrisonReserveContainer
+@onready var party_reserve_container: ReserveContainer = \
+	$PanelContainer/MarginContainer/HBoxContainer/PartyReserveContainer
+
 @onready var places: Array[PartyEditorUnitPosition] = [g_0, g_1, g_2, g_3, g_4, g_5, g_6]
 @onready var party_places: Array[PartyEditorUnitPosition] = [_0, _1, _2, _3, _4, _5, _6]
 
 var currently_filled_city: MapCity = null
 
 func fill_city_data(city: MapCity) -> void:
+	# TODO: implement update_city() properly
+	#if currently_filled_city == city: update_city()
+	
+	garrison_reserve_container.parent = city
+	party_reserve_container.parent = city.party_inside
 	for place in places:
-		if place.unit: place.unit.free()
+		place.remove_unit()
 		place.parent = city
 	for place in party_places:
-		if place.unit: place.unit.free()
+		place.remove_unit()
 		place.parent = city.party_inside
+	for unit in garrison_reserve_container.get_units():
+		unit.queue_free()
+	for unit in party_reserve_container.get_units():
+		unit.queue_free()
+	
 	%PartyUnitsContainer.visible = true if city.party_inside else false
+	
 	for data in city.units:
-		if data.party_position < 0: continue
+		if data.party_position < 0:
+			garrison_reserve_container.add_unit(data)
+			continue
 		if data.party_position > places.size(): continue
 		places[data.party_position].add_unit(data)
 	if city.party_inside:
 		for data in city.party_inside.parameters.get_unit_data():
-			if data.party_position < 0: continue
+			if data.party_position < 0:
+				party_reserve_container.add_unit(data)
+				continue
 			if data.party_position > party_places.size(): continue
 			party_places[data.party_position].add_unit(data)
 	
 	currently_filled_city = city
+
+func update_city(...args: Array) -> void:
+	# WARNING: very inefficient, needs redesign
+	fill_city_data.call_deferred(currently_filled_city)
+
+func _on_hire_button_pressed() -> void:
+	$"..".open_hire_popup(currently_filled_city, update_city)

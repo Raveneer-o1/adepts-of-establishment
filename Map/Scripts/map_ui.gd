@@ -21,6 +21,7 @@ var current_ui: CanvasLayer
 @onready var party_info_popup: PartyInfoPopup = $Popups/PartyInfoPopup
 @onready var grave_info_popup: GraveInfoPopup = $Popups/GraveInfoPopup
 @onready var city_popup: CityInfoPopup = $Popups/CityPopup
+@onready var hire_unit_popup: HireUnitPopup = $Popups/HireUnitPopup
 
 var last_requested_party: MapParty = null
 
@@ -135,6 +136,17 @@ func _ready() -> void:
 	EventBus.popup_requested.connect(handle_popup_request)
 	EventBus.window_requested.connect(handle_window_request)
 	%VersionLabel.text = ProjectSettings.get_setting("application/config/version")
+
+func _disconnect_unit_hire() -> void:
+	for d: Dictionary in hire_unit_popup.unit_hired.get_connections():
+		d.signal.disconnect(d.callable)
+	for d: Dictionary in hire_unit_popup.popup_closed.get_connections():
+		d.signal.disconnect(d.callable)
+
+func open_hire_popup(base: Node, update_function: Callable) -> void:
+	hire_unit_popup.unit_hired.connect(update_function)
+	hire_unit_popup.display_for_container(base)
+	hire_unit_popup.popup_closed.connect(_disconnect_unit_hire)
 
 func _on_quit_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Menu/Scenes/menu.tscn")

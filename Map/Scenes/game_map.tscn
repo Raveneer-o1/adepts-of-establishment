@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cy8rh77mxkncn"]
+[gd_scene load_steps=23 format=3 uid="uid://cy8rh77mxkncn"]
 
 [ext_resource type="Script" uid="uid://cium5533y6jdp" path="res://Map/Scripts/game_map.gd" id="1_mp6yi"]
 [ext_resource type="Script" uid="uid://ymq5kwxdp6r3" path="res://Map/Scripts/map_ui.gd" id="2_jwoqq"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://cxswnm25ylr5" path="res://Map/UI/Scripts/party_ui_manager.gd" id="5_t0dwr"]
 [ext_resource type="PackedScene" uid="uid://dqwc116n3br4m" path="res://Map/UI/Scenes/party_editor_unit_position.tscn" id="6_3g8al"]
 [ext_resource type="Script" uid="uid://byrx58pdoch0v" path="res://Map/UI/Scripts/city_ui_manager.gd" id="9_bqemh"]
+[ext_resource type="Script" uid="uid://bsrs0hq73vpin" path="res://Map/UI/Scripts/reserve_container.gd" id="9_iv7qx"]
 [ext_resource type="Script" uid="uid://db2fl4l22gmmv" path="res://Map/UI/Scripts/Popups/item_info_popup.gd" id="9_ommir"]
 [ext_resource type="PackedScene" uid="uid://1vr0gdex77rx" path="res://Map/Scenes/faction.tscn" id="9_tjube"]
 [ext_resource type="Script" uid="uid://c6lmuhpypmu08" path="res://Map/Scripts/turn_manager.gd" id="10_5bpsg"]
@@ -17,6 +18,7 @@
 [ext_resource type="Script" uid="uid://dd03w7tnrgkwj" path="res://Map/UI/Scripts/Popups/grave_info_popup.gd" id="13_gtybc"]
 [ext_resource type="Script" uid="uid://dsb2ra0pfxg7a" path="res://Map/UI/Scripts/greeting.gd" id="13_ofx6v"]
 [ext_resource type="Script" uid="uid://oll1fukjr18t" path="res://Map/UI/Scripts/Popups/city_info_popup.gd" id="14_ga0ya"]
+[ext_resource type="Script" uid="uid://6my5rhvvrl00" path="res://Map/UI/Scripts/Popups/hire_unit_popup.gd" id="15_5jcg3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ru5ay"]
 font_size = 19
@@ -40,6 +42,7 @@ script = ExtResource("1_mp6yi")
 script = ExtResource("2_jwoqq")
 
 [node name="Main" type="CanvasLayer" parent="UILayers"]
+visible = false
 
 [node name="PanelContainer" type="PanelContainer" parent="UILayers/Main"]
 anchors_preset = 11
@@ -334,7 +337,6 @@ size_flags_vertical = 3
 visible = false
 
 [node name="City" type="CanvasLayer" parent="UILayers"]
-visible = false
 script = ExtResource("9_bqemh")
 
 [node name="PanelContainer" type="PanelContainer" parent="UILayers/City"]
@@ -352,6 +354,14 @@ theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UILayers/City/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="GarrisonReserveContainer" type="ScrollContainer" parent="UILayers/City/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("9_iv7qx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/City/PanelContainer/MarginContainer/HBoxContainer/GarrisonReserveContainer"]
 layout_mode = 2
 
 [node name="GarrisonUnitsContainerPanel" type="PanelContainer" parent="UILayers/City/PanelContainer/MarginContainer/HBoxContainer"]
@@ -406,6 +416,14 @@ layout_mode = 2
 party_position = 6
 reparent_data = true
 
+[node name="PartyReserveContainer" type="ScrollContainer" parent="UILayers/City/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("9_iv7qx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/City/PanelContainer/MarginContainer/HBoxContainer/PartyReserveContainer"]
+layout_mode = 2
+
 [node name="PartyUnitsContainerPanel" type="PanelContainer" parent="UILayers/City/PanelContainer/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
@@ -458,6 +476,23 @@ reparent_data = true
 layout_mode = 2
 party_position = 6
 reparent_data = true
+
+[node name="InfoContainer" type="MarginContainer" parent="UILayers/City/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/City/PanelContainer/MarginContainer/HBoxContainer/InfoContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="HireButton" type="Button" parent="UILayers/City/PanelContainer/MarginContainer/HBoxContainer/InfoContainer/VBoxContainer"]
+layout_mode = 2
+text = "Hire units"
 
 [node name="Greeting" type="CanvasLayer" parent="UILayers"]
 visible = false
@@ -1227,6 +1262,54 @@ text = "Unit name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="HireUnitPopup" type="CanvasLayer" parent="UILayers/Popups"]
+visible = false
+script = ExtResource("15_5jcg3")
+
+[node name="Control" type="Control" parent="UILayers/Popups/HireUnitPopup"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="UILayers/Popups/HireUnitPopup/Control"]
+custom_minimum_size = Vector2(500, 700)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="UnitsItemList" type="ItemList" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+item_count = 2
+item_0/text = "Skeleton"
+item_1/text = "Scout"
+
+[node name="HireButton" type="Button" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Hire"
+
 [node name="Windows" type="Node" parent="UILayers"]
 
 [node name="PickUpWindow" type="CanvasLayer" parent="UILayers/Windows"]
@@ -1317,6 +1400,8 @@ text = "version"
 [connection signal="toggled" from="UILayers/Main/PanelContainer/VBoxContainer/SafeTravelCheckBox" to="UILayers" method="_on_safe_travel_check_box_toggled"]
 [connection signal="visibility_changed" from="UILayers/Party" to="UILayers/Party" method="_on_visibility_changed"]
 [connection signal="gui_input" from="UILayers/Party/HBoxContainer" to="." method="_on_h_box_container_gui_input"]
+[connection signal="pressed" from="UILayers/City/PanelContainer/MarginContainer/HBoxContainer/InfoContainer/VBoxContainer/HireButton" to="UILayers/City" method="_on_hire_button_pressed"]
 [connection signal="gui_input" from="UILayers/Greeting/Control" to="UILayers/Greeting" method="_on_control_gui_input"]
+[connection signal="pressed" from="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HireButton" to="UILayers/Popups/HireUnitPopup" method="_on_hire_button_pressed"]
 [connection signal="gui_input" from="UILayers/Windows/PickUpWindow/Root" to="UILayers/Windows/PickUpWindow" method="_on_root_gui_input"]
 [connection signal="gui_input" from="UILayers/Windows/PickUpWindow/Root/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" to="UILayers/Windows/PickUpWindow" method="_on_h_box_container_gui_input"]

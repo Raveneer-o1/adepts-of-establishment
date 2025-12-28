@@ -8,6 +8,8 @@ extends CanvasLayer
 ## right-clicking objects. [br][br]
 ## Derived classes must contain at least one [Control] node as a child.
 ## The first [Control] child captures input and enables automatic popup closure.
+## [br][br]
+## You can close the popup manually by calling [method hide_popup].
 
 signal popup_closed
 

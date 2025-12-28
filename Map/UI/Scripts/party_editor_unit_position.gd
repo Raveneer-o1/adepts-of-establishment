@@ -28,15 +28,17 @@ func remove_unit() -> void:
 	unit = null
 
 func move_unit(received_unit: PartyEditorUnit) -> void:
-	var other_place: PartyEditorUnitPosition = received_unit.get_parent()
+	var other_place := received_unit.get_parent()
 	if other_place == self: return
-	other_place.unit = unit
+	if other_place is PartyEditorUnitPosition:
+		other_place.unit = unit
 	if unit:
 		unit.unit_data.party_position = other_place.party_position
 		unit.reparent(other_place, false)
 	unit = received_unit
 	unit.unit_data.party_position = party_position
 	unit.reparent(self, false)
+	unit.position = Vector2.ZERO
 	if reparent_data:
 		unit.unit_data.reparent(parent)
 
