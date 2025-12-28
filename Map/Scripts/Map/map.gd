@@ -278,7 +278,7 @@ func get_interactions_on_tile(coords: Vector2i) -> Array[MapInteractableObject]:
 ## [b]Note:[/b] This method can be slow on maps with many overlapping objects.
 ## For faster, unsorted, untyped access, use:
 ## [codeblock]
-## tile_to_interaction.get(coords, [])
+## tile_to_object.get(coords, [])
 ## [/codeblock]
 func get_objects_on_tile(coords: Vector2i) -> Array[MapInteractableObject]:
 	var res: Array[MapInteractableObject] = []

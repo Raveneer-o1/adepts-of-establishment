@@ -134,7 +134,7 @@ const GRAVE_PREFAB = preload("res://Map/Scenes/party_grave.tscn")
 func die() -> void:
 	is_dead = true
 	is_active = false
-	for object in map.get_objects_on_tile(tile_position):
+	for object: MapInteractableObject in map.tile_to_object.get(tile_position, []):
 		if object is MapPartyGrave:
 			object.bury_party(self)
 			return

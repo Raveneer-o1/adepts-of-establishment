@@ -13,7 +13,10 @@ var tile_data: TileData
 var claimable: bool
 ## Defines the difficulty of claiming this tile. Has no effect when [member claimable]
 ## is [code]false[/code] or [member loyal_to] is [code]null[/code].
-## Only influences calculations for the faction specified in [member loyal_to].
+## Only influences calculations for the faction specified in [member loyal_to].[br][br]
+## Calculates tile loyalty dynamically when accessed, not updated each turn.
+## This trade-off reduces flexibility but avoids connecting
+## [signal EventBus.map_turn_started] to every map tile.
 var loyalty: float = 1.0:
 	get:
 		var days_owned := map.game.turn_manager.currnt_day - claimed_day
@@ -44,7 +47,7 @@ const TERRAIN_ATLAS_ID = 2
 
 func _hindered_claim(faction: MapFaction, power: float) -> bool:
 	if is_zero_approx(loyalty):
-		return true
+		return not is_zero_approx(power)
 	var claim_power := power / loyalty
 	claim_status -= claim_power
 	return claim_status <= 0.0
@@ -84,6 +87,7 @@ func try_claiming(faction: MapFaction, power: float) -> bool:
 	if claimed: _update_owner(faction)
 	return claimed
 
+## Returns all neighbors of this tile
 func get_neighbors() -> Array[MapTileData]:
 	var neighbor_coords := map.get_neighbors(coordinates)
 	var res: Array[MapTileData] = []
