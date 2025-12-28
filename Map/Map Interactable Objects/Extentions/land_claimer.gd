@@ -4,7 +4,7 @@ extends Node
 ## Total claim power of this object
 @export var claim_power: float = 10.0
 ## Maximum claim power this object can exert on any particular tile
-@export var max_claim_power: float = 2.5
+@export var max_claim_power: float = 1.5
 
 @onready var this_object: MapInteractableObject = get_parent()
 

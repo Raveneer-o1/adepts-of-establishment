@@ -85,7 +85,7 @@ const TIME_TO_END = 2.5
 ## Using random positioning often results in labels being too close, making them unreadable.[br]
 ## This array is shuffled at game start. 
 ## Use the getter [member label_position] to retrieve positions sequentially.
-var label_positions : Array[Vector2] = [
+const label_positions : Array[Vector2] = [
 	Vector2(0.0, _DISTANCE_TO_LABEL),
 	Vector2(0.0, -_DISTANCE_TO_LABEL),
 	Vector2(_DISTANCE_TO_LABEL, 0.0),
