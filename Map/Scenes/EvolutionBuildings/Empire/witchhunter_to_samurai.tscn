@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyrh7yqj34o0q"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/EvolutionBuildings/evolution_building.tscn" id="1_yomy7"]
+
+[node name="Dojo" instance=ExtResource("1_yomy7")]
+evolving_from = &"Witch hunter"
+evolving_into = &"Samurai"
+upgrade_name = "Dojo"
+description = "This building allows Witch hunters to become Samurai"

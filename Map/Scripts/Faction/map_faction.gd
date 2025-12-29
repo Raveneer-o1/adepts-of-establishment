@@ -24,10 +24,13 @@ func find_unit_evolution(unit_name: StringName) -> Array[StringName]:
 				res.append(c.evolving_into)
 	return res
 
-func get_all_upgrades() -> Array[FactionUpgrade]:
+func get_all_upgrades(include_evolution_buildings: bool = false) -> Array[FactionUpgrade]:
 	var res: Array[FactionUpgrade] = []
 	for c in get_children() + appearance.get_children():
 		if c is FactionUpgrade: res.append(c)
+	if include_evolution_buildings:
+		for c in $Appearance/EvolutionBuildings.get_children():
+			if c is FactionUpgrade: res.append(c)
 	return res
 
 func is_enemy(other_faction: MapFaction) -> bool:

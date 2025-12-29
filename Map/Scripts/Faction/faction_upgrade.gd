@@ -7,5 +7,6 @@ extends Node
 ## This nodes represent global progression (e.g., a building in the capital)
 
 @export var upgrade_name: String = ""
+@export_multiline var description: String
 
 var faction: MapFaction

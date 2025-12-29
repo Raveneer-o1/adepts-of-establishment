@@ -6,3 +6,4 @@
 evolving_from = &"Squire"
 evolving_into = &"Witch hunter"
 upgrade_name = "Watchtower"
+description = "This building allows Squires to become Witch hunters"

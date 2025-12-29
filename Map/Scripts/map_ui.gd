@@ -169,3 +169,9 @@ func _on_end_turn_button_pressed() -> void:
 
 func _on_safe_travel_check_box_toggled(toggled_on: bool) -> void:
 	GameSettings.safe_travel = toggled_on
+
+
+func _on_capital_button_pressed() -> void:
+	if not game_map.screen_player: return
+	$Capital.fill_data(game_map.screen_player)
+	switch_to(&"Capital")
