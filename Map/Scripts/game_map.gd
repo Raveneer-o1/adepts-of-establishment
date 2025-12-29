@@ -10,6 +10,9 @@ var current_map: Map
 
 @onready var factions_in_game: int = $Factions.get_child_count()
 
+## Faction that currently sees the screen. Meant to filter the data shown.
+var screen_player: MapFaction
+
 @onready var test_faction: MapFaction = $Factions/Empire
 @onready var test_faction2: MapFaction = $Factions/Necropolis
 

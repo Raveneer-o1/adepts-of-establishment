@@ -2,6 +2,7 @@ extends FactionController
 
 func turn_start_reaction() -> void:
 	api.access_player_input()
+	api.set_player_at_screen()
 
 func _initialize() -> void:
 	api.tile_clicked.connect(api.choose_tile)

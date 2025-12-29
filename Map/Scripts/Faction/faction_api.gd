@@ -64,6 +64,9 @@ func end_turn() -> void:
 func access_player_input() -> void:
 	map.event_handler.allow_game_access()
 
+func set_player_at_screen() -> void:
+	game.screen_player = this_faction
+
 func _ready() -> void:
 	var next_parent := get_parent()
 	while next_parent and not game:
