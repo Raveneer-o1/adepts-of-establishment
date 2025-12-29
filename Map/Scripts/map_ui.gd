@@ -143,9 +143,10 @@ func _disconnect_unit_hire() -> void:
 	for d: Dictionary in hire_unit_popup.popup_closed.get_connections():
 		d.signal.disconnect(d.callable)
 
-func open_hire_popup(base: Node, update_function: Callable) -> void:
+## @experimental
+func open_hire_popup(base: Node, update_function: Callable, list: Array[StringName]) -> void:
 	hire_unit_popup.unit_hired.connect(update_function)
-	hire_unit_popup.display_for_container(base)
+	hire_unit_popup.display_for_container(base, list)
 	hire_unit_popup.popup_closed.connect(_disconnect_unit_hire)
 
 func _on_quit_button_pressed() -> void:

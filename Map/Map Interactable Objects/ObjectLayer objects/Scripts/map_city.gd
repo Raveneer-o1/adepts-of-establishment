@@ -1,6 +1,24 @@
 class_name MapCity
 extends ObjectLayerObject
 
+## Units available for recruitment in this specific city.[br][br]
+## [b]Note:[/b] Combined with faction-wide available units, with both lists
+## filtered by [member available_units_whitelist] and [member available_units_blacklist].
+## Units included here but excluded by filters will remain unavailable.
+@export var available_units: Array[StringName]
+## Filter criteria for units available in this city.[br]
+## If non-empty, only units meeting at least one criterion will be available.[br][br]
+## Each array entry is a criterion dictionary.
+## A criterion is satisfied only when ALL its key-value pairs match
+## corresponding entries in the unit's database record.
+## Units missing any specified key do not satisfy the criterion.
+## [i](make sure the spelling matches with database entries)[/i]
+@export var available_units_whitelist: Array[Dictionary]
+## Filter criteria to exclude units from availability in this city.[br]
+## Units meeting any criterion will be excluded from recruitment.[br][br]
+## See [member available_units_whitelist] for reference.
+@export var available_units_blacklist: Array[Dictionary]
+
 ## @deprecated: use [member MapInteractableObject.object_owner] instead
 ## Returns [member MapInteractableObject.object_owner]
 var city_owner: MapFaction:
@@ -79,6 +97,9 @@ func player_interact(faction: MapFaction) -> void:
 
 #endregion
 
+#func _initialize() -> void:
+	#ownable = true
+
 func _request_switching() -> void:
 	# TODO: redesign this solution
 	# individual objects should not call UI functions directly
@@ -94,5 +115,42 @@ var units: Array[UnitData]:
 
 var party_inside: MapParty
 
-#func _initialize() -> void:
-	#ownable = true
+func _does_meet_criterion(unit: Dictionary, criterion: Dictionary) -> bool:
+	for key: Variant in criterion:
+		if key not in unit:
+			# debug warning in case the key is spelled wrong
+			print_debug("Unit '%s' does not have a key '%s' in the database")
+			return false
+		var val: Variant = unit[key]
+		if val == criterion[key]: continue
+		return false
+	return true
+
+func _passes_whitelist(unit: Dictionary) -> bool:
+	if not available_units_whitelist: return true
+	for criterion in available_units_whitelist:
+		if _does_meet_criterion(unit, criterion): return true
+	return false
+
+func _passes_blacklist(unit: Dictionary) -> bool:
+	if not available_units_blacklist: return true
+	for criterion in available_units_blacklist:
+		if _does_meet_criterion(unit, criterion): return false
+	return true
+
+func get_avaliable_units() -> Array[StringName]:
+	var res: Array[StringName] = []
+	if object_owner:
+		res = object_owner.hiring_units
+		for u in available_units:
+			if u not in res: res.append(u)
+	else: res = available_units
+	var checking_whitelist := not available_units_whitelist.is_empty()
+	for unit_name: StringName in res.duplicate():
+		var unit: Dictionary = GlobalDefs.database_path.database.get(unit_name, {})
+		if not unit:
+			res.erase(unit_name)
+			continue
+		if not (_passes_whitelist(unit) and _passes_blacklist(unit)):
+			res.erase(unit_name)
+	return res

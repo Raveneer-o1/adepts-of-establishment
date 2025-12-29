@@ -4,13 +4,17 @@ extends PopupBase
 var current_container: Node
 signal unit_hired(unit: UnitData)
 
-@onready var units_item_list: ItemList = \
-	$Control/PanelContainer/MarginContainer/VBoxContainer/UnitsItemList
+@onready var units_item_list: ItemList = %HireUnitsItemList
 
-func display_for_container(node: Node) -> void:
+## Displays the recruitment popup with the specified [param list] of available units.
+## When a unit is hired, [UnitData] object is added as a child of [param node].
+func display_for_container(node: Node, list: Array[StringName]) -> void:
 	if not node: return
 	current_container = node
 	show()
+	units_item_list.clear()
+	for i in list:
+		units_item_list.add_item(i)
 
 func hire(unit_name: String) -> void:
 	var data := UnitData.new()

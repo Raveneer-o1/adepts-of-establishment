@@ -81,4 +81,8 @@ func update_city(...args: Array) -> void:
 	fill_city_data.call_deferred(currently_filled_city)
 
 func _on_hire_button_pressed() -> void:
-	$"..".open_hire_popup(currently_filled_city, update_city)
+	$"..".open_hire_popup(
+		currently_filled_city,
+		update_city,
+		currently_filled_city.get_avaliable_units()
+	)

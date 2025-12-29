@@ -12,6 +12,9 @@ extends Node
 @export_range(0, 2) var main_color: int
 #@export var main_color: Color
 
+## List of all units this faction can hire
+@export var hiring_units: Array[StringName]
+
 func is_enemy(other_faction: MapFaction) -> bool:
 	if other_faction == self: return false
 	# TODO: implement is_enemy()
