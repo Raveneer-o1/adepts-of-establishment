@@ -470,7 +470,7 @@ metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 script = ExtResource("21_bl7ab")
 party_position = 6
 current_hp = 100
-unit_name = &"Knight"
+unit_name = &"Squire"
 max_hp = 100
 metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 

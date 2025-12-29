@@ -79,9 +79,11 @@ func switch_to(ui: StringName) -> void:
 	if target_ui == current_ui: return
 	
 	if ui == &"Main": game_map.enable_map()
+	elif ui == &"Battle": pass
 	else:
 		var end_menu_signal := game_map.temporarily_disable_map()
 		var switch_callable := switch_to.bind(&"Main")
+		
 		if not end_menu_signal.is_connected(switch_callable):
 			end_menu_signal.connect(switch_callable)
 	

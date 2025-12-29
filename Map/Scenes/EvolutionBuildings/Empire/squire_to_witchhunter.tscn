@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://djjfc1v7ijds6"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/EvolutionBuildings/evolution_building.tscn" id="1_4iser"]
+
+[node name="Watchtower" instance=ExtResource("1_4iser")]
+evolving_from = &"Squire"
+evolving_into = &"Witch hunter"
+upgrade_name = "Watchtower"

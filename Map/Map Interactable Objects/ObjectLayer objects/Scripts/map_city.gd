@@ -155,3 +155,7 @@ func get_avaliable_units() -> Array[StringName]:
 		if not (_passes_whitelist(unit) and _passes_blacklist(unit)):
 			res.erase(unit_name)
 	return res
+
+func calculate_xp_for_defeating() -> int:
+	# TODO: implement calculate_xp_for_defeating()
+	return 1

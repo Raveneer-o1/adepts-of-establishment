@@ -32,8 +32,12 @@ func do_combat(attacker: MapParty, defender: MapParty) -> MapParty:
 	await _play_effect(defender.global_position)
 	
 	await _switch_to_battle(battle)
+	
 	attacker.update_parameters()
 	defender.update_parameters()
+	attacker.parameters.grant_winner_xp(defender)
+	defender.parameters.grant_winner_xp(attacker)
+	
 	if attacker.is_dead == defender.is_dead: return null
 	return attacker if defender.is_dead else defender
 

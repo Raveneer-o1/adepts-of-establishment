@@ -4,6 +4,7 @@ extends Node
 @export var base_faction: GlobalDefs.Faction
 @export var controller: GlobalDefs.ControllerType
 @onready var api: FactionAPI = $API
+@onready var appearance: CanvasLayer = $Appearance
 
 ## Atlas coordinates of the tiles that represent this faction's land
 @export var tile_atlas_coords: Array[Vector2i]
@@ -17,7 +18,7 @@ extends Node
 
 func find_unit_evolution(unit_name: StringName) -> Array[StringName]:
 	var res: Array[StringName] = []
-	for c in get_all_upgrades():
+	for c in $Appearance/EvolutionBuildings.get_children():
 		if c is UnitEvolution:
 			if c.evolving_from == unit_name:
 				res.append(c.evolving_into)
@@ -25,7 +26,7 @@ func find_unit_evolution(unit_name: StringName) -> Array[StringName]:
 
 func get_all_upgrades() -> Array[FactionUpgrade]:
 	var res: Array[FactionUpgrade] = []
-	for c in get_children():
+	for c in get_children() + appearance.get_children():
 		if c is FactionUpgrade: res.append(c)
 	return res
 
@@ -33,3 +34,7 @@ func is_enemy(other_faction: MapFaction) -> bool:
 	if other_faction == self: return false
 	# TODO: implement is_enemy()
 	return true
+
+func _ready() -> void:
+	for upgrade in get_all_upgrades():
+		upgrade.faction = self

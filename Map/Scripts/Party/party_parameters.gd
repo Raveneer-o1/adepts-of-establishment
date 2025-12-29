@@ -10,9 +10,9 @@ extends Node
 
 @onready var this_party: MapParty = $".."
 
-## List of all units before applying any modifiers or effects.
-## Avoid direct access to this array - use [method get_unit_data] for safe
-## retrieval of processed unit information with all active effects applied.
+## List of all units before applying any modifiers or effects.[br][br]
+## [color=red]Avoid direct access to this array[/color] - use [method get_unit_data]
+## to get processed unit information with all active effects applied.
 var units: Array[UnitData]:
 	get:
 		return this_party.units
@@ -124,6 +124,7 @@ var __freing_units: bool = false:
 		if not value: __freing_units_finished.emit()
 		__freing_units = value
 
+
 ## Frees duplicate objects created by [method get_unit_list_copy].
 ## Processes one object per frame to avoid performance spikes.
 ## Use [code]await[/code] if you need to wait for complete removal.
@@ -217,3 +218,34 @@ func _ready() -> void:
 			if f == this_party.faction:
 				movement_points = max_movement_points
 	)
+
+func calculate_xp_for_defeating() -> int:
+	# TODO: implement calculate_xp_for_defeating()
+	return 1
+
+## Grants experience points to all units in the party.
+func grant_xp(points: int) -> void:
+	for unit in units:
+		unit.grant_xp(points)
+		if unit.levelup_avaliable: this_party.level_up_unit(unit)
+
+## If check_if_winner is [code]true[/code] (default),
+## the method will adjust values based on what party is defeated.
+func grant_winner_xp(other: Variant, check_if_winner: bool = true) -> void:
+	if not other: return
+	if other is MapParty: _grant_winner_xp_party(other, check_if_winner)
+	elif other is MapCity: _grant_winner_xp_party(other, check_if_winner)
+	else: push_error("Only 'MapParty' and 'MapCity' allowed")
+
+func _grant_winner_xp_party(other_party: MapParty, check: bool) -> void:
+	if check:
+		if this_party.is_dead: return
+		if not other_party.is_dead:
+			# TODO: implement reduced XP for not fully defeated parties
+			return
+	grant_xp(other_party.parameters.calculate_xp_for_defeating())
+
+func _grant_winner_xp_city(other_city: MapCity, check: bool) -> void:
+	if check:
+		if this_party.is_dead: return
+	grant_xp(other_city.calculate_xp_for_defeating())

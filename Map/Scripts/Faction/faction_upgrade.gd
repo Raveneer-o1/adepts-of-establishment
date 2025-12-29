@@ -8,4 +8,4 @@ extends Node
 
 @export var upgrade_name: String = ""
 
-@onready var faction: MapFaction = get_parent()
+var faction: MapFaction

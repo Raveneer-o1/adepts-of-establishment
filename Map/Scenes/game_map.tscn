@@ -543,16 +543,8 @@ Your color is blue."
 fit_content = true
 
 [node name="Capital" type="CanvasLayer" parent="UILayers"]
+visible = false
 script = ExtResource("11_vrvlx")
-
-[node name="TextureRect" type="TextureRect" parent="UILayers/Capital"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-expand_mode = 5
-stretch_mode = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="UILayers/Capital"]
 anchors_preset = 15

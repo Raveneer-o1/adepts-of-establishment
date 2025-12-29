@@ -179,3 +179,17 @@ func pick_up(items: Array[MapItem]) -> void:
 		else:
 			inventory.add_child(item)
 	EventBus.window_requested.emit(items)
+
+func choose_evolution(options: Array[StringName]) -> StringName:
+	if not options: return &""
+	if options.size() == 1: return options[0]
+	# TODO: implement choose_evolution()
+	return options[0]
+
+func level_up_unit(unit: UnitData) -> void:
+	if not unit: return
+	var evolve_into: Array[StringName] = []
+	if object_owner:
+		evolve_into = object_owner.find_unit_evolution(unit.unit_name)
+	if evolve_into: unit.evolve(choose_evolution(evolve_into))
+	else: unit.level_up()

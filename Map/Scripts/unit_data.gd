@@ -97,6 +97,9 @@ var is_dead: bool:
 ## If this is not [code]null[/code], this object is considered a copy of this original one
 var original: UnitData = null
 
+var levelup_avaliable: bool:
+	get: return current_xp >= needed_xp
+
 ## Returns the file path to the unit scene resource.
 ## This path must be added to either [member EventBus.left_units] or
 ## [member EventBus.right_units] to instantiate the unit when battle begins.
@@ -179,6 +182,17 @@ func update_values(u: Unit) -> void:
 # WARNING: this is testing implementation, initialization here will be removed
 func _ready() -> void:
 	initialize()
+
+func grant_xp(points: int) -> void:
+	current_xp += points
+
+func level_up() -> void:
+	# TODO: implement levelup
+	level += 1
+
+func evolve(into: StringName) -> void:
+	unit_name = into
+	initialize(personal_name)
 
 ## Recursively processes all Arrays and Dictionaries within [param data]: [br]
 ## - Serializes [UnitAttack] references into Dictionaries [br]
