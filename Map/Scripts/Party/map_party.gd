@@ -57,6 +57,7 @@ func _initialize() -> void:
 	loaded_portrait = load(portrait_texture)
 	_validate_refs()
 	object_name = "Party (%s)" % party_name
+	init_party_parameters()
 
 func accept_interaction(party: MapParty) -> int:
 	if party.faction.is_enemy(faction):
@@ -90,9 +91,8 @@ func player_interact(player: MapFaction) -> void:
 #endregion
 
 ## @experimental: this will be redesigned
-func init_party_parameters(f: MapFaction) -> void:
-	faction = f
-	$FactionBanner.set_color(f)
+func init_party_parameters() -> void:
+	$FactionBanner.set_color(faction)
 
 func get_battle_ready_units() -> Array[UnitData]:
 	var res: Array[UnitData] = []
