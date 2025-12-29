@@ -18,18 +18,10 @@ func _get_occupied_tiles(main: Vector2i = tile_position) -> Array[Vector2i]:
 
 #region Abstract Implementation
 
-func request_player_interaction(faction: MapFaction) -> bool:
-	# Return whether the player can interact with this object
-	# Includes actions like selecting active party or opening capital window
-	# NOTE: Only handles "left-click" interactions
-	#       "right-click" for information and game settings are managed separately
-	return false
-
-func player_interact(faction: MapFaction) -> void:
-	# Handle player interaction with this object
-	# Includes actions like selecting active party or opening capital window
-	# NOTE: Only handles "left-click" interactions
-	#       "right-click" for information and game settings are managed separately
-	return
+#func request_player_interaction(faction: MapFaction) -> bool:
+	#return faction == object_owner
+#
+#func player_interact(faction: MapFaction) -> void:
+	#_request_switching()
 
 #endregion

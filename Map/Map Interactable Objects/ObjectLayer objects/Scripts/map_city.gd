@@ -71,20 +71,18 @@ func passable(party: Variant) -> bool:
 	return false
 
 func request_player_interaction(faction: MapFaction) -> bool:
-	# Return whether the player can interact with this object
-	# Includes actions like selecting active party or opening capital window
-	# NOTE: Only handles "left-click" interactions
-	#       "right-click" for information and game settings are managed separately
-	return false
+	if map.active_party: return false
+	return faction == object_owner
 
 func player_interact(faction: MapFaction) -> void:
-	# Handle player interaction with this object
-	# Includes actions like selecting active party or opening capital window
-	# NOTE: Only handles "left-click" interactions
-	#       "right-click" for information and game settings are managed separately
-	return
+	_request_switching()
 
 #endregion
+
+func _request_switching() -> void:
+	# TODO: redesign this solution
+	# individual objects should not call UI functions directly
+	map.game.ui_layers.switch_to_city(self)
 
 var units: Array[UnitData]:
 	get:

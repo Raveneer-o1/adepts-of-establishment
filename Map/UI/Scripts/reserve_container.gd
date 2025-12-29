@@ -5,8 +5,6 @@ const PARTY_EDITOR_UNIT_PREFAB = preload("res://Map/UI/Scenes/party_editor_unit.
 var parent: Node
 
 
-## Instantiates and adds a new [PartyEditorUnit] object to this spot.
-## Has no effect if [member unit] is already present.
 func add_unit(data: UnitData) -> void:
 	if not data: return
 	var unit := PARTY_EDITOR_UNIT_PREFAB.instantiate()

@@ -155,6 +155,7 @@ func _on_quit_button_pressed() -> void:
 func _on_portrait_texture_rect_gui_input(event: InputEvent) -> void:
 	if event is not InputEventMouseButton: return
 	if (event as InputEventMouseButton).pressed:
+		if not last_requested_party: return
 		if last_requested_party.inside_city:
 			switch_to_city(last_requested_party.inside_city)
 		else: switch_to(&"Party")

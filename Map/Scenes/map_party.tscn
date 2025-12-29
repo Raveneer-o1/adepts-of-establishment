@@ -213,6 +213,7 @@ animations = [{
 
 [node name="MapParty" type="Node2D"]
 script = ExtResource("1_rleo8")
+interaction_priority = 10
 
 [node name="AnimationHandle" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5pwpc")
