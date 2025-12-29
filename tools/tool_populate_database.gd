@@ -35,7 +35,7 @@ func read_unit(u: Unit, full_path: String) -> void:
 		"large_unit" = true if unit_parameters.large_unit else false,
 		"immunities" = unit_parameters.underlying_immunities if unit_parameters.underlying_immunities else [],
 		"description" = u.full_description if u.full_description else "",
-		"faction" = u.faction,
+		"faction" = u.faction if u.faction else GlobalDefs.Faction.Undefined,
 		"unit_type" = u.unit_type if u.unit_type else GlobalDefs.UnitType.Undefined,
 		"needed_xp" = u.needed_xp if u.needed_xp else 0,
 		"attacks" = attacks,

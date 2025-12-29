@@ -12,7 +12,8 @@ extends ObjectLayerObject
 ## A criterion is satisfied only when ALL its key-value pairs match
 ## corresponding entries in the unit's database record.
 ## Units missing any specified key do not satisfy the criterion.
-## [i](make sure the spelling matches with database entries)[/i]
+## [i](make sure the spelling matches with database entries)[/i][br][br]
+## Check the [UnitData] documentation for valid parameters reference.
 @export var available_units_whitelist: Array[Dictionary]
 ## Filter criteria to exclude units from availability in this city.[br]
 ## Units meeting any criterion will be excluded from recruitment.[br][br]
@@ -119,7 +120,7 @@ func _does_meet_criterion(unit: Dictionary, criterion: Dictionary) -> bool:
 	for key: Variant in criterion:
 		if key not in unit:
 			# debug warning in case the key is spelled wrong
-			print_debug("Unit '%s' does not have a key '%s' in the database")
+			print_debug("Unit '%s' does not have '%s' key in the database")
 			return false
 		var val: Variant = unit[key]
 		if val == criterion[key]: continue

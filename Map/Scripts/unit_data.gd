@@ -13,6 +13,27 @@ extends Node
 ## stats that differ from their baseline values. For example, a unit can level
 ## up without evolving, gaining increased stats including level progression. [br][br]
 ##
+## Serialized dictionary looks like this:
+## [codeblock]
+## {
+##     &"scene_path": String,
+##     &"level": int,
+##     &"large_unit": bool,
+##     &"immunities": Array[GlobalDefs.AttackType],
+##     &"description": String,
+##     &"faction": GlobalDefs.Faction,
+##     &"unit_type": GlobalDefs.UnitType,
+##     &"needed_xp": int,
+##     &"attacks": Array[Dictionary],
+##     &"effects": Array[Dictionary],
+##     &"base_damage": int,
+##     &"max_hp": int,
+##     &"armor": int,
+##     &"evasion": float,
+##     &"shielding_chance": float,
+## }
+## [/codeblock]
+##
 ## [b]Currently not implemented:[/b][br]
 ## This class is not designed for manual instantiation via the editor.
 ## Units are automatically created with all required fields populated
@@ -106,27 +127,11 @@ func _initialize_effect_data() -> void:
 		effects.append(e)
 
 func _initialize_attack_data() -> void:
-	#for data in attack_data:
-		#data.free()
 	attack_data.clear()
 	var attacks_array: Array[Dictionary]
 	attacks_array.assign(database_dict.get(&"attacks", []))
 	for a in attacks_array:
 		var data := UnitAttackData.from_dict(a)
-		#var data := UnitAttackData.new()
-		#data.damage_multiplier = a.get(&"damage_multiplier", 1.0)
-		#data.damage_override = a.get(&"damage_override", false)
-		#data.is_heal = a.get(&"is_heal", false)
-		#data.type = a.get(&"type", 0)
-		#data.accuracy = a.get(&"accuracy", 0.95)
-		#data.targets_needed = a.get(&"targets_needed", 1)
-		#data.initiative = a.get(&"initiative", 0)
-		#data.evadable = a.get(&"evadable", true)
-		#data.tags.assign(a.get(&"tags", []))
-		#data.target_validation = a.get(&"target_validation", "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres")
-		#data.additional_targets = a.get(&"additional_targets", "")
-		#data.damage_policy = a.get(&"damage_policy", "")
-		#data.applying_effects.assign(a.get(&"applying_effects", {}))
 		attack_data.append(data)
 
 ## Initializes unit data with database defaults. [br][br]
@@ -172,7 +177,7 @@ func update_values(u: Unit) -> void:
 		if e.persistent: add_effect(e)
 
 # WARNING: this is testing implementation, initialization here will be removed
-func  _ready() -> void:
+func _ready() -> void:
 	initialize()
 
 ## Recursively processes all Arrays and Dictionaries within [param data]: [br]
