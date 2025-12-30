@@ -580,9 +580,10 @@ theme_override_constants/margin_bottom = 100
 
 [node name="TabContainer" type="TabContainer" parent="UILayers/Capital/MarginContainer"]
 layout_mode = 2
-current_tab = 0
+current_tab = 1
 
 [node name="Active upgrades" type="HBoxContainer" parent="UILayers/Capital/MarginContainer/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -619,6 +620,39 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
+[node name="Building" type="HBoxContainer" parent="UILayers/Capital/MarginContainer/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayers/Capital/MarginContainer/TabContainer/Building"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BuildingUpgradesItemList" type="ItemList" parent="UILayers/Capital/MarginContainer/TabContainer/Building/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="UILayers/Capital/MarginContainer/TabContainer/Building"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/Capital/MarginContainer/TabContainer/Building/MarginContainer2"]
+layout_mode = 2
+
+[node name="SelectedBuildingUpgradesRichTextLabel" type="RichTextLabel" parent="UILayers/Capital/MarginContainer/TabContainer/Building/MarginContainer2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
+[node name="BuildButton" type="Button" parent="UILayers/Capital/MarginContainer/TabContainer/Building/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Build"
 
 [node name="Popups" type="Node" parent="UILayers"]
 
@@ -1468,6 +1502,8 @@ text = "version"
 [connection signal="gui_input" from="UILayers/Greeting/Control" to="UILayers/Greeting" method="_on_control_gui_input"]
 [connection signal="visibility_changed" from="UILayers/Capital" to="UILayers/Capital" method="_on_visibility_changed"]
 [connection signal="item_selected" from="UILayers/Capital/MarginContainer/TabContainer/Active upgrades/MarginContainer/VBoxContainer/ActiveFactionUpgadesItemList" to="UILayers/Capital" method="_on_active_faction_upgades_item_list_item_selected"]
+[connection signal="item_selected" from="UILayers/Capital/MarginContainer/TabContainer/Building/MarginContainer/BuildingUpgradesItemList" to="UILayers/Capital" method="_on_building_upgrades_item_list_item_selected"]
+[connection signal="pressed" from="UILayers/Capital/MarginContainer/TabContainer/Building/MarginContainer2/VBoxContainer/BuildButton" to="UILayers/Capital" method="_on_button_pressed"]
 [connection signal="pressed" from="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HireButton" to="UILayers/Popups/HireUnitPopup" method="_on_hire_button_pressed"]
 [connection signal="gui_input" from="UILayers/Windows/PickUpWindow/Root" to="UILayers/Windows/PickUpWindow" method="_on_root_gui_input"]
 [connection signal="gui_input" from="UILayers/Windows/PickUpWindow/Root/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" to="UILayers/Windows/PickUpWindow" method="_on_h_box_container_gui_input"]

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://qdtmkeo0dosq"]
+
+[ext_resource type="PackedScene" uid="uid://djjfc1v7ijds6" path="res://Map/Scenes/EvolutionBuildings/Empire/squire_to_witchhunter.tscn" id="1_e3bb1"]
+[ext_resource type="PackedScene" uid="uid://dyrh7yqj34o0q" path="res://Map/Scenes/EvolutionBuildings/Empire/witchhunter_to_samurai.tscn" id="2_c4ijs"]
+
+[node name="EmpireTree" type="Node"]
+
+[node name="Watchtower" parent="." instance=ExtResource("1_e3bb1")]
+
+[node name="Dojo" parent="Watchtower" instance=ExtResource("2_c4ijs")]
