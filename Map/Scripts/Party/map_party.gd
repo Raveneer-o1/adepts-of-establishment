@@ -81,10 +81,10 @@ func can_interact(party: MapParty) -> bool:
 func passable(party: Variant) -> bool:
 	return false
 
-func request_player_interaction(player: MapFaction) -> bool:
+func _request_player_interaction(player: MapFaction) -> bool:
 	return player == faction
 
-func player_interact(player: MapFaction) -> void:
+func _player_interact(player: MapFaction) -> void:
 	if player == faction:
 		map.set_active_party(self)
 

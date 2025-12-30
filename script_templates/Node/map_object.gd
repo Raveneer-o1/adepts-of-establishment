@@ -80,7 +80,7 @@ func passable(party: Variant) -> bool:
 		[object_name, type_string(typeof(party))])
 	return false
 
-func request_player_interaction(faction: MapFaction) -> bool:
+func _request_player_interaction(faction: MapFaction) -> bool:
 	# Return whether the player can interact with this object
 	# Includes actions like selecting active party or opening capital window
 	# NOTE: Only handles "left-click" interactions
@@ -88,12 +88,15 @@ func request_player_interaction(faction: MapFaction) -> bool:
 	#       through right_click_processed() (see above)
 	return false
 
-func player_interact(faction: MapFaction) -> void:
+func _player_interact(faction: MapFaction) -> void:
 	# Handle player interaction with this object
 	# Includes actions like selecting active party or opening capital window
 	# NOTE: Only handles "left-click" interactions
 	#       "right-click" for information and game settings are managed
 	#       through right_click_processed() (see above)
+	
+	# This method is allowed to call UI functions directly as it's only called
+	# if provided faction is current screen-player
 	return
 
 #endregion

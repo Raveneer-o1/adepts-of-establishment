@@ -89,22 +89,17 @@ func passable(party: Variant) -> bool:
 		[object_name, type_string(typeof(party))])
 	return false
 
-func request_player_interaction(faction: MapFaction) -> bool:
+func _request_player_interaction(faction: MapFaction) -> bool:
 	if map.active_party: return false
 	return faction == object_owner
 
-func player_interact(faction: MapFaction) -> void:
-	_request_switching()
+func _player_interact(faction: MapFaction) -> void:
+	map.game.ui_layers.switch_to_city(self)
 
 #endregion
 
 #func _initialize() -> void:
 	#ownable = true
-
-func _request_switching() -> void:
-	# TODO: redesign this solution
-	# individual objects should not call UI functions directly
-	map.game.ui_layers.switch_to_city(self)
 
 var units: Array[UnitData]:
 	get:

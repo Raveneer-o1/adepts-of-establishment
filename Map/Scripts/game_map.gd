@@ -10,7 +10,9 @@ var current_map: Map
 
 @onready var factions_in_game: int = $Factions.get_child_count()
 
-## Faction that currently sees the screen. Meant to filter the data shown.
+## The faction currently viewing the game screen, controlling information visibility
+## and UI action permissions. Determines which faction's perspective is active
+## for UI elements, ensuring players access only appropriate data for their view.
 var screen_player: MapFaction
 
 @onready var test_faction: MapFaction = $Factions/Empire

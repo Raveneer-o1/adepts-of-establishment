@@ -402,11 +402,12 @@ func abort_actions() -> void:
 func player_act(coords: Vector2i, faction: MapFaction) -> void:
 	var objects := get_objects_on_tile(coords)
 	var obj_interaction := false
-	for obj in objects:
-		if obj.request_player_interaction(faction):
-			obj.player_interact(faction)
-			obj_interaction = true
-			break
+	if faction == game.screen_player:
+		for obj in objects:
+			if obj.request_player_interaction(faction):
+				obj.player_interact(faction)
+				obj_interaction = true
+				break
 	if not active_party: return
 	if active_party.is_moving:
 		abort_actions()

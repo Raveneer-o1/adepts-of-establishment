@@ -34,14 +34,14 @@ func passable(party: Variant) -> bool:
 		[object_name, type_string(typeof(party))])
 	return false
 
-func request_player_interaction(faction: MapFaction) -> bool:
+func _request_player_interaction(faction: MapFaction) -> bool:
 	# Return whether the player can interact with this object
 	# Includes actions like selecting active party or opening capital window
 	# NOTE: Only handles "left-click" interactions
 	#       "right-click" for information and game settings are managed separately
 	return false
 
-func player_interact(faction: MapFaction) -> void:
+func _player_interact(faction: MapFaction) -> void:
 	# Handle player interaction with this object
 	# Includes actions like selecting active party or opening capital window
 	# NOTE: Only handles "left-click" interactions

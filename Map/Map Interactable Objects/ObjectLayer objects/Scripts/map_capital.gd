@@ -18,10 +18,10 @@ func _get_occupied_tiles(main: Vector2i = tile_position) -> Array[Vector2i]:
 
 #region Abstract Implementation
 
-#func request_player_interaction(faction: MapFaction) -> bool:
+#func _request_player_interaction(faction: MapFaction) -> bool:
 	#return faction == object_owner
 #
-#func player_interact(faction: MapFaction) -> void:
+#func _player_interact(faction: MapFaction) -> void:
 	#_request_switching()
 
 #endregion

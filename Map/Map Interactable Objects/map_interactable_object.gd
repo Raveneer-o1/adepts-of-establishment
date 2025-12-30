@@ -156,7 +156,7 @@ func get_interaction_tiles(
 ## Verify valid interaction locations using [method get_interaction_tiles]
 ## or use [method validate_and_interact] for automatic validation. [br][br]
 ## [b]Note:[/b] This method checks interaction availability for the [b]party[/b],
-## not the player. For player interaction checks, use [method request_player_interaction].
+## not the player. For player interaction checks, use [method _request_player_interaction].
 @abstract func can_interact(party: MapParty) -> bool
 ## Determines whether this object should intercept parties passing by.
 ## For example, enemy parties intercept parties to start a combat.
@@ -165,8 +165,31 @@ func get_interaction_tiles(
 ## Argument can be either [MapParty] or [TravelData].
 @abstract func passable(party: Variant) -> bool
 
-@abstract func request_player_interaction(faction: MapFaction) -> bool
-@abstract func player_interact(faction: MapFaction) -> void
+## Returns if the object responds to player clicks.
+## This wrapper verifies
+## [codeblock]
+## faction == game.screen_player
+## [/codeblock]
+## before delegating to object-specific implementation.
+func request_player_interaction(faction: MapFaction) -> bool:
+	if map.game.screen_player == faction:
+		return _request_player_interaction(faction)
+	return false
+
+## Processes player's click on this object.
+## This wrapper verifies
+## [codeblock]
+## faction == game.screen_player
+## [/codeblock]
+## before delegating to object-specific implementation.[br][br]
+## [color=red][b]Important:[/b][/color] Derived classes may invoke UI functions
+## within this method - handle subsequent operations carefully.
+func player_interact(faction: MapFaction) -> void:
+	if map.game.screen_player == faction:
+		_player_interact(faction)
+
+@abstract func _request_player_interaction(faction: MapFaction) -> bool
+@abstract func _player_interact(faction: MapFaction) -> void
 
 ## Emitted when the object undergoes significant transformation
 ## (e.g., ownership change).
