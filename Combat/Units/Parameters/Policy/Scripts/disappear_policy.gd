@@ -6,10 +6,14 @@ extends BasePolicy
 var turns: int
 var unit: Unit
 
-func check_turn(u: Unit) -> void:
+# argument to match signal signature
+func check_turn(u: Unit = null) -> void:
 	if not unit: return
 	turns -= 1
 	if turns > 0: return
+	_return_unit()
+
+func _return_unit() -> void:
 	var avaliable_spots: Array[UnitSpot] = unit.party.unit_spots.filter(
 		func(s: UnitSpot)->bool: return s.unit == null
 	)
@@ -20,8 +24,13 @@ func check_turn(u: Unit) -> void:
 	if EventBus.turn_ended.is_connected(check_turn):
 		EventBus.turn_ended.disconnect(check_turn)
 
+# argument to match signal signature
+func _check_if_last(u: Unit = null) -> void:
+	if not unit: return
+	if unit.party.check_if_empty():
+		_return_unit()
+
 func _apply_policy(attack: Attack, finalize: bool) -> void:
-	# TODO: if there's only one unit, this ends the combat, leaking the unit
 	if unit: return
 	for ref in attack.target_references:
 		if not ref: continue
@@ -33,4 +42,6 @@ func _apply_policy(attack: Attack, finalize: bool) -> void:
 		if random_additional_turns > 0:
 			turns += randi_range(0, random_additional_turns)
 		EventBus.turn_ended.connect(check_turn)
+		EventBus.unit_died.connect(_check_if_last)
+		_check_if_last()
 		return
