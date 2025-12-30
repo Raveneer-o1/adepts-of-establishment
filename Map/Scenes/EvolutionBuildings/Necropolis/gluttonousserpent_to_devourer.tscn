@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwehdjmqgvalt"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/EvolutionBuildings/evolution_building.tscn" id="1_barp5"]
+
+[node name="Hunting grounds" instance=ExtResource("1_barp5")]
+evolving_from = &"Gluttonous Serpent"
+evolving_into = &"The Devourer"
+upgrade_name = "Hunting grounds"
+description = "This building allows Gluttonous serpents to become Devourers"

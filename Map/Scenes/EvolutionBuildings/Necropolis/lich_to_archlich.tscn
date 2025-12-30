@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8yo3gms7jvef"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/EvolutionBuildings/evolution_building.tscn" id="1_jbj8s"]
+
+[node name="Locus of Being" instance=ExtResource("1_jbj8s")]
+evolving_from = &"Lich"
+evolving_into = &"Archlich"
+upgrade_name = "Locus of Being"
+description = "This building allows Liches to become Archliches"

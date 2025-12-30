@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dk7j8c63d8pow"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/EvolutionBuildings/evolution_building.tscn" id="1_s7x40"]
+
+[node name="Blood Ossuary" instance=ExtResource("1_s7x40")]
+evolving_from = &"Vampire"
+evolving_into = &"Elder vampire"
+upgrade_name = "Blood Ossuary"
+description = "This building allows Vampires to become Elder vampires"

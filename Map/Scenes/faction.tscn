@@ -29,3 +29,4 @@ editor_description = "All buildings should have the option to be displayed at th
 visible = false
 script = ExtResource("3_5mkmw")
 empire_path = "res://Map/Scenes/EvolutionBuildings/empire_tree.tscn"
+necropolis_path = "res://Map/Scenes/EvolutionBuildings/necropolis_tree.tscn"

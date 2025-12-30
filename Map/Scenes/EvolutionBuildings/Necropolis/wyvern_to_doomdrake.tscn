@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0nhvas3uuu88"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/EvolutionBuildings/evolution_building.tscn" id="1_5tpy2"]
+
+[node name="Fell Aerie" instance=ExtResource("1_5tpy2")]
+evolving_from = &"Wyvern"
+evolving_into = &"Doomdrake"
+upgrade_name = "Fell Aerie"
+description = "This building allows Wyverns to become Doomdrakes"

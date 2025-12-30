@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhij7aj2p4uaa"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/EvolutionBuildings/evolution_building.tscn" id="1_pus0p"]
+
+[node name="Amphitheater" instance=ExtResource("1_pus0p")]
+evolving_from = &"Skeleton warrior"
+evolving_into = &"Skeleton Hero"
+upgrade_name = "Amphitheater"
+description = "This building allows Skeleton warriors to become Skeleton Heroes"

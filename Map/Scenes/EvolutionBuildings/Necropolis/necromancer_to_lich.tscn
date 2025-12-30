@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ju60lpia86fn"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/EvolutionBuildings/evolution_building.tscn" id="1_dykmp"]
+
+[node name="Death sanctuary" instance=ExtResource("1_dykmp")]
+evolving_from = &"Necromancer"
+evolving_into = &"Lich"
+upgrade_name = "Death sanctuary"
+description = "This building allows Necromancers to become Liches"

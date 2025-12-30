@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://crijopkh2u8bg"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/EvolutionBuildings/evolution_building.tscn" id="1_e0dkm"]
+
+[node name="Blood Throne" instance=ExtResource("1_e0dkm")]
+evolving_from = &"Elder vampire"
+evolving_into = &"Vampire Lord"
+upgrade_name = "Blood Throne"
+description = "This building allows Elder vampires to become Vampire Lords"

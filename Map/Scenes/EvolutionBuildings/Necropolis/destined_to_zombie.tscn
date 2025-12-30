@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2lslkxx6uosy"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/EvolutionBuildings/evolution_building.tscn" id="1_nl5fi"]
+
+[node name="Burial ground" instance=ExtResource("1_nl5fi")]
+evolving_from = &"Destined"
+evolving_into = &"Zombie"
+upgrade_name = "Burial ground"
+description = "This building allows Destined to become Zombies"

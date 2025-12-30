@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ohdfkvqpo78j"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/EvolutionBuildings/evolution_building.tscn" id="1_1h035"]
+
+[node name="Graveyard" instance=ExtResource("1_1h035")]
+evolving_from = &"Death Acolyte"
+evolving_into = &"Necromancer"
+upgrade_name = "Graveyard"
+description = "This building allows Death Acolytes to become Necromancers"

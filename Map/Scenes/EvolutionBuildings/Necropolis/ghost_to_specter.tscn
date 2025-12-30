@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ca6d4leqx6jne"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/EvolutionBuildings/evolution_building.tscn" id="1_igukl"]
+
+[node name="Haunted mansion" instance=ExtResource("1_igukl")]
+evolving_from = &"Ghost"
+evolving_into = &"Specter"
+upgrade_name = "Haunted mansion"
+description = "This building allows Ghosts to become Specters"

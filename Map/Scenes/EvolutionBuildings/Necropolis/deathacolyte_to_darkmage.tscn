@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://d223a34knvnfl"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/EvolutionBuildings/evolution_building.tscn" id="1_17sck"]
+
+[node name="Sigil of dark rites" instance=ExtResource("1_17sck")]
+evolving_from = &"Death Acolyte"
+evolving_into = &"Dark Mage"
+upgrade_name = "Sigil of dark rites"
+description = "This building allows Death Acolytes to become Dark mages"

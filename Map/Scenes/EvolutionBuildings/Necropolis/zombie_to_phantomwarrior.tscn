@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bloyylyd1qhhl"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/EvolutionBuildings/evolution_building.tscn" id="1_26nyp"]
+
+[node name="Spectral armory" instance=ExtResource("1_26nyp")]
+evolving_from = &"Zombie"
+evolving_into = &"Phantom Warrior"
+upgrade_name = "Spectral armory"
+description = "This building allows Zombies to become Phantom Warriors"
