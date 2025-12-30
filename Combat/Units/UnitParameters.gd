@@ -451,7 +451,6 @@ func check_parameters() -> void:
 		if not is_instance_valid(attack) or \
 		attack.is_queued_for_deletion():
 			return
-	# TODO: write check_parameters() function
 	initializtion_successful = true
 
 ## Applies an effect using a scene file path instead of an effect name.
