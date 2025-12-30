@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://jptv4wy37o02"]
+
+[ext_resource type="Script" uid="uid://cx6xvq4oxc3oh" path="res://Map/Map Interactable Objects/Scripts/land_claiming_rod.gd" id="1_8gd7c"]
+[ext_resource type="Texture2D" uid="uid://m7g74viftn53" path="res://Arts/itch assets/Pixel Art Icon Pack - RPG [Cainos]/Weapon & Tool/Topaz Staff.png" id="2_uwmlv"]
+[ext_resource type="Script" uid="uid://dl0lsoe05e0ym" path="res://Map/Map Interactable Objects/Extentions/land_claimer.gd" id="3_1bvov"]
+
+[node name="LandClaimingRod" type="Node2D"]
+script = ExtResource("1_8gd7c")
+ownable = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(7, -7.999999)
+rotation = -0.2547973
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_uwmlv")
+
+[node name="LandClaimer" type="Node" parent="."]
+script = ExtResource("3_1bvov")
+claim_power = 5.0
+max_claim_power = 3.0
+metadata/_custom_type_script = "uid://dl0lsoe05e0ym"

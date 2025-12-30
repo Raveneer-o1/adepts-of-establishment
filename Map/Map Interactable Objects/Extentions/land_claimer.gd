@@ -43,6 +43,7 @@ func set_influence_and_frontier() -> void:
 		ht[current_data] = null
 	influence.assign(ht.keys())
 	frontier.assign(frontier_ht.keys())
+	_setting = false
 
 ## Applies claim power (see [member claim_power]) to all tiles in the
 ## [member frontier].
@@ -50,14 +51,18 @@ func apply_claim() -> void:
 	var power := clampf(claim_power / frontier.size(), 0.0, max_claim_power)
 	for tile in frontier:
 		tile.try_claiming(land_owner, power)
-	
-	# WARNING: temporary solution
-	# this will show very poor performance on large maps
-	set_influence_and_frontier()
+
+var _tiles_to_check_frontier: Array[MapTileData] = []
+var _tiles_to_check_influence: Array[MapTileData] = []
+
+var _setting := false
 
 func _check_claimed_tile(tile: MapTileData, previous_owner: MapFaction) -> void:
-	# TODO: Handle tile ownership changes
-	pass
+	if _setting: return
+	if tile.tile_owner == previous_owner: return
+	if tile in influence or tile in frontier:
+		set_influence_and_frontier.call_deferred()
+		_setting = true
 
 func _check_turn_start(f: MapFaction) -> void:
 	if f == land_owner: apply_claim()
