@@ -11,6 +11,8 @@ extends CanvasLayer
 @onready var selected_avaliable_text: RichTextLabel = \
 	%SelectedBuildingUpgradesRichTextLabel
 
+@onready var active_upgrades: HBoxContainer = $"MarginContainer/TabContainer/Active upgrades"
+
 @onready var ui_layers: MapUI = $".."
 
 var name_upgrade_mapping: Dictionary[String, FactionUpgrade] = {}
@@ -24,7 +26,7 @@ func _fetch_avaliable_upgrades_mapping(faction: MapFaction) -> void:
 	for upgrade in faction.get_avaliable_upgrades(true):
 		if name_avaliable_mapping.has(upgrade.upgrade_name):
 			push_error("Upgrade '%s' already exists" % upgrade.upgrade_name)
-			name_avaliable_mapping[upgrade.upgrade_name + upgrade.name] = upgrade
+			name_avaliable_mapping[upgrade.upgrade_name + " (%s)" % upgrade.name] = upgrade
 		else: name_avaliable_mapping[upgrade.upgrade_name] = upgrade
 
 func _fetch_active_upgrades_mapping(faction: MapFaction) -> void:
@@ -32,7 +34,7 @@ func _fetch_active_upgrades_mapping(faction: MapFaction) -> void:
 	for upgrade in faction.get_all_upgrades(true):
 		if name_upgrade_mapping.has(upgrade.upgrade_name):
 			push_error("Upgrade '%s' already exists" % upgrade.upgrade_name)
-			name_upgrade_mapping[upgrade.upgrade_name + upgrade.name] = upgrade
+			name_upgrade_mapping[upgrade.upgrade_name + " (%s)" % upgrade.name] = upgrade
 		else: name_upgrade_mapping[upgrade.upgrade_name] = upgrade
 
 func fill_data(faction: MapFaction) -> void:
@@ -80,3 +82,6 @@ func _on_button_pressed() -> void:
 	_filled_faction.research(_selected_avaliable_upgrade)
 	
 	fill_data(_filled_faction)
+	
+	_selected_avaliable_upgrade = null
+	active_upgrades.show()

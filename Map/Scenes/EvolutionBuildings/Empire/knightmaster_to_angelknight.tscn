@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8gj8qa4icbiu"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/EvolutionBuildings/evolution_building.tscn" id="1_38dlb"]
+
+[node name="Celestial spire" instance=ExtResource("1_38dlb")]
+evolving_from = &"Knight Master"
+evolving_into = &"Angel Knight"
+upgrade_name = "Celestial spire"
+description = "This building allows Knight Masters to become Angel Knights"

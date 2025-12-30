@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqbcfku0x5dy4"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/EvolutionBuildings/evolution_building.tscn" id="1_ruve8"]
+
+[node name="Chapter house" instance=ExtResource("1_ruve8")]
+evolving_from = &"Knight"
+evolving_into = &"Knight Master"
+upgrade_name = "Chapter house"
+description = "This building allows Knights to become Knight Masters"

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://t1kjrsgpo6wk"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/EvolutionBuildings/evolution_building.tscn" id="1_m7rte"]
+
+[node name="Fletchers\' Guild" instance=ExtResource("1_m7rte")]
+evolving_from = &"Archer"
+evolving_into = &"Marksman"
+upgrade_name = "Fletchers' Guild"
+description = "This building allows Archers to become Marksmen"

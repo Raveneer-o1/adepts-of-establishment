@@ -1,10 +1,91 @@
-[gd_scene load_steps=3 format=3 uid="uid://qdtmkeo0dosq"]
+[gd_scene load_steps=30 format=3 uid="uid://qdtmkeo0dosq"]
 
 [ext_resource type="PackedScene" uid="uid://djjfc1v7ijds6" path="res://Map/Scenes/EvolutionBuildings/Empire/squire_to_witchhunter.tscn" id="1_e3bb1"]
 [ext_resource type="PackedScene" uid="uid://dyrh7yqj34o0q" path="res://Map/Scenes/EvolutionBuildings/Empire/witchhunter_to_samurai.tscn" id="2_c4ijs"]
+[ext_resource type="PackedScene" uid="uid://c8cy816mvriw8" path="res://Map/Scenes/EvolutionBuildings/Empire/samurai_to_bladesaint.tscn" id="3_t85jt"]
+[ext_resource type="PackedScene" uid="uid://bwc2re5sakpyl" path="res://Map/Scenes/EvolutionBuildings/Empire/witchhunter_to_inquisitor.tscn" id="4_vi0fs"]
+[ext_resource type="PackedScene" uid="uid://3lf57ufyhu2x" path="res://Map/Scenes/EvolutionBuildings/Empire/inquisitor_to_grandinquisitor.tscn" id="5_pyq3b"]
+[ext_resource type="PackedScene" uid="uid://boyddk5nhs2ic" path="res://Map/Scenes/EvolutionBuildings/Empire/squire_to_knight.tscn" id="6_iof43"]
+[ext_resource type="PackedScene" uid="uid://dl7n2trlnpmbo" path="res://Map/Scenes/EvolutionBuildings/Empire/knight_to_horseman.tscn" id="7_6mbqt"]
+[ext_resource type="PackedScene" uid="uid://cfqd3kx4w1fum" path="res://Map/Scenes/EvolutionBuildings/Empire/horseman_to_royalcavalier.tscn" id="8_3ch65"]
+[ext_resource type="PackedScene" uid="uid://doay83le1mw0g" path="res://Map/Scenes/EvolutionBuildings/Empire/royalcavalier_to_paladin.tscn" id="9_imacu"]
+[ext_resource type="PackedScene" uid="uid://dewl4ltxaor7" path="res://Map/Scenes/EvolutionBuildings/Empire/royalcavalier_to_angel.tscn" id="10_85wha"]
+[ext_resource type="PackedScene" uid="uid://cqbcfku0x5dy4" path="res://Map/Scenes/EvolutionBuildings/Empire/knight_to_knightmaster.tscn" id="11_i3hod"]
+[ext_resource type="PackedScene" uid="uid://c8gj8qa4icbiu" path="res://Map/Scenes/EvolutionBuildings/Empire/knightmaster_to_angelknight.tscn" id="12_64eq3"]
+[ext_resource type="PackedScene" uid="uid://t1kjrsgpo6wk" path="res://Map/Scenes/EvolutionBuildings/Empire/archer_to_marksman.tscn" id="13_6mbqt"]
+[ext_resource type="PackedScene" uid="uid://tkkaorsht878" path="res://Map/Scenes/EvolutionBuildings/Empire/marksman_to_assassin.tscn" id="14_3ch65"]
+[ext_resource type="PackedScene" uid="uid://dd3xafluouhju" path="res://Map/Scenes/EvolutionBuildings/Empire/marksman_to_scout.tscn" id="15_imacu"]
+[ext_resource type="PackedScene" uid="uid://d3od6xmb08668" path="res://Map/Scenes/EvolutionBuildings/Empire/scout_to_imperialranger.tscn" id="16_85wha"]
+[ext_resource type="PackedScene" uid="uid://dfc4p7c0asoqe" path="res://Map/Scenes/EvolutionBuildings/Empire/apprentice_to_elementalist.tscn" id="17_5km3s"]
+[ext_resource type="PackedScene" uid="uid://bunt8ihqj5j57" path="res://Map/Scenes/EvolutionBuildings/Empire/elementalist_to_ritualist.tscn" id="18_7yau7"]
+[ext_resource type="PackedScene" uid="uid://ck3mn34xxa7cm" path="res://Map/Scenes/EvolutionBuildings/Empire/apprentice_to_mage.tscn" id="19_x2dvy"]
+[ext_resource type="PackedScene" uid="uid://dy2j6bvb2tq72" path="res://Map/Scenes/EvolutionBuildings/Empire/mage_to_wizard.tscn" id="20_hpdcf"]
+[ext_resource type="PackedScene" uid="uid://c4gbhh3lvak0" path="res://Map/Scenes/EvolutionBuildings/Empire/wizard_to_whitemage.tscn" id="21_28usd"]
+[ext_resource type="PackedScene" uid="uid://chdxvlnp8bt4n" path="res://Map/Scenes/EvolutionBuildings/Empire/whitemage_to_arcanist.tscn" id="22_obcpw"]
+[ext_resource type="PackedScene" uid="uid://cjf403l25cjdf" path="res://Map/Scenes/EvolutionBuildings/Empire/whitemage_to_keeperofknowledge.tscn" id="23_vx1oe"]
+[ext_resource type="PackedScene" uid="uid://cqk1h7v3kbhkb" path="res://Map/Scenes/EvolutionBuildings/Empire/acolyte_to_cleric.tscn" id="24_vx1oe"]
+[ext_resource type="PackedScene" uid="uid://c43cq331x3l6u" path="res://Map/Scenes/EvolutionBuildings/Empire/cleric_to_matriarch.tscn" id="25_7rnnk"]
+[ext_resource type="PackedScene" uid="uid://dhm3t00jfusig" path="res://Map/Scenes/EvolutionBuildings/Empire/matriarch_to_prophetess.tscn" id="26_aur5o"]
+[ext_resource type="PackedScene" uid="uid://dbiiilc3s3n71" path="res://Map/Scenes/EvolutionBuildings/Empire/acolyte_to_priest.tscn" id="27_autqe"]
+[ext_resource type="PackedScene" uid="uid://bn6dgwulcbwqg" path="res://Map/Scenes/EvolutionBuildings/Empire/priest_to_imperialpriest.tscn" id="28_8nl3v"]
+[ext_resource type="PackedScene" uid="uid://b8o467pgljlxl" path="res://Map/Scenes/EvolutionBuildings/Empire/imperialpriest_to_hierophant.tscn" id="29_lv4w4"]
 
 [node name="EmpireTree" type="Node"]
 
 [node name="Watchtower" parent="." instance=ExtResource("1_e3bb1")]
 
 [node name="Dojo" parent="Watchtower" instance=ExtResource("2_c4ijs")]
+
+[node name="Shogun\'s Embassy" parent="Watchtower/Dojo" instance=ExtResource("3_t85jt")]
+
+[node name="Inquisition Hall" parent="Watchtower" instance=ExtResource("4_vi0fs")]
+
+[node name="Conclave chapel" parent="Watchtower/Inquisition Hall" instance=ExtResource("5_pyq3b")]
+
+[node name="Garrison" parent="." instance=ExtResource("6_iof43")]
+
+[node name="War stables" parent="Garrison" instance=ExtResource("7_6mbqt")]
+
+[node name="Royal Manege" parent="Garrison/War stables" instance=ExtResource("8_3ch65")]
+
+[node name="Citadel of Blessing" parent="Garrison/War stables/Royal Manege" instance=ExtResource("9_imacu")]
+
+[node name="Holy altar" parent="Garrison/War stables/Royal Manege" instance=ExtResource("10_85wha")]
+
+[node name="Chapter house" parent="Garrison" instance=ExtResource("11_i3hod")]
+
+[node name="Celestial spire" parent="Garrison/Chapter house" instance=ExtResource("12_64eq3")]
+
+[node name="Fletchers\' Guild" parent="." instance=ExtResource("13_6mbqt")]
+
+[node name="Brothel" parent="Fletchers\' Guild" instance=ExtResource("14_3ch65")]
+
+[node name="Outpost" parent="Fletchers\' Guild" instance=ExtResource("15_imacu")]
+
+[node name="Imperial range" parent="Fletchers\' Guild/Outpost" instance=ExtResource("16_85wha")]
+
+[node name="Ritual circle" parent="." instance=ExtResource("17_5km3s")]
+
+[node name="Chamber of rites" parent="Ritual circle" instance=ExtResource("18_7yau7")]
+
+[node name="Lecture hall" parent="." instance=ExtResource("19_x2dvy")]
+
+[node name="Library" parent="Lecture hall" instance=ExtResource("20_hpdcf")]
+
+[node name="Enchanted spire" parent="Lecture hall/Library" instance=ExtResource("21_28usd")]
+
+[node name="Arcanium" parent="Lecture hall/Library/Enchanted spire" instance=ExtResource("22_obcpw")]
+
+[node name="Temple of Sacred Wisdom" parent="Lecture hall/Library/Enchanted spire" instance=ExtResource("23_vx1oe")]
+
+[node name="Parish chapel" parent="." instance=ExtResource("24_vx1oe")]
+
+[node name="Matron chambers" parent="Parish chapel" instance=ExtResource("25_7rnnk")]
+
+[node name="Fountain of Truth" parent="Parish chapel/Matron chambers" instance=ExtResource("26_aur5o")]
+
+[node name="Church" parent="." instance=ExtResource("27_autqe")]
+
+[node name="Cathedral" parent="Church" instance=ExtResource("28_8nl3v")]
+
+[node name="Holy Scriptorium" parent="Church/Cathedral" instance=ExtResource("29_lv4w4")]

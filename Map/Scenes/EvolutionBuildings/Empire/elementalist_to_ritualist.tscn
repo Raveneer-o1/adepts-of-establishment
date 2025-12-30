@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bunt8ihqj5j57"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/EvolutionBuildings/evolution_building.tscn" id="1_yuxl1"]
+
+[node name="Chamber of rites" instance=ExtResource("1_yuxl1")]
+evolving_from = &"Elementalist"
+evolving_into = &"Ritualist"
+upgrade_name = "Chamber of rites"
+description = "This building allows Elementalists to become Ritualists"

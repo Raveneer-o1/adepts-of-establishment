@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfc4p7c0asoqe"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/EvolutionBuildings/evolution_building.tscn" id="1_kas1o"]
+
+[node name="Ritual circle" instance=ExtResource("1_kas1o")]
+evolving_from = &"Apprentice"
+evolving_into = &"Elementalist"
+upgrade_name = "Ritual circle"
+description = "This building allows Apprentices to become Elementalists"
