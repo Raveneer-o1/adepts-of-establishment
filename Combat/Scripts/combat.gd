@@ -158,6 +158,8 @@ var timer: SceneTreeTimer
 @onready var miniature_queue_manager: MiniatureQueueManager = \
 	$"../UI/ParentContainer/PanelContainer/HBoxContainer/Queue"
 
+var units_died_this_combat_on_left: Array[Unit] = []
+var units_died_this_combat_on_right: Array[Unit] = []
 
 ## Checks if any party is empty and determines a winner
 func check_winner(_unit: Unit = null) -> void:
@@ -467,6 +469,20 @@ func initialize_variables() -> void:
 	EventBus.attack_animation_finished.connect(check_finished_animation)
 	left_party_units = EventBus.left_units
 	right_party_units = EventBus.right_units
+	
+	EventBus.unit_died.connect(register_unit_death)
+
+
+func register_unit_death(unit: Unit) -> void:
+	if not is_instance_valid(unit): return
+	if not unit: return
+	if unit.is_queued_for_deletion(): return
+	if unit.summoned_unit: return
+	var list := units_died_this_combat_on_left if \
+		unit.party == left_party else \
+		units_died_this_combat_on_right
+	if unit in list: return
+	list.append(unit)
 
 func place_units() -> void:
 	await right_party.place_units(right_party_units)
@@ -484,6 +500,8 @@ func _ready() -> void:
 	await place_units()
 	await get_tree().process_frame
 	combat_logic.start_battle()
+	units_died_this_combat_on_left.clear()
+	units_died_this_combat_on_right.clear()
 	EventBus.is_battle_ready = true
 #endregion
 
@@ -544,6 +562,30 @@ func start_end_countdown() -> void:
 
 #endregion
 
+func _calculate_xp_for_dead(list: Array[Unit]) -> int:
+	var res := 0
+	for unit in list:
+		res += absi(unit.get_xp_for_killing())
+	return res
+
+## Left and right arguments must match the initialization order
+func grant_xp(left: Array[UnitData], right: Array[UnitData]) -> void:
+	var left_size := left.size()
+	var right_size := right.size()
+	if left_size == 0 or right_size == 0: return
+	
+	# +1 to have at least one XP point to grant
+	@warning_ignore("integer_division")
+	var xp_to_right := 1 + _calculate_xp_for_dead(units_died_this_combat_on_left) / left_size
+	@warning_ignore("integer_division")
+	var xp_to_left := 1 + _calculate_xp_for_dead(units_died_this_combat_on_right) / right_size
+	
+	if left_party.check_if_empty():
+		for data in right:
+			data.grant_xp(xp_to_right)
+	if right_party.check_if_empty():
+		for data in left:
+			data.grant_xp(xp_to_left)
 
 func _on_button_defense_pressed() -> void:
 	EventBus.defense_clicked.emit()

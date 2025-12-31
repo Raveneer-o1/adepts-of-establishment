@@ -17,11 +17,12 @@ const battle_effect = preload("res://Map/Scenes/visual_effect.tscn")
 func do_siege(attacker: MapParty, defender: MapCity) -> bool:
 	_prefill_data_siege(attacker, defender)
 	var battle := _load_battle()
-	await _switch_to_battle(battle)
+	# TODO: refactor with _update_units signal
+	await _switch_to_battle(battle, attacker.units, defender.units)
 	attacker.update_parameters()
 	return not attacker.is_dead
 
-## Processes combat ant return the winner or [code]null[/code] if there isn't one
+## Processes combat and returns the winner or [code]null[/code] if there isn't one
 func do_combat(attacker: MapParty, defender: MapParty) -> MapParty:
 	_prefill_data(attacker, defender)
 	
@@ -31,12 +32,16 @@ func do_combat(attacker: MapParty, defender: MapParty) -> MapParty:
 	var battle := _load_battle()
 	await _play_effect(defender.global_position)
 	
-	await _switch_to_battle(battle)
+	var upd := func() -> void:
+		attacker.update_parameters()
+		defender.update_parameters()
 	
-	attacker.update_parameters()
-	defender.update_parameters()
-	attacker.parameters.grant_winner_xp(defender)
-	defender.parameters.grant_winner_xp(attacker)
+	_update_units.connect(upd)
+	await _switch_to_battle(battle, attacker.units, defender.units)
+	_update_units.disconnect(upd)
+	
+	# not necessary but in case update is not treggered this is a safeguard
+	upd.call()
 	
 	if attacker.is_dead == defender.is_dead: return null
 	return attacker if defender.is_dead else defender
@@ -64,8 +69,13 @@ func _load_battle() -> Node:
 	map.add_sibling(battle)
 	return battle
 
+func _grant_xp(combat: CombatSystem, left: Array[UnitData], right: Array[UnitData]) -> void:
+	combat.grant_xp(left, right)
+	_update_units.emit()
 
-func _switch_to_battle(battle: Control) -> void:
+signal _update_units
+
+func _switch_to_battle(battle: Control, left: Array[UnitData], right: Array[UnitData]) -> void:
 	if not EventBus.is_battle_ready:
 		await EventBus.battle_ready
 	(battle.find_child("Camera2D", false) as Camera2D).make_current()
@@ -74,7 +84,11 @@ func _switch_to_battle(battle: Control) -> void:
 	game.ui_layers.switch_to(&"Battle")
 	map.process_mode = Node.PROCESS_MODE_DISABLED
 	
+	var xp_reward_callable := _grant_xp.bind(left, right)
+	EventBus.winner_determined.connect(xp_reward_callable)
 	await EventBus.battle_ended
+	EventBus.winner_determined.disconnect(xp_reward_callable)
+	
 	game.ui_layers.switch_to(&"Main")
 	battle.queue_free()
 	map.process_mode = Node.PROCESS_MODE_PAUSABLE

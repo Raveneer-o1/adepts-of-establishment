@@ -218,34 +218,3 @@ func _ready() -> void:
 			if f == this_party.faction:
 				movement_points = max_movement_points
 	)
-
-func calculate_xp_for_defeating() -> int:
-	# TODO: implement calculate_xp_for_defeating()
-	return 1
-
-## Grants experience points to all units in the party.
-func grant_xp(points: int) -> void:
-	for unit in units:
-		unit.grant_xp(points)
-		if unit.levelup_avaliable: this_party.level_up_unit(unit)
-
-## If check_if_winner is [code]true[/code] (default),
-## the method will adjust values based on what party is defeated.
-func grant_winner_xp(other: Variant, check_if_winner: bool = true) -> void:
-	if not other: return
-	if other is MapParty: _grant_winner_xp_party(other, check_if_winner)
-	elif other is MapCity: _grant_winner_xp_party(other, check_if_winner)
-	else: push_error("Only 'MapParty' and 'MapCity' allowed")
-
-func _grant_winner_xp_party(other_party: MapParty, check: bool) -> void:
-	if check:
-		if this_party.is_dead: return
-		if not other_party.is_dead:
-			# TODO: implement reduced XP for not fully defeated parties
-			return
-	grant_xp(other_party.parameters.calculate_xp_for_defeating())
-
-func _grant_winner_xp_city(other_city: MapCity, check: bool) -> void:
-	if check:
-		if this_party.is_dead: return
-	grant_xp(other_city.calculate_xp_for_defeating())

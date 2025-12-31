@@ -788,6 +788,10 @@ func create_attack(unit_attack: UnitAttack, targets: Array[UnitSpot]) -> Attack:
 		#__debug_track_ref()
 		#__debug_timer = 1.0
 
+func get_xp_for_killing() -> int:
+	# TODO: implement get_xp_for_killing()
+	return 1
+
 func now_attacking() -> bool:
 	if not chosen_targets.is_empty():
 		return true

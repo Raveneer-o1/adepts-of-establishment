@@ -1500,7 +1500,6 @@ text = "version"
 [connection signal="gui_input" from="UILayers/Party/HBoxContainer" to="." method="_on_h_box_container_gui_input"]
 [connection signal="pressed" from="UILayers/City/PanelContainer/MarginContainer/HBoxContainer/InfoContainer/VBoxContainer/HireButton" to="UILayers/City" method="_on_hire_button_pressed"]
 [connection signal="gui_input" from="UILayers/Greeting/Control" to="UILayers/Greeting" method="_on_control_gui_input"]
-[connection signal="visibility_changed" from="UILayers/Capital" to="UILayers/Capital" method="_on_visibility_changed"]
 [connection signal="item_selected" from="UILayers/Capital/MarginContainer/TabContainer/Active upgrades/MarginContainer/VBoxContainer/ActiveFactionUpgadesItemList" to="UILayers/Capital" method="_on_active_faction_upgades_item_list_item_selected"]
 [connection signal="item_selected" from="UILayers/Capital/MarginContainer/TabContainer/Building/MarginContainer/BuildingUpgradesItemList" to="UILayers/Capital" method="_on_building_upgrades_item_list_item_selected"]
 [connection signal="pressed" from="UILayers/Capital/MarginContainer/TabContainer/Building/MarginContainer2/VBoxContainer/BuildButton" to="UILayers/Capital" method="_on_button_pressed"]

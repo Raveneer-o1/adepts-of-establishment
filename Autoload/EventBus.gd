@@ -18,6 +18,8 @@ var is_battle_ready: bool:
 signal battle_ended()
 signal battle_ready()
 
+signal winner_determined(combat: CombatSystem)
+
 signal spot_clicked(spot: UnitSpot)
 signal wait_clicked()
 signal defense_clicked()
@@ -69,4 +71,6 @@ signal popup_requested(object: Variant)
 signal window_requested(info: Variant)
 
 signal tile_claimed(tile: MapTileData, previous_owner: MapFaction)
+
+signal unit_evolved(unit: UnitData, previous_form: StringName)
 #endregion

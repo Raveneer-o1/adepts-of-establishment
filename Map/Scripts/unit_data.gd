@@ -191,8 +191,10 @@ func level_up() -> void:
 	level += 1
 
 func evolve(into: StringName) -> void:
+	var prev := unit_name
 	unit_name = into
 	initialize(personal_name)
+	EventBus.unit_evolved.emit(self, prev)
 
 ## Recursively processes all Arrays and Dictionaries within [param data]: [br]
 ## - Serializes [UnitAttack] references into Dictionaries [br]

@@ -125,9 +125,11 @@ func face_tile(target: Vector2i) -> void:
 	animation_handle.flip_h = d.y < 0
 
 func update_parameters() -> void:
+	var _dead := true
 	for u in units:
-		if not u.is_dead: return
-	die()
+		if not u.is_dead: _dead = false
+		if u.levelup_avaliable: level_up_unit(u)
+	if _dead: die()
 
 const GRAVE_PREFAB = preload("res://Map/Scenes/party_grave.tscn")
 

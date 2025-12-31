@@ -200,6 +200,7 @@ func end_battle() -> void:
 		if not unit: continue
 		if not unit.original_data: continue
 		unit.original_data.update_values(unit)
+	EventBus.winner_determined.emit(main_system)
 	main_system.start_end_countdown()
 
 
