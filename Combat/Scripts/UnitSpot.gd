@@ -17,11 +17,8 @@ var active: bool:
 			process_mode = PROCESS_MODE_INHERIT
 
 var unit: Unit
-
 var system: CombatSystem
-
 var party_position: int
-
 var party: Party
 
 
@@ -93,3 +90,18 @@ func release_unit() -> void:
 
 func click() -> void:
 	EventBus.spot_clicked.emit(self)
+
+func question_start_react(data: UnitData) -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	if unit and unit.original_data == data:
+		highlight_externally()
+	else: reset_highlight()
+
+func question_end_react(data: UnitData) -> void:
+	process_mode = Node.PROCESS_MODE_PAUSABLE
+	if unit and unit.original_data == data:
+		reset_highlight()
+
+func _ready() -> void:
+	EventBus.unit_question_started.connect(question_start_react)
+	EventBus.unit_question_ended.connect(question_end_react)

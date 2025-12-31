@@ -172,7 +172,7 @@ func _read_data(data: UnitData) -> void:
 	faction = data.faction
 	full_description = data.description
 
-func _visualize_levelup(data: UnitData) -> void:
+func _visualize_evolution(data: UnitData) -> void:
 	if parameters.dead: return
 	var s := spot
 	spot.release_unit()
@@ -180,8 +180,8 @@ func _visualize_levelup(data: UnitData) -> void:
 	s.add_child(LEVELUP_EFFECT.instantiate())
 	queue_free()
 
-func _check_levelup(data: UnitData, prev: StringName) -> void:
-	if data == original_data: _visualize_levelup.call_deferred(data)
+func _check_evolution(data: UnitData, prev: StringName) -> void:
+	if data == original_data: _visualize_evolution.call_deferred(data)
 
 ## Initializes unit variables and connects signals. Safe to call multiple times. [br]
 ## [param data] can be set to null: the data is ignored in this case. [br]
@@ -202,7 +202,7 @@ func initialize_variables(data: UnitData) -> bool:
 	EventBus.turn_ended.connect(clean_effects)
 	EventBus.round_started.connect(arrange_attacks_and_set_next)
 	EventBus.attack_reached.connect(check_taking_damage)
-	EventBus.unit_evolved.connect(_check_levelup)
+	EventBus.unit_evolved.connect(_check_evolution)
 	
 	if parameters.dead:
 		spot.move_unit_to_graveyard()

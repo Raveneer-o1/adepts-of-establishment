@@ -4,6 +4,7 @@ extends FactionController
 @onready var evolution_request: CanvasLayer = $EvolutionRequest
 
 func choose_evolution(unit: UnitData, options: Array[StringName]) -> StringName:
+	EventBus.unit_question_started.emit(unit)
 	item_list.clear()
 	for option in options:
 		item_list.add_item(option)
@@ -15,6 +16,7 @@ func choose_evolution(unit: UnitData, options: Array[StringName]) -> StringName:
 	var selected := item_list.get_selected_items()
 	if not selected: return options.pick_random()
 	var index := selected[0]
+	EventBus.unit_question_ended.emit(unit)
 	return item_list.get_item_text(index)
 
 func turn_start_reaction() -> void:
@@ -29,4 +31,5 @@ func _initialize() -> void:
 signal _evolution_choice_made
 
 func _on_button_pressed() -> void:
+	if not item_list.get_selected_items(): return
 	_evolution_choice_made.emit()

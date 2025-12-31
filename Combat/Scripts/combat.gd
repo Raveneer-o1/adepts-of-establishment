@@ -488,6 +488,16 @@ func place_units() -> void:
 	await right_party.place_units(right_party_units)
 	await left_party.place_units(left_party_units)
 
+var _current_unit_buffer: Unit = null
+
+func question_start_react(data: UnitData) -> void:
+	_current_unit_buffer = current_unit
+	current_unit = null
+
+func question_end_react(data: UnitData) -> void:
+	current_unit = _current_unit_buffer
+	_current_unit_buffer = null
+
 func _ready() -> void:
 	initialize_variables()
 	
@@ -503,6 +513,8 @@ func _ready() -> void:
 	units_died_this_combat_on_left.clear()
 	units_died_this_combat_on_right.clear()
 	EventBus.is_battle_ready = true
+	EventBus.unit_question_started.connect(question_start_react)
+	EventBus.unit_question_ended.connect(question_end_react)
 #endregion
 
 #region Utilities
