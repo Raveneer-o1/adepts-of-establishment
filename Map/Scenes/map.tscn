@@ -401,6 +401,17 @@ script = ExtResource("3_ue3ts")
 position = Vector2(594, 558)
 faction_index = 1
 
+[node name="UnitData" type="Node" parent="ObjectManager/UndeadCapital"]
+script = ExtResource("21_bl7ab")
+unit_name = &"Necromancer"
+metadata/_custom_type_script = "uid://mn0dy1cf0p65"
+
+[node name="UnitData2" type="Node" parent="ObjectManager/UndeadCapital"]
+script = ExtResource("21_bl7ab")
+party_position = 1
+unit_name = &"Necromancer"
+metadata/_custom_type_script = "uid://mn0dy1cf0p65"
+
 [node name="EmpireCapital" parent="ObjectManager" instance=ExtResource("15_ue3ts")]
 position = Vector2(1445, 754)
 faction_index = 0

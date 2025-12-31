@@ -25,7 +25,11 @@ func do_siege(attacker: MapParty, defender: MapCity) -> bool:
 	
 	await _switch_to_battle(battle, attacker.units, defender.units)
 	attacker.update_parameters()
-	return not attacker.is_dead
+	var siege_successful := not attacker.is_dead
+	if siege_successful:
+		for unit in defender.units:
+			unit.queue_free()
+	return siege_successful
 
 ## Processes combat and returns the winner or [code]null[/code] if there isn't one
 func do_combat(attacker: MapParty, defender: MapParty) -> MapParty:
