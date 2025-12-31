@@ -158,6 +158,8 @@ var active: bool = false
 ## and other persistent parameters after combat concludes.
 var original_data: UnitData = null
 
+const LEVELUP_EFFECT = preload("uid://bdxoklt2vs33j")
+
 #endregion
 
 #region API
@@ -169,6 +171,16 @@ func _read_data(data: UnitData) -> void:
 	unit_type = data.unit_type
 	faction = data.faction
 	full_description = data.description
+
+func _visualize_levelup(data: UnitData) -> void:
+	var s := spot
+	spot.release_unit()
+	s.add_unit(load(data.scene_path), data)
+	s.add_child(LEVELUP_EFFECT.instantiate())
+	queue_free()
+
+func _check_levelup(data: UnitData, prev: StringName) -> void:
+	if data == original_data: _visualize_levelup.call_deferred(data)
 
 ## Initializes unit variables and connects signals. Safe to call multiple times. [br]
 ## [param data] can be set to null: the data is ignored in this case. [br]
@@ -189,6 +201,7 @@ func initialize_variables(data: UnitData) -> bool:
 	EventBus.turn_ended.connect(clean_effects)
 	EventBus.round_started.connect(arrange_attacks_and_set_next)
 	EventBus.attack_reached.connect(check_taking_damage)
+	EventBus.unit_evolved.connect(_check_levelup)
 	
 	if parameters.dead:
 		spot.move_unit_to_graveyard()
