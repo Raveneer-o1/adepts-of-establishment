@@ -48,6 +48,10 @@ var attacks: Array[UnitAttack]:
 ## @experimental: Not used by default, provided for extended functionality.
 @export var other_effects: Array[Resource]
 
+## If set, this resource is used to increase parameters on levelup.
+## Applies only to regular levelups, without evolving.
+@export var custom_levelup_function: LevelupFunction = null
+
 @export_group("Override parameters")
 ## Setting these parameters will override base parameters (use if you want to experiment
 ## but don't want to change the intended behavior)

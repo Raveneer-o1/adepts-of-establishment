@@ -144,16 +144,7 @@ libraries = {
 
 [node name="UnitParameters" type="Node" parent="."]
 script = ExtResource("2_mnflt")
-level = null
 base_paramaters = ExtResource("4_hdmy1")
-large_unit = null
-underlying_immunities = null
-other_effects = null
-max_hp_override = null
-base_damage_override = null
-armor_override = null
-evasion_override = null
-shielding_chance_override = null
 
 [node name="SilencedEffects" type="Node" parent="UnitParameters"]
 

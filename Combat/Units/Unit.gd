@@ -61,12 +61,12 @@ const SKIP_DELAY = 0.4
 @export var unit_name: String
 ## Unit type is used to define default behavior if it's not overriden elsewhere.
 ## Note: any other field or effect should have a priority over this ruleset.
-@export var unit_type: GlobalDefs.UnitType
+@export var unit_type: GlobalDefs.UnitType = GlobalDefs.UnitType.Undefined
 ## @experimental: currently does not have any impact
 @export var faction: GlobalDefs.Faction
 ## Experience required to level up. This value has no combat effect,
 ## only relevant for calculating the results and for the map
-@export var needed_xp: int
+@export var needed_xp: int = 1
 @export_multiline var brief_description: String
 @export_multiline var full_description: String
 @export var portrait_texture: Texture2D

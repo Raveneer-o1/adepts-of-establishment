@@ -45,6 +45,8 @@ func read_unit(u: Unit, full_path: String) -> void:
 		"armor" = base_paramaters.get_indexed("armor"),
 		"evasion" = base_paramaters.get_indexed("evasion"),
 		"shielding_chance" = base_paramaters.get_indexed("shielding_chance"),
+		"custom_levelup_path" = unit_parameters.custom_levelup_function.resource_path \
+			if unit_parameters.custom_levelup_function else ""
 	}
 	#print(params)
 	

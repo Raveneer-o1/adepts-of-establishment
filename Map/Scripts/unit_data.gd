@@ -31,6 +31,7 @@ extends Node
 ##     &"armor": int,
 ##     &"evasion": float,
 ##     &"shielding_chance": float,
+##     &"custom_levelup_path": String,
 ## }
 ## [/codeblock]
 ##
@@ -73,6 +74,8 @@ extends Node
 @export var armor: int
 @export var evasion: float
 @export var shielding_chance: float
+
+@export var custom_levelup_path: String
 
 const database = GlobalDefs.database_path.database
 
@@ -156,6 +159,9 @@ func initialize(personal: String = "") -> void:
 	needed_xp = database_dict.get(&"needed_xp", 1)
 	large_unit = database_dict.get(&"large_unit", false)
 	immunities.assign(database_dict.get(&"immunities", []))
+	
+	custom_levelup_path = database_dict.get(&"custom_levelup_path", "")
+	
 	personal_name = personal
 	current_hp = max_hp
 	
@@ -187,8 +193,12 @@ func grant_xp(points: int) -> void:
 	current_xp += points
 
 func level_up() -> void:
-	# FIXME: implement levelup
-	level += 1
+	if custom_levelup_path and FileAccess.file_exists(custom_levelup_path):
+		var custom_levelup := load(custom_levelup_path)
+		if custom_levelup is LevelupFunction:
+			custom_levelup.custom_levelup(self)
+			return
+	LevelupFunction.default_levelup(self)
 
 func evolve(into: StringName) -> void:
 	var prev := unit_name
