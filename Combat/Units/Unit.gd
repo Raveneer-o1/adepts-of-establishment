@@ -801,9 +801,13 @@ func create_attack(unit_attack: UnitAttack, targets: Array[UnitSpot]) -> Attack:
 		#__debug_track_ref()
 		#__debug_timer = 1.0
 
+const XP_FACTOR_HP = 0.25
+const XP_FACTOR_DMG = 0.5
+
 func get_xp_for_killing() -> int:
-	# TODO: implement get_xp_for_killing()
-	return 1
+	var hp_xp := int(parameters.max_hp * XP_FACTOR_HP)
+	var dmg_xp := int(parameters.get_full_damage() * XP_FACTOR_DMG)
+	return hp_xp + dmg_xp
 
 func now_attacking() -> bool:
 	if not chosen_targets.is_empty():
