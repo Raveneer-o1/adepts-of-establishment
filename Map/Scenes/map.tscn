@@ -479,6 +479,14 @@ unit_name = &"Squire"
 max_hp = 100
 metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 
+[node name="UnitData7" type="Node" parent="Parties/MapParty_"]
+script = ExtResource("21_bl7ab")
+party_position = 4
+current_hp = 100
+unit_name = &"Squire"
+max_hp = 100
+metadata/_custom_type_script = "uid://mn0dy1cf0p65"
+
 [node name="UnitData2" type="Node" parent="Parties/MapParty_"]
 script = ExtResource("21_bl7ab")
 party_position = 5
