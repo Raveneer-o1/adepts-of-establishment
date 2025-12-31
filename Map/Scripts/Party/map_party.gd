@@ -182,17 +182,7 @@ func pick_up(items: Array[MapItem]) -> void:
 			inventory.add_child(item)
 	EventBus.window_requested.emit(items)
 
-func choose_evolution(unit: UnitData, options: Array[StringName]) -> StringName:
-	if not options: return &""
-	if options.size() == 1: return options[0]
-	if not object_owner: return options.pick_random()
-	var chosen := await object_owner.api.choose_evolution(unit, options)
-	return chosen
-
 func level_up_unit(unit: UnitData) -> void:
 	if not unit: return
-	var evolve_into: Array[StringName] = []
-	if object_owner:
-		evolve_into = object_owner.find_unit_evolution(unit.unit_name)
-	if evolve_into: unit.evolve(await choose_evolution(unit, evolve_into))
-	else: unit.level_up()
+	if not object_owner: unit.level_up()
+	else: await object_owner.level_up_unit(unit)

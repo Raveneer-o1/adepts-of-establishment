@@ -98,8 +98,14 @@ func _player_interact(faction: MapFaction) -> void:
 
 #endregion
 
-#func _initialize() -> void:
-	#ownable = true
+func update_parameters() -> void:
+	for u in units:
+		if u.levelup_avaliable: level_up_unit(u)
+
+func level_up_unit(unit: UnitData) -> void:
+	if not unit: return
+	if not object_owner: unit.level_up()
+	else: object_owner.level_up_unit(unit)
 
 var units: Array[UnitData]:
 	get:

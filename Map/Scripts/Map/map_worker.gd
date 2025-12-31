@@ -18,6 +18,11 @@ func do_siege(attacker: MapParty, defender: MapCity) -> bool:
 	_prefill_data_siege(attacker, defender)
 	var battle := _load_battle()
 	# TODO: refactor with _update_units signal
+	
+	var upd := func() -> void:
+		attacker.update_parameters()
+		defender.update_parameters()
+	
 	await _switch_to_battle(battle, attacker.units, defender.units)
 	attacker.update_parameters()
 	return not attacker.is_dead

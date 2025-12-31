@@ -55,6 +55,18 @@ func research(upgrade: FactionUpgrade) -> void:
 		upgrade.reparent(parent_node)
 	else: parent_node.add_child(upgrade)
 
+func choose_evolution(unit: UnitData, options: Array[StringName]) -> StringName:
+	if not options: return &""
+	if options.size() == 1: return options[0]
+	var chosen := await api.choose_evolution(unit, options)
+	return chosen
+
+func level_up_unit(unit: UnitData) -> void:
+	if not unit: return
+	var evolve_into: Array[StringName] = find_unit_evolution(unit.unit_name)
+	if evolve_into: unit.evolve(await choose_evolution(unit, evolve_into))
+	else: unit.level_up()
+
 func get_avaliable_upgrades(include_evolution_buildings: bool = false) -> Array[FactionUpgrade]:
 	var res: Array[FactionUpgrade] = []
 	for c in avaliable_upgrades.get_children():
