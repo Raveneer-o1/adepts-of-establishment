@@ -61,7 +61,7 @@ func _prefill_data(attacker: MapParty, defender: MapParty) -> void:
 func _load_battle() -> Node:
 	EventBus.is_battle_ready = false
 	var battle: Control = map.battle_scene.instantiate()
-	battle.process_mode = Node.PROCESS_MODE_ALWAYS
+	battle.process_mode = Node.PROCESS_MODE_PAUSABLE
 	battle.hide()
 	
 	# combat starts here because this is when combat scene enters

@@ -65,7 +65,7 @@ extends Node
 ## }
 ## [/codeblock]
 @export var effects: Array[Dictionary]
-@export var needed_xp: int
+@export var needed_xp: int = 1
 
 @export_group("Base parameters")
 @export var base_damage: int
@@ -153,7 +153,7 @@ func initialize(personal: String = "") -> void:
 	shielding_chance = database_dict.get(&"shielding_chance", 0.0)
 	
 	level = database_dict.get(&"level", 0)
-	needed_xp = database_dict.get(&"needed_xp", -1)
+	needed_xp = database_dict.get(&"needed_xp", 1)
 	large_unit = database_dict.get(&"large_unit", false)
 	immunities.assign(database_dict.get(&"immunities", []))
 	personal_name = personal

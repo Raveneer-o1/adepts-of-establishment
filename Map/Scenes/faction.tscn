@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://1vr0gdex77rx"]
+[gd_scene load_steps=6 format=3 uid="uid://1vr0gdex77rx"]
 
 [ext_resource type="Script" uid="uid://bjfntvb3r7vr8" path="res://Map/Scripts/Faction/map_faction.gd" id="1_h7cw3"]
 [ext_resource type="Script" uid="uid://bxtj7l0tvdti7" path="res://Map/Scripts/Faction/faction_api.gd" id="2_5mkmw"]
 [ext_resource type="Script" uid="uid://d1j6ehfsr627a" path="res://Map/Scripts/Faction/evolution_tree_populator.gd" id="3_5mkmw"]
+[ext_resource type="PackedScene" uid="uid://boyddk5nhs2ic" path="res://Map/Scenes/EvolutionBuildings/Empire/squire_to_knight.tscn" id="3_icucd"]
+[ext_resource type="PackedScene" uid="uid://djjfc1v7ijds6" path="res://Map/Scenes/EvolutionBuildings/Empire/squire_to_witchhunter.tscn" id="4_17uwp"]
 
 [node name="Faction" type="Node"]
 script = ExtResource("1_h7cw3")
@@ -24,6 +26,10 @@ stretch_mode = 5
 
 [node name="EvolutionBuildings" type="Node" parent="Appearance"]
 editor_description = "All buildings should have the option to be displayed at the capital window. This means they have to have a texture (e.g., a TextureRect node) and need to be placed in the Appearance tree. This node is specific to evolutionary buildings to avoid searching through all of them when searching for another upgrade."
+
+[node name="Garrison" parent="Appearance/EvolutionBuildings" instance=ExtResource("3_icucd")]
+
+[node name="Watchtower" parent="Appearance/EvolutionBuildings" instance=ExtResource("4_17uwp")]
 
 [node name="AvaliableUpgrades" type="CanvasLayer" parent="."]
 visible = false

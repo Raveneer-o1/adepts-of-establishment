@@ -12,6 +12,8 @@ var map: Map:
 var game: GameMap
 @onready var this_faction: MapFaction = $".."
 
+var controller: FactionController = null
+
 ## Processes a tile selected by player or AI input. This differs from
 ## [signal tile_clicked], which is emitted when an actual click occurs.
 ## This method initiates tile processing, while [signal tile_clicked]
@@ -66,6 +68,20 @@ func access_player_input() -> void:
 
 func set_player_at_screen() -> void:
 	game.screen_player = this_faction
+
+func choose_evolution(unit: UnitData, options: Array[StringName]) -> StringName:
+	if not controller: return options.pick_random()
+	@warning_ignore("redundant_await")
+	return await controller.choose_evolution(unit, options)
+
+func gloabal_pause() -> void:
+	if not controller: return
+	# shouldn't be necessary, just in case
+	controller.process_mode = Node.PROCESS_MODE_ALWAYS
+	get_tree().paused = true
+
+func gloabal_unpause() -> void:
+	get_tree().paused = false
 
 func _ready() -> void:
 	var next_parent := get_parent()

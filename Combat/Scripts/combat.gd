@@ -557,7 +557,7 @@ func end_scene() -> void:
 func start_end_countdown() -> void:
 	if timer != null:
 		return
-	timer = get_tree().create_timer(TIME_TO_END)
+	timer = get_tree().create_timer(TIME_TO_END, false)
 	timer.timeout.connect(end_scene)
 
 #endregion

@@ -173,6 +173,7 @@ func _read_data(data: UnitData) -> void:
 	full_description = data.description
 
 func _visualize_levelup(data: UnitData) -> void:
+	if parameters.dead: return
 	var s := spot
 	spot.release_unit()
 	s.add_unit(load(data.scene_path), data)

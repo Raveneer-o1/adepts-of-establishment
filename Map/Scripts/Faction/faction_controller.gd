@@ -5,6 +5,8 @@ extends Node
 var api: FactionAPI
 
 @abstract func _initialize() -> void
+@abstract func choose_evolution(unit: UnitData, options: Array[StringName]) -> StringName
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,4 +16,5 @@ func _ready() -> void:
 		queue_free()
 		return
 	api = parent
+	api.controller = self
 	_initialize()
