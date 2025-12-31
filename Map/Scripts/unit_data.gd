@@ -187,7 +187,7 @@ func grant_xp(points: int) -> void:
 	current_xp += points
 
 func level_up() -> void:
-	# TODO: implement levelup
+	# FIXME: implement levelup
 	level += 1
 
 func evolve(into: StringName) -> void:

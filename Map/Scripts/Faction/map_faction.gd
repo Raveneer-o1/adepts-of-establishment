@@ -78,7 +78,7 @@ func get_avaliable_upgrades(include_evolution_buildings: bool = false) -> Array[
 
 func is_enemy(other_faction: MapFaction) -> bool:
 	if other_faction == self: return false
-	# TODO: implement is_enemy()
+	# FIXME: implement is_enemy()
 	return true
 
 func _ready() -> void:

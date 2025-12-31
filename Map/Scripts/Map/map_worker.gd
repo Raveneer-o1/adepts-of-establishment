@@ -17,7 +17,6 @@ const battle_effect = preload("res://Map/Scenes/visual_effect.tscn")
 func do_siege(attacker: MapParty, defender: MapCity) -> bool:
 	_prefill_data_siege(attacker, defender)
 	var battle := _load_battle()
-	# TODO: refactor with _update_units signal
 	
 	var upd := func() -> void:
 		attacker.update_parameters()

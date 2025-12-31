@@ -42,7 +42,7 @@ extends CanvasLayer
 var currently_filled_city: MapCity = null
 
 func fill_city_data(city: MapCity) -> void:
-	# TODO: implement update_city() properly
+	# HACK: implement update_city() properly
 	#if currently_filled_city == city: update_city()
 	
 	garrison_reserve_container.parent = city
