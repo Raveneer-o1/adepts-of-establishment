@@ -57,6 +57,7 @@ signal turn_started
 ## the controller to call [method end_turn].
 signal end_turn_clicked
 
+## Ends the turn on the map
 func end_turn() -> void:
 	game.turn_manager.next_turn()
 
@@ -66,20 +67,27 @@ func end_turn() -> void:
 func access_player_input() -> void:
 	map.event_handler.allow_game_access()
 
+## Sets this faction as the screen-player.
+## This allows UI to adapt and show only information allowed.
 func set_player_at_screen() -> void:
 	game.screen_player = this_faction
 
+## Requests the [member controller] to select an evolution path for
+## [param unit] from [param options].
+## If no controller is present, picks at random.
 func choose_evolution(unit: UnitData, options: Array[StringName]) -> StringName:
 	if not controller: return options.pick_random()
 	@warning_ignore("redundant_await")
 	return await controller.choose_evolution(unit, options)
 
+## Pauses the entire game except controler. Useful for UI prompts.
 func gloabal_pause() -> void:
 	if not controller: return
 	# shouldn't be necessary, just in case
 	controller.process_mode = Node.PROCESS_MODE_ALWAYS
 	get_tree().paused = true
 
+## Resumes the game.
 func gloabal_unpause() -> void:
 	get_tree().paused = false
 
