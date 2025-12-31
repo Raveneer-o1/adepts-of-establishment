@@ -129,6 +129,7 @@ percent_blocked = 0.3
 unit_name = "Mage"
 unit_type = 2
 faction = 1
+needed_xp = 400
 full_description = "Mages are practitioners of refined arcane knowledge, capable of channeling powerful spells to damage foes. However, their focus on spellcasting leaves them physically vulnerable, relying on careful positioning and team support to maximize their potential."
 portrait_texture = ExtResource("2_p2es4")
 

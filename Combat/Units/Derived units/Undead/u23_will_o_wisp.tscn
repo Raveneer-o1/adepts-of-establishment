@@ -149,6 +149,7 @@ evasion = 0.15
 unit_name = "Will-o’-Wisp"
 unit_type = 3
 faction = 2
+needed_xp = 900
 full_description = "Will-o’-Wisps are flickering lights that guide unsuspecting souls to their doom. These malicious spirits use their hypnotic glow to lure enemies into traps or isolate them from their allies. While not physically strong, their agility and ability to vanish into the shadows make them elusive and dangerous."
 portrait_texture = ExtResource("2_7liif")
 

@@ -119,6 +119,7 @@ evasion = 0.1
 [node name="The Devourer" instance=ExtResource("1_7leqj")]
 unit_name = "The Devourer"
 faction = 2
+needed_xp = 1600
 full_description = "The Devourer is a monstrous snake-like creature, bloated with the power of countless consumed souls. Its sheer size and overwhelming strength make it an unstoppable force, crushing enemies under its bulk. Its feeding frenzy is unending, spreading despair and destruction across the battlefield."
 portrait_texture = ExtResource("2_0dxqj")
 

@@ -163,6 +163,7 @@ evasion = 0.005
 unit_name = "Dreadwyrm"
 unit_type = 1
 faction = 2
+needed_xp = 900
 full_description = "The Dreadwyrm is a terrifying draconic creature cloaked in necrotic energy. It soars above the battlefield, raining destruction with its corrupted breath. As a manifestation of death's will, it instills fear in all who face it, ensuring the enemy falters before its might."
 portrait_texture = ExtResource("2_twryw")
 

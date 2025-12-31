@@ -139,6 +139,7 @@ decay_rate = 0.5
 unit_name = "Wraith"
 unit_type = 2
 faction = 2
+needed_xp = 900
 full_description = "Wraiths are ethereal beings formed from the tormented souls of the dead. Their ghostly forms make them nearly invulnerable to physical attacks, allowing them to pass through the battlefield with ease. Wielding spectral claws, they sap the vitality of their victims while spreading despair among their enemies."
 portrait_texture = ExtResource("2_h5mis")
 

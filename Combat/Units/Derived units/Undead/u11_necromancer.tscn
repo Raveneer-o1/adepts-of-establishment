@@ -137,6 +137,7 @@ resurrection_with_percent_hp = 0.6
 unit_name = "Necromancer"
 unit_type = 2
 faction = 2
+needed_xp = 400
 full_description = "Necromancers are skilled manipulators of life and death, capable of raising undead with their spells. They command dark energies to weaken foes and bolster allies. Despite their mortal vulnerability, their mastery of death makes them a cornerstone of the Necropolis's power."
 portrait_texture = ExtResource("2_0m3ru")
 

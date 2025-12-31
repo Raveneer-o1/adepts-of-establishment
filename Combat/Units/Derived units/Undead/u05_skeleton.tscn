@@ -144,6 +144,7 @@ shielding_chance = 0.0
 [node name="Skeleton" instance=ExtResource("1_frigw")]
 unit_name = "Skeleton"
 faction = 2
+needed_xp = 900
 full_description = "Skeletons are the quintessential soldiers of the undead, reassembled from the bones of the dead. While they lack the sophistication of living warriors, their undying loyalty and endless stamina make them reliable infantry. Armed with a variety of weapons, they form the backbone of the Necropolis's armies, marching tirelessly to their master's commands."
 portrait_texture = ExtResource("2_7f057")
 

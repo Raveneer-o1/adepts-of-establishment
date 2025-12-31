@@ -149,6 +149,7 @@ evasion = 0.3
 unit_name = "Assassin"
 unit_type = 1
 faction = 1
+needed_xp = 900
 full_description = "Masters of shdows, assassins prefer poison over the raw strength."
 portrait_texture = ExtResource("2_26dl6")
 

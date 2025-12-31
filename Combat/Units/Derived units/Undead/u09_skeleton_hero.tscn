@@ -157,6 +157,7 @@ shielding_chance = 0.3
 [node name="Skeleton Hero" instance=ExtResource("1_f4ptt")]
 unit_name = "Skeleton Hero"
 faction = 2
+needed_xp = 2500
 full_description = "Skeleton Heroes are the pinnacle of necromantic reanimation, resurrected from the remains of legendary champions of old. Their undying forms retain the combat expertise they mastered in life, now enhanced by unholy power. Leading the armies of the Necropolis with a mix of tactical brilliance and raw strength, they are a force to be reckoned with, feared by both the living and the dead."
 portrait_texture = ExtResource("2_tryhr")
 
@@ -197,8 +198,8 @@ heal = 30
 color_effect = Color(0.6509804, 0.44705883, 0.34509805, 1)
 
 [node name="OnDeathSummon" parent="UnitParameters" index="5" instance=ExtResource("11_gkgxq")]
-summon = ExtResource("12_v3ge7")
 unit_name = "Skeleton"
+summon = ExtResource("12_v3ge7")
 effects = Dictionary[String, Variant]({
 "reanimation": {
 &"armor": 5,

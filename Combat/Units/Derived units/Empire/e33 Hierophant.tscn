@@ -155,6 +155,7 @@ base_damage = 80
 unit_name = "Hierophant"
 unit_type = 3
 faction = 1
+needed_xp = 1600
 full_description = "Hierophants are revered figures, blessed with the power to channel miracles. In addition to healing grievous injuries, they can resurrect fallen allies, bringing hope to even the bleakest battlefields. Their presence inspires courage, as their divine powers can restore both body and spirit."
 portrait_texture = ExtResource("2_xtxab")
 

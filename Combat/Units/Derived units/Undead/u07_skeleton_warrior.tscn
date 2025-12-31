@@ -153,6 +153,7 @@ shielding_chance = 0.0
 [node name="Skeleton warrior" instance=ExtResource("1_m5le8")]
 unit_name = "Skeleton warrior"
 faction = 2
+needed_xp = 1600
 full_description = "Elite undead warriors, crafted from the bones of legendary fighters. Their bodies are reinforced with necromantic magic, granting them unparalleled strength and durability. Clad in ancient, rune-inscribed armor, they lead lesser undead into battle with an imposing presence that inspires dread in their enemies."
 portrait_texture = ExtResource("2_bljp6")
 
@@ -187,8 +188,8 @@ heal = 25
 color_effect = Color(0.6509804, 0.44705883, 0.34509805, 1)
 
 [node name="OnDeathSummon" parent="UnitParameters" index="4" instance=ExtResource("10_e6uwm")]
-summon = ExtResource("11_m170s")
 unit_name = "Skeleton"
+summon = ExtResource("11_m170s")
 effects = Dictionary[String, Variant]({
 "reanimation": {
 &"armor": 5,

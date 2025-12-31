@@ -140,6 +140,7 @@ evasion = 0.1
 unit_name = "Elemental"
 unit_type = 2
 faction = 6
+needed_xp = 100
 portrait_texture = ExtResource("2_x1sii")
 
 [node name="AnimationHandle" parent="." index="0"]
@@ -149,6 +150,7 @@ autoplay = "default"
 attack_sound_frame = 3
 
 [node name="UnitParameters" parent="." index="1"]
+level = 1
 base_paramaters = SubResource("Resource_eejty")
 attack_effect = ExtResource("4_nay0k")
 

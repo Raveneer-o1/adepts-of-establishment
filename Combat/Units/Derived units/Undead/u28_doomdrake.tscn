@@ -127,6 +127,7 @@ evasion = 0.005
 unit_name = "Doomdrake"
 unit_type = 1
 faction = 2
+needed_xp = 400
 full_description = "A wyvern that succumbs to the influence of the Necropolis transforms into a Doomdrake. These beasts consume the fallen on the battlefield, growing stronger and more twisted with each kill. They are brutal shock troops, relentless in their charge and devastating in their bite, embodying the death they now serve."
 portrait_texture = ExtResource("2_r53jd")
 

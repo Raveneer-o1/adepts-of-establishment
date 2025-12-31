@@ -159,6 +159,7 @@ base_damage = 30
 unit_name = "Dark Mage"
 unit_type = 2
 faction = 2
+needed_xp = 400
 full_description = "Dark Mages delve into the forbidden arts of destructive magic, harnessing shadow and decay to annihilate their enemies. Their spells spread fear and chaos, breaking the will of the living. While less adept at raising the dead, their offensive capabilities make them invaluable on the battlefield."
 portrait_texture = ExtResource("2_bp74a")
 

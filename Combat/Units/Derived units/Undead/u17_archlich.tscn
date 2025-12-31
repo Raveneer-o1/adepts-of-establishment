@@ -163,6 +163,7 @@ resurrection_cost = 20
 unit_name = "Archlich"
 unit_type = 2
 faction = 2
+needed_xp = 1600
 full_description = "Archliches are the pinnacle of necromantic evolution, their phylacteries granting them near-immortality and inexhaustible power. They wield arcane forces capable of obliterating entire battalions or summoning legions of undead. Revered as leaders and feared as conquerors, Archliches are the true masterminds of the Necropolis."
 portrait_texture = ExtResource("2_6wk45")
 

@@ -133,6 +133,7 @@ base_damage = 40
 unit_name = "Priest"
 unit_type = 3
 faction = 1
+needed_xp = 400
 full_description = "Priests are experienced healers, capable of invoking potent divine blessings to restore a significant amount of health to a single ally. Their focused prayers can turn the tide of a skirmish by ensuring critical combatants remain in the fight."
 portrait_texture = ExtResource("2_5qxd6")
 

@@ -117,6 +117,7 @@ evasion = 0.15
 unit_name = "Shadow"
 unit_type = 1
 faction = 2
+needed_xp = 900
 full_description = "Shadow's very essence a manifestation of fear and despair. They attack by engulfing their targets in a cold, suffocating void, sapping their strength and will. Difficult to detect and harder to fight, Shadows excel at ambushing their prey and disrupting enemy formations."
 portrait_texture = ExtResource("2_0opmo")
 

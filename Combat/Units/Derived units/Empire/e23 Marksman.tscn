@@ -159,6 +159,7 @@ evasion = 0.136
 unit_name = "Marksman"
 unit_type = 1
 faction = 1
+needed_xp = 400
 full_description = "Marksmen are archers who have honed their craft, wielding longbows for greater range and accuracy. Their arrows strike with precision, making them ideal for targeting critical threats or weakening heavily armored foes."
 portrait_texture = ExtResource("2_y56b3")
 

@@ -143,6 +143,7 @@ shielding_chance = 0.3
 [node name="Pirate captain" instance=ExtResource("1_ddhxo")]
 unit_name = "Pirate capitan"
 faction = 6
+needed_xp = 1600
 full_description = "Pirate Captains are charismatic and ruthless leaders, commanding their crews with a mix of fear and admiration. Their combat skills are matched by their ability to inspire their followers, turning a ragtag crew into a formidable fighting force."
 portrait_texture = ExtResource("2_mwrg4")
 

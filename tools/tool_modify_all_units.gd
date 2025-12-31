@@ -4,7 +4,7 @@ extends EditorScript
 func change_unit(u: Unit) -> void:
 	# This function is a template for modifying Unit resources
 	# Implement custom unit modification logic here
-	pass
+	u.needed_xp = (u.find_child("UnitParameters") as UnitParameters).level ** 2 * 100
 
 func handle_file(s: String) -> void:
 	EditorInterface.open_scene_from_path(s)
@@ -54,6 +54,7 @@ func _run() -> void:
 	# Start scanning from this directory path
 	# The script will recursively process all files in this folder and its subfolders
 	scan_directory("res://Combat/Units/Derived units/")
+	#handle_file("res://Combat/Units/Derived units/Elemental.tscn")
 	
 	# Note for beginners: 
 	# - This script will open, modify, and save EVERY file in the target directory

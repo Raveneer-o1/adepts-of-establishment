@@ -111,6 +111,7 @@ base_damage = 45
 unit_name = "Ritualist"
 unit_type = 2
 faction = 1
+needed_xp = 900
 full_description = "Ritualists delve into ancient and forbidden rites, channeling their energy to summon otherworldly beings or cast powerful curses. Their unique strength lies in their ability to turn the tide of battle by conjuring allies from empty spaces on the battlefield."
 portrait_texture = ExtResource("2_uayg2")
 

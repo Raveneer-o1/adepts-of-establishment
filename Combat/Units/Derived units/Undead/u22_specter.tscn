@@ -120,6 +120,7 @@ evasion = 0.1
 [node name="Specter" instance=ExtResource("1_0mhe0")]
 unit_name = "Specter"
 faction = 1
+needed_xp = 400
 full_description = "Specters are stronger and more malicious spirits, bound by dark magic to serve the Necropolis. Their ethereal nature allows them to phase through obstacles and evade most attacks, striking fear into the hearts of their foes. They emit a spectral wail that unnerves enemies and disrupts their defenses."
 portrait_texture = ExtResource("2_f2jof")
 

@@ -168,6 +168,7 @@ shielding_chance = 0.6
 [node name="Inquisitor" instance=ExtResource("1_iyxx7")]
 unit_name = "Inquisitor"
 faction = 1
+needed_xp = 900
 full_description = "Inquisitors are relentless hunters of heresy, wielding heavy maces to deliver unyielding punishment. Their attacks pierce through magical defenses, making them especially deadly against spellcasters and enchanted foes. Unshakable in their faith, they inspire their allies and bring fear to the corrupted. On the battlefield, an Inquisitor is a resolute force of righteousness, relentless in their pursuit of heretics and the unholy."
 portrait_texture = ExtResource("2_qb4re")
 
@@ -193,6 +194,8 @@ target_validation = ExtResource("7_7f3u0")
 [node name="RetaliationOnDebuff" parent="UnitParameters" index="2" instance=ExtResource("8_nopjn")]
 
 [node name="Holy wrath" parent="UnitParameters" index="3" instance=ExtResource("5_txbsl")]
+turns = 2
+multiplier = 1.3
 
 [node name="Ward" parent="UnitParameters" index="4" instance=ExtResource("10_1rxxv")]
 damage_type = 2

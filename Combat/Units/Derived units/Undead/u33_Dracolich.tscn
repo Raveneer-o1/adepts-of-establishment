@@ -167,6 +167,7 @@ evasion = 0.01
 unit_name = "Dracolich"
 unit_type = 1
 faction = 2
+needed_xp = 2500
 full_description = "The pinnacle of undead draconic evolution. The Dracolich is an intelligent lich-dragon whose very presence decays the living. It commands legions of the dead and wields a breath of pure entropy, making it the ultimate instrument of oblivion."
 portrait_texture = ExtResource("2_hxxnl")
 

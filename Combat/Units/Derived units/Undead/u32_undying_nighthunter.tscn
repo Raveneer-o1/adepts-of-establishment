@@ -150,6 +150,7 @@ evasion = 0.005
 unit_name = "Undying Nighthunter"
 unit_type = 1
 faction = 2
+needed_xp = 1600
 full_description = "The Undying Nighthunter is a dragon that defies the limitations of mortality. Rising from death, it becomes a relentless predator of the night, hunting down its prey with precision and terror. Its ability to vanish into darkness make it a nightmare of living, and no enemy escapes its wrath."
 portrait_texture = ExtResource("2_5hg6d")
 

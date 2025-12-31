@@ -148,6 +148,7 @@ evasion = 0.01
 [node name="Ogre" instance=ExtResource("1_878kx")]
 unit_name = "Ogre"
 faction = 8
+needed_xp = 400
 full_description = "Ogres are hulking brutes with unparalleled physical power, smashing through enemies and obstacles alike. Though not known for their intelligence, their immense strength and resilience make them formidable foes. These behemoths are often used as shock troops, devastating enemy ranks with crushing blows."
 portrait_texture = ExtResource("2_6ygjt")
 

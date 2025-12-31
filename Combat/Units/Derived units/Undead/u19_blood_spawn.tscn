@@ -149,6 +149,7 @@ evasion = 0.1
 [node name="Blood spawn" instance=ExtResource("1_kf05b")]
 unit_name = "Blood spawn"
 faction = 2
+needed_xp = 2500
 full_description = "Blood Spawn are the monstrous remnants of vampires who succumbed to their insatiable bloodlust. Mutated beyond recognition, they embody pure rage and hunger, striking terror into the hearts of all who face them. Their brutal attacks and unrelenting ferocity make them devastating forces of destruction, but their mindless nature renders them dangerous to friend and foe alike."
 portrait_texture = ExtResource("2_fa30q")
 

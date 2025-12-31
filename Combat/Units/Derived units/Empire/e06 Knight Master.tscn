@@ -188,6 +188,7 @@ armor = 50
 [node name="Knight master" instance=ExtResource("1_f361o")]
 unit_name = "Knight Master"
 faction = 1
+needed_xp = 900
 full_description = "Knight Masters are paragons of martial skill, commanding respect on the battlefield with their imposing presence and unwavering discipline. Equipped with masterfully crafted armor and weapons, they excel in both offense and defense, standing as stalwart protectors of their allies. A Knight Master is a symbol of honor and strength, embodying the virtues of their order."
 portrait_texture = ExtResource("2_f4ity")
 

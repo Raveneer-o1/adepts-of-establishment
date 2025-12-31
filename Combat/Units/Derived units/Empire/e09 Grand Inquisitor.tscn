@@ -188,6 +188,7 @@ decay_rate = 0.3
 [node name="Unit" instance=ExtResource("1_pd60s")]
 unit_name = "Grand Inquisitor"
 faction = 1
+needed_xp = 1600
 full_description = "Grand Inquisitors channel divine energy to manifest enormous spectral warhammers, delivering crushing blows that bypass magical defenses. Their presence on the battlefield bolsters the vitality of nearby allies, increasing their resilience against even the fiercest assaults. With unwavering conviction, they serve as both protectors and avengers, ensuring the light triumphs over darkness."
 portrait_texture = ExtResource("2_7ao73")
 
@@ -206,6 +207,8 @@ base_paramaters = SubResource("Resource_xsxvu")
 [node name="HP buff (aura)" parent="UnitParameters" index="1" instance=ExtResource("4_b4oav")]
 
 [node name="Holy wrath" parent="UnitParameters" index="2" instance=ExtResource("6_m8s5i")]
+turns = 2
+multiplier = 1.3
 liftable = false
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="3"]

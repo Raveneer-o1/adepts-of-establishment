@@ -136,6 +136,7 @@ shielding_chance = 0.75
 [node name="Templar" instance=ExtResource("1_tkxce")]
 unit_name = "Templar"
 faction = 2
+needed_xp = 400
 full_description = "Templars are former knights who willingly embraced undeath to serve the Necropolis. Empowered by unholy energy, they strike down enemies with cursed blades that sap life from their foes. Their armor, imbued with necromantic runes, provides enhanced protection, making them formidable front-line warriors with a sinister aura."
 portrait_texture = ExtResource("2_imxh0")
 

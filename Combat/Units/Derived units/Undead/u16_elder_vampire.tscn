@@ -146,6 +146,7 @@ decay_rate = 0.6
 unit_name = "Elder vampire"
 unit_type = 2
 faction = 2
+needed_xp = 1600
 full_description = "Elder Vampires are ancient beings whose bloodlust excel limits of a mortal mind. They possess extraordinary strength and command blood magic with terrifying precision. Their mere presence inspires awe and dread, as they dominate the battlefield with their unmatched prowess and cunning."
 portrait_texture = ExtResource("2_utx77")
 
