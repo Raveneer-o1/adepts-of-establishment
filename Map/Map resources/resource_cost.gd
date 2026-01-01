@@ -23,6 +23,6 @@ func is_valid() -> bool:
 
 static func from_dict(d: Dictionary) -> ResourceCost:
 	var _gold: int = d.get(&"gold", 0)
-	var _stone: int = d.get(&"gold", 0)
-	var _mana: int = d.get(&"gold", 0)
+	var _stone: int = d.get(&"stone", 0)
+	var _mana: int = d.get(&"mana", 0)
 	return ResourceCost.new(_gold, _stone, _mana)

@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cru6m63h7miiu"]
+[gd_scene load_steps=4 format=3 uid="uid://cru6m63h7miiu"]
 
 [ext_resource type="Script" uid="uid://brx1ovqj3xry5" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scripts/treasure_chest.gd" id="1_j2qaj"]
-[ext_resource type="Script" uid="uid://bu2y4s2tstyfm" path="res://Map/Items/map_item.gd" id="2_vriql"]
 [ext_resource type="Texture2D" uid="uid://bugwls130mkxq" path="res://Arts/Map objects/objects.png" id="2_wee0j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vriql"]
@@ -11,22 +10,9 @@ region = Rect2(3, 0, 32, 32)
 
 [node name="TreasureChest" type="Node2D"]
 script = ExtResource("1_j2qaj")
+object_name = "Treasure chest"
 
 [node name="Contents" type="Node" parent="."]
-
-[node name="MapItem" type="Node" parent="Contents"]
-script = ExtResource("2_vriql")
-item_name = "Ruby"
-image_path = "res://Arts/itch assets/Pixel Art Icon Pack - RPG [Cainos]/Ore & Gem/Ruby.png"
-description = "This is  a shiny rock"
-metadata/_custom_type_script = "uid://bu2y4s2tstyfm"
-
-[node name="MapItem2" type="Node" parent="Contents"]
-script = ExtResource("2_vriql")
-item_name = "Ruby"
-image_path = "res://Arts/itch assets/Pixel Art Icon Pack - RPG [Cainos]/Ore & Gem/Ruby.png"
-description = "This is  a shiny rock"
-metadata/_custom_type_script = "uid://bu2y4s2tstyfm"
 
 [node name="Closed" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_vriql")

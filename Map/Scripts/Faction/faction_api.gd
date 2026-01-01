@@ -101,7 +101,7 @@ func _ready() -> void:
 		queue_free()
 		return
 
-## This method does not verify if the new unit will belong this faction:
+## This method does not verify if the new unit will belong to this faction:
 ## it depends on [param container] and this is the job of a caller
 func hire_unit(unit_name: StringName, container: Node) -> UnitData:
 	var unit_dict: Dictionary = GlobalDefs.database_path.database.get(unit_name, {})

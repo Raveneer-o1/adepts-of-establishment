@@ -843,7 +843,8 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 30, &"max_hp": 100, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7 
+, &"base_damage": 30, &"max_hp": 100, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7,
+&"cost": {&"gold": 10}
 },&"Archer" : {
  &"scene_path": "res://Combat/Units/Derived units//Empire/e22 Archer.tscn", &"level": 1, &"large_unit": false, &"immunities": []
 , &"description": "Archers are the backbone of any ranged offense, skilled in the art of precision and timing. Armed with simple bows, they provide consistent support from the backlines, picking off weaker targets or softening up foes before the main assault.", &"faction": 1, &"unit_type": 1, &"needed_xp": 0, &"attacks": [{

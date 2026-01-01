@@ -75,6 +75,14 @@ const SKIP_DELAY = 0.4
 @export_multiline var brief_description: String
 @export_multiline var full_description: String
 @export var portrait_texture: Texture2D
+
+@export_group("Cost")
+## Determines the resources player will need to pay to hire this unit.
+@export var cost_gold: int = 0
+## Determines the resources player will need to pay to hire this unit.
+@export var cost_stone: int = 0
+## Determines the resources player will need to pay to hire this unit.
+@export var cost_mana: int = 0
 #endregion
 
 
