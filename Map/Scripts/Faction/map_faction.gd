@@ -3,10 +3,12 @@ extends Node
 
 @export var base_faction: GlobalDefs.Faction
 @export var controller: GlobalDefs.ControllerType
+
 @onready var api: FactionAPI = $API
 @onready var appearance: CanvasLayer = $Appearance
 @onready var avaliable_upgrades: EvolutionTreePopulator = $AvaliableUpgrades
 @onready var evolution_buildings: Node = $Appearance/EvolutionBuildings
+@onready var resource_container: MapResourceContainer = $ResourceContainer
 
 ## Atlas coordinates of the tiles that represent this faction's land
 @export var tile_atlas_coords: Array[Vector2i]

@@ -5,6 +5,9 @@ extends Node
 ## Handles switching between different UI modes (Main, City, Party, etc.),
 ## displaying popups/windows for map objects, and tracking active party information.
 
+# HACK: every UI component accessed via "$..." should be renamed
+# and accessed via "%..."
+
 var current_ui: CanvasLayer
 @onready var game_map: GameMap = $".."
 @onready var party_layer: PartyUIManager = $Party
@@ -22,6 +25,7 @@ var current_ui: CanvasLayer
 @onready var grave_info_popup: GraveInfoPopup = $Popups/GraveInfoPopup
 @onready var city_popup: CityInfoPopup = $Popups/CityPopup
 @onready var hire_unit_popup: HireUnitPopup = $Popups/HireUnitPopup
+@onready var resources_panel: ResourcesManager = %UI_ResourcesPanel
 
 var last_requested_party: MapParty = null
 

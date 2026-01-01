@@ -1,12 +1,14 @@
-[gd_scene load_steps=24 format=3 uid="uid://cy8rh77mxkncn"]
+[gd_scene load_steps=26 format=3 uid="uid://cy8rh77mxkncn"]
 
 [ext_resource type="Script" uid="uid://cium5533y6jdp" path="res://Map/Scripts/game_map.gd" id="1_mp6yi"]
 [ext_resource type="Script" uid="uid://ymq5kwxdp6r3" path="res://Map/Scripts/map_ui.gd" id="2_jwoqq"]
 [ext_resource type="Texture2D" uid="uid://b6vh1ulubj26i" path="res://Arts/Placeholders/Army.jpg" id="3_ankfc"]
 [ext_resource type="Texture2D" uid="uid://by3bbk6m8geey" path="res://Arts/itch assets/Pixel Art Icon Pack - RPG [Cainos]/Misc/Golden Coin.png" id="4_ru5ay"]
 [ext_resource type="Texture2D" uid="uid://cvcocjvddoc5d" path="res://Arts/itch assets/Pixel Art Icon Pack - RPG [Cainos]/Ore & Gem/Crystal.png" id="5_3g8al"]
+[ext_resource type="Script" uid="uid://bn6k53ctf405x" path="res://Map/UI/Scripts/resources_manager.gd" id="5_mddr6"]
 [ext_resource type="Script" uid="uid://cxswnm25ylr5" path="res://Map/UI/Scripts/party_ui_manager.gd" id="5_t0dwr"]
 [ext_resource type="PackedScene" uid="uid://dqwc116n3br4m" path="res://Map/UI/Scenes/party_editor_unit_position.tscn" id="6_3g8al"]
+[ext_resource type="Texture2D" uid="uid://djqnop6d6x58n" path="res://Arts/itch assets/Pixel Art Icon Pack - RPG [Cainos]/Ore & Gem/Silver Nugget.png" id="6_6qwde"]
 [ext_resource type="Script" uid="uid://byrx58pdoch0v" path="res://Map/UI/Scripts/city_ui_manager.gd" id="9_bqemh"]
 [ext_resource type="Script" uid="uid://bsrs0hq73vpin" path="res://Map/UI/Scripts/reserve_container.gd" id="9_iv7qx"]
 [ext_resource type="Script" uid="uid://db2fl4l22gmmv" path="res://Map/UI/Scripts/Popups/item_info_popup.gd" id="9_ommir"]
@@ -152,61 +154,96 @@ layout_mode = 2
 button_pressed = true
 text = "Safe travel"
 
-[node name="ResourcesPanel" type="PanelContainer" parent="UILayers/Main"]
+[node name="UI_ResourcesPanel" type="PanelContainer" parent="UILayers/Main"]
+unique_name_in_owner = true
 offset_right = 28.0
 offset_bottom = 55.0
+script = ExtResource("5_mddr6")
 
-[node name="MarginContainer" type="MarginContainer" parent="UILayers/Main/ResourcesPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="UILayers/Main/UI_ResourcesPanel"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UILayers/Main/ResourcesPanel/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayers/Main/UI_ResourcesPanel/MarginContainer"]
 layout_mode = 2
 
-[node name="Gold" type="MarginContainer" parent="UILayers/Main/ResourcesPanel/MarginContainer/HBoxContainer"]
+[node name="UI_ResourcePanel_Gold" type="MarginContainer" parent="UILayers/Main/UI_ResourcesPanel/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="UILayers/Main/ResourcesPanel/MarginContainer/HBoxContainer/Gold"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/Main/UI_ResourcesPanel/MarginContainer/HBoxContainer/UI_ResourcePanel_Gold"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="UILayers/Main/ResourcesPanel/MarginContainer/HBoxContainer/Gold/VBoxContainer2"]
+[node name="TextureRect" type="TextureRect" parent="UILayers/Main/UI_ResourcesPanel/MarginContainer/HBoxContainer/UI_ResourcePanel_Gold/VBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 texture = ExtResource("4_ru5ay")
 expand_mode = 5
+stretch_mode = 5
 
-[node name="Label" type="Label" parent="UILayers/Main/ResourcesPanel/MarginContainer/HBoxContainer/Gold/VBoxContainer2"]
+[node name="Label" type="Label" parent="UILayers/Main/UI_ResourcesPanel/MarginContainer/HBoxContainer/UI_ResourcePanel_Gold/VBoxContainer"]
 layout_mode = 2
 text = "100"
+horizontal_alignment = 1
 
-[node name="Crystals" type="MarginContainer" parent="UILayers/Main/ResourcesPanel/MarginContainer/HBoxContainer"]
+[node name="UI_ResourcePanel_Stone" type="MarginContainer" parent="UILayers/Main/UI_ResourcesPanel/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/Main/ResourcesPanel/MarginContainer/HBoxContainer/Crystals"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/Main/UI_ResourcesPanel/MarginContainer/HBoxContainer/UI_ResourcePanel_Stone"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="UILayers/Main/ResourcesPanel/MarginContainer/HBoxContainer/Crystals/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="UILayers/Main/UI_ResourcesPanel/MarginContainer/HBoxContainer/UI_ResourcePanel_Stone/VBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+texture = ExtResource("6_6qwde")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="UILayers/Main/UI_ResourcesPanel/MarginContainer/HBoxContainer/UI_ResourcePanel_Stone/VBoxContainer"]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 1
+
+[node name="UI_ResourcePanel_Crystals" type="MarginContainer" parent="UILayers/Main/UI_ResourcesPanel/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/Main/UI_ResourcesPanel/MarginContainer/HBoxContainer/UI_ResourcePanel_Crystals"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UILayers/Main/UI_ResourcesPanel/MarginContainer/HBoxContainer/UI_ResourcePanel_Crystals/VBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 texture = ExtResource("5_3g8al")
 expand_mode = 5
+stretch_mode = 5
 
-[node name="Label" type="Label" parent="UILayers/Main/ResourcesPanel/MarginContainer/HBoxContainer/Crystals/VBoxContainer"]
+[node name="Label" type="Label" parent="UILayers/Main/UI_ResourcesPanel/MarginContainer/HBoxContainer/UI_ResourcePanel_Crystals/VBoxContainer"]
 layout_mode = 2
 text = "100"
+horizontal_alignment = 1
 
 [node name="Party" type="CanvasLayer" parent="UILayers"]
 visible = false
@@ -565,6 +602,7 @@ Your color is blue."
 fit_content = true
 
 [node name="Capital" type="CanvasLayer" parent="UILayers"]
+visible = false
 script = ExtResource("11_vrvlx")
 
 [node name="MarginContainer" type="MarginContainer" parent="UILayers/Capital"]

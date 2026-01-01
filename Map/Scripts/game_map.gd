@@ -13,7 +13,12 @@ var current_map: Map
 ## The faction currently viewing the game screen, controlling information visibility
 ## and UI action permissions. Determines which faction's perspective is active
 ## for UI elements, ensuring players access only appropriate data for their view.
-var screen_player: MapFaction
+var screen_player: MapFaction:
+	get: return screen_player
+	set(value):
+		if value == screen_player: return
+		ui_layers.resources_panel.fill_data(value.resource_container)
+		screen_player = value
 
 @onready var test_faction: MapFaction = $Factions/Empire
 @onready var test_faction2: MapFaction = $Factions/Necropolis
