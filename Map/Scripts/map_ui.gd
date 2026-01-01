@@ -22,7 +22,7 @@ var current_ui: CanvasLayer
 @onready var item_info_popup: ItemInfoPopup = $Popups/ItemInfoPopup
 @onready var pick_up_window: PickUpWindow = $Windows/PickUpWindow
 @onready var party_info_popup: PartyInfoPopup = $Popups/PartyInfoPopup
-@onready var grave_info_popup: GraveInfoPopup = $Popups/GraveInfoPopup
+@onready var object_info_popup: ObjectInfoPopup = $Popups/ObjectInfoPopup
 @onready var city_popup: CityInfoPopup = $Popups/CityPopup
 @onready var hire_unit_popup: HireUnitPopup = $Popups/HireUnitPopup
 @onready var resources_panel: ResourcesManager = %UI_ResourcesPanel
@@ -109,9 +109,9 @@ func handle_popup_request(info_object: Variant) -> void:
 		await party_info_popup.popup_closed
 	elif info_object is MapCity:
 		city_popup.show_city(info_object)
-	elif info_object is MapPartyGrave:
-		grave_info_popup.show_grave(info_object)
-		await grave_info_popup.popup_closed
+	elif info_object is MapInteractableObject:
+		object_info_popup.show_object(info_object)
+		await object_info_popup.popup_closed
 	elif info_object is Array:
 		for inner_obj: Variant in info_object:
 			await handle_popup_request(inner_obj)

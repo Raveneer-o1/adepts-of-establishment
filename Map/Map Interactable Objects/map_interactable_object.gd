@@ -220,6 +220,9 @@ func validate_and_interact(party: MapParty, forced: bool = false) -> int:
 
 var _object_registered := false
 
+func get_description() -> String:
+	return object_name
+
 func register_object() -> void:
 	if _object_registered: return
 	tile_position = map.get_tile_coords(global_position)

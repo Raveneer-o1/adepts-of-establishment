@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bg1dfkhl176lq"]
+
+[ext_resource type="Script" uid="uid://ty3mr54ijmmp" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scripts/gold_mine.gd" id="1_cl7tb"]
+[ext_resource type="Texture2D" uid="uid://dr5x884jk4crd" path="res://Arts/Map objects/mine.png" id="2_qotng"]
+
+[node name="GoldMine" type="Node2D"]
+script = ExtResource("1_cl7tb")
+object_name = "Mine"
+ownable = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4, 11)
+texture = ExtResource("2_qotng")

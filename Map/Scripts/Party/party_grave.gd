@@ -26,6 +26,14 @@ extends MapInteractableObject
 #	# Example: Enables interaction from neighboring tiles
 #	return map.get_neighbors(main)
 
+const PARTY_LINE = "%s (%d units)\n"
+
+func get_description() -> String:
+	var res := object_name
+	for party in get_buried_parties():
+		res += PARTY_LINE % [party.party_name, party.units.size()]
+	return res
+
 func right_click_processed() -> bool:
 	EventBus.popup_requested.emit(self)
 	return true

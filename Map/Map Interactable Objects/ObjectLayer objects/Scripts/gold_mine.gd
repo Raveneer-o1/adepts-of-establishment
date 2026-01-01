@@ -1,20 +1,12 @@
 extends ObjectLayerObject
 
 
-# Uncomment and implement the method below if the object occupies multiple tiles
-#func _get_occupied_tiles(main: Vector2i = tile_position) -> Array[Vector2i]:
-#	# Return axial coordinates of all tiles this object occupies when placed at 'main'
-#	# (must include the main tile itself)
-#	# This assumes Godot's Stairs Right hex grid layout. To determine offsets,
-#	# place your object at (0,0) and note coordinates of all occupied tiles.
-#
-#	# Example: An object forming a triangle that occupies the main hex (0,0),
-#	# the hex above-left (0,-1), and the hex above-right (1,-1):
-#	return [
-#		main,
-#		main + Vector2i(0, -1),
-#		main + Vector2i(1, -1),
-#	]
+func _get_occupied_tiles(main: Vector2i = tile_position) -> Array[Vector2i]:
+	return [
+		main,
+		main + Vector2i(0, 1),
+		main + Vector2i(-1, 1),
+	]
 
 # Uncomment and implement the method below if the object interacts with parties
 # on tiles other than its current position
@@ -25,16 +17,12 @@ extends ObjectLayerObject
 #	# Example: Enables interaction from neighboring tiles
 #	return map.get_neighbors(main)
 
-# Uncomment and implement the method below if the object should respond to right-click
-#func right_click_processed() -> bool:
-#	EventBus.popup_requested.emit(self)
-#	return true  # return true to stop further calls to other objects
+func right_click_processed() -> bool:
+	EventBus.popup_requested.emit(self)
+	return true
 
-# Uncomment and implement the method below if the object should have more
-# elaborate description than just a name
-#func get_description() -> String:
-#	const DESCRIPTION_LINE = "Desctiprion of %s"
-#	return DESCRIPTION_LINE % object_name
+func get_description() -> String:
+	return "%s\nProduces %d gold per turn" % [object_name, income_per_turn]
 
 #region Abstract Implementation
 
@@ -107,8 +95,18 @@ func _player_interact(faction: MapFaction) -> void:
 
 #endregion
 
+## Gold income per turn
+@export var income_per_turn: int = 50
+
+func _bring_income(f: MapFaction) -> void:
+	if not object_owner: return
+	if f != object_owner: return
+	object_owner.resource_container.receive_gold(income_per_turn)
+
+func _check_claimed_tile(tile: MapTileData, prev: MapFaction) -> void:
+	if tile.coordinates != tile_position: return
+	object_owner = tile.tile_owner
+
 func _initialize() -> void:
-	# This method is called deferred in _ready()
-	# You can not override _ready() as it contains vital validation checks and 
-	# reference initialization
-	pass
+	EventBus.tile_claimed.connect(_check_claimed_tile)
+	EventBus.map_turn_started.connect(_bring_income)

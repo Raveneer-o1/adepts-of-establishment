@@ -1,5 +1,8 @@
 extends ObjectLayerObject
 
+func right_click_processed() -> bool:
+	EventBus.popup_requested.emit(self)
+	return true
 
 #region Abstract Implementation
 

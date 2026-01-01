@@ -6,7 +6,7 @@ extends Node
 ## do not access the underlying value directly.
 var gold: int:
 	get: return _gold
-var _gold: int = 3:
+var _gold: int = 0:
 	get: return _gold
 	set(value):
 		if value == _gold: return
@@ -66,15 +66,41 @@ func spend_mana(amount: int) -> bool:
 	_mana -= amount
 	return true
 
+## Equivalent to [method spend] but does not deduct the resources
 func can_spend(amount: ResourceCost) -> bool:
+	if not (amount and amount.is_valid()): return false
 	return \
 		amount.gold <= gold and \
 		amount.stone <= stone and \
 		amount.mana <= mana
 
+## Attempts to deduct [param amount] from faction reserves.
+## Returns [code]true[/code] if sufficient resources were available and deducted.
 func spend(amount: ResourceCost) -> bool:
 	if not can_spend(amount): return false
 	spend_gold(amount.gold)
 	spend_stone(amount.stone)
 	spend_mana(amount.mana)
 	return true
+
+## Increases the faction reserve by the specified [param amount]
+func receive(amount: ResourceCost) -> void:
+	if not (amount and amount.is_valid()): return
+	_gold += amount.gold
+	_stone += amount.stone
+	_mana += amount.mana
+
+## Increases the faction's gold reserve by the specified [param amount]
+func receive_gold(amount: int) -> void:
+	if amount < 0: return
+	_gold += amount
+
+## Increases the faction's stone reserve by the specified [param amount]
+func receive_stone(amount: int) -> void:
+	if amount < 0: return
+	_stone += amount
+
+## Increases the faction's mana reserve by the specified [param amount]
+func receive_mana(amount: int) -> void:
+	if amount < 0: return
+	_mana += amount

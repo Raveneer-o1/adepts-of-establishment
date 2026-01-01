@@ -30,6 +30,12 @@ extends MapInteractableObject
 #	EventBus.popup_requested.emit(self)
 #	return true  # return true to stop further calls to other objects
 
+# Uncomment and implement the method below if the object should have more
+# elaborate description than just a name
+#func get_description() -> String:
+#	const DESCRIPTION_LINE = "Desctiprion of %s"
+#	return DESCRIPTION_LINE % object_name
+
 #region Abstract Implementation
 
 func can_interact(party: MapParty) -> bool:

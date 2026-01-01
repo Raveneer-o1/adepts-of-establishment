@@ -14,8 +14,15 @@ func _init(
 	stone = _stone
 	mana = _mana
 
+## Returns if the costs are valid (i.e., non-negative)
+func is_valid() -> bool:
+	return \
+		gold >= 0 and \
+		stone >= 0 and \
+		mana >= 0
+
 static func from_dict(d: Dictionary) -> ResourceCost:
-	var _gold: int = d.get(&"gold", 1)
+	var _gold: int = d.get(&"gold", 0)
 	var _stone: int = d.get(&"gold", 0)
 	var _mana: int = d.get(&"gold", 0)
 	return ResourceCost.new(_gold, _stone, _mana)

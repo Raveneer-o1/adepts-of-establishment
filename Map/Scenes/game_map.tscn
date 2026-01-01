@@ -18,7 +18,7 @@
 [ext_resource type="Script" uid="uid://bw5dga2dtg5d0" path="res://Map/UI/Scripts/Popups/party_info_popup.gd" id="11_dawxx"]
 [ext_resource type="Script" uid="uid://b7nr67a2rqhk5" path="res://Map/UI/Scripts/capital_ui_manager.gd" id="11_vrvlx"]
 [ext_resource type="Texture2D" uid="uid://c1lw1c3qt0mc8" path="res://Arts/hex hint 64.png" id="12_20b7o"]
-[ext_resource type="Script" uid="uid://dd03w7tnrgkwj" path="res://Map/UI/Scripts/Popups/grave_info_popup.gd" id="13_gtybc"]
+[ext_resource type="Script" uid="uid://dd03w7tnrgkwj" path="res://Map/UI/Scripts/Popups/object_info_popup.gd" id="13_gtybc"]
 [ext_resource type="Script" uid="uid://dsb2ra0pfxg7a" path="res://Map/UI/Scripts/greeting.gd" id="13_ofx6v"]
 [ext_resource type="Script" uid="uid://oll1fukjr18t" path="res://Map/UI/Scripts/Popups/city_info_popup.gd" id="14_ga0ya"]
 [ext_resource type="Script" uid="uid://6my5rhvvrl00" path="res://Map/UI/Scripts/Popups/hire_unit_popup.gd" id="15_5jcg3"]
@@ -153,97 +153,6 @@ text = "End turn"
 layout_mode = 2
 button_pressed = true
 text = "Safe travel"
-
-[node name="UI_ResourcesPanel" type="PanelContainer" parent="UILayers/Main"]
-unique_name_in_owner = true
-offset_right = 28.0
-offset_bottom = 55.0
-script = ExtResource("5_mddr6")
-
-[node name="MarginContainer" type="MarginContainer" parent="UILayers/Main/UI_ResourcesPanel"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UILayers/Main/UI_ResourcesPanel/MarginContainer"]
-layout_mode = 2
-
-[node name="UI_ResourcePanel_Gold" type="MarginContainer" parent="UILayers/Main/UI_ResourcesPanel/MarginContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/margin_left = 2
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 2
-theme_override_constants/margin_bottom = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/Main/UI_ResourcesPanel/MarginContainer/HBoxContainer/UI_ResourcePanel_Gold"]
-layout_mode = 2
-size_flags_horizontal = 3
-alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="UILayers/Main/UI_ResourcesPanel/MarginContainer/HBoxContainer/UI_ResourcePanel_Gold/VBoxContainer"]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 2
-texture = ExtResource("4_ru5ay")
-expand_mode = 5
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="UILayers/Main/UI_ResourcesPanel/MarginContainer/HBoxContainer/UI_ResourcePanel_Gold/VBoxContainer"]
-layout_mode = 2
-text = "100"
-horizontal_alignment = 1
-
-[node name="UI_ResourcePanel_Stone" type="MarginContainer" parent="UILayers/Main/UI_ResourcesPanel/MarginContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/margin_left = 2
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 2
-theme_override_constants/margin_bottom = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/Main/UI_ResourcesPanel/MarginContainer/HBoxContainer/UI_ResourcePanel_Stone"]
-layout_mode = 2
-size_flags_horizontal = 3
-alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="UILayers/Main/UI_ResourcesPanel/MarginContainer/HBoxContainer/UI_ResourcePanel_Stone/VBoxContainer"]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 2
-texture = ExtResource("6_6qwde")
-expand_mode = 5
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="UILayers/Main/UI_ResourcesPanel/MarginContainer/HBoxContainer/UI_ResourcePanel_Stone/VBoxContainer"]
-layout_mode = 2
-text = "100"
-horizontal_alignment = 1
-
-[node name="UI_ResourcePanel_Crystals" type="MarginContainer" parent="UILayers/Main/UI_ResourcesPanel/MarginContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/margin_left = 2
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 2
-theme_override_constants/margin_bottom = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/Main/UI_ResourcesPanel/MarginContainer/HBoxContainer/UI_ResourcePanel_Crystals"]
-layout_mode = 2
-size_flags_horizontal = 3
-alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="UILayers/Main/UI_ResourcesPanel/MarginContainer/HBoxContainer/UI_ResourcePanel_Crystals/VBoxContainer"]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 2
-texture = ExtResource("5_3g8al")
-expand_mode = 5
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="UILayers/Main/UI_ResourcesPanel/MarginContainer/HBoxContainer/UI_ResourcePanel_Crystals/VBoxContainer"]
-layout_mode = 2
-text = "100"
-horizontal_alignment = 1
 
 [node name="Party" type="CanvasLayer" parent="UILayers"]
 visible = false
@@ -974,11 +883,11 @@ bbcode_enabled = true
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 fit_content = true
 
-[node name="GraveInfoPopup" type="CanvasLayer" parent="UILayers/Popups"]
+[node name="ObjectInfoPopup" type="CanvasLayer" parent="UILayers/Popups"]
 visible = false
 script = ExtResource("13_gtybc")
 
-[node name="Root" type="Control" parent="UILayers/Popups/GraveInfoPopup"]
+[node name="Root" type="Control" parent="UILayers/Popups/ObjectInfoPopup"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -986,7 +895,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="UILayers/Popups/GraveInfoPopup/Root"]
+[node name="PanelContainer" type="PanelContainer" parent="UILayers/Popups/ObjectInfoPopup/Root"]
 custom_minimum_size = Vector2(500, 100)
 layout_mode = 1
 anchors_preset = 8
@@ -1002,10 +911,10 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="UILayers/Popups/GraveInfoPopup/Root/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UILayers/Popups/ObjectInfoPopup/Root/PanelContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/Popups/GraveInfoPopup/Root/PanelContainer/MarginContainer"]
+[node name="InfoLabel" type="RichTextLabel" parent="UILayers/Popups/ObjectInfoPopup/Root/PanelContainer/MarginContainer"]
 layout_mode = 2
 
 [node name="CityPopup" type="CanvasLayer" parent="UILayers/Popups"]
@@ -1516,6 +1425,103 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 expand_mode = 3
 stretch_mode = 4
+
+[node name="Independent" type="Node" parent="UILayers"]
+editor_description = "Layers with visibility not controlled by UILayers node. Intended as always visible UI components, though hiding them remains possible."
+
+[node name="Resources" type="CanvasLayer" parent="UILayers/Independent"]
+layer = 2
+
+[node name="UI_ResourcesPanel" type="PanelContainer" parent="UILayers/Independent/Resources"]
+unique_name_in_owner = true
+offset_right = 120.0
+offset_bottom = 71.0
+script = ExtResource("5_mddr6")
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayers/Independent/Resources/UI_ResourcesPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayers/Independent/Resources/UI_ResourcesPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="UI_ResourcePanel_Gold" type="MarginContainer" parent="UILayers/Independent/Resources/UI_ResourcesPanel/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/Independent/Resources/UI_ResourcesPanel/MarginContainer/HBoxContainer/UI_ResourcePanel_Gold"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UILayers/Independent/Resources/UI_ResourcesPanel/MarginContainer/HBoxContainer/UI_ResourcePanel_Gold/VBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+texture = ExtResource("4_ru5ay")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="UILayers/Independent/Resources/UI_ResourcesPanel/MarginContainer/HBoxContainer/UI_ResourcePanel_Gold/VBoxContainer"]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 1
+
+[node name="UI_ResourcePanel_Stone" type="MarginContainer" parent="UILayers/Independent/Resources/UI_ResourcesPanel/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/Independent/Resources/UI_ResourcesPanel/MarginContainer/HBoxContainer/UI_ResourcePanel_Stone"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UILayers/Independent/Resources/UI_ResourcesPanel/MarginContainer/HBoxContainer/UI_ResourcePanel_Stone/VBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+texture = ExtResource("6_6qwde")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="UILayers/Independent/Resources/UI_ResourcesPanel/MarginContainer/HBoxContainer/UI_ResourcePanel_Stone/VBoxContainer"]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 1
+
+[node name="UI_ResourcePanel_Crystals" type="MarginContainer" parent="UILayers/Independent/Resources/UI_ResourcesPanel/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/Independent/Resources/UI_ResourcesPanel/MarginContainer/HBoxContainer/UI_ResourcePanel_Crystals"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UILayers/Independent/Resources/UI_ResourcesPanel/MarginContainer/HBoxContainer/UI_ResourcePanel_Crystals/VBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+texture = ExtResource("5_3g8al")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="UILayers/Independent/Resources/UI_ResourcesPanel/MarginContainer/HBoxContainer/UI_ResourcePanel_Crystals/VBoxContainer"]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
