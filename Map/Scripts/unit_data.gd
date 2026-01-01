@@ -41,6 +41,15 @@ extends Node
 ## during unit spawning events [i](e.g., hiring or evolution)[/i].
 ##
 
+enum UnitClass{
+	Undefined,  ## Noe special effects
+	Warrior,    ## Focus on damage
+	Tank,       ## Focus on survivability (health, armor)
+	Rogue,      ## Focus on evasion
+	Archer,     ## Focus on damage and accuracy 
+	Mage,       ## Focus on damage at the cost of health
+}
+
 @export_file_path("*.tscn") var scene_path: String
 
 ## Position of the unit within the party (see [Party] class documentation). [br]
@@ -67,6 +76,7 @@ extends Node
 ## [/codeblock]
 @export var effects: Array[Dictionary]
 @export var needed_xp: int = 1
+@export var unit_class: UnitClass = UnitClass.Undefined
 
 @export_group("Base parameters")
 @export var base_damage: int

@@ -67,6 +67,11 @@ const SKIP_DELAY = 0.4
 ## Experience required to level up. This value has no combat effect,
 ## only relevant for calculating the results and for the map
 @export var needed_xp: int = 1
+## Defines the default behavior of a unit (e.g., when leveling up, warriors will
+## increase health, tanks - armor, mages - damage, etc.).
+## Unlike [member unit_type], this value is not designed to have a direct impact
+## on the combat
+@export var unit_class: UnitData.UnitClass = UnitData.UnitClass.Undefined
 @export_multiline var brief_description: String
 @export_multiline var full_description: String
 @export var portrait_texture: Texture2D
