@@ -6,6 +6,7 @@ extends PanelContainer
 @onready var ui_resource_panel_crystals: MarginContainer = %UI_ResourcePanel_Crystals
 
 var _currently_filled: MapResourceContainer = null:
+	get: return _currently_filled
 	set(value):
 		if value == _currently_filled: return
 		if _currently_filled and \
@@ -29,7 +30,9 @@ func _reset_contents() -> void:
 	_currently_filled = null
 
 func update_values() -> void:
-	pass
+	get_Label(ui_resource_panel_gold).text = str(_currently_filled.gold)
+	get_Label(ui_resource_panel_stone).text = str(_currently_filled.stone)
+	get_Label(ui_resource_panel_crystals).text = str(_currently_filled.mana)
 
 func fill_data(container: MapResourceContainer) -> void:
 	if _currently_filled == container:

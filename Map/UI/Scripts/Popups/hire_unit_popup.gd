@@ -3,6 +3,7 @@ extends PopupBase
 
 var current_container: Node
 signal unit_hired(unit: UnitData)
+@onready var ui_layers: MapUI = $"../.."
 
 @onready var units_item_list: ItemList = %HireUnitsItemList
 
@@ -16,14 +17,10 @@ func display_for_container(node: Node, list: Array[StringName]) -> void:
 	for i in list:
 		units_item_list.add_item(i)
 
-func hire(unit_name: String) -> void:
-	var data := UnitData.new()
-	data.unit_name = unit_name
-	data.initialize()
-	current_container.add_child(data)
-	unit_hired.emit(data)
-
-
 func _on_hire_button_pressed() -> void:
 	for item in units_item_list.get_selected_items():
-		hire(units_item_list.get_item_text(item))
+		var unit_name := units_item_list.get_item_text(item)
+		if ui_layers.game_map.screen_player:
+			var data := ui_layers.game_map.screen_player.api.hire_unit(
+				unit_name, current_container)
+			if data: unit_hired.emit(data)

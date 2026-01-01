@@ -6,7 +6,7 @@ extends Node
 ## do not access the underlying value directly.
 var gold: int:
 	get: return _gold
-var _gold: int = 0:
+var _gold: int = 3:
 	get: return _gold
 	set(value):
 		if value == _gold: return
@@ -64,4 +64,17 @@ func spend_mana(amount: int) -> bool:
 	if amount > mana:
 		return false
 	_mana -= amount
+	return true
+
+func can_spend(amount: ResourceCost) -> bool:
+	return \
+		amount.gold <= gold and \
+		amount.stone <= stone and \
+		amount.mana <= mana
+
+func spend(amount: ResourceCost) -> bool:
+	if not can_spend(amount): return false
+	spend_gold(amount.gold)
+	spend_stone(amount.stone)
+	spend_mana(amount.mana)
 	return true

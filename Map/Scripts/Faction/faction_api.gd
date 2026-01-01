@@ -100,3 +100,13 @@ func _ready() -> void:
 		push_error("Unable to find GameMap!")
 		queue_free()
 		return
+
+## This method does not verify if the new unit will belong this faction:
+## it depends on [param container] and this is the job of a caller
+func hire_unit(unit_name: StringName, container: Node) -> UnitData:
+	var unit_dict: Dictionary = GlobalDefs.database_path.database.get(unit_name, {})
+	if not unit_dict: return null
+	var cost: Dictionary = unit_dict.get(&"cost", {})
+	if this_faction.resource_container.spend(ResourceCost.from_dict(cost)):
+		return game.spawn_new_unit(unit_name, container)
+	return null

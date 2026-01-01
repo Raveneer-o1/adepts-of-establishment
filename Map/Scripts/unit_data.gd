@@ -24,7 +24,7 @@ extends Node
 ##     &"faction": GlobalDefs.Faction,
 ##     &"unit_type": GlobalDefs.UnitType,
 ##     &"needed_xp": int,
-##     &"attacks": Array[Dictionary],
+##     &"attacks": Array[Dictionary],  # see UnitAttackData.from_dict()
 ##     &"effects": Array[Dictionary],
 ##     &"base_damage": int,
 ##     &"max_hp": int,
@@ -32,6 +32,14 @@ extends Node
 ##     &"evasion": float,
 ##     &"shielding_chance": float,
 ##     &"custom_levelup_path": String,
+##     &"cost": Dictionary,  # see below
+## }
+## 
+## # Cost dictionary has the following structure:
+## {
+##     &"gold": int,
+##     &"stone": int,
+##     &"mana": int,
 ## }
 ## [/codeblock]
 ##

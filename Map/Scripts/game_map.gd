@@ -92,3 +92,12 @@ func get_faction(index: int) -> MapFaction:
 		push_error("Faction index outside bounds")
 		return null
 	return $Factions.get_child(index)
+
+func spawn_new_unit(unit_name: StringName, container: Node) -> UnitData:
+	if not unit_name: return null
+	if not container: return null
+	var data := UnitData.new()
+	data.unit_name = unit_name
+	data.initialize()
+	container.add_child(data)
+	return data
