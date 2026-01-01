@@ -63,6 +63,7 @@ main_color = 1
 script = ExtResource("2_jwoqq")
 
 [node name="Main" type="CanvasLayer" parent="UILayers"]
+visible = false
 
 [node name="PanelContainer" type="PanelContainer" parent="UILayers/Main"]
 anchors_preset = 11
@@ -305,7 +306,6 @@ size_flags_vertical = 3
 visible = false
 
 [node name="City" type="CanvasLayer" parent="UILayers"]
-visible = false
 script = ExtResource("9_bqemh")
 
 [node name="PanelContainer" type="PanelContainer" parent="UILayers/City"]
@@ -397,51 +397,56 @@ layout_mode = 2
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 
-[node name="PartyUnitsContainer" type="HBoxContainer" parent="UILayers/City/PanelContainer/MarginContainer/HBoxContainer/PartyUnitsContainerPanel"]
-unique_name_in_owner = true
+[node name="Control" type="Control" parent="UILayers/City/PanelContainer/MarginContainer/HBoxContainer/PartyUnitsContainerPanel"]
 layout_mode = 2
-size_flags_horizontal = 3
 
-[node name="BacklineContainer" type="VBoxContainer" parent="UILayers/City/PanelContainer/MarginContainer/HBoxContainer/PartyUnitsContainerPanel/PartyUnitsContainer"]
+[node name="PartyUnitsContainer" type="HBoxContainer" parent="UILayers/City/PanelContainer/MarginContainer/HBoxContainer/PartyUnitsContainerPanel/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 404.0
+offset_bottom = 812.0
+mouse_filter = 0
+
+[node name="BacklineContainer" type="VBoxContainer" parent="UILayers/City/PanelContainer/MarginContainer/HBoxContainer/PartyUnitsContainerPanel/Control/PartyUnitsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="PartyEditorUnitPosition1" parent="UILayers/City/PanelContainer/MarginContainer/HBoxContainer/PartyUnitsContainerPanel/PartyUnitsContainer/BacklineContainer" instance=ExtResource("6_3g8al")]
+[node name="PartyEditorUnitPosition1" parent="UILayers/City/PanelContainer/MarginContainer/HBoxContainer/PartyUnitsContainerPanel/Control/PartyUnitsContainer/BacklineContainer" instance=ExtResource("6_3g8al")]
 layout_mode = 2
 party_position = 1
 reparent_data = true
 
-[node name="PartyEditorUnitPosition3" parent="UILayers/City/PanelContainer/MarginContainer/HBoxContainer/PartyUnitsContainerPanel/PartyUnitsContainer/BacklineContainer" instance=ExtResource("6_3g8al")]
+[node name="PartyEditorUnitPosition3" parent="UILayers/City/PanelContainer/MarginContainer/HBoxContainer/PartyUnitsContainerPanel/Control/PartyUnitsContainer/BacklineContainer" instance=ExtResource("6_3g8al")]
 layout_mode = 2
 party_position = 3
 reparent_data = true
 
-[node name="PartyEditorUnitPosition5" parent="UILayers/City/PanelContainer/MarginContainer/HBoxContainer/PartyUnitsContainerPanel/PartyUnitsContainer/BacklineContainer" instance=ExtResource("6_3g8al")]
+[node name="PartyEditorUnitPosition5" parent="UILayers/City/PanelContainer/MarginContainer/HBoxContainer/PartyUnitsContainerPanel/Control/PartyUnitsContainer/BacklineContainer" instance=ExtResource("6_3g8al")]
 layout_mode = 2
 party_position = 5
 reparent_data = true
 
-[node name="FrontlineContainer" type="VBoxContainer" parent="UILayers/City/PanelContainer/MarginContainer/HBoxContainer/PartyUnitsContainerPanel/PartyUnitsContainer"]
+[node name="FrontlineContainer" type="VBoxContainer" parent="UILayers/City/PanelContainer/MarginContainer/HBoxContainer/PartyUnitsContainerPanel/Control/PartyUnitsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="PartyEditorUnitPosition" parent="UILayers/City/PanelContainer/MarginContainer/HBoxContainer/PartyUnitsContainerPanel/PartyUnitsContainer/FrontlineContainer" instance=ExtResource("6_3g8al")]
+[node name="PartyEditorUnitPosition" parent="UILayers/City/PanelContainer/MarginContainer/HBoxContainer/PartyUnitsContainerPanel/Control/PartyUnitsContainer/FrontlineContainer" instance=ExtResource("6_3g8al")]
 layout_mode = 2
 reparent_data = true
 
-[node name="PartyEditorUnitPosition2" parent="UILayers/City/PanelContainer/MarginContainer/HBoxContainer/PartyUnitsContainerPanel/PartyUnitsContainer/FrontlineContainer" instance=ExtResource("6_3g8al")]
+[node name="PartyEditorUnitPosition2" parent="UILayers/City/PanelContainer/MarginContainer/HBoxContainer/PartyUnitsContainerPanel/Control/PartyUnitsContainer/FrontlineContainer" instance=ExtResource("6_3g8al")]
 layout_mode = 2
 party_position = 2
 reparent_data = true
 
-[node name="PartyEditorUnitPosition4" parent="UILayers/City/PanelContainer/MarginContainer/HBoxContainer/PartyUnitsContainerPanel/PartyUnitsContainer/FrontlineContainer" instance=ExtResource("6_3g8al")]
+[node name="PartyEditorUnitPosition4" parent="UILayers/City/PanelContainer/MarginContainer/HBoxContainer/PartyUnitsContainerPanel/Control/PartyUnitsContainer/FrontlineContainer" instance=ExtResource("6_3g8al")]
 layout_mode = 2
 party_position = 4
 reparent_data = true
 
-[node name="PartyEditorUnitPosition6" parent="UILayers/City/PanelContainer/MarginContainer/HBoxContainer/PartyUnitsContainerPanel/PartyUnitsContainer/FrontlineContainer" instance=ExtResource("6_3g8al")]
+[node name="PartyEditorUnitPosition6" parent="UILayers/City/PanelContainer/MarginContainer/HBoxContainer/PartyUnitsContainerPanel/Control/PartyUnitsContainer/FrontlineContainer" instance=ExtResource("6_3g8al")]
 layout_mode = 2
 party_position = 6
 reparent_data = true
@@ -1542,6 +1547,7 @@ text = "version"
 [connection signal="toggled" from="UILayers/Main/PanelContainer/VBoxContainer/SafeTravelCheckBox" to="UILayers" method="_on_safe_travel_check_box_toggled"]
 [connection signal="visibility_changed" from="UILayers/Party" to="UILayers/Party" method="_on_visibility_changed"]
 [connection signal="gui_input" from="UILayers/Party/HBoxContainer" to="." method="_on_h_box_container_gui_input"]
+[connection signal="gui_input" from="UILayers/City/PanelContainer/MarginContainer/HBoxContainer/PartyUnitsContainerPanel/Control" to="UILayers/City" method="_on_hire_party_gui_input"]
 [connection signal="pressed" from="UILayers/City/PanelContainer/MarginContainer/HBoxContainer/InfoContainer/VBoxContainer/HireButton" to="UILayers/City" method="_on_hire_button_pressed"]
 [connection signal="gui_input" from="UILayers/Greeting/Control" to="UILayers/Greeting" method="_on_control_gui_input"]
 [connection signal="item_selected" from="UILayers/Capital/MarginContainer/TabContainer/Active upgrades/MarginContainer/VBoxContainer/ActiveFactionUpgadesItemList" to="UILayers/Capital" method="_on_active_faction_upgades_item_list_item_selected"]

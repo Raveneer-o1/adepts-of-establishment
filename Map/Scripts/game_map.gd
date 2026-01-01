@@ -101,3 +101,19 @@ func spawn_new_unit(unit_name: StringName, container: Node) -> UnitData:
 	data.initialize()
 	container.add_child(data)
 	return data
+
+const MAP_PARTY = preload("uid://2kk6w327nvk")
+
+func spawn_new_party(
+	coords: Vector2i,
+	_map: Map = current_map,
+	hero: StringName = &""
+) -> MapParty:
+	var obj: MapParty = MAP_PARTY.instantiate()
+	obj.global_position = _map.get_global_coords(coords)
+	_map.find_child("Parties").add_child(obj)
+	for o: MapInteractableObject in _map.tile_to_object.get(coords, []):
+		if o is MapCity:
+			obj.enter_city(o)
+			break
+	return obj

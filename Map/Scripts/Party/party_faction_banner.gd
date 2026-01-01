@@ -3,4 +3,5 @@ extends Node
 
 func set_color(faction: MapFaction) -> void:
 	# FIXME: replace with color
-	get_child(faction.main_color).show()
+	if faction:
+		get_child(faction.main_color).show()

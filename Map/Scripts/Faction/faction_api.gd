@@ -101,6 +101,7 @@ func _ready() -> void:
 		queue_free()
 		return
 
+## @experimental
 ## This method does not verify if the new unit will belong to this faction:
 ## it depends on [param container] and this is the job of a caller
 func hire_unit(unit_name: StringName, container: Node) -> UnitData:
@@ -110,3 +111,8 @@ func hire_unit(unit_name: StringName, container: Node) -> UnitData:
 	if this_faction.resource_container.spend(ResourceCost.from_dict(cost)):
 		return game.spawn_new_unit(unit_name, container)
 	return null
+
+func hire_party(coords: Vector2i, _map: Map = map, hero: StringName = &"") -> MapParty:
+	var p := game.spawn_new_party(coords, _map, hero)
+	p.object_owner = this_faction
+	return p
