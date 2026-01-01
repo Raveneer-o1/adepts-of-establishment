@@ -15,6 +15,11 @@ const STANDARD_DAMAGE_DEVIATION = 5
 ## [member STANDARD_DAMAGE_DEVIATION] and [member STANDARD_FRACTIONAL_DAMAGE_DEVIATION] * damage
 const STANDARD_FRACTIONAL_DAMAGE_DEVIATION = 0.1
 
+## Defines the unit's base level when spawned into the world.
+## Level is capped at [constant LevelupFunction.MAX_LEVEL] to encourage
+## army diversity over single-unit optimization.
+## This design complements resurrection mechanics - players can recover
+## investment in defeated parties, incentivizing broader army development.
 @export var level: int = 1
 
 @export var base_paramaters: BaseParameters

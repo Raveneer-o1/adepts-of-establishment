@@ -15,6 +15,8 @@ static func _levelup(unit: UnitData) -> void:
 	@warning_ignore("narrowing_conversion")
 	unit.base_damage *= _DMG_INCREASE_FACTOR
 
+## Levels up the unit using class-based progression (see [member Unit.unit_class]).
+## Units at [constant MAX_LEVEL] receive only secondary benefits (e.g., full healing).
 static func default_levelup(unit: UnitData) -> void:
 	if unit.level < MAX_LEVEL:
 		unit.level += 1
@@ -30,7 +32,7 @@ static func default_levelup(unit: UnitData) -> void:
 				__DefaultArcher__.levelup(unit)
 			UnitData.UnitClass.Mage:
 				__DefaultMage__.levelup(unit)
-			_:  # UnitClass.Undefined will be here
+			_:  # UnitClass.Undefined processed here
 				_levelup(unit)
 	
 	unit.current_hp = unit.max_hp
