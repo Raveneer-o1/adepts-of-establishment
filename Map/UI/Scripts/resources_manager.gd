@@ -9,9 +9,9 @@ var _currently_filled: MapResourceContainer = null:
 	set(value):
 		if value == _currently_filled: return
 		if _currently_filled and \
-			_currently_filled.resource_count_updated.is_connected(update_values):
-				_currently_filled.resource_count_updated.disconnect(update_values)
-		value.resource_count_updated.connect(update_values)
+			_currently_filled.reserve_updated.is_connected(update_values):
+				_currently_filled.reserve_updated.disconnect(update_values)
+		value.reserve_updated.connect(update_values)
 		_currently_filled = value
 
 ## @experimental: has to be rewritten if UI structue changes
