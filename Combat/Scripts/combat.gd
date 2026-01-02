@@ -464,8 +464,6 @@ func initialize_variables() -> void:
 	if EventBus.right_controller != null:
 		right_player.add_child(EventBus.right_controller.instantiate())
 	
-	left_party.initialize_variables()
-	right_party.initialize_variables()
 	EventBus.attack_animation_finished.connect(check_finished_animation)
 	left_party_units = EventBus.left_units
 	right_party_units = EventBus.right_units

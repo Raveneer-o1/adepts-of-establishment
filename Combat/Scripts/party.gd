@@ -110,17 +110,15 @@ func place_spots() -> void:
 
 ## Places units based on a list of unit names.
 func place_units(list: Array[UnitData]) -> void:
-	#if list.size() > MAX_UNITS_NUMBER:
-		#push_error("Unit list exceeds the maximum allowed number of units!
-#%d proveded, only %d is allowed!" % [list.size(), MAX_UNITS_NUMBER])
-		#return
-	
 	place_spots()
 	
 	for unit_data: UnitData in list:
 		await get_tree().process_frame
 		var i := unit_data.party_position
 		if i < 0: continue
+		if i >= MAX_UNITS_NUMBER:
+			push_error("Incorrect placement (%d) of a unit '%s'" % [i, unit_data.unit_name])
+			continue
 		var path := unit_data.scene_path
 		if path.is_empty(): continue
 		if not main_system.loaded_units.has(path):
@@ -160,11 +158,6 @@ func get_unit_position(pos: int) -> Vector2:
 	var x: float = X_START_POSITION if pos % 2 != 0 else X_START_POSITION + X_OFFSET
 	var y: float = Y_START_POSITION + Y_OFFSET * pos
 	return Vector2(x, y)
-
-## Initializes unit storage variables.
-func initialize_variables() -> void:
-	for i in range(MAX_UNITS_NUMBER):
-		units.append(null)
 
 ## Returns number of hexes between two positions
 static func get_distance(pos1: int, pos2: int) -> int:
