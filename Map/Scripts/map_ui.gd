@@ -40,6 +40,7 @@ func clear_active_party() -> void:
 
 ## Switches the UI to city mode and populates it with data from the specified [param city]
 func switch_to_city(city: MapCity) -> void:
+	if not city.object_owner.api.ui_filter: return
 	city_layer.fill_city_data(city)
 	switch_to(&"City")
 
@@ -50,6 +51,7 @@ func switch_to_city(city: MapCity) -> void:
 ## Note: This only updates the UI display. The party window itself is updated
 ## by [PartyUIManager] when the window becomes visible.
 func fill_active_party(party: MapParty) -> void:
+	if not party.object_owner.api.ui_filter: return
 	var mp := party.parameters.movement_points
 	var max_mp := party.parameters.max_movement_points
 	_movement_points.value = mp
@@ -144,14 +146,14 @@ func _ready() -> void:
 	%VersionLabel.text = ProjectSettings.get_setting("application/config/version")
 
 func _disconnect_unit_hire() -> void:
-	for d: Dictionary in hire_unit_popup.unit_hired.get_connections():
+	for d: Dictionary in EventBus.unit_hired.get_connections():
 		d.signal.disconnect(d.callable)
 	for d: Dictionary in hire_unit_popup.popup_closed.get_connections():
 		d.signal.disconnect(d.callable)
 
 ## @experimental
-func open_hire_popup(base: Node, update_function: Callable, list: Array[StringName]) -> void:
-	hire_unit_popup.unit_hired.connect(update_function)
+func open_hire_popup(base: Node, list: Array[StringName]) -> void:
+	#hire_unit_popup.unit_hired.connect(update_function)
 	hire_unit_popup.display_for_container(base, list)
 	hire_unit_popup.popup_closed.connect(_disconnect_unit_hire)
 
@@ -168,12 +170,11 @@ func _on_portrait_texture_rect_gui_input(event: InputEvent) -> void:
 		else: switch_to(&"Party")
 
 func _on_end_turn_button_pressed() -> void:
-	game_map.turn_manager.request_turn_end()
-
+	var ui_filter := game_map.turn_manager.active_faction.api.ui_filter
+	if ui_filter: ui_filter.turn_end_clicked.emit()
 
 func _on_safe_travel_check_box_toggled(toggled_on: bool) -> void:
 	GameSettings.safe_travel = toggled_on
-
 
 func _on_capital_button_pressed() -> void:
 	if not game_map.screen_player: return

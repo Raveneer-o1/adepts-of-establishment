@@ -10,7 +10,19 @@ extends Node
 var map: Map:
 	get: return game.current_map
 var game: GameMap
+
 @onready var this_faction: MapFaction = $".."
+## Returns [code]null[/code] if [member GameMap.screen_player] is not this faction.
+## This node contains UI input signals and functions that remain disconnected
+## by default, preventing UI operation without explicit controller setup.
+## This safeguards against UI bugs tht could allow unauthorized state manipulation
+## (e.g., hiring units for other players) since UI does not
+## (and should not) check for permissions.
+var ui_filter: API_UIFilter:
+	get:
+		if not game: return null
+		return _ui_filter if game.screen_player == this_faction else null
+@onready var _ui_filter: API_UIFilter = API_UIFilter.new()
 
 var controller: FactionController = null
 
@@ -92,6 +104,7 @@ func gloabal_unpause() -> void:
 	get_tree().paused = false
 
 func _ready() -> void:
+	add_child(_ui_filter, false, Node.INTERNAL_MODE_FRONT)
 	var next_parent := get_parent()
 	while next_parent and not game:
 		if next_parent is GameMap: game = next_parent
@@ -109,7 +122,9 @@ func hire_unit(unit_name: StringName, container: Node) -> UnitData:
 	if not unit_dict: return null
 	var cost: Dictionary = unit_dict.get(&"cost", {})
 	if this_faction.resource_container.spend(ResourceCost.from_dict(cost)):
-		return game.spawn_new_unit(unit_name, container)
+		var unit := game.spawn_new_unit(unit_name, container)
+		EventBus.unit_hired.emit(unit)
+		return unit
 	return null
 
 func hire_party(coords: Vector2i, _map: Map = map, hero: StringName = &"") -> MapParty:

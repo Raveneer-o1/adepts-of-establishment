@@ -19,17 +19,20 @@ func choose_evolution(unit: UnitData, options: Array[StringName]) -> StringName:
 	EventBus.unit_question_ended.emit(unit)
 	return item_list.get_item_text(index)
 
-func turn_start_reaction() -> void:
-	api.access_player_input()
-	api.set_player_at_screen()
-
 func _initialize() -> void:
 	api.tile_clicked.connect(api.choose_tile)
 	api.end_turn_clicked.connect(api.end_turn)
 	api.turn_started.connect(turn_start_reaction)
+	
+	api._ui_filter.hire_party.connect(api.hire_party)
+	api._ui_filter.hire_unit.connect(api.hire_unit)
 
 signal _evolution_choice_made
 
 func _on_button_pressed() -> void:
 	if not item_list.get_selected_items(): return
 	_evolution_choice_made.emit()
+
+func turn_start_reaction() -> void:
+	api.access_player_input()
+	api.set_player_at_screen()

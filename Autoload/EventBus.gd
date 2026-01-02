@@ -76,4 +76,6 @@ signal window_requested(info: Variant)
 signal tile_claimed(tile: MapTileData, previous_owner: MapFaction)
 
 signal unit_evolved(unit: UnitData, previous_form: StringName)
+
+signal unit_hired(unit: UnitData)
 #endregion

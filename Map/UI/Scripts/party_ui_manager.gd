@@ -93,6 +93,7 @@ func _fill_party(party: MapParty) -> void:
 	currently_filled_party = party
 
 func _on_visibility_changed() -> void:
+	if not visible: return
 	if ui_layers.last_requested_party == currently_filled_party:
 		_update_values()
 	else:

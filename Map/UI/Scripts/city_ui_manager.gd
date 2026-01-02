@@ -44,16 +44,7 @@ extends CanvasLayer
 var currently_filled_city: MapCity = null
 
 func fill_city_data(city: MapCity) -> void:
-	# HACK: add a safeguard similar to this to every UI function
-	# There's no other checks for invalid access throughout the whole process
-	# of UI interactions, so we need to be very sure that players can never open
-	# windows they're not supposed to
-	if not ui_layers.game_map.screen_player or \
-		ui_layers.game_map.screen_player != city.object_owner: return
-	# TODO: route the entire UI process throgh FactionAPI class,
-	# so all the functions go nowhere unless the controller permits it
-	
-	# HACK: implement update_city() properly
+	# TODO: implement update_city() properly
 	#if currently_filled_city == city: update_city()
 	
 	garrison_reserve_container.parent = city
@@ -93,16 +84,19 @@ func update_city(...args: Array) -> void:
 
 func _request_party_hiring() -> void:
 	if not currently_filled_city.object_owner: return
-	currently_filled_city.object_owner.api.hire_party(
+	if not currently_filled_city.object_owner.api.ui_filter: return
+	currently_filled_city.object_owner.api.ui_filter.hire_party.emit(
 		currently_filled_city.tile_position,
 		currently_filled_city.map
 	)
 	update_city()
 
 func _on_hire_button_pressed() -> void:
-	$"..".open_hire_popup(
+	if not currently_filled_city.object_owner: return
+	if not currently_filled_city.object_owner.api.ui_filter: return
+	EventBus.unit_hired.connect(update_city)
+	ui_layers.open_hire_popup(
 		currently_filled_city,
-		update_city,
 		currently_filled_city.get_avaliable_units()
 	)
 
