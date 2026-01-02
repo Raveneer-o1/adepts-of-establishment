@@ -104,6 +104,11 @@ func spawn_new_unit(unit_name: StringName, container: Node) -> UnitData:
 
 const MAP_PARTY = preload("uid://2kk6w327nvk")
 
+## Spawns a new [MapParty] at [param coords] on the specified [param _map].
+## If there is a [MapCity] object on the provided tile, newly generated party
+## will try to enter that city.
+## This bypasses is_enemy() calls, so the party can potentially end up inside 
+## the city of an enemy.
 func spawn_new_party(
 	coords: Vector2i,
 	_map: Map = current_map,

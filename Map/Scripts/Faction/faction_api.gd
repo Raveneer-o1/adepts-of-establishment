@@ -15,7 +15,7 @@ var game: GameMap
 ## Returns [code]null[/code] if [member GameMap.screen_player] is not this faction.
 ## This node contains UI input signals and functions that remain disconnected
 ## by default, preventing UI operation without explicit controller setup.
-## This safeguards against UI bugs tht could allow unauthorized state manipulation
+## This safeguards against UI bugs that could allow unauthorized state manipulation
 ## (e.g., hiring units for other players) since UI does not
 ## (and should not) check for permissions.
 var ui_filter: API_UIFilter:
@@ -114,12 +114,25 @@ func _ready() -> void:
 		queue_free()
 		return
 
-## @experimental
-## This method does not verify if the new unit will belong to this faction:
-## it depends on [param container] and this is the job of a caller
+func _verify_ownership(container: Node) -> bool:
+	while container:
+		if container is MapInteractableObject:
+			return container.object_owner == this_faction
+		if container is MapFaction:
+			return container == this_faction
+		container = null if container is Map else container.get_parent()
+	push_error("Hired units must be children of MapInteractableObject instances")
+	return false
+
+## Creates and initializes a new unit using this faction's resources.
+## Generates a [UnitData] node, adds it to [param container], initializes
+## with defaults for [param unit_name], and returns the new object. [br]
+## Returns [code]null[/code] on failure
+## (e.g., incorrect faction or container or insufficient resources).
 func hire_unit(unit_name: StringName, container: Node) -> UnitData:
 	var unit_dict: Dictionary = GlobalDefs.database_path.database.get(unit_name, {})
 	if not unit_dict: return null
+	if not _verify_ownership(container): return null
 	var cost: Dictionary = unit_dict.get(&"cost", {})
 	if this_faction.resource_container.spend(ResourceCost.from_dict(cost)):
 		var unit := game.spawn_new_unit(unit_name, container)
@@ -127,7 +140,24 @@ func hire_unit(unit_name: StringName, container: Node) -> UnitData:
 		return unit
 	return null
 
+# FIXME: move the default cost somewhere else
+const DEFAULT_PARTY_COST = {
+	&"gold": 100,
+	&"stone": 0,
+	&"mana": 0,
+}
+
+## Creates a new [MapParty] at [param coords] on the specified [param _map]
+## (defaults to current active map). Optionally adds a hero unit if [param hero] is provided.
+## @experimental: Heros are not properly implemented yet.
 func hire_party(coords: Vector2i, _map: Map = map, hero: StringName = &"") -> MapParty:
-	var p := game.spawn_new_party(coords, _map, hero)
-	p.object_owner = this_faction
-	return p
+	var hired_hero: UnitData
+	var unit_dict: Dictionary = GlobalDefs.database_path.database.get(hero, {})
+	var cost: Dictionary = unit_dict.get(&"cost", DEFAULT_PARTY_COST)
+	if this_faction.resource_container.spend(ResourceCost.from_dict(cost)):
+		var p := game.spawn_new_party(coords, _map, hero)
+		if not p: return null
+		p.object_owner = this_faction
+		if hero: hired_hero = game.spawn_new_unit(hero, p)
+		return p
+	return null

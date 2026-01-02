@@ -53,7 +53,7 @@ func right_click_processed() -> bool:
 #region Abstract Definitions
 
 func _initialize() -> void:
-	ownable = true
+	#ownable = true
 	loaded_portrait = load(portrait_texture)
 	_validate_refs()
 	object_name = "Party (%s)" % party_name

@@ -8,7 +8,7 @@ func right_click_processed() -> bool:
 
 func can_interact(party: MapParty) -> bool:
 	if not party: return false
-	return true if contents else false
+	return true
 
 func accept_interaction(party: MapParty) -> int:
 	state = ChestState.open

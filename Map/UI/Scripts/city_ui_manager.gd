@@ -84,8 +84,9 @@ func update_city(...args: Array) -> void:
 
 func _request_party_hiring() -> void:
 	if not currently_filled_city.object_owner: return
-	if not currently_filled_city.object_owner.api.ui_filter: return
-	currently_filled_city.object_owner.api.ui_filter.hire_party.emit(
+	var ui_filter := currently_filled_city.object_owner.api.ui_filter
+	if not ui_filter: return
+	ui_filter.hire_party.emit(
 		currently_filled_city.tile_position,
 		currently_filled_city.map
 	)
