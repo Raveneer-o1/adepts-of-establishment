@@ -115,9 +115,15 @@ evasion = 0.04
 
 [node name="Destined" instance=ExtResource("1_lms7p")]
 unit_name = "Destined"
+unit_type = 0
 faction = 2
-full_description = "The Destined are individuals who pledge their lives to the King of Necropolis even before death claims them. This devotion grants them a fragile connection to the forces of death, allowing them to manipulate minor necromantic powers. However, their frail, living bodies struggle to withstand the rigors of combat"
+needed_xp = 150
+unit_class = 1
+brief_description = "Regular melee fighter."
+full_description = "The King of Necropolis accepts all servants. Those who pledge their loyalty to the Necropolis before death claims them are known as the Destined. They are often lured by the King's promises, unaware of the fate that awaits them."
 portrait_texture = ExtResource("2_4cakw")
+cost_gold = 30
+cost_stone = 40
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_oo6lg")

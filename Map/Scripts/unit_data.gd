@@ -23,6 +23,7 @@ extends Node
 ##     &"description": String,
 ##     &"faction": GlobalDefs.Faction,
 ##     &"unit_type": GlobalDefs.UnitType,
+##     &"unit_class": UnitData.UnitClass,
 ##     &"needed_xp": int,
 ##     &"attacks": Array[Dictionary],  # see UnitAttackData.from_dict()
 ##     &"effects": Array[Dictionary],
@@ -172,6 +173,9 @@ func initialize(personal: String = "") -> void:
 	armor = database_dict.get(&"armor", 0)
 	evasion = database_dict.get(&"evasion", 0.0)
 	shielding_chance = database_dict.get(&"shielding_chance", 0.0)
+	unit_class = database.get(&"unit_class", UnitClass.Undefined)
+	unit_type = database.get(&"unit_type", GlobalDefs.UnitType.Undefined)
+	
 	
 	level = database_dict.get(&"level", 0)
 	needed_xp = database_dict.get(&"needed_xp", 1)

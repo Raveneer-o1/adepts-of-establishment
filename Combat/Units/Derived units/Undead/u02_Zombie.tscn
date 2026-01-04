@@ -114,10 +114,15 @@ shielding_chance = 0.8
 
 [node name="Zombie" instance=ExtResource("1_4th5g")]
 unit_name = "Zombie"
+unit_type = 0
 faction = 2
 needed_xp = 400
-full_description = "Zombies are the reanimated corpses of the recently deceased, brought back to life through dark magic. Slow and uncoordinated, they rely on their overwhelming resilience to survive attacks that would fell most living warriors. Though lacking in intelligence, their sheer persistence makes them a constant threat on the battlefield."
+unit_class = 2
+brief_description = "Sturdy melee fighter with weak damage."
+full_description = "Mindless corpses reanimated with dark magic. Zombies compensate for their disorganized nature with pure, relentless durability in battle."
 portrait_texture = ExtResource("2_umogf")
+cost_gold = 100
+cost_stone = 100
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_x5s0m")

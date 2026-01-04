@@ -139,9 +139,11 @@ evasion = 0.1
 [node name="Elemental" instance=ExtResource("1_8bfir")]
 unit_name = "Elemental"
 unit_type = 2
-faction = 6
+faction = 5
 needed_xp = 100
+full_description = "Elementals are spirits of the magic, they roam the Fourfold without any innate purpose. Elementalists have learned how to communicate with them and summon them in times of need."
 portrait_texture = ExtResource("2_x1sii")
+cost_mana = 200
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_qguhu")
@@ -150,7 +152,6 @@ autoplay = "default"
 attack_sound_frame = 3
 
 [node name="UnitParameters" parent="." index="1"]
-level = 1
 base_paramaters = SubResource("Resource_eejty")
 attack_effect = ExtResource("4_nay0k")
 

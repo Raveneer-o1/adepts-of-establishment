@@ -138,10 +138,15 @@ armor = 20
 
 [node name="Knight" instance=ExtResource("1_jylln")]
 unit_name = "Knight"
+unit_type = 0
 faction = 1
 needed_xp = 400
-full_description = "Knights are the backbone of any noble army, embodying valor and discipline on the battlefield. Clad in sturdy armor and wielding weapons with practiced skill, they excel at defending their allies and striking down foes. Trained in the art of mounted and foot combat, they are versatile warriors capable of holding the line or leading a charge. Their unwavering resolve inspires those who fight beside them."
+unit_class = 2
+brief_description = "Melee fighter with increased armor."
+full_description = "Knights devote their lives to guarding The Empire  against all who dare oppose The Empire's will."
 portrait_texture = ExtResource("2_udn4r")
+cost_gold = 140
+cost_stone = 10
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_fk8df")

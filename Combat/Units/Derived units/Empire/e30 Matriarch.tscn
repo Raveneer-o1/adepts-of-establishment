@@ -128,8 +128,12 @@ unit_name = "Matriarch"
 unit_type = 3
 faction = 1
 needed_xp = 900
-full_description = "Matriarchs are pillars of divine strength, safeguarding the vitality of their entire party. Their healing magic envelops all allies, keeping them resilient against the relentless tides of war. Their presence fosters unity and endurance among their comrades."
+brief_description = "Mass-healer able to buff allies."
+full_description = "\"... Thus we name thee Matriarch. Thy duty is graven upon thine heart, mirrored in thy will. Thou art a shaft of light that cleaveth the deepest dark, and thy visage shall kindle hope in the hearts of all who look upon thee.\"
+From the \"Level 2 Ordination ceremony\", issued by decree #16-857 of The Church, approved by Council of Thorns."
 portrait_texture = ExtResource("2_2p06v")
+cost_gold = 600
+cost_mana = 600
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_83q42")

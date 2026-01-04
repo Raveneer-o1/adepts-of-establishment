@@ -128,8 +128,13 @@ unit_name = "Doomdrake"
 unit_type = 1
 faction = 2
 needed_xp = 400
-full_description = "A wyvern that succumbs to the influence of the Necropolis transforms into a Doomdrake. These beasts consume the fallen on the battlefield, growing stronger and more twisted with each kill. They are brutal shock troops, relentless in their charge and devastating in their bite, embodying the death they now serve."
+unit_class = 1
+brief_description = "Large unit, single target archer."
+full_description = "When a wyvern consumes enough bodies on the battlefield, it grows larger and more grotesque, transforming into a Doomdrake. Its breath is poisonous and its flesh is rotten, defiling the living creature it once was."
 portrait_texture = ExtResource("2_r53jd")
+cost_gold = 200
+cost_stone = 700
+cost_mana = 300
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_hdqac")

@@ -164,8 +164,12 @@ base_damage = 30
 unit_name = "Archer"
 unit_type = 1
 faction = 1
-full_description = "Archers are the backbone of any ranged offense, skilled in the art of precision and timing. Armed with simple bows, they provide consistent support from the backlines, picking off weaker targets or softening up foes before the main assault."
+unit_class = 4
+brief_description = "Weak archer."
+full_description = "Every army needs the support of ranged units, and archers are often relied upon to pick off the enemy's support or assist the primary assault forces."
 portrait_texture = ExtResource("2_oeoou")
+cost_gold = 70
+cost_stone = 10
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_7tod5")

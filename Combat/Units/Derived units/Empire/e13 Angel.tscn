@@ -170,10 +170,16 @@ armor = 50
 
 [node name="Angel" instance=ExtResource("1_ghq34")]
 unit_name = "Angel"
+unit_type = 0
 faction = 1
 needed_xp = 2500
-full_description = "Angels are divine warriors, manifestations of the heavens' will on the battlefield. With radiant wings and a sword imbued with holy power, they strike down the wicked with unrelenting precision. Their very presence bolsters the morale of allies, while their aura of purity weakens the resolve of foes. Angels are a testament to the faith and righteousness of those they protect, serving as both guardians and instruments of judgment."
+unit_class = 1
+brief_description = "Melee fighters with high damage and defensive aura."
+full_description = "The War of Establishment shakes the foundation of the Fourfold, and even celestial pride must be put away as the threat is looming over all the living. When angel descend - deathless beings with swords of pure light - and join the battle, nothing can stand in their way."
 portrait_texture = ExtResource("2_cyr52")
+cost_gold = 1000
+cost_stone = 300
+cost_mana = 800
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_o6ioq")

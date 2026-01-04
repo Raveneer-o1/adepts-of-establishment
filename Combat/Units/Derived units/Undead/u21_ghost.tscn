@@ -104,10 +104,13 @@ evasion = 0.07
 
 [node name="Ghost" instance=ExtResource("1_ste1w")]
 unit_name = "Ghost"
-unit_type = 1
+unit_type = 3
 faction = 2
-full_description = "Ghosts are the lingering spirits of the dead, cursed to wander the mortal realm. Though their spectral forms are fragile, they are immune to physical attacks, making them tricky opponents. Their chilling presence weakens the resolve of their enemies, while their attacks drain the vitality of the living leaving them paralyzed."
+unit_class = 4
+brief_description = "Archer with no damage that pralyses targets."
+full_description = "When a soul cannot find its way to The Dark, it may be materialized as a ghost. Though unable to interfere directly, these creatures trap unsuspecting victims in illusions, rendering them vulnerable to other Necropolis forces."
 portrait_texture = ExtResource("2_axmat")
+cost_mana = 50
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_2hmas")

@@ -153,15 +153,20 @@ animations = [{
 resource_local_to_scene = true
 script = ExtResource("4_aw483")
 max_HP = 75
-base_damage = 30
+base_damage = 45
 
 [node name="Dark Mage" instance=ExtResource("1_382ol")]
 unit_name = "Dark Mage"
 unit_type = 2
 faction = 2
 needed_xp = 400
-full_description = "Dark Mages delve into the forbidden arts of destructive magic, harnessing shadow and decay to annihilate their enemies. Their spells spread fear and chaos, breaking the will of the living. While less adept at raising the dead, their offensive capabilities make them invaluable on the battlefield."
+unit_class = 5
+brief_description = "Single target mage."
+full_description = "Sometimes death brings not peace and rest, but despair, suffering, and agony. Dark Mages focus on that aspect of death, bringing unimaginable curses upon anyone who stands in the way of the King."
 portrait_texture = ExtResource("2_bp74a")
+cost_gold = 50
+cost_stone = 50
+cost_mana = 200
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_ita1u")

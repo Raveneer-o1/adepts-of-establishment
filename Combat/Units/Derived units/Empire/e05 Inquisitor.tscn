@@ -167,10 +167,15 @@ shielding_chance = 0.6
 
 [node name="Inquisitor" instance=ExtResource("1_iyxx7")]
 unit_name = "Inquisitor"
+unit_type = 0
 faction = 1
 needed_xp = 900
-full_description = "Inquisitors are relentless hunters of heresy, wielding heavy maces to deliver unyielding punishment. Their attacks pierce through magical defenses, making them especially deadly against spellcasters and enchanted foes. Unshakable in their faith, they inspire their allies and bring fear to the corrupted. On the battlefield, an Inquisitor is a resolute force of righteousness, relentless in their pursuit of heretics and the unholy."
+unit_class = 1
+brief_description = "Melee fighter with unblockable attacks."
+full_description = "When a witch hunter proves their devotion to the Church in battle, they are accepted as an Inquisitor. The Inquisition relentlessly pursues everything evil in this world, mercilessly burning heresies and the unfaithful with brimstone and prayer."
 portrait_texture = ExtResource("2_qb4re")
+cost_gold = 250
+cost_mana = 30
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_luotl")

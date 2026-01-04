@@ -189,8 +189,13 @@ decay_rate = 0.3
 unit_name = "Grand Inquisitor"
 faction = 1
 needed_xp = 1600
-full_description = "Grand Inquisitors channel divine energy to manifest enormous spectral warhammers, delivering crushing blows that bypass magical defenses. Their presence on the battlefield bolsters the vitality of nearby allies, increasing their resilience against even the fiercest assaults. With unwavering conviction, they serve as both protectors and avengers, ensuring the light triumphs over darkness."
+brief_description = "Melee fighter with unblockable attacks, immute to negative effects."
+full_description = "\"... Arise now as Grand Inquisitor, bound henceforth by thine oath. Let thy soul stay pure, thy arm strong 'gainst all ill, for the Gods look down upon thy path, and Their holy ire shall scourge the bold who stand between thy will and destiny's fulfillment.\"
+Fasteur de Miora, Praefectus Dei"
 portrait_texture = ExtResource("2_7ao73")
+cost_gold = 700
+cost_stone = 100
+cost_mana = 200
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_qvodb")

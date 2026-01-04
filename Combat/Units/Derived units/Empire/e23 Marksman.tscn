@@ -160,8 +160,12 @@ unit_name = "Marksman"
 unit_type = 1
 faction = 1
 needed_xp = 400
-full_description = "Marksmen are archers who have honed their craft, wielding longbows for greater range and accuracy. Their arrows strike with precision, making them ideal for targeting critical threats or weakening heavily armored foes."
+unit_class = 4
+brief_description = "Weak archer with increased accuracy."
+full_description = "Through years of practice, Marksmen hone their skills, develop precise, lethal accuracy with bow, standing ever-ready to support the army's efforts."
 portrait_texture = ExtResource("2_y56b3")
+cost_gold = 200
+cost_stone = 30
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_3n45d")

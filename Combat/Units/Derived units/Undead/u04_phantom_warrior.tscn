@@ -121,10 +121,16 @@ evasion = 0.1
 
 [node name="Phantom Warrior" instance=ExtResource("1_g7wac")]
 unit_name = "Phantom Warrior"
+unit_type = 0
 faction = 2
 needed_xp = 900
-full_description = "Phantom Warriors are spectral remnants of fallen soldiers, bound to the will of the Necropolis. They drift across the battlefield, their incorporeal forms allowing them to evade physical attacks. Armed with ghostly weapons, they deliver chilling strikes that sap the vitality of their foes, leaving them weakened and vulnerable."
+unit_class = 3
+brief_description = "Melee fighter immune to physical damage for limited time."
+full_description = "When an enemy seems too strong to confront directly, necromancers create Phantom Warriors. Their spectral nature makes them invulnerable to physical attacks - perfect for facing troops that rely on brute force."
 portrait_texture = ExtResource("2_5g80a")
+cost_gold = 100
+cost_stone = 300
+cost_mana = 300
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_qrsla")

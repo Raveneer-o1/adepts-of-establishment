@@ -220,10 +220,16 @@ damage_reduction = 0.4
 
 [node name="AngelKinght" instance=ExtResource("1_ktuuv")]
 unit_name = "Angel Knight"
+unit_type = 0
 faction = 1
 needed_xp = 1600
-full_description = "Angel Knights are celestial warriors clad in radiant armor, wielding swords blessed with divine power. Their strikes are swift and unerring, cutting through darkness and doubt with righteous precision. With their holy aura, they inspire nearby allies, enhancing their offensive capabilities."
+unit_class = 2
+brief_description = "Melee fighter with increased armor and ability to restore other's health."
+full_description = "When the Sin Keeper began its march, many angels - who are usually too proud and consider themselves above other mortals - looked upon humanity with mercy. They took up the knightly vow, protecting the weak with the celestial powers."
 portrait_texture = ExtResource("2_mn635")
+cost_gold = 500
+cost_stone = 150
+cost_mana = 500
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_5s1jm")

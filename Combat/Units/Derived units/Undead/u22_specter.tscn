@@ -119,10 +119,14 @@ evasion = 0.1
 
 [node name="Specter" instance=ExtResource("1_0mhe0")]
 unit_name = "Specter"
-faction = 1
+unit_type = 3
+faction = 2
 needed_xp = 400
-full_description = "Specters are stronger and more malicious spirits, bound by dark magic to serve the Necropolis. Their ethereal nature allows them to phase through obstacles and evade most attacks, striking fear into the hearts of their foes. They emit a spectral wail that unnerves enemies and disrupts their defenses."
+unit_class = 4
+brief_description = "Archer with almost no damage that pralyses targets."
+full_description = "Souls bound to this realm against their will, Specters crave vengeance upon every living being, manifesting in nightmares and attacking the sanity of the weak-minded."
 portrait_texture = ExtResource("2_f2jof")
+cost_mana = 180
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_pih6i")

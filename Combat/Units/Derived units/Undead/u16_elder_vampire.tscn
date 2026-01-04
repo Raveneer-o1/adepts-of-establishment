@@ -147,8 +147,13 @@ unit_name = "Elder vampire"
 unit_type = 2
 faction = 2
 needed_xp = 1600
-full_description = "Elder Vampires are ancient beings whose bloodlust excel limits of a mortal mind. They possess extraordinary strength and command blood magic with terrifying precision. Their mere presence inspires awe and dread, as they dominate the battlefield with their unmatched prowess and cunning."
+unit_class = 4
+brief_description = "Mage with lifesteal."
+full_description = "Ancient beings driven by bloodlust, Elder Vampires command the very essence of life and will consume the entire being of anyone foolish enough to wander the wilds at night."
 portrait_texture = ExtResource("2_utx77")
+cost_gold = 200
+cost_stone = 600
+cost_mana = 1000
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_le8mf")

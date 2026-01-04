@@ -216,7 +216,12 @@ armor = 40
 
 [node name="Sir Roland" instance=ExtResource("1_cdjp6")]
 unit_name = "Sir Roland"
+unit_type = 0
 faction = 1
+needed_xp = 400
+cost_gold = 500
+cost_stone = 100
+cost_mana = 100
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_y22yd")

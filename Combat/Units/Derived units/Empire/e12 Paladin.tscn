@@ -188,10 +188,16 @@ max_move = 2
 
 [node name="Unit" instance=ExtResource("1_v252y")]
 unit_name = "Paladin"
+unit_type = 0
 faction = 1
 needed_xp = 2500
-full_description = "Paladins are elite horsemen sworn to the king's service, their presence a testament to the kingdom's might. Mounted on powerful steeds clad in ornate armor, they charge into battle with unmatched speed and force, devastating enemy lines. Their discipline and training allow them to perform precision maneuvers, bolstering the effectiveness of allied forces."
+unit_class = 2
+brief_description = "Melee fighter with multiple attacks, mobility and offensive aura."
+full_description = "In the hour of need, the Emperor personally grants the worthy the title of Paladin. Clad in crimson resolve, they are the last light of hope when the night of despair threatens to be eternal."
 portrait_texture = ExtResource("2_bb4no")
+cost_gold = 1500
+cost_stone = 500
+cost_mana = 300
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_2d011")

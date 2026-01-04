@@ -188,7 +188,10 @@ armor = 65
 
 [node name="Knight Champion" instance=ExtResource("1_br7ob")]
 unit_name = "Knight Champion"
+unit_type = 0
 faction = 1
+needed_xp = 350
+cost_gold = 400
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_6f5fm")

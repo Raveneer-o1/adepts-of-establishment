@@ -179,8 +179,13 @@ unit_name = "Keeper of Knowledge"
 unit_type = 2
 faction = 1
 needed_xp = 2500
-full_description = "The Keeper of Knowledge is both a scholar and a mage, delving into ancient tomes to uncover secrets lost to time. They channel this wisdom into powerful spells that disrupt enemies and empower allies. Masters of manipulation, they can alter the flow of battle with their insight, ensuring their allies have every advantage while their enemies falter under the weight of forgotten truths."
+unit_class = 5
+brief_description = "Mage with strong debuff on a single unit."
+full_description = "To look beyond reality's veil is to risk madness. The rare few who retain their sanity become Keepers of Knowledge, eternally silent, for what they know should never be described in human language. Their mere gaze upon the battlefield can turn the tides."
 portrait_texture = ExtResource("2_h15l5")
+cost_gold = 1000
+cost_stone = 200
+cost_mana = 1500
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_srdpg")

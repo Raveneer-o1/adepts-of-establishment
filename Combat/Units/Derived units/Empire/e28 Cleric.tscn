@@ -114,8 +114,12 @@ unit_name = "Cleric"
 unit_type = 3
 faction = 1
 needed_xp = 400
-full_description = "Clerics provide balanced healing to the entire party, spreading divine energy to mend multiple allies at once. Though their magic isn’t as potent as focused healers, their ability to stabilize the group makes them indispensable in prolonged battles."
+brief_description = "Weak healer, able to heal the entire party."
+full_description = "Gods may be hesitant to respond to prayers, but with enough diligence and faith, Clerics can bestow divine blessings upon the army, healing bodies and strengthening minds."
 portrait_texture = ExtResource("2_qwoac")
+cost_gold = 100
+cost_stone = 30
+cost_mana = 100
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_i04ec")

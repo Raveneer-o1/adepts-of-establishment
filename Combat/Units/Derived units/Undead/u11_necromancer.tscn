@@ -138,8 +138,12 @@ unit_name = "Necromancer"
 unit_type = 2
 faction = 2
 needed_xp = 400
-full_description = "Necromancers are skilled manipulators of life and death, capable of raising undead with their spells. They command dark energies to weaken foes and bolster allies. Despite their mortal vulnerability, their mastery of death makes them a cornerstone of the Necropolis's power."
+unit_class = 5
+brief_description = "Weak mage with ability to resurrect."
+full_description = "When a mortal gazes into the essence of life, they discover that death does not dictate the end of one's being. Those who can manipulate this knowledge to revive a body are called Necromancers."
 portrait_texture = ExtResource("2_0m3ru")
+cost_gold = 50
+cost_mana = 150
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_yumoh")

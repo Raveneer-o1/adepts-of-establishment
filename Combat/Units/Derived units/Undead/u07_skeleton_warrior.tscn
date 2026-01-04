@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://cvmvfp5vmhexe"]
+[gd_scene load_steps=40 format=3 uid="uid://cvmvfp5vmhexe"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_m5le8"]
 [ext_resource type="Texture2D" uid="uid://bj8v2uofp5x24" path="res://Arts/Placeholders/Skeleton champion.jpg" id="2_bljp6"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://dnxkr164m8hpp" path="res://Combat/Effects/AppliedEffects/Scenes/crafted_body.tscn" id="5_a3k2t"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_gonsu"]
 [ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="8_1bqap"]
-[ext_resource type="PackedScene" uid="uid://cm1oq3au6bkmk" path="res://Combat/Effects/AppliedEffects/Scenes/on_turn_self_heal.tscn" id="9_akaur"]
 [ext_resource type="PackedScene" uid="uid://deobw600snyj2" path="res://Combat/Effects/AppliedEffects/Scenes/on_death_summon.tscn" id="10_e6uwm"]
 [ext_resource type="AudioStream" uid="uid://bf8wof2u2utkl" path="res://Sounds/using/Damage/Undead/skeleton.wav" id="10_g4616"]
 [ext_resource type="AudioStream" uid="uid://dnx7qjaosq2rb" path="res://Sounds/using/Damage/skeleton3.wav" id="11_e6uwm"]
@@ -152,10 +151,16 @@ shielding_chance = 0.0
 
 [node name="Skeleton warrior" instance=ExtResource("1_m5le8")]
 unit_name = "Skeleton warrior"
+unit_type = 0
 faction = 2
 needed_xp = 1600
-full_description = "Elite undead warriors, crafted from the bones of legendary fighters. Their bodies are reinforced with necromantic magic, granting them unparalleled strength and durability. Clad in ancient, rune-inscribed armor, they lead lesser undead into battle with an imposing presence that inspires dread in their enemies."
+unit_class = 1
+brief_description = "Melee fighter that rises stronger every time it's resurrected."
+full_description = "Restless in death are those whose souls, too attached to worldly treasures, are barred from The Dark. The Necropolis grants these spirits a home and a chance to find worth in death. Their payment is eternal service as the King's Skeleton Warriors."
 portrait_texture = ExtResource("2_bljp6")
+cost_gold = 200
+cost_stone = 1000
+cost_mana = 350
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_uroni")
@@ -183,11 +188,7 @@ script = ExtResource("6_gonsu")
 initiative = 40
 target_validation = ExtResource("8_1bqap")
 
-[node name="OnTurnHeal" parent="UnitParameters" index="3" instance=ExtResource("9_akaur")]
-heal = 25
-color_effect = Color(0.6509804, 0.44705883, 0.34509805, 1)
-
-[node name="OnDeathSummon" parent="UnitParameters" index="4" instance=ExtResource("10_e6uwm")]
+[node name="OnDeathSummon" parent="UnitParameters" index="3" instance=ExtResource("10_e6uwm")]
 unit_name = "Skeleton"
 summon = ExtResource("11_m170s")
 effects = Dictionary[String, Variant]({

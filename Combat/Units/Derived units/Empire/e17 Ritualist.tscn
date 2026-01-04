@@ -112,8 +112,13 @@ unit_name = "Ritualist"
 unit_type = 2
 faction = 1
 needed_xp = 900
-full_description = "Ritualists delve into ancient and forbidden rites, channeling their energy to summon otherworldly beings or cast powerful curses. Their unique strength lies in their ability to turn the tide of battle by conjuring allies from empty spaces on the battlefield."
+unit_class = 5
+brief_description = "Mage able to summon multiple elementals."
+full_description = "Through acrabe rituals, some mages weave bonds with the world's very spirits and command multiple elementals at once."
 portrait_texture = ExtResource("2_uayg2")
+cost_gold = 600
+cost_stone = 50
+cost_mana = 500
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_onolp")

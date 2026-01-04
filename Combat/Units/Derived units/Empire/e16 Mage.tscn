@@ -130,8 +130,12 @@ unit_name = "Mage"
 unit_type = 2
 faction = 1
 needed_xp = 400
-full_description = "Mages are practitioners of refined arcane knowledge, capable of channeling powerful spells to damage foes. However, their focus on spellcasting leaves them physically vulnerable, relying on careful positioning and team support to maximize their potential."
+unit_class = 5
+brief_description = "Fragile mage."
+full_description = "Over time apprentice makes themselves a name and can be called a Mage. As their experience grows, so does their knowledge and power of their spells."
 portrait_texture = ExtResource("2_p2es4")
+cost_gold = 200
+cost_mana = 80
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_ovbu2")

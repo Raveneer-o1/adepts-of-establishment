@@ -163,17 +163,20 @@ armor = 35
 
 [node name="Dark lord" instance=ExtResource("1_udcxh")]
 unit_name = "Dark Lord"
+unit_type = 0
 faction = 2
 needed_xp = 1600
-full_description = "Dark Lords are powerful commanders of the Necropolis, imbued with overwhelming dark magic and martial prowess. Their mere presence unnerves the living, sapping their will to fight. Wielding cursed weapons and commanding legions of undead, they are both fearsome warriors and ruthless strategists, capable of turning the tide of any battle."
+unit_class = 3
+brief_description = "Melee anti-mage fighters."
+full_description = "The living who have proven their worth to the Necropolis are granted access to the secrets of the undead. They bear the name of Dark Lord, for their connection to the Necropolis is so strong that their whisper can deprive others of the will to live."
 portrait_texture = ExtResource("2_ifm0e")
+cost_gold = 1200
+cost_stone = 200
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_4pnnk")
 animation = &"attack"
 autoplay = "default"
-frame = 11
-frame_progress = 1.0
 offset = Vector2(8, 0)
 frames_to_emit = Array[int]([4, 7])
 attack_sound_frame = 4

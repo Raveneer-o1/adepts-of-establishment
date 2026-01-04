@@ -166,7 +166,7 @@ animations = [{
 resource_local_to_scene = true
 script = ExtResource("4_q12mp")
 max_HP = 180
-base_damage = 55
+base_damage = 65
 
 [sub_resource type="Resource" id="Resource_yeav1"]
 script = ExtResource("11_cugem")
@@ -179,8 +179,13 @@ unit_name = "White Mage"
 unit_type = 2
 faction = 1
 needed_xp = 1600
-full_description = "The most powerful wizards are granted the title of White Mages. The storms they can summon on the battlefield can wipe out entire armies."
+unit_class = 5
+brief_description = "Powerdul mage."
+full_description = "Only the most talented and peerless of battle mages can be granted the title of White Mage. These spellcasters bend the fabric of reality to unleash brimstone and storms upon any foolish enough to oppose The Empire."
 portrait_texture = ExtResource("10_t48w5")
+cost_gold = 850
+cost_stone = 300
+cost_mana = 1200
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_ybp6r")

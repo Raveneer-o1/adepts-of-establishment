@@ -126,8 +126,13 @@ base_damage = 20
 unit_name = "Apprentice"
 unit_type = 2
 faction = 1
-full_description = "Apprentices are fledgling mages taking their first steps into the arcane arts. Though their spells are simple and lack refinement, they can still unleash bursts of magical energy capable of turning the tide in smaller skirmishes. While fragile and inexperienced, they show great potential, embodying the raw promise of power yet to be mastered."
+needed_xp = 80
+unit_class = 5
+brief_description = "Ranged fragile mage."
+full_description = "Ambitious apprentices step from study into battle as battle mages. Though fragile, they can conjure lightning bolts to cover the advance of larger forces."
 portrait_texture = ExtResource("2_4nbyg")
+cost_gold = 90
+cost_mana = 30
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_lwt6u")

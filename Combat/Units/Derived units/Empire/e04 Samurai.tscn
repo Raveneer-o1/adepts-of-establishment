@@ -170,10 +170,15 @@ evasion = 0.15
 
 [node name="Samurai" instance=ExtResource("1_34hwq")]
 unit_name = "Samurai"
+unit_type = 0
 faction = 1
 needed_xp = 900
-full_description = "Samurai are elite warriors who combine unmatched discipline with masterful swordsmanship. Adhering to a strict code of honor, they are steadfast defenders of their allies, standing unyielding in the face of overwhelming odds. With swift, precise strikes and the ability to anticipate their foes' moves, samurai can atack twice."
+unit_class = 3
+brief_description = "Melee fighter with increased evasion and double attack."
+full_description = "Hailing from the distant continent of Ari'Tonia, Samurai answer The Empire's call, honoring the ancient alliance that once united the world."
 portrait_texture = ExtResource("2_utg5b")
+cost_gold = 200
+cost_mana = 50
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_qfxv1")

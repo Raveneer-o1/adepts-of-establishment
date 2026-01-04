@@ -233,8 +233,13 @@ unit_name = "Scout"
 unit_type = 1
 faction = 1
 needed_xp = 900
-full_description = "Scouts are nimble and resourceful, blending speed with precision. They excel at quick strikes and harassing enemy formations. Their agility allows them to avoid direct confrontation, making them invaluable for reconnaissance and flanking maneuvers in tactical skirmishes."
+unit_class = 4
+brief_description = "Archer with debuff."
+full_description = "An army is only as effective as its scouts are good. Imperial scouts are trained to spy on enemy forces and remain unnoticed."
 portrait_texture = ExtResource("2_s7q1u")
+cost_gold = 500
+cost_stone = 300
+cost_mana = 50
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_p7ee3")

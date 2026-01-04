@@ -141,8 +141,12 @@ unit_name = "Imperial priest"
 unit_type = 3
 faction = 1
 needed_xp = 900
-full_description = "Clergymen are stalwart defenders of faith and life, wielding potent healing magic to sustain their allies. Their unwavering devotion allows them to keep even gravely wounded warriors in the fray. They are a cornerstone of any formation, ensuring the survival of their party's strongest fighters."
+brief_description = "Single-targrt strong healer able to cure allies."
+full_description = "\"... Thou art as dust beneath the feet of the Gods. Let all bear witness that thy deeds are the Church's bidding, not thy will. Thy tongue now speaketh with the Church's voice; thy light is a gift bestowed by the very Gods.\"
+From the \"Level 2 Ordination ceremony\", issued by decree #16-857 of The Church, approved by Council of Thorns."
 portrait_texture = ExtResource("2_v4rxq")
+cost_gold = 800
+cost_stone = 300
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_3td0u")

@@ -133,7 +133,14 @@ armor = 10
 
 [node name="Cartographer" instance=ExtResource("1_xhvj6")]
 unit_name = "Cartographer"
+unit_type = 1
 faction = 1
+needed_xp = 300
+brief_description = "Rod planter."
+full_description = "Cartographers explore new lands and claim valuable resources for The Empire."
+cost_gold = 300
+cost_stone = 50
+cost_mana = 50
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_tb1uy")

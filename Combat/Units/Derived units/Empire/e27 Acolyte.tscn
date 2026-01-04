@@ -119,8 +119,11 @@ base_damage = 20
 unit_name = "Acolyte"
 unit_type = 3
 faction = 1
-full_description = "Acolytes are the fledgling healers of the faith, channeling divine energy to mend the wounds of their allies. While their healing power is limited, their dedication to protecting their comrades is unwavering."
+brief_description = "Healer."
+full_description = "Though their faith might be weak, Acolyte's compassion for the suffering allows them to cure wounds on the battlefield."
 portrait_texture = ExtResource("2_iryao")
+cost_gold = 50
+cost_mana = 50
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_que06")

@@ -150,8 +150,11 @@ unit_name = "Assassin"
 unit_type = 1
 faction = 1
 needed_xp = 900
-full_description = "Masters of shdows, assassins prefer poison over the raw strength."
+unit_class = 3
+brief_description = "Archer with multiple poisoned attacks."
+full_description = "Acting from the shadows, Assassins pick off unsuspecting victims, unconcerned with honor and valor. When duty demands, even the most righteous of generals must rely on their services."
 portrait_texture = ExtResource("2_26dl6")
+cost_gold = 1000
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_o6vjn")

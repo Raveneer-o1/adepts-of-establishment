@@ -212,7 +212,12 @@ armor = 15
 
 [node name="Virion the Bonebinder" instance=ExtResource("1_nb6q3")]
 unit_name = "Virion the Bonebinder"
+unit_type = 2
 faction = 1
+needed_xp = 400
+cost_gold = 500
+cost_stone = 100
+cost_mana = 100
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_3r5h8")

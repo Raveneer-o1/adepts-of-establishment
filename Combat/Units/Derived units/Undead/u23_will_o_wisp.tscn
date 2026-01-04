@@ -150,8 +150,11 @@ unit_name = "Will-o’-Wisp"
 unit_type = 3
 faction = 2
 needed_xp = 900
-full_description = "Will-o’-Wisps are flickering lights that guide unsuspecting souls to their doom. These malicious spirits use their hypnotic glow to lure enemies into traps or isolate them from their allies. While not physically strong, their agility and ability to vanish into the shadows make them elusive and dangerous."
+unit_class = 5
+brief_description = "Mage with low damage but significant debuff."
+full_description = "Flickering lights above the bog, Will-o’-Wisps lure travelers in only to drain them of their willpower. They serve no one, but the King's promise of new, delicious mortals makes them join the undead march."
 portrait_texture = ExtResource("2_7liif")
+cost_mana = 350
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_wuv4d")

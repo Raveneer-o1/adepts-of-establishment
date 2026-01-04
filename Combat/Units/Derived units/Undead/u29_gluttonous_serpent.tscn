@@ -117,10 +117,16 @@ armor = 20
 
 [node name="Gluttonous Serpent" instance=ExtResource("1_nautt")]
 unit_name = "Gluttonous Serpent"
+unit_type = 0
 faction = 2
 needed_xp = 900
-full_description = "The Gluttonous Serpent is a grotesque creature that has abandoned all thought for insatiable hunger. With an elongated, serpentine body and jaws capable of consuming multiple foes, it leaves destruction in its wake. Though mindless, its appetite makes it an overwhelming force that overwhelms through sheer persistence."
+unit_class = 3
+brief_description = "Large melee unit."
+full_description = "Unable to control its hunger, the Gluttonous Serpent falls into mindless feasting. Controlled only by the King's will, it will attack any living or otherwise creature that approaches too closely."
 portrait_texture = ExtResource("2_hpxbw")
+cost_gold = 300
+cost_stone = 1500
+cost_mana = 1200
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_e5322")

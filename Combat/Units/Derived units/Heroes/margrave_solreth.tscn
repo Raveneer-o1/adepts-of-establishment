@@ -204,7 +204,11 @@ armor = 10
 
 [node name="Margrave Solreth" instance=ExtResource("1_o8yu6")]
 unit_name = "Margrave Solreth"
+unit_type = 2
 faction = 1
+cost_gold = 500
+cost_stone = 100
+cost_mana = 100
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_5uwwe")

@@ -127,8 +127,13 @@ evasion = 0.045
 unit_name = "Death Acolyte"
 unit_type = 2
 faction = 2
-full_description = "Acolytes are novice practitioners of necromancy, drawn to the allure of death's secrets. Though their abilities are limited, they can channel minor curses to aid their allies. With time and guidance, these fledgling necromancers can evolve into powerful wielders of dark magic."
+needed_xp = 150
+unit_class = 5
+brief_description = "Weak mage."
+full_description = "Mortals who bear the stigma of studying forbidden death magic are not welcome in normal society. While not yet citizens of the Necropolis, they often ally with its forces in the wilds, aiding the King's aims in hopes of one day earning a place within."
 portrait_texture = ExtResource("2_ow6vu")
+cost_gold = 30
+cost_mana = 30
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_garf3")

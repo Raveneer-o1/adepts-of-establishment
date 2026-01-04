@@ -125,8 +125,14 @@ evasion = 0.005
 unit_name = "Wyvern"
 unit_type = 1
 faction = 2
-full_description = "Wyverns are the earthbound cousins of dragons, stripped of the freedom of flight. Their bitterness over this difference drives them to seek power, often turning to the God of Death for strength and vengeance. While physically imposing, wyverns lack the majesty of true dragons, channeling their rage into ferocious attacks."
+needed_xp = 380
+unit_class = 1
+brief_description = "Large unit, single target archer."
+full_description = "Wyverns are the earthbound cousins of dragons, stripped of the freedom of flight. Their bitterness over this difference drives them to seek power, often turning to the King of Necropolis."
 portrait_texture = ExtResource("2_q1e14")
+cost_gold = 100
+cost_stone = 400
+cost_mana = 100
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_0dpmh")

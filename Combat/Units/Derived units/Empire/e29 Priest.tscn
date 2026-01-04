@@ -134,8 +134,11 @@ unit_name = "Priest"
 unit_type = 3
 faction = 1
 needed_xp = 400
-full_description = "Priests are experienced healers, capable of invoking potent divine blessings to restore a significant amount of health to a single ally. Their focused prayers can turn the tide of a skirmish by ensuring critical combatants remain in the fight."
+brief_description = "Single-target healer."
+full_description = "Through firm faith, Priests strengthen the bodies of combatants, healing them with divine magic and allowing them to endure against evil a little longer."
 portrait_texture = ExtResource("2_5qxd6")
+cost_gold = 300
+cost_stone = 50
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_rl2as")

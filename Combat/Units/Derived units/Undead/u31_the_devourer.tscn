@@ -118,10 +118,16 @@ evasion = 0.1
 
 [node name="The Devourer" instance=ExtResource("1_7leqj")]
 unit_name = "The Devourer"
+unit_type = 0
 faction = 2
 needed_xp = 1600
-full_description = "The Devourer is a monstrous snake-like creature, bloated with the power of countless consumed souls. Its sheer size and overwhelming strength make it an unstoppable force, crushing enemies under its bulk. Its feeding frenzy is unending, spreading despair and destruction across the battlefield."
+unit_class = 3
+brief_description = "Large melee unit."
+full_description = "A monstrous, snake-like creature bloated with the power of countless consumed souls, the Devourer hunts the living. No single creature can escape its cunning fangs once it decides to feast upon their body and spirit."
 portrait_texture = ExtResource("2_0dxqj")
+cost_gold = 500
+cost_stone = 4000
+cost_mana = 2100
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_k4p10")

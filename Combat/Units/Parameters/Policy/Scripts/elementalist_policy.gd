@@ -9,7 +9,7 @@ func _apply_policy(attack: Attack, finalize: bool) -> void:
 		# also, UnitSpot.add_unit() checks for invalid attempts
 		if t.spot.party == attack.attacker.party:
 			if attack.attacker.parameters.other_effects.is_empty():
-				print_debug("No Elemental prefab found!")
+				push_error("No Elemental prefab found!")
 				return
 			var u := t.spot.add_unit(attack.attacker.parameters.other_effects[0], null)
 			if u: u.summoned_unit = true

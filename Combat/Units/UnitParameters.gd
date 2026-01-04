@@ -450,6 +450,7 @@ func initialize_effects() -> void:
 	EventBus.turn_started.connect(_turn_start_reaction)
 
 func set_references() -> void:
+	hp = max_hp
 	for attack in attacks:
 		attack.initialize(parent_unit, null)
 

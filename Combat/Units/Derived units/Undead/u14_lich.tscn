@@ -121,8 +121,12 @@ unit_name = "Lich"
 unit_type = 2
 faction = 2
 needed_xp = 900
-full_description = "Liches are necromancers who have transcended mortality by binding their souls to phylacteries. These skeletal sorcerers wield immense magical power, unleashing devastating curses and summoning hordes of undead with ease. Their cold intellect and timeless experience make them formidable adversaries and invaluable strategists."
+unit_class = 5
+brief_description = "Weak mage with ability to resurrect and two actions per round."
+full_description = "When a necromancer willingly parts with their life in the name of the Necropolis, they are bestowed a place among the elite. They are now a Lich - a conduit of eternal rest for all who oppose the will of the King."
 portrait_texture = ExtResource("2_jn4dx")
+cost_stone = 300
+cost_mana = 900
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_sip5u")

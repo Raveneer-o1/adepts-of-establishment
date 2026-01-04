@@ -224,6 +224,8 @@ base_damage = 80
 [node name="Grave whisperer" instance=ExtResource("1_qe102")]
 unit_name = "Grave whisperer"
 faction = 1
+needed_xp = 350
+cost_gold = 400
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_rw7sr")

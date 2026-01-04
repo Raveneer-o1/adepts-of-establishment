@@ -148,10 +148,15 @@ evasion = 0.1
 
 [node name="Blood spawn" instance=ExtResource("1_kf05b")]
 unit_name = "Blood spawn"
+unit_type = 0
 faction = 2
 needed_xp = 2500
-full_description = "Blood Spawn are the monstrous remnants of vampires who succumbed to their insatiable bloodlust. Mutated beyond recognition, they embody pure rage and hunger, striking terror into the hearts of all who face them. Their brutal attacks and unrelenting ferocity make them devastating forces of destruction, but their mindless nature renders them dangerous to friend and foe alike."
+unit_class = 3
+brief_description = "Strong melee unit."
+full_description = "Vampires who succumb to their insatiable hunger mutate beyond recognition. These Blood Spawn are devoid of any intelligence they once had and care only about killing and devouring as much of the living as possible. Mindless piles of flesh and bone, they are equally dangerous to allies and foes alike.	"
 portrait_texture = ExtResource("2_fa30q")
+cost_stone = 1000
+cost_mana = 1000
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_p8l5x")

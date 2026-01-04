@@ -195,10 +195,15 @@ armor = 35
 
 [node name="Horseman" instance=ExtResource("1_w7nds")]
 unit_name = "Horseman"
+unit_type = 0
 faction = 1
 needed_xp = 900
-full_description = "Horsemen are swift and adaptable warriors who rely on speed and maneuverability to outflank enemies and strike with precision. Their mobility makes them invaluable for rapid assaults or defensive countermeasures. A Horseman’s strength lies not only in their combat prowess but in their ability to turn the tide of battle with quick and decisive actions."
+unit_class = 1
+brief_description = "Melee fighter that can move to attack its targets."
+full_description = "The mobile forces of the Kantarke are renowned for their ability to disrupt enemy formations and and strike decisive blows against their most vital positions."
 portrait_texture = ExtResource("2_1mg5r")
+cost_gold = 200
+cost_stone = 50
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_ddpld")

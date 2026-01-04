@@ -134,8 +134,13 @@ base_damage = 65
 unit_name = "Prophetess"
 unit_type = 3
 faction = 1
-full_description = "Prophetesses wield extraordinary magic, providing powerful healing to their entire party. Their blessings not only mend wounds but also imbue allies with a sense of divine purpose. On the battlefield, they act as guiding lights, ensuring their comrades endure even the most grueling trials."
+needed_xp = 1600
+brief_description = "Mass-healer with strong buffs"
+full_description = "\"... Let it be known that a new Eye has opened within the Church. Thou art the all-seer, the teller of the divine will. Prophetess we declare thee! Stand thou with us, our sister and our peer, and share in our rejoicing.\"
+- Voices of the Council of Thorns"
 portrait_texture = ExtResource("2_kdng4")
+cost_gold = 1000
+cost_mana = 1000
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_sob25")
@@ -144,6 +149,7 @@ autoplay = "default"
 offset = Vector2(0, -8)
 
 [node name="UnitParameters" parent="." index="1"]
+level = 4
 base_paramaters = SubResource("Resource_1mmmh")
 attack_effect = ExtResource("4_y4o6y")
 
@@ -157,7 +163,7 @@ evadable = false
 target_validation = ExtResource("7_ioare")
 additional_targets = ExtResource("8_4ae8m")
 applying_effects = Dictionary[String, Variant]({
-"random_buff": [2, 10, 1.15]
+"random_buff": [2, 20, 1.2]
 })
 
 [node name="Default1" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]

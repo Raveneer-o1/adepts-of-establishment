@@ -128,10 +128,15 @@ armor = 20
 
 [node name="Fallen Inquisitor" instance=ExtResource("1_v36aa")]
 unit_name = "Fallen Inquisitor"
+unit_type = 0
 faction = 2
 needed_xp = 900
-full_description = "Once holy warriors, Fallen Inquisitors were corrupted by the Necropolis's dark power. Now they wield their former knowledge of divine magic against the living, combining brutal melee combat with devastating unholy spells. Their tragic fall from grace is reflected in their fierce hatred for their former brethren, making them relentless in battle."
+unit_class = 1
+brief_description = "Melee fighter, strong against debuffs."
+full_description = "Inquisitors who doubt the Church's ways are branded heretics. To these outcasts, the King of Necropolis extends an invitation to his city. Those who accept his offer become Fallen Inquisitors, whom the Necropolis prizes far more than their former masters ever did - even in their living state."
 portrait_texture = ExtResource("2_wxjrt")
+cost_gold = 600
+cost_stone = 150
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_0omuv")

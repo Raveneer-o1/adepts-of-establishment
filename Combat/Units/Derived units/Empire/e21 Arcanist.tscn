@@ -124,8 +124,8 @@ animations = [{
 resource_local_to_scene = true
 script = ExtResource("4_aurst")
 max_HP = 200
-base_damage = 80
-armor = 15
+base_damage = 75
+armor = 25
 
 [sub_resource type="Resource" id="Resource_pq6fs"]
 resource_local_to_scene = true
@@ -143,8 +143,13 @@ unit_name = "Arcanist"
 unit_type = 2
 faction = 1
 needed_xp = 2500
-full_description = "Arcanists are the pinnacle of arcane mastery, wielding devastating spells that reshape the battlefield. Their magic transcends the ordinary, unraveling enemy formations and wreaking havoc with immense elemental power. While physically fragile, their unparalleled command of destructive forces makes them a cornerstone of any strategy that seeks to overwhelm foes with raw magical might."
+unit_class = 5
+brief_description = "Powerful mage with huge damage but weak defense."
+full_description = "Transcending the limits of human soul and body, Arcanists weave their spells by commanding nature itself to eliminate their enemies. Tapping into the Element Temple, an Arcanist's power borders on divinity."
 portrait_texture = ExtResource("2_qovuj")
+cost_gold = 900
+cost_stone = 300
+cost_mana = 1800
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_dp0yl")

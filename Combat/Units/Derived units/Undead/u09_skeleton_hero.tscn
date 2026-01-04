@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://vtklf4i1s3e"]
+[gd_scene load_steps=44 format=3 uid="uid://vtklf4i1s3e"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_f4ptt"]
 [ext_resource type="Texture2D" uid="uid://c3lwnj2mhgie1" path="res://Arts/Undead units/u10 skeleton hero attack .png" id="2_n2bpl"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_so8y8"]
 [ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="7_m5q7x"]
 [ext_resource type="PackedScene" uid="uid://cxt0p01rq72n1" path="res://Combat/Effects/AppliedEffects/Scenes/vampirism.tscn" id="7_ncqux"]
-[ext_resource type="PackedScene" uid="uid://cm1oq3au6bkmk" path="res://Combat/Effects/AppliedEffects/Scenes/on_turn_self_heal.tscn" id="10_nflqt"]
 [ext_resource type="PackedScene" uid="uid://deobw600snyj2" path="res://Combat/Effects/AppliedEffects/Scenes/on_death_summon.tscn" id="11_gkgxq"]
 [ext_resource type="AudioStream" uid="uid://bf8wof2u2utkl" path="res://Sounds/using/Damage/Undead/skeleton.wav" id="11_pvp1a"]
 [ext_resource type="AudioStream" uid="uid://dnx7qjaosq2rb" path="res://Sounds/using/Damage/skeleton3.wav" id="12_e0klf"]
@@ -156,10 +155,16 @@ shielding_chance = 0.3
 
 [node name="Skeleton Hero" instance=ExtResource("1_f4ptt")]
 unit_name = "Skeleton Hero"
+unit_type = 0
 faction = 2
 needed_xp = 2500
-full_description = "Skeleton Heroes are the pinnacle of necromantic reanimation, resurrected from the remains of legendary champions of old. Their undying forms retain the combat expertise they mastered in life, now enhanced by unholy power. Leading the armies of the Necropolis with a mix of tactical brilliance and raw strength, they are a force to be reckoned with, feared by both the living and the dead."
+unit_class = 1
+brief_description = "Melee fighter that rises stronger every time it's resurrected."
+full_description = "The most powerful of the undead troops are called Skeleton Heroes. Cursing the very land they walk on, these creatures are able to defy the laws of nature to impose their Master's will and spread the Necropolis's domain."
 portrait_texture = ExtResource("2_tryhr")
+cost_gold = 200
+cost_stone = 1000
+cost_mana = 500
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_l7w6p")
@@ -193,11 +198,7 @@ heal = 20.0
 effect_name = "Grave caress"
 icon_index = 11
 
-[node name="OnTurnHeal" parent="UnitParameters" index="4" instance=ExtResource("10_nflqt")]
-heal = 30
-color_effect = Color(0.6509804, 0.44705883, 0.34509805, 1)
-
-[node name="OnDeathSummon" parent="UnitParameters" index="5" instance=ExtResource("11_gkgxq")]
+[node name="OnDeathSummon" parent="UnitParameters" index="4" instance=ExtResource("11_gkgxq")]
 unit_name = "Skeleton"
 summon = ExtResource("12_v3ge7")
 effects = Dictionary[String, Variant]({

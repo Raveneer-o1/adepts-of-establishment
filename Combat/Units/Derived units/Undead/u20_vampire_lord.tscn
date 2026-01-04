@@ -154,9 +154,14 @@ script = ExtResource("9_djqap")
 unit_name = "Vampire Lord"
 unit_type = 2
 faction = 2
-needed_xp = 2500
-full_description = "Vampire Lords are the supreme rulers of their kind, commanding legions of undead and wielding unparalleled mastery over blood magic. Their regal presence belies their monstrous strength and cunning intellect, making them both inspiring leaders and fearsome warriors. With centuries of experience and an insatiable hunger for power, Vampire Lords are the ultimate embodiment of the Necropolis's dark ambition."
+needed_xp = 1700
+unit_class = 4
+brief_description = "Mage with lifesteal."
+full_description = "Untouched by time, Vampire Lords hone their magic eternally, growing ever stronger in power."
 portrait_texture = ExtResource("2_8nuui")
+cost_gold = 500
+cost_stone = 700
+cost_mana = 1100
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_qo2wt")

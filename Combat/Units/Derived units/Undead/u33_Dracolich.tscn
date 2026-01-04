@@ -168,8 +168,14 @@ unit_name = "Dracolich"
 unit_type = 1
 faction = 2
 needed_xp = 2500
-full_description = "The pinnacle of undead draconic evolution. The Dracolich is an intelligent lich-dragon whose very presence decays the living. It commands legions of the dead and wields a breath of pure entropy, making it the ultimate instrument of oblivion."
+unit_class = 5
+brief_description = "Large unit, can attack any target."
+full_description = "\"... Never have we ever seen a creature so magnificent and yet so terrifying. Its wings are nothing but bones with lumps of dead flesh, its head is a deformed skull, and an arcane power that broke our greatest wards like glass ...\"
+\"Survivor's diary\", by Elara Pustolik"
 portrait_texture = ExtResource("2_hxxnl")
+cost_gold = 400
+cost_stone = 6500
+cost_mana = 4500
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_mwnha")

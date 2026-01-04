@@ -154,8 +154,8 @@ animations = [{
 [sub_resource type="Resource" id="Resource_f512a"]
 resource_local_to_scene = true
 script = ExtResource("4_rlipv")
-max_HP = 140
-base_damage = 80
+max_HP = 250
+base_damage = 100
 evasion = 0.296
 
 [node name="Imperial ranger" instance=ExtResource("1_eigsw")]
@@ -163,8 +163,13 @@ unit_name = "Imperial Ranger"
 unit_type = 1
 faction = 1
 needed_xp = 1600
-full_description = "The elite among archers, Imperial Rangers are masters of the bow and forest warfare. With unparalleled accuracy and exceptional survival skills, they can track and eliminate enemies from the shadows. Their arrows are often enhanced with specialized tips, capable of piercing even the strongest defenses."
+unit_class = 4
+brief_description = "Archer with multiple attacks, able to assist allies."
+full_description = "Those who have proven themselves as skilled archers and valuable scouts are rewarded with the attire of the Imperial Ranger. Armed with enchanted bows, they shoot with precision to aid their allies."
 portrait_texture = ExtResource("2_l3nsv")
+cost_gold = 1000
+cost_stone = 500
+cost_mana = 100
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_issnm")

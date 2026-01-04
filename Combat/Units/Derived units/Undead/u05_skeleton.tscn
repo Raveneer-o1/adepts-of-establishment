@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cyfiyiae3d4a3"]
+[gd_scene load_steps=37 format=3 uid="uid://cyfiyiae3d4a3"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_frigw"]
 [ext_resource type="Texture2D" uid="uid://mg8vlpind17e" path="res://Arts/Placeholders/Skeleton.jpg" id="2_7f057"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_7e62a"]
 [ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="6_ksd4k"]
 [ext_resource type="PackedScene" uid="uid://dnxkr164m8hpp" path="res://Combat/Effects/AppliedEffects/Scenes/crafted_body.tscn" id="7_mknrn"]
-[ext_resource type="PackedScene" uid="uid://cm1oq3au6bkmk" path="res://Combat/Effects/AppliedEffects/Scenes/on_turn_self_heal.tscn" id="9_bjq3k"]
 [ext_resource type="AudioStream" uid="uid://bf8wof2u2utkl" path="res://Sounds/using/Damage/Undead/skeleton.wav" id="9_u83ro"]
 [ext_resource type="AudioStream" uid="uid://dnx7qjaosq2rb" path="res://Sounds/using/Damage/skeleton3.wav" id="10_bjq3k"]
 [ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="11_kbr6r"]
@@ -143,10 +142,16 @@ shielding_chance = 0.0
 
 [node name="Skeleton" instance=ExtResource("1_frigw")]
 unit_name = "Skeleton"
+unit_type = 0
 faction = 2
 needed_xp = 900
-full_description = "Skeletons are the quintessential soldiers of the undead, reassembled from the bones of the dead. While they lack the sophistication of living warriors, their undying loyalty and endless stamina make them reliable infantry. Armed with a variety of weapons, they form the backbone of the Necropolis's armies, marching tirelessly to their master's commands."
+unit_class = 1
+brief_description = "Weak melee fighter that rises stronger every time it's resurrected."
+full_description = "Reanimating mindless husks is useful for creating a workforce, but the true power of a necromancer is shown when they force bodies devoid of flesh to rise from the dead. Skeleton reanimation is not an easy skill to master, but the Necropolis cannot build a meaningful army without these creatures. Unfamiliar with tiredness, they will pursue any target their masters command."
 portrait_texture = ExtResource("2_7f057")
+cost_gold = 150
+cost_stone = 600
+cost_mana = 300
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_5p842")
@@ -169,10 +174,6 @@ target_validation = ExtResource("6_ksd4k")
 [node name="Crafted body" parent="UnitParameters" index="2" instance=ExtResource("7_mknrn")]
 liftable = false
 silencable = false
-
-[node name="OnTurnHeal" parent="UnitParameters" index="3" instance=ExtResource("9_bjq3k")]
-heal = 20
-color_effect = Color(0.6509804, 0.44705883, 0.34509805, 1)
 
 [node name="Skeleton" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("9_u83ro")

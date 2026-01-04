@@ -187,10 +187,15 @@ armor = 50
 
 [node name="Knight master" instance=ExtResource("1_f361o")]
 unit_name = "Knight Master"
+unit_type = 0
 faction = 1
 needed_xp = 900
-full_description = "Knight Masters are paragons of martial skill, commanding respect on the battlefield with their imposing presence and unwavering discipline. Equipped with masterfully crafted armor and weapons, they excel in both offense and defense, standing as stalwart protectors of their allies. A Knight Master is a symbol of honor and strength, embodying the virtues of their order."
+unit_class = 2
+brief_description = "Melee fighter with sturdy armor and ability to protect others."
+full_description = "The most noble of knights are granted the title of Knight Master. Their will an unbreakable bulwark, a living shield sworn to guard The Empire's cause."
 portrait_texture = ExtResource("2_f4ity")
+cost_gold = 220
+cost_stone = 70
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_28c0c")

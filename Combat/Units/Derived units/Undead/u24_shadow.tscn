@@ -118,8 +118,11 @@ unit_name = "Shadow"
 unit_type = 1
 faction = 2
 needed_xp = 900
-full_description = "Shadow's very essence a manifestation of fear and despair. They attack by engulfing their targets in a cold, suffocating void, sapping their strength and will. Difficult to detect and harder to fight, Shadows excel at ambushing their prey and disrupting enemy formations."
+unit_class = 4
+brief_description = "Archer with almost no damage that pralyses several targets."
+full_description = "The King's presence is in everything, following every living soul, for he knows everyone will bow to him one day. Flee if you can, tiny mortal, for your very shadow has turned against you."
 portrait_texture = ExtResource("2_0opmo")
+cost_mana = 380
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_c11wf")

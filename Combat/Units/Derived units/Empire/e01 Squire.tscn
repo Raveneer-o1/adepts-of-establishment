@@ -136,9 +136,14 @@ base_damage = 30
 
 [node name="Unit" instance=ExtResource("1_d0om5")]
 unit_name = "Squire"
+unit_type = 0
 faction = 1
-full_description = "The squire is an eager trainee, taking their first steps toward knighthood. Though their armor is light and their skills unpolished, they stand bravely on the front lines. Often serving as assistants to knights, squires are willing to risk much to prove their worth."
+needed_xp = 150
+unit_class = 1
+brief_description = "Melee fighter. Weak but will do everything he can."
+full_description = "Squires are not usually considered a part of the main force of The Empire but they stand ready to defend the weak with all their skill."
 portrait_texture = ExtResource("2_e5wc5")
+cost_gold = 70
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_u5kou")

@@ -134,8 +134,11 @@ unit_name = "The Eternal"
 unit_type = 3
 faction = 2
 needed_xp = 1600
-full_description = "The Eternal is a spirit bound by an ancient, unbreakable curse, its presence a harbinger of inevitable doom. This spectral entity wields overwhelming power, draining life from entire groups of enemies with its devastating attacks. Its unyielding persistence in battle makes it a terrifying force, embodying the unending grasp of death."
+unit_class = 5
+brief_description = "Mage with low damage but significant debuff."
+full_description = "The eternal abyss watches your every move. None can go unnoticed, and none shall escape. Glimpse into the void and lose yourself, for that is the desire of The Eternal."
 portrait_texture = ExtResource("2_uxa4j")
+cost_mana = 1666
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_ui7m8")

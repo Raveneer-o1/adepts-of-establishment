@@ -144,8 +144,13 @@ unit_name = "Wizard"
 unit_type = 2
 faction = 1
 needed_xp = 900
-full_description = "Wizards are masters of advanced arcane arts, capable of reshaping the battlefield with devastating spells and area control. Their ability to manipulate energy allows them to strike multiple enemies or weaken their defenses with precision."
+unit_class = 5
+brief_description = "Fragile mage."
+full_description = "Wizards wield devastating spells to wipe out entire armies. Commanding the power of lightning, they are a formidable force to any commander."
 portrait_texture = ExtResource("2_r2nux")
+cost_gold = 400
+cost_stone = 150
+cost_mana = 800
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_oavhr")

@@ -140,7 +140,14 @@ base_damage = 40
 
 [node name="Bone collector" instance=ExtResource("1_c6arl")]
 unit_name = "Bone collector"
+unit_type = 3
 faction = 1
+needed_xp = 300
+brief_description = "Rod planter."
+full_description = "Bone Collectors offer their sight to the King of Necropolis and serve as his eyes in this world, and with every cursed bone they lay, they stitch another piece of the land into his dark tapestry."
+cost_gold = 300
+cost_stone = 50
+cost_mana = 50
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_vr70o")
@@ -153,7 +160,7 @@ attack_effect = ExtResource("6_hhhol")
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("6_pympk")
-accuracy = 0.83
+type = 3
 target_validation = ExtResource("7_0mn26")
 applying_effects = Dictionary[String, Variant]({
 "vulnerability": [1, 15],
