@@ -13,9 +13,9 @@ extends Node
 ## Atlas coordinates of the tiles that represent this faction's land
 @export var tile_atlas_coords: Array[Vector2i]
 
-## @experimental: will be replaced with a [Color] type variable
-@export_range(0, 2) var main_color: int
-#@export var main_color: Color
+# @experimental: will be replaced with a [Color] type variable
+#@export_range(0, 2) var main_color: int
+@export var main_color: Color
 
 ## List of all units this faction can hire
 @export var hiring_units: Array[StringName]

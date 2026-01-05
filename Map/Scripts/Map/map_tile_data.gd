@@ -1,8 +1,16 @@
 class_name MapTileData
-extends RefCounted
+extends Sprite2D
 
 #region References
-var tile_owner: MapFaction = null
+var tile_owner: MapFaction = null:
+	get: return tile_owner
+	set(value):
+		tile_owner = value
+		if not value:
+			hide()
+			return
+		show()
+		self_modulate = value.main_color
 var coordinates: Vector2i
 var map: Map
 var tile_data: TileData
@@ -96,8 +104,16 @@ func get_neighbors() -> Array[MapTileData]:
 		if data: res.append(data)
 	return res
 
-func _init(coords: Vector2i, _map: Map) -> void:
-	coordinates = coords
-	map = _map
-	tile_data = map.terrain_layer.get_cell_tile_data(coords)
+func _find_map() -> Map:
+	var parent := get_parent()
+	while parent:
+		if parent is Map: return parent
+		parent = parent.get_parent()
+	return null
+
+func _ready() -> void:
+	map = _find_map()
+	coordinates = map.get_tile_coords(global_position)
+	tile_data = map.terrain_layer.get_cell_tile_data(coordinates)
 	claimable = tile_data.get_custom_data("claimable")
+	tile_owner = null

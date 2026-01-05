@@ -208,20 +208,32 @@ func check_object_layer() -> void:
 				push_error("Object layer is bigger than terrain layer!
 	object at: " + str(c) + "; map size: " + str(min_tile) + "-" + str(max_tile))
 
+const TILE_DATA = preload("uid://com5psdgcwjm3")
+
+func _create_td_mapping() -> Dictionary[Vector2i, MapFaction]:
+	# TODO: make initialization with different players with the same faction
+	var mapping: Dictionary[Vector2i, MapFaction] = {}
+	for faction in game.get_factions():
+		for a_coords in faction.tile_atlas_coords:
+			if mapping.has(a_coords):
+				print_debug("%s is repeated, it will not be assigned" % str(a_coords))
+				mapping[a_coords] = null
+			else: mapping[a_coords] = faction
+	return mapping
 
 ## Initializes an empty [MapTileData] object for every terrain tile.[br]
 ## This operation is computationally expensive due to the volume of objects created.
 ## Should be executed behind a loading screen or other masking .
 func create_tile_data() -> void:
+	var data_layer := %TileDataLayer
+	var mapping := _create_td_mapping()
 	for tile in map.terrain_layer.get_used_cells():
-		map.tile_data_hashmap[tile] = MapTileData.new(tile, map)
+		var data: MapTileData = TILE_DATA.instantiate()
+		data.global_position = map.get_global_coords(tile)
+		map.tile_data_hashmap[tile] = data
+		data_layer.add_child(data)
+		data.tile_owner = mapping.get(tile)
 	
-	# this would break on negative coordinates
-	#for i in range(map.max_tile.x):
-		#var array := []
-		#for j in range(map.max_tile.y):
-			#array.append(RefCounted.new())
-		#map.tile_data.append(array)
 
 func do_tile_claim(tile: MapTileData, faction: MapFaction, power: float = 1.0) -> bool:
 	if not tile: return false

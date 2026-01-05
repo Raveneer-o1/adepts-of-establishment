@@ -180,3 +180,7 @@ func _on_capital_button_pressed() -> void:
 	if not game_map.screen_player: return
 	$Capital.fill_data(game_map.screen_player)
 	switch_to(&"Capital")
+
+
+func _on_show_tile_ownership_check_box_toggled(toggled_on: bool) -> void:
+	GameSettings.show_tile_ownership = toggled_on

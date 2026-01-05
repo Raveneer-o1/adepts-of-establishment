@@ -395,6 +395,9 @@ script = ExtResource("20_1e4ck")
 unique_name_in_owner = true
 tile_set = SubResource("TileSet_1e4ck")
 
+[node name="TileDataLayer" type="Node2D" parent="MapLayers"]
+unique_name_in_owner = true
+
 [node name="ObjectManager" type="Node" parent="."]
 script = ExtResource("3_ue3ts")
 

@@ -23,6 +23,11 @@ var screen_player: MapFaction:
 @onready var test_faction: MapFaction = $Factions/Empire
 @onready var test_faction2: MapFaction = $Factions/Necropolis
 
+func get_factions() -> Array[MapFaction]:
+	var res: Array[MapFaction] = []
+	res.assign($Factions.get_children())
+	return res
+
 ## Resumes map processing.
 func enable_map() -> void:
 	current_map.process_mode = Node.PROCESS_MODE_PAUSABLE

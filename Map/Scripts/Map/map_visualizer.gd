@@ -2,6 +2,7 @@ class_name MapVisualizer
 extends Node
 
 @onready var map: Map = $".."
+@onready var tile_data_layer: Node2D = %TileDataLayer
 
 # Array of currently highlighted tiles for pathfinding
 var _highlighted_tiles: Array[Vector2i] = []
@@ -126,3 +127,10 @@ func _highlight_tiles_simple(tiles: Array[Vector2i]) -> void:
 func highlight_tiles(tiles: Array[Vector2i], party: MapParty = null) -> void:
 	if not party: _highlight_tiles_simple(tiles)
 	else: _highlight_tiles_w_detection(tiles, party)
+
+func _check_show_tile_ownership() -> void:
+	tile_data_layer.visible = GameSettings.show_tile_ownership
+
+func _ready() -> void:
+	GameSettings.show_tile_ownership_changed.connect(_check_show_tile_ownership)
+	tile_data_layer.visible = GameSettings.show_tile_ownership

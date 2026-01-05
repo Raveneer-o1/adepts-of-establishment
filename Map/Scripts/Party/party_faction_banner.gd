@@ -1,7 +1,10 @@
 class_name PartyFactionBanner
 extends Node
 
+@onready var white_banner: AnimatedSprite2D = $white
+
 func set_color(faction: MapFaction) -> void:
-	# FIXME: replace with color
 	if faction:
-		get_child(faction.main_color).show()
+		white_banner.self_modulate = faction.main_color
+		white_banner.show()
+	else: white_banner.hide()

@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://com5psdgcwjm3"]
+[gd_scene load_steps=3 format=3 uid="uid://com5psdgcwjm3"]
 
+[ext_resource type="Texture2D" uid="uid://d234igtwkorw3" path="res://Arts/Map/white_tiles_05.png" id="1_on4qv"]
 [ext_resource type="Script" uid="uid://1qoj0mi6j8h4" path="res://Map/Scripts/Map/map_tile_data.gd" id="1_y78qj"]
 
-[node name="MapTileData" type="Node2D"]
+[node name="MapTileData" type="Sprite2D"]
+texture = ExtResource("1_on4qv")
 script = ExtResource("1_y78qj")
