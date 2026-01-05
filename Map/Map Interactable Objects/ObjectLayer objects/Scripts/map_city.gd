@@ -147,7 +147,6 @@ func get_avaliable_units() -> Array[StringName]:
 		for u in available_units:
 			if u not in res: res.append(u)
 	else: res = available_units
-	var checking_whitelist := not available_units_whitelist.is_empty()
 	for unit_name: StringName in res.duplicate():
 		var unit: Dictionary = GlobalDefs.database_path.database.get(unit_name, {})
 		if not unit:

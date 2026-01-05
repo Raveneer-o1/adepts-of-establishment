@@ -1,7 +1,7 @@
 class_name BehindWallsPartyEffect
 extends PartyEffect
 
-@export var effect_name: String = "Behind walls"
+#@export var effect_name: String = "Behind walls"
 @export_file("*.tscn") var effect_path: String = \
 	"res://Combat/Effects/AppliedEffects/Scenes/behind_walls.tscn"
 @export var args: int = 30

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://djeo7bmtq4rr5"]
+
+[ext_resource type="Script" uid="uid://dio2nb146xib2" path="res://Map/PartyEffects/Scripts/Effects from units/test.gd" id="1_ilrtf"]
+
+[node name="Test" type="Node"]
+script = ExtResource("1_ilrtf")

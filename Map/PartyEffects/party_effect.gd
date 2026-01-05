@@ -2,7 +2,8 @@
 class_name PartyEffect
 extends Node
 
-var party_parameters: PartyParameters
+var effect_name: String
+@export var party_parameters: PartyParameters
 @abstract func _apply_effect() -> void
 
 func _initialize() -> void:

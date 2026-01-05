@@ -122,6 +122,11 @@ var original: UnitData = null
 var levelup_avaliable: bool:
 	get: return current_xp >= needed_xp
 
+var party: MapParty:
+	get:
+		var parent := get_parent()
+		return parent if parent is MapParty else null
+
 ## Returns the file path to the unit scene resource.
 ## This path must be added to either [member EventBus.left_units] or
 ## [member EventBus.right_units] to instantiate the unit when battle begins.
