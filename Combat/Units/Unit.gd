@@ -133,7 +133,7 @@ var chosen_spots: Array[UnitSpot] = []
 var _current_attack: UnitAttack
 var alternative_action_index: int = 0
 var alternative_action_count: int:
-	get: return _current_attack.get_child_count()
+	get: return _current_attack.get_child_count() if _current_attack else 0
 
 ## Attack that will be performed next
 var current_attack: UnitAttack:

@@ -184,7 +184,6 @@ func find_path(
 		if include_start: path.append(closest_start)
 		return path
 	
-	
 	var _start := Vector2i.ZERO
 	var travel_data := TravelData.new(party)
 	for start in starts:
@@ -235,9 +234,9 @@ func create_tile_data() -> void:
 		data.tile_owner = mapping.get(
 			map.terrain_layer.get_cell_atlas_coords(tile)
 		)
-	
 
+## Attempts to claim [param tile] for [param faction] with the specified [param power].
+## Returns [code]true[/code] if successful, [code]false[/code] otherwise.
 func do_tile_claim(tile: MapTileData, faction: MapFaction, power: float = 1.0) -> bool:
 	if not tile: return false
 	return tile.try_claiming(faction, power)
-	

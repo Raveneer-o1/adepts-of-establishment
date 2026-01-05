@@ -493,7 +493,8 @@ func question_start_react(data: UnitData) -> void:
 	current_unit = null
 
 func question_end_react(data: UnitData) -> void:
-	current_unit = _current_unit_buffer
+	if _current_unit_buffer:
+		current_unit = _current_unit_buffer
 	_current_unit_buffer = null
 
 func _ready() -> void:
@@ -586,9 +587,12 @@ func grant_xp(left: Array[UnitData], right: Array[UnitData]) -> void:
 	
 	# +1 to have at least one XP point to grant
 	@warning_ignore("integer_division")
-	var xp_to_right := 1 + _calculate_xp_for_dead(units_died_this_combat_on_left) / left_size
+	var xp_to_right := 1 + \
+		_calculate_xp_for_dead(units_died_this_combat_on_left) / right_size
+	
 	@warning_ignore("integer_division")
-	var xp_to_left := 1 + _calculate_xp_for_dead(units_died_this_combat_on_right) / right_size
+	var xp_to_left := 1 + \
+		_calculate_xp_for_dead(units_died_this_combat_on_right) / left_size
 	
 	if left_party.check_if_empty():
 		print("Right party gains %d XP" % xp_to_right)
@@ -640,6 +644,8 @@ func _process(delta: float) -> void:
 const SWITCH_ACTION_TEXT = "Switch action:\n%s"
 
 func update_switch_button_text() -> void:
+	if not current_unit: return
+	if not current_unit.current_attack: return
 	switch_action_button.disabled = current_unit.alternative_action_count <= 0
 	switch_action_button.text = SWITCH_ACTION_TEXT % current_unit.current_attack.attack_name
 
