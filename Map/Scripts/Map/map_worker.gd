@@ -22,8 +22,13 @@ func do_siege(attacker: MapParty, defender: MapCity) -> bool:
 		attacker.update_parameters()
 		defender.update_parameters()
 	
+	_update_units.connect(upd)
 	await _switch_to_battle(battle, attacker.units, defender.units)
-	attacker.update_parameters()
+	_update_units.disconnect(upd)
+	
+	# not necessary but in case update is not triggered, this is a safeguard
+	upd.call()
+	
 	var siege_successful := not attacker.is_dead
 	if siege_successful:
 		for unit in defender.units:
@@ -48,7 +53,7 @@ func do_combat(attacker: MapParty, defender: MapParty) -> MapParty:
 	await _switch_to_battle(battle, attacker.units, defender.units)
 	_update_units.disconnect(upd)
 	
-	# not necessary but in case update is not treggered this is a safeguard
+	# not necessary but in case update is not triggered, this is a safeguard
 	upd.call()
 	
 	if attacker.is_dead == defender.is_dead: return null

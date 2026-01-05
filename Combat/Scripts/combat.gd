@@ -591,9 +591,11 @@ func grant_xp(left: Array[UnitData], right: Array[UnitData]) -> void:
 	var xp_to_left := 1 + _calculate_xp_for_dead(units_died_this_combat_on_right) / right_size
 	
 	if left_party.check_if_empty():
+		print("Right party gains %d XP" % xp_to_right)
 		for data in right:
 			data.grant_xp(xp_to_right)
 	if right_party.check_if_empty():
+		print("Left party gains %d XP" % xp_to_left)
 		for data in left:
 			data.grant_xp(xp_to_left)
 

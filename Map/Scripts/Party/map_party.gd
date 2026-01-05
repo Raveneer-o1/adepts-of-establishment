@@ -127,7 +127,7 @@ func face_tile(target: Vector2i) -> void:
 func update_parameters() -> void:
 	var _dead := true
 	for u in units:
-		if not u.is_dead: _dead = false
+		if u.party_position >= 0 and not u.is_dead: _dead = false
 		if u.levelup_avaliable: await level_up_unit(u)
 	if _dead: die()
 
