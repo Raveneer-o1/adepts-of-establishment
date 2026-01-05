@@ -37,7 +37,9 @@ func move_unit(received_unit: PartyEditorUnit) -> void:
 	if other_place is PartyEditorUnitPosition:
 		other_place.unit = unit
 	if unit:
-		unit.unit_data.party_position = other_place.party_position
+		if other_place is PartyEditorUnitPosition:
+			unit.unit_data.party_position = other_place.party_position
+		else: unit.unit_data.party_position = -1
 		unit.reparent(other_place, false)
 	unit = received_unit
 	unit.unit_data.party_position = party_position

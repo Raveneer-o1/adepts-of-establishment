@@ -1,4 +1,13 @@
-extends MapInteractableObject
+#class_name YourClass
+
+# Choose what type of object you need:
+extends MapInteractableObject  # Regular object
+
+#extends ObjectLayerObject  # Object tied to the map grid system
+
+# Same as ObjectLayerObject, but automatically assigns the 
+# object owner from the tile it's occupying
+#extends OwnedByLandObject
 
 
 # Uncomment and implement the method below if the object occupies multiple tiles

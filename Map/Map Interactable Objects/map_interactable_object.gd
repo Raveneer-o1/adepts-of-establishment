@@ -34,7 +34,6 @@ extends Node2D
 var map: Map
 @export var object_name: String = ""
 
-## Reserved for derived class implementations - not used by arbitrary objects.
 ## If [member ownable] is [code]false[/code], always returns [code]null[/code].
 ## When ownership is enabled, tracks the controlling faction.
 ## Can be [code]null[/code] even for ownable objects, indicating unclaimed status.

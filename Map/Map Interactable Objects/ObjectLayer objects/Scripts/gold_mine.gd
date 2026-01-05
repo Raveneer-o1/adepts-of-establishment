@@ -1,4 +1,4 @@
-extends ObjectLayerObject
+extends OwnedByLandObject
 
 
 func _get_occupied_tiles(main: Vector2i = tile_position) -> Array[Vector2i]:
@@ -103,10 +103,5 @@ func _bring_income(f: MapFaction) -> void:
 	if f != object_owner: return
 	object_owner.resource_container.receive_gold(income_per_turn)
 
-func _check_claimed_tile(tile: MapTileData, prev: MapFaction) -> void:
-	if tile.coordinates != tile_position: return
-	object_owner = tile.tile_owner
-
 func _initialize() -> void:
-	EventBus.tile_claimed.connect(_check_claimed_tile)
 	EventBus.map_turn_started.connect(_bring_income)
