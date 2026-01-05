@@ -156,7 +156,6 @@ button_pressed = true
 text = "Safe travel"
 
 [node name="Party" type="CanvasLayer" parent="UILayers"]
-visible = false
 script = ExtResource("5_t0dwr")
 
 [node name="HBoxContainer" type="MarginContainer" parent="UILayers/Party"]
@@ -175,6 +174,14 @@ theme_override_constants/margin_bottom = 50
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UILayers/Party/HBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="PartyReserveContainer" type="ScrollContainer" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("9_iv7qx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/PartyReserveContainer"]
 layout_mode = 2
 
 [node name="UnitsContainer" type="HBoxContainer" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer"]
@@ -306,6 +313,7 @@ size_flags_vertical = 3
 visible = false
 
 [node name="City" type="CanvasLayer" parent="UILayers"]
+visible = false
 script = ExtResource("9_bqemh")
 
 [node name="PanelContainer" type="PanelContainer" parent="UILayers/City"]
