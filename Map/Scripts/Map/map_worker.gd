@@ -223,7 +223,7 @@ func _create_td_mapping() -> Dictionary[Vector2i, MapFaction]:
 
 ## Initializes an empty [MapTileData] object for every terrain tile.[br]
 ## This operation is computationally expensive due to the volume of objects created.
-## Should be executed behind a loading screen or other masking .
+## Should be executed behind a loading screen or other masking technique.
 func create_tile_data() -> void:
 	var data_layer := %TileDataLayer
 	var mapping := _create_td_mapping()
@@ -232,7 +232,9 @@ func create_tile_data() -> void:
 		data.global_position = map.get_global_coords(tile)
 		map.tile_data_hashmap[tile] = data
 		data_layer.add_child(data)
-		data.tile_owner = mapping.get(tile)
+		data.tile_owner = mapping.get(
+			map.terrain_layer.get_cell_atlas_coords(tile)
+		)
 	
 
 func do_tile_claim(tile: MapTileData, faction: MapFaction, power: float = 1.0) -> bool:
