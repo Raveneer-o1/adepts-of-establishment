@@ -3,6 +3,9 @@ extends MarginContainer
 
 @onready var label: Label = $PanelContainer/Label
 
+const REGULAR_COLOR = Color.WHITE
+const HERO_COLOR = Color.LIGHT_SEA_GREEN
+
 ## @experimental: may be changed to always return the [UnitData] object.
 ## Returns the [UnitData] object associated with this node, or 
 ## [member UnitData.original] if that field is set. [br]
@@ -21,8 +24,11 @@ func update_data() -> void:
 	pass
 
 func _ready() -> void:
-	if not unit_data: queue_free()
-	else: label.text = unit_data.unit_name
+	if not unit_data:
+		queue_free()
+		return
+	label.text = unit_data.unit_name
+	label.self_modulate = HERO_COLOR if unit_data is HeroData else REGULAR_COLOR
 
 func get_preview() -> Control:
 	var drag_obj := PartyEditorUnitDragObject.new(unit_data.unit_name)

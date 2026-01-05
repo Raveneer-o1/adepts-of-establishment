@@ -22,6 +22,8 @@ var cancel_movement: bool = false
 var loaded_portrait: Resource
 var inside_city: MapCity = null
 
+var hero: HeroData = null
+
 var units: Array[UnitData]:
 	get:
 		var res: Array[UnitData] = []

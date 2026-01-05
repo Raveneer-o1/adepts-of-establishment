@@ -12,6 +12,8 @@ func add_unit(data: UnitData) -> void:
 	$VBoxContainer.add_child(unit)
 
 func move_unit(received_unit: PartyEditorUnit) -> void:
+	if parent and received_unit.unit_data is HeroData and \
+			received_unit.unit_data.get_parent() != parent: return
 	var other_place := received_unit.get_parent()
 	if other_place == self: return
 	if other_place is PartyEditorUnitPosition:
@@ -23,7 +25,10 @@ func move_unit(received_unit: PartyEditorUnit) -> void:
 		received_unit.unit_data.reparent(parent)
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
-	return data is PartyEditorUnit
+	if data is not PartyEditorUnit: return false
+	if (data as PartyEditorUnit).unit_data is HeroData:
+		return data.unit_data.get_parent() == parent if parent else true
+	return true
 
 func _drop_data(at_position: Vector2, data: Variant) -> void:
 	if data is PartyEditorUnit:

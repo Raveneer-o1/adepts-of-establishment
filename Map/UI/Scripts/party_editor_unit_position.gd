@@ -28,8 +28,12 @@ func remove_unit() -> void:
 	unit = null
 
 func move_unit(received_unit: PartyEditorUnit) -> void:
+	if not received_unit: return
 	var other_place := received_unit.get_parent()
 	if other_place == self: return
+	if reparent_data:
+		if received_unit.unit_data.get_parent() != parent:
+			if received_unit.unit_data is HeroData: return
 	if other_place is PartyEditorUnitPosition:
 		other_place.unit = unit
 	if unit:
@@ -43,7 +47,10 @@ func move_unit(received_unit: PartyEditorUnit) -> void:
 		unit.unit_data.reparent(parent)
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
-	return data is PartyEditorUnit
+	if data is not PartyEditorUnit: return false
+	if (data as PartyEditorUnit).unit_data is HeroData:
+		return data.unit_data.get_parent() == parent if reparent_data else true
+	return true
 
 func _drop_data(at_position: Vector2, data: Variant) -> void:
 	if data is PartyEditorUnit:
