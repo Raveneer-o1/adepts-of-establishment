@@ -1,4 +1,4 @@
-class_name PartyEditorUnitDragObject
+class_name PartyEditorDragObject
 extends Label
 
 func _init(s: String) -> void:

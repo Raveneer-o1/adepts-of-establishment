@@ -44,7 +44,6 @@ func move_unit(received_unit: PartyEditorUnit) -> void:
 	unit = received_unit
 	unit.unit_data.party_position = party_position
 	unit.reparent(self, false)
-	unit.position = Vector2.ZERO
 	if reparent_data:
 		unit.unit_data.reparent(parent)
 

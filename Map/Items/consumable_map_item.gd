@@ -18,3 +18,4 @@ func apply_to(where: Variant) -> void:
 	uses -= 1
 	if uses <= 0:
 		queue_free()
+	EventBus.item_used.emit(self)

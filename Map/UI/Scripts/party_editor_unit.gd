@@ -31,9 +31,19 @@ func _ready() -> void:
 	label.self_modulate = HERO_COLOR if unit_data is HeroData else REGULAR_COLOR
 
 func get_preview() -> Control:
-	var drag_obj := PartyEditorUnitDragObject.new(unit_data.unit_name)
+	var drag_obj := PartyEditorDragObject.new(unit_data.unit_name)
 	return drag_obj
 
 func _get_drag_data(at_position: Vector2) -> Variant:
 	set_drag_preview(get_preview())
 	return self
+
+func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
+	#print(data)
+	if data is MapItem:
+		return data.can_be_applied_to(unit_data)
+	return false
+
+func _drop_data(at_position: Vector2, data: Variant) -> void:
+	if data is MapItem:
+		data.apply_to(unit_data)

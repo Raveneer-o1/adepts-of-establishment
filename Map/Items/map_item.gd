@@ -20,8 +20,8 @@ extends Node
 
 @export var item_name: String
 @export_file_path("*.*") var image_path: String
-@export_multiline var description: String
 @export var base_cost: int = 0
+@export_multiline var description: String
 
 var ui_manager: PartyUIManager
 

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cij3mifdic72j"]
+
+[ext_resource type="Script" uid="uid://demuh18qeiboj" path="res://Map/Items/Scripts/healing_potion.gd" id="1_iwx3o"]
+
+[node name="HealingPotion" type="Node"]
+script = ExtResource("1_iwx3o")
+item_name = "Healing potion"
+image_path = "res://Arts/itch assets/Pixel Art Icon Pack - RPG [Cainos]/Potion/Water Bottle.png"
+base_cost = 100
+description = "This potion restores lost health"

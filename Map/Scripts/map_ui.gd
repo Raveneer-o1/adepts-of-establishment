@@ -140,7 +140,7 @@ func _ready() -> void:
 		if child is not CanvasLayer: continue
 		child.hide()
 		child.set_process(false)
-	switch_to.call_deferred(&"Greeting")
+	switch_to.call_deferred(&"Main")
 	EventBus.popup_requested.connect(handle_popup_request)
 	EventBus.window_requested.connect(handle_window_request)
 	%VersionLabel.text = ProjectSettings.get_setting("application/config/version")
