@@ -190,7 +190,7 @@ func fill_text_data(unit: Unit) -> void:
 	] 
 
 func replace_portrait(texture_path: String) -> void:
-	var texture := ImageBuffer.get_image(texture_path)
+	var texture := DataBuffer.get_image(texture_path)
 	if texture != null:
 		portrait.texture = texture
 		portrait.show()

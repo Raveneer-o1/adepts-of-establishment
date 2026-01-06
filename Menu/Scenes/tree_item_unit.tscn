@@ -31,3 +31,5 @@ text = "UNIT"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

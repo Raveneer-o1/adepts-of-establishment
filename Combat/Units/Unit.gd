@@ -75,7 +75,7 @@ const SKIP_DELAY = 0.4
 @export_multiline var brief_description: String
 @export_multiline var full_description: String
 var portrait_texture: Texture2D:
-	get: return ImageBuffer.get_image(portrait_texture_path)
+	get: return DataBuffer.get_image(portrait_texture_path)
 @export_file_path("*.*") var portrait_texture_path: String
 
 @export_group("Cost")

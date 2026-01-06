@@ -15,3 +15,10 @@ func _get_drag_data(at_position: Vector2) -> Variant:
 
 func _ready() -> void:
 	label.text = unit_name
+
+
+func _on_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_RIGHT:
+			if event.is_pressed():
+				EventBus.popup_requested.emit(DataBuffer.get_unit_data(unit_name))

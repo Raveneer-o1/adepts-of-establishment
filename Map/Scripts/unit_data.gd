@@ -175,10 +175,10 @@ func _initialize_attack_data() -> void:
 ## [color=red]Warning:[/color] This method discards all custom unit modifications,
 ## resets experience to 0, and reloads all defined attacks and effects.
 ## Should only be called when spawning a new unit into the world.
-func initialize(personal: String = "") -> void:
+func initialize(personal: String = "") -> bool:
 	if not database.has(unit_name):
 		push_error("unit name '%s' does not exist in the database" % unit_name)
-		return
+		return false
 	
 	base_damage = database_dict.get(&"base_damage", 0)
 	max_hp = database_dict.get(&"max_hp", 1)
@@ -205,6 +205,7 @@ func initialize(personal: String = "") -> void:
 	_initialize_effect_data()
 	
 	current_xp = 0
+	return true
 
 ## This method performs no validation - duplicate effects may be added without checks.
 func add_effect(effect: AppliedEffect) -> void:

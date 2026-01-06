@@ -7,5 +7,5 @@ extends PopupBase
 
 func show_item(item: MapItem) -> void:
 	name_label.text = item.item_name
-	texture_rect.texture = ImageBuffer.get_image(item.image_path)
+	texture_rect.texture = DataBuffer.get_image(item.image_path)
 	show()

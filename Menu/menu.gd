@@ -158,6 +158,15 @@ func _ready() -> void:
 	item_list_left_controller.select(STANDARD_AI_CONTROLLER)
 	item_list_right_controller.select(PLAYER_CONTROLLER)
 	%VesrionLabel.text = ProjectSettings.get_setting("application/config/version")
+	EventBus.popup_requested.connect(show_unit)
+
+@onready var unit_info_panel: UnitInfoPanel = $UnitInfoPanel
+
+func show_unit(data: Variant) -> void:
+	if data is UnitData:
+		unit_info_panel.fill_data(data)
+		unit_info_panel.replace_portrait(data.portrait_texture_path)
+		unit_info_panel.show()
 
 const MAP_PATH = "res://Map/Scenes/game_map.tscn"
 

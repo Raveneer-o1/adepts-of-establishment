@@ -11,7 +11,7 @@ func _check_used_item(_item: MapItem) -> void:
 
 ## This method should be called [b]after[/b] [method Node.add_child]
 func initialize(_item: MapItem) -> void:
-	texture_rect.texture = ImageBuffer.get_image(_item.image_path)
+	texture_rect.texture = DataBuffer.get_image(_item.image_path)
 	item = _item
 	EventBus.item_used.connect(_check_used_item)
 
