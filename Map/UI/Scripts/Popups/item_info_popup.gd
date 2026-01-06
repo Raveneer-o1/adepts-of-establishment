@@ -9,3 +9,4 @@ func show_item(item: MapItem) -> void:
 	name_label.text = item.item_name
 	texture_rect.texture = DataBuffer.get_image(item.image_path)
 	show()
+	rich_text_label.text = item.get_description()

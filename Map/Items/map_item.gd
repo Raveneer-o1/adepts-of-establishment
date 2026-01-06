@@ -25,6 +25,9 @@ extends Node
 
 var ui_manager: PartyUIManager
 
+func get_description() -> String:
+	return description
+
 func can_be_applied_to(where: Variant) -> bool:
 	return false
 

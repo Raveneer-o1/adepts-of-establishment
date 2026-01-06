@@ -9,6 +9,9 @@ var current_container: Node
 @onready var description: RichTextLabel = %HireUnit_UnitPanel/VBoxContainer/RichTextLabel
 @onready var info: RichTextLabel = %HireUnit_UnitPanel/MarginContainer/RichTextLabel
 @onready var hire_unit_unit_panel: HBoxContainer = %HireUnit_UnitPanel
+@onready var resource_panel_gold: MarginContainer = %HireUnit_ResourcePanel_Gold
+@onready var resource_panel_stone: MarginContainer = %HireUnit_ResourcePanel_Stone
+@onready var resource_panel_crystals: MarginContainer = %HireUnit_ResourcePanel_Crystals
 
 ## Displays the recruitment popup with the specified [param list] of available units.
 ## When a unit is hired, [UnitData] object is added as a child of [param node].
@@ -20,6 +23,9 @@ func display_for_container(node: Node, list: Array[StringName]) -> void:
 	units_item_list.clear()
 	for i in list:
 		units_item_list.add_item(i)
+
+func _get_resource_label(node: Node) -> Label:
+	return node.get_node("VBoxContainer/Label")
 
 func fill_unit_data(data: UnitData) -> void:
 	hire_unit_unit_panel.show()
@@ -41,6 +47,9 @@ Effects: %s" % [
 		data.base_damage,
 		effects
 	]
+	_get_resource_label(resource_panel_gold).text = str(data.cost.gold)
+	_get_resource_label(resource_panel_stone).text = str(data.cost.stone)
+	_get_resource_label(resource_panel_crystals).text = str(data.cost.mana)
 
 
 func _on_hire_button_pressed() -> void:

@@ -97,6 +97,8 @@ enum UnitClass{
 
 @export var custom_levelup_path: String
 
+var cost: ResourceCost
+
 const database = GlobalDefs.database_path.database
 
 var database_dict: Dictionary:
@@ -205,6 +207,7 @@ func initialize(personal: String = "") -> bool:
 	_initialize_effect_data()
 	
 	current_xp = 0
+	cost = ResourceCost.from_dict(database_dict.get(&"cost", {}))
 	return true
 
 ## This method performs no validation - duplicate effects may be added without checks.

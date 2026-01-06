@@ -2,6 +2,11 @@ extends ConsumableMapItem
 
 @export var heal := 50
 
+func get_description() -> String:
+	if heal > 0:
+		return "This potion restores %d health" % heal
+	return description
+
 func consume(unit: UnitData) -> void:
 	if heal < 0:
 		push_error("Negative heal value. Health will be reduced")
