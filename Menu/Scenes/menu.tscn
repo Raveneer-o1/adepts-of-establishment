@@ -1012,8 +1012,7 @@ alignment = 1
 
 [node name="Tree Item Unit" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Mages/Lvl2" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "Dark Mage"
-path = "res://Combat/Units/Derived units/Undead/u12_dark_mage.tscn"
+unit_name = "Necromancer"
 
 [node name="padding" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Mages/Lvl2"]
 custom_minimum_size = Vector2(100, 0)
@@ -1021,8 +1020,7 @@ layout_mode = 2
 
 [node name="Tree Item Unit2" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Mages/Lvl2" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "Necromancer"
-path = "res://Combat/Units/Derived units/Undead/u11_necromancer.tscn"
+unit_name = "Dark Mage"
 
 [node name="Lvl3" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead/Mages"]
 layout_mode = 2
