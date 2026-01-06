@@ -142,6 +142,7 @@ unit_class = 5
 brief_description = "Weak mage with ability to resurrect."
 full_description = "When a mortal gazes into the essence of life, they discover that death does not dictate the end of one's being. Those who can manipulate this knowledge to revive a body are called Necromancers."
 portrait_texture = ExtResource("2_0m3ru")
+portrait_texture_path = "res://Arts/Placeholders/Necromancer.jpg"
 cost_gold = 50
 cost_mana = 150
 

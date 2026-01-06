@@ -148,6 +148,7 @@ unit_class = 5
 brief_description = "Fragile mage."
 full_description = "Wizards wield devastating spells to wipe out entire armies. Commanding the power of lightning, they are a formidable force to any commander."
 portrait_texture = ExtResource("2_r2nux")
+portrait_texture_path = "res://Arts/Placeholders/Wizard.jpg"
 cost_gold = 400
 cost_stone = 150
 cost_mana = 800

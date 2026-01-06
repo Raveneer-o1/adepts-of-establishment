@@ -183,6 +183,7 @@ unit_class = 5
 brief_description = "Powerdul mage."
 full_description = "Only the most talented and peerless of battle mages can be granted the title of White Mage. These spellcasters bend the fabric of reality to unleash brimstone and storms upon any foolish enough to oppose The Empire."
 portrait_texture = ExtResource("10_t48w5")
+portrait_texture_path = "res://Arts/Placeholders/White mage.jpg"
 cost_gold = 850
 cost_stone = 300
 cost_mana = 1200

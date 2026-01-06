@@ -135,6 +135,7 @@ unit_class = 1
 brief_description = "Melee fighter, strong against debuffs."
 full_description = "Inquisitors who doubt the Church's ways are branded heretics. To these outcasts, the King of Necropolis extends an invitation to his city. Those who accept his offer become Fallen Inquisitors, whom the Necropolis prizes far more than their former masters ever did - even in their living state."
 portrait_texture = ExtResource("2_wxjrt")
+portrait_texture_path = "res://Arts/Placeholders/Fallen inquisitor.jpg"
 cost_gold = 600
 cost_stone = 150
 

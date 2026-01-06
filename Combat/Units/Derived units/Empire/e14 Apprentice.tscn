@@ -131,6 +131,7 @@ unit_class = 5
 brief_description = "Ranged fragile mage."
 full_description = "Ambitious apprentices step from study into battle as battle mages. Though fragile, they can conjure lightning bolts to cover the advance of larger forces."
 portrait_texture = ExtResource("2_4nbyg")
+portrait_texture_path = "res://Arts/Placeholders/Apprentice.jpg"
 cost_gold = 90
 cost_mana = 30
 

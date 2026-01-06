@@ -149,6 +149,7 @@ unit_class = 1
 brief_description = "Weak melee fighter that rises stronger every time it's resurrected."
 full_description = "Reanimating mindless husks is useful for creating a workforce, but the true power of a necromancer is shown when they force bodies devoid of flesh to rise from the dead. Skeleton reanimation is not an easy skill to master, but the Necropolis cannot build a meaningful army without these creatures. Unfamiliar with tiredness, they will pursue any target their masters command."
 portrait_texture = ExtResource("2_7f057")
+portrait_texture_path = "res://Arts/Placeholders/Skeleton.jpg"
 cost_gold = 150
 cost_stone = 600
 cost_mana = 300

@@ -115,6 +115,7 @@ faction = 7
 needed_xp = 400
 full_description = "Rogues are seasoned fighters who blend agility and combat prowess, striking quickly and decisively. They are masters of deception, often using dirty tricks to gain the upper hand. Though they prefer to avoid direct confrontation, their versatility makes them a dangerous adversary."
 portrait_texture = ExtResource("2_vv05r")
+portrait_texture_path = "res://Arts/Placeholders/Rogue.jpg"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_01jde")

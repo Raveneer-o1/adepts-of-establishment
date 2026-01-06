@@ -125,6 +125,7 @@ unit_class = 3
 brief_description = "Large melee unit."
 full_description = "A monstrous, snake-like creature bloated with the power of countless consumed souls, the Devourer hunts the living. No single creature can escape its cunning fangs once it decides to feast upon their body and spirit."
 portrait_texture = ExtResource("2_0dxqj")
+portrait_texture_path = "res://Arts/Placeholders/Devourer.jpg"
 cost_gold = 500
 cost_stone = 4000
 cost_mana = 2100

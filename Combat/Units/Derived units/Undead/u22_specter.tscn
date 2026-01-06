@@ -126,6 +126,7 @@ unit_class = 4
 brief_description = "Archer with almost no damage that pralyses targets."
 full_description = "Souls bound to this realm against their will, Specters crave vengeance upon every living being, manifesting in nightmares and attacking the sanity of the weak-minded."
 portrait_texture = ExtResource("2_f2jof")
+portrait_texture_path = "res://Arts/Placeholders/Specter.jpg"
 cost_mana = 180
 
 [node name="AnimationHandle" parent="." index="0"]

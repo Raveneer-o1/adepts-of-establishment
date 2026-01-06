@@ -151,6 +151,7 @@ unit_class = 4
 brief_description = "Mage with lifesteal."
 full_description = "Ancient beings driven by bloodlust, Elder Vampires command the very essence of life and will consume the entire being of anyone foolish enough to wander the wilds at night."
 portrait_texture = ExtResource("2_utx77")
+portrait_texture_path = "res://Arts/Placeholders/Vampire lord.jpg"
 cost_gold = 200
 cost_stone = 600
 cost_mana = 1000

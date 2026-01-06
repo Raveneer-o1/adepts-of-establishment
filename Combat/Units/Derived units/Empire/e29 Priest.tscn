@@ -137,6 +137,7 @@ needed_xp = 400
 brief_description = "Single-target healer."
 full_description = "Through firm faith, Priests strengthen the bodies of combatants, healing them with divine magic and allowing them to endure against evil a little longer."
 portrait_texture = ExtResource("2_5qxd6")
+portrait_texture_path = "res://Arts/Placeholders/Priest.jpg"
 cost_gold = 300
 cost_stone = 50
 

@@ -139,6 +139,7 @@ brief_description = "Mass-healer with strong buffs"
 full_description = "\"... Let it be known that a new Eye has opened within the Church. Thou art the all-seer, the teller of the divine will. Prophetess we declare thee! Stand thou with us, our sister and our peer, and share in our rejoicing.\"
 - Voices of the Council of Thorns"
 portrait_texture = ExtResource("2_kdng4")
+portrait_texture_path = "res://Arts/Placeholders/Prophetess.jpg"
 cost_gold = 1000
 cost_mana = 1000
 

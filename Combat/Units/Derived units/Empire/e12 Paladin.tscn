@@ -195,6 +195,7 @@ unit_class = 2
 brief_description = "Melee fighter with multiple attacks, mobility and offensive aura."
 full_description = "In the hour of need, the Emperor personally grants the worthy the title of Paladin. Clad in crimson resolve, they are the last light of hope when the night of despair threatens to be eternal."
 portrait_texture = ExtResource("2_bb4no")
+portrait_texture_path = "res://Arts/Placeholders/Paladin.jpg"
 cost_gold = 1500
 cost_stone = 500
 cost_mana = 300

@@ -173,6 +173,7 @@ brief_description = "Large unit, can attack any target."
 full_description = "\"... Never have we ever seen a creature so magnificent and yet so terrifying. Its wings are nothing but bones with lumps of dead flesh, its head is a deformed skull, and an arcane power that broke our greatest wards like glass ...\"
 \"Survivor's diary\", by Elara Pustolik"
 portrait_texture = ExtResource("2_hxxnl")
+portrait_texture_path = "res://Arts/Placeholders/Dracolich.jpg"
 cost_gold = 400
 cost_stone = 6500
 cost_mana = 4500

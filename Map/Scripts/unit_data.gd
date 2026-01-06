@@ -32,6 +32,7 @@ extends Node
 ##     &"armor": int,
 ##     &"evasion": float,
 ##     &"shielding_chance": float,
+##     &"portrait_texture_path": String,
 ##     &"custom_levelup_path": String,
 ##     &"cost": Dictionary,  # see below
 ## }

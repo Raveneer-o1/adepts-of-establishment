@@ -158,6 +158,7 @@ unit_class = 1
 brief_description = "Melee fighter that rises stronger every time it's resurrected."
 full_description = "Restless in death are those whose souls, too attached to worldly treasures, are barred from The Dark. The Necropolis grants these spirits a home and a chance to find worth in death. Their payment is eternal service as the King's Skeleton Warriors."
 portrait_texture = ExtResource("2_bljp6")
+portrait_texture_path = "res://Arts/Placeholders/Skeleton champion.jpg"
 cost_gold = 200
 cost_stone = 1000
 cost_mana = 350

@@ -237,6 +237,7 @@ unit_class = 4
 brief_description = "Archer with debuff."
 full_description = "An army is only as effective as its scouts are good. Imperial scouts are trained to spy on enemy forces and remain unnoticed."
 portrait_texture = ExtResource("2_s7q1u")
+portrait_texture_path = "res://Arts/Placeholders/Scout.jpg"
 cost_gold = 500
 cost_stone = 300
 cost_mana = 50

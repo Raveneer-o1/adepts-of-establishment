@@ -114,6 +114,7 @@ unit_name = "Thief"
 faction = 1
 full_description = "Thieves are nimble and cunning, excelling in stealth and precision strikes. They specialize in exploiting enemy weaknesses, targeting vulnerabilities for devastating effect."
 portrait_texture = ExtResource("2_vtb4r")
+portrait_texture_path = "res://Arts/Placeholders/Thief.jpg"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_fnpog")

@@ -144,6 +144,7 @@ unit_class = 5
 brief_description = "Mage with ward against physical damage."
 full_description = "Those who delve too deep into the arts of dark magic eventually fall into the abyss. The King of Necropolis returns them, not as people, but as vengeful spirits - wraiths. Consumed by their desire to harvest suffering, these souls are morphed into horrifying creatures."
 portrait_texture = ExtResource("2_h5mis")
+portrait_texture_path = "res://Arts/Placeholders/Wraith.jpg"
 cost_mana = 1200
 
 [node name="AnimationHandle" parent="." index="0"]

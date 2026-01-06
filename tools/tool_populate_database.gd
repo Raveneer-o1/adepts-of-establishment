@@ -6,9 +6,7 @@ func construct_effect_dict(a: AppliedEffect) -> Dictionary:
 	var dummy: AppliedEffect = a.get_script().new()
 	var data := dummy.get_full_data(a)  # what the actual f
 	
-	#print(data["args"])
 	UnitData.filter_data(data["args"])
-	#print(data["args"])
 	
 	dummy.free()
 	print("'%s' is constructed\n" % a.effect_name)
@@ -47,6 +45,7 @@ func read_unit(u: Unit, full_path: String) -> void:
 		"armor" = base_paramaters.get_indexed("armor"),
 		"evasion" = base_paramaters.get_indexed("evasion"),
 		"shielding_chance" = base_paramaters.get_indexed("shielding_chance"),
+		"portrait_texture_path" = u.portrait_texture_path if u.portrait_texture_path else "",
 		"custom_levelup_path" = unit_parameters.custom_levelup_function.resource_path \
 			if unit_parameters.custom_levelup_function else "",
 		"cost" = {
@@ -55,7 +54,6 @@ func read_unit(u: Unit, full_path: String) -> void:
 			&"mana": u.cost_mana,
 		}
 	}
-	#print(params)
 	
 	write_unit(u.unit_name, params)
 	dict[u.unit_name] = null

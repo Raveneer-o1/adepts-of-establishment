@@ -208,6 +208,7 @@ unit_class = 5
 brief_description = "Mage with ward against physical damage."
 full_description = "When the King sends his Heralds, fate becomes determined. They bring Death - unyielding, unmoving, imminent. There is no going back, for the Herald of Death has announced his message."
 portrait_texture = ExtResource("2_bsj1p")
+portrait_texture_path = "res://Arts/Placeholders/Herald of death.jpg"
 cost_stone = 300
 cost_mana = 1600
 

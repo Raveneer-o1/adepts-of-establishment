@@ -74,8 +74,8 @@ const SKIP_DELAY = 0.4
 @export var unit_class: UnitData.UnitClass = UnitData.UnitClass.Undefined
 @export_multiline var brief_description: String
 @export_multiline var full_description: String
-# TODO: replace with dynamic loading via ImageBuffer class
 @export var portrait_texture: Texture2D
+@export_file_path("*.*") var portrait_texture_path: String
 
 @export_group("Cost")
 ## Determines the resources player will need to pay to hire this unit.

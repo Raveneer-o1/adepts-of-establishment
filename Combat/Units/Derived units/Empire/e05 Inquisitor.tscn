@@ -174,6 +174,7 @@ unit_class = 1
 brief_description = "Melee fighter with unblockable attacks."
 full_description = "When a witch hunter proves their devotion to the Church in battle, they are accepted as an Inquisitor. The Inquisition relentlessly pursues everything evil in this world, mercilessly burning heresies and the unfaithful with brimstone and prayer."
 portrait_texture = ExtResource("2_qb4re")
+portrait_texture_path = "res://Arts/Placeholders/Inquisitor.jpg"
 cost_gold = 250
 cost_mana = 30
 

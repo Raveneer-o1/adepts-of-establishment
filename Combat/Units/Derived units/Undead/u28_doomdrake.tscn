@@ -132,6 +132,7 @@ unit_class = 1
 brief_description = "Large unit, single target archer."
 full_description = "When a wyvern consumes enough bodies on the battlefield, it grows larger and more grotesque, transforming into a Doomdrake. Its breath is poisonous and its flesh is rotten, defiling the living creature it once was."
 portrait_texture = ExtResource("2_r53jd")
+portrait_texture_path = "res://Arts/Placeholders/Doomdrake.jpg"
 cost_gold = 200
 cost_stone = 700
 cost_mana = 300

@@ -177,6 +177,7 @@ unit_class = 1
 brief_description = "Melee fighter with multiple attacks per round and mobility."
 full_description = "Those who serve in the personal forces of lords and counts are called Royal Cavaliers. They ride the best steeds The Empire can offer and wield the finest armor and weapons from the royal armories."
 portrait_texture = ExtResource("2_mfi4u")
+portrait_texture_path = "res://Arts/Placeholders/Royal cavalier.jpg"
 cost_gold = 800
 cost_stone = 300
 cost_mana = 100

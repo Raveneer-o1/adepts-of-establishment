@@ -130,6 +130,7 @@ unit_class = 1
 brief_description = "Large unit, single target archer."
 full_description = "Wyverns are the earthbound cousins of dragons, stripped of the freedom of flight. Their bitterness over this difference drives them to seek power, often turning to the King of Necropolis."
 portrait_texture = ExtResource("2_q1e14")
+portrait_texture_path = "res://Arts/Placeholders/Wyvern.jpg"
 cost_gold = 100
 cost_stone = 400
 cost_mana = 100

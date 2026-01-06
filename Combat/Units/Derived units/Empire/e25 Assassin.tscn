@@ -154,6 +154,7 @@ unit_class = 3
 brief_description = "Archer with multiple poisoned attacks."
 full_description = "Acting from the shadows, Assassins pick off unsuspecting victims, unconcerned with honor and valor. When duty demands, even the most righteous of generals must rely on their services."
 portrait_texture = ExtResource("2_26dl6")
+portrait_texture_path = "res://Arts/Placeholders/Assassin.jpg"
 cost_gold = 1000
 
 [node name="AnimationHandle" parent="." index="0"]

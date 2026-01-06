@@ -145,6 +145,7 @@ unit_class = 2
 brief_description = "Melee fighter with increased armor."
 full_description = "Knights devote their lives to guarding The Empire  against all who dare oppose The Empire's will."
 portrait_texture = ExtResource("2_udn4r")
+portrait_texture_path = "res://Arts/Placeholders/Knight.jpg"
 cost_gold = 140
 cost_stone = 10
 

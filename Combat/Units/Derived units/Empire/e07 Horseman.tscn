@@ -202,6 +202,7 @@ unit_class = 1
 brief_description = "Melee fighter that can move to attack its targets."
 full_description = "The mobile forces of the Kantarke are renowned for their ability to disrupt enemy formations and and strike decisive blows against their most vital positions."
 portrait_texture = ExtResource("2_1mg5r")
+portrait_texture_path = "res://Arts/Placeholders/Horseman.jpg"
 cost_gold = 200
 cost_stone = 50
 

@@ -138,6 +138,7 @@ unit_class = 5
 brief_description = "Mage with low damage but significant debuff."
 full_description = "The eternal abyss watches your every move. None can go unnoticed, and none shall escape. Glimpse into the void and lose yourself, for that is the desire of The Eternal."
 portrait_texture = ExtResource("2_uxa4j")
+portrait_texture_path = "res://Arts/Placeholders/The eternal.jpg"
 cost_mana = 1666
 
 [node name="AnimationHandle" parent="." index="0"]

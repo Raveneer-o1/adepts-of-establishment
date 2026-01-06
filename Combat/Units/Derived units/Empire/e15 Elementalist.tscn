@@ -135,6 +135,7 @@ unit_class = 5
 brief_description = "Mage that can summon units during battle."
 full_description = "Those who have learned to communicate with nature are called Elementalists. They call upon elemental spirits, summoning them to unleash their primordial power."
 portrait_texture = ExtResource("2_0ppj8")
+portrait_texture_path = "res://Arts/Placeholders/Elementalist.jpg"
 cost_gold = 150
 cost_mana = 100
 

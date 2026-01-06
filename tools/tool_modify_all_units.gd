@@ -4,7 +4,7 @@ extends EditorScript
 func change_unit(u: Unit) -> void:
 	# This function is a template for modifying Unit resources
 	# Implement custom unit modification logic here
-	u.needed_xp = (u.find_child("UnitParameters") as UnitParameters).level ** 2 * 100
+	u.portrait_texture_path = u.portrait_texture.resource_path
 
 func handle_file(s: String) -> void:
 	EditorInterface.open_scene_from_path(s)

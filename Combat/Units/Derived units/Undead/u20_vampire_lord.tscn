@@ -159,6 +159,7 @@ unit_class = 4
 brief_description = "Mage with lifesteal."
 full_description = "Untouched by time, Vampire Lords hone their magic eternally, growing ever stronger in power."
 portrait_texture = ExtResource("2_8nuui")
+portrait_texture_path = "res://Arts/Placeholders/Vampire lord (2).jpg"
 cost_gold = 500
 cost_stone = 700
 cost_mana = 1100

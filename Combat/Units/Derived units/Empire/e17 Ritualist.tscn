@@ -116,6 +116,7 @@ unit_class = 5
 brief_description = "Mage able to summon multiple elementals."
 full_description = "Through acrabe rituals, some mages weave bonds with the world's very spirits and command multiple elementals at once."
 portrait_texture = ExtResource("2_uayg2")
+portrait_texture_path = "res://Arts/Placeholders/Ritualist.jpg"
 cost_gold = 600
 cost_stone = 50
 cost_mana = 500

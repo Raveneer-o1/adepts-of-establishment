@@ -194,6 +194,7 @@ unit_class = 2
 brief_description = "Melee fighter with sturdy armor and ability to protect others."
 full_description = "The most noble of knights are granted the title of Knight Master. Their will an unbreakable bulwark, a living shield sworn to guard The Empire's cause."
 portrait_texture = ExtResource("2_f4ity")
+portrait_texture_path = "res://Arts/Placeholders/Knight master.jpg"
 cost_gold = 220
 cost_stone = 70
 

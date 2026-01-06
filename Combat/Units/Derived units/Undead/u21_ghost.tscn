@@ -110,6 +110,7 @@ unit_class = 4
 brief_description = "Archer with no damage that pralyses targets."
 full_description = "When a soul cannot find its way to The Dark, it may be materialized as a ghost. Though unable to interfere directly, these creatures trap unsuspecting victims in illusions, rendering them vulnerable to other Necropolis forces."
 portrait_texture = ExtResource("2_axmat")
+portrait_texture_path = "res://Arts/Placeholders/Ghost.jpg"
 cost_mana = 50
 
 [node name="AnimationHandle" parent="." index="0"]

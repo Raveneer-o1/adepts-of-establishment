@@ -177,6 +177,7 @@ unit_class = 3
 brief_description = "Melee fighter with increased evasion and double attack."
 full_description = "Hailing from the distant continent of Ari'Tonia, Samurai answer The Empire's call, honoring the ancient alliance that once united the world."
 portrait_texture = ExtResource("2_utg5b")
+portrait_texture_path = "res://Arts/Placeholders/Samurai.jpg"
 cost_gold = 200
 cost_mana = 50
 

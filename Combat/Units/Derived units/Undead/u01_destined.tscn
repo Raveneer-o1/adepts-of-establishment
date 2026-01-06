@@ -122,6 +122,7 @@ unit_class = 1
 brief_description = "Regular melee fighter."
 full_description = "The King of Necropolis accepts all servants. Those who pledge their loyalty to the Necropolis before death claims them are known as the Destined. They are often lured by the King's promises, unaware of the fate that awaits them."
 portrait_texture = ExtResource("2_4cakw")
+portrait_texture_path = "res://Arts/Placeholders/Destined.jpg"
 cost_gold = 30
 cost_stone = 40
 

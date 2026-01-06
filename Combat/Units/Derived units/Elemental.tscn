@@ -143,6 +143,7 @@ faction = 5
 needed_xp = 100
 full_description = "Elementals are spirits of the magic, they roam the Fourfold without any innate purpose. Elementalists have learned how to communicate with them and summon them in times of need."
 portrait_texture = ExtResource("2_x1sii")
+portrait_texture_path = "res://Arts/Placeholders/Elemental.jpg"
 cost_mana = 200
 
 [node name="AnimationHandle" parent="." index="0"]

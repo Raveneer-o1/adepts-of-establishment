@@ -155,6 +155,7 @@ unit_class = 3
 brief_description = "Strong melee unit."
 full_description = "Vampires who succumb to their insatiable hunger mutate beyond recognition. These Blood Spawn are devoid of any intelligence they once had and care only about killing and devouring as much of the living as possible. Mindless piles of flesh and bone, they are equally dangerous to allies and foes alike.	"
 portrait_texture = ExtResource("2_fa30q")
+portrait_texture_path = "res://Arts/Placeholders/Blood spawn.jpg"
 cost_stone = 1000
 cost_mana = 1000
 

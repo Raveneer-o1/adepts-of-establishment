@@ -151,6 +151,7 @@ faction = 8
 needed_xp = 400
 full_description = "Ogres are hulking brutes with unparalleled physical power, smashing through enemies and obstacles alike. Though not known for their intelligence, their immense strength and resilience make them formidable foes. These behemoths are often used as shock troops, devastating enemy ranks with crushing blows."
 portrait_texture = ExtResource("2_6ygjt")
+portrait_texture_path = "res://Arts/Placeholders/Ogre.jpg"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_ktgvs")

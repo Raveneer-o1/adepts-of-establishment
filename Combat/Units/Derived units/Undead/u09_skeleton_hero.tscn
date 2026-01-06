@@ -162,6 +162,7 @@ unit_class = 1
 brief_description = "Melee fighter that rises stronger every time it's resurrected."
 full_description = "The most powerful of the undead troops are called Skeleton Heroes. Cursing the very land they walk on, these creatures are able to defy the laws of nature to impose their Master's will and spread the Necropolis's domain."
 portrait_texture = ExtResource("2_tryhr")
+portrait_texture_path = "res://Arts/Placeholders/Phantom warrior.jpg"
 cost_gold = 200
 cost_stone = 1000
 cost_mana = 500

@@ -168,6 +168,7 @@ unit_class = 5
 brief_description = "Large unit, can attack entire line."
 full_description = "Terrifying Dreadwyrms are often confused with true dragons: their necrotic breath can cover entire cities, leaving only lifeless wastelands"
 portrait_texture = ExtResource("2_twryw")
+portrait_texture_path = "res://Arts/Placeholders/Dreadwyrm.jpg"
 cost_gold = 500
 cost_stone = 2300
 cost_mana = 1800

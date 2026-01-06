@@ -164,6 +164,7 @@ unit_class = 4
 brief_description = "Weak archer with increased accuracy."
 full_description = "Through years of practice, Marksmen hone their skills, develop precise, lethal accuracy with bow, standing ever-ready to support the army's efforts."
 portrait_texture = ExtResource("2_y56b3")
+portrait_texture_path = "res://Arts/Placeholders/Marksman.jpg"
 cost_gold = 200
 cost_stone = 30
 

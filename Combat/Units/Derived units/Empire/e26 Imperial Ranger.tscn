@@ -167,6 +167,7 @@ unit_class = 4
 brief_description = "Archer with multiple attacks, able to assist allies."
 full_description = "Those who have proven themselves as skilled archers and valuable scouts are rewarded with the attire of the Imperial Ranger. Armed with enchanted bows, they shoot with precision to aid their allies."
 portrait_texture = ExtResource("2_l3nsv")
+portrait_texture_path = "res://Arts/Placeholders/Imperial ranger.jpg"
 cost_gold = 1000
 cost_stone = 500
 cost_mana = 100

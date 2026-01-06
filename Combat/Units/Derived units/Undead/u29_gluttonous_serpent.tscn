@@ -124,6 +124,7 @@ unit_class = 3
 brief_description = "Large melee unit."
 full_description = "Unable to control its hunger, the Gluttonous Serpent falls into mindless feasting. Controlled only by the King's will, it will attack any living or otherwise creature that approaches too closely."
 portrait_texture = ExtResource("2_hpxbw")
+portrait_texture_path = "res://Arts/Placeholders/Gluttonous serpent.jpg"
 cost_gold = 300
 cost_stone = 1500
 cost_mana = 1200

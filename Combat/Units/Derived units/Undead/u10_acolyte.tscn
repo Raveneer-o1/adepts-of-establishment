@@ -132,6 +132,7 @@ unit_class = 5
 brief_description = "Weak mage."
 full_description = "Mortals who bear the stigma of studying forbidden death magic are not welcome in normal society. While not yet citizens of the Necropolis, they often ally with its forces in the wilds, aiding the King's aims in hopes of one day earning a place within."
 portrait_texture = ExtResource("2_ow6vu")
+portrait_texture_path = "res://Arts/Placeholders/Death acolyte.jpg"
 cost_gold = 30
 cost_mana = 30
 

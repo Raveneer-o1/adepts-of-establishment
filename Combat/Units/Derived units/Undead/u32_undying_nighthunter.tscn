@@ -155,6 +155,7 @@ unit_class = 5
 brief_description = "Large unit, can attack entire line."
 full_description = "Dragons defiled by the King's power and granted eternal life become his servants—the Undying Nighthunters. Vanishing into the nocturnal darkness, these creatures will let no one pass the Necropolis borders."
 portrait_texture = ExtResource("2_5hg6d")
+portrait_texture_path = "res://Arts/Placeholders/Undying nighthunter.jpg"
 cost_gold = 400
 cost_stone = 4300
 cost_mana = 2500

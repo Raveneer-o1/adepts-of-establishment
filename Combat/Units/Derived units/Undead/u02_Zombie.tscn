@@ -121,6 +121,7 @@ unit_class = 2
 brief_description = "Sturdy melee fighter with weak damage."
 full_description = "Mindless corpses reanimated with dark magic. Zombies compensate for their disorganized nature with pure, relentless durability in battle."
 portrait_texture = ExtResource("2_umogf")
+portrait_texture_path = "res://Arts/Placeholders/Zombie.jpg"
 cost_gold = 100
 cost_stone = 100
 

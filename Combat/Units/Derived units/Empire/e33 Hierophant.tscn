@@ -160,6 +160,7 @@ brief_description = "Single-target healer able to resurret fallen warriors."
 full_description = "\"... We hereby welcome thee as the face of the Church. Thine will shall now be the will of the Church, and thine heart shall belong to the Council of Thorns.\"
 - Council of Thorns"
 portrait_texture = ExtResource("2_xtxab")
+portrait_texture_path = "res://Arts/Placeholders/Hierophant.jpg"
 cost_gold = 2000
 cost_stone = 500
 

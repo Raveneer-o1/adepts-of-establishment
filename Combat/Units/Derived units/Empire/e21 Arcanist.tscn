@@ -147,6 +147,7 @@ unit_class = 5
 brief_description = "Powerful mage with huge damage but weak defense."
 full_description = "Transcending the limits of human soul and body, Arcanists weave their spells by commanding nature itself to eliminate their enemies. Tapping into the Element Temple, an Arcanist's power borders on divinity."
 portrait_texture = ExtResource("2_qovuj")
+portrait_texture_path = "res://Arts/Placeholders/Arcanist.jpg"
 cost_gold = 900
 cost_stone = 300
 cost_mana = 1800

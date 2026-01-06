@@ -177,6 +177,7 @@ unit_class = 1
 brief_description = "Melee fighters with high damage and defensive aura."
 full_description = "The War of Establishment shakes the foundation of the Fourfold, and even celestial pride must be put away as the threat is looming over all the living. When angel descend - deathless beings with swords of pure light - and join the battle, nothing can stand in their way."
 portrait_texture = ExtResource("2_cyr52")
+portrait_texture_path = "res://Arts/Placeholders/Angel.jpg"
 cost_gold = 1000
 cost_stone = 300
 cost_mana = 800

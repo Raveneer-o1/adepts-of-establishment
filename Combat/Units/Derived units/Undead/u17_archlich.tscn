@@ -168,6 +168,7 @@ unit_class = 5
 brief_description = "Weak mage with ability to resurrect and two double actions per round."
 full_description = "The strongest of the Necropolis' mages bear the name of Archliches. These beings can bend life and death to their will. Nothing alive can stand in their way, and nothing dead can resist their command."
 portrait_texture = ExtResource("2_6wk45")
+portrait_texture_path = "res://Arts/Placeholders/Archlich.jpg"
 cost_mana = 1700
 
 [node name="AnimationHandle" parent="." index="0"]

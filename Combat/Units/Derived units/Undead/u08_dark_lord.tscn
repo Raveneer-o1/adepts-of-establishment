@@ -170,6 +170,7 @@ unit_class = 3
 brief_description = "Melee anti-mage fighters."
 full_description = "The living who have proven their worth to the Necropolis are granted access to the secrets of the undead. They bear the name of Dark Lord, for their connection to the Necropolis is so strong that their whisper can deprive others of the will to live."
 portrait_texture = ExtResource("2_ifm0e")
+portrait_texture_path = "res://Arts/Placeholders/Dark lord.jpg"
 cost_gold = 1200
 cost_stone = 200
 

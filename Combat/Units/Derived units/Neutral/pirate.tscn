@@ -162,6 +162,7 @@ faction = 6
 needed_xp = 900
 full_description = "Pirates are rowdy and fearless, driven by a lust for gold and adventure. Armed with an array of mismatched weapons, they thrive in chaotic battles where their opportunistic nature shines. Their unpredictability and savage fighting style make them a force to be reckoned with."
 portrait_texture = ExtResource("2_osep0")
+portrait_texture_path = "res://Arts/Placeholders/Pirate.jpg"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_gjc2m")

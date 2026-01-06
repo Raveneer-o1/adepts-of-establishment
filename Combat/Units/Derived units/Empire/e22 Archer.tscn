@@ -168,6 +168,7 @@ unit_class = 4
 brief_description = "Weak archer."
 full_description = "Every army needs the support of ranged units, and archers are often relied upon to pick off the enemy's support or assist the primary assault forces."
 portrait_texture = ExtResource("2_oeoou")
+portrait_texture_path = "res://Arts/Placeholders/Archer.jpg"
 cost_gold = 70
 cost_stone = 10
 

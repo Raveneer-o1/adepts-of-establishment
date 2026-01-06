@@ -134,6 +134,7 @@ unit_class = 5
 brief_description = "Fragile mage."
 full_description = "Over time apprentice makes themselves a name and can be called a Mage. As their experience grows, so does their knowledge and power of their spells."
 portrait_texture = ExtResource("2_p2es4")
+portrait_texture_path = "res://Arts/Placeholders/Mage.jpg"
 cost_gold = 200
 cost_mana = 80
 

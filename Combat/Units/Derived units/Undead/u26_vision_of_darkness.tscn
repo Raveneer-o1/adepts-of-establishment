@@ -204,6 +204,7 @@ needed_xp = 1600
 brief_description = "Archer with almost no damage that pralyses several targets."
 full_description = "A quick glance into the darkness that awaits every soul at the end makes even the bravest tremble in fear."
 portrait_texture = ExtResource("2_auyjr")
+portrait_texture_path = "res://Arts/Placeholders/Vision of darkness.jpg"
 cost_mana = 2000
 
 [node name="AnimationHandle" parent="." index="0"]

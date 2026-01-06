@@ -145,6 +145,7 @@ unit_class = 3
 brief_description = "Melee fighter with increased evasion."
 full_description = "Trained by the Church to hunt down lesser evil spawns, witch hunters are skilled with blade and zeal. Though officially not part of the Inquisition, witch hunters serve The Empire as wards against darkness."
 portrait_texture = ExtResource("2_1j3rb")
+portrait_texture_path = "res://Arts/Placeholders/Witch hunter.jpg"
 cost_gold = 130
 cost_mana = 10
 

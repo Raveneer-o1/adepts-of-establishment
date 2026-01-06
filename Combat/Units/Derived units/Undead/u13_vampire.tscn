@@ -144,6 +144,7 @@ unit_class = 4
 brief_description = "Mage with lifesteal."
 full_description = "Very few mortals dare to perform the blood ritual and become the hunters of the night - Vampires. These creatures are neither dead nor alive. Straddling the border between life and death, they sustain their accursed existence only by consuming the life force of others can."
 portrait_texture = ExtResource("2_ahyrf")
+portrait_texture_path = "res://Arts/Placeholders/Vampire.jpg"
 cost_gold = 200
 cost_stone = 500
 cost_mana = 700

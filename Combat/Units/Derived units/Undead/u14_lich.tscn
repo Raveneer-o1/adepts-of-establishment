@@ -125,6 +125,7 @@ unit_class = 5
 brief_description = "Weak mage with ability to resurrect and two actions per round."
 full_description = "When a necromancer willingly parts with their life in the name of the Necropolis, they are bestowed a place among the elite. They are now a Lich - a conduit of eternal rest for all who oppose the will of the King."
 portrait_texture = ExtResource("2_jn4dx")
+portrait_texture_path = "res://Arts/Placeholders/Lich.jpg"
 cost_stone = 300
 cost_mana = 900
 

@@ -154,6 +154,7 @@ unit_class = 5
 brief_description = "Mage with low damage but significant debuff."
 full_description = "Flickering lights above the bog, Will-o’-Wisps lure travelers in only to drain them of their willpower. They serve no one, but the King's promise of new, delicious mortals makes them join the undead march."
 portrait_texture = ExtResource("2_7liif")
+portrait_texture_path = "res://Arts/Placeholders/Will-o-whisp.jpg"
 cost_mana = 350
 
 [node name="AnimationHandle" parent="." index="0"]

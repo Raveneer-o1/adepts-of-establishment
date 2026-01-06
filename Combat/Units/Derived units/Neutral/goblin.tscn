@@ -130,6 +130,7 @@ unit_type = 1
 faction = 8
 full_description = "Goblin Archers are small but surprisingly deadly, using their agility to stay out of reach while raining arrows on their enemies. Though their aim can be erratic, their sheer numbers often compensate for individual accuracy. They are often deployed as harassers, chipping away at enemy forces from a safe distance."
 portrait_texture = ExtResource("2_subec")
+portrait_texture_path = "res://Arts/Placeholders/Goblin.jpg"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_ofmvw")

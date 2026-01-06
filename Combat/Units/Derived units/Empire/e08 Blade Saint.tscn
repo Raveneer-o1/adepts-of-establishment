@@ -237,6 +237,7 @@ unit_class = 3
 brief_description = "Melee fighter with increased evasion, double attack and increasing damage."
 full_description = "The most skilled warriors of Ari'Tonia bear the name \"Blade Saint.\" Their moves are fluid and lightning fast. Renowned for their skills, they earn respect even from the Old Masters."
 portrait_texture = ExtResource("2_irywl")
+portrait_texture_path = "res://Arts/Placeholders/Blade saint.jpg"
 cost_gold = 800
 cost_stone = 150
 cost_mana = 50

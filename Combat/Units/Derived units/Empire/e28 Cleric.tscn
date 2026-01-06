@@ -117,6 +117,7 @@ needed_xp = 400
 brief_description = "Weak healer, able to heal the entire party."
 full_description = "Gods may be hesitant to respond to prayers, but with enough diligence and faith, Clerics can bestow divine blessings upon the army, healing bodies and strengthening minds."
 portrait_texture = ExtResource("2_qwoac")
+portrait_texture_path = "res://Arts/Placeholders/Cleric.jpg"
 cost_gold = 100
 cost_stone = 30
 cost_mana = 100

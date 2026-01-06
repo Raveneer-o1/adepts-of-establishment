@@ -122,6 +122,7 @@ faction = 1
 brief_description = "Healer."
 full_description = "Though their faith might be weak, Acolyte's compassion for the suffering allows them to cure wounds on the battlefield."
 portrait_texture = ExtResource("2_iryao")
+portrait_texture_path = "res://Arts/Placeholders/Acolyte.jpg"
 cost_gold = 50
 cost_mana = 50
 

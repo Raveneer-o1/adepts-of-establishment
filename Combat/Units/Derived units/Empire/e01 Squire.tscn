@@ -143,6 +143,7 @@ unit_class = 1
 brief_description = "Melee fighter. Weak but will do everything he can."
 full_description = "Squires are not usually considered a part of the main force of The Empire but they stand ready to defend the weak with all their skill."
 portrait_texture = ExtResource("2_e5wc5")
+portrait_texture_path = "res://Arts/Placeholders/Squire.jpg"
 cost_gold = 70
 
 [node name="AnimationHandle" parent="." index="0"]

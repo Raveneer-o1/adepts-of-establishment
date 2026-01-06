@@ -198,6 +198,7 @@ faction = 8
 needed_xp = 1600
 full_description = "Orc Chieftains are the leaders of their clans, commanding respect through strength and cunning. They inspire their kin with battle cries and powerful strikes, rallying their forces to victory."
 portrait_texture = ExtResource("2_qguc2")
+portrait_texture_path = "res://Arts/Placeholders/Orc chieftain.jpg"
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_ao4o3")

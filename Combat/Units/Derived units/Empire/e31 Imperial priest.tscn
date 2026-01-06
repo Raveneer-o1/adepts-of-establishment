@@ -145,6 +145,7 @@ brief_description = "Single-targrt strong healer able to cure allies."
 full_description = "\"... Thou art as dust beneath the feet of the Gods. Let all bear witness that thy deeds are the Church's bidding, not thy will. Thy tongue now speaketh with the Church's voice; thy light is a gift bestowed by the very Gods.\"
 From the \"Level 2 Ordination ceremony\", issued by decree #16-857 of The Church, approved by Council of Thorns."
 portrait_texture = ExtResource("2_v4rxq")
+portrait_texture_path = "res://Arts/Placeholders/Clergyman.jpg"
 cost_gold = 800
 cost_stone = 300
 

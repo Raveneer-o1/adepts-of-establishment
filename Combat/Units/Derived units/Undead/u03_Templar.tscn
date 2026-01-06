@@ -142,6 +142,7 @@ unit_class = 1
 brief_description = "Living warrior with ward against elemental damage."
 full_description = "Mocking the Holy Church, the King of Necropolis created his own order of Templars. Its members gain powers ovet the elements and authority, serving the Necropolis not as mindless thralls, but as willing champions of its dark purpose."
 portrait_texture = ExtResource("2_imxh0")
+portrait_texture_path = "res://Arts/Placeholders/Templar.jpg"
 cost_gold = 450
 cost_stone = 100
 

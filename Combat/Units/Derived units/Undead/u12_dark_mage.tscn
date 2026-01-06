@@ -164,6 +164,7 @@ unit_class = 5
 brief_description = "Single target mage."
 full_description = "Sometimes death brings not peace and rest, but despair, suffering, and agony. Dark Mages focus on that aspect of death, bringing unimaginable curses upon anyone who stands in the way of the King."
 portrait_texture = ExtResource("2_bp74a")
+portrait_texture_path = "res://Arts/Placeholders/Dark mage.jpg"
 cost_gold = 50
 cost_stone = 50
 cost_mana = 200
