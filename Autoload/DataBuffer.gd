@@ -3,6 +3,8 @@ extends Node
 var loaded_images: Dictionary[String, CompressedTexture2D]
 var loaded_units: Dictionary[StringName, UnitData]
 
+## Loads and returns a compressed texture from the specified [param path].
+## The texture is cached by [DataBuffer] for immediate retrieval on subsequent calls.
 func get_image(path: String) -> CompressedTexture2D:
 	if loaded_images.has(path): return loaded_images[path]
 	if not path: return null
