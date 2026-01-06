@@ -117,6 +117,9 @@ var faction: GlobalDefs.Faction:
 var unit_type: GlobalDefs.UnitType:
 	get: return database_dict.get(&"unit_type", GlobalDefs.UnitType.Undefined)
 
+var portrait_texture_path: String:
+	get: return database_dict.get(&"portrait_texture_path", "")
+
 var is_dead: bool:
 	get: return current_hp <= 0
 

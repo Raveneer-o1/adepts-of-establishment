@@ -74,7 +74,8 @@ const SKIP_DELAY = 0.4
 @export var unit_class: UnitData.UnitClass = UnitData.UnitClass.Undefined
 @export_multiline var brief_description: String
 @export_multiline var full_description: String
-@export var portrait_texture: Texture2D
+var portrait_texture: Texture2D:
+	get: return ImageBuffer.get_image(portrait_texture_path)
 @export_file_path("*.*") var portrait_texture_path: String
 
 @export_group("Cost")
@@ -171,6 +172,9 @@ var active: bool = false
 ## If this reference is lost, the unit cannot update health, experience,
 ## and other persistent parameters after combat concludes.
 var original_data: UnitData = null
+
+var current_xp: int:
+	get: return original_data.current_xp if original_data else 0
 
 const LEVELUP_EFFECT = preload("uid://bdxoklt2vs33j")
 

@@ -5,6 +5,5 @@ extends PopupBase
 
 func show_unit(unit: UnitData) -> void:
 	unit_info_panel.fill_data(unit)
-	# TODO: replace portraits
-	#unit_info_panel.replace_portrait(unit)
+	unit_info_panel.replace_portrait(unit.portrait_texture_path)
 	show()

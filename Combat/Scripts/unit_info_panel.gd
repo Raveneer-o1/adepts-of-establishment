@@ -7,6 +7,7 @@ class_name UnitInfoPanel
 
 # Formatting constants for unit stats to maintain consistency in text presentation.
 const HP_LINE = "HP: %d/%d\n"
+const XP_LINE = "XP: %d/%d\n"
 const DAMAGE_LINE = "Damage: %d (%s)\n"
 const ARMOR_LINE = "Armor: %d\n"
 const EVASION_LINE = "Evasion: %s\n"
@@ -42,6 +43,7 @@ func fill_data(unit: UnitData) -> void:
 	full_info.text = ""
 	
 	var hp_text: String = HP_LINE % [unit.current_hp, unit.max_hp]
+	var xp_text: String = XP_LINE % [unit.current_xp, unit.needed_xp]
 	var armor_text := ARMOR_LINE % unit.armor
 	var evasion_text := get_evasion_text(unit.evasion)
 	var damage_text: String = ""
@@ -100,13 +102,18 @@ func fill_data(unit: UnitData) -> void:
 	
 	full_info.append_text(DESCRIOTION_LINE % unit.description)
 	
-	info.text = hp_text + unit.brief_description
+	info.text = "%s%s\n%s" % [
+		hp_text,
+		xp_text,
+		unit.brief_description
+	] 
 
 func fill_text_data(unit: Unit) -> void:
 	info.text = ""
 	full_info.text = ""
 	
 	var hp_text: String = HP_LINE % [unit.parameters.hp, unit.parameters.max_hp]
+	var xp_text: String = XP_LINE % [unit.current_xp, unit.needed_xp]
 	var armor_text := ARMOR_LINE % unit.parameters.armor
 	var evasion_text := get_evasion_text(unit.parameters.evasion)
 	var damage_text: String = ""
@@ -176,11 +183,18 @@ func fill_text_data(unit: Unit) -> void:
 	
 	full_info.append_text(DESCRIOTION_LINE % unit.full_description)
 	
-	info.text = hp_text + unit.brief_description
+	info.text = "%s\n%s\n%s" %[
+		hp_text,
+		xp_text,
+		unit.brief_description
+	] 
 
-func replace_portrait(texture: Texture2D) -> void:
+func replace_portrait(texture_path: String) -> void:
+	var texture := ImageBuffer.get_image(texture_path)
 	if texture != null:
 		portrait.texture = texture
+		portrait.show()
+	else: portrait.hide()
 
 ## Populates the UI panel with formatted unit information.
 ## Displays HP, armor, base damage, and details of each attack
@@ -188,7 +202,7 @@ func replace_portrait(texture: Texture2D) -> void:
 func populate_panel_with_info(unit: Unit) -> void:
 	fill_text_data(unit)
 	
-	replace_portrait(unit.portrait_texture)
+	replace_portrait(unit.portrait_texture_path)
 	
 	visible = true
 

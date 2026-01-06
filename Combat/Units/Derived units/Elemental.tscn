@@ -1,8 +1,7 @@
-[gd_scene load_steps=34 format=3 uid="uid://bit78176xambc"]
+[gd_scene load_steps=33 format=3 uid="uid://bit78176xambc"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_8bfir"]
 [ext_resource type="Texture2D" uid="uid://6jj45kplnwsc" path="res://Arts/Empire units/elemental attack .png" id="2_wfcjt"]
-[ext_resource type="Texture2D" uid="uid://gtn3robkrymf" path="res://Arts/Placeholders/Elemental.jpg" id="2_x1sii"]
 [ext_resource type="Texture2D" uid="uid://pnn418fkviek" path="res://Arts/Empire units/elemental idle .png" id="3_dsoog"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_dakjd"]
 [ext_resource type="PackedScene" uid="uid://n106oxapxy1v" path="res://Combat/Effects/Scenes/medium_wind.tscn" id="4_nay0k"]
@@ -142,7 +141,6 @@ unit_type = 2
 faction = 5
 needed_xp = 100
 full_description = "Elementals are spirits of the magic, they roam the Fourfold without any innate purpose. Elementalists have learned how to communicate with them and summon them in times of need."
-portrait_texture = ExtResource("2_x1sii")
 portrait_texture_path = "res://Arts/Placeholders/Elemental.jpg"
 cost_mana = 200
 
