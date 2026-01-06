@@ -12,7 +12,7 @@ const database = {
  &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [3, 1]
  
 }]
-, &"base_damage": 90, &"max_hp": 600, &"armor": 20, &"evasion": 0.005, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 90, &"max_hp": 600, &"armor": 20, &"evasion": 0.005, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Dreadwyrm.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 500, &"stone": 2300, &"mana": 1800 
 } 
 },&"Vision of Darkness" : {
@@ -26,7 +26,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 25, &"max_hp": 150, &"armor": 0, &"evasion": 0.2, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 25, &"max_hp": 150, &"armor": 0, &"evasion": 0.2, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Vision of darkness.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 2000 
 } 
 },&"Undying Nighthunter" : {
@@ -44,7 +44,7 @@ const database = {
  &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [3, 2]
  
 }]
-, &"base_damage": 180, &"max_hp": 800, &"armor": 35, &"evasion": 0.005, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 180, &"max_hp": 800, &"armor": 35, &"evasion": 0.005, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Undying nighthunter.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 400, &"stone": 4300, &"mana": 2500 
 } 
 },&"Templar" : {
@@ -63,7 +63,7 @@ const database = {
  &"effect_name": "Twisted will", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/random_retaliation_on_debuff.tscn", &"args": [2, 0, 1.2]
  
 }]
-, &"base_damage": 45, &"max_hp": 150, &"armor": 10, &"evasion": 0.05, &"shielding_chance": 0.75, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 45, &"max_hp": 150, &"armor": 10, &"evasion": 0.05, &"shielding_chance": 0.75, &"portrait_texture_path": "res://Arts/Placeholders/Templar.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 450, &"stone": 100, &"mana": 0 
 } 
 },&"Wyvern" : {
@@ -76,7 +76,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 50, &"max_hp": 300, &"armor": 0, &"evasion": 0.005, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 50, &"max_hp": 300, &"armor": 0, &"evasion": 0.005, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Wyvern.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 100, &"stone": 400, &"mana": 100 
 } 
 },&"Herald of Death" : {
@@ -93,7 +93,7 @@ const database = {
  &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [0, 2]
  
 }]
-, &"base_damage": 95, &"max_hp": 180, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 95, &"max_hp": 180, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Herald of death.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 0, &"stone": 300, &"mana": 1600 
 } 
 },&"Ghost" : {
@@ -107,7 +107,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 0, &"max_hp": 70, &"armor": 0, &"evasion": 0.07, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 0, &"max_hp": 70, &"armor": 0, &"evasion": 0.07, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Ghost.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 50 
 } 
 },&"The Devourer" : {
@@ -128,7 +128,7 @@ const database = {
  &"effect_name": "Agility", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/agility.tscn", &"args": [3, 1.3]
  
 }]
-, &"base_damage": 240, &"max_hp": 800, &"armor": 35, &"evasion": 0.1, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 240, &"max_hp": 800, &"armor": 35, &"evasion": 0.1, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Devourer.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 500, &"stone": 4000, &"mana": 2100 
 } 
 },&"Skeleton Hero" : {
@@ -155,7 +155,7 @@ const database = {
 }]
  
 }]
-, &"base_damage": 100, &"max_hp": 350, &"armor": 50, &"evasion": 0.05, &"shielding_chance": 0.3, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 100, &"max_hp": 350, &"armor": 50, &"evasion": 0.05, &"shielding_chance": 0.3, &"portrait_texture_path": "res://Arts/Placeholders/Phantom warrior.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 200, &"stone": 1000, &"mana": 500 
 } 
 },&"The Eternal" : {
@@ -170,7 +170,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 40, &"max_hp": 180, &"armor": 0, &"evasion": 0.2, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 40, &"max_hp": 180, &"armor": 0, &"evasion": 0.2, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/The eternal.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 1666 
 } 
 },&"Dark Mage" : {
@@ -184,7 +184,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 45, &"max_hp": 75, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 45, &"max_hp": 75, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Dark mage.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 50, &"stone": 50, &"mana": 200 
 } 
 },&"Skeleton warrior" : {
@@ -208,7 +208,7 @@ const database = {
 }]
  
 }]
-, &"base_damage": 80, &"max_hp": 275, &"armor": 35, &"evasion": 0.05, &"shielding_chance": 0.0, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 80, &"max_hp": 275, &"armor": 35, &"evasion": 0.05, &"shielding_chance": 0.0, &"portrait_texture_path": "res://Arts/Placeholders/Skeleton champion.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 200, &"stone": 1000, &"mana": 350 
 } 
 },&"Necromancer" : {
@@ -221,7 +221,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 30, &"max_hp": 75, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 30, &"max_hp": 75, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Necromancer.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 50, &"stone": 0, &"mana": 150 
 } 
 },&"Dark Lord" : {
@@ -239,7 +239,7 @@ const database = {
 }, {
  &"effect_name": "Denial", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/negative_effect_negate.tscn", &"args": 3 
 }]
-, &"base_damage": 80, &"max_hp": 275, &"armor": 35, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 80, &"max_hp": 275, &"armor": 35, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Dark lord.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 1200, &"stone": 200, &"mana": 0 
 } 
 },&"Destined" : {
@@ -252,7 +252,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 35, &"max_hp": 90, &"armor": 0, &"evasion": 0.04, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 35, &"max_hp": 90, &"armor": 0, &"evasion": 0.04, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Destined.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 30, &"stone": 40, &"mana": 0 
 } 
 },&"Zombie" : {
@@ -267,7 +267,7 @@ const database = {
 , &"effects": [{
  &"effect_name": "Regeneration", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/on_turn_self_heal.tscn", &"args": 10 
 }]
-, &"base_damage": 35, &"max_hp": 200, &"armor": 15, &"evasion": 0.025, &"shielding_chance": 0.8, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 35, &"max_hp": 200, &"armor": 15, &"evasion": 0.025, &"shielding_chance": 0.8, &"portrait_texture_path": "res://Arts/Placeholders/Zombie.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 100, &"stone": 100, &"mana": 0 
 } 
 },&"Vampire" : {
@@ -286,7 +286,7 @@ const database = {
  &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [3, 1]
  
 }]
-, &"base_damage": 40, &"max_hp": 150, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 40, &"max_hp": 150, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Vampire.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 200, &"stone": 500, &"mana": 700 
 } 
 },&"Specter" : {
@@ -300,7 +300,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 10, &"max_hp": 100, &"armor": 0, &"evasion": 0.1, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 10, &"max_hp": 100, &"armor": 0, &"evasion": 0.1, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Specter.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 180 
 } 
 },&"Fallen Inquisitor" : {
@@ -321,7 +321,7 @@ const database = {
 }, {
  &"effect_name": "Denial", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/negative_effect_negate.tscn", &"args": 1 
 }]
-, &"base_damage": 60, &"max_hp": 200, &"armor": 20, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 60, &"max_hp": 200, &"armor": 20, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Fallen inquisitor.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 600, &"stone": 150, &"mana": 0 
 } 
 },&"Elder vampire" : {
@@ -341,7 +341,7 @@ const database = {
  &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [3, 1]
  
 }]
-, &"base_damage": 60, &"max_hp": 220, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 60, &"max_hp": 220, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Vampire lord.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 200, &"stone": 600, &"mana": 1000 
 } 
 },&"Gluttonous Serpent" : {
@@ -359,7 +359,7 @@ const database = {
 }, {
  &"effect_name": "Devourer", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/devourer.tscn", &"args": 100 
 }]
-, &"base_damage": 120, &"max_hp": 600, &"armor": 20, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 120, &"max_hp": 600, &"armor": 20, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Gluttonous serpent.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 300, &"stone": 1500, &"mana": 1200 
 } 
 },&"Archlich" : {
@@ -380,7 +380,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 60, &"max_hp": 150, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 60, &"max_hp": 150, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Archlich.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 1700 
 } 
 },&"Dracolich" : {
@@ -396,7 +396,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 200, &"max_hp": 1000, &"armor": 50, &"evasion": 0.01, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 200, &"max_hp": 1000, &"armor": 50, &"evasion": 0.01, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Dracolich.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 400, &"stone": 6500, &"mana": 4500 
 } 
 },&"Blood spawn" : {
@@ -417,7 +417,7 @@ const database = {
  &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [3, 2]
  
 }]
-, &"base_damage": 100, &"max_hp": 350, &"armor": 50, &"evasion": 0.1, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 100, &"max_hp": 350, &"armor": 50, &"evasion": 0.1, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Blood spawn.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 0, &"stone": 1000, &"mana": 1000 
 } 
 },&"Wraith" : {
@@ -434,7 +434,7 @@ const database = {
  &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [0, 1]
  
 }]
-, &"base_damage": 60, &"max_hp": 100, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 60, &"max_hp": 100, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Wraith.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 1200 
 } 
 },&"Lich" : {
@@ -455,7 +455,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 40, &"max_hp": 85, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 40, &"max_hp": 85, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Lich.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 0, &"stone": 300, &"mana": 900 
 } 
 },&"Will-o’-Wisp" : {
@@ -470,7 +470,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 30, &"max_hp": 140, &"armor": 0, &"evasion": 0.15, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 30, &"max_hp": 140, &"armor": 0, &"evasion": 0.15, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Will-o-whisp.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 350 
 } 
 },&"Skeleton" : {
@@ -487,7 +487,7 @@ const database = {
  &"max_HP": 30, &"armor": 10, &"base_damage": 20, &"evasion": 0.01 
 } 
 }]
-, &"base_damage": 60, &"max_hp": 200, &"armor": 20, &"evasion": 0.05, &"shielding_chance": 0.0, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 60, &"max_hp": 200, &"armor": 20, &"evasion": 0.05, &"shielding_chance": 0.0, &"portrait_texture_path": "res://Arts/Placeholders/Skeleton.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 150, &"stone": 600, &"mana": 300 
 } 
 },&"Shadow" : {
@@ -501,7 +501,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 15, &"max_hp": 11, &"armor": 0, &"evasion": 0.15, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 15, &"max_hp": 11, &"armor": 0, &"evasion": 0.15, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Shadow.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 380 
 } 
 },&"Vampire Lord" : {
@@ -528,7 +528,7 @@ const database = {
  &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [3, 2]
  
 }]
-, &"base_damage": 75, &"max_hp": 285, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 75, &"max_hp": 285, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Vampire lord (2).jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 500, &"stone": 700, &"mana": 1100 
 } 
 },&"Phantom Warrior" : {
@@ -548,7 +548,7 @@ const database = {
  &"effect_name": "Phantom", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/Phantom.tscn", &"args": [0, 1]
  
 }]
-, &"base_damage": 45, &"max_hp": 180, &"armor": 10, &"evasion": 0.1, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 45, &"max_hp": 180, &"armor": 10, &"evasion": 0.1, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Skeleton hero.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 100, &"stone": 300, &"mana": 300 
 } 
 },&"Doomdrake" : {
@@ -565,7 +565,7 @@ const database = {
  &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [3, 1]
  
 }]
-, &"base_damage": 65, &"max_hp": 450, &"armor": 10, &"evasion": 0.005, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 65, &"max_hp": 450, &"armor": 10, &"evasion": 0.005, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Doomdrake.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 200, &"stone": 700, &"mana": 300 
 } 
 },&"Death Acolyte" : {
@@ -578,7 +578,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 15, &"max_hp": 50, &"armor": 0, &"evasion": 0.045, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 15, &"max_hp": 50, &"armor": 0, &"evasion": 0.045, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Death acolyte.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 30, &"stone": 0, &"mana": 30 
 } 
 },&"Grave whisperer" : {
@@ -600,7 +600,7 @@ const database = {
  &"effect_name": "Vamirism", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/vampirism.tscn", &"args": [0.35, true]
  
 }]
-, &"base_damage": 80, &"max_hp": 150, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 80, &"max_hp": 150, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"cost": {
  &"gold": 400, &"stone": 0, &"mana": 0 
 } 
 },&"Dame Seraphine" : {
@@ -613,7 +613,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 70, &"max_hp": 200, &"armor": 20, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 70, &"max_hp": 200, &"armor": 20, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"cost": {
  &"gold": 500, &"stone": 100, &"mana": 100 
 } 
 },&"Virion the Bonebinder" : {
@@ -626,7 +626,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 50, &"max_hp": 170, &"armor": 15, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 50, &"max_hp": 170, &"armor": 15, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"cost": {
  &"gold": 500, &"stone": 100, &"mana": 100 
 } 
 },&"Knight Champion" : {
@@ -639,7 +639,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 70, &"max_hp": 200, &"armor": 65, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 70, &"max_hp": 200, &"armor": 65, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"cost": {
  &"gold": 400, &"stone": 0, &"mana": 0 
 } 
 },&"Thymaël Doux, the Blade of Holy Light" : {
@@ -652,7 +652,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 80, &"max_hp": 200, &"armor": 40, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 80, &"max_hp": 200, &"armor": 40, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"cost": {
  &"gold": 500, &"stone": 100, &"mana": 100 
 } 
 },&"Cartographer" : {
@@ -666,7 +666,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 30, &"max_hp": 160, &"armor": 10, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 30, &"max_hp": 160, &"armor": 10, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"cost": {
  &"gold": 300, &"stone": 50, &"mana": 50 
 } 
 },&"Bone collector" : {
@@ -681,7 +681,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 40, &"max_hp": 110, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 40, &"max_hp": 110, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"cost": {
  &"gold": 300, &"stone": 50, &"mana": 50 
 } 
 },&"Margrave Solreth" : {
@@ -694,7 +694,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 40, &"max_hp": 180, &"armor": 10, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 40, &"max_hp": 180, &"armor": 10, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"cost": {
  &"gold": 500, &"stone": 100, &"mana": 100 
 } 
 },&"High mage" : {
@@ -707,7 +707,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 30, &"max_hp": 150, &"armor": 30, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 30, &"max_hp": 150, &"armor": 30, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"cost": {
  &"gold": 500, &"stone": 100, &"mana": 100 
 } 
 },&"Sir Roland" : {
@@ -720,7 +720,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 60, &"max_hp": 200, &"armor": 40, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 60, &"max_hp": 200, &"armor": 40, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"cost": {
  &"gold": 500, &"stone": 100, &"mana": 100 
 } 
 },&"Marksman" : {
@@ -739,7 +739,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 45, &"max_hp": 75, &"armor": 0, &"evasion": 0.136, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 45, &"max_hp": 75, &"armor": 0, &"evasion": 0.136, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Marksman.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 200, &"stone": 30, &"mana": 0 
 } 
 },&"Witch hunter" : {
@@ -752,7 +752,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 45, &"max_hp": 150, &"armor": 10, &"evasion": 0.1, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 45, &"max_hp": 150, &"armor": 10, &"evasion": 0.1, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Witch hunter.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 130, &"stone": 0, &"mana": 10 
 } 
 },&"Angel" : {
@@ -776,7 +776,7 @@ const database = {
  &"effect_name": "Divine nature", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/cheat_death.tscn", &"args": [1, 1]
  
 }]
-, &"base_damage": 100, &"max_hp": 350, &"armor": 50, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 100, &"max_hp": 350, &"armor": 50, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Angel.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 1000, &"stone": 300, &"mana": 800 
 } 
 },&"Blade Saint" : {
@@ -792,7 +792,7 @@ const database = {
  &"effect_name": "Combo", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/combo.tscn", &"args": [30, 1.0]
  
 }]
-, &"base_damage": 80, &"max_hp": 275, &"armor": 35, &"evasion": 0.2, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 80, &"max_hp": 275, &"armor": 35, &"evasion": 0.2, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Blade saint.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 800, &"stone": 150, &"mana": 50 
 } 
 },&"Priest" : {
@@ -805,7 +805,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 40, &"max_hp": 110, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 40, &"max_hp": 110, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Priest.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 300, &"stone": 50, &"mana": 0 
 } 
 },&"White Mage" : {
@@ -819,7 +819,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 65, &"max_hp": 180, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 65, &"max_hp": 180, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/White mage.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 850, &"stone": 300, &"mana": 1200 
 } 
 },&"Imperial priest" : {
@@ -832,7 +832,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 60, &"max_hp": 150, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 60, &"max_hp": 150, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Clergyman.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 800, &"stone": 300, &"mana": 0 
 } 
 },&"Apprentice" : {
@@ -845,7 +845,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 20, &"max_hp": 50, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 20, &"max_hp": 50, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Apprentice.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 90, &"stone": 0, &"mana": 30 
 } 
 },&"Assassin" : {
@@ -869,7 +869,7 @@ const database = {
  &"effect_name": "Agility", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/agility.tscn", &"args": [2, 1.2]
  
 }]
-, &"base_damage": 75, &"max_hp": 85, &"armor": -20, &"evasion": 0.3, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 75, &"max_hp": 85, &"armor": -20, &"evasion": 0.3, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Assassin.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 1000, &"stone": 0, &"mana": 0 
 } 
 },&"Paladin" : {
@@ -899,7 +899,7 @@ const database = {
 }, {
  &"effect_name": "Damage buff Aura", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/damage_buff_aura.tscn", &"args": 40 
 }]
-, &"base_damage": 100, &"max_hp": 350, &"armor": 70, &"evasion": 0.05, &"shielding_chance": 0.8, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 100, &"max_hp": 350, &"armor": 70, &"evasion": 0.05, &"shielding_chance": 0.8, &"portrait_texture_path": "res://Arts/Placeholders/Paladin.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 1500, &"stone": 500, &"mana": 300 
 } 
 },&"Cleric" : {
@@ -912,7 +912,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 25, &"max_hp": 100, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 25, &"max_hp": 100, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Cleric.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 100, &"stone": 30, &"mana": 100 
 } 
 },&"Royal Cavalier" : {
@@ -940,7 +940,7 @@ const database = {
  &"effect_name": "Giddy up", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/on_move_evasion_up.tscn", &"args": [1.5, 1]
  
 }]
-, &"base_damage": 80, &"max_hp": 275, &"armor": 50, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 80, &"max_hp": 275, &"armor": 50, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Royal cavalier.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 800, &"stone": 300, &"mana": 100 
 } 
 },&"Squire" : {
@@ -953,7 +953,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 30, &"max_hp": 100, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 30, &"max_hp": 100, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Squire.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 70, &"stone": 0, &"mana": 0 
 } 
 },&"Archer" : {
@@ -966,7 +966,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 30, &"max_hp": 50, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 30, &"max_hp": 50, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Archer.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 70, &"stone": 10, &"mana": 0 
 } 
 },&"Imperial Ranger" : {
@@ -1002,7 +1002,7 @@ const database = {
 }, {
  &"effect_name": "Assistance", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/assistance.tscn", &"args": 0.5 
 }]
-, &"base_damage": 100, &"max_hp": 250, &"armor": 0, &"evasion": 0.296, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 100, &"max_hp": 250, &"armor": 0, &"evasion": 0.296, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Imperial ranger.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 1000, &"stone": 500, &"mana": 100 
 } 
 },&"Grand Inquisitor" : {
@@ -1024,7 +1024,7 @@ const database = {
 }, {
  &"effect_name": "Purity", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/negative_effect_immune.tscn", &"args": null 
 }]
-, &"base_damage": 80, &"max_hp": 275, &"armor": 35, &"evasion": 0.15, &"shielding_chance": 0.6, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 80, &"max_hp": 275, &"armor": 35, &"evasion": 0.15, &"shielding_chance": 0.6, &"portrait_texture_path": "res://Arts/Placeholders/Grand inquisitor.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 700, &"stone": 100, &"mana": 200 
 } 
 },&"Hierophant" : {
@@ -1037,7 +1037,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 80, &"max_hp": 180, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 80, &"max_hp": 180, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Hierophant.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 2000, &"stone": 500, &"mana": 0 
 } 
 },&"Ritualist" : {
@@ -1050,7 +1050,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 45, &"max_hp": 120, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 45, &"max_hp": 120, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Ritualist.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 600, &"stone": 50, &"mana": 500 
 } 
 },&"Inquisitor" : {
@@ -1071,7 +1071,7 @@ const database = {
  &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [2, 1]
  
 }]
-, &"base_damage": 60, &"max_hp": 200, &"armor": 20, &"evasion": 0.1, &"shielding_chance": 0.6, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 60, &"max_hp": 200, &"armor": 20, &"evasion": 0.1, &"shielding_chance": 0.6, &"portrait_texture_path": "res://Arts/Placeholders/Inquisitor.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 250, &"stone": 0, &"mana": 30 
 } 
 },&"Knight" : {
@@ -1087,7 +1087,7 @@ const database = {
  &"effect_name": "Taunt", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/taunt.tscn", &"args": [0.3, 1.0]
  
 }]
-, &"base_damage": 45, &"max_hp": 150, &"armor": 20, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 45, &"max_hp": 150, &"armor": 20, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Knight.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 140, &"stone": 10, &"mana": 0 
 } 
 },&"Samurai" : {
@@ -1100,7 +1100,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 60, &"max_hp": 200, &"armor": 20, &"evasion": 0.15, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 60, &"max_hp": 200, &"armor": 20, &"evasion": 0.15, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Samurai.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 200, &"stone": 0, &"mana": 50 
 } 
 },&"Arcanist" : {
@@ -1126,7 +1126,7 @@ const database = {
 }]
  
 }]
-, &"base_damage": 75, &"max_hp": 200, &"armor": 25, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 75, &"max_hp": 200, &"armor": 25, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Arcanist.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 900, &"stone": 300, &"mana": 1800 
 } 
 },&"Angel Knight" : {
@@ -1153,7 +1153,7 @@ const database = {
 }, {
  &"effect_name": "Healing aura", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/on_turn_heal.tscn", &"args": 25 
 }]
-, &"base_damage": 80, &"max_hp": 275, &"armor": 80, &"evasion": 0.05, &"shielding_chance": 0.85, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 80, &"max_hp": 275, &"armor": 80, &"evasion": 0.05, &"shielding_chance": 0.85, &"portrait_texture_path": "res://Arts/Placeholders/Angel knight.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 500, &"stone": 150, &"mana": 500 
 } 
 },&"Keeper of Knowledge" : {
@@ -1168,7 +1168,7 @@ const database = {
 , &"effects": [{
  &"effect_name": "All-knowing", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/change_attack_type.tscn", &"args": 2 
 }]
-, &"base_damage": 100, &"max_hp": 200, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 100, &"max_hp": 200, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Keeper of knowledge.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 1000, &"stone": 200, &"mana": 1500 
 } 
 },&"Wizard" : {
@@ -1181,7 +1181,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 45, &"max_hp": 110, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 45, &"max_hp": 110, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Wizard.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 400, &"stone": 150, &"mana": 800 
 } 
 },&"Mage" : {
@@ -1194,7 +1194,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 30, &"max_hp": 75, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 30, &"max_hp": 75, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Mage.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 200, &"stone": 0, &"mana": 80 
 } 
 },&"Scout" : {
@@ -1217,7 +1217,7 @@ const database = {
  &"effect_name": "Agility", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/agility.tscn", &"args": [2, 0.0]
  
 }]
-, &"base_damage": 60, &"max_hp": 100, &"armor": 0, &"evasion": 0.208, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 60, &"max_hp": 100, &"armor": 0, &"evasion": 0.208, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Scout.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 500, &"stone": 300, &"mana": 50 
 } 
 },&"Knight Master" : {
@@ -1233,7 +1233,7 @@ const database = {
  &"effect_name": "Taunt", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/taunt.tscn", &"args": [0.4, 0.65]
  
 }]
-, &"base_damage": 60, &"max_hp": 200, &"armor": 50, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 60, &"max_hp": 200, &"armor": 50, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Knight master.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 220, &"stone": 70, &"mana": 0 
 } 
 },&"Horseman" : {
@@ -1252,7 +1252,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 60, &"max_hp": 200, &"armor": 35, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 60, &"max_hp": 200, &"armor": 35, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Horseman.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 200, &"stone": 50, &"mana": 0 
 } 
 },&"Elementalist" : {
@@ -1265,7 +1265,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 30, &"max_hp": 75, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 30, &"max_hp": 75, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Elementalist.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 150, &"stone": 0, &"mana": 100 
 } 
 },&"Matriarch" : {
@@ -1279,7 +1279,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 45, &"max_hp": 150, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 45, &"max_hp": 150, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Matriarch.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 600, &"stone": 0, &"mana": 600 
 } 
 },&"Acolyte" : {
@@ -1292,7 +1292,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 20, &"max_hp": 70, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 20, &"max_hp": 70, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Acolyte.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 50, &"stone": 0, &"mana": 50 
 } 
 },&"Prophetess" : {
@@ -1306,7 +1306,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 65, &"max_hp": 195, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 65, &"max_hp": 195, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Prophetess.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 1000, &"stone": 0, &"mana": 1000 
 } 
 },&"Orc" : {
@@ -1319,7 +1319,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 45, &"max_hp": 150, &"armor": 10, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 45, &"max_hp": 150, &"armor": 10, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Orc.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 0 
 } 
 },&"Pirate capitan" : {
@@ -1332,7 +1332,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 90, &"max_hp": 275, &"armor": 20, &"evasion": 0.1, &"shielding_chance": 0.3, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 90, &"max_hp": 275, &"armor": 20, &"evasion": 0.1, &"shielding_chance": 0.3, &"portrait_texture_path": "res://Arts/Placeholders/Pirate captain.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 0 
 } 
 },&"Rogue" : {
@@ -1360,7 +1360,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 30, &"max_hp": 150, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 30, &"max_hp": 150, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Rogue.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 0 
 } 
 },&"Ogre" : {
@@ -1373,7 +1373,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 130, &"max_hp": 450, &"armor": 30, &"evasion": 0.01, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 130, &"max_hp": 450, &"armor": 30, &"evasion": 0.01, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Ogre.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 0 
 } 
 },&"Goblin" : {
@@ -1392,7 +1392,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 30, &"max_hp": 100, &"armor": 0, &"evasion": 0.1, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 30, &"max_hp": 100, &"armor": 0, &"evasion": 0.1, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Goblin.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 0 
 } 
 },&"Robber" : {
@@ -1405,7 +1405,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 30, &"max_hp": 100, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 30, &"max_hp": 100, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 0 
 } 
 },&"Pirate" : {
@@ -1418,7 +1418,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 75, &"max_hp": 180, &"armor": 10, &"evasion": 0.08, &"shielding_chance": 0.0, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 75, &"max_hp": 180, &"armor": 10, &"evasion": 0.08, &"shielding_chance": 0.0, &"portrait_texture_path": "res://Arts/Placeholders/Pirate.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 0 
 } 
 },&"Goblin shaman" : {
@@ -1431,7 +1431,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 45, &"max_hp": 75, &"armor": 10, &"evasion": 0.1, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 45, &"max_hp": 75, &"armor": 10, &"evasion": 0.1, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Goblin shaman.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 0 
 } 
 },&"Orc chieftain" : {
@@ -1444,7 +1444,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 80, &"max_hp": 275, &"armor": 35, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 80, &"max_hp": 275, &"armor": 35, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Orc chieftain.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 0 
 } 
 },&"Thief" : {
@@ -1463,7 +1463,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 25, &"max_hp": 100, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 25, &"max_hp": 100, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Thief.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 0 
 } 
 },&"Elemental" : {
@@ -1476,7 +1476,7 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 30, &"max_hp": 100, &"armor": 0, &"evasion": 0.1, &"shielding_chance": 0.7, &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 30, &"max_hp": 100, &"armor": 0, &"evasion": 0.1, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Elemental.jpg", &"custom_levelup_path": "", &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 200 
 } 
 },
