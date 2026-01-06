@@ -95,11 +95,7 @@ var unit: Unit
 ## 0.99 (99%) → 100.0 [br]
 ## 0.995 (99.5%) → 199.999... [/i] [/center]
 var accuracy_representation: float:
-	get:
-		if is_zero_approx(accuracy): return NAN
-		var chance_to_miss: float = 1.0 - accuracy
-		if is_zero_approx(chance_to_miss): return INF
-		return 1.0 / chance_to_miss
+	get: return get_accuracy_representation(accuracy)
 
 func _read_data(data: UnitAttackData) -> void:
 	attack_name = data.attack_name
@@ -163,6 +159,12 @@ func make_current() -> void:
 	if pos < 0: return
 	unit.attacks_for_this_round[pos] = prev_atk
 	unit.current_attack = self
+
+static func get_accuracy_representation(acc: float) -> float:
+	if is_zero_approx(acc): return NAN
+	var chance_to_miss: float = 1.0 - acc
+	if is_zero_approx(chance_to_miss): return INF
+	return 1.0 / chance_to_miss
 
 ## Returns the attack serialized as a dictionary.
 static func serialized(a: UnitAttack) -> Dictionary:

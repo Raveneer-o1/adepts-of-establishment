@@ -47,3 +47,17 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 func _drop_data(at_position: Vector2, data: Variant) -> void:
 	if data is MapItem:
 		data.apply_to(unit_data)
+
+
+func _on_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_RIGHT:
+			if event.is_pressed():
+				EventBus.popup_requested.emit(unit_data)
+				get_viewport().set_input_as_handled()
+			else:
+				EventBus.popup_closure_requested.emit()
+
+
+func _on_mouse_exited() -> void:
+	EventBus.popup_closure_requested.emit()

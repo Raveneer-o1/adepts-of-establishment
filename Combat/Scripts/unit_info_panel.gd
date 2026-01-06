@@ -15,6 +15,7 @@ const INITIATIVE_LINE = "Initiative: %s\n"
 const TYPE_LINE = "Type: %s\n"
 const EFFECT_LINE = "Effects: %s\n"
 const APPLIED_EFFECT_LINE = "\n[b]%s[/b]: %s\n"
+const SHORT_APPLIED_EFFECT_LINE = "%s, "
 const DESCRIOTION_LINE = "\n\n---\n%s"
 const BRACKETS_ENCLOSURE = "(%s)"
 
@@ -22,19 +23,84 @@ const BRACKETS_ENCLOSURE = "(%s)"
 static func attack_type_to_str(type: GlobalDefs.AttackType) -> String:
 	return GlobalDefs.AttackType.keys()[type]
 
-static func get_accuracy_text(a: UnitAttack) -> String:
-	var val: float = a.accuracy_representation
+static func get_accuracy_text(val: float) -> String:
+	val = UnitAttack.get_accuracy_representation(val)
 	if is_nan(val): return "0"
 	if is_inf(val): return "guaranteed"
 	return str(roundi(val))
 
-static func get_evasion_text(u: Unit) -> String:
-	var val: float = u.parameters.evasion_represetation
+static func get_evasion_text(val: float) -> String:
+	val = UnitParameters.get_evasion_representation(val)
 	var s: String = ""
 	if is_nan(val): s = "0"
 	elif is_inf(val): s = "Guaranteed"
 	else: s = str(int(val * 100.0))
 	return EVASION_LINE % s
+
+func fill_data(unit: UnitData) -> void:
+	info.text = ""
+	full_info.text = ""
+	
+	var hp_text: String = HP_LINE % [unit.current_hp, unit.max_hp]
+	var armor_text := ARMOR_LINE % unit.armor
+	var evasion_text := get_evasion_text(unit.evasion)
+	var damage_text: String = ""
+	var type_text: String = ""
+	var initiative_text: String = ""
+	var accuracy_text: String = ""
+	var effect_text: String = ""
+	var applied_effect_text: String = ""
+	
+	for a in unit.attack_data:
+		@warning_ignore("narrowing_conversion") 
+		var dmg: int = a.damage_multiplier if a.damage_override else \
+				a.damage_multiplier * unit.base_damage
+		
+		if a.targets_needed == 1:
+			damage_text += str(dmg) + ", "
+		else:
+			damage_text += str(dmg) + " x%d, " % a.targets_needed
+		
+		initiative_text += str(a.initiative) + ", "
+		accuracy_text += get_accuracy_text(a.accuracy) + ", "
+		type_text += attack_type_to_str(a.type) + ", "
+		
+		var local_effect_list: String = ""
+		for effect: String in a.applying_effects:
+			local_effect_list += effect.to_snake_case().replace("_", " ") + ", "
+		effect_text += BRACKETS_ENCLOSURE % local_effect_list.trim_suffix(", ") \
+				if local_effect_list != "" else "-"
+	
+	for effect in unit.effects:
+		applied_effect_text += SHORT_APPLIED_EFFECT_LINE % effect[&"effect_name"]
+	
+	applied_effect_text = applied_effect_text.trim_suffix(", ")
+	initiative_text = initiative_text.trim_suffix(", ")
+	damage_text = damage_text.trim_suffix(", ")
+	type_text = type_text.trim_suffix(", ")
+	accuracy_text = accuracy_text.trim_suffix(", ")
+	
+	damage_text = DAMAGE_LINE % [unit.base_damage, damage_text]
+	accuracy_text = ACCURACY_LINE % accuracy_text
+	initiative_text = INITIATIVE_LINE % initiative_text
+	type_text = TYPE_LINE % type_text
+	effect_text = EFFECT_LINE % effect_text
+	
+	full_info.append_text(\
+			hp_text + \
+			armor_text + \
+			evasion_text + \
+			damage_text + \
+			effect_text + \
+			accuracy_text + \
+			initiative_text + \
+			type_text + \
+			applied_effect_text
+	)
+	
+	full_info.append_text(DESCRIOTION_LINE % unit.description)
+	
+	info.text = hp_text + unit.brief_description
 
 func fill_text_data(unit: Unit) -> void:
 	info.text = ""
@@ -42,7 +108,7 @@ func fill_text_data(unit: Unit) -> void:
 	
 	var hp_text: String = HP_LINE % [unit.parameters.hp, unit.parameters.max_hp]
 	var armor_text := ARMOR_LINE % unit.parameters.armor
-	var evasion_text := get_evasion_text(unit)
+	var evasion_text := get_evasion_text(unit.parameters.evasion)
 	var damage_text: String = ""
 	var type_text: String = ""
 	var initiative_text: String = ""
@@ -61,7 +127,7 @@ func fill_text_data(unit: Unit) -> void:
 			damage_text += str(dmg) + " x%d, " % a.targets_needed
 		
 		initiative_text += str(a.initiative) + ", "
-		accuracy_text += get_accuracy_text(a) + ", "
+		accuracy_text += get_accuracy_text(a.accuracy) + ", "
 		type_text += attack_type_to_str(a.type) + ", "
 		
 		var local_effect_list: String = ""

@@ -66,6 +66,7 @@ signal map_turn_ended(faction: MapFaction)
 ## Distinct from [signal window_requested] - see that signal's documentation.[br][br]
 ## See also: [PopupBase]
 signal popup_requested(object: Variant)
+signal popup_closure_requested
 ## Requests a window to display information to the player.
 ## Windows show system-initiated information
 ## (e.g., resource deficiency notifications, item discovery alerts).

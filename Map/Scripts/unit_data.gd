@@ -104,6 +104,9 @@ var database_dict: Dictionary:
 var description: String:
 	get: return database_dict.get(&"description", "")
 
+var brief_description: String:
+	get: return database_dict.get(&"brief_description", "")
+
 var database_scene_path: String:
 	get: return database_dict.get(&"scene_path", "")
 

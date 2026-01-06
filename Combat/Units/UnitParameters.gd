@@ -242,9 +242,7 @@ var evasion: float:
 ## [/i][/center]
 var evasion_represetation: float:
 	get:
-		var ev := evasion
-		if ev >= 1.0: return INF
-		return ev / (1.0 - ev)
+		return get_evasion_representation(evasion)
 
 # Intermediate property that applies modifiers to get effective HP value
 # Setting this value maintains the same HP ratio when max_HP modifiers are active
@@ -294,6 +292,13 @@ var parent_unit: Unit
 
 ## Contains all modifiers applied to a unit.
 var stats_modifiers: Dictionary[StringName, ModifierStack] = {}
+
+
+static func get_evasion_representation(ev: float) -> float:
+	if ev >= 1.0: return INF
+	if ev <= 0.0: return NAN
+	return ev / (1.0 - ev)
+
 
 func get_all_effects() -> Array[AppliedEffect]:
 	var result: Array[AppliedEffect] = []

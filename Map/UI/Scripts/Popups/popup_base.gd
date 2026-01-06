@@ -26,6 +26,7 @@ func _ready() -> void:
 	if not c: return
 	#c.set_anchors_preset(Control.PRESET_FULL_RECT)
 	c.gui_input.connect(_on_root_gui_input)
+	EventBus.popup_closure_requested.connect(hide_popup)
 
 func _on_root_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:

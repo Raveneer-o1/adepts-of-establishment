@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cy8rh77mxkncn"]
+[gd_scene load_steps=28 format=3 uid="uid://cy8rh77mxkncn"]
 
 [ext_resource type="Script" uid="uid://cium5533y6jdp" path="res://Map/Scripts/game_map.gd" id="1_mp6yi"]
 [ext_resource type="Script" uid="uid://ymq5kwxdp6r3" path="res://Map/Scripts/map_ui.gd" id="2_jwoqq"]
@@ -22,6 +22,8 @@
 [ext_resource type="Script" uid="uid://dsb2ra0pfxg7a" path="res://Map/UI/Scripts/greeting.gd" id="13_ofx6v"]
 [ext_resource type="Script" uid="uid://oll1fukjr18t" path="res://Map/UI/Scripts/Popups/city_info_popup.gd" id="14_ga0ya"]
 [ext_resource type="Script" uid="uid://6my5rhvvrl00" path="res://Map/UI/Scripts/Popups/hire_unit_popup.gd" id="15_5jcg3"]
+[ext_resource type="Script" uid="uid://bugsl481wedlm" path="res://Map/UI/Scripts/Popups/unit_info_popup.gd" id="18_qmi5v"]
+[ext_resource type="PackedScene" uid="uid://d12hr40jjb8s8" path="res://Combat/Scenes/UnitInfoPanel.tscn" id="19_oranv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ru5ay"]
 font_size = 19
@@ -161,6 +163,7 @@ layout_mode = 2
 text = "Show ownership"
 
 [node name="Party" type="CanvasLayer" parent="UILayers"]
+visible = false
 script = ExtResource("5_t0dwr")
 
 [node name="HBoxContainer" type="MarginContainer" parent="UILayers/Party"]
@@ -1388,6 +1391,13 @@ item_1/text = "Scout"
 [node name="HireButton" type="Button" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Hire"
+
+[node name="UnitInfoPopup" type="CanvasLayer" parent="UILayers/Popups"]
+visible = false
+script = ExtResource("18_qmi5v")
+
+[node name="UnitInfoPanel" parent="UILayers/Popups/UnitInfoPopup" instance=ExtResource("19_oranv")]
+mouse_filter = 2
 
 [node name="Windows" type="Node" parent="UILayers"]
 

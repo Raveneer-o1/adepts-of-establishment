@@ -26,6 +26,7 @@ var current_ui: CanvasLayer
 @onready var city_popup: CityInfoPopup = $Popups/CityPopup
 @onready var hire_unit_popup: HireUnitPopup = $Popups/HireUnitPopup
 @onready var resources_panel: ResourcesManager = %UI_ResourcesPanel
+@onready var unit_info_popup: UnitInfoPopup = $Popups/UnitInfoPopup
 
 var last_requested_party: MapParty = null
 
@@ -114,6 +115,8 @@ func handle_popup_request(info_object: Variant) -> void:
 	elif info_object is MapInteractableObject:
 		object_info_popup.show_object(info_object)
 		await object_info_popup.popup_closed
+	elif info_object is UnitData:
+		unit_info_popup.show_unit(info_object)
 	elif info_object is Array:
 		for inner_obj: Variant in info_object:
 			await handle_popup_request(inner_obj)
