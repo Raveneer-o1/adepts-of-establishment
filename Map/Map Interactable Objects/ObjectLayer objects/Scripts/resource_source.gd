@@ -22,7 +22,11 @@ func right_click_processed() -> bool:
 	return true
 
 func get_description() -> String:
-	return "%s\nProduces %d gold per turn" % [object_name, income_per_turn]
+	var gold_str: String = ("%d gold, " % gold_per_turn) if gold_per_turn > 0 else ""
+	var stone_str: String = ("%d stone, " % stone_per_turn) if stone_per_turn > 0 else ""
+	var mana_str: String = ("%d mana, " % mana_per_turn) if mana_per_turn > 0 else ""
+	var _str := (gold_str + stone_str + mana_str).trim_suffix(", ")
+	return "%s\nProduces %s per turn" % [object_name, _str]
 
 #region Abstract Implementation
 
@@ -95,13 +99,17 @@ func _player_interact(faction: MapFaction) -> void:
 
 #endregion
 
-## Gold income per turn
-@export var income_per_turn: int = 50
+@export var gold_per_turn: int = 0
+@export var stone_per_turn: int = 0
+@export var mana_per_turn: int = 0
+
+var income: ResourceCost:
+	get: return ResourceCost.new(gold_per_turn, stone_per_turn, mana_per_turn)
 
 func _bring_income(f: MapFaction) -> void:
 	if not object_owner: return
 	if f != object_owner: return
-	object_owner.resource_container.receive_gold(income_per_turn)
+	object_owner.resource_container.receive(income)
 
 func _initialize() -> void:
 	EventBus.map_turn_started.connect(_bring_income)

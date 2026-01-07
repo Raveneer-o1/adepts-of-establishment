@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cy8rh77mxkncn"]
+[gd_scene load_steps=29 format=3 uid="uid://cy8rh77mxkncn"]
 
 [ext_resource type="Script" uid="uid://cium5533y6jdp" path="res://Map/Scripts/game_map.gd" id="1_mp6yi"]
 [ext_resource type="Script" uid="uid://ymq5kwxdp6r3" path="res://Map/Scripts/map_ui.gd" id="2_jwoqq"]
@@ -39,6 +39,12 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_bqemh"]
 font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_qmi5v"]
+font_size = 25
+font_color = Color(1, 0.25, 0.48749995, 0.68235296)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Game" type="Node"]
 script = ExtResource("1_mp6yi")
@@ -1414,6 +1420,19 @@ custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 expand_mode = 5
 stretch_mode = 4
+
+[node name="Disclaimer" type="Label" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer/TextureRect"]
+layout_mode = 0
+offset_left = -10.0
+offset_top = 117.0
+offset_right = 177.0
+offset_bottom = 204.0
+rotation = -0.70302343
+text = "AI-generated
+Placeholder"
+label_settings = SubResource("LabelSettings_qmi5v")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer"]
 layout_mode = 2

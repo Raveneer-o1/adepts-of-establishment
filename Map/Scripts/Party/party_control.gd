@@ -129,13 +129,11 @@ func _walk_along_path(
 
 ## Equivalent to setting [member cancel_movement] to [code]true[/code].[br]
 ## Stops the party's movement after completing the current step.[br]
-## [br]
-## 
+## [i]Exception: During [signal EventBus.party_move_started] processing, movement can be
+## canceled entirely since the signal is emitted before movement begins.[/i] [br]
 ## [b]Note:[/b] this only affects multi-tile movements initiated with
 ## [method walk_along_path].
 ## Single-step movements started with [method walk_to] are unaffected.[br]
-## [i]Exception: During [signal EventBus.party_move_started] processing, movement can be
-## canceled entirely since the signal fires before movement begins.[/i]
 func abort_moving() -> void:
 	cancel_movement = true
 	if _is_moving: await _moving_finished

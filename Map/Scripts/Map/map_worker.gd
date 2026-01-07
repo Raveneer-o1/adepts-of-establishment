@@ -195,7 +195,7 @@ func find_path(
 			path = new_path
 			_start = start
 	if not path: return []
-	if include_start: path.assign([_start] + path)
+	if include_start: path.insert(0, _start)
 	return path
 
 func check_object_layer() -> void:
@@ -230,7 +230,7 @@ func create_tile_data() -> void:
 		var data: MapTileData = TILE_DATA.instantiate()
 		data.global_position = map.get_global_coords(tile)
 		map.tile_data_hashmap[tile] = data
-		data_layer.add_child(data)
+		data_layer.add_child(data) 
 		data.tile_owner = mapping.get(
 			map.terrain_layer.get_cell_atlas_coords(tile)
 		)

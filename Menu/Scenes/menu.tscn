@@ -1320,7 +1320,7 @@ path = "res://Combat/Units/Derived units/Heroes/cartographer.tscn"
 [node name="knight_champion" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Heroes/Empire" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Knight Champion"
-path = "res://Combat/Units/Derived units/Heroes/knight_champion.tscn"
+path = "uid://bhrcgy3b0vr1s"
 
 [node name="sir_roland" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Heroes/Empire" instance=ExtResource("2_r33n7")]
 layout_mode = 2

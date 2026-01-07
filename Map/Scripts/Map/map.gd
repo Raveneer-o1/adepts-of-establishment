@@ -257,9 +257,12 @@ func find_path_to_object(
 	include_start: bool = false
 ) -> Array[Vector2i]:
 	if not end: return []
+	var end_tiles := end.get_interaction_tiles(party)
+	for start in starts:
+		if start in end_tiles: return []
 	return worker.find_path(
 		starts,
-		end.get_interaction_tiles(party),
+		end_tiles,
 		party,
 		include_start
 	)
