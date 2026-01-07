@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cx4tudyj13yvi"]
+
+[ext_resource type="Script" uid="uid://ddeygmp2runvx" path="res://Map/Heroes/hero_abilities_tree.gd" id="1_onij4"]
+
+[node name="TestHeroAbilityTree" type="Node"]
+script = ExtResource("1_onij4")

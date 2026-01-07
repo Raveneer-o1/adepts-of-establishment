@@ -138,6 +138,15 @@ var party: MapParty:
 		var parent := get_parent()
 		return parent if parent is MapParty else null
 
+var unit_owner: MapFaction:
+	get:
+		var parent := get_parent()
+		while parent:
+			if parent is MapInteractableObject: return parent.object_owner
+			if parent is Map: break
+			parent = parent.get_parent()
+		return null
+
 ## Returns the file path to the unit scene resource.
 ## This path must be added to either [member EventBus.left_units] or
 ## [member EventBus.right_units] to instantiate the unit when battle begins.

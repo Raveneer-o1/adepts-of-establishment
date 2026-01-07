@@ -44,7 +44,7 @@ var controller: FactionController = null
 ## # AI ignores tile_clicked signal as it doesn't need to react to player's clicks
 ##
 ## func make_decision() -> void:
-##     var chosen_tile := choose_tile()
+##     var chosen_tile := _choose_tile()
 ##     api.choose_tile(chosen_tile)
 ## [/codeblock]
 ## [b]Note:[/b] Mouse hover interactions are not handled through this API.
@@ -91,6 +91,11 @@ func choose_evolution(unit: UnitData, options: Array[StringName]) -> StringName:
 	if not controller: return options.pick_random()
 	@warning_ignore("redundant_await")
 	return await controller.choose_evolution(unit, options)
+
+func choose_hero_ability(hero: HeroData, options: Array[HeroAbility]) -> HeroAbility:
+	@warning_ignore("redundant_await")
+	if controller: return await controller.choose_hero_ability(hero, options)
+	return options.pick_random()
 
 ## Pauses the entire game except controler. Useful for UI prompts.
 func gloabal_pause() -> void:

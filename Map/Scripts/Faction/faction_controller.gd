@@ -9,6 +9,7 @@ var api: FactionAPI
 ## Can be asynchronous (use [code]await[/code]).
 ## Not invoked when only one evolutionary option available.
 @abstract func choose_evolution(unit: UnitData, options: Array[StringName]) -> StringName
+@abstract func choose_hero_ability(hero: HeroData, options: Array[HeroAbility]) -> HeroAbility
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
