@@ -33,8 +33,8 @@ extends Node
 ##     &"evasion": float,
 ##     &"shielding_chance": float,
 ##     &"portrait_texture_path": String,
-##     &"custom_levelup_path": String,  # ignored if 'hero_abilities' is present
-##     &"hero_abilities": String,  # takes precedence over 'custom_levelup_path'
+##     &"custom_levelup_path": String,  # has no effect for heroes
+##     &"hero_abilities": String,  # if present, this unit is a hero
 ##     &"cost": Dictionary,  # see below
 ## }
 ## 
@@ -191,6 +191,7 @@ func _set_levelup() -> void:
 			if not hero_levelup_unchecked: return
 			if hero_levelup_unchecked is HeroAbilitiesTree:
 				hero_levelup = hero_levelup_unchecked
+				hero_levelup.this_hero = self
 			else:
 				push_error("'%s' is not a HeroAbilitiesTree" % hero_levelup_path)
 				hero_levelup_unchecked.queue_free()
@@ -243,17 +244,14 @@ func update_values(u: Unit) -> void:
 	for e: AppliedEffect in u.parameters.get_all_effects():
 		if e.persistent: add_effect(e)
 
-# WARNING: this is testing implementation, initialization here will be removed
 func _ready() -> void:
+	# WARNING: this is testing implementation, initialization here will be removed
 	initialize()
 
 func grant_xp(points: int) -> void:
 	current_xp += points
 
 func level_up() -> void:
-	if hero_levelup:
-		hero_levelup.levelup()
-		return
 	if custom_levelup:
 		custom_levelup.custom_levelup(self)
 		return

@@ -149,7 +149,7 @@ var underlying_shielding: bool = false
 
 #region Data broker
 
-## [color=yellow]Data broker:[/color] this property is part of the data broker system.
+## [color=green]Data broker:[/color] this property is part of the data broker system.
 ## Use to access values instead of directly accessing underlying parameters.
 ## [br][br]
 ## Unlike other data broker fields, this property returns a shallow copy of the
@@ -162,7 +162,7 @@ var immunities: Array[GlobalDefs.AttackType]:
 			return (stats_modifiers[stat_name] as ModifierStack).get_effective_value(underlying_value)
 		return underlying_value
 
-## [color=yellow]Data broker:[/color] this property is part of the data broker system.
+## [color=green]Data broker:[/color] this property is part of the data broker system.
 ## Use to access values instead of directly accessing underlying parameters.
 var shielding: bool:
 	get:
@@ -174,7 +174,7 @@ var shielding: bool:
 	set(value):
 		underlying_shielding = value
 
-## [color=yellow]Data broker:[/color] this property is part of the data broker system.
+## [color=green]Data broker:[/color] this property is part of the data broker system.
 ## Use to access values instead of directly accessing underlying parameters.
 var shielding_chance: float:
 	get:
@@ -184,7 +184,7 @@ var shielding_chance: float:
 			return (stats_modifiers[stat_name] as ModifierStack).get_effective_value(underlying_value)
 		return underlying_value
 
-## [color=yellow]Data broker:[/color] this property is part of the data broker system.
+## [color=green]Data broker:[/color] this property is part of the data broker system.
 ## Use to access values instead of directly accessing underlying parameters.
 var max_hp: int:
 	get:
@@ -194,7 +194,7 @@ var max_hp: int:
 			return (stats_modifiers[stat_name] as ModifierStack).get_effective_value(underlying_value)
 		return underlying_value
 
-## [color=yellow]Data broker:[/color] this property is part of the data broker system.
+## [color=green]Data broker:[/color] this property is part of the data broker system.
 ## Use to access values instead of directly accessing underlying parameters.
 var base_damage: int:
 	get:
@@ -204,7 +204,7 @@ var base_damage: int:
 			return (stats_modifiers[stat_name] as ModifierStack).get_effective_value(underlying_value)
 		return underlying_value
 
-## [color=yellow]Data broker:[/color] this property is part of the data broker system.
+## [color=green]Data broker:[/color] this property is part of the data broker system.
 ## Use to access values instead of directly accessing underlying parameters.
 ## [br][br]
 ## Returns the armor value. For calculations use [member armor_multiplier] instead.
@@ -216,7 +216,7 @@ var armor: int:
 			return (stats_modifiers[stat_name] as ModifierStack).get_effective_value(underlying_value)
 		return underlying_value
 
-## [color=yellow]Data broker:[/color] this property is part of the data broker system.
+## [color=green]Data broker:[/color] this property is part of the data broker system.
 ## Use to access values instead of directly accessing underlying parameters.
 var evasion: float:
 	get:
@@ -226,20 +226,7 @@ var evasion: float:
 			return (stats_modifiers[stat_name] as ModifierStack).get_effective_value(underlying_value)
 		return underlying_value
 
-## Returns a human-friendly evasion representation rather than raw probabilities.
-## The idea is to never show actual percentages to the player and avoid behind-the-scenes
-## number manipulation (as it's usually done to improve player perception). [br]
-## Returns [code]0.0[/code] if evasion is 0.0 (can not evade) [br]
-## Returns [code]INF[/code] if evasion is 1.0 (guaranteed evasion) [br] [br]
-## [center][i]
-## Conversion examples: [br]
-## 0.05 (5%) → 0.052631 [br]
-## 0.1 (10%) → 0.111111 [br]
-## 0.2 (20%) → 0.25 [br]
-## 0.3 (30%) → 0.428571 [br]
-## 0.5 (50%) → 1.0 [br]
-## 0.75 (75%) → 3.0
-## [/i][/center]
+## See [method get_evasion_representation]
 var evasion_represetation: float:
 	get:
 		return get_evasion_representation(evasion)
@@ -259,7 +246,7 @@ var _hp: int:
 		else:
 			underlying_HP = value
 
-## [color=yellow]Data broker:[/color] this property is part of the data broker system.
+## [color=green]Data broker:[/color] this property is part of the data broker system.
 ## Use to access values instead of directly accessing underlying parameters.
 ## [br][br]
 ## Public interface for HP - clamps values to maximum and triggers death when reaching zero.
@@ -293,7 +280,20 @@ var parent_unit: Unit
 ## Contains all modifiers applied to a unit.
 var stats_modifiers: Dictionary[StringName, ModifierStack] = {}
 
-
+## Returns a human-friendly evasion representation rather than raw probabilities.
+## The idea is to never show actual percentages to the player and avoid behind-the-scenes
+## number manipulation (as it's usually done to improve player perception). [br]
+## Returns [code]0.0[/code] if evasion is 0.0 (can not evade) [br]
+## Returns [code]INF[/code] if evasion is 1.0 (guaranteed evasion) [br] [br]
+## [center][i]
+## Conversion examples: [br]
+## 0.05 (5%) → 0.052631 [br]
+## 0.1 (10%) → 0.111111 [br]
+## 0.2 (20%) → 0.25 [br]
+## 0.3 (30%) → 0.428571 [br]
+## 0.5 (50%) → 1.0 [br]
+## 0.75 (75%) → 3.0
+## [/i][/center]
 static func get_evasion_representation(ev: float) -> float:
 	if ev >= 1.0: return INF
 	if ev <= 0.0: return NAN

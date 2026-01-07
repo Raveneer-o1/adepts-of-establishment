@@ -2,6 +2,13 @@
 class_name LevelupFunction
 extends Resource
 
+## Performs custom level-up logic for the unit.
+## This function is responsible for incrementing [member UnitData.level] -
+## this is not managed automatically.[br][br]
+## Typically includes a [constant LevelupFunction.MAX_LEVEL] check to align with
+## design philosophy (limiting single-unit power to encourage army diversification).
+## However, this convention is not enforced - units may implement custom progression
+## rules.
 @abstract func custom_levelup(unit: UnitData) -> void
 
 const MAX_LEVEL = 10
