@@ -147,6 +147,13 @@ var unit_owner: MapFaction:
 			parent = parent.get_parent()
 		return null
 
+var map_effects: Array[MapUnitEffect]:
+	get:
+		var res: Array[MapUnitEffect] = []
+		for c in get_children():
+			if c is MapUnitEffect: res.append(c)
+		return res
+
 ## Returns the file path to the unit scene resource.
 ## This path must be added to either [member EventBus.left_units] or
 ## [member EventBus.right_units] to instantiate the unit when battle begins.
@@ -271,6 +278,14 @@ func evolve(into: StringName) -> void:
 	unit_name = into
 	initialize(personal_name)
 	EventBus.unit_evolved.emit(self, prev)
+
+func move_unit(container: Node) -> void:
+	if get_parent():
+		reparent(container)
+	else: container.add_child(self)
+	for e in map_effects:
+		e.on_unit_move()
+
 
 ## Creates and initializes a new [UnitData] instance for the specified unit name.
 ## Units are identified by name only - ensure [param u_name] matches database exactly.

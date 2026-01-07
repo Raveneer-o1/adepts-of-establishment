@@ -3,6 +3,10 @@ extends FactionController
 @onready var item_list: ItemList = $EvolutionRequest/InputCatcher/VBoxContainer/ItemList
 @onready var evolution_request: CanvasLayer = $EvolutionRequest
 
+func choose_hero_ability(hero: HeroData, options: Array[HeroAbility]) -> HeroAbility:
+	return options.pick_random()
+
+
 func choose_evolution(unit: UnitData, options: Array[StringName]) -> StringName:
 	EventBus.unit_question_started.emit(unit)
 	item_list.clear()

@@ -11,6 +11,7 @@ func add_unit(data: UnitData) -> void:
 	unit.unit_data = data
 	$VBoxContainer.add_child(unit)
 
+# TODO: reroute through API
 func move_unit(received_unit: PartyEditorUnit) -> void:
 	if parent and received_unit.unit_data is HeroData and \
 			received_unit.unit_data.get_parent() != parent: return
@@ -22,7 +23,7 @@ func move_unit(received_unit: PartyEditorUnit) -> void:
 	received_unit.unit_data.party_position = -1
 	received_unit.reparent($VBoxContainer, false)
 	if parent and received_unit.unit_data.get_parent() != parent:
-		received_unit.unit_data.reparent(parent)
+		received_unit.unit_data.move_unit(parent)
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	if data is not PartyEditorUnit: return false

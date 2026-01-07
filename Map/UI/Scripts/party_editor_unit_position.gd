@@ -27,6 +27,7 @@ func remove_unit() -> void:
 	if unit: unit.queue_free()
 	unit = null
 
+# TODO: reroute through API
 func move_unit(received_unit: PartyEditorUnit) -> void:
 	if not received_unit: return
 	var other_place := received_unit.get_parent()
@@ -45,7 +46,7 @@ func move_unit(received_unit: PartyEditorUnit) -> void:
 	unit.unit_data.party_position = party_position
 	unit.reparent(self, false)
 	if reparent_data:
-		unit.unit_data.reparent(parent)
+		unit.unit_data.move_unit(parent)
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	if data is not PartyEditorUnit: return false

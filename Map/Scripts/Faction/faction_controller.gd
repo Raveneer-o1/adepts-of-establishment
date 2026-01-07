@@ -11,7 +11,7 @@ var api: FactionAPI
 @abstract func choose_evolution(unit: UnitData, options: Array[StringName]) -> StringName
 @abstract func choose_hero_ability(hero: HeroData, options: Array[HeroAbility]) -> HeroAbility
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	var parent := get_parent()
 	if parent is not FactionAPI:

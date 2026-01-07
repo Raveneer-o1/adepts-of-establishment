@@ -3,6 +3,12 @@ extends Node
 
 ## Represents the level-up tree of a hero.
 ##
+## On levelup, heroes receive exactly one player-selected ability.
+## The abilities are intended to be structured as a tree but the system
+## can behave in a variety of different ways (see [HeroAbility]).
+## Heroes may also learn additional automatic abilities alongside the chosen one.
+## These automatic abilities require no player investment and are granted freely.
+## [br][br]
 ## This node should contain a list of all abilities for the hero.
 ## The intended design as follows: [br]
 ## 1. All children of this node and their children must be [HeroAbility] nodes.[br]
@@ -19,7 +25,7 @@ extends Node
 ## (such abilities are called [b]automatic[/b])
 ## will be automatically learned upon reaching the required level.
 ## Note that automatic abilities do not count as a choice.
-## This means that the the hero can learn unimited number of automatic abilities
+## This means that the the hero can learn unlimited number of automatic abilities
 ## per level and the player will still be prompted to pick one optional ability. [br]
 ## Technically, the prerequisites structure still applies to automatic
 ## abilities as well, but it's not recommended to have 
@@ -33,6 +39,18 @@ var this_hero: HeroData
 ## List of abilities that are [i]available[/i] (prerequisites learned).
 ## Includes abilities regardless of level requirements.
 var available_list: Array[HeroAbility]
+
+## Reads the children of this node to find available abilities and populates
+## [member available_list].
+func set_available_list() -> void:
+	var list := get_children()
+	available_list.clear()
+	while list:
+		var ability: HeroAbility = list.pop_front()
+		if ability.learned:
+			list.append_array(ability.get_children())
+			continue
+		available_list.append(ability)
 
 func levelup() -> void:
 	this_hero.level += 1
@@ -74,3 +92,6 @@ func _get_available_automatic_abilities() -> Array[HeroAbility]:
 		if ability.optional: continue
 		if _check_level(ability): res.append(ability)
 	return res
+
+func _ready() -> void:
+	set_available_list()
