@@ -25,7 +25,6 @@ func read_unit(u: Unit, full_path: String) -> void:
 		elif c is AppliedEffect:
 			effects.append(construct_effect_dict(c))
 	
-	
 	var base_paramaters := unit_parameters.base_paramaters
 	var params: Dictionary[StringName, Variant] = {
 		"scene_path" = full_path,
@@ -48,6 +47,8 @@ func read_unit(u: Unit, full_path: String) -> void:
 		"portrait_texture_path" = u.portrait_texture_path if u.portrait_texture_path else "",
 		"custom_levelup_path" = unit_parameters.custom_levelup_function.resource_path \
 			if unit_parameters.custom_levelup_function else "",
+		"hero_abilities" = u.hero_levelup_tree if \
+			u.hero_levelup_tree and FileAccess.file_exists(u.hero_levelup_tree) else "",
 		"cost" = {
 			&"gold": u.cost_gold,
 			&"stone": u.cost_stone,

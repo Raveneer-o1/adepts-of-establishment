@@ -77,6 +77,8 @@ const SKIP_DELAY = 0.4
 var portrait_texture: Texture2D:
 	get: return DataBuffer.get_image(portrait_texture_path)
 @export_file_path("*.*") var portrait_texture_path: String
+## If present, this unit will be treated as a hero.
+@export_file_path("*.tscn") var hero_levelup_tree: String
 
 @export_group("Cost")
 ## Determines the resources player will need to pay to hire this unit.

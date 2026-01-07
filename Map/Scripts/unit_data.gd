@@ -33,7 +33,8 @@ extends Node
 ##     &"evasion": float,
 ##     &"shielding_chance": float,
 ##     &"portrait_texture_path": String,
-##     &"custom_levelup_path": String,
+##     &"custom_levelup_path": String,  # ignored if 'hero_abilities' is present
+##     &"hero_abilities": String,  # takes precedence over 'custom_levelup_path'
 ##     &"cost": Dictionary,  # see below
 ## }
 ## 
@@ -52,7 +53,7 @@ extends Node
 ##
 
 enum UnitClass{
-	Undefined,  ## Noe special effects
+	Undefined,  ## No special effects
 	Warrior,    ## Focus on damage
 	Tank,       ## Focus on survivability (health, armor)
 	Rogue,      ## Focus on evasion
@@ -95,7 +96,8 @@ enum UnitClass{
 @export var evasion: float
 @export var shielding_chance: float
 
-@export var custom_levelup_path: String
+@export var custom_levelup: LevelupFunction = null
+@export var hero_levelup: HeroAbilitiesTree = null
 
 var cost: ResourceCost
 
@@ -173,6 +175,26 @@ func _initialize_attack_data() -> void:
 		var data := UnitAttackData.from_dict(a)
 		attack_data.append(data)
 
+func _set_levelup() -> void:
+	var custom_levelup_path: String = database_dict.get(&"custom_levelup_path", "")
+	if custom_levelup_path and FileAccess.file_exists(custom_levelup_path):
+		var custom_levelup_unchecked := load(custom_levelup_path)
+		if custom_levelup_unchecked is LevelupFunction:
+			custom_levelup = custom_levelup_unchecked
+	
+	var hero_levelup_path: String = database_dict.get(&"hero_abilities", "")
+	if hero_levelup_path and FileAccess.file_exists(hero_levelup_path):
+		assert(self is HeroData, "%s is not initialized as hero" % unit_name)
+		var loaded_resource := load(hero_levelup_path)
+		if loaded_resource is PackedScene:
+			var hero_levelup_unchecked: Node = loaded_resource.instantiate()
+			if not hero_levelup_unchecked: return
+			if hero_levelup_unchecked is HeroAbilitiesTree:
+				hero_levelup = hero_levelup_unchecked
+			else:
+				push_error("'%s' is not a HeroAbilitiesTree" % hero_levelup_path)
+				hero_levelup_unchecked.queue_free()
+
 ## Initializes unit data with database defaults. [br][br]
 ## [color=red]Warning:[/color] This method discards all custom unit modifications,
 ## resets experience to 0, and reloads all defined attacks and effects.
@@ -190,18 +212,16 @@ func initialize(personal: String = "") -> bool:
 	unit_class = database.get(&"unit_class", UnitClass.Undefined)
 	unit_type = database.get(&"unit_type", GlobalDefs.UnitType.Undefined)
 	
-	
 	level = database_dict.get(&"level", 0)
 	needed_xp = database_dict.get(&"needed_xp", 1)
 	large_unit = database_dict.get(&"large_unit", false)
 	immunities.assign(database_dict.get(&"immunities", []))
 	
-	custom_levelup_path = database_dict.get(&"custom_levelup_path", "")
-	
 	personal_name = personal
 	current_hp = max_hp
 	
 	scene_path = database_scene_path
+	_set_levelup()
 	
 	_initialize_attack_data()
 	_initialize_effect_data()
@@ -231,11 +251,12 @@ func grant_xp(points: int) -> void:
 	current_xp += points
 
 func level_up() -> void:
-	if custom_levelup_path and FileAccess.file_exists(custom_levelup_path):
-		var custom_levelup := load(custom_levelup_path)
-		if custom_levelup is LevelupFunction:
-			custom_levelup.custom_levelup(self)
-			return
+	if hero_levelup:
+		hero_levelup.levelup()
+		return
+	if custom_levelup:
+		custom_levelup.custom_levelup(self)
+		return
 	LevelupFunction.default_levelup(self)
 
 func evolve(into: StringName) -> void:
@@ -243,6 +264,19 @@ func evolve(into: StringName) -> void:
 	unit_name = into
 	initialize(personal_name)
 	EventBus.unit_evolved.emit(self, prev)
+
+## Creates and initializes a new [UnitData] instance for the specified unit name.
+## Units are identified by name only - ensure [param u_name] matches database exactly.
+## If the database marks the unit as a hero (non-empty [code]hero_abilities[/code]
+## entry), returns a [HeroData] instance.
+static func get_new(u_name: StringName, personal: String = "") -> UnitData:
+	var d: Dictionary = database.get(u_name)
+	if not d: return null
+	var abilities: String = d.get(&"hero_abilities")
+	var res := HeroData.new() if abilities else UnitData.new()
+	res.unit_name = u_name
+	res.initialize(personal)
+	return res
 
 ## Recursively processes all Arrays and Dictionaries within [param data]: [br]
 ## - Serializes [UnitAttack] references into Dictionaries [br]

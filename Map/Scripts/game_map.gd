@@ -98,12 +98,15 @@ func get_faction(index: int) -> MapFaction:
 		return null
 	return $Factions.get_child(index)
 
-func spawn_new_unit(unit_name: StringName, container: Node) -> UnitData:
+func spawn_new_unit(
+	unit_name: StringName,
+	container: Node,
+	personal_name: String = ""
+) -> UnitData:
 	if not unit_name: return null
 	if not container: return null
-	var data := UnitData.new()
-	data.unit_name = unit_name
-	data.initialize()
+	var data := UnitData.get_new(unit_name, personal_name)
+	if not data: return null
 	container.add_child(data)
 	return data
 
@@ -117,7 +120,6 @@ const MAP_PARTY = preload("uid://2kk6w327nvk")
 func spawn_new_party(
 	coords: Vector2i,
 	_map: Map = current_map,
-	hero: StringName = &""
 ) -> MapParty:
 	var obj: MapParty = MAP_PARTY.instantiate()
 	obj.global_position = _map.get_global_coords(coords)

@@ -136,7 +136,7 @@ func hire_unit(unit_name: StringName, container: Node) -> UnitData:
 	var cost: Dictionary = unit_dict.get(&"cost", {})
 	if this_faction.resource_container.spend(ResourceCost.from_dict(cost)):
 		var unit := game.spawn_new_unit(unit_name, container)
-		EventBus.unit_hired.emit(unit)
+		if unit: EventBus.unit_hired.emit(unit)
 		return unit
 	return null
 
@@ -150,14 +150,17 @@ const DEFAULT_PARTY_COST = {
 ## Creates a new [MapParty] at [param coords] on the specified [param _map]
 ## (defaults to current active map). Optionally adds a hero unit if [param hero] is provided.
 ## @experimental: Heros are not properly implemented yet.
-func hire_party(coords: Vector2i, _map: Map = map, hero: StringName = &"") -> MapParty:
-	var hired_hero: UnitData
-	var unit_dict: Dictionary = GlobalDefs.database_path.database.get(hero, {})
-	var cost: Dictionary = unit_dict.get(&"cost", DEFAULT_PARTY_COST)
-	if this_faction.resource_container.spend(ResourceCost.from_dict(cost)):
-		var p := game.spawn_new_party(coords, _map, hero)
-		if not p: return null
-		p.object_owner = this_faction
-		if hero: hired_hero = game.spawn_new_unit(hero, p)
-		return p
-	return null
+func hire_party(coords: Vector2i, _map: Map = map, hero_name: StringName = &"") -> MapParty:
+	var hero_dict: Dictionary = GlobalDefs.database_path.database.get(hero_name, {})
+	var cost: Dictionary = hero_dict.get(&"cost", DEFAULT_PARTY_COST)
+	if not this_faction.resource_container.spend(ResourceCost.from_dict(cost)):
+		return null
+	
+	var party := game.spawn_new_party(coords, _map)
+	if not party: return null
+	party.object_owner = this_faction
+	if hero_name:
+		var hired_hero: UnitData = game.spawn_new_unit(hero_name, party)
+		if hired_hero is HeroData:
+			party.hero = hired_hero
+	return party
