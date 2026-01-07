@@ -130,7 +130,7 @@ func update_parameters() -> void:
 	var _dead := true
 	for u in units:
 		if u.party_position >= 0 and not u.is_dead: _dead = false
-		if u.levelup_avaliable: await level_up_unit(u)
+		if u.levelup_available: await level_up_unit(u)
 	if _dead: die()
 
 const GRAVE_PREFAB = preload("res://Map/Scenes/party_grave.tscn")

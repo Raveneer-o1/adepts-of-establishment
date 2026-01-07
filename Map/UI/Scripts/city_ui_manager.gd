@@ -98,7 +98,7 @@ func _on_hire_button_pressed() -> void:
 	EventBus.unit_hired.connect(update_city)
 	ui_layers.open_hire_popup(
 		currently_filled_city,
-		currently_filled_city.get_avaliable_units()
+		currently_filled_city.get_available_units()
 	)
 
 func _on_hire_party_gui_input(event: InputEvent) -> void:

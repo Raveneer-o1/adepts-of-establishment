@@ -26,7 +26,7 @@ stretch_mode = 5
 [node name="EvolutionBuildings" type="Node" parent="Appearance"]
 editor_description = "All buildings should have the option to be displayed at the capital window. This means they have to have a texture (e.g., a TextureRect node) and need to be placed in the Appearance tree. This node is specific to evolutionary buildings to avoid searching through all of them when searching for another upgrade."
 
-[node name="AvaliableUpgrades" type="CanvasLayer" parent="."]
+[node name="AvailableUpgrades" type="CanvasLayer" parent="."]
 visible = false
 script = ExtResource("3_5mkmw")
 empire_path = "res://Map/Scenes/EvolutionBuildings/empire_tree.tscn"

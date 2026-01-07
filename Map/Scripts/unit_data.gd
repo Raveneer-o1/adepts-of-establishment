@@ -130,7 +130,7 @@ var is_dead: bool:
 ## If this is not [code]null[/code], this object is considered a copy of this original one
 var original: UnitData = null
 
-var levelup_avaliable: bool:
+var levelup_available: bool:
 	get: return current_xp >= needed_xp
 
 var party: MapParty:

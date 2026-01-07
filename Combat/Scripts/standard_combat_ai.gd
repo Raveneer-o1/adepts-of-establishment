@@ -46,8 +46,8 @@ func calculate_damage() -> void:
 			continue
 		
 		for attack in unit.parameters.attacks:
-			var avaliable_tagrts := api.combat_system.find_targets_for_attack(attack)
-			for target in avaliable_tagrts:
+			var available_tagrts := api.combat_system.find_targets_for_attack(attack)
+			for target in available_tagrts:
 				if units_damage.has(target.unit):
 					units_damage[target.unit] += unit.parameters.get_actual_damage(attack)
 				else:
@@ -213,34 +213,34 @@ func find_target_for_healing(valid_targets: Array[UnitSpot]) -> UnitSpot:
 	return result
 
 
-func choose_warrior_action(unit: Unit, avaliable_targets: Array[UnitSpot]) -> void:
+func choose_warrior_action(unit: Unit, available_targets: Array[UnitSpot]) -> void:
 	var targets_need := unit.current_attack.targets_needed
 	
 	while targets_need > 0:
-		if avaliable_targets.is_empty():
+		if available_targets.is_empty():
 			api.start_attack()
 			return
 		
-		var chosen_unit := evaluate_targets(unit, avaliable_targets)
+		var chosen_unit := evaluate_targets(unit, available_targets)
 		api.choose_unit(chosen_unit)
-		avaliable_targets = api.combat_system.find_avaliable_targets(unit)
+		available_targets = api.combat_system.find_available_targets(unit)
 		targets_need -= 1
 
 
 
-func choose_healer_action(unit: Unit, avaliable_targets: Array[UnitSpot]) -> void:
+func choose_healer_action(unit: Unit, available_targets: Array[UnitSpot]) -> void:
 	var targets_need := unit.current_attack.targets_needed
 	while targets_need > 0:
-		if avaliable_targets.is_empty():
+		if available_targets.is_empty():
 			api.start_attack()
 			return
 		
-		var chosen_unit := find_target_for_healing(avaliable_targets)
+		var chosen_unit := find_target_for_healing(available_targets)
 		if chosen_unit == null:
 			api.use_defense_or_attack()
 		
 		api.choose_unit(chosen_unit)
-		avaliable_targets = api.combat_system.find_avaliable_targets(unit)
+		available_targets = api.combat_system.find_available_targets(unit)
 		targets_need -= 1
 
 
@@ -252,16 +252,16 @@ func choose_action(unit: Unit) -> void:
 	if unit.skipping_turn:
 		return
 	
-	var avaliable_targets := api.combat_system.find_avaliable_targets()
-	if avaliable_targets.is_empty():
+	var available_targets := api.combat_system.find_available_targets()
+	if available_targets.is_empty():
 		api.use_defense_stance()
 		return
 	
 	if unit.unit_type == GlobalDefs.UnitType.Support:
-		choose_healer_action(unit, avaliable_targets)
+		choose_healer_action(unit, available_targets)
 		return
 	
-	choose_warrior_action(unit, avaliable_targets)
+	choose_warrior_action(unit, available_targets)
 
 
 func _ready() -> void:

@@ -13,11 +13,11 @@ func check_trigger(u: Unit) -> void:
 	if is_queued_for_deletion(): return
 	if u != target_unit: return
 	if not summon: return
-	var avaliable_spots: Array[UnitSpot] = target_unit.party.unit_spots.filter(
+	var available_spots: Array[UnitSpot] = target_unit.party.unit_spots.filter(
 		func(s: UnitSpot)->bool: return s.unit == null
 	)
-	if not avaliable_spots: return
-	var spot: UnitSpot = avaliable_spots.pick_random()
+	if not available_spots: return
+	var spot: UnitSpot = available_spots.pick_random()
 	
 	# summoned unit has summoned_unit flag set to false: this in intentional
 	var unit := spot.add_unit(summon, null)

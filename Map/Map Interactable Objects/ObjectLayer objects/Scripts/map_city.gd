@@ -100,7 +100,7 @@ func _player_interact(faction: MapFaction) -> void:
 
 func update_parameters() -> void:
 	for u in units:
-		if u.levelup_avaliable: level_up_unit(u)
+		if u.levelup_available: level_up_unit(u)
 
 func level_up_unit(unit: UnitData) -> void:
 	if not unit: return
@@ -140,7 +140,7 @@ func _passes_blacklist(unit: Dictionary) -> bool:
 		if _does_meet_criterion(unit, criterion): return false
 	return true
 
-func get_avaliable_units() -> Array[StringName]:
+func get_available_units() -> Array[StringName]:
 	var res: Array[StringName] = []
 	if object_owner:
 		res = object_owner.hiring_units

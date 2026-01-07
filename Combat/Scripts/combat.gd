@@ -380,19 +380,19 @@ func display_hints() -> void:
 	remove_hints()
 	match show_hitns_mode:
 		SHOW_HINTS_ALWAYS:
-			var avaliable_targets: Array[UnitSpot] = find_avaliable_targets()
-			for target in avaliable_targets:
+			var available_targets: Array[UnitSpot] = find_available_targets()
+			for target in available_targets:
 				var marker: AnimatedSprite2D = unit_marker.instantiate()
 				displayed_hints.append(marker)
 				target.add_child(marker)
 				marker.modulate = Color.FOREST_GREEN
 		SHOW_HINTS_ON_HOVER:
-			var avaliable_targets := find_avaliable_targets()
+			var available_targets := find_available_targets()
 			for spot in left_party.unit_spots + right_party.unit_spots:
 				if spot == null:
 					continue
 				var color: Color = Color.FIREBRICK
-				if avaliable_targets.has(spot):
+				if available_targets.has(spot):
 					color = Color.FOREST_GREEN
 				spot.area_2d.get_node("HighlightAnimation").modulate = color
 
@@ -544,7 +544,7 @@ func find_targets_for_attack(attack: UnitAttack) -> Array[UnitSpot]:
 	
 	return result
 
-func find_avaliable_targets(unit: Unit = current_unit) -> Array[UnitSpot]:
+func find_available_targets(unit: Unit = current_unit) -> Array[UnitSpot]:
 	if unit == null:
 		return []
 	

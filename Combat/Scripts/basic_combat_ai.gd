@@ -61,19 +61,19 @@ func choose_action(unit: Unit) -> void:
 	if unit.party != api.party:
 		return
 	
-	var avaliable_targets := api.combat_system.find_avaliable_targets()
-	if avaliable_targets.is_empty():
+	var available_targets := api.combat_system.find_available_targets()
+	if available_targets.is_empty():
 		api.use_defense_stance()
 		return
 	
 	var targets_need := unit.current_attack.targets_needed
 	while targets_need > 0:
-		if avaliable_targets.is_empty():
+		if available_targets.is_empty():
 			api.start_attack()
 			return
-		var chosen_unit := evaluate_targets(unit, avaliable_targets)
+		var chosen_unit := evaluate_targets(unit, available_targets)
 		api.choose_unit(chosen_unit)
-		avaliable_targets = api.combat_system.find_avaliable_targets(unit)
+		available_targets = api.combat_system.find_available_targets(unit)
 		targets_need -= 1
 
 func _ready() -> void:

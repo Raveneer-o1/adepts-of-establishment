@@ -42,7 +42,7 @@ enum AttackType {
 	None
 }
 
-# List of all avaliable factions.
+# List of all available factions.
 # Note: this should include all factions, not only playable ones
 enum Faction {
 	Undefined,

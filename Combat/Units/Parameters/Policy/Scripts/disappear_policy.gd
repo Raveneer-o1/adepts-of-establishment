@@ -14,11 +14,11 @@ func check_turn(u: Unit = null) -> void:
 	_return_unit()
 
 func _return_unit() -> void:
-	var avaliable_spots: Array[UnitSpot] = unit.party.unit_spots.filter(
+	var available_spots: Array[UnitSpot] = unit.party.unit_spots.filter(
 		func(s: UnitSpot)->bool: return s.unit == null
 	)
-	if not avaliable_spots: return
-	var spot: UnitSpot = avaliable_spots.pick_random()
+	if not available_spots: return
+	var spot: UnitSpot = available_spots.pick_random()
 	spot.assign_unit(unit)
 	unit = null
 	if EventBus.turn_ended.is_connected(check_turn):

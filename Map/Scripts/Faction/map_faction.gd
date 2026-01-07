@@ -6,7 +6,7 @@ extends Node
 
 @onready var api: FactionAPI = $API
 @onready var appearance: CanvasLayer = $Appearance
-@onready var avaliable_upgrades: EvolutionTreePopulator = $AvaliableUpgrades
+@onready var available_upgrades: EvolutionTreePopulator = $AvailableUpgrades
 @onready var evolution_buildings: Node = $Appearance/EvolutionBuildings
 @onready var resource_container: MapResourceContainer = $ResourceContainer
 
@@ -69,12 +69,12 @@ func level_up_unit(unit: UnitData) -> void:
 	if evolve_into: unit.evolve(await choose_evolution(unit, evolve_into))
 	else: unit.level_up()
 
-func get_avaliable_upgrades(include_evolution_buildings: bool = false) -> Array[FactionUpgrade]:
+func get_available_upgrades(include_evolution_buildings: bool = false) -> Array[FactionUpgrade]:
 	var res: Array[FactionUpgrade] = []
-	for c in avaliable_upgrades.get_children():
+	for c in available_upgrades.get_children():
 		if c is FactionUpgrade: res.append(c)
 	if include_evolution_buildings:
-		for c in avaliable_upgrades.evolution_buildings.get_children():
+		for c in available_upgrades.evolution_buildings.get_children():
 			if c is FactionUpgrade: res.append(c)
 	return res
 
