@@ -16,7 +16,6 @@ extends PartyEffect
 var effect_mapping: Dictionary[Signal, Callable]
 
 func _execute_call(callable: Callable, args: Array) -> void:
-	args.reverse()
 	if args:
 		callable = callable.bindv(args)
 	callable.call()
@@ -25,7 +24,6 @@ func _validate_call() -> bool:
 	if not is_instance_valid(source_unit):
 		source_unit = null
 		return false
-	if not source_unit: return false
 	if source_unit.is_dead: return false
 	
 	if source_unit.party != party_parameters.this_party:

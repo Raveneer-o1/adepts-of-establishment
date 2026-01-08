@@ -31,8 +31,8 @@
 [ext_resource type="Script" uid="uid://vp2g1mt8y24x" path="res://Map/Scripts/Map/map_visualizer.gd" id="28_esgc1"]
 [ext_resource type="PackedScene" uid="uid://jptv4wy37o02" path="res://Map/Map Interactable Objects/Scenes/land_claiming_rod.tscn" id="28_x0sa0"]
 [ext_resource type="PackedScene" uid="uid://bg1dfkhl176lq" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scenes/gold_mine.tscn" id="30_orlke"]
-[ext_resource type="PackedScene" uid="uid://djeo7bmtq4rr5" path="res://Map/PartyEffects/Scenes/Effects from units/test.tscn" id="32_hpb3d"]
 [ext_resource type="Script" uid="uid://cbm1bjrf8g5x" path="res://Map/Scripts/Units/hero_data.gd" id="32_i47xn"]
+[ext_resource type="Script" uid="uid://cvjkk7pqhvadr" path="res://Map/Scripts/Units/MapEffects/test.gd" id="33_hpb3d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iq1o3"]
 texture = ExtResource("1_xec2n")
@@ -481,9 +481,6 @@ position = Vector2(1383, 772)
 party_name = "Strong dudes"
 owner_capital = NodePath("../../ObjectManager/EmpireCapital")
 
-[node name="Test" parent="Parties/MapParty_" node_paths=PackedStringArray("source_unit") instance=ExtResource("32_hpb3d")]
-source_unit = NodePath("../UnitData7")
-
 [node name="UnitData3" type="Node" parent="Parties/MapParty_"]
 script = ExtResource("21_bl7ab")
 party_position = 2
@@ -507,6 +504,9 @@ current_hp = 100
 unit_name = &"Squire"
 max_hp = 100
 metadata/_custom_type_script = "uid://cbm1bjrf8g5x"
+
+[node name="Node" type="Node" parent="Parties/MapParty_/UnitData7"]
+script = ExtResource("33_hpb3d")
 
 [node name="UnitData2" type="Node" parent="Parties/MapParty_"]
 script = ExtResource("21_bl7ab")

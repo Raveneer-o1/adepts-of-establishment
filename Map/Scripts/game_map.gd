@@ -69,7 +69,6 @@ func _test_init() -> void:
 func _ready() -> void:
 	load_maps()
 	ui_layers.clear_active_party()
-	
 	_test_init()
 
 func _end_temporary_disable() -> void:

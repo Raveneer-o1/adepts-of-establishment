@@ -280,8 +280,10 @@ func evolve(into: StringName) -> void:
 	EventBus.unit_evolved.emit(self, prev)
 
 func move_unit(container: Node) -> void:
-	if get_parent():
-		reparent(container)
+	if not container: return
+	var parent := get_parent()
+	if parent == container: return
+	if parent: reparent(container)
 	else: container.add_child(self)
 	for e in map_effects:
 		e.on_unit_move()
