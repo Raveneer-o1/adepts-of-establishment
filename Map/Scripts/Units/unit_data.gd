@@ -63,10 +63,13 @@ enum UnitClass{
 
 @export_file_path("*.tscn") var scene_path: String
 
+@export var custom_levelup: LevelupFunction = null
+@export var hero_levelup: HeroAbilitiesTree = null
+
 ## Position of the unit within the party (see [Party] class documentation). [br]
 ## Units with position [code]-1[/code] are considered [i]in garrison[/i]
 ## and do not participate in combat.
-@export_range(-1, 6) var party_position: int = -1
+@export_range(-1, Party.MAX_UNITS_NUMBER - 1) var party_position: int = -1
 ## Overrides [member unit_name] for representation
 @export var personal_name: String
 @export var current_hp: int
@@ -95,9 +98,6 @@ enum UnitClass{
 @export var armor: int
 @export var evasion: float
 @export var shielding_chance: float
-
-@export var custom_levelup: LevelupFunction = null
-@export var hero_levelup: HeroAbilitiesTree = null
 
 var cost: ResourceCost
 
@@ -268,6 +268,9 @@ func grant_xp(points: int) -> void:
 	current_xp += points
 
 func level_up() -> void:
+	if hero_levelup and self is HeroData:
+		hero_levelup.levelup()
+		return
 	if custom_levelup:
 		custom_levelup.custom_levelup(self)
 		return
@@ -296,7 +299,7 @@ func move_unit(container: Node) -> void:
 static func get_new(u_name: StringName, personal: String = "") -> UnitData:
 	var d: Dictionary = database.get(u_name)
 	if not d: return null
-	var abilities: String = d.get(&"hero_abilities")
+	var abilities: String = d.get(&"hero_abilities", "")
 	var res := HeroData.new() if abilities else UnitData.new()
 	res.unit_name = u_name
 	res.initialize(personal)

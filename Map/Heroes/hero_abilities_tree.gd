@@ -34,7 +34,7 @@ extends Node
 ## to the player is difficult and most likely not worth it.
 
 
-var this_hero: HeroData
+@onready var this_hero: HeroData = get_parent()
 
 ## List of abilities that are [i]available[/i] (prerequisites learned).
 ## Includes abilities regardless of level requirements.
@@ -63,6 +63,7 @@ func levelup() -> void:
 		_learn_ability(option)
 	for a in _get_available_automatic_abilities():
 		_learn_ability(a)
+	this_hero.current_hp = this_hero.max_hp
 
 func _make_children_available(ability: HeroAbility) -> void:
 	var temp: Array[HeroAbility] = []

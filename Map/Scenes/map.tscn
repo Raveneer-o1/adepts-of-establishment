@@ -32,7 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://jptv4wy37o02" path="res://Map/Map Interactable Objects/Scenes/land_claiming_rod.tscn" id="28_x0sa0"]
 [ext_resource type="PackedScene" uid="uid://bg1dfkhl176lq" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scenes/gold_mine.tscn" id="30_orlke"]
 [ext_resource type="Script" uid="uid://cbm1bjrf8g5x" path="res://Map/Scripts/Units/hero_data.gd" id="32_i47xn"]
-[ext_resource type="Script" uid="uid://cvjkk7pqhvadr" path="res://Map/Scripts/Units/MapEffects/test.gd" id="33_hpb3d"]
+[ext_resource type="PackedScene" uid="uid://cx4tudyj13yvi" path="res://Map/Heroes/test_hero_ability_tree.tscn" id="34_hhhnw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iq1o3"]
 texture = ExtResource("1_xec2n")
@@ -462,7 +462,6 @@ metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 
 [node name="UnitData6" type="Node" parent="Parties/MapParty"]
 script = ExtResource("21_bl7ab")
-party_position = 6
 current_hp = 100
 unit_name = &"Knight"
 max_hp = 100
@@ -491,22 +490,21 @@ metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 
 [node name="UnitData6" type="Node" parent="Parties/MapParty_"]
 script = ExtResource("21_bl7ab")
-party_position = 6
 current_hp = 100
 unit_name = &"Squire"
 max_hp = 100
 metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 
-[node name="UnitData7" type="Node" parent="Parties/MapParty_"]
+[node name="UnitData7" type="Node" parent="Parties/MapParty_" node_paths=PackedStringArray("hero_levelup")]
 script = ExtResource("32_i47xn")
+hero_levelup = NodePath("TestHeroAbilityTree")
 party_position = 4
 current_hp = 100
 unit_name = &"Squire"
 max_hp = 100
 metadata/_custom_type_script = "uid://cbm1bjrf8g5x"
 
-[node name="Node" type="Node" parent="Parties/MapParty_/UnitData7"]
-script = ExtResource("33_hpb3d")
+[node name="TestHeroAbilityTree" parent="Parties/MapParty_/UnitData7" instance=ExtResource("34_hhhnw")]
 
 [node name="UnitData2" type="Node" parent="Parties/MapParty_"]
 script = ExtResource("21_bl7ab")
@@ -523,7 +521,6 @@ faction_index = 1
 
 [node name="UnitData" type="Node" parent="Parties/MapParty0"]
 script = ExtResource("21_bl7ab")
-party_position = 6
 unit_name = &"Squire"
 metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 
@@ -552,7 +549,6 @@ metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 
 [node name="UnitData2" type="Node" parent="Parties/MapParty1"]
 script = ExtResource("21_bl7ab")
-party_position = 6
 unit_name = &"Vampire"
 metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 
@@ -656,7 +652,6 @@ metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 
 [node name="UnitData5" type="Node" parent="Parties/MapParty6"]
 script = ExtResource("21_bl7ab")
-party_position = 6
 unit_name = &"Pirate"
 metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 

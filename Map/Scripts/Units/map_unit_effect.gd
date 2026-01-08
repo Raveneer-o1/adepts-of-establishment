@@ -30,3 +30,6 @@ func on_unit_move() -> void:
 	# Override if the effect requires custom reconfiguration after unit movement.
 	_remove()
 	apply()
+
+func _ready() -> void:
+	apply.call_deferred()

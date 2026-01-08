@@ -1,6 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://cx4tudyj13yvi"]
+[gd_scene load_steps=4 format=3 uid="uid://cx4tudyj13yvi"]
 
 [ext_resource type="Script" uid="uid://ddeygmp2runvx" path="res://Map/Heroes/hero_abilities_tree.gd" id="1_onij4"]
+[ext_resource type="Script" uid="uid://c24icw3ac5w4m" path="res://Map/Heroes/Abilities/stats_increase.gd" id="2_4nqsg"]
+[ext_resource type="Script" uid="uid://boeny7exuxibg" path="res://Map/Heroes/Abilities/add_effect.gd" id="3_osxcn"]
 
 [node name="TestHeroAbilityTree" type="Node"]
 script = ExtResource("1_onij4")
+
+[node name="Increase parameters" type="Node" parent="."]
+script = ExtResource("2_4nqsg")
+optional = false
+unlimited_learning = true
+
+[node name="Add effect" type="Node" parent="."]
+script = ExtResource("3_osxcn")
+effect_path = "res://Map/Scripts/Units/MapEffects/test.gd"
+required_level = 2
+
+[node name="Increase parameters2" type="Node" parent="Add effect"]
+script = ExtResource("2_4nqsg")
+required_level = 3
+unlimited_learning = true

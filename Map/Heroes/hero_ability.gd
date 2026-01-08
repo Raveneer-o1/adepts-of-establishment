@@ -17,14 +17,16 @@ extends Node
 ## Heroes may have unlimited automatic abilities but player can choose
 ## only one optional ability per level.
 @export var optional: bool = true
+## If [code]true[/code], this ability can be learned over and over again.
+## Prevents [member learned] flag from setting.
+@export var unlimited_learning: bool = false
 
 var learned := false
 
 ## Grants this ability to the [param hero].
-## This method does not free the [HeroAbility] node
 func learn(hero: HeroData) -> void:
-	if learned: return
+	if learned: return  # safeguard agains UI bugs
 	_learn(hero)
-	learned = true
+	if not unlimited_learning: learned = true
 
 @abstract func _learn(hero: HeroData) -> void

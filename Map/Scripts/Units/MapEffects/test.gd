@@ -7,6 +7,3 @@ func apply() -> void:
 	var instance: PartyEffectFromUnit = TEST.instantiate()
 	instance.source_unit = unit
 	unit.party.add_child(instance)
-
-func _ready() -> void:
-	apply.call_deferred()
