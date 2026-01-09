@@ -14,3 +14,5 @@ script = ExtResource("1_a0bqt")
 [node name="Ability" type="Button" parent="."]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
+
+[connection signal="pressed" from="Ability" to="." method="_on_ability_pressed"]

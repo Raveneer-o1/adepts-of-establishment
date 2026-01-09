@@ -1,72 +1,164 @@
+class_name UI_DynamicTree
 extends Control
 
 ## @experimental: for testing only, will be removed
 @export var abilities_tree: HeroAbilitiesTree
 
+# UI Components
+@onready var layers_container: VBoxContainer = $LayersContainer
+
+const LEVEL_LAYER_SCENE = preload("uid://bs8ib1auh8e4")
+
+signal ability_selected(ability: HeroAbility)
+
 func _ready() -> void:
 	build_tree(abilities_tree)
 
-
-@onready var layers_container: VBoxContainer = $LayersContainer
-
-const LEVEL_LAYER = preload("uid://bs8ib1auh8e4")
-
 func _find_max_level(tree: HeroAbilitiesTree) -> int:
-	var res := 1
-	var nodes := tree.get_children()
-	while nodes:
-		var node: HeroAbility = nodes.pop_front()
-		if node.required_level > res: res = node.required_level
-		nodes.append_array(node.get_children())
-	return res
+	var max_level := 1
+	var nodes_to_process := tree.get_children()
+	
+	while nodes_to_process:
+		var current_node: HeroAbility = nodes_to_process.pop_front()
+		if current_node.required_level > max_level:
+			max_level = current_node.required_level
+		nodes_to_process.append_array(current_node.get_children())
+	
+	return max_level
 
-func _spawn_level_layers(tree: HeroAbilitiesTree) -> void:
+func _spawn_level_layers(tree: HeroAbilitiesTree, branch_count: int) -> void:
 	var max_level := _find_max_level(tree)
-	for i in range(max_level):
-		layers_container.add_child(LEVEL_LAYER.instantiate())
+	for level_index in range(max_level):
+		var new_layer: DynamicTree_LevelLayer = LEVEL_LAYER_SCENE.instantiate()
+		layers_container.add_child(new_layer)
+		new_layer.init_branches(branch_count)
 
-func _add_line(node1: Control, node2: Control) -> void:
-	var line := Line2D.new()
-	var rect1 := node1.get_rect()
-	var rect2 := node2.get_rect()
-	var pos1 := Vector2(
-		(rect1.size.x) / 2.0,
-		rect1.end.y
-	) + node1.global_position
-	var pos2 := Vector2(
-		(rect2.size.x) / 2.0,
-		rect2.position.y
-	) + node2.global_position
-	add_child(line)
-	line.add_point(pos1)
-	line.add_point(pos2)
+func _connect_ability_nodes(source_node: Control, target_node: Control) -> void:
+	var connection_line := Line2D.new()
+	var source_rect := source_node.get_rect()
+	var target_rect := target_node.get_rect()
+	
+	var start_position := Vector2(
+		source_rect.size.x / 2.0,
+		source_rect.end.y
+	) + source_node.global_position
+	
+	var end_position := Vector2(
+		target_rect.size.x / 2.0,
+		target_rect.position.y
+	) + target_node.global_position
+	
+	add_child(connection_line)
+	connection_line.add_point(start_position)
+	connection_line.add_point(end_position)
 
-func _handle_ability(
-	mapping: Dictionary[HeroAbility, Control],
-	prereq: HeroAbility
+func _process_ability_children(
+	ability_to_ui_map: Dictionary[HeroAbility, Control],
+	branch_assignment_map: Dictionary[HeroAbility, int],
+	parent_ability: HeroAbility
 ) -> void:
-	for ability: HeroAbility in prereq.get_children():
-		var index := ability.required_level - 1 if ability.required_level > 0 else 0
-		var container: DynamicTree_LevelLayer = layers_container.get_child(index)
-		var new_node: DynamicTree_Ability = container.add_ability(ability)
-		new_node.init_ability(ability)
-		_add_line.call_deferred(mapping[prereq], new_node)
-		mapping[ability] = new_node
+	for child_ability: HeroAbility in parent_ability.get_children():
+		var level_index := child_ability.required_level - 1 \
+			if child_ability.required_level > 0 else 0
+		var level_container: DynamicTree_LevelLayer = \
+			layers_container.get_child(level_index)
+		var assigned_branch := branch_assignment_map[child_ability]
+		
+		var ability_node: DynamicTree_Ability = \
+			level_container.add_ability(child_ability, assigned_branch)
+		ability_node.init_ability(child_ability)
+		
+		_connect_ability_nodes.call_deferred(
+			ability_to_ui_map[parent_ability],
+			ability_node
+		)
+		ability_to_ui_map[child_ability] = ability_node
 
-func _handle_layer(mapping: Dictionary[HeroAbility, Control]) -> void:
-	for prereq: HeroAbility in mapping.keys():
-		_handle_ability(mapping, prereq)
-		mapping.erase(prereq)
+func _process_current_layer(
+	ability_to_ui_map: Dictionary[HeroAbility, Control],
+	branch_assignment_map: Dictionary[HeroAbility, int]
+) -> void:
+	# AFAIK, duplicate() is not necessary here but it doesn't hurt to have it
+	var abilities_in_current_layer := ability_to_ui_map.keys().duplicate()
+	
+	for parent_ability: HeroAbility in abilities_in_current_layer:
+		_process_ability_children(
+			ability_to_ui_map,
+			branch_assignment_map,
+			parent_ability
+		)
+		ability_to_ui_map.erase(parent_ability)
+
+func _count_branches(tree: HeroAbilitiesTree) -> int:
+	var branch_count := 0
+	var main_branch_counted := false
+	
+	for child_ability: HeroAbility in tree.get_children():
+		if not child_ability.optional:
+			continue
+		
+		# Handle abilities with no children (leaf nodes)
+		if child_ability.get_child_count() == 0:
+			if main_branch_counted:
+				continue
+			main_branch_counted = true
+			branch_count += 1
+			continue
+		
+		# Each ability with children gets its own branch
+		branch_count += 1
+	
+	return branch_count
+
+func _create_branch_assignment_map(tree: HeroAbilitiesTree) \
+-> Dictionary[HeroAbility, int]:
+	var assignment_map: Dictionary[HeroAbility, int] = {}
+	var next_branch_id := 2  # Branch IDs: 0=auto, 1=main, 2+=additional branches
+	
+	for child_ability: HeroAbility in tree.get_children():
+		if not child_ability.optional:
+			assignment_map[child_ability] = 0  # Automatic ability
+			continue
+		
+		if child_ability.get_child_count() == 0:
+			assignment_map[child_ability] = 1  # Main branch
+			continue
+		
+		# Assign current branch to this ability and all its descendants
+		assignment_map[child_ability] = next_branch_id
+		
+		# Recursively assign same branch to all children
+		var descendant_nodes := child_ability.get_children()
+		while descendant_nodes:
+			var descendant: HeroAbility = descendant_nodes.pop_front()
+			assignment_map[descendant] = next_branch_id
+			descendant_nodes.append_array(descendant.get_children())
+		
+		next_branch_id += 1
+	
+	return assignment_map
 
 ## Creates all UI components necessary to represent provided [param tree]
 func build_tree(tree: HeroAbilitiesTree) -> void:
-	_spawn_level_layers(tree)
-	var mapping: Dictionary[HeroAbility, Control] = {}
-	for ability: HeroAbility in tree.get_children():
-		var index := ability.required_level - 1 if ability.required_level > 0 else 0
-		var container: DynamicTree_LevelLayer = layers_container.get_child(index)
-		var new_node: DynamicTree_Ability = container.add_ability(ability)
-		new_node.init_ability(ability)
-		mapping[ability] = new_node
+	var ability_to_ui_map: Dictionary[HeroAbility, Control] = {}
+	var branch_assignment_map := _create_branch_assignment_map(tree)
+	var total_branches := _count_branches(tree)
 	
-	while mapping: _handle_layer(mapping)
+	_spawn_level_layers(tree, total_branches)
+	
+	# Create initial ability nodes (first level)
+	for root_ability: HeroAbility in tree.get_children():
+		var level_index := root_ability.required_level - 1 \
+			if root_ability.required_level > 0 else 0
+		var level_container: DynamicTree_LevelLayer = \
+			layers_container.get_child(level_index)
+		var assigned_branch := branch_assignment_map[root_ability]
+		
+		var ability_node: DynamicTree_Ability = \
+			level_container.add_ability(root_ability, assigned_branch)
+		ability_node.init_ability(root_ability)
+		ability_to_ui_map[root_ability] = ability_node
+	
+	# Process remaining levels recursively
+	while ability_to_ui_map:
+		_process_current_layer(ability_to_ui_map, branch_assignment_map)

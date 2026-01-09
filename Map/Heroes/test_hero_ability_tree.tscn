@@ -44,6 +44,36 @@ ability_name = "Levelup"
 optional = false
 unlimited_learning = true
 
+[node name="Automatic" type="Node" parent="."]
+script = ExtResource("2_4nqsg")
+ability_name = "Automatic 1"
+required_level = 2
+optional = false
+
+[node name="Automatic2" type="Node" parent="."]
+script = ExtResource("2_4nqsg")
+ability_name = "Automatic 1"
+required_level = 3
+optional = false
+
+[node name="Automatic5" type="Node" parent="."]
+script = ExtResource("2_4nqsg")
+ability_name = "Automatic 1"
+required_level = 3
+optional = false
+
+[node name="Automatic3" type="Node" parent="."]
+script = ExtResource("2_4nqsg")
+ability_name = "Automatic 1"
+required_level = 4
+optional = false
+
+[node name="Automatic4" type="Node" parent="."]
+script = ExtResource("2_4nqsg")
+ability_name = "Automatic 1"
+required_level = 5
+optional = false
+
 [node name="Optional L" type="Node" parent="."]
 script = ExtResource("2_4nqsg")
 ability_name = "Optional L"
