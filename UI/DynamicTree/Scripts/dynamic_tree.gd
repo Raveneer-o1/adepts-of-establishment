@@ -1,18 +1,18 @@
 class_name UI_DynamicTree
 extends Control
 
-## @experimental: for testing only, will be removed
-@export var abilities_tree: HeroAbilitiesTree
+@export var test_tree: HeroAbilitiesTree
+func _ready() -> void:
+	if test_tree: build_tree(test_tree)
 
 # UI Components
 @onready var layers_container: VBoxContainer = $LayersContainer
 
+var this_tree: HeroAbilitiesTree
+
 const LEVEL_LAYER_SCENE = preload("uid://bs8ib1auh8e4")
 
 signal ability_selected(ability: HeroAbility)
-
-func _ready() -> void:
-	build_tree(abilities_tree)
 
 func _find_max_level(tree: HeroAbilitiesTree) -> int:
 	var max_level := 1
@@ -34,19 +34,31 @@ func _spawn_level_layers(tree: HeroAbilitiesTree, branch_count: int) -> void:
 		new_layer.init_branches(branch_count)
 
 func _connect_ability_nodes(source_node: Control, target_node: Control) -> void:
+	await get_tree().process_frame
+	# waiting for the nodes to draw, otherwise global_position returns negative values
+	
 	var connection_line := Line2D.new()
 	var source_rect := source_node.get_rect()
 	var target_rect := target_node.get_rect()
 	
+	
 	var start_position := Vector2(
 		source_rect.size.x / 2.0,
 		source_rect.end.y
-	) + source_node.global_position
+	) \
+	+ source_node.global_position \
+	- global_position
+	#+ source_node.get_transform().affine_inverse().origin
 	
 	var end_position := Vector2(
 		target_rect.size.x / 2.0,
 		target_rect.position.y
-	) + target_node.global_position
+	) \
+	+ target_node.global_position \
+	- global_position
+	#print("Source: %s" % str(source_node.global_position))
+	#print("Target: %s" % str(target_node.global_position))
+	#+ target_node.get_transform().affine_inverse().origin
 	
 	add_child(connection_line)
 	connection_line.add_point(start_position)
@@ -68,7 +80,7 @@ func _process_ability_children(
 			level_container.add_ability(child_ability, assigned_branch)
 		ability_node.init_ability(child_ability)
 		
-		_connect_ability_nodes.call_deferred(
+		_connect_ability_nodes(
 			ability_to_ui_map[parent_ability],
 			ability_node
 		)
@@ -140,6 +152,14 @@ func _create_branch_assignment_map(tree: HeroAbilitiesTree) \
 
 ## Creates all UI components necessary to represent provided [param tree]
 func build_tree(tree: HeroAbilitiesTree) -> void:
+	if not tree:
+		push_error("Null tree")
+		return
+	if this_tree == tree:
+		update()
+		return
+	
+	this_tree = tree
 	var ability_to_ui_map: Dictionary[HeroAbility, Control] = {}
 	var branch_assignment_map := _create_branch_assignment_map(tree)
 	var total_branches := _count_branches(tree)
@@ -159,6 +179,11 @@ func build_tree(tree: HeroAbilitiesTree) -> void:
 		ability_node.init_ability(root_ability)
 		ability_to_ui_map[root_ability] = ability_node
 	
-	# Process remaining levels recursively
+	# Process remaining levels
 	while ability_to_ui_map:
 		_process_current_layer(ability_to_ui_map, branch_assignment_map)
+
+## Updates the values in the UI (e.g., deactivates learned abilities)
+func update() -> void:
+	for layer: DynamicTree_LevelLayer in layers_container.get_children():
+		layer.update()

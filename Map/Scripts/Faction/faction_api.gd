@@ -98,14 +98,14 @@ func choose_hero_ability(hero: HeroData, options: Array[HeroAbility]) -> HeroAbi
 	return options.pick_random()
 
 ## Pauses the entire game except controler. Useful for UI prompts.
-func gloabal_pause() -> void:
+func global_pause() -> void:
 	if not controller: return
 	# shouldn't be necessary, just in case
 	controller.process_mode = Node.PROCESS_MODE_ALWAYS
 	get_tree().paused = true
 
 ## Resumes the game.
-func gloabal_unpause() -> void:
+func global_unpause() -> void:
 	get_tree().paused = false
 
 func _ready() -> void:

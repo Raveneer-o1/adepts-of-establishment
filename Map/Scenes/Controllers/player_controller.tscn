@@ -40,4 +40,28 @@ layout_mode = 2
 layout_mode = 2
 text = "Confirm"
 
+[node name="HeroLevelup" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="MarginContainer" type="MarginContainer" parent="HeroLevelup"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 70
+theme_override_constants/margin_top = 70
+theme_override_constants/margin_right = 70
+theme_override_constants/margin_bottom = 70
+
+[node name="PanelContainer" type="PanelContainer" parent="HeroLevelup/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HeroLevelup/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 70
+theme_override_constants/margin_top = 70
+theme_override_constants/margin_right = 70
+theme_override_constants/margin_bottom = 70
+
 [connection signal="pressed" from="EvolutionRequest/InputCatcher/VBoxContainer/Button" to="." method="_on_button_pressed"]

@@ -34,7 +34,7 @@ var awaiting_screen_access: Dictionary[MapFaction, Signal]
 ## # ... perform setup
 ##
 ## # Wait for player to become active screen controller
-## await game.screen_access(self, _waiting_signal)
+## await game.screen_access(faction, _waiting_signal)
 ##
 ## # ... execute player-dependent logic
 ## [/codeblock]

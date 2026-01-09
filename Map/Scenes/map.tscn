@@ -515,25 +515,14 @@ max_hp = 100
 metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 
 [node name="MapParty0" parent="Parties" instance=ExtResource("12_kwhd2")]
-position = Vector2(1081, 775)
+position = Vector2(1082, 775)
 party_name = "Thieves"
 faction_index = 1
 
 [node name="UnitData" type="Node" parent="Parties/MapParty0"]
 script = ExtResource("21_bl7ab")
+party_position = 4
 unit_name = &"Squire"
-metadata/_custom_type_script = "uid://mn0dy1cf0p65"
-
-[node name="UnitData2" type="Node" parent="Parties/MapParty0"]
-script = ExtResource("21_bl7ab")
-party_position = 2
-unit_name = &"Witch hunter"
-metadata/_custom_type_script = "uid://mn0dy1cf0p65"
-
-[node name="UnitData3" type="Node" parent="Parties/MapParty0"]
-script = ExtResource("21_bl7ab")
-party_position = 3
-unit_name = &"Apprentice"
 metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 
 [node name="MapParty1" parent="Parties" instance=ExtResource("12_kwhd2")]
@@ -590,12 +579,6 @@ faction_index = 1
 [node name="UnitData" type="Node" parent="Parties/MapParty3"]
 script = ExtResource("21_bl7ab")
 party_position = 2
-unit_name = &"Squire"
-metadata/_custom_type_script = "uid://mn0dy1cf0p65"
-
-[node name="UnitData2" type="Node" parent="Parties/MapParty3"]
-script = ExtResource("21_bl7ab")
-party_position = 4
 unit_name = &"Squire"
 metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 

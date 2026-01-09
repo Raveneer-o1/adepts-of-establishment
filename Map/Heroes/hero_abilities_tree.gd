@@ -52,7 +52,12 @@ func set_available_list() -> void:
 			continue
 		available_list.append(ability)
 
+var __levelling_up := false
+
+## Performes levelup
 func levelup() -> void:
+	if __levelling_up: return
+	__levelling_up = true
 	this_hero.level += 1
 	var faction := this_hero.unit_owner
 	var options := _get_available_optional_abilities()
@@ -64,6 +69,8 @@ func levelup() -> void:
 	for a in _get_available_automatic_abilities():
 		_learn_ability(a)
 	this_hero.current_hp = this_hero.max_hp
+	this_hero.current_xp = 0
+	__levelling_up = false
 
 func _make_children_available(ability: HeroAbility) -> void:
 	var temp: Array[HeroAbility] = []

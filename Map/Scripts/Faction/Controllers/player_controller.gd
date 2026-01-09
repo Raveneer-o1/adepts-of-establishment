@@ -2,12 +2,58 @@ extends FactionController
 
 @onready var item_list: ItemList = $EvolutionRequest/InputCatcher/VBoxContainer/ItemList
 @onready var evolution_request: CanvasLayer = $EvolutionRequest
+@onready var hero_levelup: CanvasLayer = $HeroLevelup
+@onready var levelups_container: MarginContainer = $HeroLevelup/MarginContainer/PanelContainer/MarginContainer
 
+signal _evolution_choice_made
+signal _hero_ability_choice_made
 signal __trigger
+
+const DYNAMIC_TREE = preload("uid://dgfpqcsfd2ewx")
+
+var _chosen_hero_ability: HeroAbility
+var hero_to_dynamic_tree: Dictionary[HeroData, UI_DynamicTree] = {}
+
+func _check_ability(ability: HeroAbility, options: Array[HeroAbility]) -> void:
+	if ability in options:
+		_chosen_hero_ability = ability
+		_hero_ability_choice_made.emit(ability)
+
+func _read_chosen_ability(ability: HeroAbility) -> HeroAbility:
+	return ability
+
+func _get_chosen_ability(
+	hero: HeroData,
+	tree: UI_DynamicTree,
+	options: Array[HeroAbility]
+) -> HeroAbility:
+	hero_levelup.show()
+	var callable := _check_ability.bind(options)
+	tree.ability_selected.connect(callable)
+	tree.show()
+	
+	tree.build_tree(hero.hero_levelup)
+	await _hero_ability_choice_made
+	
+	tree.ability_selected.disconnect(callable)
+	tree.hide()
+	hero_levelup.hide()
+	return _chosen_hero_ability
 
 func choose_hero_ability(hero: HeroData, options: Array[HeroAbility]) -> HeroAbility:
 	await api.game.screen_access(api.this_faction, __trigger)
-	return options.pick_random()
+	api.global_pause()
+	
+	var ui_tree: UI_DynamicTree = hero_to_dynamic_tree.get(hero)
+	if not ui_tree:
+		ui_tree = DYNAMIC_TREE.instantiate()
+		levelups_container.add_child(ui_tree)
+		#hero_levelup.add_child(ui_tree)
+		hero_to_dynamic_tree[hero] = ui_tree
+	
+	var res := await _get_chosen_ability(hero, ui_tree, options)
+	api.global_unpause()
+	return res
 
 
 func choose_evolution(unit: UnitData, options: Array[StringName]) -> StringName:
@@ -16,9 +62,9 @@ func choose_evolution(unit: UnitData, options: Array[StringName]) -> StringName:
 	for option in options:
 		item_list.add_item(option)
 	evolution_request.show()
-	api.gloabal_pause()
+	api.global_pause()
 	await _evolution_choice_made
-	api.gloabal_unpause()
+	api.global_unpause()
 	evolution_request.hide()
 	var selected := item_list.get_selected_items()
 	if not selected: return options.pick_random()
@@ -33,8 +79,6 @@ func _initialize() -> void:
 	
 	api._ui_filter.hire_party.connect(api.hire_party)
 	api._ui_filter.hire_unit.connect(api.hire_unit)
-
-signal _evolution_choice_made
 
 func _on_button_pressed() -> void:
 	if not item_list.get_selected_items(): return
