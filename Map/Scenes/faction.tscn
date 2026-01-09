@@ -11,6 +11,9 @@ script = ExtResource("1_h7cw3")
 [node name="API" type="Node" parent="."]
 script = ExtResource("2_5mkmw")
 
+[node name="ResourceContainer" type="Node" parent="."]
+script = ExtResource("4_lr0w2")
+
 [node name="Appearance" type="CanvasLayer" parent="."]
 
 [node name="TextureRect" type="TextureRect" parent="Appearance"]
@@ -31,6 +34,3 @@ visible = false
 script = ExtResource("3_5mkmw")
 empire_path = "res://Map/Scenes/EvolutionBuildings/empire_tree.tscn"
 necropolis_path = "res://Map/Scenes/EvolutionBuildings/necropolis_tree.tscn"
-
-[node name="ResourceContainer" type="Node" parent="."]
-script = ExtResource("4_lr0w2")

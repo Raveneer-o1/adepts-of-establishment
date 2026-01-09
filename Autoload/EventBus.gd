@@ -80,4 +80,6 @@ signal unit_evolved(unit: UnitData, previous_form: StringName)
 
 signal unit_hired(unit: UnitData)
 signal item_used(item: MapItem)
+
+signal capital_changed(faction: MapFaction)
 #endregion

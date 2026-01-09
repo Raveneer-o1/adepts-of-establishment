@@ -43,8 +43,11 @@ func _research_evolution(building: UnitEvolution) -> void:
 		evolution_buildings.add_child(building)
 	else: evolution_buildings.add_child(building)
 
+## [color=red][b]Never[/b] call this function directly.[/color]
+## Use [method FactionAPI.research].
+## [br][br]
 ## This method does not check if the provided [param upgrade]
-## is valid for this faction
+## is valid for this faction.
 func research(upgrade: FactionUpgrade) -> void:
 	if not upgrade: return
 	var parent_node := evolution_buildings if upgrade is UnitEvolution else self
@@ -56,6 +59,8 @@ func research(upgrade: FactionUpgrade) -> void:
 			child.reparent(prev_parent)
 		upgrade.reparent(parent_node)
 	else: parent_node.add_child(upgrade)
+	
+	EventBus.capital_changed.emit(self)
 
 func choose_evolution(unit: UnitData, options: Array[StringName]) -> StringName:
 	if not options: return &""

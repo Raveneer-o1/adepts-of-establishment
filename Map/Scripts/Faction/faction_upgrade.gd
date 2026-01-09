@@ -17,3 +17,12 @@ var cost: ResourceCost:
 @export_multiline var description: String
 
 var faction: MapFaction
+
+func can_be_researched() -> bool:
+	var parent := get_parent()
+	if parent is EvolutionTreePopulator:
+		return true
+	if parent is FactionUpgrade: return false
+	if parent.name == EvolutionTreePopulator.EVOLUTION_BUILDINGS_NODE_NAME:
+		return true
+	return false

@@ -126,7 +126,6 @@ func _verify_ownership(container: Node) -> bool:
 		if container is MapFaction:
 			return container == this_faction
 		container = null if container is Map else container.get_parent()
-	push_error("Hired units must be children of MapInteractableObject instances")
 	return false
 
 ## Creates and initializes a new unit using this faction's resources.
@@ -137,13 +136,27 @@ func _verify_ownership(container: Node) -> bool:
 func hire_unit(unit_name: StringName, container: Node) -> UnitData:
 	var unit_dict: Dictionary = GlobalDefs.database_path.database.get(unit_name, {})
 	if not unit_dict: return null
-	if not _verify_ownership(container): return null
+	if not _verify_ownership(container):
+		push_error("Failed verification for hiring unit")
+		return null
 	var cost: Dictionary = unit_dict.get(&"cost", {})
 	if this_faction.resource_container.spend(ResourceCost.from_dict(cost)):
 		var unit := game.spawn_new_unit(unit_name, container)
 		if unit: EventBus.unit_hired.emit(unit)
 		return unit
 	return null
+
+## Researches specified [param upgrade]. Returns if successful.
+func research(upgrade: FactionUpgrade) -> bool:
+	if not upgrade: return false
+	if not upgrade.can_be_researched(): return false
+	if not _verify_ownership(upgrade):
+		push_error("Failed verification for researching upgrade")
+		return false
+	if this_faction.resource_container.spend(upgrade.cost):
+		this_faction.research(upgrade)
+		return true
+	return false
 
 # FIXME: move the default cost somewhere else
 const DEFAULT_PARTY_COST = {

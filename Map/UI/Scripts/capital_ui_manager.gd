@@ -16,6 +16,7 @@ func _get_ui_layout(faction: MapFaction) -> UI_DefaultCapitalLayout:
 		GlobalDefs.Faction.Empire: control = EMPIRE_TREE.instantiate()
 		GlobalDefs.Faction.Necropolis: control = NECROPOLIS_TREE.instantiate()
 	if control: _faction_to_layout[faction] = control
+	capital_layout_container.add_child(control)
 	return control
 
 @onready var active_upgades_item_list: ItemList = \
@@ -84,7 +85,6 @@ func _replace_layout(faction: MapFaction) -> void:
 	var new_layout := _get_ui_layout(faction)
 	_current_layout = new_layout
 	if not new_layout: return
-	capital_layout_container.add_child(new_layout)
 	_show_current_layout()
 
 func fill_data(faction: MapFaction) -> void:
@@ -125,6 +125,18 @@ func _show_building(upgrade_name: String) -> void:
 	cost_stone.text = str(_selected_available_upgrade.stone_cost)
 	cost_mana.text = str(_selected_available_upgrade.mana_cost)
 
+func _check_capital_update(faction: MapFaction) -> void:
+	if not faction: return
+	if not _filled_faction: return
+	if _filled_faction != faction: return
+	fill_data(_filled_faction)
+	
+	_selected_available_upgrade = null
+	active_upgrades.show()
+
+func _ready() -> void:
+	EventBus.capital_changed.connect(_check_capital_update)
+
 func _on_visibility_changed() -> void:
 	if visible == false: return
 	fill_data(ui_layers.game_map.screen_player)
@@ -147,10 +159,6 @@ func _on_building_upgrades_item_list_item_selected(index: int) -> void:
 func _on_button_pressed() -> void:
 	if not _selected_available_upgrade: return
 	if not _filled_faction: return
+	if not _filled_faction.api.ui_filter: return
 	
-	_filled_faction.research(_selected_available_upgrade)
-	
-	fill_data(_filled_faction)
-	
-	_selected_available_upgrade = null
-	active_upgrades.show()
+	_filled_faction.api.ui_filter.research_upgrade.emit(_selected_available_upgrade)

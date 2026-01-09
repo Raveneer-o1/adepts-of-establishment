@@ -79,6 +79,7 @@ func _initialize() -> void:
 	
 	api._ui_filter.hire_party.connect(api.hire_party)
 	api._ui_filter.hire_unit.connect(api.hire_unit)
+	api._ui_filter.research_upgrade.connect(api.research)
 
 func _on_button_pressed() -> void:
 	if not item_list.get_selected_items(): return
