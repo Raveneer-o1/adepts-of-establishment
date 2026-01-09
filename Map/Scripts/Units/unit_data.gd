@@ -101,7 +101,7 @@ enum UnitClass{
 
 var cost: ResourceCost
 
-const database = GlobalDefs.database_path.database
+const database = GlobalDefs.units_database.database
 
 var database_dict: Dictionary:
 	get: return database.get(unit_name, {})

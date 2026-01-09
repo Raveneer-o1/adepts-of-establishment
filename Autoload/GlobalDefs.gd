@@ -1,6 +1,6 @@
 extends Node
 
-const database_path := preload("res://Databases/unit_database.gd")
+const units_database := preload("res://Databases/unit_database.gd")
 
 ## Type of the player
 enum ControllerType{
@@ -101,7 +101,8 @@ func _increase_roll_statistics(party: Party) -> void:
 ## probability [param chance] and records statistics. [br][br]
 ## [param benefits]: The party that benefits from a positive outcome ([b]true[/b] result).
 ## Leave null for neutral rolls where no statistics should be recorded. [br][br]
-## By default, chance values outside the [code](0.0, 1.0)[/code] range are not recorded in statistics.
+## By default, chance values outside the [code](0.0, 1.0)[/code]
+## range are not recorded in statistics.
 ## Set [param force_statistic_recording] to [b]true[/b] to record the
 ## outcome regardless of chance value.
 func rand_roll(

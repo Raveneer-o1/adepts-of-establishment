@@ -134,7 +134,7 @@ func _verify_ownership(container: Node) -> bool:
 ## Returns [code]null[/code] on failure
 ## (e.g., incorrect faction or container or insufficient resources).
 func hire_unit(unit_name: StringName, container: Node) -> UnitData:
-	var unit_dict: Dictionary = GlobalDefs.database_path.database.get(unit_name, {})
+	var unit_dict: Dictionary = GlobalDefs.units_database.database.get(unit_name, {})
 	if not unit_dict: return null
 	if not _verify_ownership(container):
 		push_error("Failed verification for hiring unit")
@@ -169,7 +169,7 @@ const DEFAULT_PARTY_COST = {
 ## (defaults to current active map). Optionally adds a hero unit if [param hero] is provided.
 ## @experimental: Heros are not properly implemented yet.
 func hire_party(coords: Vector2i, _map: Map = map, hero_name: StringName = &"") -> MapParty:
-	var hero_dict: Dictionary = GlobalDefs.database_path.database.get(hero_name, {})
+	var hero_dict: Dictionary = GlobalDefs.units_database.database.get(hero_name, {})
 	var cost: Dictionary = hero_dict.get(&"cost", DEFAULT_PARTY_COST)
 	if not this_faction.resource_container.spend(ResourceCost.from_dict(cost)):
 		return null

@@ -148,7 +148,7 @@ func get_available_units() -> Array[StringName]:
 			if u not in res: res.append(u)
 	else: res = available_units
 	for unit_name: StringName in res.duplicate():
-		var unit: Dictionary = GlobalDefs.database_path.database.get(unit_name, {})
+		var unit: Dictionary = GlobalDefs.units_database.database.get(unit_name, {})
 		if not unit:
 			res.erase(unit_name)
 			continue
