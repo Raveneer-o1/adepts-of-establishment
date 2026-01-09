@@ -6,6 +6,13 @@ extends Node
 ##
 ## This nodes represent global progression (e.g., a building in the capital)
 
+@export var gold_cost := 0
+@export var stone_cost := 0
+@export var mana_cost := 0
+
+var cost: ResourceCost:
+	get: return ResourceCost.new(gold_cost, stone_cost, mana_cost)
+
 @export var upgrade_name: String = ""
 @export_multiline var description: String
 

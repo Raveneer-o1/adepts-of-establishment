@@ -29,10 +29,13 @@ func _get_ui_layout(faction: MapFaction) -> UI_DefaultCapitalLayout:
 	%SelectedBuildingUpgradesRichTextLabel
 
 @onready var capital_layout_container: MarginContainer = %CapitalLayoutContainer
-
 @onready var active_upgrades: HBoxContainer = $"MarginContainer/TabContainer/Active upgrades"
-
 @onready var ui_layers: MapUI = $".."
+
+@onready var cost_gold: Label = %Build_ResourcePanel_Gold/VBoxContainer/Label
+@onready var cost_stone: Label = %Build_ResourcePanel_Stone/VBoxContainer/Label
+@onready var cost_mana: Label = %Build_ResourcePanel_Crystals/VBoxContainer/Label
+
 
 var name_upgrade_mapping: Dictionary[String, FactionUpgrade] = {}
 var name_available_mapping: Dictionary[String, FactionUpgrade] = {}
@@ -58,7 +61,7 @@ func _fetch_active_upgrades_mapping(faction: MapFaction) -> void:
 
 func _check_selected(building: StringName) -> void:
 	available_list.deselect_all()
-	_show_building("")
+	_remove_shown()
 	for i in range(available_list.item_count):
 		if available_list.get_item_text(i) == building:
 			available_list.select(i)
@@ -99,10 +102,17 @@ func fill_data(faction: MapFaction) -> void:
 	available_list.clear()
 	for _name in name_available_mapping:
 		available_list.add_item(_name)
+	_remove_shown()
+
+func _remove_shown() -> void:
+	selected_available_text.text = ""
+	cost_gold.text = "—"
+	cost_stone.text = "—"
+	cost_mana.text = "—"
 
 func _show_building(upgrade_name: String) -> void:
 	if not upgrade_name:
-		selected_available_text.text = ""
+		_remove_shown()
 		return
 	if not name_available_mapping.has(upgrade_name):
 		push_error("Unable to map '%s'" % upgrade_name)
@@ -111,6 +121,9 @@ func _show_building(upgrade_name: String) -> void:
 		name_available_mapping[upgrade_name]
 	selected_available_text.text = \
 		_selected_available_upgrade.description
+	cost_gold.text = str(_selected_available_upgrade.gold_cost)
+	cost_stone.text = str(_selected_available_upgrade.stone_cost)
+	cost_mana.text = str(_selected_available_upgrade.mana_cost)
 
 func _on_visibility_changed() -> void:
 	if visible == false: return
