@@ -22,7 +22,7 @@ extends Node
 ## Thus, the node structure of this scene naturally becomes a level-up tree.[br]
 ## [br]
 ## Abilities with [member HeroAbility.optional] flag set to [code]false[/code]
-## (such abilities are called [b]automatic[/b])
+## [i](such abilities are called [b]automatic[/b])[/i]
 ## will be automatically learned upon reaching the required level.
 ## Note that automatic abilities do not count as a choice.
 ## This means that the the hero can learn unlimited number of automatic abilities
@@ -32,6 +32,10 @@ extends Node
 ## automatic abilities tied in the tree.
 ## The game will handle it just fine, but delivering such complex information
 ## to the player is difficult and most likely not worth it.
+## [br][br]
+## [b]Note:[/b] it's recomended to have approximately equal number of abilities
+## for each level in differend branches. Otherwise, automatic UI shifts to fit 
+## all abilities and becomes less readable
 
 
 @onready var this_hero: HeroData = get_parent() if get_parent() is HeroData else null

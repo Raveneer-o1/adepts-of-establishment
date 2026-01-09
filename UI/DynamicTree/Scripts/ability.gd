@@ -24,21 +24,31 @@ const ONLY_ONCE_MODULATE = Color.INDIAN_RED
 ## @experimental: will be replaced with a texture
 const DEFAULT_MODULATE = Color.WHITE
 
+func _set_default() -> void:
+	button.modulate = DEFAULT_MODULATE
+
+func _set_learned() -> void:
+	button.disabled = true
+	button.modulate = DEFAULT_MODULATE
+
+func _set_color() -> void:
+	button.modulate = ONLY_ONCE_MODULATE if this_ability.available_once \
+		else AVAILABLE_MODULATE
+
 func update() -> void:
 	if not this_ability:
 		push_error("Null ability")
 		queue_free()
 		return
 	button.text = this_ability.ability_name
-	button.disabled = (not this_ability.active) or this_ability.learned
-	if button.disabled:
-		button.modulate = DEFAULT_MODULATE
+	if (not this_ability.active) or this_ability.learned:
+		_set_learned()
 		return
 	if not this_ability.optional: return
-	if tree.this_tree.this_hero.level >= this_ability.required_level \
-		and this_ability in tree.this_tree.available_list:
-		button.modulate = ONLY_ONCE_MODULATE if this_ability.available_once \
-			else AVAILABLE_MODULATE
+	if this_ability.can_be_learned(tree.this_tree.this_hero):
+		_set_color()
+	else:
+		_set_default()
 
 func init_ability(ability: HeroAbility) -> void:
 	this_ability = ability

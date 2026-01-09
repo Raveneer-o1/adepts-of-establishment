@@ -25,14 +25,22 @@ extends Node
 var learned := false
 
 ## When [code]false[/code], prevents this ability from being learned.
-## Primarily used to disable one-time abilities ([member available_once] = true).[br]
-## This value does [b]not[/b] change when the ability is learned.
+## @experimental: not used, may be removed
 var active := true
+
+func can_be_learned(hero: HeroData) -> bool:
+	if not active: return false
+	if learned: return false
+	if hero.level < required_level: return false
+	if available_once and hero.level != required_level: return false
+	var parent := get_parent()
+	if parent is HeroAbility:
+		if not parent.learned: return false
+	return true
 
 ## Grants this ability to the [param hero].
 func learn(hero: HeroData) -> void:
-	if not active: return
-	if learned: return  # safeguard agains UI bugs
+	if not can_be_learned(hero): return
 	_learn(hero)
 	if not unlimited_learning: learned = true
 

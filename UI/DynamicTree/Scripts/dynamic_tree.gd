@@ -35,7 +35,8 @@ func _spawn_level_layers(tree: HeroAbilitiesTree, branch_count: int) -> void:
 
 func _connect_ability_nodes(source_node: Control, target_node: Control) -> void:
 	await get_tree().process_frame
-	# waiting for the nodes to draw, otherwise global_position returns negative values
+	# waiting for the nodes to be drawn,
+	# otherwise global_position returns negative values
 	
 	var connection_line := Line2D.new()
 	var source_rect := source_node.get_rect()
@@ -48,7 +49,6 @@ func _connect_ability_nodes(source_node: Control, target_node: Control) -> void:
 	) \
 	+ source_node.global_position \
 	- global_position
-	#+ source_node.get_transform().affine_inverse().origin
 	
 	var end_position := Vector2(
 		target_rect.size.x / 2.0,
@@ -56,9 +56,6 @@ func _connect_ability_nodes(source_node: Control, target_node: Control) -> void:
 	) \
 	+ target_node.global_position \
 	- global_position
-	#print("Source: %s" % str(source_node.global_position))
-	#print("Target: %s" % str(target_node.global_position))
-	#+ target_node.get_transform().affine_inverse().origin
 	
 	add_child(connection_line)
 	connection_line.add_point(start_position)
