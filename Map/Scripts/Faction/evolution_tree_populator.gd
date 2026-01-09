@@ -16,7 +16,6 @@ func _get_path(faction: GlobalDefs.Faction) -> String:
 		GlobalDefs.Faction.Necropolis: return necropolis_path
 	return ""
 
-
 func _populate(path: String) -> void:
 	if not path: return
 	if not FileAccess.file_exists(path):

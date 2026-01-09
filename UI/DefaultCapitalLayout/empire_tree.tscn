@@ -1,0 +1,276 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1cbmtd75iavf"]
+
+[ext_resource type="Script" uid="uid://blvpux1wsm77j" path="res://UI/DefaultCapitalLayout/default_layout.gd" id="1_vljwf"]
+[ext_resource type="PackedScene" uid="uid://cymdh7w4lr3dv" path="res://UI/DefaultCapitalLayout/layout_node.tscn" id="2_t33xy"]
+
+[node name="EmpireTree" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_vljwf")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 3
+
+[node name="Warriors" type="VBoxContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Warriors_level2" type="HBoxContainer" parent="TabContainer/Warriors"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Garrison" parent="TabContainer/Warriors/Warriors_level2" node_paths=PackedStringArray("next_nodes") instance=ExtResource("2_t33xy")]
+layout_mode = 2
+text = "Garrison"
+next_nodes = [NodePath("../../Warriors_level3/War stables"), NodePath("../../Warriors_level3/Chapter house")]
+
+[node name="Padding" type="Control" parent="TabContainer/Warriors/Warriors_level2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Watchtower" parent="TabContainer/Warriors/Warriors_level2" node_paths=PackedStringArray("next_nodes") instance=ExtResource("2_t33xy")]
+layout_mode = 2
+text = "Watchtower"
+next_nodes = [NodePath("../../Warriors_level3/Dojo"), NodePath("../../Warriors_level3/Inquisition Hall")]
+
+[node name="Warriors_level3" type="HBoxContainer" parent="TabContainer/Warriors"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="War stables" parent="TabContainer/Warriors/Warriors_level3" node_paths=PackedStringArray("next_nodes") instance=ExtResource("2_t33xy")]
+layout_mode = 2
+text = "War stables"
+next_nodes = [NodePath("../../Warriors_level4/Royal Manege")]
+
+[node name="Chapter house" parent="TabContainer/Warriors/Warriors_level3" node_paths=PackedStringArray("next_nodes") instance=ExtResource("2_t33xy")]
+layout_mode = 2
+text = "Chapter house"
+next_nodes = [NodePath("../../Warriors_level4/Celestial spire")]
+
+[node name="Dojo" parent="TabContainer/Warriors/Warriors_level3" node_paths=PackedStringArray("next_nodes") instance=ExtResource("2_t33xy")]
+layout_mode = 2
+text = "Dojo"
+next_nodes = [NodePath("../../Warriors_level4/Shogun\'s Embassy")]
+
+[node name="Inquisition Hall" parent="TabContainer/Warriors/Warriors_level3" node_paths=PackedStringArray("next_nodes") instance=ExtResource("2_t33xy")]
+layout_mode = 2
+text = "Inquisition Hall"
+next_nodes = [NodePath("../../Warriors_level4/Conclave chapel")]
+
+[node name="Warriors_level4" type="HBoxContainer" parent="TabContainer/Warriors"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Royal Manege" parent="TabContainer/Warriors/Warriors_level4" node_paths=PackedStringArray("next_nodes") instance=ExtResource("2_t33xy")]
+layout_mode = 2
+text = "Royal Manege"
+next_nodes = [NodePath("../../Warriors_level5/Holy altar"), NodePath("../../Warriors_level5/Citadel of Blessing")]
+
+[node name="Celestial spire" parent="TabContainer/Warriors/Warriors_level4" instance=ExtResource("2_t33xy")]
+layout_mode = 2
+text = "Celestial spire"
+
+[node name="Shogun\'s Embassy" parent="TabContainer/Warriors/Warriors_level4" instance=ExtResource("2_t33xy")]
+layout_mode = 2
+text = "Shogun's Embassy"
+
+[node name="Conclave chapel" parent="TabContainer/Warriors/Warriors_level4" instance=ExtResource("2_t33xy")]
+layout_mode = 2
+text = "Conclave chapel"
+
+[node name="Warriors_level5" type="HBoxContainer" parent="TabContainer/Warriors"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Holy altar" parent="TabContainer/Warriors/Warriors_level5" instance=ExtResource("2_t33xy")]
+layout_mode = 2
+text = "Holy altar"
+
+[node name="Citadel of Blessing" parent="TabContainer/Warriors/Warriors_level5" instance=ExtResource("2_t33xy")]
+layout_mode = 2
+text = "Citadel of Blessing"
+
+[node name="Padding" type="Control" parent="TabContainer/Warriors/Warriors_level5"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="Archers" type="VBoxContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Archers level2" type="HBoxContainer" parent="TabContainer/Archers"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Fletchers\' Guild" parent="TabContainer/Archers/Archers level2" node_paths=PackedStringArray("next_nodes") instance=ExtResource("2_t33xy")]
+layout_mode = 2
+text = "Fletchers' Guild"
+next_nodes = [NodePath("../../Archers level3/Outpost"), NodePath("../../Archers level3/Brothel")]
+
+[node name="Archers level3" type="HBoxContainer" parent="TabContainer/Archers"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Outpost" parent="TabContainer/Archers/Archers level3" node_paths=PackedStringArray("next_nodes") instance=ExtResource("2_t33xy")]
+layout_mode = 2
+text = "Outpost"
+next_nodes = [NodePath("../../Archers level4/Imperial range")]
+
+[node name="Brothel" parent="TabContainer/Archers/Archers level3" instance=ExtResource("2_t33xy")]
+layout_mode = 2
+text = "Brothel"
+
+[node name="Archers level4" type="HBoxContainer" parent="TabContainer/Archers"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Imperial range" parent="TabContainer/Archers/Archers level4" instance=ExtResource("2_t33xy")]
+layout_mode = 2
+text = "Imperial range"
+
+[node name="Padding" type="Control" parent="TabContainer/Archers/Archers level4"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Archers level5" type="HBoxContainer" parent="TabContainer/Archers"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Mages" type="VBoxContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="Mages level2" type="HBoxContainer" parent="TabContainer/Mages"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Lecture hall" parent="TabContainer/Mages/Mages level2" node_paths=PackedStringArray("next_nodes") instance=ExtResource("2_t33xy")]
+layout_mode = 2
+text = "Lecture hall"
+next_nodes = [NodePath("../../Mages level3/Library")]
+
+[node name="Ritual circle" parent="TabContainer/Mages/Mages level2" node_paths=PackedStringArray("next_nodes") instance=ExtResource("2_t33xy")]
+layout_mode = 2
+text = "Ritual circle"
+next_nodes = [NodePath("../../Mages level3/Chamber of rites")]
+
+[node name="Mages level3" type="HBoxContainer" parent="TabContainer/Mages"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Library" parent="TabContainer/Mages/Mages level3" node_paths=PackedStringArray("next_nodes") instance=ExtResource("2_t33xy")]
+layout_mode = 2
+text = "Library"
+next_nodes = [NodePath("../../Mages level4/Enchanted spire")]
+
+[node name="Chamber of rites" parent="TabContainer/Mages/Mages level3" instance=ExtResource("2_t33xy")]
+layout_mode = 2
+text = "Chamber of rites"
+
+[node name="Mages level4" type="HBoxContainer" parent="TabContainer/Mages"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Enchanted spire" parent="TabContainer/Mages/Mages level4" node_paths=PackedStringArray("next_nodes") instance=ExtResource("2_t33xy")]
+layout_mode = 2
+text = "Enchanted spire"
+next_nodes = [NodePath("../../Mages level5/Temple of Sacred Wisdom"), NodePath("../../Mages level5/Arcanium")]
+
+[node name="Padding" type="Control" parent="TabContainer/Mages/Mages level4"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Mages level5" type="HBoxContainer" parent="TabContainer/Mages"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Temple of Sacred Wisdom" parent="TabContainer/Mages/Mages level5" instance=ExtResource("2_t33xy")]
+layout_mode = 2
+text = "Temple of Sacred Wisdom"
+
+[node name="Arcanium" parent="TabContainer/Mages/Mages level5" instance=ExtResource("2_t33xy")]
+layout_mode = 2
+text = "Arcanium"
+
+[node name="Padding" type="Control" parent="TabContainer/Mages/Mages level5"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Special" type="VBoxContainer" parent="TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="Special level2" type="HBoxContainer" parent="TabContainer/Special"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Parish chapel" parent="TabContainer/Special/Special level2" node_paths=PackedStringArray("next_nodes") instance=ExtResource("2_t33xy")]
+layout_mode = 2
+text = "Parish chapel"
+next_nodes = [NodePath("../../Special level3/Matron chambers")]
+
+[node name="LayoutNode2" parent="TabContainer/Special/Special level2" node_paths=PackedStringArray("next_nodes") instance=ExtResource("2_t33xy")]
+layout_mode = 2
+text = "Church"
+next_nodes = [NodePath("../../Special level3/Cathedral")]
+
+[node name="Special level3" type="HBoxContainer" parent="TabContainer/Special"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Matron chambers" parent="TabContainer/Special/Special level3" node_paths=PackedStringArray("next_nodes") instance=ExtResource("2_t33xy")]
+layout_mode = 2
+text = "Matron chambers"
+next_nodes = [NodePath("../../Special level4/Fountain of Truth")]
+
+[node name="Cathedral" parent="TabContainer/Special/Special level3" node_paths=PackedStringArray("next_nodes") instance=ExtResource("2_t33xy")]
+layout_mode = 2
+text = "Cathedral"
+next_nodes = [NodePath("../../Special level4/Holy Scriptorium")]
+
+[node name="Special level4" type="HBoxContainer" parent="TabContainer/Special"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Fountain of Truth" parent="TabContainer/Special/Special level4" instance=ExtResource("2_t33xy")]
+layout_mode = 2
+text = "Fountain of Truth"
+
+[node name="Holy Scriptorium" parent="TabContainer/Special/Special level4" instance=ExtResource("2_t33xy")]
+layout_mode = 2
+text = "Holy Scriptorium"
+
+[node name="Special level5" type="HBoxContainer" parent="TabContainer/Special"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1

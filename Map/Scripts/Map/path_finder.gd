@@ -102,6 +102,7 @@ func is_passable(tile: Vector2i, travel_data: TravelData, end: Array[Vector2i]) 
 	if not data: return false
 	if data.get_custom_data("traverse_cost") < 0: return false
 	for obj: MapInteractableObject in map.tile_to_object.get(tile, []):
+		if not obj.is_active: continue
 		if not obj.passable(travel_data): return false
 	if travel_data.safe_travel and tile not in end:
 		if not _is_tile_safe(tile, travel_data):
