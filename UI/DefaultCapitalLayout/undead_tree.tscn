@@ -1,0 +1,305 @@
+[gd_scene load_steps=3 format=3 uid="uid://b75s5bpy0borb"]
+
+[ext_resource type="Script" uid="uid://blvpux1wsm77j" path="res://UI/DefaultCapitalLayout/default_layout.gd" id="1_j11w8"]
+[ext_resource type="PackedScene" uid="uid://cymdh7w4lr3dv" path="res://UI/DefaultCapitalLayout/layout_node.tscn" id="2_b6otj"]
+
+[node name="UndeadTree" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_j11w8")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 3
+
+[node name="Warriors" type="VBoxContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="level2" type="HBoxContainer" parent="TabContainer/Warriors"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Burial ground" parent="TabContainer/Warriors/level2" node_paths=PackedStringArray("next_nodes") instance=ExtResource("2_b6otj")]
+layout_mode = 2
+text = "Burial ground"
+next_nodes = [NodePath("../../level3/Spectral armory"), NodePath("../../level3/Catacombs")]
+
+[node name="Padding" type="Control" parent="TabContainer/Warriors/level2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Twisted temple" parent="TabContainer/Warriors/level2" node_paths=PackedStringArray("next_nodes") instance=ExtResource("2_b6otj")]
+layout_mode = 2
+text = "Twisted temple"
+next_nodes = [NodePath("../../level3/Heretical hold")]
+
+[node name="level3" type="HBoxContainer" parent="TabContainer/Warriors"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Spectral armory" parent="TabContainer/Warriors/level3" instance=ExtResource("2_b6otj")]
+layout_mode = 2
+text = "Spectral armory"
+
+[node name="Catacombs" parent="TabContainer/Warriors/level3" node_paths=PackedStringArray("next_nodes") instance=ExtResource("2_b6otj")]
+layout_mode = 2
+text = "Catacombs"
+next_nodes = [NodePath("../../level4/Cursed crypt")]
+
+[node name="Padding" type="Control" parent="TabContainer/Warriors/level3"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Heretical hold" parent="TabContainer/Warriors/level3" node_paths=PackedStringArray("next_nodes") instance=ExtResource("2_b6otj")]
+layout_mode = 2
+text = "Heretical hold"
+next_nodes = [NodePath("../../level4/Dark See")]
+
+[node name="Padding2" type="Control" parent="TabContainer/Warriors/level3"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="level4" type="HBoxContainer" parent="TabContainer/Warriors"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Padding2" type="Control" parent="TabContainer/Warriors/level4"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Cursed crypt" parent="TabContainer/Warriors/level4" node_paths=PackedStringArray("next_nodes") instance=ExtResource("2_b6otj")]
+layout_mode = 2
+text = "Cursed crypt"
+next_nodes = [NodePath("../../level5/Amphitheater")]
+
+[node name="Padding" type="Control" parent="TabContainer/Warriors/level4"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Dark See" parent="TabContainer/Warriors/level4" instance=ExtResource("2_b6otj")]
+layout_mode = 2
+text = "Dark See"
+
+[node name="level5" type="HBoxContainer" parent="TabContainer/Warriors"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Amphitheater" parent="TabContainer/Warriors/level5" instance=ExtResource("2_b6otj")]
+layout_mode = 2
+text = "Amphitheater"
+
+[node name="Padding" type="Control" parent="TabContainer/Warriors/level5"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Ghosts" type="VBoxContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="level2" type="HBoxContainer" parent="TabContainer/Ghosts"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Haunted mansion" parent="TabContainer/Ghosts/level2" node_paths=PackedStringArray("next_nodes") instance=ExtResource("2_b6otj")]
+layout_mode = 2
+text = "Haunted mansion"
+next_nodes = [NodePath("../../level3/Accursed asylum"), NodePath("../../level3/Evermist Mire")]
+
+[node name="level3" type="HBoxContainer" parent="TabContainer/Ghosts"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Accursed asylum" parent="TabContainer/Ghosts/level3" node_paths=PackedStringArray("next_nodes") instance=ExtResource("2_b6otj")]
+layout_mode = 2
+text = "Accursed asylum"
+next_nodes = [NodePath("../../level4/Alcove Nox")]
+
+[node name="Evermist Mire" parent="TabContainer/Ghosts/level3" node_paths=PackedStringArray("next_nodes") instance=ExtResource("2_b6otj")]
+layout_mode = 2
+text = "Evermist Mire"
+next_nodes = [NodePath("../../level4/Obsidian Void")]
+
+[node name="level4" type="HBoxContainer" parent="TabContainer/Ghosts"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Alcove Nox" parent="TabContainer/Ghosts/level4" instance=ExtResource("2_b6otj")]
+layout_mode = 2
+text = "Alcove Nox"
+
+[node name="Obsidian Void" parent="TabContainer/Ghosts/level4" instance=ExtResource("2_b6otj")]
+layout_mode = 2
+text = "Obsidian Void"
+
+[node name="level5" type="HBoxContainer" parent="TabContainer/Ghosts"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Mages" type="VBoxContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="level2" type="HBoxContainer" parent="TabContainer/Mages"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Padding2" type="Control" parent="TabContainer/Mages/level2"]
+custom_minimum_size = Vector2(62.5, 0)
+layout_mode = 2
+
+[node name="Graveyard" parent="TabContainer/Mages/level2" node_paths=PackedStringArray("next_nodes") instance=ExtResource("2_b6otj")]
+layout_mode = 2
+text = "Graveyard"
+next_nodes = [NodePath("../../level3/Death sanctuary"), NodePath("../../level3/Rebirth palace")]
+
+[node name="Padding" type="Control" parent="TabContainer/Mages/level2"]
+custom_minimum_size = Vector2(87.5, 0)
+layout_mode = 2
+
+[node name="Sigil of dark rites" parent="TabContainer/Mages/level2" node_paths=PackedStringArray("next_nodes") instance=ExtResource("2_b6otj")]
+layout_mode = 2
+text = "Sigil of dark rites"
+next_nodes = [NodePath("../../level3/Bounding glyph")]
+
+[node name="level3" type="HBoxContainer" parent="TabContainer/Mages"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Death sanctuary" parent="TabContainer/Mages/level3" node_paths=PackedStringArray("next_nodes") instance=ExtResource("2_b6otj")]
+layout_mode = 2
+text = "Death sanctuary"
+next_nodes = [NodePath("../../level4/Locus of Being")]
+
+[node name="Padding" type="Control" parent="TabContainer/Mages/level3"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+
+[node name="Rebirth palace" parent="TabContainer/Mages/level3" instance=ExtResource("2_b6otj")]
+layout_mode = 2
+text = "Rebirth palace"
+
+[node name="Padding2" type="Control" parent="TabContainer/Mages/level3"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+
+[node name="Bounding glyph" parent="TabContainer/Mages/level3" node_paths=PackedStringArray("next_nodes") instance=ExtResource("2_b6otj")]
+layout_mode = 2
+text = "Bounding glyph"
+next_nodes = [NodePath("../../level4/Summoning altar")]
+
+[node name="level4" type="HBoxContainer" parent="TabContainer/Mages"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Locus of Being" parent="TabContainer/Mages/level4" instance=ExtResource("2_b6otj")]
+layout_mode = 2
+text = "Locus of Being
+"
+
+[node name="Padding" type="Control" parent="TabContainer/Mages/level4"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+
+[node name="Blood Ossuary" parent="TabContainer/Mages/level4" node_paths=PackedStringArray("next_nodes") instance=ExtResource("2_b6otj")]
+layout_mode = 2
+text = "Blood Ossuary"
+next_nodes = [NodePath("../../level5/Blood Throne"), NodePath("../../level5/Fetid pit")]
+
+[node name="Padding2" type="Control" parent="TabContainer/Mages/level4"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+
+[node name="Summoning altar" parent="TabContainer/Mages/level4" instance=ExtResource("2_b6otj")]
+layout_mode = 2
+text = "Summoning altar"
+
+[node name="level5" type="HBoxContainer" parent="TabContainer/Mages"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Blood Throne" parent="TabContainer/Mages/level5" instance=ExtResource("2_b6otj")]
+layout_mode = 2
+text = "Blood Throne"
+
+[node name="Fetid pit" parent="TabContainer/Mages/level5" instance=ExtResource("2_b6otj")]
+layout_mode = 2
+text = "Fetid pit"
+
+[node name="Dragons" type="VBoxContainer" parent="TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="level2" type="HBoxContainer" parent="TabContainer/Dragons"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Fell Aerie" parent="TabContainer/Dragons/level2" instance=ExtResource("2_b6otj")]
+layout_mode = 2
+text = "Fell Aerie"
+
+[node name="level3" type="HBoxContainer" parent="TabContainer/Dragons"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Battleground" parent="TabContainer/Dragons/level3" instance=ExtResource("2_b6otj")]
+layout_mode = 2
+text = "Battleground"
+
+[node name="Blood-soaked mound" parent="TabContainer/Dragons/level3" instance=ExtResource("2_b6otj")]
+layout_mode = 2
+text = "Blood-soaked mound"
+
+[node name="level4" type="HBoxContainer" parent="TabContainer/Dragons"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Chasm of the night" parent="TabContainer/Dragons/level4" instance=ExtResource("2_b6otj")]
+layout_mode = 2
+text = "Chasm of the night"
+
+[node name="Hunting grounds" parent="TabContainer/Dragons/level4" instance=ExtResource("2_b6otj")]
+layout_mode = 2
+text = "Hunting grounds"
+
+[node name="level5" type="HBoxContainer" parent="TabContainer/Dragons"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Dragon barrow" parent="TabContainer/Dragons/level5" instance=ExtResource("2_b6otj")]
+layout_mode = 2
+text = "Dragon barrow"
+
+[node name="Padding" type="Control" parent="TabContainer/Dragons/level5"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2

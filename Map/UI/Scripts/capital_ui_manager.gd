@@ -2,6 +2,7 @@ class_name CapitalUIManager
 extends CanvasLayer
 
 const EMPIRE_TREE = preload("uid://b1cbmtd75iavf")
+const NECROPOLIS_TREE = preload("uid://b75s5bpy0borb")
 
 var _current_layout: UI_DefaultCapitalLayout
 
@@ -13,6 +14,7 @@ func _get_ui_layout(faction: MapFaction) -> UI_DefaultCapitalLayout:
 	var control: UI_DefaultCapitalLayout = null
 	match faction.base_faction:
 		GlobalDefs.Faction.Empire: control = EMPIRE_TREE.instantiate()
+		GlobalDefs.Faction.Necropolis: control = NECROPOLIS_TREE.instantiate()
 	if control: _faction_to_layout[faction] = control
 	return control
 
