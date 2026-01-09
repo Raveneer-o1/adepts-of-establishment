@@ -5,5 +5,8 @@
 [node name="Accursed asylum" instance=ExtResource("1_hu01q")]
 evolving_from = &"Specter"
 evolving_into = &"Shadow"
+gold_cost = 200
+stone_cost = 150
+mana_cost = 200
 upgrade_name = "Accursed asylum"
 description = "This building allows Specters to become Shadows"

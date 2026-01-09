@@ -5,5 +5,7 @@
 [node name="Hunting grounds" instance=ExtResource("1_barp5")]
 evolving_from = &"Gluttonous Serpent"
 evolving_into = &"The Devourer"
+gold_cost = 1100
+mana_cost = 700
 upgrade_name = "Hunting grounds"
 description = "This building allows Gluttonous serpents to become Devourers"

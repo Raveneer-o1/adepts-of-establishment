@@ -5,5 +5,7 @@
 [node name="Ritual circle" instance=ExtResource("1_kas1o")]
 evolving_from = &"Apprentice"
 evolving_into = &"Elementalist"
+stone_cost = 80
+mana_cost = 50
 upgrade_name = "Ritual circle"
 description = "This building allows Apprentices to become Elementalists"

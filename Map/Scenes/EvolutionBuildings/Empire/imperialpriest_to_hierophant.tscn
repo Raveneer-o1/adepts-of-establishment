@@ -5,5 +5,7 @@
 [node name="Holy Scriptorium" instance=ExtResource("1_gh2oo")]
 evolving_from = &"Imperial priest"
 evolving_into = &"Hierophant"
+gold_cost = 700
+stone_cost = 600
 upgrade_name = "Holy Scriptorium"
 description = "This building allows Imperial priests to become Hierophants"

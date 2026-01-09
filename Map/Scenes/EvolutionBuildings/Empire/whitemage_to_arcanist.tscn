@@ -5,5 +5,8 @@
 [node name="Arcanium" instance=ExtResource("1_4nkhq")]
 evolving_from = &"White Mage"
 evolving_into = &"Arcanist"
+gold_cost = 300
+stone_cost = 900
+mana_cost = 700
 upgrade_name = "Arcanium"
 description = "This building allows White Mages to become Arcanists"

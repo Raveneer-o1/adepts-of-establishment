@@ -5,5 +5,8 @@
 [node name="Battleground" instance=ExtResource("1_dyyaf")]
 evolving_from = &"Doomdrake"
 evolving_into = &"Dreadwyrm"
+gold_cost = 500
+stone_cost = 400
+mana_cost = 300
 upgrade_name = "Battleground"
 description = "This building allows Doomdrakes to become Dreadwyrms"

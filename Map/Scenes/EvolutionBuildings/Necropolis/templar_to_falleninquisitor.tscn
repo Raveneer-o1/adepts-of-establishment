@@ -5,5 +5,8 @@
 [node name="Heretical hold" instance=ExtResource("1_itw6c")]
 evolving_from = &"Templar"
 evolving_into = &"Fallen Inquisitor"
+gold_cost = 300
+stone_cost = 400
+mana_cost = 100
 upgrade_name = "Heretical hold"
 description = "This building allows Templars to become Fallen Inquisitors"

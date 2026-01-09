@@ -5,5 +5,8 @@
 [node name="Locus of Being" instance=ExtResource("1_jbj8s")]
 evolving_from = &"Lich"
 evolving_into = &"Archlich"
+gold_cost = 1200
+stone_cost = 600
+mana_cost = 400
 upgrade_name = "Locus of Being"
 description = "This building allows Liches to become Archliches"

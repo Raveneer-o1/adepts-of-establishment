@@ -5,5 +5,7 @@
 [node name="Shogun\'s Embassy" instance=ExtResource("1_10usy")]
 evolving_from = &"Samurai"
 evolving_into = &"Blade Saint"
+gold_cost = 400
+stone_cost = 800
 upgrade_name = "Shogun's Embassy"
 description = "This building allows Samurai to become Blade saints"

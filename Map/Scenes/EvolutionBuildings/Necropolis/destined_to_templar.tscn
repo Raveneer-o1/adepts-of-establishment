@@ -5,5 +5,7 @@
 [node name="Twisted temple" instance=ExtResource("1_ar20s")]
 evolving_from = &"Destined"
 evolving_into = &"Templar"
+gold_cost = 150
+stone_cost = 50
 upgrade_name = "Twisted temple"
 description = "This building allows Destined to become Templars"

@@ -5,5 +5,8 @@
 [node name="Haunted mansion" instance=ExtResource("1_igukl")]
 evolving_from = &"Ghost"
 evolving_into = &"Specter"
+gold_cost = 50
+stone_cost = 100
+mana_cost = 50
 upgrade_name = "Haunted mansion"
 description = "This building allows Ghosts to become Specters"

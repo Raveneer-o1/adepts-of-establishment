@@ -5,5 +5,8 @@
 [node name="Conclave chapel" instance=ExtResource("1_c6sv3")]
 evolving_from = &"Inquisitor"
 evolving_into = &"Grand Inquisitor"
+gold_cost = 1200
+stone_cost = 600
+mana_cost = 200
 upgrade_name = "Conclave chapel"
 description = "This building allows Inquisitors to become Grand Inquisitors"

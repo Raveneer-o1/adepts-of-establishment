@@ -5,5 +5,7 @@
 [node name="Imperial range" instance=ExtResource("1_licuj")]
 evolving_from = &"Scout"
 evolving_into = &"Imperial Ranger"
+gold_cost = 400
+stone_cost = 700
 upgrade_name = "Imperial range"
 description = "This building allows Scouts to become Imperial rangers"

@@ -5,5 +5,7 @@
 [node name="Lecture hall" instance=ExtResource("1_jqpqb")]
 evolving_from = &"Apprentice"
 evolving_into = &"Mage"
+stone_cost = 100
+mana_cost = 30
 upgrade_name = "Lecture hall"
 description = "This building allows Apprentices to become Mages"

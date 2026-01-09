@@ -5,5 +5,7 @@
 [node name="Parish chapel" instance=ExtResource("1_5xwqb")]
 evolving_from = &"Acolyte"
 evolving_into = &"Cleric"
+gold_cost = 100
+stone_cost = 100
 upgrade_name = "Parish chapel"
 description = "This building allows Acolytes to become Clerics"

@@ -5,5 +5,7 @@
 [node name="Temple of Sacred Wisdom" instance=ExtResource("1_8v1l2")]
 evolving_from = &"White Mage"
 evolving_into = &"Keeper of Knowledge"
+stone_cost = 500
+mana_cost = 1600
 upgrade_name = "Temple of Sacred Wisdom"
 description = "This building allows White Mages to become Keepers of Knowledge"

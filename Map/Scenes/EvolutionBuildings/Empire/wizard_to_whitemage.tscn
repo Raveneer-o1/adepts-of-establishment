@@ -5,5 +5,8 @@
 [node name="Enchanted spire" instance=ExtResource("1_dfhwc")]
 evolving_from = &"Wizard"
 evolving_into = &"White Mage"
+gold_cost = 200
+stone_cost = 600
+mana_cost = 400
 upgrade_name = "Enchanted spire"
 description = "This building allows Wizards to become White Mages"

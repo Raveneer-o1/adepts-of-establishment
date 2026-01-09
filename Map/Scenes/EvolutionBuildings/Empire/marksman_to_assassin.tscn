@@ -5,5 +5,8 @@
 [node name="Brothel" instance=ExtResource("1_jbd8a")]
 evolving_from = &"Marksman"
 evolving_into = &"Assassin"
+gold_cost = 400
+stone_cost = 200
+mana_cost = 100
 upgrade_name = "Brothel"
 description = "This building allows Marksmen to become Assassins"

@@ -5,5 +5,8 @@
 [node name="Dragon barrow" instance=ExtResource("1_do2kp")]
 evolving_from = &"Undying Nighthunter"
 evolving_into = &"Dracolich"
+gold_cost = 1100
+stone_cost = 900
+mana_cost = 700
 upgrade_name = "Dragon barrow"
 description = "This building allows Undying Nighthunters to become Dracoliches"

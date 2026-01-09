@@ -5,5 +5,8 @@
 [node name="Alcove Nox" instance=ExtResource("1_dna5e")]
 evolving_from = &"Shadow"
 evolving_into = &"Vision of Darkness"
+gold_cost = 600
+stone_cost = 500
+mana_cost = 300
 upgrade_name = "Alcove Nox"
 description = "This building allows Shadows to become Visions of Darkness"

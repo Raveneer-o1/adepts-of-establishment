@@ -5,5 +5,8 @@
 [node name="Summoning altar" instance=ExtResource("1_r46a8")]
 evolving_from = &"Wraith"
 evolving_into = &"Herald of Death"
+gold_cost = 100
+stone_cost = 100
+mana_cost = 1600
 upgrade_name = "Summoning altar"
 description = "This building allows Wraiths to become Heralds of Death"

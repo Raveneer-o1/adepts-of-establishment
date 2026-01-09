@@ -5,5 +5,7 @@
 [node name="Fountain of Truth" instance=ExtResource("1_ui7d3")]
 evolving_from = &"Matriarch"
 evolving_into = &"Prophetess"
+gold_cost = 500
+stone_cost = 700
 upgrade_name = "Fountain of Truth"
 description = "This building allows Matriarchs to become Prophetesses"

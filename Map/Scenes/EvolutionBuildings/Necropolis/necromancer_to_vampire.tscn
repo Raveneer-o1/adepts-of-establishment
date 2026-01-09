@@ -5,5 +5,8 @@
 [node name="Rebirth palace" instance=ExtResource("1_6q6si")]
 evolving_from = &"Necromancer"
 evolving_into = &"Vampire"
+gold_cost = 300
+stone_cost = 400
+mana_cost = 400
 upgrade_name = "Rebirth palace"
 description = "This building allows Necromancers to become Vampires"

@@ -5,5 +5,8 @@
 [node name="Cursed crypt" instance=ExtResource("1_c753v")]
 evolving_from = &"Skeleton"
 evolving_into = &"Skeleton warrior"
+gold_cost = 300
+stone_cost = 500
+mana_cost = 700
 upgrade_name = "Cursed crypt"
 description = "This building allows Skeletons to become Skeleton warriors"

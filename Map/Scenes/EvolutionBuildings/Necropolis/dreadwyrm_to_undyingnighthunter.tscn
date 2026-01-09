@@ -5,5 +5,8 @@
 [node name="Chasm of the night" instance=ExtResource("1_jiyrn")]
 evolving_from = &"Dreadwyrm"
 evolving_into = &"Undying Nighthunter"
+gold_cost = 600
+stone_cost = 800
+mana_cost = 500
 upgrade_name = "Chasm of the night"
 description = "This building allows Dreadwyrms to become Undying Nighthunters"

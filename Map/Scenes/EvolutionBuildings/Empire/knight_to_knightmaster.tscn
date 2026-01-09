@@ -5,5 +5,7 @@
 [node name="Chapter house" instance=ExtResource("1_ruve8")]
 evolving_from = &"Knight"
 evolving_into = &"Knight Master"
+gold_cost = 200
+stone_cost = 500
 upgrade_name = "Chapter house"
 description = "This building allows Knights to become Knight Masters"

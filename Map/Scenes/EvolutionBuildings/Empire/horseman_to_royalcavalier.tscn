@@ -5,5 +5,7 @@
 [node name="Royal Manege" instance=ExtResource("1_mqpgl")]
 evolving_from = &"Horseman"
 evolving_into = &"Royal Cavalier"
+gold_cost = 600
+stone_cost = 700
 upgrade_name = "Royal Manege"
 description = "This building allows Horsemen to become Royal cavaliers"

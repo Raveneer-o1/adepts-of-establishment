@@ -5,5 +5,7 @@
 [node name="Evermist Mire" instance=ExtResource("1_oqmfn")]
 evolving_from = &"Specter"
 evolving_into = &"Will-o’-Wisp"
+gold_cost = 300
+mana_cost = 200
 upgrade_name = "Evermist Mire"
 description = "This building allows Specters to become Will-o’-Wisps"

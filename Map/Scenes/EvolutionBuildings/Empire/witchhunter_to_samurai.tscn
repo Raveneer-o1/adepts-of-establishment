@@ -5,5 +5,7 @@
 [node name="Dojo" instance=ExtResource("1_yomy7")]
 evolving_from = &"Witch hunter"
 evolving_into = &"Samurai"
+gold_cost = 200
+stone_cost = 550
 upgrade_name = "Dojo"
 description = "This building allows Witch hunters to become Samurai"

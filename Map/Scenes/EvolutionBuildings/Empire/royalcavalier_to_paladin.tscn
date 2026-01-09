@@ -5,5 +5,8 @@
 [node name="Citadel of Blessing" instance=ExtResource("1_1jmia")]
 evolving_from = &"Royal Cavalier"
 evolving_into = &"Paladin"
+gold_cost = 500
+stone_cost = 1100
+mana_cost = 400
 upgrade_name = "Citadel of Blessing"
 description = "This building allows Royal cavaliers to become Paladins"

@@ -5,5 +5,7 @@
 [node name="Obsidian Void" instance=ExtResource("1_kxfpv")]
 evolving_from = &"Will-o’-Wisp"
 evolving_into = &"The Eternal"
+gold_cost = 800
+mana_cost = 600
 upgrade_name = "Obsidian Void"
 description = "This building allows Will-o’-Wisps to become Eternals"

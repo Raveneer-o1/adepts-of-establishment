@@ -5,5 +5,8 @@
 [node name="Graveyard" instance=ExtResource("1_1h035")]
 evolving_from = &"Death Acolyte"
 evolving_into = &"Necromancer"
+gold_cost = 100
+stone_cost = 50
+mana_cost = 100
 upgrade_name = "Graveyard"
 description = "This building allows Death Acolytes to become Necromancers"

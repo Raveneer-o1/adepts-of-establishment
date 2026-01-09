@@ -5,5 +5,8 @@
 [node name="Spectral armory" instance=ExtResource("1_26nyp")]
 evolving_from = &"Zombie"
 evolving_into = &"Phantom Warrior"
+gold_cost = 300
+stone_cost = 300
+mana_cost = 300
 upgrade_name = "Spectral armory"
 description = "This building allows Zombies to become Phantom Warriors"

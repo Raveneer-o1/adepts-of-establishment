@@ -5,5 +5,8 @@
 [node name="Blood Throne" instance=ExtResource("1_e0dkm")]
 evolving_from = &"Elder vampire"
 evolving_into = &"Vampire Lord"
+gold_cost = 600
+stone_cost = 600
+mana_cost = 1800
 upgrade_name = "Blood Throne"
 description = "This building allows Elder vampires to become Vampire Lords"

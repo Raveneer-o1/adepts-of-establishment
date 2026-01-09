@@ -5,5 +5,7 @@
 [node name="Outpost" instance=ExtResource("1_luim8")]
 evolving_from = &"Marksman"
 evolving_into = &"Scout"
+gold_cost = 200
+stone_cost = 500
 upgrade_name = "Outpost"
 description = "This building allows Marksmen to become Scouts"

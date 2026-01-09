@@ -5,5 +5,8 @@
 [node name="Library" instance=ExtResource("1_ny56y")]
 evolving_from = &"Mage"
 evolving_into = &"Wizard"
+gold_cost = 100
+stone_cost = 400
+mana_cost = 200
 upgrade_name = "Library"
 description = "This building allows Mages to become Wizards"

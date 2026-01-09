@@ -5,5 +5,7 @@
 [node name="Fletchers\' Guild" instance=ExtResource("1_m7rte")]
 evolving_from = &"Archer"
 evolving_into = &"Marksman"
+gold_cost = 50
+stone_cost = 100
 upgrade_name = "Fletchers' Guild"
 description = "This building allows Archers to become Marksmen"

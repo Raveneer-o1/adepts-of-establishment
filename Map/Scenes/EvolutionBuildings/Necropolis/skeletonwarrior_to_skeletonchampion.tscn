@@ -5,5 +5,8 @@
 [node name="Amphitheater" instance=ExtResource("1_pus0p")]
 evolving_from = &"Skeleton warrior"
 evolving_into = &"Skeleton Hero"
+gold_cost = 400
+stone_cost = 700
+mana_cost = 900
 upgrade_name = "Amphitheater"
 description = "This building allows Skeleton warriors to become Skeleton Heroes"

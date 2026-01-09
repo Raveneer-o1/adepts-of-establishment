@@ -5,5 +5,8 @@
 [node name="Death sanctuary" instance=ExtResource("1_dykmp")]
 evolving_from = &"Necromancer"
 evolving_into = &"Lich"
+gold_cost = 600
+stone_cost = 400
+mana_cost = 300
 upgrade_name = "Death sanctuary"
 description = "This building allows Necromancers to become Liches"

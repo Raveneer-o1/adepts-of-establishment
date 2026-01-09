@@ -5,5 +5,7 @@
 [node name="Inquisition Hall" instance=ExtResource("1_wtkrp")]
 evolving_from = &"Witch hunter"
 evolving_into = &"Inquisitor"
+gold_cost = 600
+stone_cost = 400
 upgrade_name = "Inquisition Hall"
 description = "This building allows Witch hunters to become Inquisitors"
