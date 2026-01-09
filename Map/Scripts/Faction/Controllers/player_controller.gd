@@ -3,7 +3,10 @@ extends FactionController
 @onready var item_list: ItemList = $EvolutionRequest/InputCatcher/VBoxContainer/ItemList
 @onready var evolution_request: CanvasLayer = $EvolutionRequest
 
+signal __trigger
+
 func choose_hero_ability(hero: HeroData, options: Array[HeroAbility]) -> HeroAbility:
+	await api.game.screen_access(api.this_faction, __trigger)
 	return options.pick_random()
 
 

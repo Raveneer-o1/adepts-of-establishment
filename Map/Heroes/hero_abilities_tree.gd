@@ -94,5 +94,17 @@ func _get_available_automatic_abilities() -> Array[HeroAbility]:
 		if _check_level(ability): res.append(ability)
 	return res
 
+## Frees all direct and indirect children that are not a [HeroAbility] node
+func clean_tree() -> void:
+	var children := get_children()
+	while children:
+		var child: Node = children.pop_front()
+		if child is HeroAbility:
+			children.append_array(child.get_children())
+			continue
+		# Nodes free their children when freed
+		child.free()
+
 func _ready() -> void:
+	clean_tree()
 	set_available_list()

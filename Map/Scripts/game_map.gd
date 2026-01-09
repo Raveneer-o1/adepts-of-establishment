@@ -19,6 +19,31 @@ var screen_player: MapFaction:
 		if value == screen_player: return
 		ui_layers.resources_panel.fill_data(value.resource_container)
 		screen_player = value
+		if awaiting_screen_access.has(value):
+			var s := awaiting_screen_access[value]
+			awaiting_screen_access.erase(value)
+			s.emit()
+
+var awaiting_screen_access: Dictionary[MapFaction, Signal]
+
+## Registers [param faction] for screen access notification.
+## Returns [param _signal] unchanged, which will emit (without arguments)
+## when the faction becomes the active screen player (see [member screen_player]).
+## Useful for UI functions awaiting player context activation. For example:
+## [codeblock]
+## # ... perform setup
+##
+## # Wait for player to become active screen controller
+## await game.screen_access(self, _waiting_signal)
+##
+## # ... execute player-dependent logic
+## [/codeblock]
+func screen_access(faction: MapFaction, _signal: Signal) -> Signal:
+	if faction == screen_player:
+		_signal.emit.call_deferred()
+		return _signal
+	awaiting_screen_access[faction] = _signal
+	return _signal
 
 @onready var test_faction: MapFaction = $Factions/Empire
 @onready var test_faction2: MapFaction = $Factions/Necropolis
@@ -61,7 +86,7 @@ func _test_init() -> void:
 	var c := load(GlobalDefs.get_faction_controller(test_faction.controller))
 	var c2 := load(GlobalDefs.get_faction_controller(test_faction2.controller))
 	test_faction.api.add_child(c.instantiate())
-	test_faction2.api.add_child(c2.instantiate())
+	test_faction2.api.add_child(c.instantiate())
 	current_map.active_faction = test_faction
 	EventBus.map_turn_started.emit(test_faction)
 	test_faction.api.turn_started.emit()
