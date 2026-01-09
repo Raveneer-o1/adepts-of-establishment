@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgfpqcsfd2ewx"]
+
+[ext_resource type="Script" uid="uid://fggxbi0u1pha" path="res://UI/DynamicTree/Scripts/dynamic_tree.gd" id="1_bgpnn"]
+[ext_resource type="PackedScene" uid="uid://cx4tudyj13yvi" path="res://Map/Heroes/test_hero_ability_tree.tscn" id="3_tpumd"]
+
+[node name="DynamicTree" type="Control" node_paths=PackedStringArray("abilities_tree")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bgpnn")
+abilities_tree = NodePath("TestHeroAbilityTree")
+
+[node name="LayersContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TestHeroAbilityTree" parent="." instance=ExtResource("3_tpumd")]

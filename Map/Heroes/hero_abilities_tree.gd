@@ -34,7 +34,7 @@ extends Node
 ## to the player is difficult and most likely not worth it.
 
 
-@onready var this_hero: HeroData = get_parent()
+@onready var this_hero: HeroData = get_parent() if get_parent() is HeroData else null
 
 ## List of abilities that are [i]available[/i] (prerequisites learned).
 ## Includes abilities regardless of level requirements.

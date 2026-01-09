@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://canii4omifryt"]
+
+[ext_resource type="Script" uid="uid://n2u3teuglkkg" path="res://UI/DynamicTree/Scripts/ability.gd" id="1_a0bqt"]
+
+[node name="MarginContainer" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+script = ExtResource("1_a0bqt")
+
+[node name="Ability" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2

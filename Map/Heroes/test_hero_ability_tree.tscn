@@ -7,17 +7,64 @@
 [node name="TestHeroAbilityTree" type="Node"]
 script = ExtResource("1_onij4")
 
-[node name="Increase parameters" type="Node" parent="."]
-script = ExtResource("2_4nqsg")
-optional = false
-unlimited_learning = true
-
 [node name="Add effect" type="Node" parent="."]
 script = ExtResource("3_osxcn")
 effect_path = "res://Map/Scripts/Units/MapEffects/test.gd"
+ability_name = "Optional F"
 required_level = 2
 
 [node name="Increase parameters2" type="Node" parent="Add effect"]
 script = ExtResource("2_4nqsg")
+ability_name = "Optional G"
 required_level = 3
+
+[node name="Increase parameters3" type="Node" parent="Add effect/Increase parameters2"]
+script = ExtResource("2_4nqsg")
+ability_name = "Optional K"
+required_level = 4
+
+[node name="Increase parameters3" type="Node" parent="."]
+script = ExtResource("2_4nqsg")
+ability_name = "Optional C"
+required_level = 3
+
+[node name="Increase parameters3" type="Node" parent="Increase parameters3"]
+script = ExtResource("2_4nqsg")
+ability_name = "Optional D"
+required_level = 4
+
+[node name="Increase parameters4" type="Node" parent="Increase parameters3/Increase parameters3"]
+script = ExtResource("2_4nqsg")
+ability_name = "Optional E"
+required_level = 5
+
+[node name="Increase parameters" type="Node" parent="."]
+script = ExtResource("2_4nqsg")
+ability_name = "Levelup"
+optional = false
 unlimited_learning = true
+
+[node name="Optional L" type="Node" parent="."]
+script = ExtResource("2_4nqsg")
+ability_name = "Optional L"
+required_level = 5
+
+[node name="Optional L2" type="Node" parent="."]
+script = ExtResource("2_4nqsg")
+ability_name = "Optional I"
+required_level = 5
+
+[node name="Optional L3" type="Node" parent="."]
+script = ExtResource("2_4nqsg")
+ability_name = "Optional J"
+required_level = 5
+
+[node name="Optional" type="Node" parent="."]
+script = ExtResource("2_4nqsg")
+ability_name = "Optional B"
+required_level = 2
+
+[node name="Optional2" type="Node" parent="."]
+script = ExtResource("2_4nqsg")
+ability_name = "Optional H"
+required_level = 4

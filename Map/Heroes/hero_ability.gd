@@ -6,6 +6,7 @@ extends Node
 ##
 ## This class represents a node in the [HeroAbilitiesTree]. 
 
+@export var ability_name: String
 ## Minimum hero level required to unlock this ability.
 ## Abilities do not appear as level-up options before reaching this level.
 @export var required_level: int = 0
