@@ -4,6 +4,15 @@ extends ScrollContainer
 const PARTY_EDITOR_UNIT_PREFAB = preload("res://Map/UI/Scenes/party_editor_unit.tscn")
 var parent: Node
 
+var parent_owner: MapFaction:
+	get:
+		var p := parent
+		while p:
+			if p is MapFaction: return p
+			if p is MapInteractableObject: return p.object_owner
+			p = p.get_parent()
+		return null
+
 
 func add_unit(data: UnitData) -> void:
 	if not data: return
@@ -11,8 +20,15 @@ func add_unit(data: UnitData) -> void:
 	unit.unit_data = data
 	$VBoxContainer.add_child(unit)
 
-# TODO: reroute through API
+# HACK: This function checks for valid movements but does not go through API
 func move_unit(received_unit: PartyEditorUnit) -> void:
+	var received_owner := received_unit.unit_data.unit_owner
+	if received_owner != parent_owner:
+		push_error("Trying to move unit to different owner")
+		return
+	if not received_owner.api.ui_filter:
+		push_error("Filtered UI input")
+		return
 	if parent and received_unit.unit_data is HeroData and \
 			received_unit.unit_data.get_parent() != parent: return
 	var other_place := received_unit.get_parent()

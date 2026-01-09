@@ -7,6 +7,15 @@ extends TextureRect
 var unit: PartyEditorUnit
 var parent: Node
 
+var parent_owner: MapFaction:
+	get:
+		var p := parent
+		while p:
+			if p is MapFaction: return p
+			if p is MapInteractableObject: return p.object_owner
+			p = p.get_parent()
+		return null
+
 const PARTY_EDITOR_UNIT_PREFAB = preload("res://Map/UI/Scenes/party_editor_unit.tscn")
 
 func update_data() -> void:
@@ -27,14 +36,20 @@ func remove_unit() -> void:
 	if unit: unit.queue_free()
 	unit = null
 
-# TODO: reroute through API
+# HACK: This function checks for valid movements but does not go through API
 func move_unit(received_unit: PartyEditorUnit) -> void:
 	if not received_unit: return
+	var received_owner := received_unit.unit_data.unit_owner
+	if received_owner != parent_owner:
+		push_error("Trying to move unit to different owner")
+		return
+	if not received_owner.api.ui_filter:
+		push_error("Filtered UI input")
+		return
 	var other_place := received_unit.get_parent()
 	if other_place == self: return
-	if reparent_data:
-		if received_unit.unit_data.get_parent() != parent:
-			if received_unit.unit_data is HeroData: return
+	if reparent_data and received_unit.unit_data is HeroData:
+		if received_unit.unit_data.get_parent() != parent: return
 	if other_place is PartyEditorUnitPosition:
 		other_place.unit = unit
 	if unit:
