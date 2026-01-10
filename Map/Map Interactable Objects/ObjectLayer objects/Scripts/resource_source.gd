@@ -1,12 +1,14 @@
 extends OwnedByLandObject
 
+@export var occupied_tiles: Array[Vector2i] = []
 
 func _get_occupied_tiles(main: Vector2i = tile_position) -> Array[Vector2i]:
-	return [
-		main,
-		main + Vector2i(0, 1),
-		main + Vector2i(-1, 1),
-	]
+	if not occupied_tiles: return [main]
+	var res: Array[Vector2i] = []
+	for r in occupied_tiles:
+		res.append(main + r)
+	if main not in res: res.append(main)
+	return res
 
 # Uncomment and implement the method below if the object interacts with parties
 # on tiles other than its current position

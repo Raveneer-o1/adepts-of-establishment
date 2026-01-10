@@ -5,6 +5,7 @@
 
 [node name="GoldMine" type="Node2D"]
 script = ExtResource("1_cl7tb")
+occupied_tiles = Array[Vector2i]([Vector2i(0, 0), Vector2i(0, 1), Vector2i(-1, 1)])
 gold_per_turn = 50
 object_name = "Mine"
 ownable = true

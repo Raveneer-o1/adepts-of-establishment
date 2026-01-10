@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhtkukvc6ee0n"]
+
+[ext_resource type="Script" uid="uid://ty3mr54ijmmp" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scripts/resource_source.gd" id="1_b1w6s"]
+[ext_resource type="Texture2D" uid="uid://8fjr6uucvygx" path="res://Arts/Map objects/mana source Blue .png" id="2_b1w6s"]
+
+[node name="GoldMine" type="Node2D"]
+script = ExtResource("1_b1w6s")
+mana_per_turn = 35
+object_name = "Mana source"
+ownable = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_b1w6s")
