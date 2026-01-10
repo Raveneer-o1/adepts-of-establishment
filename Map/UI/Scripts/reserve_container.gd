@@ -30,8 +30,7 @@ func move_unit(received_unit: PartyEditorUnit) -> void:
 		if not received_owner.api.ui_filter:
 			push_error("Filtered UI input")
 			return
-		if received_unit.unit_data is HeroData and \
-			received_unit.unit_data.get_parent() != parent: return
+		if not received_unit.unit_data.try_moving_unit(parent): return
 	var other_place := received_unit.get_parent()
 	if other_place == self: return
 	if other_place is PartyEditorUnitPosition:
@@ -39,8 +38,7 @@ func move_unit(received_unit: PartyEditorUnit) -> void:
 	#elif other_place is ReserveContainer:
 	received_unit.unit_data.party_position = -1
 	received_unit.reparent($VBoxContainer, false)
-	if parent and received_unit.unit_data.get_parent() != parent:
-		received_unit.unit_data.move_unit(parent)
+	received_unit.position = Vector2.ZERO
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	if data is not PartyEditorUnit: return false

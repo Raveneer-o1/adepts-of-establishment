@@ -190,3 +190,8 @@ func level_up_unit(unit: UnitData) -> void:
 	if not unit: return
 	if not object_owner: unit.level_up()
 	else: await object_owner.level_up_unit(unit)
+
+func can_accept_unit(unit: UnitData) -> bool:
+	if units.size() >= parameters.get_capacity(): return false
+	
+	return true

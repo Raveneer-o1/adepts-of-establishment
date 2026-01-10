@@ -282,6 +282,37 @@ func evolve(into: StringName) -> void:
 	initialize(personal_name)
 	EventBus.unit_evolved.emit(self, prev)
 
+func try_moving_unit(container: Node) -> bool:
+	if can_be_moved_to(container):
+		_move_unit(container)
+		return true
+	return false
+
+func can_be_moved_to(parent: Node) -> bool:
+	if parent == get_parent(): return true
+	if self is HeroData: return false
+	if not parent: return false
+	while parent and parent is not Map:
+		if parent is MapParty:
+			return parent.can_accept_unit(self)
+		if parent is MapCity:
+			return true  # Cities can hold unlimited number of units
+		parent = parent.get_parent()
+	
+	print_debug("Unknown destination for moving")
+	return true
+
+func _move_unit(container: Node) -> void:
+	if not container: return
+	var parent := get_parent()
+	if parent == container: return
+	if parent: reparent(container)
+	else: container.add_child(self)
+	for e in map_effects:
+		e.on_unit_move()
+
+## @deprecated: use [method try_moving_unit] instead.
+## Forcibly moves this unit to the provided [param container]
 func move_unit(container: Node) -> void:
 	if not container: return
 	var parent := get_parent()

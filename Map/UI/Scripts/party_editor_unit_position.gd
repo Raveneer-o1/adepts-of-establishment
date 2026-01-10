@@ -49,8 +49,7 @@ func move_unit(received_unit: PartyEditorUnit) -> void:
 		if not received_owner.api.ui_filter:
 			push_error("Filtered UI input")
 			return
-		if received_unit.unit_data is HeroData:
-			if received_unit.unit_data.get_parent() != parent: return
+		if not received_unit.unit_data.try_moving_unit(parent): return
 	if other_place is PartyEditorUnitPosition:
 		other_place.unit = unit
 	if unit:
@@ -61,8 +60,7 @@ func move_unit(received_unit: PartyEditorUnit) -> void:
 	unit = received_unit
 	unit.unit_data.party_position = party_position
 	unit.reparent(self, false)
-	if reparent_data:
-		unit.unit_data.move_unit(parent)
+	received_unit.position = Vector2.ZERO
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	if data is not PartyEditorUnit: return false

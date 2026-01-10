@@ -105,9 +105,14 @@ signal movement_pass_check_requested(tile_data: TileData)
 ## [br][br]
 ## Expected [member accumulated_value] type: [code]int[/code]
 signal max_mp_requested()
+## Emitted when party capacity is requested.
+## Party capacity is the maximum number of units in the party.
+## [br][br]
+## Expected [member accumulated_value] type: [code]int[/code]
+signal party_capacity_requested()
 
 var _max_movement_points: int = 20
-## This property automatically manages mp values by calling [method get_max_movement_points]
+## This property automatically manages MP values by calling [method get_max_movement_points]
 var max_movement_points: int:
 	get: return get_max_movement_points()
 	set(value): _max_movement_points = value
@@ -124,6 +129,10 @@ var __freing_units: bool = false:
 		if not value: __freing_units_finished.emit()
 		__freing_units = value
 
+## Base capacity value set during party initialization.
+## Intended to be modified by [HeroData] when learning relevant abilities,
+## avoiding expensive connections to [signal party_capacity_requested].
+var default_capacity: int = 3
 
 ## Frees duplicate objects created by [method get_unit_list_copy].
 ## Processes one object per frame to avoid performance spikes.
@@ -180,6 +189,10 @@ func get_max_movement_points() -> int:
 func get_unit_data() -> Array[UnitData]:
 	unit_data_requested.emit()
 	return _get_accumulated_value(units)
+
+func get_capacity() -> int:
+	party_capacity_requested.emit()
+	return _get_accumulated_value(default_capacity)
 
 const DEFAULT_MOVEMENT_MULTIPLIER = 1
 func get_movement_multiplier() -> int:
