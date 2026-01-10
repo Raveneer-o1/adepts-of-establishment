@@ -101,29 +101,35 @@ enum UnitClass{
 
 var cost: ResourceCost
 
-const database = GlobalDefs.units_database.database
-
+## Retrieved directly from the database on each access. Cannot be modified.
 var database_dict: Dictionary:
-	get: return database.get(unit_name, {})
+	get: return GlobalDefs.units_database.database.get(unit_name, {})
 
+## Retrieved directly from the database on each access. Cannot be modified.
 var description: String:
 	get: return database_dict.get(&"description", "")
 
+## Retrieved directly from the database on each access. Cannot be modified.
 var brief_description: String:
 	get: return database_dict.get(&"brief_description", "")
 
+## Retrieved directly from the database on each access. Cannot be modified.
 var database_scene_path: String:
 	get: return database_dict.get(&"scene_path", "")
 
+## Retrieved directly from the database on each access. Cannot be modified.
 var faction: GlobalDefs.Faction:
 	get: return database_dict.get(&"faction", GlobalDefs.Faction.Undefined)
 
+## Retrieved directly from the database on each access. Cannot be modified.
 var unit_type: GlobalDefs.UnitType:
 	get: return database_dict.get(&"unit_type", GlobalDefs.UnitType.Undefined)
 
+## Retrieved directly from the database on each access. Cannot be modified.
 var portrait_texture_path: String:
 	get: return database_dict.get(&"portrait_texture_path", "")
 
+## Equivalent to checking the contition [code]current_hp <= 0[/code]
 var is_dead: bool:
 	get: return current_hp <= 0
 
@@ -133,11 +139,15 @@ var original: UnitData = null
 var levelup_available: bool:
 	get: return current_xp >= needed_xp
 
+## Returns [MapParty] this unit is a part of or [code]null[/code]
 var party: MapParty:
 	get:
 		var parent := get_parent()
 		return parent if parent is MapParty else null
 
+## Returns the faction owning this unit, or [code]null[/code].
+## Ownership may be indeterminable if the unit is not a child (direct on indirect)
+## of [MapInteractableObject] or if the containing object is not owned.
 var unit_owner: MapFaction:
 	get:
 		var parent := get_parent()
@@ -147,6 +157,7 @@ var unit_owner: MapFaction:
 			parent = parent.get_parent()
 		return null
 
+## List of all [MapUnitEffect]s applied to this unit
 var map_effects: Array[MapUnitEffect]:
 	get:
 		var res: Array[MapUnitEffect] = []
@@ -217,7 +228,7 @@ func _set_levelup() -> void:
 ## resets experience to 0, and reloads all defined attacks and effects.
 ## Should only be called when spawning a new unit into the world.
 func initialize(personal: String = "") -> bool:
-	if not database.has(unit_name):
+	if not database_dict:
 		push_error("unit name '%s' does not exist in the database" % unit_name)
 		return false
 	
@@ -226,8 +237,8 @@ func initialize(personal: String = "") -> bool:
 	armor = database_dict.get(&"armor", 0)
 	evasion = database_dict.get(&"evasion", 0.0)
 	shielding_chance = database_dict.get(&"shielding_chance", 0.0)
-	unit_class = database.get(&"unit_class", UnitClass.Undefined)
-	unit_type = database.get(&"unit_type", GlobalDefs.UnitType.Undefined)
+	unit_class = database_dict.get(&"unit_class", UnitClass.Undefined)
+	unit_type = database_dict.get(&"unit_type", GlobalDefs.UnitType.Undefined)
 	
 	level = database_dict.get(&"level", 0)
 	needed_xp = database_dict.get(&"needed_xp", 1)
@@ -254,19 +265,27 @@ func add_effect(effect: AppliedEffect) -> void:
 	UnitData.filter_data(full_data)
 	(original.effects if original else effects).append(full_data)
 
+## Synchronizes unit data with combat results from the provided [Unit] object.
+## Updates values to reflect post-combat state.
+## Does not grant experience points.
 func update_values(u: Unit) -> void:
 	if not u: return
 	current_hp = u.parameters.hp
 	for e: AppliedEffect in u.parameters.get_all_effects():
-		if e.persistent: add_effect(e)
+		if e.persistent:
+			add_effect(e)
+			e.persistent = false  # to safeguard against multiple calls
 
 func _ready() -> void:
 	# WARNING: this is testing implementation, initialization here will be removed
 	initialize()
 
+## Does [b]not[/b] trigger levelup automatically.
+## Use [member levelup_available] to check.
 func grant_xp(points: int) -> void:
 	current_xp += points
 
+## Levels the unit up without evolving. For the latter use [method evolve]
 func level_up() -> void:
 	if hero_levelup and self is HeroData:
 		hero_levelup.levelup()
@@ -276,18 +295,28 @@ func level_up() -> void:
 		return
 	LevelupFunction.default_levelup(self)
 
+## Transforms this unit into the one specified in the argument.
+## [UnitData] class has no way to check the validity of the provided transformation.
 func evolve(into: StringName) -> void:
 	var prev := unit_name
 	unit_name = into
-	initialize(personal_name)
+	assert (initialize(personal_name))
 	EventBus.unit_evolved.emit(self, prev)
 
+## Attempts to move the unit to the specified [param container].
+## Does not validate ownership. [br]
+## [b]Important:[/b] The method will proceed even for unexpected containers
+## (neither party nor city).
 func try_moving_unit(container: Node) -> bool:
 	if can_be_moved_to(container):
 		_move_unit(container)
 		return true
 	return false
 
+## Returns if the unit can be mived to the provided [param container].
+## Does not validate ownership. [br]
+## [b]Important:[/b] The method will proceed even for unexpected containers
+## (neither party nor city).
 func can_be_moved_to(parent: Node) -> bool:
 	if parent == get_parent(): return true
 	if self is HeroData: return false
@@ -314,6 +343,7 @@ func _move_unit(container: Node) -> void:
 ## @deprecated: use [method try_moving_unit] instead.
 ## Forcibly moves this unit to the provided [param container]
 func move_unit(container: Node) -> void:
+	push_error("Deprecated call")
 	if not container: return
 	var parent := get_parent()
 	if parent == container: return
@@ -328,7 +358,7 @@ func move_unit(container: Node) -> void:
 ## If the database marks the unit as a hero (non-empty [code]hero_abilities[/code]
 ## entry), returns a [HeroData] instance.
 static func get_new(u_name: StringName, personal: String = "") -> UnitData:
-	var d: Dictionary = database.get(u_name)
+	var d: Dictionary = GlobalDefs.units_database.database.get(u_name)
 	if not d: return null
 	var abilities: String = d.get(&"hero_abilities", "")
 	var res := HeroData.new() if abilities else UnitData.new()
