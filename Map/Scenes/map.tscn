@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=4 uid="uid://dlu3vl2ltauc0"]
+[gd_scene load_steps=54 format=4 uid="uid://dlu3vl2ltauc0"]
 
 [ext_resource type="Script" uid="uid://dvi42dc2k0m2h" path="res://Map/Scripts/Map/map.gd" id="1_q0qov"]
 [ext_resource type="Texture2D" uid="uid://c462nhclviryl" path="res://Arts/Map objects/dis tiles (1).png" id="1_xec2n"]
@@ -23,8 +23,10 @@
 [ext_resource type="PackedScene" uid="uid://cru6m63h7miiu" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scenes/TreasureChest.tscn" id="14_esgc1"]
 [ext_resource type="PackedScene" uid="uid://dns1v60yltqme" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scenes/map_capital_empire.tscn" id="15_ue3ts"]
 [ext_resource type="Texture2D" uid="uid://518ilab6qsv7" path="res://Arts/Map/tile highlight.png" id="16_ab646"]
+[ext_resource type="PackedScene" uid="uid://capvq01yuowhj" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scenes/village.tscn" id="16_hhhnw"]
 [ext_resource type="Texture2D" uid="uid://dj7bwp2kwlwe6" path="res://Arts/Map/tile highlights atlas.png" id="17_aku2f"]
 [ext_resource type="Script" uid="uid://ijg56utnmlvn" path="res://Map/Scripts/Map/path_finder.gd" id="18_jtf36"]
+[ext_resource type="PackedScene" uid="uid://dhtkukvc6ee0n" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scenes/mana_source.tscn" id="18_wuamo"]
 [ext_resource type="Script" uid="uid://bx6fsao0crbjq" path="res://Map/Scripts/Map/map_camera.gd" id="19_gdowr"]
 [ext_resource type="Script" uid="uid://pn3mawujeix2" path="res://Map/Scripts/Map/objects_layer.gd" id="20_1e4ck"]
 [ext_resource type="Script" uid="uid://mn0dy1cf0p65" path="res://Map/Scripts/Units/unit_data.gd" id="21_bl7ab"]
@@ -263,6 +265,9 @@ scenes/1/scene = ExtResource("11_1e4ck")
 scenes/2/scene = ExtResource("12_l17lq")
 scenes/3/scene = ExtResource("14_esgc1")
 scenes/4/scene = ExtResource("15_ue3ts")
+scenes/5/scene = ExtResource("16_hhhnw")
+scenes/6/scene = ExtResource("30_orlke")
+scenes/7/scene = ExtResource("18_wuamo")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wp3p1"]
 texture = ExtResource("3_b45i2")
@@ -392,7 +397,7 @@ unique_name_in_owner = true
 
 [node name="ObjectsLayer" type="TileMapLayer" parent="MapLayers"]
 unique_name_in_owner = true
-tile_map_data = PackedByteArray("AAAgABAAAAADAAAAAAAPABgAAAAAAAIAAAAOABkAAAAAAAIAAAAKAAEABwAAAAAAAAAHAAAABwAAAAAAAAAPABkACgAAAAAAAAAIAA8AAgAAAAAAAAAPAAUABgAAAAAAAAANAAwABwAAAAAAAAAnACQABwAAAAAAAAANAAQACAAAAAAAAAAGACcACgAAAAAAAAAKACMACwAAAAAAAAAHABMAAAABAAEAAAAGAA8AAAADAAAAAAAHABEAAAACAAEAAAAAACUAAAAAAAIAAAABACUAAAABAAIAAAABACYAAAABAAIAAAABACcAAAADAAEAAAAAACYAAAADAAEAAAAKABEAAAABAAIAAAAKABIAAAAAAAIAAAAKABMAAAAAAAIAAAAIABQAAAAAAAIAAAAJABQAAAAAAAIAAAAIABEAAAAAAAIAAAAPAAoAAAABAAIAAAAOAAsAAAADAAEAAAAPAAsAAAABAAIAAAAQAAsAAAADAAEAAAAPAAgAAAAAAAIAAAAOAAgAAAADAAEAAAANAAkAAAADAAEAAAAeABUAAAAAAAIAAAAdABUAAAADAAEAAAAgABQAAAAAAAIAAAAcABQAAAAAAAIAAAAQAB0AAAABAAIAAAAPAB4AAAABAAIAAAAPAB8AAAAAAAIAAAAPACAAAAADAAEAAAAQACAAAAAAAAIAAAARAB8AAAABAAIAAAASAB4AAAABAAIAAAASAB8AAAABAAIAAAARACAAAAAAAAIAAAAQACEAAAAAAAIAAAAPACIAAAABAAIAAAAPACEAAAABAAIAAAAOACEAAAADAAEAAAAMABsABQAAAAAAAAAFABQABQABAAAAAAAVAAgABQACAAAAAAARAB0ABwAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAgABAAAAADAAAAAAAPABgAAAAAAAIAAAAOABkAAAAAAAIAAAAKAAEABwAAAAAAAAAHAAAABwAAAAAAAAAPABkACgAAAAAAAAAIAA8ADQAAAAAABQAPAAUABgAAAAAAAAANAAwABwAAAAAAAAAnACQABwAAAAAAAAANAAQACAAAAAAAAAAGACcACgAAAAAAAAAKACMACwAAAAAAAAAHABMAAAABAAEAAAAGAA8AAAADAAAAAAAHABEAAAACAAEAAAAAACUAAAAAAAIAAAABACUAAAABAAIAAAABACYAAAABAAIAAAABACcAAAADAAEAAAAAACYAAAADAAEAAAAKABEAAAABAAIAAAAKABIAAAAAAAIAAAAKABMAAAAAAAIAAAAIABQAAAAAAAIAAAAJABQAAAAAAAIAAAAIABEAAAAAAAIAAAAPAAoAAAABAAIAAAAOAAsAAAADAAEAAAAPAAsAAAABAAIAAAAQAAsAAAADAAEAAAAPAAgAAAAAAAIAAAAOAAgAAAADAAEAAAANAAkAAAADAAEAAAAeABUAAAAAAAIAAAAdABUAAAADAAEAAAAgABQAAAAAAAIAAAAcABQAAAAAAAIAAAAQAB0AAAABAAIAAAAPAB4AAAABAAIAAAAPAB8AAAAAAAIAAAAPACAAAAADAAEAAAAQACAAAAAAAAIAAAARAB8AAAABAAIAAAASAB4AAAABAAIAAAASAB8AAAABAAIAAAARACAAAAAAAAIAAAAQACEAAAAAAAIAAAAPACIAAAABAAIAAAAPACEAAAABAAIAAAAOACEAAAADAAEAAAAVAAgABQACAAAAAAARAB0ABwAAAAAAAAAgACEADQAAAAAABwAFABoADQAAAAAABwAMABsADQAAAAAABwA=")
 tile_set = SubResource("TileSet_3ily0")
 script = ExtResource("20_1e4ck")
 
