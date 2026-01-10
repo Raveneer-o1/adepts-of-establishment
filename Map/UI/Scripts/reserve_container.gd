@@ -23,13 +23,14 @@ func add_unit(data: UnitData) -> void:
 # HACK: This function checks for valid movements but does not go through API
 func move_unit(received_unit: PartyEditorUnit) -> void:
 	var received_owner := received_unit.unit_data.unit_owner
-	if received_owner != parent_owner:
-		push_error("Trying to move unit to different owner")
-		return
-	if not received_owner.api.ui_filter:
-		push_error("Filtered UI input")
-		return
-	if parent and received_unit.unit_data is HeroData and \
+	if parent:
+		if received_owner != parent_owner:
+			push_error("Trying to move unit to a different owner")
+			return
+		if not received_owner.api.ui_filter:
+			push_error("Filtered UI input")
+			return
+		if received_unit.unit_data is HeroData and \
 			received_unit.unit_data.get_parent() != parent: return
 	var other_place := received_unit.get_parent()
 	if other_place == self: return
