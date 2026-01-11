@@ -57,6 +57,10 @@ var attacks: Array[UnitAttack]:
 ## Applies only to regular levelups, without evolving.
 @export var custom_levelup_function: LevelupFunction = null
 
+## Key should be a paths to the effect script and value is arguments to the
+## [method MapUnitEffect.apply]
+@export var map_effects: Dictionary[String, Variant] = {}
+
 @export_group("Override parameters")
 ## Setting these parameters will override base parameters (use if you want to experiment
 ## but don't want to change the intended behavior)

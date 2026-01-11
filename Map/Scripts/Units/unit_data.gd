@@ -35,6 +35,7 @@ extends Node
 ##     &"portrait_texture_path": String,
 ##     &"custom_levelup_path": String,  # has no effect for heroes
 ##     &"hero_abilities": String,  # if present, this unit is a hero
+##     &"map_effects": Dictionary[String, Variant],  # pairs path to script - argument
 ##     &"cost": Dictionary,  # see below
 ## }
 ## 
@@ -129,6 +130,10 @@ var unit_type: GlobalDefs.UnitType:
 var portrait_texture_path: String:
 	get: return database_dict.get(&"portrait_texture_path", "")
 
+## Retrieved directly from the database on each access. Cannot be modified.
+var map_effects_database: Dictionary:
+	get: return database_dict.get(&"map_effects", {})
+
 ## Equivalent to checking the contition [code]current_hp <= 0[/code]
 var is_dead: bool:
 	get: return current_hp <= 0
@@ -193,6 +198,8 @@ func _initialize_effect_data() -> void:
 	effects.clear()
 	for e: Dictionary in database_dict.get(&"effects", []):
 		effects.append(e)
+	
+	MapUnitEffect.apply_serialized(map_effects_database, self)
 
 func _initialize_attack_data() -> void:
 	attack_data.clear()
@@ -223,15 +230,7 @@ func _set_levelup() -> void:
 				push_error("'%s' is not a HeroAbilitiesTree" % hero_levelup_path)
 				hero_levelup_unchecked.queue_free()
 
-## Initializes unit data with database defaults. [br][br]
-## [color=red]Warning:[/color] This method discards all custom unit modifications,
-## resets experience to 0, and reloads all defined attacks and effects.
-## Should only be called when spawning a new unit into the world.
-func initialize(personal: String = "") -> bool:
-	if not database_dict:
-		push_error("unit name '%s' does not exist in the database" % unit_name)
-		return false
-	
+func _initialize_base_params() -> void:
 	base_damage = database_dict.get(&"base_damage", 0)
 	max_hp = database_dict.get(&"max_hp", 1)
 	armor = database_dict.get(&"armor", 0)
@@ -244,6 +243,17 @@ func initialize(personal: String = "") -> bool:
 	needed_xp = database_dict.get(&"needed_xp", 1)
 	large_unit = database_dict.get(&"large_unit", false)
 	immunities.assign(database_dict.get(&"immunities", []))
+
+## Initializes unit data with database defaults. [br][br]
+## [color=red]Warning:[/color] This method discards all custom unit modifications,
+## resets experience to 0, and reloads all defined attacks and effects.
+## Should only be called when spawning a new unit into the world.
+func initialize(personal: String = "") -> bool:
+	if not database_dict:
+		push_error("unit name '%s' does not exist in the database" % unit_name)
+		return false
+	
+	_initialize_base_params()
 	
 	personal_name = personal
 	current_hp = max_hp
@@ -256,6 +266,9 @@ func initialize(personal: String = "") -> bool:
 	
 	current_xp = 0
 	cost = ResourceCost.from_dict(database_dict.get(&"cost", {}))
+	
+	
+	
 	return true
 
 ## This method performs no validation - duplicate effects may be added without checks.

@@ -1,12 +1,10 @@
 extends HeroAbility
 
+## This ability has no validation. If you provide non-effect script,
+## the node will still be instantiated and added to the [HeroData] node.
 @export_file_path("*.gd") var effect_path: String
+@export var effect_args: Variant = null
 
 func _learn(hero: HeroData) -> void:
-	if not FileAccess.file_exists(effect_path):
-		push_error("File '%s' does not exist" % effect_path)
-		return
-	var s: Script = load(effect_path)
-	var node := Node.new()
-	node.set_script(s)
-	hero.add_child(node)
+	var serialized_effect := {effect_path: effect_args}
+	MapUnitEffect.apply_serialized(serialized_effect, hero)
