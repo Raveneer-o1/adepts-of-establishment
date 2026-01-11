@@ -170,6 +170,8 @@ var map_effects: Array[MapUnitEffect]:
 			if c is MapUnitEffect: res.append(c)
 		return res
 
+var _initializer: __UnitData_Initializer__
+
 ## Returns the file path to the unit scene resource.
 ## This path must be added to either [member EventBus.left_units] or
 ## [member EventBus.right_units] to instantiate the unit when battle begins.
@@ -194,82 +196,16 @@ func get_scene_path() -> String:
 	push_error("Neither provided scene nor database scene exists!")
 	return ""
 
-func _initialize_effect_data() -> void:
-	effects.clear()
-	for e: Dictionary in database_dict.get(&"effects", []):
-		effects.append(e)
-	
-	MapUnitEffect.apply_serialized(map_effects_database, self)
-
-func _initialize_attack_data() -> void:
-	attack_data.clear()
-	var attacks_array: Array[Dictionary]
-	attacks_array.assign(database_dict.get(&"attacks", []))
-	for a in attacks_array:
-		var data := UnitAttackData.from_dict(a)
-		attack_data.append(data)
-
-func _set_levelup() -> void:
-	var custom_levelup_path: String = database_dict.get(&"custom_levelup_path", "")
-	if custom_levelup_path and FileAccess.file_exists(custom_levelup_path):
-		var custom_levelup_unchecked := load(custom_levelup_path)
-		if custom_levelup_unchecked is LevelupFunction:
-			custom_levelup = custom_levelup_unchecked
-	
-	var hero_levelup_path: String = database_dict.get(&"hero_abilities", "")
-	if hero_levelup_path and FileAccess.file_exists(hero_levelup_path):
-		assert(self is HeroData, "%s is not initialized as hero" % unit_name)
-		var loaded_resource := load(hero_levelup_path)
-		if loaded_resource is PackedScene:
-			var hero_levelup_unchecked: Node = loaded_resource.instantiate()
-			if not hero_levelup_unchecked: return
-			if hero_levelup_unchecked is HeroAbilitiesTree:
-				hero_levelup = hero_levelup_unchecked
-				hero_levelup.this_hero = self
-			else:
-				push_error("'%s' is not a HeroAbilitiesTree" % hero_levelup_path)
-				hero_levelup_unchecked.queue_free()
-
-func _initialize_base_params() -> void:
-	base_damage = database_dict.get(&"base_damage", 0)
-	max_hp = database_dict.get(&"max_hp", 1)
-	armor = database_dict.get(&"armor", 0)
-	evasion = database_dict.get(&"evasion", 0.0)
-	shielding_chance = database_dict.get(&"shielding_chance", 0.0)
-	unit_class = database_dict.get(&"unit_class", UnitClass.Undefined)
-	unit_type = database_dict.get(&"unit_type", GlobalDefs.UnitType.Undefined)
-	
-	level = database_dict.get(&"level", 0)
-	needed_xp = database_dict.get(&"needed_xp", 1)
-	large_unit = database_dict.get(&"large_unit", false)
-	immunities.assign(database_dict.get(&"immunities", []))
-
 ## Initializes unit data with database defaults. [br][br]
 ## [color=red]Warning:[/color] This method discards all custom unit modifications,
 ## resets experience to 0, and reloads all defined attacks and effects.
 ## Should only be called when spawning a new unit into the world.
 func initialize(personal: String = "") -> bool:
-	if not database_dict:
-		push_error("unit name '%s' does not exist in the database" % unit_name)
-		return false
+	assert(not _initializer)
+	_initializer = __UnitData_Initializer__.new()
+	add_child(_initializer, false, Node.INTERNAL_MODE_BACK)
 	
-	_initialize_base_params()
-	
-	personal_name = personal
-	current_hp = max_hp
-	
-	scene_path = database_scene_path
-	_set_levelup()
-	
-	_initialize_attack_data()
-	_initialize_effect_data()
-	
-	current_xp = 0
-	cost = ResourceCost.from_dict(database_dict.get(&"cost", {}))
-	
-	
-	
-	return true
+	return _initializer.initialize(personal)
 
 ## This method performs no validation - duplicate effects may be added without checks.
 func add_effect(effect: AppliedEffect) -> void:
