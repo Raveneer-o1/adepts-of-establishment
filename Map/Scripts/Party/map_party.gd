@@ -1,6 +1,15 @@
 class_name MapParty
 extends MapInteractableObject
 
+## Returns the number of leadership slots the specified [param unit] takes up.
+static func get_unit_size(unit: UnitData) -> int:
+	if not unit: return 0
+	
+	# large units take 3 slots in battle but only 2 leadership:
+	# this is intentional
+	return 2 if unit.large_unit else 1
+
+
 @onready var animation_handle: MapPartyAnimationHandle = $AnimationHandle
 @onready var parameters: PartyParameters = $PartyParameters
 @onready var control: PartyControl = $Control
@@ -191,7 +200,15 @@ func level_up_unit(unit: UnitData) -> void:
 	if not object_owner: unit.level_up()
 	else: await object_owner.level_up_unit(unit)
 
+## Returns number of leadership slots occupied in this party
+func get_occupied_space() -> int:
+	var res := 0
+	for unit in units:
+		res += get_unit_size(unit)
+	return res
+
+
 func can_accept_unit(unit: UnitData) -> bool:
-	if units.size() >= parameters.get_capacity(): return false
+	if get_occupied_space() >= parameters.get_capacity(): return false
 	
 	return true
