@@ -16,9 +16,12 @@ const EFFECTS_DIRECTORY = "res://Map/Scripts/Units/MapEffects/"
 ## [constant EFFECTS_DIRECTORY].
 static func apply_serialized(serialized: Dictionary, unit_data: UnitData) -> Array[MapUnitEffect]:
 	var res: Array[MapUnitEffect] = []
-	for effect_path: String in serialized:
+	for path: String in serialized:
+		var effect_path := path
 		if not effect_path.begins_with("res:"):
 			effect_path = EFFECTS_DIRECTORY + effect_path
+		if not effect_path.ends_with(".gd"):
+			effect_path += ".gd"
 		if not FileAccess.file_exists(effect_path):
 			push_error("File '%s' does not exist" % effect_path)
 			continue
@@ -30,7 +33,7 @@ static func apply_serialized(serialized: Dictionary, unit_data: UnitData) -> Arr
 			node.queue_free()
 			continue
 		unit_data.add_child(node)
-		(node as MapUnitEffect).apply(serialized[effect_path])
+		(node as MapUnitEffect).apply.call_deferred(serialized[path])
 		res.append(node)
 	return res
 

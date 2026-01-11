@@ -652,7 +652,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 80, &"max_hp": 200, &"armor": 40, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 80, &"max_hp": 200, &"armor": 40, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "",
+&"map_effects": {"test": null},
+&"cost": {
  &"gold": 500, &"stone": 100, &"mana": 100 
 } 
 },&"Cartographer" : {

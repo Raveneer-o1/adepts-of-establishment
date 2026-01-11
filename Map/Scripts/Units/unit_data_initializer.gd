@@ -63,6 +63,8 @@ func _initialize_base_params() -> void:
 
 func initialize(personal: String) -> bool:
 	queue_free()
+	this_unit = get_parent()
+	assert(this_unit)
 	if not this_unit.database_dict:
 		push_error("unit name '%s' does not exist in the database" % this_unit.unit_name)
 		return false
@@ -82,6 +84,3 @@ func initialize(personal: String) -> bool:
 	this_unit.cost = ResourceCost.from_dict(database_dict.get(&"cost", {}))
 	
 	return true
-
-func _ready() -> void:
-	this_unit = get_parent()

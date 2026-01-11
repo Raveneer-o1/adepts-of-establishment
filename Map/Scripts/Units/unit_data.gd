@@ -53,6 +53,60 @@ extends Node
 ## during unit spawning events [i](e.g., hiring or evolution)[/i].
 ##
 
+#region Static
+
+## Creates and initializes a new [UnitData] instance for the specified unit name.
+## Units are identified by name only - ensure [param u_name] matches database exactly.
+## If the database marks the unit as a hero (non-empty [code]hero_abilities[/code]
+## entry), returns a [HeroData] instance.
+static func get_new(u_name: StringName, personal: String = "") -> UnitData:
+	var d: Dictionary = GlobalDefs.units_database.database.get(u_name)
+	if not d: return null
+	var abilities: String = d.get(&"hero_abilities", "")
+	var res := HeroData.new() if abilities else UnitData.new()
+	res.unit_name = u_name
+	res.initialize(personal)
+	return res
+
+## Recursively processes all Arrays and Dictionaries within [param data]: [br]
+## - Serializes [UnitAttack] references into Dictionaries [br]
+## - Replaces all other [Object] references with [code]null[/code] [br][br]
+## [b]Note:[/b] Dictionary entries with [Object] keys are completely removed.
+static func filter_data(data: Variant) -> void:
+	#print(data)
+	if data is Array:
+		var i := -1
+		for entry: Variant in data:
+			i += 1
+			if entry is UnitAttack:
+				data[i] = UnitAttack.serialized(entry)
+				#print("serialized UnitAttack: " + str(entry))
+				continue
+			if entry is Object:
+				data[i] = null
+				continue
+			filter_data(entry)
+	if data is Dictionary:
+		var keys_for_removal := []
+		for key: Variant in data:
+			if key is Object:
+				keys_for_removal.append(key)
+				continue
+			if data[key] is UnitAttack:
+				data[key] = UnitAttack.serialized(data[key])
+				#print("serialized unit_attack")
+				continue
+			if data[key] is Object:
+				data[key] = null
+				continue
+			filter_data(data[key])
+		for key: Variant in keys_for_removal:
+			data.erase(key)
+	#print("=======")
+	#print(data)
+
+#endregion
+
 enum UnitClass{
 	Undefined,  ## No special effects
 	Warrior,    ## Focus on damage
@@ -225,10 +279,6 @@ func update_values(u: Unit) -> void:
 			add_effect(e)
 			e.persistent = false  # to safeguard against multiple calls
 
-func _ready() -> void:
-	# WARNING: this is testing implementation, initialization here will be removed
-	initialize()
-
 ## Does [b]not[/b] trigger levelup automatically.
 ## Use [member levelup_available] to check.
 func grant_xp(points: int) -> void:
@@ -301,53 +351,6 @@ func move_unit(container: Node) -> void:
 	for e in map_effects:
 		e.on_unit_move()
 
-
-## Creates and initializes a new [UnitData] instance for the specified unit name.
-## Units are identified by name only - ensure [param u_name] matches database exactly.
-## If the database marks the unit as a hero (non-empty [code]hero_abilities[/code]
-## entry), returns a [HeroData] instance.
-static func get_new(u_name: StringName, personal: String = "") -> UnitData:
-	var d: Dictionary = GlobalDefs.units_database.database.get(u_name)
-	if not d: return null
-	var abilities: String = d.get(&"hero_abilities", "")
-	var res := HeroData.new() if abilities else UnitData.new()
-	res.unit_name = u_name
-	res.initialize(personal)
-	return res
-
-## Recursively processes all Arrays and Dictionaries within [param data]: [br]
-## - Serializes [UnitAttack] references into Dictionaries [br]
-## - Replaces all other [Object] references with [code]null[/code] [br][br]
-## [b]Note:[/b] Dictionary entries with [Object] keys are completely removed.
-static func filter_data(data: Variant) -> void:
-	#print(data)
-	if data is Array:
-		var i := -1
-		for entry: Variant in data:
-			i += 1
-			if entry is UnitAttack:
-				data[i] = UnitAttack.serialized(entry)
-				#print("serialized UnitAttack: " + str(entry))
-				continue
-			if entry is Object:
-				data[i] = null
-				continue
-			filter_data(entry)
-	if data is Dictionary:
-		var keys_for_removal := []
-		for key: Variant in data:
-			if key is Object:
-				keys_for_removal.append(key)
-				continue
-			if data[key] is UnitAttack:
-				data[key] = UnitAttack.serialized(data[key])
-				#print("serialized unit_attack")
-				continue
-			if data[key] is Object:
-				data[key] = null
-				continue
-			filter_data(data[key])
-		for key: Variant in keys_for_removal:
-			data.erase(key)
-	#print("=======")
-	#print(data)
+func _ready() -> void:
+	# WARNING: this is testing implementation, initialization here will be removed
+	initialize()
