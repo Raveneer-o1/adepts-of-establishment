@@ -20,8 +20,16 @@ extends Node
 @export var optional: bool = true
 ## If [code]true[/code], this ability can be learned over and over again.
 ## Prevents [member learned] flag from setting.
+## Placing this ability inside the tree will block all abilities after it as it
+## can never be considered learned and thus can never be satisfied as a
+## prerequisite.
 @export var unlimited_learning: bool = false
 
+## When [code]true[/code], marks the ability as learned, making subsequent
+## abilities in the tree available while disabling this one for selection. [br]
+## [b]Note:[/b] [member unlimited_learning] only prevents automatic flag setting
+## upon learning - if you assign this flag manually, ability will be considered
+## learned regardless of [member unlimited_learning] value.
 var learned := false
 
 ## When [code]false[/code], prevents this ability from being learned.
