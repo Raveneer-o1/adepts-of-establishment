@@ -61,6 +61,11 @@ func _initialize_base_params() -> void:
 	this_unit.large_unit = database_dict.get(&"large_unit", false)
 	this_unit.immunities.assign(database_dict.get(&"immunities", []))
 
+func _learn_setup() -> void:
+	if this_unit is not HeroData: return
+	if not this_unit.hero_levelup: return
+	this_unit.hero_levelup.learn_setup()
+
 func initialize(personal: String) -> bool:
 	queue_free()
 	this_unit = get_parent()
@@ -76,11 +81,13 @@ func initialize(personal: String) -> bool:
 	
 	this_unit.scene_path = this_unit.database_scene_path
 	_set_levelup()
+	_learn_setup()
 	
 	_initialize_attack_data()
 	_initialize_effect_data()
 	
 	this_unit.current_xp = 0
 	this_unit.cost = ResourceCost.from_dict(database_dict.get(&"cost", {}))
+	
 	
 	return true

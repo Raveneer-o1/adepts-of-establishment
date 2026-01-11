@@ -299,7 +299,8 @@ func level_up() -> void:
 func evolve(into: StringName) -> void:
 	var prev := unit_name
 	unit_name = into
-	assert (initialize(personal_name))
+	var init_success := initialize(personal_name)
+	assert (init_success)
 	EventBus.unit_evolved.emit(self, prev)
 
 ## Attempts to move the unit to the specified [param container].
@@ -312,10 +313,10 @@ func try_moving_unit(container: Node) -> bool:
 		return true
 	return false
 
-## Returns if the unit can be mived to the provided [param container].
+## Returns if the unit can be moved to the provided [param container].
 ## Does not validate ownership. [br]
-## [b]Important:[/b] The method will proceed even for unexpected containers
-## (neither party nor city).
+## [b]Important:[/b] The method will return [code]true[/code] even
+## for unexpected containers (neither party nor city).
 func can_be_moved_to(parent: Node) -> bool:
 	if parent == get_parent(): return true
 	if self is HeroData: return false

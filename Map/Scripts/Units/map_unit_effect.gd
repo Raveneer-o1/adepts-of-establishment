@@ -41,8 +41,8 @@ static func apply_serialized(serialized: Dictionary, unit_data: UnitData) -> Arr
 
 ## Initializes and activates the effect.
 @abstract func apply(...args: Array) -> void
-	# To modify the entire party, create a PartyEffectFromUnit node
-	# referencing this unit rather than connecting this effect to party signals.
+# To modify the entire party, create a PartyEffectFromUnit node
+# referencing this unit rather than connecting this effect to party signals.
 
 func _remove() -> void:
 	# Clean up all the objects created and disconnect all connections.

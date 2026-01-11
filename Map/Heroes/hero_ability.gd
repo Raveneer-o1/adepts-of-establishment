@@ -25,6 +25,8 @@ extends Node
 ## prerequisite.
 @export var unlimited_learning: bool = false
 
+@export_multiline var description: String
+
 ## When [code]true[/code], marks the ability as learned, making subsequent
 ## abilities in the tree available while disabling this one for selection. [br]
 ## [b]Note:[/b] [member unlimited_learning] only prevents automatic flag setting

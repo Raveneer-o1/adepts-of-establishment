@@ -44,6 +44,15 @@ extends Node
 ## Includes abilities regardless of level requirements.
 var available_list: Array[HeroAbility]
 
+## Learns all instances of [HeroAbility_Setup] in the tree.
+func learn_setup() -> void:
+	var children := get_children()
+	while children:
+		var child: Node = children.pop_front()
+		if child is HeroAbility_Setup:
+			child.learn(this_hero)
+		children.append_array(child.get_children())
+
 ## Reads the children of this node to find available abilities and populates
 ## [member available_list].
 func set_available_list() -> void:

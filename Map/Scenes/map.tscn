@@ -502,8 +502,9 @@ unit_name = &"Squire"
 max_hp = 100
 metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 
-[node name="UnitData7" type="Node" parent="Parties/MapParty_" node_paths=PackedStringArray("hero_levelup")]
+[node name="UnitData7" type="Node" parent="Parties/MapParty_" node_paths=PackedStringArray("leading_party", "hero_levelup")]
 script = ExtResource("32_i47xn")
+leading_party = NodePath("..")
 hero_levelup = NodePath("TestHeroAbilityTree")
 party_position = 4
 current_hp = 100

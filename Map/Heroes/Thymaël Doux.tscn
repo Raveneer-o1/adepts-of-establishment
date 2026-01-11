@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://bppovohjijqbq"]
+
+[ext_resource type="Script" uid="uid://ddeygmp2runvx" path="res://Map/Heroes/hero_abilities_tree.gd" id="1_y6jxj"]
+[ext_resource type="Script" uid="uid://cbti0ygtgwmt1" path="res://Map/Heroes/Abilities/setup.gd" id="2_5ojqf"]
+[ext_resource type="Script" uid="uid://efejmabld56p" path="res://Map/Heroes/Abilities/increase_leadership.gd" id="3_ke5p5"]
+[ext_resource type="Script" uid="uid://boeny7exuxibg" path="res://Map/Heroes/Abilities/add_effect.gd" id="3_vma7y"]
+[ext_resource type="Script" uid="uid://c24icw3ac5w4m" path="res://Map/Heroes/Abilities/stats_increase.gd" id="4_xqv7g"]
+
+[node name="ThymaëlDoux" type="Node"]
+script = ExtResource("1_y6jxj")
+metadata/_custom_type_script = "uid://ddeygmp2runvx"
+
+[node name="Setup" type="Node" parent="."]
+script = ExtResource("2_5ojqf")
+starting_leadership = 4
+ability_name = "Blade of Holy Light"
+
+[node name="The Welkin warrior" type="Node" parent="Setup"]
+script = ExtResource("3_vma7y")
+effect_path = "the_welkin_warrior"
+ability_name = "The Welkin warrior"
+
+[node name="Auto2" type="Node" parent="."]
+script = ExtResource("4_xqv7g")
+required_level = 2
+optional = false
+
+[node name="Auto3" type="Node" parent="."]
+script = ExtResource("3_ke5p5")
+required_level = 3
+optional = false
+
+[node name="Auto4" type="Node" parent="."]
+script = ExtResource("4_xqv7g")
+required_level = 4
+optional = false
+
+[node name="Auto5" type="Node" parent="."]
+script = ExtResource("3_ke5p5")
+required_level = 5
+optional = false
+
+[node name="Auto5_2" type="Node" parent="."]
+script = ExtResource("4_xqv7g")
+required_level = 5
+optional = false
+
+[node name="Auto6" type="Node" parent="."]
+script = ExtResource("4_xqv7g")
+required_level = 6
+optional = false
+
+[node name="Auto7" type="Node" parent="."]
+script = ExtResource("4_xqv7g")
+required_level = 7
+optional = false
+
+[node name="Auto8" type="Node" parent="."]
+script = ExtResource("3_ke5p5")
+required_level = 8
+optional = false
+
+[node name="Auto9" type="Node" parent="."]
+script = ExtResource("4_xqv7g")
+required_level = 9
+optional = false
+
+[node name="Auto10" type="Node" parent="."]
+script = ExtResource("4_xqv7g")
+required_level = 10
+optional = false

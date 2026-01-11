@@ -193,7 +193,8 @@ func pick_up(items: Array[MapItem]) -> void:
 			item.reparent(inventory)
 		else:
 			inventory.add_child(item)
-	EventBus.window_requested.emit(items)
+	if object_owner and object_owner.api.ui_filter:
+		EventBus.window_requested.emit(items)
 
 func level_up_unit(unit: UnitData) -> void:
 	if not unit: return
