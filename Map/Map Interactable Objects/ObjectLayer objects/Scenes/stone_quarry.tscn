@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfeettylne7po"]
+
+[ext_resource type="Script" uid="uid://ty3mr54ijmmp" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scripts/resource_source.gd" id="1_fnlj2"]
+[ext_resource type="Texture2D" uid="uid://dr5x884jk4crd" path="res://Arts/Map objects/mine.png" id="2_7t03s"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fnlj2"]
+font_size = 9
+font_color = Color(1, 0, 0, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[node name="StoneQuarry" type="Node2D"]
+script = ExtResource("1_fnlj2")
+occupied_tiles = Array[Vector2i]([Vector2i(0, 0), Vector2i(0, 1), Vector2i(-1, 1)])
+stone_per_turn = 20
+object_name = "Stone quarry"
+ownable = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4, 11)
+texture = ExtResource("2_7t03s")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -23.0
+offset_top = 2.0
+offset_right = 29.0
+offset_bottom = 25.0
+text = "Placeholder"
+label_settings = SubResource("LabelSettings_fnlj2")
