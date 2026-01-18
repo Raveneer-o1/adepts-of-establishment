@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bppovohjijqbq"]
+[gd_scene load_steps=7 format=3 uid="uid://bppovohjijqbq"]
 
 [ext_resource type="Script" uid="uid://ddeygmp2runvx" path="res://Map/Heroes/hero_abilities_tree.gd" id="1_y6jxj"]
 [ext_resource type="Script" uid="uid://cbti0ygtgwmt1" path="res://Map/Heroes/Abilities/setup.gd" id="2_5ojqf"]
 [ext_resource type="Script" uid="uid://efejmabld56p" path="res://Map/Heroes/Abilities/increase_leadership.gd" id="3_ke5p5"]
 [ext_resource type="Script" uid="uid://boeny7exuxibg" path="res://Map/Heroes/Abilities/add_effect.gd" id="3_vma7y"]
+[ext_resource type="Script" uid="uid://dxt1202r6lo7j" path="res://Map/Heroes/Abilities/buff_to_specific_type.gd" id="4_kohqs"]
 [ext_resource type="Script" uid="uid://c24icw3ac5w4m" path="res://Map/Heroes/Abilities/stats_increase.gd" id="4_xqv7g"]
 
 [node name="ThymaëlDoux" type="Node"]
@@ -15,57 +16,155 @@ script = ExtResource("2_5ojqf")
 starting_leadership = 4
 ability_name = "Blade of Holy Light"
 
-[node name="The Welkin warrior" type="Node" parent="Setup"]
+[node name="2 The Welkin warrior" type="Node" parent="Setup"]
 script = ExtResource("3_vma7y")
 effect_path = "the_welkin_warrior"
+effect_args = 10
 ability_name = "The Welkin warrior"
-
-[node name="Auto2" type="Node" parent="."]
-script = ExtResource("4_xqv7g")
 required_level = 2
+description = "All units in the party have slightly increased armor."
+
+[node name="3 _" type="Node" parent="Setup/2 The Welkin warrior"]
+script = ExtResource("4_xqv7g")
+ability_name = "Angelic power"
+required_level = 3
+description = "Divine nature can trigget one more time"
+
+[node name="2 Inspiring knight" type="Node" parent="Setup"]
+script = ExtResource("4_kohqs")
+stat = 2
+stat_increase = 20
+type = 0
+ability_name = "Inspiring knight"
+required_level = 2
+description = "All melee units in the party have increased armor."
+
+[node name="3 _" type="Node" parent="Setup"]
+script = ExtResource("4_xqv7g")
+ability_name = "Protector"
+required_level = 3
+description = "Thymaël gains \"Taunt\""
+
+[node name="3  _" type="Node" parent="Setup"]
+script = ExtResource("4_xqv7g")
+ability_name = "Heroic figure"
+required_level = 3
+description = "Grants additional XP for all units, even if the battle is lost."
+
+[node name="4 _" type="Node" parent="Setup/3  _"]
+script = ExtResource("4_xqv7g")
+ability_name = "Divine sense"
+required_level = 4
+description = "Thymaël's party can't be ambushed"
+
+[node name="4 Leader" type="Node" parent="Setup"]
+script = ExtResource("3_ke5p5")
+ability_name = "Leader"
+required_level = 4
+description = "Increases leadership"
+
+[node name="5 _" type="Node" parent="Setup"]
+script = ExtResource("4_xqv7g")
+ability_name = "One with the Fourfold"
+required_level = 5
+available_once = true
+description = "When Thymaël is attacked, he deals elemental damage back.
+Thymaël has an elemental ward."
+
+[node name="6 _" type="Node" parent="Setup/5 _"]
+script = ExtResource("4_xqv7g")
+ability_name = "Law of Justice"
+required_level = 6
+description = "First time Thymaël is attacked with elemental attack, he is healed instead."
+
+[node name="7 _" type="Node" parent="Setup/5 _/6 _"]
+script = ExtResource("4_xqv7g")
+ability_name = "Soul of the world"
+required_level = 7
+description = "Thymaël has a second, elemental attack with the same damage but his base damage is reduced."
+
+[node name="6 _" type="Node" parent="Setup"]
+script = ExtResource("4_xqv7g")
+ability_name = "The Blind Justice"
+required_level = 6
+description = "Whenever any unit loses more than a third of its max HP due to a single attack, the attacker takes the same amount of damage."
+
+[node name="7 _" type="Node" parent="Setup/6 _"]
+script = ExtResource("4_xqv7g")
+ability_name = "Holy judgement"
+required_level = 7
+description = "Thymaël can silence all units in the combat once every battle."
+
+[node name="8 _" type="Node" parent="Setup/6 _"]
+script = ExtResource("4_xqv7g")
+ability_name = "The Bloody Blade"
+required_level = 8
+description = "Attacks apply unliftable \"Hemorrhage\""
+
+[node name="9 _" type="Node" parent="Setup/6 _/8 _"]
+script = ExtResource("4_xqv7g")
+ability_name = "Fluia's blessing"
+required_level = 9
+description = "When any unit takes damage from \"Hemorrhage\", heals Thymaël for the same amount."
+
+[node name="10 _" type="Node" parent="Setup/6 _/8 _"]
+script = ExtResource("4_xqv7g")
+ability_name = "Essence of Blood"
+required_level = 10
+available_once = true
+description = "Whenever any other unit takes damage, Thymaël restores 10% of that amount as health.
+Every time any unit is healed, Thymaël's damage is increased by 10%.
+The first unit to die in the combat is revived."
+
+[node name="7 _" type="Node" parent="Setup"]
+script = ExtResource("4_xqv7g")
+ability_name = "Unyielding army"
+required_level = 7
+description = "As long as the front line is filled with units, all of them have +30 armor and +10% damage."
+
+[node name="8 Leader" type="Node" parent="Setup"]
+script = ExtResource("3_ke5p5")
+ability_name = "Leader"
+required_level = 8
+description = "Increases leadership"
+
+[node name="9 _" type="Node" parent="Setup"]
+script = ExtResource("4_xqv7g")
+ability_name = "Blessed general"
+required_level = 9
+description = "Shielding chance is decreased for all melee units in the enemy party.
+Whenever an enemy shields, the shielding unit takes double damage.
+When defending, heals adjacent allies by the amount equal to damage recieved."
+
+[node name="10 _" type="Node" parent="Setup"]
+script = ExtResource("4_xqv7g")
+ability_name = "Holy legion"
+required_level = 10
+description = "When Thymaël attacks, a random ally has a chance to get a persistant +2% to damage"
+
+[node name="Auto" type="Node" parent="."]
+script = ExtResource("4_xqv7g")
+armor_multiplier = 1.1
 optional = false
+unlimited_learning = true
 
 [node name="Auto3" type="Node" parent="."]
 script = ExtResource("3_ke5p5")
+ability_name = "Leader"
 required_level = 3
 optional = false
+description = "Increases leadership"
 
 [node name="Auto4" type="Node" parent="."]
-script = ExtResource("4_xqv7g")
+script = ExtResource("3_ke5p5")
+ability_name = "Leader"
 required_level = 4
 optional = false
-
-[node name="Auto5" type="Node" parent="."]
-script = ExtResource("3_ke5p5")
-required_level = 5
-optional = false
-
-[node name="Auto5_2" type="Node" parent="."]
-script = ExtResource("4_xqv7g")
-required_level = 5
-optional = false
-
-[node name="Auto6" type="Node" parent="."]
-script = ExtResource("4_xqv7g")
-required_level = 6
-optional = false
-
-[node name="Auto7" type="Node" parent="."]
-script = ExtResource("4_xqv7g")
-required_level = 7
-optional = false
+description = "Increases leadership"
 
 [node name="Auto8" type="Node" parent="."]
 script = ExtResource("3_ke5p5")
+ability_name = "Leader"
 required_level = 8
 optional = false
-
-[node name="Auto9" type="Node" parent="."]
-script = ExtResource("4_xqv7g")
-required_level = 9
-optional = false
-
-[node name="Auto10" type="Node" parent="."]
-script = ExtResource("4_xqv7g")
-required_level = 10
-optional = false
+description = "Increases leadership"

@@ -96,6 +96,15 @@ func switch_to(ui: StringName) -> void:
 	
 	_switch_ui(target_ui)
 
+func _show_hero_data(hero: HeroData) -> bool:
+	var f: MapFaction = hero.leading_party.object_owner
+	if not f: return false
+	var filter := f.api.ui_filter
+	if not filter: return false
+	
+	filter.show_hero_tree.emit(hero)
+	return true
+
 ## Handles requests to display popups for various map objects.
 ## Routes the request to the appropriate popup based on the object type.
 ## 
@@ -116,7 +125,10 @@ func handle_popup_request(info_object: Variant) -> void:
 		object_info_popup.show_object(info_object)
 		await object_info_popup.popup_closed
 	elif info_object is UnitData:
-		unit_info_popup.show_unit(info_object)
+		if info_object is HeroData:
+			if not _show_hero_data(info_object):
+				unit_info_popup.show_unit(info_object)
+		else: unit_info_popup.show_unit(info_object)
 	elif info_object is Array:
 		for inner_obj: Variant in info_object:
 			await handle_popup_request(inner_obj)

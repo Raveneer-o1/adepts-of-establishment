@@ -81,7 +81,7 @@ func initialize(personal: String) -> bool:
 	
 	this_unit.scene_path = this_unit.database_scene_path
 	_set_levelup()
-	_learn_setup()
+	_learn_setup.call_deferred()
 	
 	_initialize_attack_data()
 	_initialize_effect_data()

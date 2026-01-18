@@ -11,7 +11,30 @@ extends PartyEffect
 ## Use [member effect_mapping] instead, as this class handles signal processing
 ## with built-in validation.
 
-@export var source_unit: UnitData
+enum StatBuff{
+	health,
+	damage,
+	armor,
+	evasion,
+	shielding_chance,
+}
+
+func _connect_to_unit(unit: UnitData) -> void:
+	if not unit: return
+	unit.unit_moved.connect(queue_free)
+
+func _disconnect_from_unit(unit: UnitData) -> void:
+	if not unit: return
+	if unit.unit_moved.is_connected(queue_free):
+		unit.unit_moved.disconnect(queue_free)
+
+@export var source_unit: UnitData:
+	get: return source_unit
+	set(value):
+		if value == source_unit: return
+		_disconnect_from_unit(source_unit)
+		_connect_to_unit(value)
+		source_unit = value
 
 var effect_mapping: Dictionary[Signal, Callable]
 
@@ -44,7 +67,7 @@ func _call_if_valid(...args: Array) -> void:
 	args.remove_at(args.size() - 1)
 	_execute_call(effect_mapping[s], args)
 
-func _initialize() -> void:
+func _initialize(...args: Array) -> void:
 	super._initialize()
 	if effect_mapping.is_empty():
 		push_error(

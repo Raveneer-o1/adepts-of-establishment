@@ -41,6 +41,7 @@ layout_mode = 2
 text = "Confirm"
 
 [node name="HeroLevelup" type="CanvasLayer" parent="."]
+layer = 2
 visible = false
 
 [node name="MarginContainer" type="MarginContainer" parent="HeroLevelup"]

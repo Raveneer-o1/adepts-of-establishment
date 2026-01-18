@@ -7,3 +7,4 @@ func apply(...args: Array) -> void:
 	var instance: PartyEffectFromUnit = THE_WELKIN_WARRIOR.instantiate()
 	instance.source_unit = unit
 	unit.party.add_child(instance)
+	instance.apply_effect.callv(args)

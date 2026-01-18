@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://coeno73un1pmh"]
+
+[ext_resource type="Script" uid="uid://rjf5377xm1kt" path="res://Map/PartyEffects/Scripts/Effects from units/buff_to_specific_type.gd" id="1_rqk54"]
+
+[node name="BuffToSpecificType" type="Node"]
+script = ExtResource("1_rqk54")

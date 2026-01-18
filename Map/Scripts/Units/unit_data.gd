@@ -226,6 +226,8 @@ var map_effects: Array[MapUnitEffect]:
 
 var _initializer: __UnitData_Initializer__
 
+signal unit_moved
+
 ## Returns the file path to the unit scene resource.
 ## This path must be added to either [member EventBus.left_units] or
 ## [member EventBus.right_units] to instantiate the unit when battle begins.
@@ -339,6 +341,7 @@ func _move_unit(container: Node) -> void:
 	else: container.add_child(self)
 	for e in map_effects:
 		e.on_unit_move()
+	unit_moved.emit()
 
 ## @deprecated: use [method try_moving_unit] instead.
 ## Forcibly moves this unit to the provided [param container]

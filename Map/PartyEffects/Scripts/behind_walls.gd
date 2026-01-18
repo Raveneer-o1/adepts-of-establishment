@@ -4,13 +4,13 @@ extends PartyEffect
 #@export var effect_name: String = "Behind walls"
 @export_file("*.tscn") var effect_path: String = \
 	"res://Combat/Effects/AppliedEffects/Scenes/behind_walls.tscn"
-@export var args: int = 30
+@export var effect_args: int = 30
 
 var effect: Dictionary:
 	get: return {
 			&"effect_name": effect_name,
 			&"effect_path": effect_path,
-			&"args": args,
+			&"args": effect_args,
 		}
 
 func modify_unit_data() -> void:
@@ -22,5 +22,5 @@ func modify_unit_data() -> void:
 		data.effects.append(effect)
 	party_parameters.accumulated_value = current_array
 
-func _apply_effect() -> void:
+func _apply_effect(...args: Array) -> void:
 	party_parameters.unit_data_requested.connect(modify_unit_data)

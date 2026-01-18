@@ -6,7 +6,7 @@ func _ready() -> void:
 	if test_tree: build_tree(test_tree)
 
 # UI Components
-@onready var layers_container: VBoxContainer = $LayersContainer
+@onready var layers_container: VBoxContainer = $ScrollContainer/LayersContainer
 
 var this_tree: HeroAbilitiesTree
 
@@ -57,7 +57,7 @@ func _connect_ability_nodes(source_node: Control, target_node: Control) -> void:
 	+ target_node.global_position \
 	- global_position
 	
-	add_child(connection_line)
+	layers_container.add_child(connection_line)
 	connection_line.add_point(start_position)
 	connection_line.add_point(end_position)
 
@@ -71,16 +71,17 @@ func _process_ability_children(
 			if child_ability.required_level > 0 else 0
 		var level_container: DynamicTree_LevelLayer = \
 			layers_container.get_child(level_index)
-		var assigned_branch := branch_assignment_map[child_ability]
+		var assigned_branch := branch_assignment_map[child_ability] - 1
 		
 		var ability_node: DynamicTree_Ability = \
 			level_container.add_ability(child_ability, assigned_branch)
 		ability_node.init_ability(child_ability)
 		
-		_connect_ability_nodes(
-			ability_to_ui_map[parent_ability],
-			ability_node
-		)
+		if parent_ability is not HeroAbility_Setup:
+			_connect_ability_nodes(
+				ability_to_ui_map[parent_ability],
+				ability_node
+			)
 		ability_to_ui_map[child_ability] = ability_node
 
 func _process_current_layer(
@@ -102,7 +103,12 @@ func _count_branches(tree: HeroAbilitiesTree) -> int:
 	var branch_count := 0
 	var main_branch_counted := false
 	
-	for child_ability: HeroAbility in tree.get_children():
+	var top_level_abilities := tree.get_children()
+	while top_level_abilities:
+		var child_ability: HeroAbility = top_level_abilities.pop_front()
+		if child_ability is HeroAbility_Setup:
+			top_level_abilities.append_array(child_ability.get_children())
+			continue
 		if not child_ability.optional:
 			continue
 		
@@ -124,7 +130,13 @@ func _create_branch_assignment_map(tree: HeroAbilitiesTree) \
 	var assignment_map: Dictionary[HeroAbility, int] = {}
 	var next_branch_id := 2  # Branch IDs: 0=auto, 1=main, 2+=additional branches
 	
-	for child_ability: HeroAbility in tree.get_children():
+	var top_level_abilities := tree.get_children()
+	while top_level_abilities:
+		var child_ability: HeroAbility = top_level_abilities.pop_front()
+		if child_ability is HeroAbility_Setup:
+			top_level_abilities.append_array(child_ability.get_children())
+			assignment_map[child_ability] = 1
+			continue
 		if not child_ability.optional:
 			assignment_map[child_ability] = 0  # Automatic ability
 			continue
@@ -169,7 +181,7 @@ func build_tree(tree: HeroAbilitiesTree) -> void:
 			if root_ability.required_level > 0 else 0
 		var level_container: DynamicTree_LevelLayer = \
 			layers_container.get_child(level_index)
-		var assigned_branch := branch_assignment_map[root_ability]
+		var assigned_branch := branch_assignment_map[root_ability] - 1
 		
 		var ability_node: DynamicTree_Ability = \
 			level_container.add_ability(root_ability, assigned_branch)
@@ -182,5 +194,16 @@ func build_tree(tree: HeroAbilitiesTree) -> void:
 
 ## Updates the values in the UI (e.g., deactivates learned abilities)
 func update() -> void:
-	for layer: DynamicTree_LevelLayer in layers_container.get_children():
-		layer.update()
+	for layer: Variant in layers_container.get_children():
+		if layer is DynamicTree_LevelLayer:
+			layer.update()
+
+var input_closes_window := false
+
+signal close_requested
+
+func _on_gui_input(event: InputEvent) -> void:
+	if not input_closes_window: return
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_RIGHT:
+			close_requested.emit()
