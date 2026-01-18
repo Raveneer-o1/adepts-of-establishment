@@ -71,7 +71,7 @@ func _process_ability_children(
 			if child_ability.required_level > 0 else 0
 		var level_container: DynamicTree_LevelLayer = \
 			layers_container.get_child(level_index)
-		var assigned_branch := branch_assignment_map[child_ability] - 1
+		var assigned_branch := branch_assignment_map[child_ability]
 		
 		var ability_node: DynamicTree_Ability = \
 			level_container.add_ability(child_ability, assigned_branch)
@@ -125,6 +125,25 @@ func _count_branches(tree: HeroAbilitiesTree) -> int:
 	
 	return branch_count
 
+func _process_node_for_branch_assignment(
+	ability: HeroAbility,
+	dict: Dictionary[HeroAbility, int],
+	index_so_far: int,
+) -> int:
+	dict[ability] = index_so_far
+	var children := ability.get_children()
+	if not children: return index_so_far
+	for child in children:
+		index_so_far = _process_node_for_branch_assignment(
+			child,
+			dict,
+			index_so_far
+		)
+		index_so_far += 1
+	index_so_far -= 1
+	
+	return index_so_far
+
 func _create_branch_assignment_map(tree: HeroAbilitiesTree) \
 -> Dictionary[HeroAbility, int]:
 	var assignment_map: Dictionary[HeroAbility, int] = {}
@@ -145,16 +164,11 @@ func _create_branch_assignment_map(tree: HeroAbilitiesTree) \
 			assignment_map[child_ability] = 1  # Main branch
 			continue
 		
-		# Assign current branch to this ability and all its descendants
-		assignment_map[child_ability] = next_branch_id
-		
-		# Recursively assign same branch to all children
-		var descendant_nodes := child_ability.get_children()
-		while descendant_nodes:
-			var descendant: HeroAbility = descendant_nodes.pop_front()
-			assignment_map[descendant] = next_branch_id
-			descendant_nodes.append_array(descendant.get_children())
-		
+		next_branch_id = _process_node_for_branch_assignment(
+			child_ability,
+			assignment_map,
+			next_branch_id
+		)
 		next_branch_id += 1
 	
 	return assignment_map
@@ -171,7 +185,8 @@ func build_tree(tree: HeroAbilitiesTree) -> void:
 	this_tree = tree
 	var ability_to_ui_map: Dictionary[HeroAbility, Control] = {}
 	var branch_assignment_map := _create_branch_assignment_map(tree)
-	var total_branches := _count_branches(tree)
+	var total_branches: int = branch_assignment_map.values().max()
+	#var total_branches := _count_branches(tree)
 	
 	_spawn_level_layers(tree, total_branches)
 	
@@ -181,7 +196,7 @@ func build_tree(tree: HeroAbilitiesTree) -> void:
 			if root_ability.required_level > 0 else 0
 		var level_container: DynamicTree_LevelLayer = \
 			layers_container.get_child(level_index)
-		var assigned_branch := branch_assignment_map[root_ability] - 1
+		var assigned_branch := branch_assignment_map[root_ability]
 		
 		var ability_node: DynamicTree_Ability = \
 			level_container.add_ability(root_ability, assigned_branch)
