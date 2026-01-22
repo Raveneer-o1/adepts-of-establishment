@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://bppovohjijqbq"]
+[gd_scene load_steps=9 format=3 uid="uid://bppovohjijqbq"]
 
 [ext_resource type="Script" uid="uid://ddeygmp2runvx" path="res://Map/Heroes/hero_abilities_tree.gd" id="1_y6jxj"]
 [ext_resource type="Script" uid="uid://cbti0ygtgwmt1" path="res://Map/Heroes/Abilities/setup.gd" id="2_5ojqf"]
 [ext_resource type="Script" uid="uid://efejmabld56p" path="res://Map/Heroes/Abilities/increase_leadership.gd" id="3_ke5p5"]
-[ext_resource type="Script" uid="uid://boeny7exuxibg" path="res://Map/Heroes/Abilities/add_effect.gd" id="3_vma7y"]
+[ext_resource type="Script" uid="uid://boeny7exuxibg" path="res://Map/Heroes/Abilities/add_map_effect.gd" id="3_vma7y"]
+[ext_resource type="Script" uid="uid://fo2wkqeen0pc" path="res://Map/Heroes/Abilities/angelic_power.gd" id="4_i8jtq"]
 [ext_resource type="Script" uid="uid://dxt1202r6lo7j" path="res://Map/Heroes/Abilities/buff_to_specific_type.gd" id="4_kohqs"]
 [ext_resource type="Script" uid="uid://c24icw3ac5w4m" path="res://Map/Heroes/Abilities/stats_increase.gd" id="4_xqv7g"]
+[ext_resource type="Script" uid="uid://cymdr5kd6lwdn" path="res://Map/Heroes/Abilities/add_applied_effect.gd" id="6_pboo7"]
 
 [node name="ThymaëlDoux" type="Node"]
 script = ExtResource("1_y6jxj")
@@ -24,11 +26,11 @@ ability_name = "The Welkin warrior"
 required_level = 2
 description = "All units in the party have slightly increased armor."
 
-[node name="3 _" type="Node" parent="Setup/2 The Welkin warrior"]
-script = ExtResource("4_xqv7g")
+[node name="3 Angelic power" type="Node" parent="Setup/2 The Welkin warrior"]
+script = ExtResource("4_i8jtq")
 ability_name = "Angelic power"
 required_level = 3
-description = "Divine nature can trigget one more time"
+description = "\"Divine nature\" can trigger one more time"
 
 [node name="2 Inspiring knight" type="Node" parent="Setup"]
 script = ExtResource("4_kohqs")
@@ -39,19 +41,22 @@ ability_name = "Inspiring knight"
 required_level = 2
 description = "All melee units in the party have increased armor."
 
-[node name="3 _" type="Node" parent="Setup"]
-script = ExtResource("4_xqv7g")
+[node name="3 Protector" type="Node" parent="Setup"]
+script = ExtResource("6_pboo7")
+effect_path = "res://Combat/Effects/AppliedEffects/Scenes/taunt.tscn"
+effect_name = "Taunt"
+args = [0.15, 0.9]
 ability_name = "Protector"
 required_level = 3
 description = "Thymaël gains \"Taunt\""
 
-[node name="3  _" type="Node" parent="Setup"]
+[node name="3 _" type="Node" parent="Setup"]
 script = ExtResource("4_xqv7g")
 ability_name = "Heroic figure"
 required_level = 3
 description = "Grants additional XP for all units, even if the battle is lost."
 
-[node name="4 _" type="Node" parent="Setup/3  _"]
+[node name="4 _" type="Node" parent="Setup/3 _"]
 script = ExtResource("4_xqv7g")
 ability_name = "Divine sense"
 required_level = 4

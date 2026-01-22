@@ -51,6 +51,7 @@ func update() -> void:
 		_set_default()
 
 func init_ability(ability: HeroAbility) -> void:
+	button.tooltip_text = ability.description
 	this_ability = ability
 	update()
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ddeygmp2runvx" path="res://Map/Heroes/hero_abilities_tree.gd" id="1_onij4"]
 [ext_resource type="Script" uid="uid://c24icw3ac5w4m" path="res://Map/Heroes/Abilities/stats_increase.gd" id="2_4nqsg"]
-[ext_resource type="Script" uid="uid://boeny7exuxibg" path="res://Map/Heroes/Abilities/add_effect.gd" id="3_osxcn"]
+[ext_resource type="Script" uid="uid://boeny7exuxibg" path="res://Map/Heroes/Abilities/add_map_effect.gd" id="3_osxcn"]
 
 [node name="TestHeroAbilityTree" type="Node"]
 script = ExtResource("1_onij4")

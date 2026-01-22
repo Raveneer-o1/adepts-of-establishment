@@ -2,7 +2,7 @@ extends PartyEffect
 
 @export var fixed_cost := 1
 
-func _apply_effect() -> void:
+func _apply_effect(...args: Array) -> void:
 	# Effect: fixed cost for water tiles
 	party_parameters.movement_cost_requested.connect(modify_cost)
 

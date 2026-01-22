@@ -252,6 +252,7 @@ armor = 40
 
 [node name="Thymaël Doux" instance=ExtResource("1_7rdhv")]
 unit_name = "Thymaël Doux"
+unit_type = 0
 faction = 1
 needed_xp = 400
 cost_gold = 500

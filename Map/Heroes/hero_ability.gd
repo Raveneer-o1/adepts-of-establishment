@@ -22,7 +22,11 @@ extends Node
 ## Prevents [member learned] flag from setting.
 ## Placing this ability inside the tree will block all abilities after it as it
 ## can never be considered learned and thus can never be satisfied as a
-## prerequisite.
+## prerequisite. [br]
+## [b]Note:[/b] You can set the [member learned] flag manually to create custom 
+## behavior. For example, by setting this flag to [code]true[/code] and manually
+## setting [member learned] after three learning iterations you can create 
+## multi-stage abilities.
 @export var unlimited_learning: bool = false
 
 @export_multiline var description: String
