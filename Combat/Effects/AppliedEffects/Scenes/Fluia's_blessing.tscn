@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwf4xgtw0txie"]
+
+[ext_resource type="Script" uid="uid://d3s1e18qy1pb3" path="res://Combat/Effects/AppliedEffects/Scripts/Fluia's_blessing.gd" id="1_akt4h"]
+
+[node name="Fluia\'sBlessing" type="Node"]
+script = ExtResource("1_akt4h")
+effect_name = "Blessing of the Blood Queen"
+icon_index = 3
+description = "Whenever any other unit takes damage from hemorrhage, this units restores same amount of health."

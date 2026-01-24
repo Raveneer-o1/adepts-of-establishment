@@ -8,7 +8,7 @@ extends AppliedEffect
 func _get_description() -> String:
 	return description %[reset_hp_to, triggers]
 
-func check_tigger(u: Unit, dmg: int) -> void:
+func check_tigger(u: Unit, dmg: int, flags: Array[StringName]) -> void:
 	if not u.parameters.dead: return
 	if u != target_unit: return
 	if triggers <= 0:

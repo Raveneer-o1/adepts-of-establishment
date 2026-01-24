@@ -92,6 +92,17 @@ var target_unit: Unit
 ## Intended to be populated by the derived classes.
 var _signal_function_pairs: Dictionary[Signal, Callable]
 
+const NOT_LIFTABLE_LINE = " Cannot be dispelled, removed, or expire."
+const NOT_SILENSABLE_LINE = " Cannot be silenced."
+
+func get_description() -> String:
+	var base := _get_description()
+	base = base.rstrip(" ")
+	if not base.ends_with("."): base += "."
+	if not silencable: base += NOT_SILENSABLE_LINE
+	if not liftable: base += NOT_LIFTABLE_LINE
+	return base
+
 func _get_description() -> String:
 	# Override this method in derived classes to define custom description
 	return description

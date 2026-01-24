@@ -533,7 +533,11 @@ func _turn_start_reaction(_unit: Unit) -> void:
 	update_effects()
 
 ## Deals damage bypassing armor. Returns actual damage taken.
-func take_direct_damage(dmg: int, randomize_damage: bool = false) -> int:
+func take_direct_damage(
+	dmg: int,
+	randomize_damage: bool = false,
+	flags: Array[StringName] = []
+) -> int:
 	if randomize_damage:
 		var random_deviation: int = max(
 			dmg * STANDARD_FRACTIONAL_DAMAGE_DEVIATION,
@@ -545,7 +549,7 @@ func take_direct_damage(dmg: int, randomize_damage: bool = false) -> int:
 	hp -= dmg
 	var taken_dmg := original_hp - hp
 	
-	EventBus.damage_taken.emit(parent_unit, taken_dmg)
+	EventBus.damage_taken.emit(parent_unit, taken_dmg, flags)
 	if taken_dmg > 0: parent_unit.sound_player.play_damage_sound(
 			(float(taken_dmg) / float(hp)) * parent_unit.sound_player._SOUND_MULTIPLIER
 		)
@@ -555,7 +559,11 @@ func take_direct_damage(dmg: int, randomize_damage: bool = false) -> int:
 	return taken_dmg
 
 ## Returns actual damage taken.
-func take_damage(dmg: int, randomize_damage: bool = true) -> int:
+func take_damage(
+	dmg: int,
+	randomize_damage: bool = true,
+	flags: Array[StringName] = []
+) -> int:
 	if parent_unit.defense_stance:
 		dmg /= 2
 		
@@ -573,7 +581,7 @@ func take_damage(dmg: int, randomize_damage: bool = true) -> int:
 	hp -= dmg
 	var taken_dmg := original_hp - hp
 	
-	EventBus.damage_taken.emit(parent_unit, taken_dmg)
+	EventBus.damage_taken.emit(parent_unit, taken_dmg, flags)
 	if taken_dmg > 0: parent_unit.sound_player.play_damage_sound(
 			(float(taken_dmg) / float(hp)) * parent_unit.sound_player._SOUND_MULTIPLIER
 		)

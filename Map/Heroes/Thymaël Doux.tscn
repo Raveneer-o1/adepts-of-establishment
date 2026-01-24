@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bppovohjijqbq"]
+[gd_scene load_steps=12 format=3 uid="uid://bppovohjijqbq"]
 
 [ext_resource type="Script" uid="uid://ddeygmp2runvx" path="res://Map/Heroes/hero_abilities_tree.gd" id="1_y6jxj"]
 [ext_resource type="Script" uid="uid://cbti0ygtgwmt1" path="res://Map/Heroes/Abilities/setup.gd" id="2_5ojqf"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://cymdr5kd6lwdn" path="res://Map/Heroes/Abilities/add_applied_effect.gd" id="6_pboo7"]
 [ext_resource type="Script" uid="uid://0s1uynw7183m" path="res://Map/Heroes/Abilities/add_multiple_applied_effects.gd" id="9_amfnt"]
 [ext_resource type="Script" uid="uid://b5utko0jt2kyt" path="res://Map/Heroes/Abilities/soul_of_the_world.gd" id="10_d0fgu"]
+[ext_resource type="Script" uid="uid://d04csyy50p0ix" path="res://Map/Heroes/Abilities/holy_judgement.gd" id="11_iu4v4"]
 
 [node name="ThymaëlDoux" type="Node"]
 script = ExtResource("1_y6jxj")
@@ -101,31 +102,38 @@ ability_name = "Soul of the world"
 required_level = 7
 description = "Thymaël has a second, elemental attack with the same damage but his base damage is reduced."
 
-[node name="6 _" type="Node" parent="Setup"]
-script = ExtResource("4_xqv7g")
+[node name="6 The Blind Justice" type="Node" parent="Setup"]
+script = ExtResource("6_pboo7")
+effect_path = "res://Combat/Effects/AppliedEffects/Scenes/the_blind_justice.tscn"
+effect_name = "The Blind Justice"
 ability_name = "The Blind Justice"
 required_level = 6
 description = "Whenever any unit loses more than a third of its max HP due to a single attack, the attacker takes the same amount of damage."
 
-[node name="7 _" type="Node" parent="Setup/6 _"]
-script = ExtResource("4_xqv7g")
+[node name="7 Holy judgement" type="Node" parent="Setup/6 The Blind Justice"]
+script = ExtResource("11_iu4v4")
 ability_name = "Holy judgement"
 required_level = 7
-description = "Thymaël can silence all units in the combat once every battle."
+description = "Thymaël can silence all units in the combat."
 
-[node name="8 _" type="Node" parent="Setup/6 _"]
-script = ExtResource("4_xqv7g")
+[node name="8 The Bloody Blade" type="Node" parent="Setup/6 The Blind Justice"]
+script = ExtResource("6_pboo7")
+effect_path = "res://Combat/Effects/AppliedEffects/Scenes/hemorrhage.tscn"
+effect_name = "Hemorrhage"
+args = [10, -1]
 ability_name = "The Bloody Blade"
 required_level = 8
 description = "Attacks apply unliftable \"Hemorrhage\""
 
-[node name="9 _" type="Node" parent="Setup/6 _/8 _"]
-script = ExtResource("4_xqv7g")
+[node name="9 Fluia\'s blessing" type="Node" parent="Setup/6 The Blind Justice/8 The Bloody Blade"]
+script = ExtResource("6_pboo7")
+effect_path = "res://Combat/Effects/AppliedEffects/Scenes/Fluia's_blessing.tscn"
+effect_name = "Blessing of the Blood Queen"
 ability_name = "Fluia's blessing"
 required_level = 9
 description = "When any unit takes damage from \"Hemorrhage\", heals Thymaël for the same amount."
 
-[node name="10 _" type="Node" parent="Setup/6 _/8 _"]
+[node name="10 _" type="Node" parent="Setup/6 The Blind Justice/8 The Bloody Blade"]
 script = ExtResource("4_xqv7g")
 ability_name = "Essence of Blood"
 required_level = 10

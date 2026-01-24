@@ -148,7 +148,7 @@ func fill_text_data(unit: Unit) -> void:
 			continue
 		applied_effect_text += APPLIED_EFFECT_LINE % [
 			(effect as AppliedEffect).effect_name,
-			(effect as AppliedEffect)._get_description()
+			(effect as AppliedEffect).get_description()
 		]
 	
 	initiative_text = initiative_text.trim_suffix(", ")

@@ -105,6 +105,8 @@ var applied_damage: int = 0
 
 var preserved_first_target: UnitSpotReference = null
 
+var damage_dealt: Dictionary[Unit, int] = {}
+
 func _remove_target(ref: UnitSpotReference) -> void:
 	# Using null references instead of erase() to preserve the original order
 	# Primarily maintains first entry indices for the is_primary_target() method
@@ -173,6 +175,12 @@ func resolve(finalize: bool = false) -> void:
 	else:
 		standard_resolution(finalize)
 	EventBus.attack_resolved.emit(self)
+
+func register_applied_damage(unit: Unit, damage: int) -> void:
+	applied_damage += damage
+	if damage_dealt.has(unit):
+		damage_dealt[unit] += damage
+	else: damage_dealt[unit] = damage
 
 func standard_resolution(finalize: bool = false) -> void:
 	var i := 1

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcewy5fh8u7tg"]
+
+[ext_resource type="Script" uid="uid://cf5ldhwcx3j4o" path="res://Combat/Effects/AppliedEffects/Scripts/hemorrhage.gd" id="1_ilkae"]
+
+[node name="Hemorrhage" type="Node"]
+script = ExtResource("1_ilkae")
+liftable = false
+silencable = false
+color_effect = Color(0.88, 0, 0, 1)
+effect_name = "Hemorrhage"
+icon_index = 1
+description = "Deals %d direct damage every turn.  "
+stackable = true

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://djbka8higwwo"]
+
+[ext_resource type="Script" uid="uid://cstifbqhoud41" path="res://Combat/Effects/AppliedEffects/Scripts/the_blind_justice.gd" id="1_q2y2o"]
+
+[node name="TheBlindJustice" type="Node"]
+script = ExtResource("1_q2y2o")
+message = "Justice!"
+liftable = false
+color_effect = Color(0.74, 0.3626, 0.62049, 1)
+effect_name = "The Blind Justice"
+icon_index = 11
+description = "Whenever any unit loses more than a %d% of its max HP due to a single attack, the attacker takes the same amount of damage."

@@ -647,8 +647,26 @@ const database = {
 , &"description": "", &"brief_description": "", &"faction": 1, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 400, &"attacks": [{
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.85, &"targets_needed": 1, &"initiative": 45, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
-  
-}, &"alternative_actions": []
+  &"hemorrhage": null
+}, &"alternative_actions": [{
+	"attack_name" = "Silence all",
+	"damage_multiplier" = 0.0,
+	"damage_override" = true,
+	"is_heal" = false,
+	"type" = GlobalDefs.AttackType.None,
+	"accuracy" = 1.0,
+	"targets_needed" = 1,
+	"initiative" = 0,
+	"evadable" = true,
+	"tags" = [],
+	"target_validation" = "res://Combat/Units/Parameters/Validation/standard_mage_validity.tres",
+	"additional_targets" = "res://Combat/Units/Parameters/Additional targets/all_targets.tres",
+	"damage_policy" = "",
+	"applying_effects" = {
+		"silence": 2
+	},
+	"alternative_actions" = [],
+}]
  
 }]
 , &"effects": []

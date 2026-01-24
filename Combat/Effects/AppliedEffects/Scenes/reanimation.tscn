@@ -8,5 +8,5 @@ liftable = false
 silencable = false
 effect_name = "Reanimation"
 icon_index = 19
-description = "Increases parameters. Cannot be dispelled, removed, or expire. Persists indefinitely."
+description = "Parameters are increased,"
 stackable = true

@@ -346,7 +346,7 @@ func resolve_attack(attack: Attack, damage: int, delay: int = 0, finalize: bool 
 			schedule_damage(damage, delay)
 		)
 	
-	attack.applied_damage += damage_taken;
+	attack.register_applied_damage(self, damage_taken)
 	
 	# if unit is dead after taking damage, it was killed by this attack
 	if parameters.dead:
@@ -624,10 +624,15 @@ func damage_color(dmg: int) -> Color:
 ## Applies damage to the unit and triggers associated animations bypassing armor. [br]
 ## For argument reference see [method take_damage] [br]
 ## [color=pink]Warning:[/color] this method does not allow animation synchronization.
-func take_direct_damage(dmg: int, message: String = "", text_color: Color = Color.TRANSPARENT) -> void:
+func take_direct_damage(
+	dmg: int,
+	message: String = "",
+	text_color: Color = Color.TRANSPARENT,
+	flags: Array[StringName] = []
+) -> void:
 	if dmg <= 0: return
 	
-	var damage_taken := parameters.take_direct_damage(dmg)
+	var damage_taken := parameters.take_direct_damage(dmg, false)
 	animation_handle.play_damage_animation(message)
 	if message != "":
 		message += ": %d" % dmg
@@ -651,7 +656,12 @@ func take_direct_damage(dmg: int, message: String = "", text_color: Color = Colo
 ## value due to effects, randomization, or other modifiers). [br]
 ## [color=red]Warning:[/color] this method does not allow animation synchronization.
 ## Use [method schedule_damage] instead.
-func take_damage(dmg: int, message: String = "", text_color: Color = Color.TRANSPARENT) -> int:
+func take_damage(
+	dmg: int,
+	message: String = "",
+	text_color: Color = Color.TRANSPARENT,
+	flags: Array[StringName] = []
+) -> int:
 	if dmg == 0:
 		return 0
 	if dmg < 0:

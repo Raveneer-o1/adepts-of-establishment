@@ -1,20 +1,23 @@
 extends AppliedEffect
 
-@export var damage_per_turn: int = 30
-@export var turns: int = 1
+@export var damage_per_turn: int = 10
+@export var turns: int = -1
 
 func _get_description() -> String:
-	return description % [damage_per_turn, turns]
+	if turns < 0:
+		return description % damage_per_turn
+	return (description + " for %d turns") % [damage_per_turn, turns]
 
 func deal_damage(unit: Unit) -> void:
 	if unit != target_unit:
 		return
 	target_unit.take_direct_damage(
 		damage_per_turn,
-		"Poison",
+		"Hemorrhage",
 		color_effect,
-		[&"poison"]
+		[&"hemorrhage"]
 	)
+	if turns < 0: return
 	turns -= 1
 	if turns <= 0:
 		lift_effect()
