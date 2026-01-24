@@ -2,7 +2,9 @@ extends HeroAbility
 
 ## When [code]true[/code], smoothens multiplier results to get "pretty" numbers.
 ## When [code]false[/code], applies multipliers without rounding.
-## Only applied to HP, damage and armor
+## Only applied to HP, damage and armor.[br]
+## [b]Note:[/b] if the multiplier value is small enough, smoothening can result in 
+## rounding back to the original value.
 @export var smoothen_values := true
 
 @export_category("Multipliers")

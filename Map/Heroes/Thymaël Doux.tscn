@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bppovohjijqbq"]
+[gd_scene load_steps=11 format=3 uid="uid://bppovohjijqbq"]
 
 [ext_resource type="Script" uid="uid://ddeygmp2runvx" path="res://Map/Heroes/hero_abilities_tree.gd" id="1_y6jxj"]
 [ext_resource type="Script" uid="uid://cbti0ygtgwmt1" path="res://Map/Heroes/Abilities/setup.gd" id="2_5ojqf"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://dxt1202r6lo7j" path="res://Map/Heroes/Abilities/buff_to_specific_type.gd" id="4_kohqs"]
 [ext_resource type="Script" uid="uid://c24icw3ac5w4m" path="res://Map/Heroes/Abilities/stats_increase.gd" id="4_xqv7g"]
 [ext_resource type="Script" uid="uid://cymdr5kd6lwdn" path="res://Map/Heroes/Abilities/add_applied_effect.gd" id="6_pboo7"]
+[ext_resource type="Script" uid="uid://0s1uynw7183m" path="res://Map/Heroes/Abilities/add_multiple_applied_effects.gd" id="9_amfnt"]
+[ext_resource type="Script" uid="uid://b5utko0jt2kyt" path="res://Map/Heroes/Abilities/soul_of_the_world.gd" id="10_d0fgu"]
 
 [node name="ThymaëlDoux" type="Node"]
 script = ExtResource("1_y6jxj")
@@ -68,22 +70,33 @@ ability_name = "Leader"
 required_level = 4
 description = "Increases leadership"
 
-[node name="5 _" type="Node" parent="Setup"]
-script = ExtResource("4_xqv7g")
+[node name="5 One with the Fourfold" type="Node" parent="Setup"]
+script = ExtResource("9_amfnt")
+effect_paths = Array[String](["res://Combat/Effects/AppliedEffects/Scenes/retaliation.tscn", "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn"])
+effect_names = Array[String](["Elemental protection", "Ward"])
+args_arr = [[20, {
+&"accuracy": 1.0,
+&"evadable": false,
+&"target_validation": "res://Combat/Units/Parameters/Validation/standard_mage_validity.tres",
+&"type": 1
+}], [1, 1]]
 ability_name = "One with the Fourfold"
 required_level = 5
 available_once = true
 description = "When Thymaël is attacked, he deals elemental damage back.
 Thymaël has an elemental ward."
 
-[node name="6 _" type="Node" parent="Setup/5 _"]
-script = ExtResource("4_xqv7g")
+[node name="6 Law of Justice" type="Node" parent="Setup/5 One with the Fourfold"]
+script = ExtResource("6_pboo7")
+effect_path = "res://Combat/Effects/AppliedEffects/Scenes/heal_instead.tscn"
+effect_name = "Law of Justice"
+args = [1, 1]
 ability_name = "Law of Justice"
 required_level = 6
 description = "First time Thymaël is attacked with elemental attack, he is healed instead."
 
-[node name="7 _" type="Node" parent="Setup/5 _/6 _"]
-script = ExtResource("4_xqv7g")
+[node name="7 Soul of the world" type="Node" parent="Setup/5 One with the Fourfold/6 Law of Justice"]
+script = ExtResource("10_d0fgu")
 ability_name = "Soul of the world"
 required_level = 7
 description = "Thymaël has a second, elemental attack with the same damage but his base damage is reduced."

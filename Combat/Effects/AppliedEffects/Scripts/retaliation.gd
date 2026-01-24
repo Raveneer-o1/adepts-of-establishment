@@ -35,6 +35,11 @@ func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
 	return [damage, attack_on_retaliation]
 
 func _apply_effect(params: Variant) -> void:
-	read_params(params)
+	if params is Dictionary:
+		read_params(params)
+	elif params is UnitAttack:
+		if attack_on_retaliation: attack_on_retaliation.queue_free()
+		attack_on_retaliation = params
+		add_child(attack_on_retaliation)
 	attack_on_retaliation.unit = target_unit
 	_signal_function_pairs[EventBus.attack_resolved] = check_trigger

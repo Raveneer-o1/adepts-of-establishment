@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://couj4fskobvb4"]
+
+[ext_resource type="Script" uid="uid://dfsa73efkunqs" path="res://Combat/Effects/AppliedEffects/Scripts/heal_instead.gd" id="1_dyl3d"]
+
+[node name="HealInstead" type="Node"]
+script = ExtResource("1_dyl3d")
+icon_index = 4
+description = "First %d attacks of the type [b]%s[/b] heal this unit instead."
