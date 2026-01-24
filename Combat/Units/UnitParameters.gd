@@ -591,7 +591,7 @@ func take_damage(
 	return taken_dmg
 
 ## Returns actual health restored.
-func heal(value: int) -> int:
+func heal(value: int, flags: Array[StringName] = []) -> int:
 	var original_hp: int = hp
 	hp += value
 	var healed_hp := hp - original_hp
@@ -601,4 +601,5 @@ func heal(value: int) -> int:
 	elif healed_hp < 0: parent_unit.sound_player.play_damage_sound(
 			( absf(healed_hp / float(hp)) ) * parent_unit.sound_player._SOUND_MULTIPLIER
 		)
+	EventBus.unit_healed.emit(parent_unit, healed_hp, flags)
 	return healed_hp

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dm5qetuua57x6"]
+
+[ext_resource type="Script" uid="uid://yte8mvslbnhy" path="res://Combat/Effects/AppliedEffects/Scripts/unyielding_army.gd" id="1_6h6j7"]
+
+[node name="UnyieldingArmy" type="Node"]
+script = ExtResource("1_6h6j7")
+effect_name = "Unyielding army"
+description = "As long as the front line is filled with units, all of them have +%d armor and +%d% damage."

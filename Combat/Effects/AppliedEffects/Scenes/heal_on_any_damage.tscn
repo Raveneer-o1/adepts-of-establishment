@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://kdib027yxb8u"]
+
+[ext_resource type="Script" uid="uid://6dq3lhgr0b0n" path="res://Combat/Effects/AppliedEffects/Scripts/heal_on_any_damage.gd" id="1_uh078"]
+
+[node name="HealOnAnyDamage" type="Node"]
+script = ExtResource("1_uh078")
+effect_name = "Essence of Blood"
+icon_index = 8
+description = "Whenever any other unit takes damage, this unit restores 10% of that amount as health."

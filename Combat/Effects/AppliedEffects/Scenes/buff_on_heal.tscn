@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bt8j10d4evgbn"]
+
+[ext_resource type="PackedScene" uid="uid://8d3sodh68huv" path="res://Combat/Effects/AppliedEffects/applied_effect.tscn" id="1_biepw"]
+[ext_resource type="Script" uid="uid://cjhm6ejkd8r70" path="res://Combat/Effects/AppliedEffects/Scripts/buff_on_heal.gd" id="2_biepw"]
+
+[node name="BuffOnEffectLift" instance=ExtResource("1_biepw")]
+script = ExtResource("2_biepw")
+parameter_to_buff = "Attack"
+buff_strength = 0
+buff_multiplier = 1.1
+buff_turns = 1
+text_to_display = ""
+color_start = Color(0, 0.616, 0.88, 1)
+effect_name = "Rally"
+icon_index = 9
+description = "Whenever any unit restores health, increases this unit's %s"

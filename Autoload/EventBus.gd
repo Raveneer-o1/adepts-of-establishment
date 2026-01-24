@@ -47,6 +47,7 @@ signal unit_description_requested(unit: Unit)
 signal effect_applied(effect: AppliedEffect)
 signal effect_lifted(effect: AppliedEffect)
 signal damage_taken(unit: Unit, dmg: int, flags: Array[StringName])
+signal unit_healed(unit: Unit, heal: int, flags: Array[StringName])
 
 signal unit_question_started(data: UnitData)
 signal unit_question_ended(data: UnitData)
