@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://okij6c8o2wm4"]
+
+[ext_resource type="Script" uid="uid://df1cmuole0m43" path="res://Combat/Effects/AppliedEffects/Scripts/holy_legion.gd" id="1_5bnv5"]
+
+[node name="HolyLegion" type="Node"]
+script = ExtResource("1_5bnv5")
+liftable = false
+effect_name = "Holy Legion"
+icon_index = -1
+description = "When Thymaël attacks, a random ally has a chance to get a persistant +2% to damage.
+The first ally to die in the combat is revived."

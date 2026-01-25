@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://l4fgi42bx58p"]
+
+[ext_resource type="Script" uid="uid://wil1dtfqoj7r" path="res://Map/PartyEffects/Scripts/Effects from units/scout.gd" id="1_ypeno"]
+
+[node name="Scout" type="Node"]
+script = ExtResource("1_ypeno")

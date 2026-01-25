@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://24d88m5q7ppb"]
+
+[ext_resource type="Script" uid="uid://dsahlj64a77gf" path="res://Combat/Effects/AppliedEffects/Scripts/breakthrough.gd" id="1_t35tu"]
+
+[node name="Breakthrough" type="Node"]
+script = ExtResource("1_t35tu")
+effect_name = "Breakthrough"
+icon_index = -1
+description = "Shielding chance is decreased for all units in the enemy party.
+Whenever an enemy shields, the shielding unit takes double damage.
+When defending, heals adjacent allies by the amount equal to damage recieved."

@@ -427,6 +427,8 @@ func attempt_shielding(attack: Attack, unit: Unit) -> void:
 	
 	attack.tags.append(&"shielded")
 	attack.redirect_all(unit.spot, spot)
+	
+	EventBus.attack_shielded.emit(attack, self)
 
 func _force_native_attack(target: Unit, attack: UnitAttack = null) -> Attack:
 	if attack == null:

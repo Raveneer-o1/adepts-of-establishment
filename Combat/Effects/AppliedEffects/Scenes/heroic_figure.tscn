@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cann7ctnwjwh7"]
+
+[ext_resource type="Script" uid="uid://c0osu1haknenu" path="res://Combat/Effects/AppliedEffects/Scripts/heroic_figure.gd" id="1_31fc6"]
+
+[node name="HeroicFigure" type="Node"]
+script = ExtResource("1_31fc6")
+liftable = false
+silencable = false
+effect_name = "Heroic Figure"
+icon_index = -1
+description = "Grants additional XP for all units, even if the battle is lost."
