@@ -1,14 +1,6 @@
 class_name MapParty
 extends MapInteractableObject
 
-## Returns the number of leadership slots the specified [param unit] takes up.
-static func get_unit_size(unit: UnitData) -> int:
-	if not unit: return 0
-	
-	# large units take 3 slots in battle but only 2 leadership:
-	# this is intentional
-	return 2 if unit.large_unit else 1
-
 
 @onready var animation_handle: MapPartyAnimationHandle = $AnimationHandle
 @onready var parameters: PartyParameters = $PartyParameters
@@ -33,14 +25,6 @@ var inside_city: MapCity = null
 
 var hero: HeroData = null
 
-var units: Array[UnitData]:
-	get:
-		var res: Array[UnitData] = []
-		for ch in get_children():
-			if ch is UnitData:
-				res.append(ch)
-		return res
-
 var is_moving: bool:
 	get: return control.is_moving
 
@@ -56,10 +40,16 @@ func _validate_refs() -> void:
 	if not faction:
 		push_error("Unassigned faction")
 		map.free_map_object(self)
+	elif not units_container:
+		push_error("Unassigned units_container")
+		map.free_map_object(self)
 
 func right_click_processed() -> bool:
 	EventBus.popup_requested.emit(self)
 	return true
+
+var units: Array[UnitData]:
+	get: return units_container.units
 
 #region Abstract Definitions
 
@@ -67,7 +57,10 @@ func _initialize() -> void:
 	#ownable = true
 	loaded_portrait = load(portrait_texture)
 	_validate_refs()
+	if is_queued_for_deletion(): return
 	object_name = "Party (%s)" % party_name
+	for c in get_children():
+		if c is UnitData: c.reparent(units_container)
 	init_party_parameters()
 
 func accept_interaction(party: MapParty) -> int:
@@ -201,15 +194,8 @@ func level_up_unit(unit: UnitData) -> void:
 	if not object_owner: unit.level_up()
 	else: await object_owner.level_up_unit(unit)
 
-## Returns number of leadership slots occupied in this party
-func get_occupied_space() -> int:
-	var res := 0
-	for unit in units:
-		res += get_unit_size(unit)
-	return res
 
-
-func can_accept_unit(unit: UnitData) -> bool:
-	if get_occupied_space() >= parameters.get_capacity(): return false
-	
+func _can_accept_unit(unit: UnitData) -> bool:
+	if units_container.get_occupied_space() >= parameters.get_capacity():
+		return false
 	return true

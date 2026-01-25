@@ -65,6 +65,13 @@ var is_active: bool = true
 ## Higher values receive priority; negative values are permitted.
 @export var party_interaction_priority: int = 0
 
+@onready var units_container: UnitsContainer = _find_units_container()
+
+func _find_units_container() -> UnitsContainer:
+	for c in get_children():
+		if c is UnitsContainer: return c
+	return null
+
 ## Processes right-click interaction with this object.
 ## Returns [code]true[/code] if the right-click was consumed.
 ## Intended to prevent multiple windows or popups from a single input.
@@ -216,6 +223,17 @@ func validate_and_interact(party: MapParty, forced: bool = false) -> int:
 	if party.tile_position not in get_interaction_tiles(party): return -1
 	if forced: return force_interaction_on(party)
 	return accept_interaction(party)
+
+## Returns if the object can accept provided [param unit].
+func can_accept_unit(unit: UnitData) -> bool:
+	if not units_container: return false
+	if unit is HeroData:
+		if unit.get_parent() == units_container: return true
+	if unit.unit_owner != object_owner: return false
+	return _can_accept_unit(unit)
+
+func _can_accept_unit(unit: UnitData) -> bool:
+	return true
 
 var _object_registered := false
 

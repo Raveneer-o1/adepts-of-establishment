@@ -47,14 +47,16 @@ func fill_city_data(city: MapCity) -> void:
 	# TODO: implement update_city() properly
 	#if currently_filled_city == city: update_city()
 	
-	garrison_reserve_container.parent = city
-	party_reserve_container.parent = city.party_inside
+	garrison_reserve_container.parent = city.units_container
+	party_reserve_container.parent = city.party_inside.units_container \
+		if city.party_inside else null
 	for place in places:
 		place.remove_unit()
-		place.parent = city
+		place.parent = city.units_container
 	for place in party_places:
 		place.remove_unit()
-		place.parent = city.party_inside
+		place.parent = city.party_inside.units_container \
+			if city.party_inside else null
 	for unit in garrison_reserve_container.get_units():
 		unit.queue_free()
 	for unit in party_reserve_container.get_units():

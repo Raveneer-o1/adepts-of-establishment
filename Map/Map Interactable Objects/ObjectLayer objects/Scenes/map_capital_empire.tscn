@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dns1v60yltqme"]
+[gd_scene load_steps=10 format=3 uid="uid://dns1v60yltqme"]
 
 [ext_resource type="Script" uid="uid://bjh2fm6srs7dd" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scripts/map_capital.gd" id="1_suova"]
 [ext_resource type="Texture2D" uid="uid://pch686fgq517" path="res://Arts/Map objects/Empire capital.png" id="2_suova"]
 [ext_resource type="Script" uid="uid://dl0lsoe05e0ym" path="res://Map/Map Interactable Objects/Extentions/land_claimer.gd" id="3_x3maw"]
+[ext_resource type="Script" uid="uid://cf2cqxddsxve0" path="res://Map/Scripts/units_container.gd" id="4_omtfb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x3maw"]
 atlas = ExtResource("2_suova")
@@ -54,3 +55,6 @@ offset = Vector2(0, -36)
 [node name="LandClaimer" type="Node" parent="."]
 script = ExtResource("3_x3maw")
 metadata/_custom_type_script = "uid://dl0lsoe05e0ym"
+
+[node name="UnitsContainer" type="Node" parent="."]
+script = ExtResource("4_omtfb")

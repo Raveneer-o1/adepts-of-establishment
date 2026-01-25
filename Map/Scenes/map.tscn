@@ -437,6 +437,9 @@ owner_capital = NodePath("../EmpireCapital")
 [node name="GoldMine" parent="ObjectManager" instance=ExtResource("30_orlke")]
 position = Vector2(1511, 776)
 
+[node name="MapCity" parent="ObjectManager" instance=ExtResource("11_1e4ck")]
+position = Vector2(1096, 467)
+
 [node name="Parties" type="Node" parent="."]
 
 [node name="MapParty" parent="Parties" node_paths=PackedStringArray("owner_capital") instance=ExtResource("12_kwhd2")]

@@ -198,10 +198,16 @@ var original: UnitData = null
 var levelup_available: bool:
 	get: return current_xp >= needed_xp
 
+var container: UnitsContainer:
+	get:
+		var parent := get_parent()
+		return parent if parent is UnitsContainer else null
+
 ## Returns [MapParty] this unit is a part of or [code]null[/code]
 var party: MapParty:
 	get:
-		var parent := get_parent()
+		if not container: return null
+		var parent := container.get_parent()
 		return parent if parent is MapParty else null
 
 ## Returns the faction owning this unit, or [code]null[/code].
@@ -309,49 +315,47 @@ func evolve(into: StringName) -> void:
 ## Does not validate ownership. [br]
 ## [b]Important:[/b] The method will proceed even for unexpected containers
 ## (neither party nor city).
-func try_moving_unit(container: Node) -> bool:
-	if can_be_moved_to(container):
-		_move_unit(container)
+func try_moving_unit(to_container: Node) -> bool:
+	if can_be_moved_to(to_container):
+		_move_unit(to_container)
 		return true
 	return false
 
 ## Returns if the unit can be moved to the provided [param container].
-## Does not validate ownership. [br]
-## [b]Important:[/b] The method will return [code]true[/code] even
-## for unexpected containers (neither party nor city).
+## Does not validate ownership.
 func can_be_moved_to(parent: Node) -> bool:
+	if not parent: return false
 	if parent == get_parent(): return true
 	if self is HeroData: return false
-	if not parent: return false
 	while parent and parent is not Map:
-		if parent is MapParty:
+		if parent is MapInteractableObject:
 			return parent.can_accept_unit(self)
-		if parent is MapCity:
-			return true  # Cities can hold unlimited number of units
 		parent = parent.get_parent()
 	
 	print_debug("Unknown destination for moving")
-	return true
+	return false
 
-func _move_unit(container: Node) -> void:
-	if not container: return
-	var parent := get_parent()
-	if parent == container: return
-	if parent: reparent(container)
-	else: container.add_child(self)
+func _move_unit(to_container: Node) -> void:
+	if not to_container: return
+	var self_parent := get_parent()
+	while to_container is not UnitsContainer:
+		to_container = to_container.get_parent()
+	if self_parent == to_container: return
+	if self_parent: reparent(to_container)
+	else: to_container.add_child(self)
 	for e in map_effects:
 		e.on_unit_move()
 	unit_moved.emit()
 
 ## @deprecated: use [method try_moving_unit] instead.
-## Forcibly moves this unit to the provided [param container]
-func move_unit(container: Node) -> void:
+## Forcibly moves this unit to the provided [param to_container]
+func move_unit(to_container: Node) -> void:
 	push_error("Deprecated call")
-	if not container: return
+	if not to_container: return
 	var parent := get_parent()
-	if parent == container: return
-	if parent: reparent(container)
-	else: container.add_child(self)
+	if parent == to_container: return
+	if parent: reparent(to_container)
+	else: to_container.add_child(self)
 	for e in map_effects:
 		e.on_unit_move()
 

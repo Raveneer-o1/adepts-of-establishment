@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://2kk6w327nvk"]
+[gd_scene load_steps=27 format=3 uid="uid://2kk6w327nvk"]
 
 [ext_resource type="Script" uid="uid://ckonqee8nxgfi" path="res://Map/Scripts/Party/map_party.gd" id="1_rleo8"]
 [ext_resource type="Texture2D" uid="uid://djapeb4rjrhbe" path="res://Arts/Map/Parties/hero knight idle.png" id="2_jf7u3"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://4p5ey7k5oyex" path="res://Map/Scripts/Party/party_inventory.gd" id="7_s3wsb"]
 [ext_resource type="PackedScene" uid="uid://cij3mifdic72j" path="res://Map/Items/Scenes/healing_potion.tscn" id="8_orjdp"]
 [ext_resource type="Script" uid="uid://3adojdwpeuss" path="res://Map/Scripts/Party/party_faction_banner.gd" id="9_xbt6h"]
+[ext_resource type="Script" uid="uid://cf2cqxddsxve0" path="res://Map/Scripts/units_container.gd" id="11_tu782"]
 [ext_resource type="Texture2D" uid="uid://bmmttflr3ye3d" path="res://Arts/Map objects/o04 white flag.png" id="12_8r1ka"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s3wsb"]
@@ -154,3 +155,6 @@ visible = false
 position = Vector2(-11, -6)
 sprite_frames = SubResource("SpriteFrames_0eg71")
 autoplay = "default"
+
+[node name="UnitsContainer" type="Node" parent="."]
+script = ExtResource("11_tu782")
