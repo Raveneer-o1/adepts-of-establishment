@@ -17,7 +17,11 @@ static func get_unit_size(unit: UnitData) -> int:
 	# this is intentional
 	return 2 if unit.large_unit else 1
 
-## Returns number of leadership slots occupied in this party
+## Returns if the specified [param unit] is stored inside this container.
+func contains(unit: UnitData) -> bool:
+	return unit.get_parent() == self
+
+## Returns number of leadership slots occupied in this container
 func get_occupied_space() -> int:
 	var res := 0
 	for unit in units:

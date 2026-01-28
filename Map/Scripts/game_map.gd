@@ -8,6 +8,8 @@ const test_map = preload("res://Map/Scenes/map.tscn")
 
 var current_map: Map
 
+@export var neutral_faction: MapFaction
+
 @onready var factions_in_game: int = $Factions.get_child_count()
 
 ## The faction currently viewing the game screen, controlling information visibility
@@ -47,6 +49,7 @@ func screen_access(faction: MapFaction, _signal: Signal) -> Signal:
 
 @onready var test_faction: MapFaction = $Factions/Empire
 @onready var test_faction2: MapFaction = $Factions/Necropolis
+@onready var test_faction_neutral: MapFaction = $Factions/Neutral
 
 func get_factions() -> Array[MapFaction]:
 	var res: Array[MapFaction] = []
@@ -67,7 +70,8 @@ signal _temp_disabled_ended
 ## Temporarily disables map processing for an indeterminate duration.
 ## Returns a signal that emits when map processing is re-enabled. [br][br]
 ## Reactivation may occur via user action (e.g., pressing ESC). Useful for menus
-## where the caller cannot predict when map interaction should resume.
+## where the caller cannot predict when map interaction should resume.[br][br]
+## All connections to the signal are disconnected after the processing.
 func temporarily_disable_map() -> Signal:
 	disable_map()
 	_temporarily_disabled = true
@@ -87,11 +91,13 @@ func _test_init() -> void:
 	var c2 := load(GlobalDefs.get_faction_controller(test_faction2.controller))
 	test_faction.api.add_child(c.instantiate())
 	test_faction2.api.add_child(c2.instantiate())
+	test_faction_neutral.api.add_child(c2.instantiate())
 	current_map.active_faction = test_faction
 	EventBus.map_turn_started.emit(test_faction)
 	test_faction.api.turn_started.emit()
 
 func _ready() -> void:
+	assert(neutral_faction)
 	load_maps()
 	ui_layers.clear_active_party()
 	_test_init()
@@ -113,6 +119,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		if (event as InputEventKey).keycode == Key.KEY_ESCAPE:
 			_end_temporary_disable()
 
+## Returns the faction with the specified [param index] or [code]null[/code].
 func get_faction(index: int) -> MapFaction:
 	if index < 0:
 		#push_error("Negative faction index")

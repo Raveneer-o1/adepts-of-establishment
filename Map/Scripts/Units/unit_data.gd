@@ -46,8 +46,7 @@ extends Node
 ##     &"mana": int,
 ## }
 ## [/codeblock]
-##
-## [b]Currently not implemented:[/b][br]
+## [br]
 ## This class is not designed for manual instantiation via the editor.
 ## Units are automatically created with all required fields populated
 ## during unit spawning events [i](e.g., hiring or evolution)[/i].
@@ -58,12 +57,18 @@ extends Node
 ## Creates and initializes a new [UnitData] instance for the specified unit name.
 ## Units are identified by name only - ensure [param u_name] matches database exactly.
 ## If the database marks the unit as a hero (non-empty [code]hero_abilities[/code]
-## entry), returns a [HeroData] instance.
-static func get_new(u_name: StringName, personal: String = "") -> UnitData:
-	var d: Dictionary = GlobalDefs.units_database.database.get(u_name)
+## entry), returns a [HeroData] instance.[br][br]
+## Set [param force_hero] to [code]true[/code] to create a hero regardless. [br]
+## [b]Note:[/b] Forced heroes lack [member hero_levelup] and level up like 
+## regular units but without evolutionary paths.
+static func get_new(u_name: StringName, personal: String = "", force_hero := false) -> UnitData:
+	var d: Dictionary = GlobalDefs.units_database.database.get(u_name, {})
 	if not d: return null
-	var abilities: String = d.get(&"hero_abilities", "")
-	var res := HeroData.new() if abilities else UnitData.new()
+	var res: UnitData
+	if force_hero: res = HeroData.new()
+	else:
+		var abilities: String = d.get(&"hero_abilities", "")
+		res = HeroData.new() if abilities else UnitData.new()
 	res.unit_name = u_name
 	res.initialize(personal)
 	return res
@@ -292,7 +297,8 @@ func update_values(u: Unit) -> void:
 func grant_xp(points: int) -> void:
 	current_xp += points
 
-## Levels the unit up without evolving. For the latter use [method evolve]
+## Levels the unit up without evolving. For the latter use [method evolve]. [br]
+## [HeroData] units automatically delegate to [member hero_levelup] if available.
 func level_up() -> void:
 	if hero_levelup and self is HeroData:
 		hero_levelup.levelup()

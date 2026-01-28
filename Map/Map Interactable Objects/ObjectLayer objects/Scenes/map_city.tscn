@@ -1,12 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://c77vxt0dfyo53"]
+[gd_scene load_steps=8 format=3 uid="uid://c77vxt0dfyo53"]
 
 [ext_resource type="Script" uid="uid://dqdhfd7gmfmae" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scripts/map_city.gd" id="1_03usw"]
 [ext_resource type="Texture2D" uid="uid://g22vk0350u61" path="res://Arts/Map objects/big city .png" id="2_03usw"]
 [ext_resource type="Script" uid="uid://dl0lsoe05e0ym" path="res://Map/Map Interactable Objects/Extentions/land_claimer.gd" id="3_03xhk"]
 [ext_resource type="Script" uid="uid://cf2cqxddsxve0" path="res://Map/Scripts/units_container.gd" id="4_4bahk"]
+[ext_resource type="Script" uid="uid://ce7jhle0sm057" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scripts/misc/map_city_flag.gd" id="5_16ar4"]
+
+[sub_resource type="Curve" id="Curve_16ar4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveTexture" id="CurveTexture_e0781"]
+curve = SubResource("Curve_16ar4")
 
 [node name="MapCity" type="Node2D"]
 script = ExtResource("1_03usw")
+ownable = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_03usw")
@@ -18,3 +27,13 @@ metadata/_custom_type_script = "uid://dl0lsoe05e0ym"
 
 [node name="UnitsContainer" type="Node" parent="."]
 script = ExtResource("4_4bahk")
+
+[node name="flag" type="Node2D" parent="." node_paths=PackedStringArray("sprite")]
+show_behind_parent = true
+script = ExtResource("5_16ar4")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="flag"]
+position = Vector2(0, -25.999998)
+scale = Vector2(0.07421875, 18.999998)
+texture = SubResource("CurveTexture_e0781")

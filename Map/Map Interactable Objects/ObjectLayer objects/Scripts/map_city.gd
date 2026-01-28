@@ -23,8 +23,12 @@ extends ObjectLayerObject
 ## @deprecated: use [member MapInteractableObject.object_owner] instead
 ## Returns [member MapInteractableObject.object_owner]
 var city_owner: MapFaction:
-	get: return object_owner
-	set(value): object_owner = value
+	get:
+		push_error("Deprecated access")
+		return object_owner
+	set(value):
+		push_error("Deprecated access")
+		object_owner = value
 
 func get_interaction_tiles(
 	party: MapParty = null,
@@ -56,7 +60,7 @@ func can_interact(party: MapParty) -> bool:
 	return true
 
 func accept_interaction(party: MapParty) -> int:
-	if city_owner.is_enemy(party.faction):
+	if object_owner.is_enemy(party.faction):
 		if party_inside:
 			map.start_battle(party, party_inside)
 			return party.parameters.max_movement_points
@@ -96,14 +100,25 @@ func _request_player_interaction(faction: MapFaction) -> bool:
 func _player_interact(faction: MapFaction) -> void:
 	map.game.ui_layers.switch_to_city(self)
 
+func _initialize() -> void:
+	_set_neutral()
+	object_changed.connect(_set_neutral)
+
 #endregion
+
+func _set_neutral() -> void:
+	if not object_owner: object_owner = map.game.neutral_faction
 
 func update_parameters() -> void:
 	for u in units:
 		if u.levelup_available: level_up_unit(u)
 
+## Delegates to [method MapFaction.level_up_unit] if the provided
+## [param unit] is inside this city.[br]
+## If [member object_owner] is not set for the city, uses [method UnitData.level_up]
 func level_up_unit(unit: UnitData) -> void:
 	if not unit: return
+	if not units_container.contains(unit): return
 	if not object_owner: unit.level_up()
 	else: object_owner.level_up_unit(unit)
 
@@ -111,6 +126,7 @@ var units: Array[UnitData]:
 	get:
 		return units_container.units if units_container else []
 
+## [code]null[/code] if there is no party inside this city.
 var party_inside: MapParty
 
 func _does_meet_criterion(unit: Dictionary, criterion: Dictionary) -> bool:
@@ -136,6 +152,10 @@ func _passes_blacklist(unit: Dictionary) -> bool:
 		if _does_meet_criterion(unit, criterion): return false
 	return true
 
+## Returns all units available for hiring in this city.
+## Combines [member MapFaction.hiring_units] with [member available_units],
+## filtered by both [member available_units_whitelist] and
+## [member available_units_blacklist].
 func get_available_units() -> Array[StringName]:
 	var res: Array[StringName] = []
 	if object_owner:

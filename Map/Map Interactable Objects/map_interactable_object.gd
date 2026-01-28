@@ -224,7 +224,7 @@ func validate_and_interact(party: MapParty, forced: bool = false) -> int:
 	if forced: return force_interaction_on(party)
 	return accept_interaction(party)
 
-## Returns if the object can accept provided [param unit].
+## Returns if the provided [param unit] can be transfered to this object.
 func can_accept_unit(unit: UnitData) -> bool:
 	if not units_container: return false
 	if unit is HeroData:

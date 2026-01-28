@@ -63,7 +63,7 @@ func _prefill_data_siege(attacker: MapParty, defender: MapCity) -> void:
 	EventBus.left_units = attacker.parameters.get_unit_data()
 	EventBus.right_units = defender.units
 	EventBus.left_controller = load(GlobalDefs.get_combat_controller(attacker.faction.controller))
-	EventBus.right_controller = load(GlobalDefs.get_combat_controller(defender.city_owner.controller))
+	EventBus.right_controller = load(GlobalDefs.get_combat_controller(defender.object_owner.controller))
 
 func _prefill_data(attacker: MapParty, defender: MapParty) -> void:
 	EventBus.left_units = attacker.parameters.get_unit_data()

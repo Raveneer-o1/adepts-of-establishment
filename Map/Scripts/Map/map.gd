@@ -177,7 +177,7 @@ func start_siege(attacker: MapParty, defender: MapCity) -> void:
 	var successful := await worker.do_siege(attacker, defender)
 	game.update_active_party(active_party)
 	if not successful: return
-	defender.city_owner = attacker.faction
+	defender.object_owner = attacker.faction
 	attacker.enter_city(defender)
 
 ## Initiates a battle between two parties. [br]
