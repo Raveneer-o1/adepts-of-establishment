@@ -88,11 +88,13 @@ func passable(party: Variant) -> bool:
 	return false
 
 func _request_player_interaction(player: MapFaction) -> bool:
-	return player == faction
+	return player and player == faction and player.api.ui_filter
 
 func _player_interact(player: MapFaction) -> void:
-	if player == faction:
-		map.set_active_party(self)
+	if not player: return
+	if player != faction: return
+	if not player.api.ui_filter: return
+	map.set_active_party(self)
 
 #endregion
 
@@ -113,7 +115,7 @@ func get_battle_ready_units() -> Array[UnitData]:
 	var i := -1
 	for d: UnitData in res.duplicate():
 		if d.party_position == i:
-			push_error("Duplacate position %d" % i)
+			push_error("Duplicate position %d" % i)
 			res.erase(d)
 		i = d.party_position
 	return res

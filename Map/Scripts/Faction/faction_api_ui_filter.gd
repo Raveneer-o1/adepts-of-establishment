@@ -5,7 +5,7 @@ extends Node
 
 signal turn_end_clicked
 signal hire_party(coords: Vector2i, _map: Map, hero: StringName)
-signal hire_unit()
+signal hire_unit(unit_name: StringName, container: UnitsContainer)
 
 signal research_upgrade(upgrade: FactionUpgrade)
 

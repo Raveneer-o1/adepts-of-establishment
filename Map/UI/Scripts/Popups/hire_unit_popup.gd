@@ -1,7 +1,7 @@
 class_name HireUnitPopup
 extends PopupBase
 
-var current_container: Node
+var current_container: UnitsContainer
 @onready var ui_layers: MapUI = $"../.."
 
 @onready var units_item_list: ItemList = %HireUnitsItemList
@@ -15,7 +15,7 @@ var current_container: Node
 
 ## Displays the recruitment popup with the specified [param list] of available units.
 ## When a unit is hired, [UnitData] object is added as a child of [param node].
-func display_for_container(node: Node, list: Array[StringName]) -> void:
+func display_for_container(node: UnitsContainer, list: Array[StringName]) -> void:
 	hire_unit_unit_panel.hide()
 	if not node: return
 	current_container = node

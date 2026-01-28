@@ -133,7 +133,7 @@ func _verify_ownership(container: Node) -> bool:
 ## with defaults for [param unit_name], and returns the new object. [br]
 ## Returns [code]null[/code] on failure
 ## (e.g., incorrect faction or container or insufficient resources).
-func hire_unit(unit_name: StringName, container: Node) -> UnitData:
+func hire_unit(unit_name: StringName, container: UnitsContainer) -> UnitData:
 	var unit_dict: Dictionary = GlobalDefs.units_database.database.get(unit_name, {})
 	if not unit_dict: return null
 	if not _verify_ownership(container):
@@ -178,7 +178,7 @@ func hire_party(coords: Vector2i, _map: Map = map, hero_name: StringName = &"") 
 	if not party: return null
 	party.object_owner = this_faction
 	if hero_name:
-		var hired_hero: UnitData = game.spawn_new_unit(hero_name, party)
+		var hired_hero: UnitData = game.spawn_new_unit(hero_name, party.units_container)
 		if hired_hero is HeroData:
 			party.hero = hired_hero
 	return party

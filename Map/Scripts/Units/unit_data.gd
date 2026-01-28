@@ -359,6 +359,6 @@ func move_unit(to_container: Node) -> void:
 	for e in map_effects:
 		e.on_unit_move()
 
-func _ready() -> void:
+#func _ready() -> void:
 	# WARNING: this is testing implementation, initialization here will be removed
-	initialize()
+	#initialize()

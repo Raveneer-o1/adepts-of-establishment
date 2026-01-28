@@ -122,9 +122,15 @@ func get_faction(index: int) -> MapFaction:
 		return null
 	return $Factions.get_child(index)
 
+## Instantiates and initializes a new [UnitData] object with the specified name
+## and adds it as a child to the provided [param container]
+## Units are identified by name only - ensure [param unit_name] matches database exactly.
+## If the database marks the unit as a hero (non-empty [code]hero_abilities[/code]
+## entry), returns a [HeroData] instance.[br][br]
+## If instantiation failed, returns [code]null[/code].
 func spawn_new_unit(
 	unit_name: StringName,
-	container: Node,
+	container: UnitsContainer,
 	personal_name: String = ""
 ) -> UnitData:
 	if not unit_name: return null

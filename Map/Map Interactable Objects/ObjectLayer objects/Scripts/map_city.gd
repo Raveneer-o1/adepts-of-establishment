@@ -109,11 +109,7 @@ func level_up_unit(unit: UnitData) -> void:
 
 var units: Array[UnitData]:
 	get:
-		var res: Array[UnitData] = []
-		for c in get_children():
-			if c is UnitData:
-				res.append(c)
-		return res
+		return units_container.units if units_container else []
 
 var party_inside: MapParty
 

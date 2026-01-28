@@ -167,7 +167,7 @@ func _disconnect_unit_hire() -> void:
 		d.signal.disconnect(d.callable)
 
 ## @experimental
-func open_hire_popup(base: Node, list: Array[StringName]) -> void:
+func open_hire_popup(base: UnitsContainer, list: Array[StringName]) -> void:
 	#hire_unit_popup.unit_hired.connect(update_function)
 	hire_unit_popup.display_for_container(base, list)
 	hire_unit_popup.popup_closed.connect(_disconnect_unit_hire)

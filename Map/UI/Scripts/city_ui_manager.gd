@@ -99,7 +99,7 @@ func _on_hire_button_pressed() -> void:
 	if not currently_filled_city.object_owner.api.ui_filter: return
 	EventBus.unit_hired.connect(update_city)
 	ui_layers.open_hire_popup(
-		currently_filled_city,
+		currently_filled_city.units_container,
 		currently_filled_city.get_available_units()
 	)
 
