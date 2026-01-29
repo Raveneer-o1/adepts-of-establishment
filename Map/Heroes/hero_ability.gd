@@ -21,7 +21,7 @@ extends Node
 ## If [code]true[/code], this ability can be learned over and over again.
 ## Prevents [member learned] flag from setting.
 ## Placing this ability inside the tree will block all abilities after it as it
-## can never be considered learned and thus can never be satisfied as a
+## is not considered learned and thus can not be satisfied as a
 ## prerequisite. [br]
 ## [b]Note:[/b] You can set the [member learned] flag manually to create custom 
 ## behavior. For example, by setting this flag to [code]true[/code] and manually
@@ -42,6 +42,8 @@ var learned := false
 ## @experimental: not used, may be removed
 var active := true
 
+@abstract func _learn(hero: HeroData) -> void
+
 func can_be_learned(hero: HeroData) -> bool:
 	if not active: return false
 	if learned: return false
@@ -53,9 +55,8 @@ func can_be_learned(hero: HeroData) -> bool:
 	return true
 
 ## Grants this ability to the [param hero].
+## This method will do nothing if [method can_be_learned] returns [code]false[/code].
 func learn(hero: HeroData) -> void:
 	if not can_be_learned(hero): return
 	_learn(hero)
 	if not unlimited_learning: learned = true
-
-@abstract func _learn(hero: HeroData) -> void

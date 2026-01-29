@@ -58,9 +58,9 @@ var _last_target_tile: Vector2i
 # algorithm execution is delayed until the cursor position stabilizes.
 const _MOUSE_DISTANCE_REGIONS = [
 	[15, -1.0],
-	[30, 0.05],
-	[40, 0.1],
-	[50, 0.2],
+	[30, 0.025],
+	[40, 0.05],
+	[50, 0.1],
 ]
 const _MAX_TIMER = 0.5
 

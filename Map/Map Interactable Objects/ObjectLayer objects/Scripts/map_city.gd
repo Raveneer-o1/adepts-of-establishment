@@ -109,22 +109,25 @@ func _initialize() -> void:
 func _set_neutral() -> void:
 	if not object_owner: object_owner = map.game.neutral_faction
 
+## Updates units and triggers levelups if appropriate.
 func update_parameters() -> void:
 	for u in units:
 		if u.levelup_available: level_up_unit(u)
 
-## Delegates to [method MapFaction.level_up_unit] if the provided
-## [param unit] is inside this city.[br]
-## If [member object_owner] is not set for the city, uses [method UnitData.level_up]
+## Delegates to [method MapFaction.level_up_unit] if [member object_owner]
+## is set for this city.
+## Otherwise, uses [method UnitData.level_up]. [br]
+## [b]Note:[/b] this method checks if the [param unit] is inside this city.
+## If not, method returns without changes.
 func level_up_unit(unit: UnitData) -> void:
-	if not unit: return
 	if not units_container.contains(unit): return
 	if not object_owner: unit.level_up()
 	else: object_owner.level_up_unit(unit)
 
+## List of units inside this city.
+## Does not include units in the [member party_inside].
 var units: Array[UnitData]:
-	get:
-		return units_container.units if units_container else []
+	get: return units_container.units if units_container else []
 
 ## [code]null[/code] if there is no party inside this city.
 var party_inside: MapParty

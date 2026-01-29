@@ -19,7 +19,8 @@ static func get_unit_size(unit: UnitData) -> int:
 
 ## Returns if the specified [param unit] is stored inside this container.
 func contains(unit: UnitData) -> bool:
-	return unit.get_parent() == self
+	if not unit: return false
+	return unit.container == self
 
 ## Returns number of leadership slots occupied in this container
 func get_occupied_space() -> int:

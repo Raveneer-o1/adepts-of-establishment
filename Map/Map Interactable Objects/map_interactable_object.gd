@@ -41,7 +41,10 @@ var map: Map
 ## When editing the map, you can assign [member owner_capital] or 
 ## [member faction_index] to set the owner of the object.
 var object_owner: MapFaction = null:
-	get: return object_owner if ownable else null
+	get:
+		if not ownable: return null
+		if not object_owner and default_to_neutral: return map.game.neutral_faction
+		return object_owner
 	set(value):
 		if object_owner == value: return
 		object_owner = value
@@ -51,6 +54,9 @@ var object_owner: MapFaction = null:
 ## When [code]false[/code], [member object_owner] always returns [code]null[/code]
 ## regardless of assignment attempts.
 @export var ownable: bool = false
+
+## If [code]true[/code], the [member object_owner] returns [member GameMap.neutral_faction].
+@export var default_to_neutral := false
 
 ## Determines whether the object is considered by the [Map] node during
 ## interaction calculations. Does not prevent direct calls to
@@ -97,6 +103,22 @@ func _move_mapping(destination: Vector2i) -> void:
 		else:
 			map.tile_to_interaction[t] = [self]
 
+## Primary tile position of this object.
+## Position changes can be expensive - minimize assignments by calculating
+## the final position before setting.
+## [codeblock]
+## # Don't do this:
+## object.tile_position = start
+## object.tile_position.x += dx
+## object.tile_position.y += dy
+## object.tile_position = Vector2i(Vector2(start).lerp(object.tile_position, t))
+##
+## # Do this instead:
+## var move := Vector2i(dx, dy)
+## var end := start + move
+## end = Vector2i(Vector2(start).lerp(end, t))
+## object.tile_position = end  # Single assignment
+## [/codeblock]
 var tile_position: Vector2i:
 	get: return tile_position
 	set(value):
@@ -240,12 +262,12 @@ var _object_registered := false
 func get_description() -> String:
 	return object_name
 
-func register_object() -> void:
+func _register_object() -> void:
 	if _object_registered: return
 	tile_position = map.get_tile_coords(global_position)
 	
 	if owner_capital:
-		owner_capital.register_object()
+		owner_capital._register_object()
 		object_owner = owner_capital.object_owner
 	elif faction_index >= 0:
 		object_owner = map.game.get_faction(faction_index)
@@ -262,4 +284,4 @@ func _ready() -> void:
 		push_error("Unable to find map for object '%s'" % object_name)
 		queue_free()
 		return
-	register_object.call_deferred()
+	_register_object.call_deferred()

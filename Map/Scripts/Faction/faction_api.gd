@@ -92,6 +92,9 @@ func choose_evolution(unit: UnitData, options: Array[StringName]) -> StringName:
 	@warning_ignore("redundant_await")
 	return await controller.choose_evolution(unit, options)
 
+## Requests the [member controller] to select an ability
+## [param hero] from [param options].
+## If no controller is present, picks at random.
 func choose_hero_ability(hero: HeroData, options: Array[HeroAbility]) -> HeroAbility:
 	@warning_ignore("redundant_await")
 	if controller: return await controller.choose_hero_ability(hero, options)

@@ -5,9 +5,9 @@ extends MapInteractableObject  # Regular object
 
 #extends ObjectLayerObject  # Object tied to the map grid system
 
+#extends OwnedByLandObject
 # Same as ObjectLayerObject, but automatically assigns the 
 # object owner from the tile it's occupying
-#extends OwnedByLandObject
 
 
 # Uncomment and implement the method below if the object occupies multiple tiles
@@ -51,8 +51,8 @@ func can_interact(party: MapParty) -> bool:
 	# Return whether interaction with the provided party is possible
 	# If null is provided, return the default value used for visual hints
 	
-	# This method should NOT validate party position - use get_interaction_tiles()
-	# for position validation (see above)
+	# This method should NOT validate party position - implement
+	# get_interaction_tiles() to define valid positions
 	if not party: return false
 	return false
 
