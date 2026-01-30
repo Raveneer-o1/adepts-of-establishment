@@ -210,7 +210,7 @@ func get_tile_data(coords: Vector2i = get_tile_coords()) -> MapTileData:
 ## (Godot's [i]Stairs[/i] or [i]Diamond[/i] layouts)
 ## and will not produce correct results with offset coordinates
 ## (Godot's [i]Stacked[/i] layouts)
-func get_distance(pos1: Vector2i, pos2: Vector2i) -> int:
+static func get_distance(pos1: Vector2i, pos2: Vector2i) -> int:
 	var diff: Vector2i = pos1 - pos2
 	var dz := absi(diff.x + diff.y)
 	diff = diff.abs()

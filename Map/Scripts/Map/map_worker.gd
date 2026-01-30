@@ -113,15 +113,27 @@ func _play_effect(pos: Vector2) -> void:
 	effect.global_position = pos
 	await effect.effect_finished
 
+func _validate_path(party: MapParty, path: Array[Vector2i]) -> bool:
+	if not is_instance_valid(party): return false
+	if not path: return false
+	var last_position := party.tile_position
+	for position in path:
+		if Map.get_distance(position, last_position) != 1:
+			return false
+		last_position = position
+	return true
+
 ## Moves [Map.active_party] to the specified [param object] and triggers
 ## interaction [b]if applicable[/b].[br]
 ## Path which the party is to follow is expected to be highlighted:
 ## it is retrieved with [method MapVisualizer.get_highlighted_tiles].
 func move_active_party_to_object(object: MapInteractableObject) -> void:
+	if not active_party: return
 	if active_party.is_moving:
 		active_party.control.abort_moving()
 		return
 	var path := visualizer.get_highlighted_tiles()
+	if not _validate_path(active_party, path): return
 	if path:
 		await active_party.control.walk_along_path(
 			path,
@@ -134,10 +146,12 @@ func move_active_party_to_object(object: MapInteractableObject) -> void:
 	if cost > 0: active_party.parameters.subtract_mp(cost)
 
 func move_active_party(coords: Vector2i) -> void:
+	if not active_party: return
 	if active_party.is_moving:
 		active_party.control.abort_moving()
 		return
 	var path := visualizer.get_highlighted_tiles()
+	if not _validate_path(active_party, path): return
 	if not path:
 		visualizer.reset_highlights()
 		return
@@ -177,13 +191,11 @@ func find_path(
 	include_start: bool
 ) -> Array[Vector2i]:
 	if not party: return []
-	var path : Array[Vector2i] = []
 	var start_index := _check_if_end_in_start(starts, end)
 	if start_index >= 0:
-		var closest_start := starts[start_index]
-		if include_start: path.append(closest_start)
-		return path
+		return [starts[start_index]] if include_start else ([] as Array[Vector2i])
 	
+	var path : Array[Vector2i] = []
 	var _start := Vector2i.ZERO
 	var travel_data := TravelData.new(party)
 	for start in starts:
@@ -194,7 +206,7 @@ func find_path(
 		if not path or new_path.size() < path.size():
 			path = new_path
 			_start = start
-	if not path: return []
+	if not path: return [] as Array[Vector2i]
 	if include_start: path.insert(0, _start)
 	return path
 

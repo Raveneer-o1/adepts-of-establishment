@@ -441,7 +441,7 @@ position = Vector2(1511, 776)
 position = Vector2(1096, 467)
 
 [node name="MapCity2" parent="ObjectManager" instance=ExtResource("11_1e4ck")]
-position = Vector2(1150, 783)
+position = Vector2(1161, 779)
 
 [node name="Parties" type="Node" parent="."]
 
