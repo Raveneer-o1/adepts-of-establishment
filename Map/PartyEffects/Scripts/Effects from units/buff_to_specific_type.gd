@@ -5,7 +5,7 @@ extends PartyEffectFromUnit
 @export var stat_multiplier := 1.0
 @export var type: GlobalDefs.UnitType = GlobalDefs.UnitType.Undefined
 
-func _modify_list(list: Array[UnitData]) -> Array[UnitData]:
+func _modify_list(list: Array[UnitData]) -> void:
 	for data in list:
 		if data.unit_type != type: continue
 		match stat:
@@ -19,14 +19,10 @@ func _modify_list(list: Array[UnitData]) -> Array[UnitData]:
 				data.evasion * stat_multiplier + stat_increase
 			StatBuff.shielding_chance: data.shielding_chance = \
 				data.shielding_chance * stat_multiplier + stat_increase
-	return list
 
-func _set_unit_data() -> void:
+func _set_unit_data(list: Array[UnitData]) -> void:
 	if type == GlobalDefs.UnitType.Undefined: return
-	var list: Array[UnitData] = party_parameters.accumulated_value \
-		if party_parameters.accumulated_value \
-		else party_parameters.get_unit_list_copy()
-	party_parameters.accumulated_value = _modify_list(list)
+	_modify_list(list)
 
 func _apply_effect(...args: Array) -> void:
 	for a: Variant in args:
@@ -39,4 +35,4 @@ func _apply_effect(...args: Array) -> void:
 		elif a is Array:
 			_apply_effect.callv(a)
 			return
-	effect_mapping[party_parameters.unit_data_requested] = _set_unit_data
+	effect_mapping[party_parameters.this_party.units_container.units_requested] = _set_unit_data

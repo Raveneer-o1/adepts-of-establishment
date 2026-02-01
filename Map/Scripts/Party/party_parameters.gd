@@ -69,17 +69,7 @@ var units: Array[UnitData]:
 ## [/codeblock]
 var accumulated_value: Variant = null
 
-## Emitted when unit data is requested via [method get_unit_data].
-## External systems should listen for this signal and populate [member accumulated_value].
-## [br][br]
-## [color=red][b]Critical:[/b] Be careful with this signal.[/color][br]
-## If [member accumulated_value] is already populated when your effect triggers,
-## modify that list. Otherwise, you must create deep copy of [member units] list
-## to avoid modifying original [UnitData] objects. Use [method get_unit_list_copy]
-## to get properly copied list.
-## [br][br]
-## Expected [member accumulated_value] type: [code]Array[UnitData][/code]
-signal unit_data_requested
+
 ## Emitted when movement multiplier is requested via [method get_movement_multiplier].
 ## External systems should listen for this signal and set [member accumulated_value].
 ## [br][br]
@@ -120,47 +110,10 @@ var movement_points: int = max_movement_points:
 	get: return movement_points
 	set(value): movement_points = clampi(value, 0, max_movement_points)
 
-var _unit_list_copy: Array[UnitData] = []
-#var _unit_list_copy_for_freeing: Array[UnitData] = []
-signal __freing_units_finished
-var __freing_units: bool = false:
-	get: return __freing_units
-	set(value):
-		if not value: __freing_units_finished.emit()
-		__freing_units = value
-
 ## Base capacity value set during party initialization.
 ## Intended to be modified by [HeroData] when learning relevant abilities,
 ## avoiding expensive connections to [signal party_capacity_requested].
 var default_capacity: int = 3
-
-## Frees duplicate objects created by [method get_unit_list_copy].
-## Processes one object per frame to avoid performance spikes.
-## Use [code]await[/code] if you need to wait for complete removal.
-func free_units_list() -> void:
-	var unit_list_copy_for_freeing := _unit_list_copy
-	_unit_list_copy = []
-	if __freing_units: await __freing_units_finished
-	__freing_units = true
-	for data in unit_list_copy_for_freeing:
-		await get_tree().process_frame
-		data.queue_free()
-	__freing_units = false
-
-## Returns a deep copy of the [member units] array.
-## The duplicated objects become orphans but do not require manual freeing -
-## previously generated copies are automatically cleaned up when this method is called.
-## [br][br]
-## You can call [method free_units_list] manually if, for example,
-## you need to free the entire party scene.
-func get_unit_list_copy() -> Array[UnitData]:
-	free_units_list()
-	var units_original := units
-	for data in units_original:
-		_unit_list_copy.append(data.duplicate())
-	for i in range(units_original.size()):
-		_unit_list_copy[i].original = units_original[i]
-	return _unit_list_copy
 
 ## Equivalent to just subtracting [param value] from [member movement_points]
 ## but checks if it is non-negative.
@@ -182,13 +135,12 @@ func _get_accumulated_value(default: Variant) -> Variant:
 		return res
 	return default
 
+func get_unit_data() -> Array[UnitData]:
+	return this_party.units_container.get_units_data()
+
 func get_max_movement_points() -> int:
 	max_mp_requested.emit()
 	return _get_accumulated_value(_max_movement_points)
-
-func get_unit_data() -> Array[UnitData]:
-	unit_data_requested.emit()
-	return _get_accumulated_value(units)
 
 func get_capacity() -> int:
 	party_capacity_requested.emit()
