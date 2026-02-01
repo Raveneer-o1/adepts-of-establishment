@@ -37,7 +37,7 @@ class PathNode extends RefCounted:
 
 func _check_distances(start: Vector2i, end: Array[Vector2i]) -> bool:
 	for t in end:
-		if map.get_distance(start, t) < MAX_DISTANCE:
+		if Map.get_distance(start, t) < MAX_DISTANCE:
 			return true
 	return false
 
@@ -169,7 +169,7 @@ func _reconstruct_path(end_node: PathNode, start_coords: Vector2i) -> Array[Vect
 func _heuristic(current_pos: Vector2i, end: Array[Vector2i]) -> int:
 	var res := -1
 	for t in end:
-		var distance := map.get_distance(current_pos, t)
+		var distance := Map.get_distance(current_pos, t)
 		if res < 0 or distance < res: res = distance
 	return res
 

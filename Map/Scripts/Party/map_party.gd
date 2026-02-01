@@ -132,6 +132,7 @@ func face_tile(target: Vector2i) -> void:
 		return
 	animation_handle.flip_h = d.y < 0
 
+## Updates the parameters of all units in the party
 func update_parameters() -> void:
 	var _dead := true
 	for u in units:
@@ -141,6 +142,9 @@ func update_parameters() -> void:
 
 const GRAVE_PREFAB = preload("res://Map/Scenes/party_grave.tscn")
 
+## Deactivates the party and transfers it to a [MapPartyGrave] node.
+## If a grave already exists at the party's position, moves the party there.
+## Otherwise, creates a new grave instance.
 func die() -> void:
 	is_dead = true
 	is_active = false
@@ -156,6 +160,7 @@ func die() -> void:
 
 var is_dead: bool
 
+## Exits the city. This method does not validate the target position.
 func exit_city(tile: Vector2i) -> void:
 	if not inside_city: return
 	if tile not in inside_city.get_interaction_tiles(self):

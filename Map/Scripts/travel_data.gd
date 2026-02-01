@@ -22,7 +22,11 @@ static func default_traversability(tile_data: TileData) -> bool:
 	# white-list approach doesn't let unexpected tile types to be passable
 	return false
 
-
+## Determines whether the party avoids forced interactions.
+## Initialized to [member PartyParameters.safe_travel] if
+## [member PartyParameters.safe_travel_override]
+## is [code]true[/code], otherwise uses [member GameSettings.safe_travel].
+## Directly influences pathfinding behavior when modified.
 var safe_travel: bool
 ## @experimental: can be [code]null[/code]
 var travelling_party: MapParty
@@ -51,10 +55,12 @@ func _init(party: MapParty) -> void:
 	travelling_party = party
 	custom_pass_check = parameters.check_pass
 
-func get_cost(tile_data: TileData) -> int:
-	if custom_cost.is_valid(): return custom_cost.call(tile_data)
-	return tile_data.get_custom_data("traverse_cost") * _cost_multiplier
+## Returns the cost of traversing the provided [param tile]
+func get_cost(tile: TileData) -> int:
+	if custom_cost.is_valid(): return custom_cost.call(tile)
+	return tile.get_custom_data("traverse_cost") * _cost_multiplier
 
+## Returns if the provided [param tile] can be traversed
 func can_traverse(tile_data: TileData) -> bool:
 	if custom_pass_check.is_valid(): return custom_pass_check.call(tile_data)
 	return default_traversability(tile_data)

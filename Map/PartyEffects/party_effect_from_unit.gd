@@ -60,11 +60,10 @@ func _call_if_valid(...args: Array) -> void:
 	if not args:
 		push_error("Empty argument list (%s)" % effect_name)
 		return
-	var s: Signal = args[-1]
+	var s: Signal = args.pop_back()
 	if not effect_mapping.has(s):
 		push_error("Mapping does not exist (%s)" % effect_name)
 		return
-	args.remove_at(args.size() - 1)
 	_execute_call(effect_mapping[s], args)
 
 func _initialize(...args: Array) -> void:

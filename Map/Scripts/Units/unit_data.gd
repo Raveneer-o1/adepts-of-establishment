@@ -237,6 +237,7 @@ var map_effects: Array[MapUnitEffect]:
 
 var _initializer: __UnitData_Initializer__
 
+## Emitted when this unit is moved to another [UnitsContainer]
 signal unit_moved
 
 ## Returns the file path to the unit scene resource.

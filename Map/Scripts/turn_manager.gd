@@ -7,15 +7,9 @@ var active_faction: MapFaction
 var active_faction_index: int
 @onready var factions: Array[MapFaction]
 
+## A day is ended when all factions had one turn
+## (i.e., a day is a full cycle of all factions' turns).
 var currnt_day: int = 0
-#var _faction_turn: int = 0:
-	#get: return _faction_turn
-	#set(value):
-		#if value >= factions_in_game:
-			#currnt_turn += 1
-			#_faction_turn = 0
-			#return
-		#_faction_turn = value
 
 func _next_faction() -> MapFaction:
 	var s := factions.size()
@@ -27,6 +21,7 @@ func _next_faction() -> MapFaction:
 	
 	return factions[active_faction_index]
 
+## Proceeds to the text global turn, giving the game control to the next faction.
 func next_turn() -> void:
 	EventBus.map_turn_ended.emit(active_faction)
 	active_faction = null
@@ -35,6 +30,8 @@ func next_turn() -> void:
 	EventBus.map_turn_started.emit(active_faction)
 	active_faction.api.turn_started.emit()
 
+## Emits [signal FactionAPI.end_turn_clicked] for the current faction.
+## This transmits the end-turn request but does not force turn end.
 func request_turn_end() -> void:
 	await game.current_map.abort_actions()
 	if active_faction: active_faction.api.end_turn_clicked.emit()
