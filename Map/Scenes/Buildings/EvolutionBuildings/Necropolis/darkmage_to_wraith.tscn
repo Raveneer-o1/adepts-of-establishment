@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy05qbduos6x4"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/Buildings/EvolutionBuildings/evolution_building.tscn" id="1_qkpx2"]
+
+[node name="Bounding glyph" instance=ExtResource("1_qkpx2")]
+evolving_from = &"Dark Mage"
+evolving_into = &"Wraith"
+gold_cost = 150
+stone_cost = 150
+mana_cost = 600
+upgrade_name = "Bounding glyph"
+description = "This building allows Dark mages to become Wraiths"

@@ -16,6 +16,7 @@ func _get_ui_layout(faction: MapFaction) -> UI_DefaultCapitalLayout:
 		GlobalDefs.Faction.Empire: control = EMPIRE_TREE.instantiate()
 		GlobalDefs.Faction.Necropolis: control = NECROPOLIS_TREE.instantiate()
 	if control: _faction_to_layout[faction] = control
+	else: return null
 	capital_layout_container.add_child(control)
 	return control
 

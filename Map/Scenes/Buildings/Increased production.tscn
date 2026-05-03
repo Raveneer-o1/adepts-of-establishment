@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3gaj1o4425gc"]
+
+[ext_resource type="Script" uid="uid://c07ybsub6a0ux" path="res://Map/Scripts/Faction/Upgrades/discount.gd" id="1_jrh4n"]
+
+[node name="Increased production" type="Node"]
+script = ExtResource("1_jrh4n")
+gold_cost = 1
+upgrade_name = "Increased production"
+description = "Increases all income"

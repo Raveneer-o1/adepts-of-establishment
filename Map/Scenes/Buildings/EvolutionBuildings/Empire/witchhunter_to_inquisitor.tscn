@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwc2re5sakpyl"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/Buildings/EvolutionBuildings/evolution_building.tscn" id="1_wtkrp"]
+
+[node name="Inquisition Hall" instance=ExtResource("1_wtkrp")]
+evolving_from = &"Witch hunter"
+evolving_into = &"Inquisitor"
+gold_cost = 600
+stone_cost = 400
+upgrade_name = "Inquisition Hall"
+description = "This building allows Witch hunters to become Inquisitors"

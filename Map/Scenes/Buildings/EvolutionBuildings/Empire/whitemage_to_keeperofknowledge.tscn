@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjf403l25cjdf"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/Buildings/EvolutionBuildings/evolution_building.tscn" id="1_8v1l2"]
+
+[node name="Temple of Sacred Wisdom" instance=ExtResource("1_8v1l2")]
+evolving_from = &"White Mage"
+evolving_into = &"Keeper of Knowledge"
+stone_cost = 500
+mana_cost = 1600
+upgrade_name = "Temple of Sacred Wisdom"
+description = "This building allows White Mages to become Keepers of Knowledge"

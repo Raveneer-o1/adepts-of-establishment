@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c43cq331x3l6u"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/Buildings/EvolutionBuildings/evolution_building.tscn" id="1_884x8"]
+
+[node name="Matron chambers" instance=ExtResource("1_884x8")]
+evolving_from = &"Cleric"
+evolving_into = &"Matriarch"
+gold_cost = 200
+stone_cost = 500
+upgrade_name = "Matron chambers"
+description = "This building allows Clerics to become Matriarchs"

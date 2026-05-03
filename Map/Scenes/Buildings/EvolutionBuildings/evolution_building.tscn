@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://15ul73he4llt"]
+
+[ext_resource type="Script" uid="uid://r5dpew6eqrgh" path="res://Map/Scripts/Faction/unit_evolution.gd" id="1_bl3ut"]
+
+[node name="EvolutionBuilding" type="Node"]
+script = ExtResource("1_bl3ut")

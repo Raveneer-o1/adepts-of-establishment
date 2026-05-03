@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dk6qq13y3dgg7"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/Buildings/EvolutionBuildings/evolution_building.tscn" id="1_1pxnx"]
+
+[node name="Blood-soaked mound" instance=ExtResource("1_1pxnx")]
+evolving_from = &"Doomdrake"
+evolving_into = &"Gluttonous Serpent"
+gold_cost = 700
+mana_cost = 400
+upgrade_name = "Blood-soaked mound"
+description = "This building allows Doomdrakes to become Gluttonous serpents"

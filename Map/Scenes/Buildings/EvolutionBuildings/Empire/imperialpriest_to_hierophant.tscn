@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8o467pgljlxl"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/Buildings/EvolutionBuildings/evolution_building.tscn" id="1_gh2oo"]
+
+[node name="Holy Scriptorium" instance=ExtResource("1_gh2oo")]
+evolving_from = &"Imperial priest"
+evolving_into = &"Hierophant"
+gold_cost = 700
+stone_cost = 600
+upgrade_name = "Holy Scriptorium"
+description = "This building allows Imperial priests to become Hierophants"

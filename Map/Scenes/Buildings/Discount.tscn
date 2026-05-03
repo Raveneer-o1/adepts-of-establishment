@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkav1ogabpnxf"]
+
+[ext_resource type="Script" uid="uid://c07ybsub6a0ux" path="res://Map/Scripts/Faction/Upgrades/discount.gd" id="1_t4bnw"]
+
+[node name="Discount" type="Node"]
+script = ExtResource("1_t4bnw")
+gold_cost = 2
+upgrade_name = "Discount"
+description = "Discounts all prices"

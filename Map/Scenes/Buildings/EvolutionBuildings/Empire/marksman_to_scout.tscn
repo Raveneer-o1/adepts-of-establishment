@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dd3xafluouhju"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/Buildings/EvolutionBuildings/evolution_building.tscn" id="1_luim8"]
+
+[node name="Outpost" instance=ExtResource("1_luim8")]
+evolving_from = &"Marksman"
+evolving_into = &"Scout"
+gold_cost = 200
+stone_cost = 500
+upgrade_name = "Outpost"
+description = "This building allows Marksmen to become Scouts"

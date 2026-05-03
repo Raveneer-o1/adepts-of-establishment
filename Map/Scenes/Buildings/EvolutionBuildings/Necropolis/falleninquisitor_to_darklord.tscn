@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1e43t8tnnrhd"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/Buildings/EvolutionBuildings/evolution_building.tscn" id="1_3nyia"]
+
+[node name="Dark See" instance=ExtResource("1_3nyia")]
+evolving_from = &"Fallen Inquisitor"
+evolving_into = &"Dark Lord"
+gold_cost = 600
+stone_cost = 700
+mana_cost = 200
+upgrade_name = "Dark See"
+description = "This building allows Fallen Inquisitors to become Dark Lords"

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dewl4ltxaor7"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/Buildings/EvolutionBuildings/evolution_building.tscn" id="1_ofp8l"]
+
+[node name="Holy altar" instance=ExtResource("1_ofp8l")]
+evolving_from = &"Royal Cavalier"
+evolving_into = &"Angel"
+gold_cost = 400
+stone_cost = 900
+mana_cost = 900
+upgrade_name = "Holy altar"
+description = "This building allows Royal cavaliers to become Angels"

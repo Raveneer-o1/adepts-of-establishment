@@ -96,7 +96,7 @@ func get_available_upgrades(include_evolution_buildings: bool = false) -> Array[
 	var res: Array[FactionUpgrade] = []
 	for c in available_upgrades.get_children():
 		if c is FactionUpgrade: res.append(c)
-	if include_evolution_buildings:
+	if include_evolution_buildings and available_upgrades.evolution_buildings:
 		for c in available_upgrades.evolution_buildings.get_children():
 			if c is FactionUpgrade: res.append(c)
 	return res

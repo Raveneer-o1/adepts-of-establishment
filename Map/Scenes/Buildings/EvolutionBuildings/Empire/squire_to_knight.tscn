@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://boyddk5nhs2ic"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/Buildings/EvolutionBuildings/evolution_building.tscn" id="1_5exhp"]
+
+[node name="Garrison" instance=ExtResource("1_5exhp")]
+evolving_from = &"Squire"
+evolving_into = &"Knight"
+gold_cost = 100
+stone_cost = 100
+upgrade_name = "Garrison"
+description = "This building allows Squires to become Knights"

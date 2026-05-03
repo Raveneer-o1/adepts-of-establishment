@@ -1,0 +1,91 @@
+[gd_scene load_steps=30 format=3 uid="uid://bakvsxfcx3pln"]
+
+[ext_resource type="PackedScene" uid="uid://ca6d4leqx6jne" path="res://Map/Scenes/Buildings/EvolutionBuildings/Necropolis/ghost_to_specter.tscn" id="1_iw05s"]
+[ext_resource type="PackedScene" uid="uid://y4q3hwudmrda" path="res://Map/Scenes/Buildings/EvolutionBuildings/Necropolis/specter_to_shadow.tscn" id="2_6ayot"]
+[ext_resource type="PackedScene" uid="uid://betfsasigqavb" path="res://Map/Scenes/Buildings/EvolutionBuildings/Necropolis/shadow_to_visionofdarkness.tscn" id="3_x2qkd"]
+[ext_resource type="PackedScene" uid="uid://bpo12sny0010r" path="res://Map/Scenes/Buildings/EvolutionBuildings/Necropolis/specter_to_willowisp.tscn" id="4_n2cu0"]
+[ext_resource type="PackedScene" uid="uid://bt77qmo8pxga3" path="res://Map/Scenes/Buildings/EvolutionBuildings/Necropolis/willowisp_to_eternal.tscn" id="5_cr6sg"]
+[ext_resource type="PackedScene" uid="uid://bdp2ldkifa35u" path="res://Map/Scenes/Buildings/EvolutionBuildings/Necropolis/destined_to_templar.tscn" id="6_crdtr"]
+[ext_resource type="PackedScene" uid="uid://cd3u0bpjtb6nr" path="res://Map/Scenes/Buildings/EvolutionBuildings/Necropolis/templar_to_falleninquisitor.tscn" id="7_4hxo4"]
+[ext_resource type="PackedScene" uid="uid://b1e43t8tnnrhd" path="res://Map/Scenes/Buildings/EvolutionBuildings/Necropolis/falleninquisitor_to_darklord.tscn" id="8_vdroe"]
+[ext_resource type="PackedScene" uid="uid://c2lslkxx6uosy" path="res://Map/Scenes/Buildings/EvolutionBuildings/Necropolis/destined_to_zombie.tscn" id="9_vc2cf"]
+[ext_resource type="PackedScene" uid="uid://bloyylyd1qhhl" path="res://Map/Scenes/Buildings/EvolutionBuildings/Necropolis/zombie_to_phantomwarrior.tscn" id="10_buuso"]
+[ext_resource type="PackedScene" uid="uid://oeucgg56ow87" path="res://Map/Scenes/Buildings/EvolutionBuildings/Necropolis/zombie_to_skeleton.tscn" id="11_xtems"]
+[ext_resource type="PackedScene" uid="uid://etcquuga5efj" path="res://Map/Scenes/Buildings/EvolutionBuildings/Necropolis/skeleton_to_skeletonwarrior.tscn" id="12_0pmp3"]
+[ext_resource type="PackedScene" uid="uid://dhij7aj2p4uaa" path="res://Map/Scenes/Buildings/EvolutionBuildings/Necropolis/skeletonwarrior_to_skeletonchampion.tscn" id="13_jrtpm"]
+[ext_resource type="PackedScene" uid="uid://b0nhvas3uuu88" path="res://Map/Scenes/Buildings/EvolutionBuildings/Necropolis/wyvern_to_doomdrake.tscn" id="14_0pmp3"]
+[ext_resource type="PackedScene" uid="uid://dk6qq13y3dgg7" path="res://Map/Scenes/Buildings/EvolutionBuildings/Necropolis/doomdrake_to_gluttonousserpent.tscn" id="15_jrtpm"]
+[ext_resource type="PackedScene" uid="uid://bwehdjmqgvalt" path="res://Map/Scenes/Buildings/EvolutionBuildings/Necropolis/gluttonousserpent_to_devourer.tscn" id="16_qntg5"]
+[ext_resource type="PackedScene" uid="uid://b2sn788vqeawp" path="res://Map/Scenes/Buildings/EvolutionBuildings/Necropolis/doomdrake_to_dreadwyrm.tscn" id="17_npgth"]
+[ext_resource type="PackedScene" uid="uid://bw3t0n55awgs6" path="res://Map/Scenes/Buildings/EvolutionBuildings/Necropolis/dreadwyrm_to_undyingnighthunter.tscn" id="18_jqxxb"]
+[ext_resource type="PackedScene" uid="uid://ch36wf51518r2" path="res://Map/Scenes/Buildings/EvolutionBuildings/Necropolis/undyingnighthunter_to_dracolich.tscn" id="19_wrncm"]
+[ext_resource type="PackedScene" uid="uid://d223a34knvnfl" path="res://Map/Scenes/Buildings/EvolutionBuildings/Necropolis/deathacolyte_to_darkmage.tscn" id="20_7exwr"]
+[ext_resource type="PackedScene" uid="uid://cy05qbduos6x4" path="res://Map/Scenes/Buildings/EvolutionBuildings/Necropolis/darkmage_to_wraith.tscn" id="21_qnp3t"]
+[ext_resource type="PackedScene" uid="uid://pdgu8ynpp5p6" path="res://Map/Scenes/Buildings/EvolutionBuildings/Necropolis/wraith_to_heraldofdeath.tscn" id="22_sqrr7"]
+[ext_resource type="PackedScene" uid="uid://ohdfkvqpo78j" path="res://Map/Scenes/Buildings/EvolutionBuildings/Necropolis/deathacolyte_to_necromancer.tscn" id="23_y8n35"]
+[ext_resource type="PackedScene" uid="uid://ju60lpia86fn" path="res://Map/Scenes/Buildings/EvolutionBuildings/Necropolis/necromancer_to_lich.tscn" id="24_f5wkw"]
+[ext_resource type="PackedScene" uid="uid://b8yo3gms7jvef" path="res://Map/Scenes/Buildings/EvolutionBuildings/Necropolis/lich_to_archlich.tscn" id="25_fyi34"]
+[ext_resource type="PackedScene" uid="uid://b7crkwv4yvgv2" path="res://Map/Scenes/Buildings/EvolutionBuildings/Necropolis/necromancer_to_vampire.tscn" id="26_fjyf0"]
+[ext_resource type="PackedScene" uid="uid://dk7j8c63d8pow" path="res://Map/Scenes/Buildings/EvolutionBuildings/Necropolis/vampire_to_eldervampire.tscn" id="27_02345"]
+[ext_resource type="PackedScene" uid="uid://crijopkh2u8bg" path="res://Map/Scenes/Buildings/EvolutionBuildings/Necropolis/eldervampire_to_vampirelord.tscn" id="28_abywe"]
+[ext_resource type="PackedScene" uid="uid://mjyf6qalibuy" path="res://Map/Scenes/Buildings/EvolutionBuildings/Necropolis/eldervampire_to_bloodspawn.tscn" id="29_vj26w"]
+
+[node name="NecropolisTree" type="Node"]
+
+[node name="Haunted mansion" parent="." instance=ExtResource("1_iw05s")]
+
+[node name="Accursed asylum" parent="Haunted mansion" instance=ExtResource("2_6ayot")]
+
+[node name="Alcove Nox" parent="Haunted mansion/Accursed asylum" instance=ExtResource("3_x2qkd")]
+
+[node name="Evermist Mire" parent="Haunted mansion" instance=ExtResource("4_n2cu0")]
+
+[node name="Obsidian Void" parent="Haunted mansion/Evermist Mire" instance=ExtResource("5_cr6sg")]
+
+[node name="Twisted temple" parent="." instance=ExtResource("6_crdtr")]
+
+[node name="Heretical hold" parent="Twisted temple" instance=ExtResource("7_4hxo4")]
+
+[node name="Dark See" parent="Twisted temple/Heretical hold" instance=ExtResource("8_vdroe")]
+
+[node name="Burial ground" parent="." instance=ExtResource("9_vc2cf")]
+
+[node name="Spectral armory" parent="Burial ground" instance=ExtResource("10_buuso")]
+
+[node name="Catacombs" parent="Burial ground" instance=ExtResource("11_xtems")]
+
+[node name="Cursed crypt" parent="Burial ground/Catacombs" instance=ExtResource("12_0pmp3")]
+
+[node name="Amphitheater" parent="Burial ground/Catacombs/Cursed crypt" instance=ExtResource("13_jrtpm")]
+
+[node name="Fell Aerie" parent="." instance=ExtResource("14_0pmp3")]
+
+[node name="Blood-soaked mound" parent="Fell Aerie" instance=ExtResource("15_jrtpm")]
+
+[node name="Hunting grounds" parent="Fell Aerie/Blood-soaked mound" instance=ExtResource("16_qntg5")]
+
+[node name="Battleground" parent="Fell Aerie" instance=ExtResource("17_npgth")]
+
+[node name="Chasm of the night" parent="Fell Aerie/Battleground" instance=ExtResource("18_jqxxb")]
+
+[node name="Dragon barrow" parent="Fell Aerie/Battleground/Chasm of the night" instance=ExtResource("19_wrncm")]
+
+[node name="Sigil of dark rites" parent="." instance=ExtResource("20_7exwr")]
+
+[node name="Bounding glyph" parent="Sigil of dark rites" instance=ExtResource("21_qnp3t")]
+
+[node name="Summoning altar" parent="Sigil of dark rites/Bounding glyph" instance=ExtResource("22_sqrr7")]
+
+[node name="Graveyard" parent="." instance=ExtResource("23_y8n35")]
+
+[node name="Death sanctuary" parent="Graveyard" instance=ExtResource("24_f5wkw")]
+
+[node name="Locus of Being" parent="Graveyard/Death sanctuary" instance=ExtResource("25_fyi34")]
+
+[node name="Rebirth palace" parent="Graveyard" instance=ExtResource("26_fjyf0")]
+
+[node name="Blood Ossuary" parent="Graveyard/Rebirth palace" instance=ExtResource("27_02345")]
+
+[node name="Blood Throne" parent="Graveyard/Rebirth palace/Blood Ossuary" instance=ExtResource("28_abywe")]
+
+[node name="Fetid pit" parent="Graveyard/Rebirth palace/Blood Ossuary" instance=ExtResource("29_vj26w")]

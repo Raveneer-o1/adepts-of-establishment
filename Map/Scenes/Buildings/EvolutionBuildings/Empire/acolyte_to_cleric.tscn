@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqk1h7v3kbhkb"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/Buildings/EvolutionBuildings/evolution_building.tscn" id="1_5xwqb"]
+
+[node name="Parish chapel" instance=ExtResource("1_5xwqb")]
+evolving_from = &"Acolyte"
+evolving_into = &"Cleric"
+gold_cost = 100
+stone_cost = 100
+upgrade_name = "Parish chapel"
+description = "This building allows Acolytes to become Clerics"

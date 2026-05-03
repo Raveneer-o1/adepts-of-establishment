@@ -32,5 +32,5 @@ editor_description = "All buildings should have the option to be displayed at th
 [node name="AvailableUpgrades" type="CanvasLayer" parent="."]
 visible = false
 script = ExtResource("3_5mkmw")
-empire_path = "res://Map/Scenes/EvolutionBuildings/empire_tree.tscn"
-necropolis_path = "res://Map/Scenes/EvolutionBuildings/necropolis_tree.tscn"
+empire_path = "res://Map/Scenes/Buildings/EvolutionBuildings/empire_tree.tscn"
+necropolis_path = "res://Map/Scenes/Buildings/EvolutionBuildings/necropolis_tree.tscn"
