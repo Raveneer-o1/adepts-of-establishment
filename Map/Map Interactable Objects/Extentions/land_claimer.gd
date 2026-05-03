@@ -65,6 +65,9 @@ func _check_claimed_tile(tile: MapTileData, previous_owner: MapFaction) -> void:
 		_setting = true
 
 func _check_turn_start(f: MapFaction) -> void:
+	if not f: return
+	# empty tile_atlas_coords means inactive land claiming
+	if not f.tile_atlas_coords: return
 	if f == land_owner: apply_claim()
 
 func _ready() -> void:

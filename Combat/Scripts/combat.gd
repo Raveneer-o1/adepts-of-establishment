@@ -511,9 +511,9 @@ func _ready() -> void:
 	combat_logic.start_battle()
 	units_died_this_combat_on_left.clear()
 	units_died_this_combat_on_right.clear()
-	EventBus.is_battle_ready = true
 	EventBus.unit_question_started.connect(question_start_react)
 	EventBus.unit_question_ended.connect(question_end_react)
+	EventBus.is_battle_ready = true
 #endregion
 
 #region Utilities

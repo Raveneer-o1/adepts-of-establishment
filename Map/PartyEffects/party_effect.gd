@@ -12,6 +12,9 @@ func apply_effect(...args: Array) -> void:
 	_initialize.call_deferred.callv(args)
 
 func _initialize(...args: Array) -> void:
+	if args.size() == 1 and args[0] is Array:
+		args = args[0]
+	
 	party_parameters = (get_parent() as MapParty).parameters
 	_apply_effect.callv(args)
 

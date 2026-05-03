@@ -84,4 +84,6 @@ signal unit_hired(unit: UnitData)
 signal item_used(item: MapItem)
 
 signal capital_changed(faction: MapFaction)
+
+signal item_equipped(item: MapItem, party: MapParty)
 #endregion

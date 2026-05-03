@@ -28,6 +28,9 @@ var __freing_units: bool = false:
 
 signal units_requested(prev_arr: Array[UnitData])
 
+
+# WARNING: one object per frame probably is not necessary as the unit 
+# list should only consist of not more than 10 objects
 ## Frees duplicate objects created by [method get_unit_list_copy].
 ## Processes one object per frame to avoid performance spikes.
 ## Use [code]await[/code] if you need to wait for complete removal.

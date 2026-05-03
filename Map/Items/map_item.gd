@@ -23,6 +23,18 @@ extends Node
 @export var base_cost: int = 0
 @export_multiline var description: String
 
+var item_owner: MapParty:
+	get:
+		var parent := get_parent()
+		while parent:
+			#if parent is PartyInventory: return parent.get_parent()
+			if parent is MapParty: return parent
+			if parent is Map: return null
+			parent = parent.get_parent()
+		return null
+
+signal item_moved(old_owner: Node)
+
 var ui_manager: PartyUIManager
 
 func get_description() -> String:

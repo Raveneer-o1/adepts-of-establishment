@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dook4qbapuy3u"]
+
+[ext_resource type="Script" uid="uid://vkxkd8b1fwud" path="res://Map/Items/Scripts/equipment/helmet.gd" id="1_uiy7r"]
+
+[node name="Helmet" type="Node"]
+script = ExtResource("1_uiy7r")
+item_name = "Helmet"
+image_path = "res://Arts/itch assets/Pixel Art Icon Pack - RPG [Cainos]/Equipment/Helm.png"
+base_cost = 100
+description = "This is a helmet"

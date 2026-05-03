@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://scnuaabsaxmo"]
+
+[ext_resource type="Script" uid="uid://uu6ckx66ume1" path="res://Map/PartyEffects/Scripts/Effects from items/hero_stat_increase.gd" id="1_lrr6w"]
+
+[node name="HeroBuff" type="Node"]
+script = ExtResource("1_lrr6w")

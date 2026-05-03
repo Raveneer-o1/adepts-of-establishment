@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cy8rh77mxkncn"]
+[gd_scene load_steps=30 format=3 uid="uid://cy8rh77mxkncn"]
 
 [ext_resource type="Script" uid="uid://cium5533y6jdp" path="res://Map/Scripts/game_map.gd" id="1_mp6yi"]
 [ext_resource type="Script" uid="uid://ymq5kwxdp6r3" path="res://Map/Scripts/map_ui.gd" id="2_jwoqq"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://byrx58pdoch0v" path="res://Map/UI/Scripts/city_ui_manager.gd" id="9_bqemh"]
 [ext_resource type="Script" uid="uid://bsrs0hq73vpin" path="res://Map/UI/Scripts/reserve_container.gd" id="9_iv7qx"]
 [ext_resource type="Script" uid="uid://db2fl4l22gmmv" path="res://Map/UI/Scripts/Popups/item_info_popup.gd" id="9_ommir"]
+[ext_resource type="Script" uid="uid://cusx7o6oli0qq" path="res://Map/UI/Scripts/equipment_v_box_container.gd" id="9_oranv"]
 [ext_resource type="PackedScene" uid="uid://1vr0gdex77rx" path="res://Map/Scenes/faction.tscn" id="9_tjube"]
 [ext_resource type="Script" uid="uid://c6lmuhpypmu08" path="res://Map/Scripts/turn_manager.gd" id="10_5bpsg"]
 [ext_resource type="Script" uid="uid://dna40ld5lhlp6" path="res://Map/UI/Scripts/Windows/pick_up_window.gd" id="10_ommir"]
@@ -77,6 +78,7 @@ main_color = Color(0.49860322, 0.4958654, 0.48841393, 1)
 script = ExtResource("2_jwoqq")
 
 [node name="Main" type="CanvasLayer" parent="UILayers"]
+visible = false
 
 [node name="PanelContainer" type="PanelContainer" parent="UILayers/Main"]
 anchors_preset = 11
@@ -173,7 +175,6 @@ layout_mode = 2
 text = "Show ownership"
 
 [node name="Party" type="CanvasLayer" parent="UILayers"]
-visible = false
 script = ExtResource("5_t0dwr")
 
 [node name="HBoxContainer" type="MarginContainer" parent="UILayers/Party"]
@@ -316,6 +317,16 @@ size_flags_stretch_ratio = 2.0
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
+
+[node name="EquipmentScroller" type="ScrollContainer" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/ItemsContainer/EquipmentContainer"]
+layout_mode = 2
+
+[node name="EquipmentVBoxContainer" type="VBoxContainer" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/ItemsContainer/EquipmentContainer/EquipmentScroller"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("9_oranv")
 
 [node name="InventoryScroller" type="ScrollContainer" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/ItemsContainer"]
 layout_mode = 2

@@ -23,12 +23,17 @@ var cancel_movement: bool = false
 var loaded_portrait: Resource
 var inside_city: MapCity = null
 
+@export
 var hero: HeroData = null
 
 var is_moving: bool:
 	get: return control.is_moving
 
 var _behind_walls_effect: BehindWallsPartyEffect
+
+## @experimental: Currently allows only one item per slot type. Future versions may support multiple items of the same type (e.g., two ring slots: first finger, second finger).
+var equipped_items: Dictionary[EquippableMapItem.EquipmentSlot, EquippableMapItem]
+var equipped_items_list: Array[MapItem]
 
 func get_interaction_tiles(
 	party: MapParty = null,

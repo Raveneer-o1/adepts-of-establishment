@@ -12,6 +12,7 @@ extends CanvasLayer
 @onready var places: Array[PartyEditorUnitPosition] = [_0,_1,_2,_3,_4,_5,_6]
 
 @onready var inventory_container: HBoxContainer = %InventoryContainer
+@onready var equipment_v_box_container: EquipmentVBoxContainer = %EquipmentVBoxContainer
 
 @onready var ui_layers: MapUI = $".."
 var currently_filled_party: MapParty = null
@@ -48,6 +49,7 @@ func _find_position(data: UnitData) -> PartyEditorUnitPosition:
 
 func _update_values() -> void:
 	if not currently_filled_party: return
+	# TODO: the equipped items section should be checked here
 	var mapping := _create_mapping()
 	if mapping.is_empty():
 		_fill_party(currently_filled_party)
@@ -73,6 +75,8 @@ func _remove_data() -> void:
 		place.remove_unit()
 	for c in inventory_container.get_children():
 		c.queue_free()
+	for c in equipment_v_box_container.get_children():
+		c.queue_free()
 
 func _fill_units(party: MapParty) -> void:
 	for data in party.units:
@@ -83,7 +87,11 @@ func _fill_units(party: MapParty) -> void:
 func _fill_items(party: MapParty) -> void:
 	for item in party.inventory.items:
 		var node: PartyEditorItem = ITEM_PREFAB.instantiate()
-		inventory_container.add_child(node)
+		@warning_ignore("incompatible_ternary")
+		var container: Node = equipment_v_box_container if \
+			item is EquippableMapItem and item.is_equipped() \
+			else inventory_container
+		container.add_child(node)
 		node.initialize(item)
 
 func _fill_party(party: MapParty) -> void:

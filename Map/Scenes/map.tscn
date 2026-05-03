@@ -489,9 +489,10 @@ unit_name = &"Prophetess"
 max_hp = 100
 metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 
-[node name="MapParty_" parent="Parties" node_paths=PackedStringArray("owner_capital") instance=ExtResource("12_kwhd2")]
+[node name="MapParty_" parent="Parties" node_paths=PackedStringArray("hero", "owner_capital") instance=ExtResource("12_kwhd2")]
 position = Vector2(1383, 772)
 party_name = "Strong dudes"
+hero = NodePath("UnitData7")
 owner_capital = NodePath("../../ObjectManager/EmpireCapital")
 
 [node name="UnitData3" type="Node" parent="Parties/MapParty_"]

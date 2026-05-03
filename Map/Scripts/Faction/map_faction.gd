@@ -10,7 +10,8 @@ extends Node
 @onready var evolution_buildings: Node = $Appearance/EvolutionBuildings
 @onready var resource_container: MapResourceContainer = $ResourceContainer
 
-## Atlas coordinates of the tiles that represent this faction's land
+## Atlas coordinates of the tiles that represent this faction's land.
+## If empty, this faction will never claim any land under any circumstances.
 @export var tile_atlas_coords: Array[Vector2i]
 
 # @experimental: will be replaced with a [Color] type variable

@@ -51,6 +51,7 @@ func screen_access(faction: MapFaction, _signal: Signal) -> Signal:
 @onready var test_faction2: MapFaction = $Factions/Necropolis
 @onready var test_faction_neutral: MapFaction = $Factions/Neutral
 
+## Returns all factions in the game.
 func get_factions() -> Array[MapFaction]:
 	var res: Array[MapFaction] = []
 	res.assign($Factions.get_children())

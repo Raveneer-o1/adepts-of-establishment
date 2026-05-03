@@ -17,6 +17,8 @@ func transfer_item(item: MapItem, container: Node) -> void:
 	if not has_specific_item(item): return
 	item.reparent(container)
 
+## Transtfers all items stored in this inventory to the provided [param container]. [br]
+## [b]Note:[/b] This method does not validate the target container.
 func transfer_all_items(container: Node) -> void:
 	for item in get_children():
 		if item is MapItem: item.reparent(container)
