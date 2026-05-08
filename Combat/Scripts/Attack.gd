@@ -32,9 +32,12 @@ extends RefCounted
 var damages: Dictionary[UnitSpotReference, int] = {}
 var target_references: Array[UnitSpotReference] = []
 
-# if target can't be found in damages dictionary, this value will be used as damage
+## If target can't be found in [member damages] dictionary,
+## this value will be used as damage
 var default_damage: int
 
+## Indicates whether this attack was redirected by calling 
+## [method redirect_to], [method redirect_all], or [method deep_redirect].
 var redirected: bool = false
 
 var accuracy: float
@@ -58,10 +61,17 @@ var targets: Array[Unit]:
 var effect: Resource
 
 ## Number of targets selected by the player. Used for animation synchronization.[br]
-## The first [b]targets_chosen[/b] damage numbers will display as [signal EventBus.attack_reached]
-## signals are emitted, while all other effects are applied simultaneously with the last finalization.
+## The first [b]targets_chosen[/b] damage numbers will be displayed as
+## [signal EventBus.attack_reached] signals are emitted. All remaining effects
+## are applied simultaneously with the final attack finalization.
+## If the attack is finalized before [signal EventBus.attack_reached] has been
+## emitted the expected number of times, all pending damage numbers are shown
+## at once and subsequent signals are ignored.
 var targets_chosen: int = 1
 
+## Determines whether this attack can be evaded.
+## When [code]false[/code], the evasion check is skipped during attack resolution
+## [i](evasion logic is handled by the defending unit)[/i]
 var evadable: bool
 
 ## [code]key[/code]: The name of a scene located in the folder 
@@ -90,6 +100,9 @@ var unit_attack: UnitAttack
 var validation: BaseValidation:
 	get: return unit_attack.target_validation
 
+## Returns the [BaseAdditionalTargets] object from the original [UnitAttack].
+## By default, this field is used only during full redirection
+## (see [method deep_redirect]), but can be accessed directly if needed.
 var additional_targets: BaseAdditionalTargets:
 	get: return unit_attack.additional_targets
 
@@ -99,20 +112,27 @@ var additional_targets: BaseAdditionalTargets:
 ## [code]&"shot"[/code] tag (documentation in the [Unit] class).
 var tags: Array[StringName] = []
 
+## if [code]true[/code], heals the target instead of applying damage
 var is_heal: bool
 
+## Cumulative damage dealt by this attack.[br]
+## [b]Note:[/b] This field is zero until after
+## [signal EventBus.attack_resolved] is emitted.
+## Reading it before the signal will return [code]0[/code].
 var applied_damage: int = 0
 
-var preserved_first_target: UnitSpotReference = null
-
+## Tracks total damage dealt by this attack to individual [Unit]s.
+## A unit not present in this dictionary did not receive any damage from this attack.
 var damage_dealt: Dictionary[Unit, int] = {}
+
+var _preserved_first_target: UnitSpotReference = null
 
 func _remove_target(ref: UnitSpotReference) -> void:
 	# Using null references instead of erase() to preserve the original order
 	# Primarily maintains first entry indices for the is_primary_target() method
 	var i := target_references.find(ref)
-	if not preserved_first_target and i == 0:
-		preserved_first_target = target_references[i]
+	if not _preserved_first_target and i == 0:
+		_preserved_first_target = target_references[i]
 	target_references[i] = null
 
 func _check_immunity(ref: UnitSpotReference) -> bool:
@@ -159,8 +179,8 @@ func filter_targets() -> void:
 		var unit := ref.spot.unit
 		if not unit: continue
 		if _check_immunity(ref): continue
-		# Check shield before miss/evade because warded_attacks is populated
-		# at this point and 'ward' effect is removed
+		# Check ward before miss/evade because warded_attacks is already 
+		# populated at this point and 'ward' effect is removed
 		if _check_ward(ref): continue
 		if _check_miss(ref): continue
 		# Evasion is handled within the unit's resolution logic
@@ -176,12 +196,17 @@ func resolve(finalize: bool = false) -> void:
 		standard_resolution(finalize)
 	EventBus.attack_resolved.emit(self)
 
+## Registers and stores damage dealt to the specified [param unit].
+## Does not validate whether [param unit] is a valid target for this attack.
 func register_applied_damage(unit: Unit, damage: int) -> void:
 	applied_damage += damage
 	if damage_dealt.has(unit):
 		damage_dealt[unit] += damage
 	else: damage_dealt[unit] = damage
 
+## Executes the default attack resolution algorithm.
+## Call this method from a policy object when the policy modifies 
+## values without changing the attack behavior.
 func standard_resolution(finalize: bool = false) -> void:
 	var i := 1
 	for target in target_references:
@@ -196,11 +221,17 @@ func standard_resolution(finalize: bool = false) -> void:
 		if i < targets_chosen:
 			i += 1
 
-func set_parameters(attack: UnitAttack) -> void:
-	damage_policy = attack.damage_policy
-	applying_effects = attack.applying_effects.duplicate()
+#func set_parameters(attack: UnitAttack) -> void:
+	#damage_policy = attack.damage_policy
+	#applying_effects = attack.applying_effects.duplicate()
 
-func redirect_to(target_ref: UnitSpotReference, to:UnitSpot) -> void:
+## Redirects a single target of this attack from
+## [param target_ref] to the [param to] spot. [br][br]
+## To locate the target reference, use [method find_reference]
+## or [method find_all_references]. [br][br]
+## For other redirection behaviors,
+## see [method redirect_all] and [method deep_redirect].
+func redirect_to(target_ref: UnitSpotReference, to: UnitSpot) -> void:
 	var index: int = target_references.find(target_ref)
 	if index < 0: return
 	
@@ -213,6 +244,10 @@ func redirect_to(target_ref: UnitSpotReference, to:UnitSpot) -> void:
 		damages[new_ref] = damage
 	redirected = true
 
+## Redirects all individual target spots to a single new target.
+## Additional targets are not recalculated (e.g., splash damage will be consolidated
+## onto the single unit rather than redistributed to new targets).
+## To properly recalculate additional targets and their damage, use [method deep_redirect].
 func redirect_all(target: UnitSpot, to: UnitSpot) -> void:
 	for t:UnitSpotReference in target_references:
 		if t.spot == target: redirect_to(t, to)
@@ -257,7 +292,7 @@ func find_first_primary_target() -> UnitSpotReference:
 	if target_references.size() < targets_chosen:
 		push_error("targets_chosen is larger than target_references size!")
 		return null
-	if preserved_first_target: return preserved_first_target
+	if _preserved_first_target: return _preserved_first_target
 	for i in range(targets_chosen):
 		if target_references[i]: return target_references[i]
 	return null

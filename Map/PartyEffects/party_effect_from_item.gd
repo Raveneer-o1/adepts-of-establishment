@@ -21,6 +21,8 @@ func _disconnect_from_item(item: MapItem) -> void:
 		_connect_to_item(value)
 		source_item = value
 
+## Mapping of signals to their corresponding callback functions.
+## Use this dictionary instead of manually connecting signals.
 var effect_mapping: Dictionary[Signal, Callable]
 
 func _execute_call(callable: Callable, args: Array) -> void:
@@ -32,7 +34,6 @@ func _validate_call() -> bool:
 	if not is_instance_valid(source_item):
 		source_item = null
 		return false
-	#if source_unit.is_dead: return false
 	
 	if source_item.item_owner != party_parameters.this_party:
 		return false
@@ -43,6 +44,9 @@ func _call_if_valid(...args: Array) -> void:
 	if not _validate_call(): return
 	if not args:
 		push_error("Empty argument list (%s)" % effect_name)
+		return
+	if args[0] is not Signal:
+		push_error("Invalid argument list structure (%s)" % effect_name)
 		return
 	var s: Signal = args.pop_back()
 	if not effect_mapping.has(s):

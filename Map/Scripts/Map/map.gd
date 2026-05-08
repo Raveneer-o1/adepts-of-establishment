@@ -93,7 +93,7 @@ var active_faction: MapFaction:
 	get: return game.turn_manager.active_faction
 	set(value): game.turn_manager.active_faction = value
 
-## Reference to the battle scene to instantiate when combat starts
+## Reference to the battle scene prefab to instantiate when combat starts
 @export var battle_scene: PackedScene
 
 ## Minimum tile coordinate of the map bounds
@@ -420,7 +420,7 @@ func player_act(coords: Vector2i, faction: MapFaction) -> void:
 		if obj.can_interact(active_party):
 			await worker.move_active_party_to_object(obj)
 			return
-	worker.move_active_party(coords)
+	worker.move_active_party()
 
 ## @experimental: arguments type and behavior are subjects to change
 func claim_tile(tile: MapTileData, faction: MapFaction, power: float) -> bool:

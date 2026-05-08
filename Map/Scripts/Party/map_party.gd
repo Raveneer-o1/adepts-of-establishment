@@ -21,14 +21,19 @@ var faction: MapFaction:
 ## this flag automatically resets to [code]false[/code].
 var cancel_movement: bool = false
 var loaded_portrait: Resource
+## The city this party currently occupies.
+## [code]null[/code] if the party is not inside a city.
 var inside_city: MapCity = null
 
-@export
-var hero: HeroData = null
+# TODO: this is not supposed to be an export field,
+# replace with automatic hero detection
+## The hero leading this party
+@export var hero: HeroData = null
 
 var is_moving: bool:
 	get: return control.is_moving
 
+# TODO: this was a temporary solution, time to redesign it
 var _behind_walls_effect: BehindWallsPartyEffect
 
 ## @experimental: Currently allows only one item per slot type. Future versions may support multiple items of the same type (e.g., two ring slots: first finger, second finger).
@@ -71,12 +76,14 @@ func _initialize() -> void:
 func accept_interaction(party: MapParty) -> int:
 	if party.faction.is_enemy(faction):
 		map.start_battle(party, self)
-	return party.parameters.max_movement_points
+		return party.parameters.max_movement_points
+	return 0
 
 func force_interaction_on(party: MapParty) -> int:
 	if faction.is_enemy(party.faction):
 		map.start_battle(party, self)
-	return party.parameters.max_movement_points
+		return party.parameters.max_movement_points
+	return 0
 
 func will_intercept(party: MapParty) -> bool:
 	if inside_city: return false
@@ -107,12 +114,20 @@ func _player_interact(player: MapFaction) -> void:
 func init_party_parameters() -> void:
 	$FactionBanner.set_color(faction)
 
+## Returns a list of units ready for combat, sorted by
+## [member UnitData.party_position] in ascending order.
+## Units with valid [member UnitData.party_position] values are included;
+## units with duplicate or otherwise invalid positions are omitted.
 func get_battle_ready_units() -> Array[UnitData]:
 	var res: Array[UnitData] = []
 	for ch in get_children():
 		if ch is UnitData:
 			if ch.party_position >= 0:
-				res.append(ch)
+				if ch.party_position < Party.MAX_UNITS_NUMBER:
+					res.append(ch)
+				else:
+					push_error("party_position on unit '%s' is out of bounds!" % ch.unit_name)
+	
 	res.sort_custom(
 		func(e1: UnitData, e2: UnitData) -> bool:
 			return e1.party_position < e2.party_position
@@ -122,6 +137,13 @@ func get_battle_ready_units() -> Array[UnitData]:
 		if d.party_position == i:
 			push_error("Duplicate position %d" % i)
 			res.erase(d)
+			continue
+		if d.large_unit:
+			if d.party_position == i + 1 or d.party_position == Party.MAX_UNITS_NUMBER - 1:
+				push_error("Not enough space for a large unit %d" % i)
+				res.erase(d)
+			i = d.party_position + 1
+			continue
 		i = d.party_position
 	return res
 
@@ -176,12 +198,16 @@ func exit_city(tile: Vector2i) -> void:
 	control.walk_to(tile)
 	if _behind_walls_effect: _behind_walls_effect.remove_effect()
 
+## Attempts to move the party into the specified [param city].
+## Does not verify ownership of either the city or the party - will forcibly
+## enter an enemy city if possible.
 func enter_city(city: MapCity) -> void:
 	if not city: return
 	if city.party_inside: return
 	inside_city = city
 	city.party_inside = self
 	control.walk_to(city.tile_position)
+	# TODO: redesign this shit
 	_behind_walls_effect = \
 		parameters.apply_effect(
 			"res://Map/PartyEffects/Scenes/behind_walls.tscn"
@@ -201,11 +227,21 @@ func pick_up(items: Array[MapItem]) -> void:
 	if object_owner and object_owner.api.ui_filter:
 		EventBus.window_requested.emit(items)
 
+## Levels up the specified [param unit]. If [member object_owner] is set,
+## delegates to [method MapFaction.level_up_unit] on the owner;
+## otherwise, calls [method UnitData.level_up]. [br]
+## Can be asynchronous (use [code]await[/code]).[br][br]
+## [b]Note:[/b] Does not verify that [param unit] belongs to this party.
+## Use [method has_unit] to validate membership beforehand.
 func level_up_unit(unit: UnitData) -> void:
 	if not unit: return
 	if not object_owner: unit.level_up()
 	else: await object_owner.level_up_unit(unit)
 
+## Returns if the provided [param unit] is part of this party.
+func has_unit(unit: UnitData) -> bool:
+	if not unit: return false
+	return unit.party == self
 
 func _can_accept_unit(unit: UnitData) -> bool:
 	if units_container.get_occupied_space() >= parameters.get_capacity():

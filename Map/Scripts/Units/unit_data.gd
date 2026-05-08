@@ -123,12 +123,20 @@ enum UnitClass{
 
 @export_file_path("*.tscn") var scene_path: String
 
+## Custom level-up function associated with this unit,
+## overriding default levelup logic. [br]
+## Has no effect if this unit is a [HeroData] instance.
 @export var custom_levelup: LevelupFunction = null
+## Hero ability tree associated with this unit. [br]
+## Has no effect unless this unit is a [HeroData] instance.
 @export var hero_levelup: HeroAbilitiesTree = null
 
 ## Position of the unit within the party (see [Party] class documentation). [br]
 ## Units with position [code]-1[/code] are considered [i]in garrison[/i]
-## and do not participate in combat.
+## and do not participate in combat. [br]
+## Positions exceeding [constant Party.MAX_UNITS_NUMBER] are invalid.
+## They will not break game logic but will produce error messages.
+## Units with invalid positions are also considered [i]in garrison[/i].
 @export_range(-1, Party.MAX_UNITS_NUMBER - 1) var party_position: int = -1
 ## Overrides [member unit_name] for representation
 @export var personal_name: String
@@ -200,9 +208,11 @@ var is_dead: bool:
 ## If this is not [code]null[/code], this object is considered a copy of this original one
 var original: UnitData = null
 
+## Equivalent to checking the contition [code]current_xp >= needed_xp[/code]
 var levelup_available: bool:
 	get: return current_xp >= needed_xp
 
+## Returns the container holding this unit or [code]null[/code]
 var container: UnitsContainer:
 	get:
 		var parent := get_parent()
@@ -309,8 +319,9 @@ func level_up() -> void:
 		return
 	LevelupFunction.default_levelup(self)
 
-## Transforms this unit into the one specified in the argument.
-## [UnitData] class has no way to check the validity of the provided transformation.
+## Transforms this unit into the one specified in the argument. [br][br]
+## [b]Important:[/b] The [UnitData] class has no way to validate whether the 
+## transformation is allowed. The caller is responsible for all validation checks.
 func evolve(into: StringName) -> void:
 	var prev := unit_name
 	unit_name = into
@@ -319,9 +330,6 @@ func evolve(into: StringName) -> void:
 	EventBus.unit_evolved.emit(self, prev)
 
 ## Attempts to move the unit to the specified [param container].
-## Does not validate ownership. [br]
-## [b]Important:[/b] The method will proceed even for unexpected containers
-## (neither party nor city).
 func try_moving_unit(to_container: Node) -> bool:
 	if can_be_moved_to(to_container):
 		_move_unit(to_container)
@@ -329,7 +337,6 @@ func try_moving_unit(to_container: Node) -> bool:
 	return false
 
 ## Returns if the unit can be moved to the provided [param container].
-## Does not validate ownership.
 func can_be_moved_to(parent: Node) -> bool:
 	if not parent: return false
 	if parent == get_parent(): return true

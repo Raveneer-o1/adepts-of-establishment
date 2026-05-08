@@ -21,10 +21,10 @@ func _on_gui_input(event: InputEvent) -> void:
 		(event as InputEventMouseButton).pressed:
 		EventBus.popup_requested.emit(item)
 
-func get_preview() -> Control:
+func _get_preview() -> Control:
 	var drag_obj := PartyEditorDragObject.new(item.item_name)
 	return drag_obj
 
 func _get_drag_data(at_position: Vector2) -> Variant:
-	set_drag_preview(get_preview())
+	set_drag_preview(_get_preview())
 	return self

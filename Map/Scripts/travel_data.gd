@@ -10,6 +10,7 @@ extends RefCounted
 ## [code]&"forest"[/code][br]
 ## [code]&"mountain"[/code][br]
 
+## Returns if the provided [param tile_data] is traversable by default
 static func default_traversability(tile_data: TileData) -> bool:
 	var tile_type: StringName = tile_data.get_custom_data("tile_type")
 	match tile_type:

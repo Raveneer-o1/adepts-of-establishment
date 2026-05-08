@@ -145,7 +145,10 @@ func move_active_party_to_object(object: MapInteractableObject) -> void:
 	var cost := object.validate_and_interact(active_party)
 	if cost > 0: active_party.parameters.subtract_mp(cost)
 
-func move_active_party(coords: Vector2i) -> void:
+## Moves [member Map.active_party] along the currently highlighted path.
+## The path is expected to be pre-highlighted and is retrieved via
+## [method MapVisualizer.get_highlighted_tiles].
+func move_active_party() -> void:
 	if not active_party: return
 	if active_party.is_moving:
 		active_party.control.abort_moving()
@@ -161,6 +164,9 @@ func move_active_party(coords: Vector2i) -> void:
 	# moving party creates an empty entry for each tile that party walked over
 	map.clean_hashtable()
 
+
+## Cancels all currently active map actions (e.g., party movement).
+## Use with [code]await[/code] to wait for animations to complete before proceeding.
 func abort_active_actions() -> void:
 	if active_party and active_party.is_moving:
 		await active_party.control.abort_moving()
@@ -210,6 +216,11 @@ func find_path(
 	if include_start: path.insert(0, _start)
 	return path
 
+## Iterates over all objects in [member Map.objects_layer] and logs debug 
+## errors for any object located outside the terrain boundaries. [br][br]
+## [b]Note:[/b] This method only verifies that objects fall within the map's
+## bounding rectangle. It does not detect objects placed on empty tiles
+## inside the map [i](this behavior may change in the future)[/i].
 func check_object_layer() -> void:
 	var min_tile := map.min_tile
 	var max_tile := map.max_tile

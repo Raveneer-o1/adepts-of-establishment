@@ -8,6 +8,8 @@ var effect_name: String
 
 @abstract func _apply_effect(...args: Array) -> void
 
+## Applies the effect. Initialization happens in deferred mode, so parameters can be set
+## after calling this method; they will be read when the current call chain is complete.
 func apply_effect(...args: Array) -> void:
 	_initialize.call_deferred.callv(args)
 

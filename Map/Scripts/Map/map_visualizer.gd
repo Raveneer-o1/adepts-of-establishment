@@ -48,6 +48,8 @@ func _find_path(party: MapParty, destination: Vector2i) -> Array[Vector2i]:
 			include_start
 		)
 
+# WARNING: this finction is prone to errors and can cause crashes if 
+# called incorrectly. Read the docscting.
 ## Draws a path for the specified [param party] to [param end] from [param start].
 ## Note operand order: draws path TO end FROM start. [br]
 ## If [param start] is omitted, uses [member MapParty.tile_position], requiring

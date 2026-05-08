@@ -40,7 +40,8 @@ var active_faction: MapFaction:
 ## retrieval of properties like [member Map.active_party] during mouse hover,
 ## click processing, and other player interactions, bypassing the [Faction] API.
 ## [br][br]
-## Incorrect usage may permit unauthorized access or manipulation of other players' data.
+## Incorrect usage may permit unauthorized access or manipulation of other
+## players' data. Use [method forbid_game_access] to revoke the access.
 func allow_game_access() -> void:
 	_game_access_allowed = true
 
@@ -58,9 +59,9 @@ var _last_target_tile: Vector2i
 # algorithm execution is delayed until the cursor position stabilizes.
 const _MOUSE_DISTANCE_REGIONS = [
 	[15, -1.0],
-	[30, 0.025],
-	[40, 0.05],
-	[50, 0.1],
+	[30, 0.001],
+	[40, 0.005],
+	[50, 0.01],
 ]
 const _MAX_TIMER = 0.5
 

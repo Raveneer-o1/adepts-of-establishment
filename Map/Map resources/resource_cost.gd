@@ -21,6 +21,9 @@ func is_valid() -> bool:
 		stone >= 0 and \
 		mana >= 0
 
+## Creates a new [ResourceCost] from a dictionary. Expects the following exact keys:
+## [code]&"gold"[/code], [code]&"stone"[/code], [code]&"mana"[/code].
+## All other keys are ignored.
 static func from_dict(d: Dictionary) -> ResourceCost:
 	var _gold: int = d.get(&"gold", 0)
 	var _stone: int = d.get(&"stone", 0)

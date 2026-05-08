@@ -21,6 +21,8 @@ func apply_heal(a: Attack)->void:
 
 func vampiric_heal(attack: Attack) ->void:
 	if attack.attacker == target_unit:
+		# TODO: why not apply_heal.call_deferred(attack)?
+		# it should be faster than looking for the function by name
 		self.call_deferred(&"apply_heal", attack)
 
 func read_params(params: Variant) -> void:

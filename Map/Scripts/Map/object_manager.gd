@@ -3,7 +3,7 @@ extends Node
 
 @onready var map: Map = $".."
 
-## instantiates provided [param prefab], adds is as a child to the
+## Instantiates provided [param prefab], adds is as a child to the
 ## [MapObjectManager].[br]
 ## Returns instantiated object or [code]null[/code] if failed
 func add_object(prefab: PackedScene, coords: Vector2i) -> MapInteractableObject:
@@ -16,9 +16,11 @@ func add_object(prefab: PackedScene, coords: Vector2i) -> MapInteractableObject:
 		return null
 	var interactable: MapInteractableObject = object
 	
+	# coordinates must be set before calling add_child() because objects determine
+	# their map coordinates from global_position when entering the tree.
+	interactable.global_position = map.get_global_coords(coords)
 	# MapObjectManager is a plain Node, it doesn't have transform or position,
 	# so assigning objects as children won't inadvertently relocate them.
-	interactable.global_position = map.get_global_coords(coords)
 	add_child(interactable)
 	
 	return object

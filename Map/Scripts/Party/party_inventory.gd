@@ -9,9 +9,10 @@ var items: Array[MapItem]:
 		return res
 
 func has_specific_item(item: MapItem) -> bool:
-	for c in get_children():
-		if c == item: return true
-	return false
+	return item.get_parent() == self
+	#for c in get_children():
+		#if c == item: return true
+	#return false
 
 func transfer_item(item: MapItem, container: Node) -> void:
 	if not has_specific_item(item): return

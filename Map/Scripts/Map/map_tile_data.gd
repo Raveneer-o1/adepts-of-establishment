@@ -113,6 +113,7 @@ func _find_map() -> Map:
 
 func _ready() -> void:
 	map = _find_map()
+	assert(map)
 	coordinates = map.get_tile_coords(global_position)
 	tile_data = map.terrain_layer.get_cell_tile_data(coordinates)
 	claimable = tile_data.get_custom_data("claimable")

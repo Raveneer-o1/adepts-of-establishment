@@ -111,7 +111,7 @@ var movement_points: int = max_movement_points:
 	set(value): movement_points = clampi(value, 0, max_movement_points)
 
 ## Base capacity value set during party initialization.
-## Intended to be modified by [HeroData] when learning relevant abilities,
+## Intended to be directly modified by [HeroData] when learning relevant abilities,
 ## avoiding expensive connections to [signal party_capacity_requested].
 var default_capacity: int = 3
 
@@ -133,6 +133,7 @@ func _get_accumulated_value(default: Variant) -> Variant:
 		var res: Variant = accumulated_value
 		accumulated_value = null
 		return res
+	accumulated_value = null
 	return default
 
 func get_unit_data() -> Array[UnitData]:
@@ -142,6 +143,10 @@ func get_max_movement_points() -> int:
 	max_mp_requested.emit()
 	return _get_accumulated_value(_max_movement_points)
 
+## Returns the maximum number of units this party can contain. [br]
+## [b]Note:[/b] A party may temporarily exceed this capacity under certain conditions.
+## When over capacity, the party cannot accept new units, but existing functionality
+## should continue to work as expected (this is intended behavior, though not tested).
 func get_capacity() -> int:
 	party_capacity_requested.emit()
 	return _get_accumulated_value(default_capacity)

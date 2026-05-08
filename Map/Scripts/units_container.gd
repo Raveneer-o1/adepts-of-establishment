@@ -29,7 +29,7 @@ var __freing_units: bool = false:
 signal units_requested(prev_arr: Array[UnitData])
 
 
-# WARNING: one object per frame probably is not necessary as the unit 
+# NOTE: one object per frame probably is not necessary as the unit 
 # list should only consist of not more than 10 objects
 ## Frees duplicate objects created by [method get_unit_list_copy].
 ## Processes one object per frame to avoid performance spikes.
@@ -51,9 +51,9 @@ func get_unit_list_copy() -> Array[UnitData]:
 	free_units_list()
 	var units_original := units
 	for data in units_original:
-		_unit_list_copy.append(data.duplicate())
-	for i in range(units_original.size()):
-		_unit_list_copy[i].original = units_original[i]
+		var dupl := data.duplicate()
+		dupl.original = data
+		_unit_list_copy.append(dupl)
 	return _unit_list_copy
 
 ## Returns the actual unit data list, after applying all effects.

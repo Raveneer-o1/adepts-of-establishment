@@ -14,8 +14,6 @@ extends Node
 ## If empty, this faction will never claim any land under any circumstances.
 @export var tile_atlas_coords: Array[Vector2i]
 
-# @experimental: will be replaced with a [Color] type variable
-#@export_range(0, 2) var main_color: int
 @export var main_color: Color
 
 ## List of all units this faction can hire
@@ -34,6 +32,8 @@ func find_unit_evolution(unit_name: StringName) -> Array[StringName]:
 
 ## Returns a list of all [FactionUpgrade] nodes that currently have an 
 ## effect on the faction.
+## Excludes [UnitEvolution] nodes by default. Set [param include_evolution_buildings]
+## to [code]true[/code] to include evolution upgrades.
 func get_all_upgrades(include_evolution_buildings: bool = false) -> Array[FactionUpgrade]:
 	var res: Array[FactionUpgrade] = []
 	for c in get_children() + appearance.get_children():
@@ -43,11 +43,6 @@ func get_all_upgrades(include_evolution_buildings: bool = false) -> Array[Factio
 			if c is FactionUpgrade: res.append(c)
 	return res
 
-
-func _research_evolution(building: UnitEvolution) -> void:
-	if building.get_parent():
-		evolution_buildings.add_child(building)
-	else: evolution_buildings.add_child(building)
 
 ## [color=red][b]Never[/b] call this function directly.[/color]
 ## Use [method FactionAPI.research].
@@ -70,6 +65,7 @@ func research(upgrade: FactionUpgrade) -> void:
 
 ## Selects an evolution path for [param unit] from [param options].
 ## This wrapper delegates to [method FactionAPI.choose_evolution].
+## Can be asynchronous (use [code]await[/code]).
 func choose_evolution(unit: UnitData, options: Array[StringName]) -> StringName:
 	if not options: return &""
 	if options.size() == 1: return options[0]
@@ -78,7 +74,8 @@ func choose_evolution(unit: UnitData, options: Array[StringName]) -> StringName:
 
 ## Levels up the provided [param unit]. If the evolution is impossible or
 ## [method choose_evolution] returns empty string (nothing chosen),
-## simply calls [method UnitData.level_up]
+## simply calls [method UnitData.level_up].[br]
+## Can be asynchronous (use [code]await[/code]).
 func level_up_unit(unit: UnitData) -> void:
 	if not unit: return
 	var evolve_into: Array[StringName] = find_unit_evolution(unit.unit_name)

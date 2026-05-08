@@ -16,9 +16,8 @@ var map: Map:
 var game: GameMap:
 	get: return this_party.map.game
 
-## Number of tiles the unit can traverse per second. [br]
-## [b]Note:[/b] Actual movement time is proportional to path length -
-## the movement timer restarts after reaching each tile in the path.
+# TODO: route the speed calculation through GameSettings
+## Number of tiles the party can traverse per second.
 const MAP_SPEED = 5.0
 
 func _handle_step(destination: Vector2i) -> bool:
@@ -54,12 +53,10 @@ func walk_to(
 ) -> void:
 	await _walk_to(destination, animate)
 	_finish_moving_animation()
+	
 	# safeguard against misaligned position
 	this_party.global_position = _moving_to
 
-## Moves a party to a proveded coordinates [br][br]
-## [color=red]Warning:[/color] This method performs no validation - it can move
-## units through any tile, including non-existent or impassable locations.
 func _walk_to(
 	destination: Vector2i,
 	animate: bool,
@@ -92,6 +89,7 @@ func walk_along_path(
 	if this_party.inside_city: this_party.exit_city(path[0])
 	var interrupted := await _walk_along_path(path, animate, target_object)
 	_finish_moving_animation()
+	
 	# safeguard against misaligned position
 	this_party.global_position = _moving_to
 	return not interrupted

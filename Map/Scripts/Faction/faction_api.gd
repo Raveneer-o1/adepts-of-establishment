@@ -24,6 +24,8 @@ var ui_filter: API_UIFilter:
 		return _ui_filter if game.screen_player == this_faction else null
 @onready var _ui_filter: API_UIFilter = API_UIFilter.new()
 
+## The controller managing this faction. Controller is the node responsible
+## for all actions through this API.
 var controller: FactionController = null
 
 ## Processes a tile selected by player or AI input. This differs from
@@ -95,6 +97,7 @@ func choose_evolution(unit: UnitData, options: Array[StringName]) -> StringName:
 ## Requests the [member controller] to select an ability
 ## [param hero] from [param options].
 ## If no controller is present, picks at random.
+## Can be asynchronous (use [code]await[/code]).
 func choose_hero_ability(hero: HeroData, options: Array[HeroAbility]) -> HeroAbility:
 	@warning_ignore("redundant_await")
 	if controller: return await controller.choose_hero_ability(hero, options)

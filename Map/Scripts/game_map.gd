@@ -10,6 +10,7 @@ var current_map: Map
 
 @export var neutral_faction: MapFaction
 
+# WARNING: this will be replaced with a getter that dynamically finds all factions
 @onready var factions_in_game: int = $Factions.get_child_count()
 
 ## The faction currently viewing the game screen, controlling information visibility

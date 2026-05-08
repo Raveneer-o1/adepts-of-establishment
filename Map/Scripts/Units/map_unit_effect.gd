@@ -10,10 +10,13 @@ const EFFECTS_DIRECTORY = "res://Map/Scripts/Units/MapEffects/"
 
 ## Applies serialized effects from the dictionary to the specified unit.
 ## Dictionary keys must be effect script paths (not scene paths), with values
-## passed as arguments to each effect's [method apply].
+## passed as arguments to each effect's [method MapUnitEffect.apply].
 ## Returns the instantiated effect objects. [br][br]
 ## [b]Note:[/b] Script names without full paths are searched in
-## [constant EFFECTS_DIRECTORY].
+## [constant EFFECTS_DIRECTORY]. [br]
+## [method MapUnitEffect.apply] is called in deferred mode.
+## Any errors occurring during deferred execution will not be caught by this
+## function but will surface at the end of the current frame.
 static func apply_serialized(serialized: Dictionary, unit_data: UnitData) -> Array[MapUnitEffect]:
 	var res: Array[MapUnitEffect] = []
 	for path: String in serialized:
