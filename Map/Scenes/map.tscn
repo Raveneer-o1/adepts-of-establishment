@@ -35,8 +35,8 @@
 [ext_resource type="PackedScene" uid="uid://jptv4wy37o02" path="res://Map/Map Interactable Objects/Scenes/land_claiming_rod.tscn" id="28_x0sa0"]
 [ext_resource type="PackedScene" uid="uid://bg1dfkhl176lq" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scenes/gold_mine.tscn" id="30_orlke"]
 [ext_resource type="Script" uid="uid://cbm1bjrf8g5x" path="res://Map/Scripts/Units/hero_data.gd" id="32_i47xn"]
-[ext_resource type="PackedScene" uid="uid://cx4tudyj13yvi" path="res://Map/Heroes/test_hero_ability_tree.tscn" id="34_hhhnw"]
 [ext_resource type="PackedScene" uid="uid://bppovohjijqbq" path="res://Map/Heroes/Thymaël Doux.tscn" id="36_t4h4h"]
+[ext_resource type="PackedScene" uid="uid://djeo7bmtq4rr5" path="res://Map/PartyEffects/Scenes/Effects from units/test.tscn" id="37_4hre8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iq1o3"]
 texture = ExtResource("1_xec2n")
@@ -489,10 +489,9 @@ unit_name = &"Prophetess"
 max_hp = 100
 metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 
-[node name="MapParty_" parent="Parties" node_paths=PackedStringArray("hero", "owner_capital") instance=ExtResource("12_kwhd2")]
+[node name="MapParty_" parent="Parties" node_paths=PackedStringArray("owner_capital") instance=ExtResource("12_kwhd2")]
 position = Vector2(1383, 772)
 party_name = "Strong dudes"
-hero = NodePath("Thymaël Doux")
 owner_capital = NodePath("../../ObjectManager/EmpireCapital")
 
 [node name="Blade Saint" type="Node" parent="Parties/MapParty_"]
@@ -520,8 +519,6 @@ unit_name = &"Thymaël Doux, the Blade of Holy Light"
 max_hp = 100
 metadata/_custom_type_script = "uid://cbm1bjrf8g5x"
 
-[node name="TestHeroAbilityTree" parent="Parties/MapParty_/Thymaël Doux" instance=ExtResource("34_hhhnw")]
-
 [node name="Tree" parent="Parties/MapParty_/Thymaël Doux" instance=ExtResource("36_t4h4h")]
 
 [node name="Prophetess" type="Node" parent="Parties/MapParty_"]
@@ -531,6 +528,9 @@ current_hp = 100
 unit_name = &"Prophetess"
 max_hp = 100
 metadata/_custom_type_script = "uid://mn0dy1cf0p65"
+
+[node name="Test" parent="Parties/MapParty_" node_paths=PackedStringArray("source") instance=ExtResource("37_4hre8")]
+source = NodePath("../Thymaël Doux")
 
 [node name="MapParty0" parent="Parties" instance=ExtResource("12_kwhd2")]
 position = Vector2(1082, 775)

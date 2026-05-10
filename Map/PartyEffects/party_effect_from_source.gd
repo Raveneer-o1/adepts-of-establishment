@@ -28,7 +28,7 @@ extends PartyEffect
 
 @abstract func _validate_call() -> bool
 
-var source: Object:
+@export var source: Node:
 	get: return source
 	set(value):
 		if value == source: return
@@ -57,7 +57,7 @@ func _call_if_valid(...args: Array) -> void:
 	if not args:
 		push_error("Empty argument list (%s)" % effect_name)
 		return
-	if args[0] is not Signal:
+	if args.back() is not Signal:
 		push_error("Invalid argument list structure (%s)" % effect_name)
 		return
 	var s: Signal = args.pop_back()

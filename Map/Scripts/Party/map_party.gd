@@ -25,10 +25,8 @@ var loaded_portrait: Resource
 ## [code]null[/code] if the party is not inside a city.
 var inside_city: MapCity = null
 
-# TODO: this is not supposed to be an export field,
-# replace with automatic hero detection
 ## The hero leading this party
-@export var hero: HeroData = null
+var hero: HeroData = null
 
 var is_moving: bool:
 	get: return control.is_moving
@@ -64,13 +62,13 @@ var units: Array[UnitData]:
 #region Abstract Definitions
 
 func _initialize() -> void:
-	#ownable = true
 	loaded_portrait = load(portrait_texture)
 	_validate_refs()
 	if is_queued_for_deletion(): return
 	object_name = "Party (%s)" % party_name
 	for c in get_children():
 		if c is UnitData: c.reparent(units_container)
+		if c is PartyEffect: c.apply_effect()
 	init_party_parameters()
 
 func accept_interaction(party: MapParty) -> int:
@@ -113,6 +111,10 @@ func _player_interact(player: MapFaction) -> void:
 ## @experimental: this will be redesigned
 func init_party_parameters() -> void:
 	$FactionBanner.set_color(faction)
+	for c in get_children():
+		if c is HeroData:
+			if hero: push_error("Party '%s' has more than one hero" % object_name)
+			else: hero = c
 
 ## Returns a list of units ready for combat, sorted by
 ## [member UnitData.party_position] in ascending order.
