@@ -318,12 +318,11 @@ func finalize_attack() -> void:
 	
 	visual_bar.max_value = snapshot.max_hp
 	visual_bar.value = snapshot.hp
-	
-
 
 ## Processes an attack against this unit, applying damage calculations immediately.
 ## This method handles game logic but does not update visuals -
-## it calls [method schedule_damage] for visual sequencing.
+## it calls [method schedule_damage] for visual sequencing,
+## unless [param finalize] is set to [code]true[/code].
 func resolve_attack(attack: Attack, damage: int, delay: int = 0, finalize: bool = false) -> void:
 	if attack.evadable and GlobalDefs.rand_roll(clampf(parameters.evasion, 0.0, 1.0), party):
 		EventBus.attack_evaded.emit(self, attack)
@@ -351,8 +350,6 @@ func resolve_attack(attack: Attack, damage: int, delay: int = 0, finalize: bool 
 	# if unit is dead after taking damage, it was killed by this attack
 	if parameters.dead:
 		EventBus.unit_killed.emit(self, attack.attacker)
-	
-
 
 ## Called when [member EventBus.attack_reached] is emitted.
 func check_taking_damage(unit: Unit) -> void:

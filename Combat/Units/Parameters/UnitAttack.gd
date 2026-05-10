@@ -78,22 +78,9 @@ var unit: Unit
 ## and automatic additional targets.
 @export_multiline var description: String = ""
 
-## Returns a human-friendly accuracy representation rather than raw probabilities.
-## The idea is to never show actual percentages to the player and avoid behind-the-scenes
-## number manipulation (as it's usually done to improve player perception). [br]
-## The formula essentially gives X for the phrase [b]"unit will miss 1 in X attacks"[/b]. [br]
-## Returns [code]NAN[/code] if accuracy is 0.0 (guaranteed miss) [br]
-## Returns [code]INF[/code] if accuracy is 1.0 (guaranteed hit) [br] [br]
-## [center][i]Conversion examples: [br]
-## 0.25 (25%) → 1.333333 [br]
-## 0.5 (50%) → 2.0 [br]
-## 0.75 (50%) → 4.0 [br]
-## 0.85 (85%) → 7.0 [br]
-## 0.9 (90%) → 10.0 [br]
-## 0.95 (95%) → 20.0 [br]
-## 0.975 (97.5%) → 40.0 [br]
-## 0.99 (99%) → 100.0 [br]
-## 0.995 (99.5%) → 199.999... [/i] [/center]
+## Returns the human-readable accuracy representation for this attack.
+## Equivalent to calling [method get_accuracy_representation]
+## with [member accuracy] as the argument.
 var accuracy_representation: float:
 	get: return get_accuracy_representation(accuracy)
 
@@ -160,6 +147,22 @@ func make_current() -> void:
 	unit.attacks_for_this_round[pos] = prev_atk
 	unit.current_attack = self
 
+## Returns a human-friendly accuracy representation rather than raw probabilities.
+## The idea is to never show actual percentages to the player and avoid behind-the-scenes
+## number manipulation (as it's usually done to improve player perception). [br]
+## The formula essentially gives X for the phrase [b]"unit will miss 1 in X attacks"[/b]. [br]
+## Returns [code]NAN[/code] if accuracy is 0.0 (guaranteed miss) [br]
+## Returns [code]INF[/code] if accuracy is 1.0 (guaranteed hit) [br] [br]
+## [center][i]Conversion examples: [br]
+## 0.25 (25%) → 1.333333 [br]
+## 0.5 (50%) → 2.0 [br]
+## 0.75 (50%) → 4.0 [br]
+## 0.85 (85%) → 7.0 [br]
+## 0.9 (90%) → 10.0 [br]
+## 0.95 (95%) → 20.0 [br]
+## 0.975 (97.5%) → 40.0 [br]
+## 0.99 (99%) → 100.0 [br]
+## 0.995 (99.5%) → 199.999... [/i] [/center]
 static func get_accuracy_representation(acc: float) -> float:
 	if is_zero_approx(acc): return NAN
 	var chance_to_miss: float = 1.0 - acc

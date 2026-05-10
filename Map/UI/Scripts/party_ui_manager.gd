@@ -8,6 +8,7 @@ extends CanvasLayer
 @onready var _4: PartyEditorUnitPosition = $HBoxContainer/PanelContainer/HBoxContainer/UnitsContainer/FrontlineContainer/PartyEditorUnitPosition4
 @onready var _5: PartyEditorUnitPosition = $HBoxContainer/PanelContainer/HBoxContainer/UnitsContainer/BacklineContainer/PartyEditorUnitPosition5
 @onready var _6: PartyEditorUnitPosition = $HBoxContainer/PanelContainer/HBoxContainer/UnitsContainer/FrontlineContainer/PartyEditorUnitPosition6
+@onready var reserve_container: ReserveContainer = %UI_Party_ReserveContainer
 
 @onready var places: Array[PartyEditorUnitPosition] = [_0,_1,_2,_3,_4,_5,_6]
 
@@ -80,8 +81,9 @@ func _remove_data() -> void:
 
 func _fill_units(party: MapParty) -> void:
 	for data in party.units:
-		if data.party_position < 0: continue
-		if data.party_position >= places.size(): continue
+		if data.party_position < 0 or \
+			data.party_position >= places.size():
+				reserve_container.add_unit(data)
 		places[data.party_position].add_unit(data)
 
 func _fill_items(party: MapParty) -> void:

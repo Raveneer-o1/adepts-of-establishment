@@ -8,6 +8,14 @@ var effect_name: String
 
 @abstract func _apply_effect(...args: Array) -> void
 
+enum StatBuff{
+	health,
+	damage,
+	armor,
+	evasion,
+	shielding_chance,
+}
+
 ## Applies the effect. Initialization happens in deferred mode, so parameters can be set
 ## after calling this method; they will be read when the current call chain is complete.
 func apply_effect(...args: Array) -> void:

@@ -28,6 +28,28 @@ var __freing_units: bool = false:
 
 signal units_requested(prev_arr: Array[UnitData])
 
+var units_owner: MapFaction:
+	get:
+		var p := get_parent()
+		while p:
+			if p is MapInteractableObject: return p.object_owner
+			elif p is Map: return null
+			p = p.get_parent()
+		return null
+
+## Attempts to transfer specified [param unit] to the provided contaner.
+func try_transfer_unit(unit: UnitData, to: UnitsContainer) -> bool:
+	if not unit or not to: return false
+	if to == self: return true
+	if not contains(unit): return false
+	if to.units_owner != units_owner: return false
+	
+	unit.reparent(to)
+	for e in unit.map_effects:
+		e.on_unit_move()
+	unit.unit_moved.emit()
+	EventBus.unit_transferred.emit(unit, self)
+	return true
 
 # NOTE: one object per frame probably is not necessary as the unit 
 # list should only consist of not more than 10 objects
@@ -56,7 +78,11 @@ func get_unit_list_copy() -> Array[UnitData]:
 		_unit_list_copy.append(dupl)
 	return _unit_list_copy
 
-## Returns the actual unit data list, after applying all effects.
+## Returns a deep copy of the unit data list with all effects applied.
+## The returned [UnitData] objects are not the original units; each copy has its
+## [member UnitData.original] set to the corresponding original data.
+## These objects are orphans managed by the container. Do not preserve references,
+## as they will be destroyed automatically when another list is requested.
 func get_units_data() -> Array[UnitData]:
 	var _units := get_unit_list_copy()
 	units_requested.emit(_units)

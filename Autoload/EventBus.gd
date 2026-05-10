@@ -85,5 +85,7 @@ signal item_used(item: MapItem)
 
 signal capital_changed(faction: MapFaction)
 
+signal unit_transferred(unit: UnitData, previous_container: UnitsContainer)
+
 signal item_equipped(item: MapItem, party: MapParty)
 #endregion

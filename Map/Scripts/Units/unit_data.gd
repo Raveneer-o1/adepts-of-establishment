@@ -329,15 +329,20 @@ func evolve(into: StringName) -> void:
 	assert (init_success)
 	EventBus.unit_evolved.emit(self, prev)
 
+## @deprecated: use [method UnitsContainer.try_transfer_unit] instead
 ## Attempts to move the unit to the specified [param container].
 func try_moving_unit(to_container: Node) -> bool:
+	push_error("Deprecated call")
+	
 	if can_be_moved_to(to_container):
 		_move_unit(to_container)
 		return true
 	return false
 
+## @deprecated: use [method UnitsContainer.try_transfer_unit] instead
 ## Returns if the unit can be moved to the provided [param container].
 func can_be_moved_to(parent: Node) -> bool:
+	push_error("Deprecated call")
 	if not parent: return false
 	if parent == get_parent(): return true
 	if self is HeroData: return false

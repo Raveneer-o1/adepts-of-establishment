@@ -36,31 +36,54 @@ func remove_unit() -> void:
 	if unit: unit.queue_free()
 	unit = null
 
-# HACK: This function checks for valid movements but does not go through API
 func move_unit(received_unit: PartyEditorUnit) -> void:
-	if not received_unit: return
+	if not _move_unit_in(received_unit): return
 	var other_place := received_unit.get_parent()
-	if other_place == self: return
-	if reparent_data:
-		var received_owner := received_unit.unit_data.unit_owner
-		if received_owner != parent_owner:
-			push_error("Trying to move unit to a different owner")
-			return
-		if not received_owner.api.ui_filter:
-			push_error("Filtered UI input")
-			return
-		if not received_unit.unit_data.try_moving_unit(parent): return
+	if not _move_unit_out(
+		received_unit.unit_data.container,
+		received_unit.get_parent().party_position if \
+			other_place is PartyEditorUnitPosition else -1
+	):
+		push_error("Unexpeced failure to move unit")
+	
+	
 	if other_place is PartyEditorUnitPosition:
 		other_place.unit = unit
 	if unit:
-		if other_place is PartyEditorUnitPosition:
-			unit.unit_data.party_position = other_place.party_position
-		else: unit.unit_data.party_position = -1
 		unit.reparent(other_place, false)
+		unit.position = Vector2.ZERO
 	unit = received_unit
-	unit.unit_data.party_position = party_position
-	unit.reparent(self, false)
+	received_unit.reparent(self, false)
 	received_unit.position = Vector2.ZERO
+
+func _move_unit_out(to: UnitsContainer, pos: int) -> bool:
+	if not unit: return true
+	if not to: return false
+	if unit.unit_data.container == to: return true
+	if not to.units_owner.api.ui_filter:
+		push_error("Filtered UI input")
+		return false
+	
+	return to.units_owner.api.ui_filter.move_unit(
+		unit.unit_data,
+		to,
+		pos
+	)
+
+func _move_unit_in(received_unit: PartyEditorUnit) -> bool:
+	if not received_unit: return false
+	var received_owner := received_unit.unit_data.unit_owner
+	if not received_owner.api.ui_filter:
+		push_error("Filtered UI input")
+		return false
+	var other_place := received_unit.get_parent()
+	if other_place == self: return false
+	
+	return received_owner.api.move_unit(
+		received_unit.unit_data,
+		parent,
+		party_position
+	)
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	if data is not PartyEditorUnit: return false

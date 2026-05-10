@@ -246,8 +246,10 @@ func validate_and_interact(party: MapParty, forced: bool = false) -> int:
 	if forced: return force_interaction_on(party)
 	return accept_interaction(party)
 
+## @deprecated: use [UnitsContainer] class
 ## Returns if the provided [param unit] can be transfered to this object.
 func can_accept_unit(unit: UnitData) -> bool:
+	push_error("Deprecated call")
 	if not units_container: return false
 	if unit is HeroData:
 		if unit.get_parent() == units_container: return true

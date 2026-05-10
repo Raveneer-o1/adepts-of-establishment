@@ -174,7 +174,6 @@ layout_mode = 2
 text = "Show ownership"
 
 [node name="Party" type="CanvasLayer" parent="UILayers"]
-visible = false
 script = ExtResource("5_t0dwr")
 
 [node name="HBoxContainer" type="MarginContainer" parent="UILayers/Party"]
@@ -195,12 +194,13 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="UILayers/Party/HBoxContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="PartyReserveContainer" type="ScrollContainer" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer"]
+[node name="UI_Party_ReserveContainer" type="ScrollContainer" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("9_iv7qx")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/PartyReserveContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer/UI_Party_ReserveContainer"]
 layout_mode = 2
 
 [node name="UnitsContainer" type="HBoxContainer" parent="UILayers/Party/HBoxContainer/PanelContainer/HBoxContainer"]
@@ -553,6 +553,7 @@ Your color is blue."
 fit_content = true
 
 [node name="Capital" type="CanvasLayer" parent="UILayers"]
+visible = false
 script = ExtResource("11_vrvlx")
 
 [node name="MarginContainer" type="MarginContainer" parent="UILayers/Capital"]

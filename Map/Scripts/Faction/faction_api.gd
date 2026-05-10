@@ -164,6 +164,23 @@ func research(upgrade: FactionUpgrade) -> bool:
 		return true
 	return false
 
+## Attempts to move [param unit] to the specified [param destination] container.
+## Returns [code]true[/code] if the move is permitted.
+## If [param destination] is the container currently storing the unit
+## or [code]null[/code], the move is treated as identity and always succeeds.
+func move_unit(unit: UnitData, destination: UnitsContainer, position: int) -> bool:
+	if not _move_unit(unit, destination): return false
+	unit.party_position = position
+	return true
+
+func _move_unit(unit: UnitData, destination: UnitsContainer) -> bool:
+	if not destination: return true
+	if not unit: return false
+	assert(unit.container, "Unit is not inside a container")
+	if not unit.container.try_transfer_unit(unit, destination): return false
+	#unit.reparent(destination)
+	return true
+
 # FIXME: move the default cost somewhere else
 const DEFAULT_PARTY_COST = {
 	&"gold": 100,

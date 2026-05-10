@@ -492,10 +492,10 @@ metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 [node name="MapParty_" parent="Parties" node_paths=PackedStringArray("hero", "owner_capital") instance=ExtResource("12_kwhd2")]
 position = Vector2(1383, 772)
 party_name = "Strong dudes"
-hero = NodePath("UnitData7")
+hero = NodePath("Thymaël Doux")
 owner_capital = NodePath("../../ObjectManager/EmpireCapital")
 
-[node name="UnitData3" type="Node" parent="Parties/MapParty_"]
+[node name="Blade Saint" type="Node" parent="Parties/MapParty_"]
 script = ExtResource("21_bl7ab")
 party_position = 2
 current_hp = 100
@@ -503,28 +503,28 @@ unit_name = &"Blade Saint"
 max_hp = 100
 metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 
-[node name="UnitData6" type="Node" parent="Parties/MapParty_"]
+[node name="Squire" type="Node" parent="Parties/MapParty_"]
 script = ExtResource("21_bl7ab")
 current_hp = 100
 unit_name = &"Squire"
 max_hp = 100
 metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 
-[node name="UnitData7" type="Node" parent="Parties/MapParty_" node_paths=PackedStringArray("leading_party", "hero_levelup")]
+[node name="Thymaël Doux" type="Node" parent="Parties/MapParty_" node_paths=PackedStringArray("leading_party", "hero_levelup")]
 script = ExtResource("32_i47xn")
 leading_party = NodePath("..")
-hero_levelup = NodePath("ThymaëlDoux")
+hero_levelup = NodePath("Tree")
 party_position = 4
 current_hp = 100
 unit_name = &"Thymaël Doux, the Blade of Holy Light"
 max_hp = 100
 metadata/_custom_type_script = "uid://cbm1bjrf8g5x"
 
-[node name="TestHeroAbilityTree" parent="Parties/MapParty_/UnitData7" instance=ExtResource("34_hhhnw")]
+[node name="TestHeroAbilityTree" parent="Parties/MapParty_/Thymaël Doux" instance=ExtResource("34_hhhnw")]
 
-[node name="ThymaëlDoux" parent="Parties/MapParty_/UnitData7" instance=ExtResource("36_t4h4h")]
+[node name="Tree" parent="Parties/MapParty_/Thymaël Doux" instance=ExtResource("36_t4h4h")]
 
-[node name="UnitData2" type="Node" parent="Parties/MapParty_"]
+[node name="Prophetess" type="Node" parent="Parties/MapParty_"]
 script = ExtResource("21_bl7ab")
 party_position = 5
 current_hp = 100

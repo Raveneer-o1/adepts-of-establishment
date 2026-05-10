@@ -92,7 +92,7 @@ var target_unit: Unit
 ## Intended to be populated by the derived classes.
 var _signal_function_pairs: Dictionary[Signal, Callable]
 
-const NOT_LIFTABLE_LINE = " Cannot be dispelled, removed, or expire."
+const NOT_LIFTABLE_LINE = " Cannot be dispelled, lifted or otherwise removed."
 const NOT_SILENSABLE_LINE = " Cannot be silenced."
 
 func get_description() -> String:
@@ -138,7 +138,7 @@ func _apply_effect(params: Variant) -> void:
 	# * Ensure the effect logic properly handles null reference cases.
 	
 	# UnitAttack objects are an exception to this rule as they can be
-	# automatically serialized but deserialization is.
+	# automatically serialized but deserialization is the responsibility of the effect.
 	# See retaliation effect as an example.
 	
 	# For one-time effects, remove them here using queue_free().
