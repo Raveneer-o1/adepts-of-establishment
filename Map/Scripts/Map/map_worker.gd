@@ -199,7 +199,8 @@ func find_path(
 	if not party: return []
 	var start_index := _check_if_end_in_start(starts, end)
 	if start_index >= 0:
-		return [starts[start_index]] if include_start else ([] as Array[Vector2i])
+		return [starts[start_index]] as Array[Vector2i] if \
+			include_start else ([] as Array[Vector2i])
 	
 	var path : Array[Vector2i] = []
 	var _start := Vector2i.ZERO
