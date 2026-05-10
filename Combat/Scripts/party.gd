@@ -113,7 +113,7 @@ func place_units(list: Array[UnitData]) -> void:
 	place_spots()
 	
 	for unit_data: UnitData in list:
-		await get_tree().process_frame
+		#await get_tree().process_frame
 		var i := unit_data.party_position
 		if i < 0: continue
 		if i >= MAX_UNITS_NUMBER:

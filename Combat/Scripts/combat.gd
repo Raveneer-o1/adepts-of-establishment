@@ -161,6 +161,11 @@ var timer: SceneTreeTimer
 var units_died_this_combat_on_left: Array[Unit] = []
 var units_died_this_combat_on_right: Array[Unit] = []
 
+## If set, this combat is considered a siege, and the defender (right side)
+## will gain additional effects from the specified city node
+## (e.g., increased unit armor, defensive towers, etc.).
+var city_siege: MapCity = null
+
 ## Checks if any party is empty and determines a winner
 func check_winner(_unit: Unit = null) -> void:
 	if timer != null:
@@ -406,11 +411,11 @@ func load_unit_list(list: Array[UnitData]) -> void:
 			var resource := load(path)
 			if resource: loaded_units[path] = resource
 			else: push_error("Resource not found: " + path)
-			await get_tree().process_frame
+			#await get_tree().process_frame
 
 func load_units() -> void:
-	await load_unit_list(left_party_units)
-	await load_unit_list(right_party_units)
+	load_unit_list(left_party_units)
+	load_unit_list(right_party_units)
 
 func check_refs_validity() -> bool:
 	var are_refs_valid: bool = true
@@ -483,8 +488,8 @@ func register_unit_death(unit: Unit) -> void:
 	list.append(unit)
 
 func place_units() -> void:
-	await right_party.place_units(right_party_units)
-	await left_party.place_units(left_party_units)
+	right_party.place_units(right_party_units)
+	left_party.place_units(left_party_units)
 
 var _current_unit_buffer: Unit = null
 
@@ -497,17 +502,19 @@ func question_end_react(data: UnitData) -> void:
 		current_unit = _current_unit_buffer
 	_current_unit_buffer = null
 
+func _apply_city_effects() -> void:
+	if not city_siege: return
+	for c in city_siege.get_children():
+		if c is MapCityEffect:
+			c.apply_to_combat(self)
+
 func _ready() -> void:
 	initialize_variables()
 	
-	# loading the scene combat with pauses for one frame after each heavy iteration
-	# this doesn't always work and starting combat does introduce some stutter
-	# but threads are more complicated to implement - this will do for now
-	await get_tree().process_frame
-	await load_units()
-	await get_tree().process_frame
-	await place_units()
-	await get_tree().process_frame
+	load_units()
+	place_units()
+	_apply_city_effects()
+	
 	combat_logic.start_battle()
 	units_died_this_combat_on_left.clear()
 	units_died_this_combat_on_right.clear()

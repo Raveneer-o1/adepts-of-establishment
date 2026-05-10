@@ -92,7 +92,7 @@ var target_unit: Unit
 ## Intended to be populated by the derived classes.
 var _signal_function_pairs: Dictionary[Signal, Callable]
 
-const NOT_LIFTABLE_LINE = " Cannot be dispelled, lifted or otherwise removed."
+const NOT_LIFTABLE_LINE = " Cannot be dispelled."
 const NOT_SILENSABLE_LINE = " Cannot be silenced."
 
 func get_description() -> String:

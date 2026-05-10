@@ -1,5 +1,7 @@
 extends BasePolicy
 
+# FIXME: check for occupied spot
+
 func _apply_policy(attack: Attack, finalize: bool) -> void:
 	var new_refs: Array[UnitSpotReference] = []
 	for t: UnitSpotReference in attack.target_references:

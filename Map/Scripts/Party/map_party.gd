@@ -37,8 +37,7 @@ var hero: HeroData = null
 var is_moving: bool:
 	get: return control.is_moving
 
-# NOW: this was a temporary solution, time to redesign it
-var _behind_walls_effect: BehindWallsPartyEffect
+#var _behind_walls_effect: BehindWallsPartyEffect
 
 ## @experimental: Currently allows only one item per slot type. Future versions may support multiple items of the same type (e.g., two ring slots: first finger, second finger).
 var equipped_items: Dictionary[EquippableMapItem.EquipmentSlot, EquippableMapItem]
@@ -204,7 +203,7 @@ func exit_city(tile: Vector2i) -> void:
 	inside_city.party_inside = null
 	inside_city = null
 	control.walk_to(tile)
-	if _behind_walls_effect: _behind_walls_effect.remove_effect()
+	#if _behind_walls_effect: _behind_walls_effect.remove_effect()
 
 ## Attempts to move the party into the specified [param city].
 ## Does not verify ownership of either the city or the party - will forcibly
@@ -215,11 +214,11 @@ func enter_city(city: MapCity) -> void:
 	inside_city = city
 	city.party_inside = self
 	control.walk_to(city.tile_position)
-	# NOW: redesign this shit
-	_behind_walls_effect = \
-		parameters.apply_effect(
-			"res://Map/PartyEffects/Scenes/behind_walls.tscn"
-		)
+	
+	#_behind_walls_effect = \
+		#parameters.apply_effect(
+			#"res://Map/PartyEffects/Scenes/behind_walls.tscn"
+		#)
 
 ## Moves specified [param item] to this party's inventory.
 ## [br][br]

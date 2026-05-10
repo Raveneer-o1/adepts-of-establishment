@@ -18,6 +18,9 @@ func do_siege(attacker: MapParty, defender: MapCity) -> bool:
 	_prefill_data_siege(attacker, defender)
 	var battle := _load_battle()
 	
+	var combat := battle.get_node("Combat") as CombatSystem
+	combat.city_siege = defender
+	
 	var upd := func() -> void:
 		attacker.update_parameters()
 		defender.update_parameters()
@@ -61,7 +64,8 @@ func do_combat(attacker: MapParty, defender: MapParty) -> MapParty:
 
 func _prefill_data_siege(attacker: MapParty, defender: MapCity) -> void:
 	EventBus.left_units = attacker.parameters.get_unit_data()
-	EventBus.right_units = defender.units
+	EventBus.right_units = defender.party_inside.parameters.get_unit_data() \
+		if defender.party_inside else defender.units
 	EventBus.left_controller = load(GlobalDefs.get_combat_controller(attacker.faction.controller))
 	EventBus.right_controller = load(GlobalDefs.get_combat_controller(defender.object_owner.controller))
 
@@ -76,11 +80,10 @@ func _load_battle() -> Node:
 	var battle: Control = map.battle_scene.instantiate()
 	battle.process_mode = Node.PROCESS_MODE_PAUSABLE
 	battle.hide()
-	
-	# combat starts here because this is when combat scene enters
-	# the tree and _ready() is called
-	map.add_sibling(battle)
 	return battle
+
+func _start_battle(battle: Control) -> void:
+	map.add_sibling(battle)
 
 func _grant_xp(combat: CombatSystem, left: Array[UnitData], right: Array[UnitData]) -> void:
 	combat.grant_xp(left, right)
@@ -89,6 +92,7 @@ func _grant_xp(combat: CombatSystem, left: Array[UnitData], right: Array[UnitDat
 signal _update_units
 
 func _switch_to_battle(battle: Control, left: Array[UnitData], right: Array[UnitData]) -> void:
+	_start_battle(battle)
 	if not EventBus.is_battle_ready:
 		await EventBus.battle_ready
 	(battle.find_child("Camera2D", false) as Camera2D).make_current()

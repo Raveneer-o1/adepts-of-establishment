@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=4 uid="uid://dlu3vl2ltauc0"]
+[gd_scene load_steps=57 format=4 uid="uid://dlu3vl2ltauc0"]
 
 [ext_resource type="Script" uid="uid://dvi42dc2k0m2h" path="res://Map/Scripts/Map/map.gd" id="1_q0qov"]
 [ext_resource type="Texture2D" uid="uid://c462nhclviryl" path="res://Arts/Map objects/dis tiles (1).png" id="1_xec2n"]
@@ -35,6 +35,7 @@
 [ext_resource type="PackedScene" uid="uid://jptv4wy37o02" path="res://Map/Map Interactable Objects/Scenes/land_claiming_rod.tscn" id="28_x0sa0"]
 [ext_resource type="PackedScene" uid="uid://bg1dfkhl176lq" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scenes/gold_mine.tscn" id="30_orlke"]
 [ext_resource type="Script" uid="uid://cbm1bjrf8g5x" path="res://Map/Scripts/Units/hero_data.gd" id="32_i47xn"]
+[ext_resource type="Script" uid="uid://dxjdlitxm6del" path="res://Map/City Effects/increased_armor.gd" id="34_w38on"]
 [ext_resource type="PackedScene" uid="uid://bppovohjijqbq" path="res://Map/Heroes/Thymaël Doux.tscn" id="36_t4h4h"]
 [ext_resource type="PackedScene" uid="uid://djeo7bmtq4rr5" path="res://Map/PartyEffects/Scenes/Effects from units/test.tscn" id="37_4hre8"]
 
@@ -442,6 +443,9 @@ position = Vector2(1096, 467)
 
 [node name="MapCity2" parent="ObjectManager" instance=ExtResource("11_1e4ck")]
 position = Vector2(1161, 779)
+
+[node name="Behind Walls" type="Node" parent="ObjectManager/MapCity2"]
+script = ExtResource("34_w38on")
 
 [node name="Parties" type="Node" parent="."]
 

@@ -61,9 +61,9 @@ func can_interact(party: MapParty) -> bool:
 
 func accept_interaction(party: MapParty) -> int:
 	if object_owner.is_enemy(party.faction):
-		if party_inside:
-			map.start_battle(party, party_inside)
-			return party.parameters.max_movement_points
+		#if party_inside:
+			#map.start_battle(party, party_inside)
+			#return party.parameters.max_movement_points
 		map.start_siege(party, self)
 		return party.parameters.max_movement_points
 	

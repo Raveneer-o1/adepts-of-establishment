@@ -419,7 +419,7 @@ func _read_data(data: UnitData) -> void:
 	if shielding_chance_override < 0:
 		underlying_shielding_chance = data.shielding_chance
 	
-	_init_effects(data.effects)
+	_init_effects.call_deferred(data.effects)
 	_init_attacks(data.attack_data)
 	
 	hp = hp  # you don't say
