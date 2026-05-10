@@ -522,6 +522,7 @@ func try_waiting() -> bool:
 
 #region Combat interactions
 
+# ATTENTION: prone to memory leaks
 ## Hides the unit and disables all interactions. To reactivate, use
 ## [method UnitSpot.assign_unit] on the spot where this unit should be placed
 ## upon reactivation. [br][br]

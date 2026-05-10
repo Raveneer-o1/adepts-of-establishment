@@ -3,6 +3,7 @@ extends TileMapLayer
 
 var map: Map
 
+# ATTENTION
 ## [color=red]Warning: [color=pink]this is specific to [TileSet] resource,
 ## should be changed every time source ID changes.[/color]
 const SCENE_SOURCE_ID = 13

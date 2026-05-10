@@ -123,16 +123,24 @@ func _validate_path(party: MapParty, path: Array[Vector2i]) -> bool:
 		last_position = position
 	return true
 
-## Moves [Map.active_party] to the specified [param object] and triggers
-## interaction [b]if applicable[/b].[br]
-## Path which the party is to follow is expected to be highlighted:
-## it is retrieved with [method MapVisualizer.get_highlighted_tiles].
+## Moves [Map.active_party] to the specified [param object] and 
+## triggers interaction if applicable.[br][br]
+## [b]Note:[/b] When a valid highlighted path exists (retrieved via
+## [method MapVisualizer.get_highlighted_tiles]), this method uses that path
+## rather than computing a new route, following UI cue.
 func move_active_party_to_object(object: MapInteractableObject) -> void:
 	if not active_party: return
 	if active_party.is_moving:
 		active_party.control.abort_moving()
 		return
 	var path := visualizer.get_highlighted_tiles()
+	if not _validate_path(active_party, path):
+		if not path: path = map.find_path_to_object(
+			[active_party.tile_position],
+			object,
+			active_party,
+			active_party.inside_city != null
+		)
 	if not _validate_path(active_party, path): return
 	if path:
 		await active_party.control.walk_along_path(
@@ -145,15 +153,15 @@ func move_active_party_to_object(object: MapInteractableObject) -> void:
 	var cost := object.validate_and_interact(active_party)
 	if cost > 0: active_party.parameters.subtract_mp(cost)
 
-## Moves [member Map.active_party] along the currently highlighted path.
-## The path is expected to be pre-highlighted and is retrieved via
-## [method MapVisualizer.get_highlighted_tiles].
-func move_active_party() -> void:
+## Moves [member Map.active_party] along the specified path.
+## If no path is provided, uses the pre-highlighted tiles as the path
+## (retrieved via [method MapVisualizer.get_highlighted_tiles]).
+func move_active_party(path: Array[Vector2i] = []) -> void:
 	if not active_party: return
 	if active_party.is_moving:
 		active_party.control.abort_moving()
 		return
-	var path := visualizer.get_highlighted_tiles()
+	if not path: path = visualizer.get_highlighted_tiles()
 	if not _validate_path(active_party, path): return
 	if not path:
 		visualizer.reset_highlights()
