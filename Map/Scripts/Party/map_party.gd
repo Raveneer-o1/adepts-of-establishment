@@ -31,7 +31,7 @@ var hero: HeroData = null
 var is_moving: bool:
 	get: return control.is_moving
 
-# TODO: this was a temporary solution, time to redesign it
+# NOW: this was a temporary solution, time to redesign it
 var _behind_walls_effect: BehindWallsPartyEffect
 
 ## @experimental: Currently allows only one item per slot type. Future versions may support multiple items of the same type (e.g., two ring slots: first finger, second finger).
@@ -209,7 +209,7 @@ func enter_city(city: MapCity) -> void:
 	inside_city = city
 	city.party_inside = self
 	control.walk_to(city.tile_position)
-	# TODO: redesign this shit
+	# NOW: redesign this shit
 	_behind_walls_effect = \
 		parameters.apply_effect(
 			"res://Map/PartyEffects/Scenes/behind_walls.tscn"

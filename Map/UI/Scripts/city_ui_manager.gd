@@ -44,7 +44,6 @@ extends CanvasLayer
 var currently_filled_city: MapCity = null
 
 func fill_city_data(city: MapCity) -> void:
-	# TODO: implement update_city() properly
 	#if currently_filled_city == city: update_city()
 	
 	garrison_reserve_container.parent = city.units_container
@@ -81,7 +80,7 @@ func fill_city_data(city: MapCity) -> void:
 	currently_filled_city = city
 
 func update_city(...args: Array) -> void:
-	# WARNING: very inefficient, needs redesign
+	# WARNING: very inefficient, might need a redesign after profiling
 	fill_city_data.call_deferred(currently_filled_city)
 
 func _request_party_hiring() -> void:

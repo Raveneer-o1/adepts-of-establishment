@@ -102,7 +102,7 @@ func get_available_upgrades(include_evolution_buildings: bool = false) -> Array[
 ## Determines if this faction is hostile toward [param other_faction].
 func is_enemy(other_faction: MapFaction) -> bool:
 	if other_faction == self: return false
-	# FIXME: implement is_enemy()
+	# NOW: implement is_enemy()
 	return true
 
 func _ready() -> void:

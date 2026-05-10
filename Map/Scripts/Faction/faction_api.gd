@@ -181,7 +181,7 @@ func _move_unit(unit: UnitData, destination: UnitsContainer) -> bool:
 	#unit.reparent(destination)
 	return true
 
-# FIXME: move the default cost somewhere else
+# NOW: move the default cost somewhere else
 const DEFAULT_PARTY_COST = {
 	&"gold": 100,
 	&"stone": 0,

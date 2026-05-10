@@ -234,9 +234,9 @@ func check_object_layer() -> void:
 const TILE_DATA = preload("uid://com5psdgcwjm3")
 
 func _create_td_mapping() -> Dictionary[Vector2i, MapFaction]:
-	# TODO: make initialization with different players with the same faction
 	var mapping: Dictionary[Vector2i, MapFaction] = {}
 	for faction in game.get_factions():
+		# TODO: make initialization with different players with the same faction
 		for a_coords in faction.tile_atlas_coords:
 			if mapping.has(a_coords):
 				print_debug("%s is repeated, it will not be assigned" % str(a_coords))

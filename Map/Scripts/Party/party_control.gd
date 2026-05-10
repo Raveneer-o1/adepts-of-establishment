@@ -16,7 +16,7 @@ var map: Map:
 var game: GameMap:
 	get: return this_party.map.game
 
-# TODO: route the speed calculation through GameSettings
+# NOW: route the speed calculation through GameSettings
 ## Number of tiles the party can traverse per second.
 const MAP_SPEED = 5.0
 

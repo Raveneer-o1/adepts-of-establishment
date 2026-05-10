@@ -20,7 +20,7 @@ var unit_data: UnitData:
 		unit_data = value
 
 func update_data() -> void:
-	# FIXME: implement visual representatoin of a unit and update it here
+	# TODO: implement visual representatoin of a unit and update it here
 	pass
 
 func _ready() -> void:

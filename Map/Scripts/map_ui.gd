@@ -5,7 +5,7 @@ extends Node
 ## Handles switching between different UI modes (Main, City, Party, etc.),
 ## displaying popups/windows for map objects, and tracking active party information.
 
-# TODO: every UI component accessed via "$..." should be renamed
+# NOW: every UI component accessed via "$..." should be renamed
 # and accessed via "%..."
 
 var current_ui: CanvasLayer
