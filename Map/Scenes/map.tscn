@@ -515,7 +515,7 @@ leading_party = NodePath("..")
 hero_levelup = NodePath("Tree")
 party_position = 4
 current_hp = 100
-unit_name = &"Thymaël Doux, the Blade of Holy Light"
+unit_name = &"Thymaël Doux"
 max_hp = 100
 metadata/_custom_type_script = "uid://cbm1bjrf8g5x"
 

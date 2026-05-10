@@ -181,19 +181,18 @@ func _move_unit(unit: UnitData, destination: UnitsContainer) -> bool:
 	#unit.reparent(destination)
 	return true
 
-# NOW: move the default cost somewhere else
-const DEFAULT_PARTY_COST = {
-	&"gold": 100,
-	&"stone": 0,
-	&"mana": 0,
-}
+
+## Returns the list of all heroes available for hiring
+func get_heroes_list() -> Array[StringName]:
+	return this_faction.hiring_heroes
 
 ## Creates a new [MapParty] at [param coords] on the specified [param _map]
-## (defaults to current active map). Optionally adds a hero unit if [param hero] is provided.
+## (defaults to current active map). Optionally adds a hero unit
+## if [param hero_name] is provided.
 ## @experimental: Heros are not properly implemented yet.
 func hire_party(coords: Vector2i, _map: Map = map, hero_name: StringName = &"") -> MapParty:
 	var hero_dict: Dictionary = GlobalDefs.units_database.database.get(hero_name, {})
-	var cost: Dictionary = hero_dict.get(&"cost", DEFAULT_PARTY_COST)
+	var cost: Dictionary = hero_dict.get(&"cost", MapParty.DEFAULT_PARTY_COST)
 	if not this_faction.resource_container.spend(ResourceCost.from_dict(cost)):
 		return null
 	
@@ -204,4 +203,5 @@ func hire_party(coords: Vector2i, _map: Map = map, hero_name: StringName = &"") 
 		var hired_hero: UnitData = game.spawn_new_unit(hero_name, party.units_container)
 		if hired_hero is HeroData:
 			party.hero = hired_hero
+	EventBus.party_hired.emit(party)
 	return party

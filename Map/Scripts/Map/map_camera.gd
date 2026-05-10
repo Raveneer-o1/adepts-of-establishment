@@ -6,6 +6,9 @@ extends Camera2D
 @export var min_zoom := 0.5
 @export var max_zoom := 5.0
 
+# FIXME: redesign the camera movement
+# reroute through input map
+
 func zoom_in() -> void:
 	if zoom.x >= max_zoom or zoom.y >= max_zoom: return
 	zoom += Vector2.ONE * zoom_speed

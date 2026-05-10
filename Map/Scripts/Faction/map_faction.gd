@@ -18,6 +18,14 @@ extends Node
 
 ## List of all units this faction can hire
 @export var hiring_units: Array[StringName]
+## List of all heroes this faction can hire.
+## Standard faction-specific heroes are added at the start of the game.
+@export var hiring_heroes: Array[StringName]
+
+@export_group("Starting resources")
+@export var starting_gold := 0
+@export var starting_stone := 0
+@export var starting_mana := 0
 
 ## Returns a list of all available evolutionary paths for the provided [param unit_name].
 ## This list is detemined by going through all [UnitEvolution] nodes attached
@@ -102,9 +110,38 @@ func get_available_upgrades(include_evolution_buildings: bool = false) -> Array[
 ## Determines if this faction is hostile toward [param other_faction].
 func is_enemy(other_faction: MapFaction) -> bool:
 	if other_faction == self: return false
-	# NOW: implement is_enemy()
+	# TODO: implement is_enemy()
 	return true
+
+func _append_heroes() -> void:
+	match base_faction:
+		GlobalDefs.Faction.Empire:
+			if &"Thymaël Doux" not in hiring_heroes: 
+				hiring_heroes.append(&"Thymaël Doux")
+			if &"High mage" not in hiring_heroes: 
+				hiring_heroes.append(&"High mage")
+			if &"Cartographer" not in hiring_heroes: 
+				hiring_heroes.append(&"Cartographer")
+			if &"Knight Champion" not in hiring_heroes: 
+				hiring_heroes.append(&"Knight Champion")
+			if &"Sir Roland" not in hiring_heroes: 
+				hiring_heroes.append(&"Sir Roland")
+		GlobalDefs.Faction.Necropolis:
+			if &"Bone collector" not in hiring_heroes: 
+				hiring_heroes.append(&"Bone collector")
+			if &"Dame The Seraph" not in hiring_heroes: 
+				hiring_heroes.append(&"Dame The Seraph")
+			if &"Grave whisperer" not in hiring_heroes: 
+				hiring_heroes.append(&"Grave whisperer")
+			if &"Margrave Solreth" not in hiring_heroes: 
+				hiring_heroes.append(&"Margrave Solreth")
+			if &"Virion the Bonebinder" not in hiring_heroes: 
+				hiring_heroes.append(&"Virion the Bonebinder")
 
 func _ready() -> void:
 	for upgrade in get_all_upgrades():
 		upgrade.faction = self
+	_append_heroes()
+	resource_container.receive_gold(starting_gold)
+	resource_container.receive_stone(starting_stone)
+	resource_container.receive_mana(starting_mana)

@@ -139,7 +139,7 @@ func move_active_party_to_object(object: MapInteractableObject) -> void:
 			[active_party.tile_position],
 			object,
 			active_party,
-			active_party.inside_city != null
+			active_party.inside_city != null  # a bit hacky, might need redesign
 		)
 	if not _validate_path(active_party, path): return
 	if path:

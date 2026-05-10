@@ -5,9 +5,6 @@ extends Node
 ## Handles switching between different UI modes (Main, City, Party, etc.),
 ## displaying popups/windows for map objects, and tracking active party information.
 
-# NOW: every UI component accessed via "$..." should be renamed
-# and accessed via "%..."
-
 var current_ui: CanvasLayer
 @onready var game_map: GameMap = $".."
 @onready var party_layer: PartyUIManager = $Party
@@ -19,14 +16,15 @@ var current_ui: CanvasLayer
 @onready var _movement_points_label: Label = %ActivePartyContainer/MovementPoints/Label
 @onready var _party_portrait_texture_rect: TextureRect = \
 	%ActivePartyContainer/PortraitContainer/PanelContainer/PortraitTextureRect
-@onready var item_info_popup: ItemInfoPopup = $Popups/ItemInfoPopup
-@onready var pick_up_window: PickUpWindow = $Windows/PickUpWindow
-@onready var party_info_popup: PartyInfoPopup = $Popups/PartyInfoPopup
-@onready var object_info_popup: ObjectInfoPopup = $Popups/ObjectInfoPopup
-@onready var city_popup: CityInfoPopup = $Popups/CityPopup
-@onready var hire_unit_popup: HireUnitPopup = $Popups/HireUnitPopup
+@onready var pick_up_window: PickUpWindow = %UI_Windows/PickUpWindow
+@onready var item_info_popup: ItemInfoPopup = %UI_Popups/ItemInfoPopup
+@onready var party_info_popup: PartyInfoPopup = %UI_Popups/PartyInfoPopup
+@onready var object_info_popup: ObjectInfoPopup = %UI_Popups/ObjectInfoPopup
+@onready var city_popup: CityInfoPopup = %UI_Popups/CityPopup
+@onready var hire_unit_popup: HireUnitPopup = %UI_Popups/HireUnitPopup
 @onready var resources_panel: ResourcesManager = %UI_ResourcesPanel
-@onready var unit_info_popup: UnitInfoPopup = $Popups/UnitInfoPopup
+@onready var unit_info_popup: UnitInfoPopup = %UI_Popups/UnitInfoPopup
+@onready var hire_hero_popup: HireHeroPopup = $UI_Popups/HireHeroPopup
 
 var last_requested_party: MapParty = null
 
@@ -161,17 +159,31 @@ func _ready() -> void:
 	EventBus.window_requested.connect(handle_window_request)
 	%VersionLabel.text = ProjectSettings.get_setting("application/config/version")
 
-func _disconnect_unit_hire() -> void:
-	for d: Dictionary in EventBus.unit_hired.get_connections():
-		d.signal.disconnect(d.callable)
-	for d: Dictionary in hire_unit_popup.popup_closed.get_connections():
-		d.signal.disconnect(d.callable)
+#func _disconnect_unit_hire() -> void:
+	#for d: Dictionary in EventBus.unit_hired.get_connections():
+		#d.signal.disconnect(d.callable)
+	#for d: Dictionary in hire_unit_popup.popup_closed.get_connections():
+		#d.signal.disconnect(d.callable)
+
+## Opens the popup prompting the player to choose a hero for hiring.
+## [param source] is an object that creates the party. It is used to determine
+## the owner of the party and the location where this party will be spawned.
+func open_hero_hire_popup(source: MapInteractableObject, list: Array[StringName]) -> void:
+	if not source: return
+	if not list: return
+	if not source.object_owner: return
+	var ui_filter := source.object_owner.api.ui_filter
+	if not ui_filter: return
+	
+	hire_hero_popup.display_for_object(source, list)
+	#return null
+	#update_city()
 
 ## @experimental
 func open_hire_popup(base: UnitsContainer, list: Array[StringName]) -> void:
 	#hire_unit_popup.unit_hired.connect(update_function)
 	hire_unit_popup.display_for_container(base, list)
-	hire_unit_popup.popup_closed.connect(_disconnect_unit_hire)
+	#hire_unit_popup.popup_closed.connect(_disconnect_unit_hire)
 
 func _on_quit_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Menu/Scenes/menu.tscn")

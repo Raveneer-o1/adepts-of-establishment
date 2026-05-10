@@ -187,7 +187,7 @@ base_damage = 70
 armor = 20
 
 [node name="Dame Seraphine" instance=ExtResource("1_yi6g7")]
-unit_name = "Dame Seraphine"
+unit_name = "Dame The Seraph"
 unit_type = 0
 faction = 1
 needed_xp = 400

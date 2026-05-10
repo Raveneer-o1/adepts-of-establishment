@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cy8rh77mxkncn"]
+[gd_scene load_steps=31 format=3 uid="uid://cy8rh77mxkncn"]
 
 [ext_resource type="Script" uid="uid://cium5533y6jdp" path="res://Map/Scripts/game_map.gd" id="1_mp6yi"]
 [ext_resource type="Script" uid="uid://ymq5kwxdp6r3" path="res://Map/Scripts/map_ui.gd" id="2_jwoqq"]
@@ -25,6 +25,7 @@
 [ext_resource type="Script" uid="uid://6my5rhvvrl00" path="res://Map/UI/Scripts/Popups/hire_unit_popup.gd" id="15_5jcg3"]
 [ext_resource type="Script" uid="uid://bugsl481wedlm" path="res://Map/UI/Scripts/Popups/unit_info_popup.gd" id="18_qmi5v"]
 [ext_resource type="PackedScene" uid="uid://d12hr40jjb8s8" path="res://Combat/Scenes/UnitInfoPanel.tscn" id="19_oranv"]
+[ext_resource type="Script" uid="uid://dprjkox21ayan" path="res://Map/UI/Scripts/Popups/hire_hero_popup.gd" id="22_3xuhj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ru5ay"]
 font_size = 19
@@ -63,6 +64,9 @@ base_faction = 1
 tile_atlas_coords = Array[Vector2i]([Vector2i(0, 3), Vector2i(1, 3), Vector2i(2, 3), Vector2i(3, 3), Vector2i(4, 3), Vector2i(5, 3)])
 main_color = Color(0.11759999, 0.32227996, 0.84, 1)
 hiring_units = Array[StringName]([&"Squire", &"Apprentice", &"Archer", &"Acolyte", &"test"])
+starting_gold = 1000
+starting_stone = 1000
+starting_mana = 1000
 
 [node name="Necropolis" parent="Factions" instance=ExtResource("9_tjube")]
 base_faction = 2
@@ -174,6 +178,7 @@ layout_mode = 2
 text = "Show ownership"
 
 [node name="Party" type="CanvasLayer" parent="UILayers"]
+visible = false
 script = ExtResource("5_t0dwr")
 
 [node name="HBoxContainer" type="MarginContainer" parent="UILayers/Party"]
@@ -342,7 +347,6 @@ size_flags_vertical = 3
 visible = false
 
 [node name="City" type="CanvasLayer" parent="UILayers"]
-visible = false
 script = ExtResource("9_bqemh")
 
 [node name="PanelContainer" type="PanelContainer" parent="UILayers/City"]
@@ -730,13 +734,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="Popups" type="Node" parent="UILayers"]
+[node name="UI_Popups" type="Node" parent="UILayers"]
+unique_name_in_owner = true
 
-[node name="PartyInfoPopup" type="CanvasLayer" parent="UILayers/Popups"]
+[node name="PartyInfoPopup" type="CanvasLayer" parent="UILayers/UI_Popups"]
 visible = false
 script = ExtResource("11_dawxx")
 
-[node name="Control" type="Control" parent="UILayers/Popups/PartyInfoPopup"]
+[node name="Control" type="Control" parent="UILayers/UI_Popups/PartyInfoPopup"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -744,7 +749,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="UILayers/Popups/PartyInfoPopup/Control"]
+[node name="PanelContainer" type="PanelContainer" parent="UILayers/UI_Popups/PartyInfoPopup/Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -759,35 +764,35 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UILayers/UI_Popups/PartyInfoPopup/Control/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/UI_Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="PartyName" type="Label" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="PartyName" type="Label" parent="UILayers/UI_Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayers/UI_Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Backline" type="VBoxContainer" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Backline" type="VBoxContainer" parent="UILayers/UI_Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="1" type="TextureRect" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Backline"]
+[node name="1" type="TextureRect" parent="UILayers/UI_Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Backline"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 texture = ExtResource("12_20b7o")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Backline/1"]
+[node name="Label" type="Label" parent="UILayers/UI_Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Backline/1"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -804,14 +809,14 @@ text = "Unit name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="3" type="TextureRect" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Backline"]
+[node name="3" type="TextureRect" parent="UILayers/UI_Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Backline"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 texture = ExtResource("12_20b7o")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Backline/3"]
+[node name="Label" type="Label" parent="UILayers/UI_Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Backline/3"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -828,14 +833,14 @@ text = "Unit name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="5" type="TextureRect" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Backline"]
+[node name="5" type="TextureRect" parent="UILayers/UI_Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Backline"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 texture = ExtResource("12_20b7o")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Backline/5"]
+[node name="Label" type="Label" parent="UILayers/UI_Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Backline/5"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -852,18 +857,18 @@ text = "Unit name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Frontline" type="VBoxContainer" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Frontline" type="VBoxContainer" parent="UILayers/UI_Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="0" type="TextureRect" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Frontline"]
+[node name="0" type="TextureRect" parent="UILayers/UI_Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Frontline"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 texture = ExtResource("12_20b7o")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Frontline/0"]
+[node name="Label" type="Label" parent="UILayers/UI_Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Frontline/0"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -880,14 +885,14 @@ text = "Unit name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="2" type="TextureRect" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Frontline"]
+[node name="2" type="TextureRect" parent="UILayers/UI_Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Frontline"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 texture = ExtResource("12_20b7o")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Frontline/2"]
+[node name="Label" type="Label" parent="UILayers/UI_Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Frontline/2"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -904,14 +909,14 @@ text = "Unit name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="4" type="TextureRect" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Frontline"]
+[node name="4" type="TextureRect" parent="UILayers/UI_Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Frontline"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 texture = ExtResource("12_20b7o")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Frontline/4"]
+[node name="Label" type="Label" parent="UILayers/UI_Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Frontline/4"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -928,14 +933,14 @@ text = "Unit name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="6" type="TextureRect" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Frontline"]
+[node name="6" type="TextureRect" parent="UILayers/UI_Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Frontline"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 texture = ExtResource("12_20b7o")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="UILayers/Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Frontline/6"]
+[node name="Label" type="Label" parent="UILayers/UI_Popups/PartyInfoPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Frontline/6"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -952,11 +957,11 @@ text = "Unit name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ItemInfoPopup" type="CanvasLayer" parent="UILayers/Popups"]
+[node name="ItemInfoPopup" type="CanvasLayer" parent="UILayers/UI_Popups"]
 visible = false
 script = ExtResource("9_ommir")
 
-[node name="Root" type="Control" parent="UILayers/Popups/ItemInfoPopup"]
+[node name="Root" type="Control" parent="UILayers/UI_Popups/ItemInfoPopup"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -964,7 +969,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="UILayers/Popups/ItemInfoPopup/Root"]
+[node name="PanelContainer" type="PanelContainer" parent="UILayers/UI_Popups/ItemInfoPopup/Root"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -979,44 +984,44 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="UILayers/Popups/ItemInfoPopup/Root/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UILayers/UI_Popups/ItemInfoPopup/Root/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/Popups/ItemInfoPopup/Root/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/UI_Popups/ItemInfoPopup/Root/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UILayers/Popups/ItemInfoPopup/Root/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayers/UI_Popups/ItemInfoPopup/Root/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="UILayers/Popups/ItemInfoPopup/Root/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="UILayers/UI_Popups/ItemInfoPopup/Root/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Name"
 label_settings = SubResource("LabelSettings_bqemh")
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="UILayers/Popups/ItemInfoPopup/Root/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="UILayers/UI_Popups/ItemInfoPopup/Root/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 expand_mode = 3
 stretch_mode = 5
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UILayers/Popups/ItemInfoPopup/Root/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UILayers/UI_Popups/ItemInfoPopup/Root/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 bbcode_enabled = true
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 fit_content = true
 
-[node name="ObjectInfoPopup" type="CanvasLayer" parent="UILayers/Popups"]
+[node name="ObjectInfoPopup" type="CanvasLayer" parent="UILayers/UI_Popups"]
 visible = false
 script = ExtResource("13_gtybc")
 
-[node name="Root" type="Control" parent="UILayers/Popups/ObjectInfoPopup"]
+[node name="Root" type="Control" parent="UILayers/UI_Popups/ObjectInfoPopup"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1024,7 +1029,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="UILayers/Popups/ObjectInfoPopup/Root"]
+[node name="PanelContainer" type="PanelContainer" parent="UILayers/UI_Popups/ObjectInfoPopup/Root"]
 custom_minimum_size = Vector2(500, 100)
 layout_mode = 1
 anchors_preset = 8
@@ -1040,17 +1045,17 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="UILayers/Popups/ObjectInfoPopup/Root/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UILayers/UI_Popups/ObjectInfoPopup/Root/PanelContainer"]
 layout_mode = 2
 
-[node name="InfoLabel" type="RichTextLabel" parent="UILayers/Popups/ObjectInfoPopup/Root/PanelContainer/MarginContainer"]
+[node name="InfoLabel" type="RichTextLabel" parent="UILayers/UI_Popups/ObjectInfoPopup/Root/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="CityPopup" type="CanvasLayer" parent="UILayers/Popups"]
+[node name="CityPopup" type="CanvasLayer" parent="UILayers/UI_Popups"]
 visible = false
 script = ExtResource("14_ga0ya")
 
-[node name="Control" type="Control" parent="UILayers/Popups/CityPopup"]
+[node name="Control" type="Control" parent="UILayers/UI_Popups/CityPopup"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1058,7 +1063,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="UILayers/Popups/CityPopup/Control"]
+[node name="PanelContainer" type="PanelContainer" parent="UILayers/UI_Popups/CityPopup/Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1073,113 +1078,37 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="UILayers/Popups/CityPopup/Control/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="PartyName" type="Label" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="PartyName" type="Label" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="GarrisonContainer" type="HBoxContainer" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="GarrisonContainer" type="HBoxContainer" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Backline" type="VBoxContainer" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GarrisonContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="1" type="TextureRect" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GarrisonContainer/Backline"]
-custom_minimum_size = Vector2(120, 0)
-layout_mode = 2
-texture = ExtResource("12_20b7o")
-expand_mode = 5
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GarrisonContainer/Backline/1"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Unit name"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="3" type="TextureRect" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GarrisonContainer/Backline"]
-custom_minimum_size = Vector2(120, 0)
-layout_mode = 2
-texture = ExtResource("12_20b7o")
-expand_mode = 5
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GarrisonContainer/Backline/3"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Unit name"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="5" type="TextureRect" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GarrisonContainer/Backline"]
-custom_minimum_size = Vector2(120, 0)
-layout_mode = 2
-texture = ExtResource("12_20b7o")
-expand_mode = 5
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GarrisonContainer/Backline/5"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Unit name"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Frontline" type="VBoxContainer" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GarrisonContainer"]
+[node name="Backline" type="VBoxContainer" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GarrisonContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="0" type="TextureRect" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GarrisonContainer/Frontline"]
+[node name="1" type="TextureRect" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GarrisonContainer/Backline"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 texture = ExtResource("12_20b7o")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GarrisonContainer/Frontline/0"]
+[node name="Label" type="Label" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GarrisonContainer/Backline/1"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1196,14 +1125,14 @@ text = "Unit name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="2" type="TextureRect" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GarrisonContainer/Frontline"]
+[node name="3" type="TextureRect" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GarrisonContainer/Backline"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 texture = ExtResource("12_20b7o")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GarrisonContainer/Frontline/2"]
+[node name="Label" type="Label" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GarrisonContainer/Backline/3"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1220,14 +1149,14 @@ text = "Unit name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="4" type="TextureRect" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GarrisonContainer/Frontline"]
+[node name="5" type="TextureRect" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GarrisonContainer/Backline"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 texture = ExtResource("12_20b7o")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GarrisonContainer/Frontline/4"]
+[node name="Label" type="Label" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GarrisonContainer/Backline/5"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1244,14 +1173,18 @@ text = "Unit name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="6" type="TextureRect" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GarrisonContainer/Frontline"]
+[node name="Frontline" type="VBoxContainer" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GarrisonContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="0" type="TextureRect" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GarrisonContainer/Frontline"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 texture = ExtResource("12_20b7o")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GarrisonContainer/Frontline/6"]
+[node name="Label" type="Label" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GarrisonContainer/Frontline/0"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1268,101 +1201,97 @@ text = "Unit name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="2" type="TextureRect" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GarrisonContainer/Frontline"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+texture = ExtResource("12_20b7o")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GarrisonContainer/Frontline/2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Unit name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="4" type="TextureRect" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GarrisonContainer/Frontline"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+texture = ExtResource("12_20b7o")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GarrisonContainer/Frontline/4"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Unit name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="6" type="TextureRect" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GarrisonContainer/Frontline"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+texture = ExtResource("12_20b7o")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GarrisonContainer/Frontline/6"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Unit name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 
-[node name="PartyContainer" type="HBoxContainer" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer"]
+[node name="PartyContainer" type="HBoxContainer" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="Backline" type="VBoxContainer" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PartyContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="1" type="TextureRect" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PartyContainer/Backline"]
-custom_minimum_size = Vector2(120, 0)
-layout_mode = 2
-texture = ExtResource("12_20b7o")
-expand_mode = 5
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PartyContainer/Backline/1"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Unit name"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="3" type="TextureRect" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PartyContainer/Backline"]
-custom_minimum_size = Vector2(120, 0)
-layout_mode = 2
-texture = ExtResource("12_20b7o")
-expand_mode = 5
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PartyContainer/Backline/3"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Unit name"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="5" type="TextureRect" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PartyContainer/Backline"]
-custom_minimum_size = Vector2(120, 0)
-layout_mode = 2
-texture = ExtResource("12_20b7o")
-expand_mode = 5
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PartyContainer/Backline/5"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Unit name"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Frontline" type="VBoxContainer" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PartyContainer"]
+[node name="Backline" type="VBoxContainer" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PartyContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="0" type="TextureRect" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PartyContainer/Frontline"]
+[node name="1" type="TextureRect" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PartyContainer/Backline"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 texture = ExtResource("12_20b7o")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PartyContainer/Frontline/0"]
+[node name="Label" type="Label" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PartyContainer/Backline/1"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1379,14 +1308,14 @@ text = "Unit name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="2" type="TextureRect" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PartyContainer/Frontline"]
+[node name="3" type="TextureRect" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PartyContainer/Backline"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 texture = ExtResource("12_20b7o")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PartyContainer/Frontline/2"]
+[node name="Label" type="Label" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PartyContainer/Backline/3"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1403,14 +1332,14 @@ text = "Unit name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="4" type="TextureRect" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PartyContainer/Frontline"]
+[node name="5" type="TextureRect" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PartyContainer/Backline"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 texture = ExtResource("12_20b7o")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PartyContainer/Frontline/4"]
+[node name="Label" type="Label" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PartyContainer/Backline/5"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1427,14 +1356,18 @@ text = "Unit name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="6" type="TextureRect" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PartyContainer/Frontline"]
+[node name="Frontline" type="VBoxContainer" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PartyContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="0" type="TextureRect" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PartyContainer/Frontline"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 texture = ExtResource("12_20b7o")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="UILayers/Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PartyContainer/Frontline/6"]
+[node name="Label" type="Label" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PartyContainer/Frontline/0"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1451,11 +1384,83 @@ text = "Unit name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HireUnitPopup" type="CanvasLayer" parent="UILayers/Popups"]
+[node name="2" type="TextureRect" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PartyContainer/Frontline"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+texture = ExtResource("12_20b7o")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PartyContainer/Frontline/2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Unit name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="4" type="TextureRect" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PartyContainer/Frontline"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+texture = ExtResource("12_20b7o")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PartyContainer/Frontline/4"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Unit name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="6" type="TextureRect" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PartyContainer/Frontline"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+texture = ExtResource("12_20b7o")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="UILayers/UI_Popups/CityPopup/Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/PartyContainer/Frontline/6"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Unit name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HireUnitPopup" type="CanvasLayer" parent="UILayers/UI_Popups"]
 visible = false
 script = ExtResource("15_5jcg3")
 
-[node name="Control" type="Control" parent="UILayers/Popups/HireUnitPopup"]
+[node name="Control" type="Control" parent="UILayers/UI_Popups/HireUnitPopup"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1463,7 +1468,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="UILayers/Popups/HireUnitPopup/Control"]
+[node name="PanelContainer" type="PanelContainer" parent="UILayers/UI_Popups/HireUnitPopup/Control"]
 custom_minimum_size = Vector2(900, 700)
 layout_mode = 1
 anchors_preset = 8
@@ -1478,22 +1483,22 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UILayers/UI_Popups/HireUnitPopup/Control/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayers/UI_Popups/HireUnitPopup/Control/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/UI_Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 
-[node name="HireUnitsItemList" type="ItemList" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="HireUnitsItemList" type="ItemList" parent="UILayers/UI_Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -1501,29 +1506,29 @@ item_count = 2
 item_0/text = "Skeleton"
 item_1/text = "Scout"
 
-[node name="HireButton" type="Button" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="HireButton" type="Button" parent="UILayers/UI_Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Hire"
 
-[node name="MarginContainer" type="MarginContainer" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UILayers/UI_Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HireUnit_UnitPanel" type="HBoxContainer" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer"]
+[node name="HireUnit_UnitPanel" type="HBoxContainer" parent="UILayers/UI_Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/UI_Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="UILayers/UI_Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 expand_mode = 5
 stretch_mode = 4
 
-[node name="Disclaimer" type="Label" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer/TextureRect"]
+[node name="Disclaimer" type="Label" parent="UILayers/UI_Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer/TextureRect"]
 layout_mode = 0
 offset_left = -10.0
 offset_top = 117.0
@@ -1536,29 +1541,29 @@ label_settings = SubResource("LabelSettings_qmi5v")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UILayers/UI_Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer"]
 layout_mode = 2
 text = "Text"
 fit_content = true
 
-[node name="MarginContainer" type="MarginContainer" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UILayers/UI_Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/UI_Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="UILayers/UI_Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Cost:"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayers/UI_Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="HireUnit_ResourcePanel_Gold" type="MarginContainer" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="HireUnit_ResourcePanel_Gold" type="MarginContainer" parent="UILayers/UI_Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/margin_left = 2
@@ -1566,24 +1571,24 @@ theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HireUnit_ResourcePanel_Gold"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/UI_Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HireUnit_ResourcePanel_Gold"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HireUnit_ResourcePanel_Gold/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="UILayers/UI_Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HireUnit_ResourcePanel_Gold/VBoxContainer"]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 texture = ExtResource("4_ru5ay")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HireUnit_ResourcePanel_Gold/VBoxContainer"]
+[node name="Label" type="Label" parent="UILayers/UI_Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HireUnit_ResourcePanel_Gold/VBoxContainer"]
 layout_mode = 2
 text = "100"
 horizontal_alignment = 1
 
-[node name="HireUnit_ResourcePanel_Stone" type="MarginContainer" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="HireUnit_ResourcePanel_Stone" type="MarginContainer" parent="UILayers/UI_Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/margin_left = 2
@@ -1591,24 +1596,24 @@ theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HireUnit_ResourcePanel_Stone"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/UI_Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HireUnit_ResourcePanel_Stone"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HireUnit_ResourcePanel_Stone/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="UILayers/UI_Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HireUnit_ResourcePanel_Stone/VBoxContainer"]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 texture = ExtResource("6_6qwde")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HireUnit_ResourcePanel_Stone/VBoxContainer"]
+[node name="Label" type="Label" parent="UILayers/UI_Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HireUnit_ResourcePanel_Stone/VBoxContainer"]
 layout_mode = 2
 text = "100"
 horizontal_alignment = 1
 
-[node name="HireUnit_ResourcePanel_Crystals" type="MarginContainer" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="HireUnit_ResourcePanel_Crystals" type="MarginContainer" parent="UILayers/UI_Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/margin_left = 2
@@ -1616,24 +1621,24 @@ theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HireUnit_ResourcePanel_Crystals"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/UI_Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HireUnit_ResourcePanel_Crystals"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HireUnit_ResourcePanel_Crystals/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="UILayers/UI_Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HireUnit_ResourcePanel_Crystals/VBoxContainer"]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 texture = ExtResource("5_3g8al")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HireUnit_ResourcePanel_Crystals/VBoxContainer"]
+[node name="Label" type="Label" parent="UILayers/UI_Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HireUnit_ResourcePanel_Crystals/VBoxContainer"]
 layout_mode = 2
 text = "100"
 horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="UILayers/UI_Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
@@ -1641,24 +1646,15 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/MarginContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UILayers/UI_Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireUnit_UnitPanel/MarginContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
-[node name="UnitInfoPopup" type="CanvasLayer" parent="UILayers/Popups"]
+[node name="HireHeroPopup" type="CanvasLayer" parent="UILayers/UI_Popups"]
 visible = false
-script = ExtResource("18_qmi5v")
+script = ExtResource("22_3xuhj")
 
-[node name="UnitInfoPanel" parent="UILayers/Popups/UnitInfoPopup" instance=ExtResource("19_oranv")]
-mouse_filter = 2
-
-[node name="Windows" type="Node" parent="UILayers"]
-
-[node name="PickUpWindow" type="CanvasLayer" parent="UILayers/Windows"]
-visible = false
-script = ExtResource("10_ommir")
-
-[node name="Root" type="Control" parent="UILayers/Windows/PickUpWindow"]
+[node name="Control" type="Control" parent="UILayers/UI_Popups/HireHeroPopup"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1666,7 +1662,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="UILayers/Windows/PickUpWindow/Root"]
+[node name="PanelContainer" type="PanelContainer" parent="UILayers/UI_Popups/HireHeroPopup/Control"]
+custom_minimum_size = Vector2(900, 700)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1680,28 +1677,231 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="UILayers/Windows/PickUpWindow/Root/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UILayers/UI_Popups/HireHeroPopup/Control/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayers/UI_Popups/HireHeroPopup/Control/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/UI_Popups/HireHeroPopup/Control/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="HireHeroesItemList" type="ItemList" parent="UILayers/UI_Popups/HireHeroPopup/Control/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+item_count = 2
+item_0/text = "Skeleton"
+item_1/text = "Scout"
+
+[node name="HireButton" type="Button" parent="UILayers/UI_Popups/HireHeroPopup/Control/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Hire"
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayers/UI_Popups/HireHeroPopup/Control/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HireHero_UnitPanel" type="HBoxContainer" parent="UILayers/UI_Popups/HireHeroPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/UI_Popups/HireHeroPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireHero_UnitPanel"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UILayers/UI_Popups/HireHeroPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireHero_UnitPanel/VBoxContainer"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+expand_mode = 5
+stretch_mode = 4
+
+[node name="Disclaimer" type="Label" parent="UILayers/UI_Popups/HireHeroPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireHero_UnitPanel/VBoxContainer/TextureRect"]
+layout_mode = 0
+offset_left = -10.0
+offset_top = 117.0
+offset_right = 177.0
+offset_bottom = 204.0
+rotation = -0.70302343
+text = "AI-generated
+Placeholder"
+label_settings = SubResource("LabelSettings_qmi5v")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UILayers/UI_Popups/HireHeroPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireHero_UnitPanel/VBoxContainer"]
+layout_mode = 2
+text = "Text"
+fit_content = true
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayers/UI_Popups/HireHeroPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireHero_UnitPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/UI_Popups/HireHeroPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireHero_UnitPanel/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayers/UI_Popups/HireHeroPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireHero_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Cost:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayers/UI_Popups/HireHeroPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireHero_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HireHero_ResourcePanel_Gold" type="MarginContainer" parent="UILayers/UI_Popups/HireHeroPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireHero_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/UI_Popups/HireHeroPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireHero_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HireHero_ResourcePanel_Gold"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UILayers/UI_Popups/HireHeroPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireHero_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HireHero_ResourcePanel_Gold/VBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+texture = ExtResource("4_ru5ay")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="UILayers/UI_Popups/HireHeroPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireHero_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HireHero_ResourcePanel_Gold/VBoxContainer"]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 1
+
+[node name="HireHero_ResourcePanel_Stone" type="MarginContainer" parent="UILayers/UI_Popups/HireHeroPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireHero_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/UI_Popups/HireHeroPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireHero_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HireHero_ResourcePanel_Stone"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UILayers/UI_Popups/HireHeroPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireHero_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HireHero_ResourcePanel_Stone/VBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+texture = ExtResource("6_6qwde")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="UILayers/UI_Popups/HireHeroPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireHero_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HireHero_ResourcePanel_Stone/VBoxContainer"]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 1
+
+[node name="HireHero_ResourcePanel_Crystals" type="MarginContainer" parent="UILayers/UI_Popups/HireHeroPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireHero_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/UI_Popups/HireHeroPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireHero_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HireHero_ResourcePanel_Crystals"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UILayers/UI_Popups/HireHeroPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireHero_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HireHero_ResourcePanel_Crystals/VBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+texture = ExtResource("5_3g8al")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="UILayers/UI_Popups/HireHeroPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireHero_UnitPanel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HireHero_ResourcePanel_Crystals/VBoxContainer"]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayers/UI_Popups/HireHeroPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireHero_UnitPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UILayers/UI_Popups/HireHeroPopup/Control/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/HireHero_UnitPanel/MarginContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="UnitInfoPopup" type="CanvasLayer" parent="UILayers/UI_Popups"]
+visible = false
+script = ExtResource("18_qmi5v")
+
+[node name="UnitInfoPanel" parent="UILayers/UI_Popups/UnitInfoPopup" instance=ExtResource("19_oranv")]
+mouse_filter = 2
+
+[node name="UI_Windows" type="Node" parent="UILayers"]
+unique_name_in_owner = true
+
+[node name="PickUpWindow" type="CanvasLayer" parent="UILayers/UI_Windows"]
+visible = false
+script = ExtResource("10_ommir")
+
+[node name="Root" type="Control" parent="UILayers/UI_Windows/PickUpWindow"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="UILayers/UI_Windows/PickUpWindow/Root"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayers/UI_Windows/PickUpWindow/Root/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/Windows/PickUpWindow/Root/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/UI_Windows/PickUpWindow/Root/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="FoundLabel" type="Label" parent="UILayers/Windows/PickUpWindow/Root/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="FoundLabel" type="Label" parent="UILayers/UI_Windows/PickUpWindow/Root/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "You found:"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UILayers/Windows/PickUpWindow/Root/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayers/UI_Windows/PickUpWindow/Root/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="NameLabel" type="Label" parent="UILayers/Windows/PickUpWindow/Root/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="NameLabel" type="Label" parent="UILayers/UI_Windows/PickUpWindow/Root/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Name"
 
-[node name="TextureRect" type="TextureRect" parent="UILayers/Windows/PickUpWindow/Root/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="UILayers/UI_Windows/PickUpWindow/Root/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 expand_mode = 3
@@ -1830,7 +2030,9 @@ text = "version"
 [connection signal="item_selected" from="UILayers/Capital/MarginContainer/TabContainer/Active upgrades/MarginContainer/VBoxContainer/ActiveFactionUpgadesItemList" to="UILayers/Capital" method="_on_active_faction_upgades_item_list_item_selected"]
 [connection signal="item_selected" from="UILayers/Capital/MarginContainer/TabContainer/Building/MarginContainer/BuildingUpgradesItemList" to="UILayers/Capital" method="_on_building_upgrades_item_list_item_selected"]
 [connection signal="pressed" from="UILayers/Capital/MarginContainer/TabContainer/Building/MarginContainer2/VBoxContainer/BuildButton" to="UILayers/Capital" method="_on_button_pressed"]
-[connection signal="item_selected" from="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HireUnitsItemList" to="UILayers/Popups/HireUnitPopup" method="_on_hire_units_item_list_item_selected"]
-[connection signal="pressed" from="UILayers/Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HireButton" to="UILayers/Popups/HireUnitPopup" method="_on_hire_button_pressed"]
-[connection signal="gui_input" from="UILayers/Windows/PickUpWindow/Root" to="UILayers/Windows/PickUpWindow" method="_on_root_gui_input"]
-[connection signal="gui_input" from="UILayers/Windows/PickUpWindow/Root/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" to="UILayers/Windows/PickUpWindow" method="_on_h_box_container_gui_input"]
+[connection signal="item_selected" from="UILayers/UI_Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HireUnitsItemList" to="UILayers/UI_Popups/HireUnitPopup" method="_on_hire_units_item_list_item_selected"]
+[connection signal="pressed" from="UILayers/UI_Popups/HireUnitPopup/Control/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HireButton" to="UILayers/UI_Popups/HireUnitPopup" method="_on_hire_button_pressed"]
+[connection signal="item_selected" from="UILayers/UI_Popups/HireHeroPopup/Control/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HireHeroesItemList" to="UILayers/UI_Popups/HireHeroPopup" method="_on_hire_units_item_list_item_selected"]
+[connection signal="pressed" from="UILayers/UI_Popups/HireHeroPopup/Control/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HireButton" to="UILayers/UI_Popups/HireHeroPopup" method="_on_hire_button_pressed"]
+[connection signal="gui_input" from="UILayers/UI_Windows/PickUpWindow/Root" to="UILayers/UI_Windows/PickUpWindow" method="_on_root_gui_input"]
+[connection signal="gui_input" from="UILayers/UI_Windows/PickUpWindow/Root/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" to="UILayers/UI_Windows/PickUpWindow" method="_on_h_box_container_gui_input"]

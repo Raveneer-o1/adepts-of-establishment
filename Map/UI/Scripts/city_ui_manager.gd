@@ -87,16 +87,17 @@ func _request_party_hiring() -> void:
 	if not currently_filled_city.object_owner: return
 	var ui_filter := currently_filled_city.object_owner.api.ui_filter
 	if not ui_filter: return
-	ui_filter.hire_party.emit(
-		currently_filled_city.tile_position,
-		currently_filled_city.map
-	)
-	update_city()
+	
+	var heroes_list := ui_filter.this_api.get_heroes_list()
+	if not EventBus.party_hired.is_connected(update_city):
+		EventBus.party_hired.connect(update_city)
+	ui_layers.open_hero_hire_popup(currently_filled_city, heroes_list)
 
 func _on_hire_button_pressed() -> void:
 	if not currently_filled_city.object_owner: return
 	if not currently_filled_city.object_owner.api.ui_filter: return
-	EventBus.unit_hired.connect(update_city)
+	if not EventBus.unit_hired.is_connected(update_city):
+		EventBus.unit_hired.connect(update_city)
 	ui_layers.open_hire_popup(
 		currently_filled_city.units_container,
 		currently_filled_city.get_available_units()

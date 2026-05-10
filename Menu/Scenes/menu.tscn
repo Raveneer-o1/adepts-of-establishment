@@ -1305,7 +1305,7 @@ metadata/_tab_index = 0
 [node name="Thymaël Doux" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Heroes/Empire" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Thymaël Doux, the Blade of Holy Light"
-path = "res://Combat/Units/Derived units/Heroes/h02 thymaël_doux.tscn"
+path = "uid://dkp1pwy5wygkg"
 
 [node name="High mage" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Heroes/Empire" instance=ExtResource("2_r33n7")]
 layout_mode = 2
@@ -1345,7 +1345,7 @@ path = "res://Combat/Units/Derived units/Heroes/bone_collector.tscn"
 
 [node name="dame_seraphine" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Heroes/Undead" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "Dame Seraphine"
+unit_name = "Dame The Seraph"
 path = "res://Combat/Units/Derived units/Heroes/dame_seraphine.tscn"
 
 [node name="grave_whisperer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Heroes/Undead" instance=ExtResource("2_r33n7")]

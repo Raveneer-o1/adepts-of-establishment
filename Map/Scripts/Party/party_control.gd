@@ -16,9 +16,15 @@ var map: Map:
 var game: GameMap:
 	get: return this_party.map.game
 
-# NOW: route the speed calculation through GameSettings
 ## Number of tiles the party can traverse per second.
-const MAP_SPEED = 5.0
+var map_speed: float = 5.0:
+	get:
+		return map_speed if not this_party else \
+			(
+				GameSettings.player_party_speed if \
+				this_party.object_owner == game.screen_player else \
+				GameSettings.AI_party_speed
+			)
 
 func _handle_step(destination: Vector2i) -> bool:
 	if this_party.parameters.movement_points <= 0: return false
@@ -167,7 +173,7 @@ var is_moving: bool:
 	get: return _is_moving
 var _moving_to: Vector2
 var _moving_velocity: Vector2
-var _time_to_reach: float = 1.0 / MAP_SPEED
+var _time_to_reach: float = 1.0 / map_speed
 var _time_passed: float = 0.0
 
 func _finish_moving() -> void:
@@ -177,7 +183,7 @@ func _finish_moving_animation() -> void:
 	_is_moving = false
 	animation_handle.play_default()
 
-func _start_moving_animation(p: Vector2i, time: float = 1.0 / MAP_SPEED) -> void:
+func _start_moving_animation(p: Vector2i, time: float = 1.0 / map_speed) -> void:
 	_moving_to = map.get_global_coords(p)
 	_moving_velocity = (_moving_to - this_party.global_position) / time
 	_is_moving = true

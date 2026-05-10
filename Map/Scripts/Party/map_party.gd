@@ -2,6 +2,12 @@ class_name MapParty
 extends MapInteractableObject
 
 
+const DEFAULT_PARTY_COST = {
+	&"gold": 100,
+	&"stone": 0,
+	&"mana": 0,
+}
+
 @onready var animation_handle: MapPartyAnimationHandle = $AnimationHandle
 @onready var parameters: PartyParameters = $PartyParameters
 @onready var control: PartyControl = $Control

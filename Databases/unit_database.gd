@@ -603,7 +603,7 @@ const database = {
 , &"base_damage": 80, &"max_hp": 150, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"cost": {
  &"gold": 400, &"stone": 0, &"mana": 0 
 } 
-},&"Dame Seraphine" : {
+},&"Dame The Seraph" : {
  &"scene_path": "res://Combat/Units/Derived units//Heroes/dame_seraphine.tscn", &"level": 1, &"large_unit": false, &"immunities": []
 , &"description": "", &"brief_description": "", &"faction": 1, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 400, &"attacks": [{
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.8, &"targets_needed": 1, &"initiative": 0, &"evadable": true, &"tags": []
@@ -642,7 +642,7 @@ const database = {
 , &"base_damage": 70, &"max_hp": 200, &"armor": 65, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"cost": {
  &"gold": 400, &"stone": 0, &"mana": 0 
 } 
-},&"Thymaël Doux, the Blade of Holy Light" : {
+},&"Thymaël Doux" : {
  &"scene_path": "res://Combat/Units/Derived units//Heroes/h02 thymaël_doux.tscn", &"level": 1, &"large_unit": false, &"immunities": []
 , &"description": "", &"brief_description": "", &"faction": 1, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 400, &"attacks": [{
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.85, &"targets_needed": 1, &"initiative": 45, &"evadable": true, &"tags": []

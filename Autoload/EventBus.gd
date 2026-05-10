@@ -81,6 +81,7 @@ signal tile_claimed(tile: MapTileData, previous_owner: MapFaction)
 signal unit_evolved(unit: UnitData, previous_form: StringName)
 
 signal unit_hired(unit: UnitData)
+signal party_hired(party: MapParty)
 signal item_used(item: MapItem)
 
 signal capital_changed(faction: MapFaction)
