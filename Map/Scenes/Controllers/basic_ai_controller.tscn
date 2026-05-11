@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvxgm55yig6vm"]
+
+[ext_resource type="Script" uid="uid://degcjn73pab0m" path="res://Map/Scripts/Faction/Controllers/basic_ai_controller.gd" id="1_ogapv"]
+
+[node name="BasicController" type="Node"]
+script = ExtResource("1_ogapv")

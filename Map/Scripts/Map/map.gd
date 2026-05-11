@@ -74,6 +74,8 @@ extends Node2D
 ## Shows the information (like highlights) to the player
 @onready var visualizer: MapVisualizer = $Visualizer
 
+@onready var parties_container: Node = $Parties
+
 ## [i][img width=24]res://icons/Raveneer-o1.png[/img] 27.12.2025:[/i][br]
 ## 40x42 map [i](1680 tiles)[/i] uses 2.4 MiB of memory.
 ## Not a big deal right now but may be a bottleneck for scalability
@@ -152,6 +154,11 @@ func clean_hashtable(assume_iteration: int = 0) -> void:
 			tile_to_interaction.erase(k)
 	
 	__now_cleaning = false
+
+func get_all_parties() -> Array[MapParty]:
+	var res: Array[MapParty] = []
+	res.assign(parties_container.get_children())
+	return res
 
 ## Safely removes the object and clears any references preserved by the map. [br][br]
 ## Use this method as a last resort only, since [MapInteractableObject] instances
@@ -403,6 +410,7 @@ func abort_actions() -> void:
 ## [color=red]Important:[/color] Do [b]not[/b] call this method directly.
 ## Only interact though [FactionAPI]
 func player_act(coords: Vector2i, faction: MapFaction) -> void:
+	#print_debug("Got input (%s)" % str(coords))
 	var objects := get_objects_on_tile(coords)
 	var obj_interaction := false
 	if faction == game.screen_player:
@@ -420,7 +428,8 @@ func player_act(coords: Vector2i, faction: MapFaction) -> void:
 		if obj.can_interact(active_party):
 			await worker.move_active_party_to_object(obj)
 			return
-	worker.move_active_party()
+	await worker.move_active_party(coords)
+	#print_debug("Input processed")
 
 ## @experimental: arguments type and behavior are subjects to change
 func claim_tile(tile: MapTileData, faction: MapFaction, power: float) -> bool:

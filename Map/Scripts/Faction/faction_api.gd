@@ -31,7 +31,11 @@ var controller: FactionController = null
 ## Processes a tile selected by player or AI input. This differs from
 ## [signal tile_clicked], which is emitted when an actual click occurs.
 ## This method initiates tile processing, while [signal tile_clicked]
-## signals the click event. [br][br]
+## signals the click event. [br]
+## [b]Note:[/b] This function filters UI interactions, so AI can't "click"
+## on objects to select them. Use dedicated functions for object choosing
+## (e.g., [method try_choose_party]).
+## [br][br]
 ## Example implementation for player interaction:
 ## [codeblock]
 ## func process_click(tile: Vector2i) -> void:
@@ -53,7 +57,12 @@ var controller: FactionController = null
 ## See [MapEventHandler] for hover processing.
 func choose_tile(tile: Vector2i) -> void:
 	if not map: return
-	map.player_act(tile, this_faction)
+	await map.player_act(tile, this_faction)
+
+func try_choose_party(party: MapParty) -> bool:
+	if party.object_owner != this_faction: return false
+	map.set_active_party(party)
+	return true
 
 ## Emitted by the system when the player clicks a tile. This differs from
 ## [method choose_tile], which processes the selected tile. [br][br]
@@ -181,6 +190,8 @@ func _move_unit(unit: UnitData, destination: UnitsContainer) -> bool:
 	#unit.reparent(destination)
 	return true
 
+func get_available_parties(only_active_map := true) -> Array[MapParty]:
+	return this_faction.get_available_parties(only_active_map)
 
 ## Returns the list of all heroes available for hiring
 func get_heroes_list() -> Array[StringName]:

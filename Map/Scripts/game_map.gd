@@ -5,6 +5,7 @@ const test_map = preload("res://Map/Scenes/map.tscn")
 
 @onready var ui_layers: MapUI = $UILayers
 @onready var turn_manager: MapTurnManager = $TurnManager
+@onready var maps_container: Node = $MapsContainer
 
 var current_map: Map
 
@@ -66,6 +67,11 @@ func enable_map() -> void:
 func disable_map() -> void:
 	current_map.process_mode = Node.PROCESS_MODE_DISABLED
 
+func get_all_maps() -> Array[Map]:
+	var res: Array[Map] = []
+	res.assign(maps_container.get_children())
+	return res
+
 var _temporarily_disabled := false
 signal _temp_disabled_ended
 
@@ -91,9 +97,10 @@ func update_active_party(party: MapParty) -> void:
 func _test_init() -> void:
 	var c := load(GlobalDefs.get_faction_controller(test_faction.controller))
 	var c2 := load(GlobalDefs.get_faction_controller(test_faction2.controller))
+	var c3 := load(GlobalDefs.get_faction_controller(test_faction_neutral.controller))
 	test_faction.api.add_child(c.instantiate())
 	test_faction2.api.add_child(c2.instantiate())
-	test_faction_neutral.api.add_child(c2.instantiate())
+	test_faction_neutral.api.add_child(c3.instantiate())
 	current_map.active_faction = test_faction
 	EventBus.map_turn_started.emit(test_faction)
 	test_faction.api.turn_started.emit()

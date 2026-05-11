@@ -160,12 +160,19 @@ func move_active_party_to_object(object: MapInteractableObject) -> void:
 ## Moves [member Map.active_party] along the specified path.
 ## If no path is provided, uses the pre-highlighted tiles as the path
 ## (retrieved via [method MapVisualizer.get_highlighted_tiles]).
-func move_active_party(path: Array[Vector2i] = []) -> void:
+func move_active_party(destination: Vector2i) -> void:
 	if not active_party: return
 	if active_party.is_moving:
 		active_party.control.abort_moving()
 		return
-	if not path: path = visualizer.get_highlighted_tiles()
+	var path := visualizer.get_highlighted_tiles()
+	if not _validate_path(active_party, path):
+		if not path: path = map.find_path(
+			[active_party.tile_position],
+			destination,
+			active_party,
+			active_party.inside_city != null  # a bit hacky, might need redesign
+		)
 	if not _validate_path(active_party, path): return
 	if not path:
 		visualizer.reset_highlights()

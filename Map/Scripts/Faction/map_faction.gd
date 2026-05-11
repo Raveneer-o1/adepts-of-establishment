@@ -27,6 +27,8 @@ extends Node
 @export var starting_stone := 0
 @export var starting_mana := 0
 
+var game: GameMap
+
 ## Returns a list of all available evolutionary paths for the provided [param unit_name].
 ## This list is detemined by going through all [UnitEvolution] nodes attached
 ## as children to [member evolution_buildings].
@@ -138,10 +140,27 @@ func _append_heroes() -> void:
 			if &"Virion the Bonebinder" not in hiring_heroes: 
 				hiring_heroes.append(&"Virion the Bonebinder")
 
+
+func get_available_parties(only_active_map := true) -> Array[MapParty]:
+	var res: Array[MapParty] = []
+	for map: Map in ([game.current_map] if only_active_map else game.get_all_maps()):
+		for party in map.get_all_parties():
+			if party.object_owner == self: res.append(party)
+	return res
+
+
 func _ready() -> void:
+	_find_game()
 	for upgrade in get_all_upgrades():
 		upgrade.faction = self
 	_append_heroes()
 	resource_container.receive_gold(starting_gold)
 	resource_container.receive_stone(starting_stone)
 	resource_container.receive_mana(starting_mana)
+
+func _find_game() -> void:
+	var p := get_parent()
+	while p:
+		if p is GameMap: game = p; return
+		p = p.get_parent()
+	push_error("Unable to find GameMap node")

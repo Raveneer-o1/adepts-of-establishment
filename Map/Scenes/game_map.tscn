@@ -70,11 +70,12 @@ starting_mana = 1000
 
 [node name="Necropolis" parent="Factions" instance=ExtResource("9_tjube")]
 base_faction = 2
+controller = 2
 tile_atlas_coords = Array[Vector2i]([Vector2i(0, 4), Vector2i(1, 4), Vector2i(2, 4), Vector2i(3, 4), Vector2i(4, 4), Vector2i(5, 4), Vector2i(0, 5), Vector2i(1, 5), Vector2i(2, 5)])
 main_color = Color(0.9, 0.14400002, 0.14400002, 1)
 
 [node name="Neutral" parent="Factions" instance=ExtResource("9_tjube")]
-controller = 2
+controller = 1
 main_color = Color(0.49860322, 0.4958654, 0.48841393, 1)
 
 [node name="UILayers" type="Node" parent="."]
