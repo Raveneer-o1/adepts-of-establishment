@@ -173,11 +173,44 @@ func research(upgrade: FactionUpgrade) -> bool:
 		return true
 	return false
 
+## Returns all interactable objects present on the specified tile coordinates in [param list].
+## When [param party] is provided, results are filtered to objects that can interact
+## with that party, and the default map is set to the party's current map.
+## Otherwise, uses [member GameMap.current_map] by default,
+## unless a specific [param _map] is provided.
+func get_interactions(
+	list: Array[Vector2i],
+	party: MapParty = null,
+	_map: Map = null,
+) -> Array[MapInteractableObject]:
+	if not list: return []
+	if not _map: _map = party.map if party else game.current_map
+	var result: Array[MapInteractableObject] = []
+	for tile in list:
+		var on_tile: Array[MapInteractableObject] = []
+		on_tile.assign(_map.tile_to_interaction.get(tile, []))
+		if not party:
+			result.append_array(on_tile)
+			continue
+		for o in on_tile:
+			if o.can_interact(party): result.append(o)
+	return result
+
+## Returns all tiles the [param party] is able ro reach right now.
+func get_reachable_tiles(party: MapParty) -> Array[Vector2i]:
+	if not party: return []
+	return party.map.path_finder.get_all_tiles(
+		party.tile_position,
+		party.parameters.movement_points,
+		TravelData.new(party)
+	)
+
 ## Attempts to move [param unit] to the specified [param destination] container.
 ## Returns [code]true[/code] if the move is permitted.
 ## If [param destination] is the container currently storing the unit
 ## or [code]null[/code], the move is treated as identity and always succeeds.
 func move_unit(unit: UnitData, destination: UnitsContainer, position: int) -> bool:
+	# TODO: check for position on map
 	if not _move_unit(unit, destination): return false
 	unit.party_position = position
 	return true

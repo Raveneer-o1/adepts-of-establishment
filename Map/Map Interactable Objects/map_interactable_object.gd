@@ -244,7 +244,7 @@ func validate_and_interact(party: MapParty, forced: bool = false) -> int:
 	if not can_interact(party): return -1
 	if party.tile_position not in get_interaction_tiles(party): return -1
 	if forced: return force_interaction_on(party)
-	return accept_interaction(party)
+	return await accept_interaction(party)
 
 ## @deprecated: use [UnitsContainer] class
 ## Returns if the provided [param unit] can be transfered to this object.

@@ -154,7 +154,7 @@ func move_active_party_to_object(object: MapInteractableObject) -> void:
 		)
 	visualizer.reset_highlights()
 	map.clean_hashtable()
-	var cost := object.validate_and_interact(active_party)
+	var cost := await object.validate_and_interact(active_party)
 	if cost > 0: active_party.parameters.subtract_mp(cost)
 
 ## Moves [member Map.active_party] along the specified path.

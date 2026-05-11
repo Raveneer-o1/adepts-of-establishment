@@ -199,3 +199,64 @@ func _get_next_node(open_set: Dictionary[Vector2i, PathNode], end: Array[Vector2
 
 func _visualize_current_tile(tile_coords: Vector2i) -> void:
 	map.event_handler.highlight_tiles([tile_coords])
+
+
+## Returns all tiles within the specified [param radius] of the given [param center].
+## If [param for_traveller] is provided, the result is filtered to tiles reachable
+## within [param radius] steps by that traveller.
+## Otherwise, includes all tiles regardless of passability.
+func get_all_tiles(
+	center: Vector2i,
+	radius: int,
+	for_traveller: TravelData = null
+) -> Array[Vector2i]:
+	var center_tile: MapTileData = _get_center_tile(center)
+	if not center_tile:
+		return []
+	
+	var open_set: Dictionary[MapTileData, int] = {center_tile: 0}
+	var closed_set: Dictionary[MapTileData, int] = {center_tile: 0}
+	var result: Array[Vector2i] = [center]
+	
+	while open_set:
+		var current_tile: MapTileData = open_set.keys().front()
+		var current_cost := open_set[current_tile]
+		open_set.erase(current_tile)
+		
+		if not _is_traversable(current_tile, for_traveller):
+			continue
+		
+		_process_tile(current_tile, current_cost, radius, closed_set, result)
+		_expand_neighbors(current_tile, current_cost, radius, open_set)
+	
+	return result
+
+func _get_center_tile(center: Vector2i) -> MapTileData:
+	return map.tile_data_hashmap.get(center)
+
+func _is_traversable(tile: MapTileData, traveller: TravelData) -> bool:
+	return traveller == null or traveller.can_traverse(tile.tile_data)
+
+func _process_tile(
+	tile: MapTileData,
+	cost: int,
+	radius: int,
+	closed_set: Dictionary,
+	result: Array[Vector2i]
+) -> void:
+	if cost <= radius and tile not in closed_set:
+		result.append(tile.coordinates)
+		closed_set[tile] = cost
+
+func _expand_neighbors(
+	tile: MapTileData,
+	current_cost: int,
+	radius: int,
+	open_set: Dictionary[MapTileData, int]
+) -> void:
+	var next_cost := current_cost + 1
+	if next_cost >= radius:
+		return
+	
+	for neighbor in tile.get_neighbors():
+		open_set[neighbor] = mini(next_cost, open_set.get(neighbor, next_cost))

@@ -10,10 +10,17 @@ func _end_turn() -> void:
 func _make_map_decision() -> void:
 	await get_tree().create_timer(START_TURN_DELAY).timeout
 	var all_parties := api.get_available_parties()
-	var current_party: MapParty = all_parties.pick_random()
-	if not api.try_choose_party(current_party): api.end_turn()
-	#api.choose_tile(current_party.tile_position)
-	await api.choose_tile(current_party.tile_position + Vector2i(5, 0))
+	for current_party in all_parties:
+		if not api.try_choose_party(current_party):
+			push_error("Unable to choose a party")
+			continue
+		
+		var all_coords := api.get_reachable_tiles(current_party)
+		var all_interactions := api.get_interactions(all_coords, current_party)
+		var target: Vector2i = \
+			(all_interactions.pick_random() as MapInteractableObject).tile_position \
+			if all_interactions else all_coords.pick_random()
+		await api.choose_tile(target)
 	
 	_end_turn()
 

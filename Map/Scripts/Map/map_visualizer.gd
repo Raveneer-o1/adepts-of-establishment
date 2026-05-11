@@ -113,6 +113,7 @@ func _highlight_tiles_w_detection(tiles: Array[Vector2i], party: MapParty) -> vo
 
 func _highlight_tiles_simple(tiles: Array[Vector2i]) -> void:
 	for t in tiles:
+		#await get_tree().create_timer(0.1).timeout
 		var atlas_coords := Vector2i(0, 0)
 		var data := map.terrain_layer.get_cell_tile_data(t)
 		if data:

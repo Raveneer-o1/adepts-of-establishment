@@ -411,6 +411,7 @@ func abort_actions() -> void:
 ## Only interact though [FactionAPI]
 func player_act(coords: Vector2i, faction: MapFaction) -> void:
 	#print_debug("Got input (%s)" % str(coords))
+	
 	var objects := get_objects_on_tile(coords)
 	var obj_interaction := false
 	if faction == game.screen_player:
@@ -419,6 +420,16 @@ func player_act(coords: Vector2i, faction: MapFaction) -> void:
 				obj.player_interact(faction)
 				obj_interaction = true
 				break
+	
+	#visualizer.reset_highlights()
+	#var rad := path_finder.get_all_tiles(
+		#coords,
+		#5,
+		#TravelData.new(active_party) if active_party else null
+	#)
+	#visualizer.highlight_tiles(rad)
+	#return
+	
 	if not active_party: return
 	if active_party.is_moving:
 		abort_actions()

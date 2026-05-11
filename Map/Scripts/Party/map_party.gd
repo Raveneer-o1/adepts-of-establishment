@@ -78,13 +78,13 @@ func _initialize() -> void:
 
 func accept_interaction(party: MapParty) -> int:
 	if party.faction.is_enemy(faction):
-		map.start_battle(party, self)
+		await map.start_battle(party, self)
 		return party.parameters.max_movement_points
 	return 0
 
 func force_interaction_on(party: MapParty) -> int:
 	if faction.is_enemy(party.faction):
-		map.start_battle(party, self)
+		await map.start_battle(self, party)
 		return party.parameters.max_movement_points
 	return 0
 

@@ -20,16 +20,6 @@ extends ObjectLayerObject
 ## See [member available_units_whitelist] for reference.
 @export var available_units_blacklist: Array[Dictionary]
 
-## @deprecated: use [member MapInteractableObject.object_owner] instead
-## Returns [member MapInteractableObject.object_owner]
-var city_owner: MapFaction:
-	get:
-		push_error("Deprecated access")
-		return object_owner
-	set(value):
-		push_error("Deprecated access")
-		object_owner = value
-
 func get_interaction_tiles(
 	party: MapParty = null,
 	main: Vector2i = tile_position,
@@ -64,7 +54,7 @@ func accept_interaction(party: MapParty) -> int:
 		#if party_inside:
 			#map.start_battle(party, party_inside)
 			#return party.parameters.max_movement_points
-		map.start_siege(party, self)
+		await map.start_siege(party, self)
 		return party.parameters.max_movement_points
 	
 	if party_inside: return 0
@@ -77,7 +67,7 @@ func will_intercept(party: MapParty) -> bool:
 	return false
 
 func force_interaction_on(party: MapParty) -> int:
-	return accept_interaction(party)
+	return await accept_interaction(party)
 
 func _can_party_pass(party: MapParty) -> bool:
 	return false
