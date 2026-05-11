@@ -166,7 +166,9 @@ func get_interaction_tiles(
 ## interaction validity beforehand, or call this directly
 ## to force interaction regardless. [br][br]
 ## [b]Returns:[/b] Interaction cost in movement points.
-## Does not deduct movement points from the party - caller must handle this.
+## Does not deduct movement points from the party - caller must handle this. [br]
+## [b]Important:[/b] This function must be treated as a coroutine
+## and called with [code]await[/code].
 @abstract func accept_interaction(party: MapParty) -> int
 ## Processes interaction with the specified [param party] initiated by this object.
 ## [br][br]
@@ -244,6 +246,7 @@ func validate_and_interact(party: MapParty, forced: bool = false) -> int:
 	if not can_interact(party): return -1
 	if party.tile_position not in get_interaction_tiles(party): return -1
 	if forced: return force_interaction_on(party)
+	@warning_ignore("redundant_await")
 	return await accept_interaction(party)
 
 ## @deprecated: use [UnitsContainer] class

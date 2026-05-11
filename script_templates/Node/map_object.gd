@@ -62,6 +62,12 @@ func accept_interaction(party: MapParty) -> int:
 	# invalid input checks. This enables forced interactions that must occur
 	# regardless of normal conditions (e.g., scripted events).
 	
+	# If an object initiates a time‑consuming process during interaction
+	# (e.g., starting a battle or prompting the player for input), the interaction
+	# must be asynchronous. Use `await` on every time‑dependent interaction.
+	# Example: to start a combat, use:
+	#await map.start_battle(party, _get_party())
+	
 	# Return the interaction cost in movement points.
 	# To consume all movement points (e.g., initiating combat), use:
 	#return party.parameters.max_movement_points
@@ -77,7 +83,8 @@ func force_interaction_on(party: MapParty) -> int:
 	# intercepting other parties.
 	# Same rules apply as with accept_interaction()
 	
-	return accept_interaction(party)
+	@warning_ignore("redundant_await")
+	return await accept_interaction(party)
 
 func _can_party_pass(party: MapParty) -> bool:
 	return false

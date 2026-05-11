@@ -185,16 +185,17 @@ func get_interactions(
 ) -> Array[MapInteractableObject]:
 	if not list: return []
 	if not _map: _map = party.map if party else game.current_map
-	var result: Array[MapInteractableObject] = []
+	var result: Dictionary = {}
 	for tile in list:
 		var on_tile: Array[MapInteractableObject] = []
 		on_tile.assign(_map.tile_to_interaction.get(tile, []))
-		if not party:
-			result.append_array(on_tile)
-			continue
 		for o in on_tile:
-			if o.can_interact(party): result.append(o)
-	return result
+			if o in result: continue
+			if not party: result[o] = null
+			elif o.can_interact(party): result[o] = null
+	var res: Array[MapInteractableObject] = []
+	res.assign(result.keys())
+	return res
 
 ## Returns all tiles the [param party] is able ro reach right now.
 func get_reachable_tiles(party: MapParty) -> Array[Vector2i]:

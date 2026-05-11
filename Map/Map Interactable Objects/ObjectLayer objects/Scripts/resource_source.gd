@@ -62,7 +62,8 @@ func force_interaction_on(party: MapParty) -> int:
 	# intercepting other parties.
 	# Same rules apply as with accept_interaction()
 	
-	return accept_interaction(party)
+	@warning_ignore("redundant_await")
+	return await accept_interaction(party)
 
 func _can_party_pass(party: MapParty) -> bool:
 	return false
