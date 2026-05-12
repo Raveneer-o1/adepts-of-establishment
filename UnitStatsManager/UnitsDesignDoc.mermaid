@@ -1,9 +1,6 @@
-graph LR
+flowchart LR
 classDef desc fill:#0000,stroke:#0000,stroke-width:0px;
-classDef subgraphnode fill:#000,stroke:#81B1DB
-subgraph Empire
-    subgraph Warriors
-        direction TB
+    subgraph Empire
         subgraph Squire
             Squire_d("
             Standard melee unit.
@@ -16,11 +13,6 @@ subgraph Empire
             Knight_d("
             increased armor
             taunt
-            "):::desc
-        end
-        subgraph Witch_Hunter
-            Witch_Hunter_d("
-            increased evasion
             "):::desc
         end
 
@@ -38,14 +30,6 @@ subgraph Empire
             increased armor
             two turns: the first with increased initiative
             if standing in the back line, can move to an empty front position to attack
-            "):::desc
-        end
-        
-        subgraph Inquisitor
-            Inquisitor_d("
-            increased evasion
-            damage type *'None'* (no immunities or shields)
-            negative effects have only half the potency
             "):::desc
         end
         subgraph Samurai
@@ -76,14 +60,6 @@ subgraph Empire
             "):::desc
         end
         
-        subgraph Grand_Inquisitor
-            Grand_Inquisitor_d("
-            increased evasion
-            damage type *'None'* (no immunities or shields)
-            immune to negative effects
-            retaliation upon getting a debuff
-            "):::desc
-        end
         subgraph Blade_Saint
             Blade_Saint_d("
             increased evasion x3
@@ -110,23 +86,32 @@ subgraph Empire
             the first damage that would kill this unit, leaves it with 1 HP instead
             "):::desc
         end
- 
+        root_empire[ ]:::Empty ~~~ Squire["Squire"]
+        root_empire ~~~ Apprentice["Apprentice"]
+        root_empire ~~~ Archer["Archer"]
+        root_empire ~~~ Bear_rider
+        classDef Vacant fill:#990000,stroke:#ffff00,stroke-width:4px
+        classDef Empty height:0px
 
-        Squire --> Knight["Knight"]
-        Knight --> Knight_Master["Knight Master"]
-        Knight_Master --> Angel_Knight["Angel Knight"]
-        Knight --> Horseman["Horseman"]
-        Horseman --> Royal_Cavalier["Royal Cavalier"]
-        Royal_Cavalier --> Paladin["Paladin"]
-        Royal_Cavalier --> Angel
+        subgraph EmpireWarriors
+            Squire --> Knight["Knight"]
+            --> Knight_Master["Knight Master"]
+            --> Angel_Knight["Angel Knight"]
+            ~~~ empty2[ ]:::Empty
+            Knight --> Horseman["Horseman"]
+            --> Royal_Cavalier["Royal Cavalier"]
+            --> Paladin["Paladin"]
+            Royal_Cavalier --> Angel["Angel"]
 
-        Squire --> Witch_Hunter["Witch hunter"]
-        Witch_Hunter --> Inquisitor["Inquisitor"]
-        Inquisitor --> Grand_Inquisitor["Grand Inquisitor"]
-        Witch_Hunter --> Samurai["Samurai"]
-        Samurai --> Blade_Saint["Blade Saint"]
-    end
-    subgraph Mages
+            Squire --> oldWitch_Hunter[Mercenary]
+            oldWitch_Hunter --> oldInquisitor[Man at Arms]
+            oldInquisitor --> oldGrand_Inquisitor[Gendarme]
+            ~~~ empty1[ ]:::Empty
+            oldWitch_Hunter --> Samurai["Samurai"]
+            Samurai --> Blade_Saint["Blade Saint"]
+        end
+
+        subgraph EmpireMages
         direction TB
         subgraph Apprentice
             Apprentice_d("
@@ -195,17 +180,16 @@ subgraph Empire
             "):::desc
         end
 
+            Apprentice --> Elementalist["Elementalist"]
+            Elementalist --> Ritualist["Ritualist"]
+            Apprentice --> Mage["Mage"]
+            Mage --> Wizard["Wizard"]
+            Wizard --> White_Mage["White Mage"]
+            White_Mage --> Keeper_of_Knowledge["Keeper of Knowledge"]
+            White_Mage --> Arcanist
+        end
 
-         Apprentice --> Elementalist["Elementalist"]
-         Elementalist --> Ritualist["Ritualist"]
-         Apprentice --> Mage["Mage"]
-         Mage --> Wizard["Wizard"]
-         Wizard --> White_Mage["White Mage"]
-         White_Mage --> Keeper_of_Knowledge["Keeper of Knowledge"]
-         White_Mage --> Arcanist["Arcanist"]
-    end
-    subgraph Archers
-        direction TB
+        subgraph EmpireArchers
         subgraph Archer
             Archer_d("
             Stadard archer.
@@ -246,15 +230,84 @@ subgraph Empire
             can use one attack to assist an ally
             "):::desc
         end
+            Archer --> Marksman["Marksman"]
+            Marksman --> Assassin["Assassin"]
+            Marksman --> Scout["Scout"]
+            Scout --> Imperial_Ranger["Imperial Ranger"]
+            --> Nobleman
+            Imperial_Ranger --> Legate
+        end
 
-
-        Archer --> Marksman["Marksman"]
-        Marksman --> Assassin["Assassin"]
-        Marksman --> Scout["Scout"]
-        Scout --> Imperial_Ranger["Imperial Ranger"]
+        subgraph EmpireSpecial
+            Bear_rider --> Polar_bear_cavalry
+            --> Mammoth_wrangler
+            --> Mastodon_tamer
+            ~~~ empty[ ]:::Empty
+            Bear_rider --> Panther_outrider
+        end
     end
-    subgraph Special
-        direction TB
+    subgraph Church
+        subgraph Witch_Hunter
+            Witch_Hunter_d("
+            increased evasion
+            "):::desc
+        end
+        
+        subgraph Inquisitor
+            Inquisitor_d("
+            increased evasion
+            damage type *'None'* (no immunities or shields)
+            negative effects have only half the potency
+            "):::desc
+        end
+        subgraph Grand_Inquisitor
+            Grand_Inquisitor_d("
+            increased evasion
+            damage type *'None'* (no immunities or shields)
+            immune to negative effects
+            retaliation upon getting a debuff
+            "):::desc
+        end
+        root_church[ ]:::Empty ~~~ chSquire["Squire"]
+        root_church ~~~ chApprentice["Apprentice"]
+        root_church ~~~ chArcher["Archer"]
+        root_church ~~~ Acolyte
+
+        subgraph ChurchWarriors
+            chSquire --> Witch_Hunter
+            --> Inquisitor
+            --> Grand_Inquisitor
+            --> High_Inquisitor
+            --> Sacrum_Officium_Scribe
+            --> Praefectus_Dei_Contender
+        end
+
+        subgraph ChurchMages
+            chApprentice --> Zealot
+            --> Protodeacon
+            --> Provost
+            --> Exarch
+            --> Primate
+
+            Zealot --> Minister
+            --> Patriarch
+        end
+        
+        subgraph ChurchArchers
+            chArcher --> Ordinator
+            --> Vicar_general
+            --> Prefect
+            --> Chief_Camerlengo
+            --> War_Prelate
+
+            chArcher
+            --> Socius
+            --> Carcelero
+            --> Proctor
+            --> Councillor
+        end
+
+        subgraph ChurchSpecial
         subgraph Acolyte
             Acolyte_d("
             Healer.
@@ -280,8 +333,8 @@ subgraph Empire
             moderate restoration on the entire party and slight buff to accuracy
             "):::desc
         end
-        subgraph Imperial_priest
-            Imperial_priest_d("
+        subgraph Bishop
+            Bishop_d("
             significant healing on a single targt, full cure
             "):::desc
         end
@@ -299,16 +352,15 @@ subgraph Empire
             can perform resurrection instead (once per battle but the unit is revived with full hp)
             "):::desc
         end
-
-
-        Acolyte --> Cleric
-        Cleric --> Matriarch["Matriarch"]
-        Matriarch --> Prophetess["Prophetess"]
-        Acolyte --> Priest["Priest"]
-        Priest --> Imperial_priest["Imperial priest"]
-        Imperial_priest --> Hierophant["Hierophant"]   
+            Acolyte --> Cleric
+            --> Matriarch
+            --> Prophetess
+            Acolyte --> Priest
+            --> Bishop
+            --> Hierophant
+            --> Apostle
+        end
     end
-end
 subgraph Undead
     subgraph UndeadWarriors
         direction TB
