@@ -545,12 +545,12 @@ subgraph Undead
             "):::desc
         end
 
-        Warrior --> Zombie["Zombie"]
+        Destined --> Zombie["Zombie"]
         Zombie --> Phantom_warrior["Phantom warrior"]
         Zombie --> Skeleton["Skeleton"]
         Skeleton --> Skeleton_warrior["Skeleton warrior"]
         Skeleton_warrior --> Skeleton_champion["Skeleton champion"]
-        Warrior --> Templar["Templar"]
+        Destined --> Templar["Templar"]
         Templar --> Fallen_inquisitor["Fallen inquisitor"]
         Fallen_inquisitor --> Dark_lord["Dark lord"]
     end
