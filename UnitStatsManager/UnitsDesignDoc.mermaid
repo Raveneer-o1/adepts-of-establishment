@@ -1,117 +1,134 @@
 flowchart LR
 classDef desc fill:#0000,stroke:#0000,stroke-width:0px;
-    subgraph Empire
-        subgraph Squire
-            Squire_d("
-            Standard melee unit.
-            Normal hp and attack, no special effects
-            "):::desc
-        end
-        
-        %% Level 2
-        subgraph Knight
-            Knight_d("
-            increased armor
-            taunt
-            "):::desc
-        end
+subgraph Empire
+    subgraph Squire
+        Squire_d("
+        Standard melee unit.
+        Normal hp and attack, no special effects
+        "):::desc
+    end
+    
+    %% Level 2
+    subgraph Knight
+        Knight_d("
+        increased armor
+        taunt
+        "):::desc
+    end
+    subgraph Mercenary
+        Mercenary_d("
+        increased evasion
+        "):::desc
+    end
 
-        %% Level 3
-        subgraph Knight_Master
-            Knight_Master_d("
-            increased armor x2
-            taunt
-            once every three rounds can force all adjacent enemies to attack this unit;
-            this inceases significantly inceases armor
-            "):::desc
-        end
-        subgraph Horseman
-            Horseman_d("
-            increased armor
-            two turns: the first with increased initiative
-            if standing in the back line, can move to an empty front position to attack
-            "):::desc
-        end
-        subgraph Samurai
-            Samurai_d("
-            increased evasion x2
-            double attack
-            "):::desc
-        end
+    %% Level 3
+    subgraph Knight_Master
+        Knight_Master_d("
+        increased armor x2
+        taunt
+        once every three rounds can force all adjacent enemies to attack this unit;
+        this inceases significantly inceases armor
+        "):::desc
+    end
+    subgraph Horseman
+        Horseman_d("
+        increased armor
+        two turns: the first with increased initiative
+        if standing in the back line, can move to an empty front position to attack
+        "):::desc
+    end
+    subgraph Samurai
+        Samurai_d("
+        increased evasion x2
+        double attack
+        "):::desc
+    end
+    subgraph Man_at_Arms[Man at arms]
+        Man_at_Arms_d("
+        Positive effects are applied twice
+        "):::desc
+    end
 
-        %% Level 4
-        subgraph Royal_Cavalier
-            Royal_Cavalier_d("
-            increased armor
-            three turns: the first with increased initiative
-            can move to an empty position to attack
-            when this unit moves, its evasion is inceased by 50%
-            "):::desc
-        end
-        subgraph Angel_Knight
-            Angel_Knight_d("
-            increased armor x2
-            taunt
-            two turns
-            once every two rounds can force all enemies to attack this unit;
-            this significantly inceases armor
-            heals nearby allies at the start of its turn
-            the first damage that would kill this unit, leaves it with 1 HP instead
-            "):::desc
-        end
-        
-        subgraph Blade_Saint
-            Blade_Saint_d("
-            increased evasion x3
-            double attack
-            each hit increases damage, resets when attack is missed or evaded
-            "):::desc
-        end
+    %% Level 4
+    subgraph Royal_Cavalier
+        Royal_Cavalier_d("
+        increased armor
+        three turns: the first with increased initiative
+        can move to an empty position to attack
+        when this unit moves, its evasion is inceased by 50%
+        "):::desc
+    end
+    subgraph Angel_Knight
+        Angel_Knight_d("
+        increased armor x2
+        taunt
+        two turns
+        once every two rounds can force all enemies to attack this unit;
+        this significantly inceases armor
+        heals nearby allies at the start of its turn
+        the first damage that would kill this unit, leaves it with 1 HP instead
+        "):::desc
+    end
+    
+    subgraph Blade_Saint
+        Blade_Saint_d("
+        increased evasion x3
+        double attack
+        each hit increases damage, resets when attack is missed or evaded
+        "):::desc
+    end
+    subgraph Gendarme
+        Gendarme_d("
+        Positive effects are applied twice
+        When this unit recieves a positive effect, it applies a copy to all adjacent allies
+        *Implementation note: consider two of this units adjacent to each other*
+        "):::desc
+    end
 
-        %% Level 5
-        subgraph Paladin
-            Paladin_d("
-            increased armor x2
-            three turns: the first with increased initiative
-            evasion buff aura
-            can move to an empty position to attack
-            when this unit moves, its evasion is inceased by 50%
-            "):::desc
-        end
-        subgraph Angel
-            Angel_d("
-            evasion buff aura
-            can purify *any* unit: lift all effects that unit has; purification is stronger than silence because it can't be restored 
-            heals nearby allies at the start of its turn
-            the first damage that would kill this unit, leaves it with 1 HP instead
-            "):::desc
-        end
-        root_empire[ ]:::Empty ~~~ Squire["Squire"]
-        root_empire ~~~ Apprentice["Apprentice"]
-        root_empire ~~~ Archer["Archer"]
-        root_empire ~~~ Bear_rider
-        classDef Vacant fill:#990000,stroke:#ffff00,stroke-width:4px
-        classDef Empty height:0px
+    %% Level 5
+    subgraph Paladin
+        Paladin_d("
+        increased armor x2
+        three turns: the first with increased initiative
+        evasion buff aura
+        can move to an empty position to attack
+        when this unit moves, its evasion is inceased by 50%
+        "):::desc
+    end
+    subgraph Angel
+        Angel_d("
+        evasion buff aura
+        can purify *any* unit: lift all effects that unit has; purification is stronger than silence because it can't be restored 
+        heals nearby allies at the start of its turn
+        the first damage that would kill this unit, leaves it with 1 HP instead
+        "):::desc
+    end
+    root_empire[ ]:::Empty ~~~ Squire["Squire"]
+    root_empire ~~~ Apprentice["Apprentice"]
+    root_empire ~~~ Archer["Archer"]
+    root_empire ~~~ Bear_rider
+    classDef Vacant fill:#990000,stroke:#ffff00,stroke-width:4px
+    classDef Empty height:0px
 
-        subgraph EmpireWarriors
-            Squire --> Knight["Knight"]
-            --> Knight_Master["Knight Master"]
-            --> Angel_Knight["Angel Knight"]
-            ~~~ empty2[ ]:::Empty
-            Knight --> Horseman["Horseman"]
-            --> Royal_Cavalier["Royal Cavalier"]
-            --> Paladin["Paladin"]
-            Royal_Cavalier --> Angel["Angel"]
+    subgraph EmpireWarriors
+        Squire --> Knight["Knight"]
+        --> Knight_Master["Knight Master"]
+        --> Angel_Knight["Angel Knight"]
+        ~~~ empty2[ ]:::Empty
+        Knight --> Horseman["Horseman"]
+        --> Royal_Cavalier["Royal Cavalier"]
+        --> Paladin["Paladin"]
+        Royal_Cavalier --> Angel["Angel"]
 
-            Squire --> oldWitch_Hunter[Mercenary]
-            oldWitch_Hunter --> oldInquisitor[Man at Arms]
-            oldInquisitor --> oldGrand_Inquisitor[Gendarme]
-            ~~~ empty1[ ]:::Empty
-            oldWitch_Hunter --> Samurai["Samurai"]
-            Samurai --> Blade_Saint["Blade Saint"]
-        end
+        Squire --> Mercenary
+        --> Man_at_Arms[Man at Arms]
+        --> Gendarme
+        ~~~ empty1[ ]:::Empty
+        Mercenary --> Samurai["Samurai"]
+        Samurai --> Blade_Saint["Blade Saint"]
+    end
 
-        subgraph EmpireMages
+    subgraph EmpireMages
         direction TB
         subgraph Apprentice
             Apprentice_d("
@@ -180,16 +197,16 @@ classDef desc fill:#0000,stroke:#0000,stroke-width:0px;
             "):::desc
         end
 
-            Apprentice --> Elementalist["Elementalist"]
-            Elementalist --> Ritualist["Ritualist"]
-            Apprentice --> Mage["Mage"]
-            Mage --> Wizard["Wizard"]
-            Wizard --> White_Mage["White Mage"]
-            White_Mage --> Keeper_of_Knowledge["Keeper of Knowledge"]
-            White_Mage --> Arcanist
-        end
+        Apprentice --> Elementalist["Elementalist"]
+        Elementalist --> Ritualist["Ritualist"]
+        Apprentice --> Mage["Mage"]
+        Mage --> Wizard["Wizard"]
+        Wizard --> White_Mage["White Mage"]
+        White_Mage --> Keeper_of_Knowledge["Keeper of Knowledge"]
+        White_Mage --> Arcanist
+    end
 
-        subgraph EmpireArchers
+    subgraph EmpireArchers
         subgraph Archer
             Archer_d("
             Stadard archer.
@@ -230,84 +247,159 @@ classDef desc fill:#0000,stroke:#0000,stroke-width:0px;
             can use one attack to assist an ally
             "):::desc
         end
-            Archer --> Marksman["Marksman"]
-            Marksman --> Assassin["Assassin"]
-            Marksman --> Scout["Scout"]
-            Scout --> Imperial_Ranger["Imperial Ranger"]
-            --> Nobleman
-            Imperial_Ranger --> Legate
+
+        %% Level 5
+        subgraph Nobleman
+            Nobleman_d("
+            Instead of attacking can swap positions of any two allies (including itself)
+            When any unit moves, increasses its evasion
+            "):::desc
+        end
+        subgraph Legate
+            Legate_d("
+            increased accuracy x2
+            has three attacks per round
+            can assist an ally (for free)
+            When an ally dies, applies a buff to the entire party
+            "):::desc
         end
 
-        subgraph EmpireSpecial
-            Bear_rider --> Polar_bear_cavalry
-            --> Mammoth_wrangler
-            --> Mastodon_tamer
-            ~~~ empty[ ]:::Empty
-            Bear_rider --> Panther_outrider
-        end
+        Archer --> Marksman["Marksman"]
+        Marksman --> Assassin["Assassin"]
+        Marksman --> Scout["Scout"]
+        Scout --> Imperial_Ranger["Imperial Ranger"]
+        --> Nobleman
+        Imperial_Ranger --> Legate
     end
-    subgraph Church
-        subgraph Witch_Hunter
-            Witch_Hunter_d("
-            increased evasion
+
+    subgraph EmpireSpecial
+        subgraph Bear_rider
+            Bear_rider_d("
+Large unit.
+Decreased evasion.
+Attacks cause hemorrhage.
             "):::desc
         end
-        
-        subgraph Inquisitor
-            Inquisitor_d("
-            increased evasion
-            damage type *'None'* (no immunities or shields)
-            negative effects have only half the potency
+        subgraph Polar_bear_cavalry
+            Polar_bear_cavalry_d("
+Large unit.
+Decreased evasion.
+Attacks cause hemorrhage.
+Ward against elemental attacks.
+If an enemy moves within reach of this unit, attacks it if attack is available.
             "):::desc
         end
-        subgraph Grand_Inquisitor
-            Grand_Inquisitor_d("
-            increased evasion
-            damage type *'None'* (no immunities or shields)
-            immune to negative effects
-            retaliation upon getting a debuff
+        subgraph Mammoth_wrangler
+            Mammoth_wrangler_d("
+Large unit.
+Zero evasion, increased health.
+Attacks all targets within its reach.
             "):::desc
         end
-        root_church[ ]:::Empty ~~~ chSquire["Squire"]
-        root_church ~~~ chApprentice["Apprentice"]
-        root_church ~~~ chArcher["Archer"]
-        root_church ~~~ Acolyte
-
-        subgraph ChurchWarriors
-            chSquire --> Witch_Hunter
-            --> Inquisitor
-            --> Grand_Inquisitor
-            --> High_Inquisitor
-            --> Sacrum_Officium_Scribe
-            --> Praefectus_Dei_Contender
+        subgraph Mastodon_tamer
+            Mastodon_tamer_d("
+Large unit.
+Zero evasion, increased health.
+Attacks all targets within its reach.
+increased armor.
+            "):::desc
+        end
+        subgraph Panther_outrider
+            Panther_outrider_d("
+Large unit.
+Inreased evasion.
+Attacks cause hemorrhage.
+When evades an attack, gets an attitional attack for this round.
+            "):::desc
         end
 
-        subgraph ChurchMages
-            chApprentice --> Zealot
-            --> Protodeacon
-            --> Provost
-            --> Exarch
-            --> Primate
+        Bear_rider --> Polar_bear_cavalry
+        --> Mammoth_wrangler
+        --> Mastodon_tamer
+        ~~~ empty[ ]:::Empty
+        Bear_rider --> Panther_outrider
+    end
+end
+subgraph Church
+    subgraph chSquire[Squire]
+        chSquire_d("
+        Same unit as the Empire's
+        "):::desc
+    end
+    subgraph chArcher[Archer]
+        chArcher_d("
+        Same unit as the Empire's
+        "):::desc
+    end
+    subgraph chApprentice[Apprentice]
+        chApprentice_d("
+        Same unit as the Empire's
+        "):::desc
+    end
 
-            Zealot --> Minister
-            --> Patriarch
-        end
-        
-        subgraph ChurchArchers
-            chArcher --> Ordinator
-            --> Vicar_general
-            --> Prefect
-            --> Chief_Camerlengo
-            --> War_Prelate
+    subgraph Witch_Hunter
+        Witch_Hunter_d("
+        increased damage
+        "):::desc
+    end
+    
+    subgraph Inquisitor
+        Inquisitor_d("
+        increased damage
+        damage type *'None'* (no immunities or shields)
+        retaliation upon getting a debuffs
+        ward against *Mind*
+        "):::desc
+    end
+    subgraph High_Inquisitor
+        High_Inquisitor_d("
+        increased damage
+        damage type *'None'* (no immunities or shields)
+        immune to negative effects
+        ward against *Mind*
+        Buff to adjacent allies
+        "):::desc
+    end
+    root_church[ ]:::Empty ~~~ chSquire["Squire"]
+    root_church ~~~ chApprentice["Apprentice"]
+    root_church ~~~ chArcher["Archer"]
+    root_church ~~~ Acolyte
 
-            chArcher
-            --> Socius
-            --> Carcelero
-            --> Proctor
-            --> Councillor
-        end
+    subgraph ChurchWarriors
+        chSquire --> Witch_Hunter
+        --> Inquisitor
+        --> High_Inquisitor
+        --> Commissarius_Sacri_Officii
+        --> Sacrum_Officium_Scribe
+        --> Praefectus_Dei_Contender
+    end
 
-        subgraph ChurchSpecial
+    subgraph ChurchMages
+        chApprentice --> Zealot
+        --> Protodeacon
+        --> Provost
+        --> Exarch
+        --> Primate
+
+        Zealot --> Minister
+        --> Patriarch
+    end
+    
+    subgraph ChurchArchers
+        chArcher --> Ordinator
+        --> Vicar_general
+        --> Prefect
+        --> Chief_Camerlengo
+        --> War_Prelate
+
+        chArcher
+        --> Socius
+        --> Carcelero
+        --> Proctor
+        --> Councillor_Parvus
+    end
+
+    subgraph ChurchSpecial
         subgraph Acolyte
             Acolyte_d("
             Healer.
@@ -348,19 +440,29 @@ classDef desc fill:#0000,stroke:#0000,stroke-width:0px;
         end
         subgraph Hierophant
             Hierophant_d("
-            enormous healing of a single target
+            enormous healing of a single target with full cure
             can perform resurrection instead (once per battle but the unit is revived with full hp)
+            when any ally restores health, heals a random ally for half the amount
             "):::desc
         end
-            Acolyte --> Cleric
-            --> Matriarch
-            --> Prophetess
-            Acolyte --> Priest
-            --> Bishop
-            --> Hierophant
-            --> Apostle
+        subgraph Apostle
+            Apostle_d("
+            enormous healing of a single target with full cure
+            can perform resurrection instead (twice per battle, the unit is revived with full hp)
+            when any unit restores health, heals a random ally for half the amount
+            "):::desc
         end
+
+        
+        Acolyte --> Cleric
+        --> Matriarch
+        --> Prophetess
+        Acolyte --> Priest
+        --> Bishop
+        --> Hierophant
+        --> Apostle
     end
+end
 subgraph Undead
     subgraph UndeadWarriors
         direction TB
