@@ -424,8 +424,9 @@ func player_act(coords: Vector2i, faction: MapFaction) -> void:
 	#visualizer.reset_highlights()
 	#var rad := path_finder.get_all_tiles(
 		#coords,
-		#5,
-		#TravelData.new(active_party) if active_party else null
+		#3,
+		#TravelData.new(active_party) if active_party else null,
+		#2
 	#)
 	#visualizer.highlight_tiles(rad)
 	#return

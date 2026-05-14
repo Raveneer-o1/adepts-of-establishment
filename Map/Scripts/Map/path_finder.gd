@@ -204,11 +204,16 @@ func _visualize_current_tile(tile_coords: Vector2i) -> void:
 ## Returns all tiles within the specified [param radius] of the given [param center].
 ## If [param for_traveller] is provided, the result is filtered to tiles reachable
 ## within [param radius] steps by that traveller.
-## Otherwise, includes all tiles regardless of passability.
+## Otherwise, includes all tiles regardless of passability.[br][br]
+## When [param padding] is greater than zero, the original area is expanded outward
+## by that many tiles in all directions, without any passability checks.
+## This is useful for determining visibility ranges that should cover obstacles
+## themselves, not just traversable tiles.
 func get_all_tiles(
 	center: Vector2i,
 	radius: int,
-	for_traveller: TravelData = null
+	for_traveller: TravelData = null,
+	padding := 0
 ) -> Array[Vector2i]:
 	var center_tile: MapTileData = _get_center_tile(center)
 	if not center_tile:
@@ -224,10 +229,11 @@ func get_all_tiles(
 		open_set.erase(current_tile)
 		
 		if not _is_traversable(current_tile, for_traveller):
-			continue
+			current_cost = maxi(current_cost, radius)
+			#continue
 		
-		_process_tile(current_tile, current_cost, radius, closed_set, result)
-		_expand_neighbors(current_tile, current_cost, radius, open_set)
+		_process_tile(current_tile, current_cost, radius + padding, closed_set, result)
+		_expand_neighbors(current_tile, current_cost, radius, open_set, padding)
 	
 	return result
 
@@ -242,7 +248,7 @@ func _process_tile(
 	cost: int,
 	radius: int,
 	closed_set: Dictionary,
-	result: Array[Vector2i]
+	result: Array[Vector2i],
 ) -> void:
 	if cost <= radius and tile not in closed_set:
 		result.append(tile.coordinates)
@@ -252,10 +258,11 @@ func _expand_neighbors(
 	tile: MapTileData,
 	current_cost: int,
 	radius: int,
-	open_set: Dictionary[MapTileData, int]
+	open_set: Dictionary[MapTileData, int],
+	padding: int
 ) -> void:
 	var next_cost := current_cost + 1
-	if next_cost >= radius:
+	if next_cost >= radius + padding:
 		return
 	
 	for neighbor in tile.get_neighbors():

@@ -175,7 +175,8 @@ func research(upgrade: FactionUpgrade) -> bool:
 
 ## Returns all interactable objects present on the specified tile coordinates in [param list].
 ## When [param party] is provided, results are filtered to objects that can interact
-## with that party, and the default map is set to the party's current map.
+## with that party, and the default map is set to the party's current map,
+## unless a specific [param _map] is provided.
 ## Otherwise, uses [member GameMap.current_map] by default,
 ## unless a specific [param _map] is provided.
 func get_interactions(
@@ -187,12 +188,12 @@ func get_interactions(
 	if not _map: _map = party.map if party else game.current_map
 	var result: Dictionary = {}
 	for tile in list:
-		var on_tile: Array[MapInteractableObject] = []
-		on_tile.assign(_map.tile_to_interaction.get(tile, []))
-		for o in on_tile:
+		for o: MapInteractableObject in _map.tile_to_interaction.get(tile, []):
 			if o in result: continue
-			if not party: result[o] = null
-			elif o.can_interact(party): result[o] = null
+			if not party or o.can_interact(party):
+				# null value doesn't mean anything, 
+				# it's a placeholder for the hashmap
+				result[o] = null
 	var res: Array[MapInteractableObject] = []
 	res.assign(result.keys())
 	return res
@@ -224,6 +225,9 @@ func _move_unit(unit: UnitData, destination: UnitsContainer) -> bool:
 	#unit.reparent(destination)
 	return true
 
+## Returns all parties owned by this faction.
+## If [param only_active_map] is [code]false[/code], searches across all maps in the game.
+## Otherwise, only the currently active map is considered.
 func get_available_parties(only_active_map := true) -> Array[MapParty]:
 	return this_faction.get_available_parties(only_active_map)
 

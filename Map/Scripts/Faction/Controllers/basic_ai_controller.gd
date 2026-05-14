@@ -12,7 +12,7 @@ func _make_map_decision() -> void:
 	var all_parties := api.get_available_parties()
 	for current_party in all_parties:
 		if not api.try_choose_party(current_party):
-			push_error("Unable to choose a party")
+			push_error("Unable to choose a party %s" % current_party.object_name)
 			continue
 		
 		var all_coords := api.get_reachable_tiles(current_party)

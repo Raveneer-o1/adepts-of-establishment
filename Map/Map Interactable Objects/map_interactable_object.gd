@@ -177,7 +177,9 @@ func get_interaction_tiles(
 ## interaction validity beforehand, or call this directly
 ## to force interaction regardless. [br][br]
 ## [b]Returns:[/b] Interaction cost in movement points.
-## Does not deduct movement points from the party - caller must handle this.
+## Does not deduct movement points from the party - caller must handle this. [br]
+## [b]Important:[/b] This function must be treated as a coroutine
+## and called with [code]await[/code].
 @abstract func force_interaction_on(party: MapParty) -> int
 ## Determines whether interaction with this object is currently available.
 ## Returns [code]true[/code] if the tile should highlight as interactable

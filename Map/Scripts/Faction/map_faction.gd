@@ -140,7 +140,9 @@ func _append_heroes() -> void:
 			if &"Virion the Bonebinder" not in hiring_heroes: 
 				hiring_heroes.append(&"Virion the Bonebinder")
 
-
+## Returns all parties owned by this faction.
+## If [param only_active_map] is [code]false[/code], searches across all maps in the game.
+## Otherwise, only the currently active map is considered.
 func get_available_parties(only_active_map := true) -> Array[MapParty]:
 	var res: Array[MapParty] = []
 	for map: Map in ([game.current_map] if only_active_map else game.get_all_maps()):
