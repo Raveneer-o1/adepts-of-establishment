@@ -213,7 +213,7 @@ func enter_city(city: MapCity) -> void:
 	if city.party_inside: return
 	inside_city = city
 	city.party_inside = self
-	control.walk_to(city.tile_position)
+	await control.walk_to(city.tile_position)
 	
 	#_behind_walls_effect = \
 		#parameters.apply_effect(

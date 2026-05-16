@@ -27,6 +27,7 @@ extends Node
 @export var starting_stone := 0
 @export var starting_mana := 0
 
+var capital: MapCapital
 var game: GameMap
 
 ## Returns a list of all available evolutionary paths for the provided [param unit_name].
@@ -143,7 +144,7 @@ func _append_heroes() -> void:
 ## Returns all parties owned by this faction.
 ## If [param only_active_map] is [code]false[/code], searches across all maps in the game.
 ## Otherwise, only the currently active map is considered.
-func get_available_parties(only_active_map := true) -> Array[MapParty]:
+func get_available_parties(only_active_map := false) -> Array[MapParty]:
 	var res: Array[MapParty] = []
 	for map: Map in ([game.current_map] if only_active_map else game.get_all_maps()):
 		for party in map.get_all_parties():

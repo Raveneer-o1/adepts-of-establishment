@@ -161,28 +161,34 @@ func hire_unit(unit_name: StringName, container: UnitsContainer) -> UnitData:
 		return unit
 	return null
 
-## Researches specified [param upgrade]. Returns if successful.
-func research(upgrade: FactionUpgrade) -> bool:
+## Returns if the provided [param upgrade] can be researched right now.
+func can_be_researched(upgrade: FactionUpgrade) -> bool:
 	if not upgrade: return false
 	if not upgrade.can_be_researched(): return false
 	if not _verify_ownership(upgrade):
 		push_error("Failed verification for researching upgrade")
 		return false
-	if this_faction.resource_container.spend(upgrade.cost):
-		this_faction.research(upgrade)
-		return true
-	return false
+	return this_faction.resource_container.can_spend(upgrade.cost)
+
+## Researches specified [param upgrade]. Returns if successful.
+func research(upgrade: FactionUpgrade) -> bool:
+	if not can_be_researched(upgrade): return false
+	this_faction.research(upgrade)
+	return true
 
 ## Returns all interactable objects present on the specified tile coordinates in [param list].
 ## When [param party] is provided, results are filtered to objects that can interact
 ## with that party, and the default map is set to the party's current map,
 ## unless a specific [param _map] is provided.
 ## Otherwise, uses [member GameMap.current_map] by default,
-## unless a specific [param _map] is provided.
+## unless a specific [param _map] is provided.[br]
+## If [param exclude_occupied_city] is [code]true[/code], 
+## the result does not include the city the party currently occupies.
 func get_interactions(
 	list: Array[Vector2i],
 	party: MapParty = null,
 	_map: Map = null,
+	exclude_occupied_city := true,
 ) -> Array[MapInteractableObject]:
 	if not list: return []
 	if not _map: _map = party.map if party else game.current_map
@@ -190,6 +196,7 @@ func get_interactions(
 	for tile in list:
 		for o: MapInteractableObject in _map.tile_to_interaction.get(tile, []):
 			if o in result: continue
+			if party and o == party.inside_city: continue
 			if not party or o.can_interact(party):
 				# null value doesn't mean anything, 
 				# it's a placeholder for the hashmap
@@ -225,16 +232,6 @@ func _move_unit(unit: UnitData, destination: UnitsContainer) -> bool:
 	#unit.reparent(destination)
 	return true
 
-## Returns all parties owned by this faction.
-## If [param only_active_map] is [code]false[/code], searches across all maps in the game.
-## Otherwise, only the currently active map is considered.
-func get_available_parties(only_active_map := true) -> Array[MapParty]:
-	return this_faction.get_available_parties(only_active_map)
-
-## Returns the list of all heroes available for hiring
-func get_heroes_list() -> Array[StringName]:
-	return this_faction.hiring_heroes
-
 ## Creates a new [MapParty] at [param coords] on the specified [param _map]
 ## (defaults to current active map). Optionally adds a hero unit
 ## if [param hero_name] is provided.
@@ -245,12 +242,37 @@ func hire_party(coords: Vector2i, _map: Map = map, hero_name: StringName = &"") 
 	if not this_faction.resource_container.spend(ResourceCost.from_dict(cost)):
 		return null
 	
-	var party := game.spawn_new_party(coords, _map)
+	var party := await game.spawn_new_party(coords, this_faction, _map)
 	if not party: return null
-	party.object_owner = this_faction
 	if hero_name:
 		var hired_hero: UnitData = game.spawn_new_unit(hero_name, party.units_container)
 		if hired_hero is HeroData:
 			party.hero = hired_hero
 	EventBus.party_hired.emit(party)
 	return party
+
+func transfer_unit(unit: UnitData, container: UnitsContainer) -> void:
+	if not container: return
+	if not unit: return
+	
+	if not unit.container.can_transfer(container): return
+	
+	unit.container.try_transfer_unit(unit, container)
+
+#region Mirrors
+## Returns all [FactionUpgrade] nodes available for research.
+## Excludes [UnitEvolution] nodes by default. Set [param include_evolution_buildings]
+## to [code]true[/code] to include evolution upgrades.
+func get_available_research(include_evolution_buildings := false) -> Array[FactionUpgrade]:
+	return this_faction.get_available_upgrades(include_evolution_buildings)
+
+## Returns all parties owned by this faction.
+## If [param only_active_map] is [code]false[/code], searches across all maps in the game.
+## Otherwise, only the currently active map is considered.
+func get_available_parties(only_active_map := false) -> Array[MapParty]:
+	return this_faction.get_available_parties(only_active_map)
+
+## Returns the list of all heroes available for hiring
+func get_heroes_list() -> Array[StringName]:
+	return this_faction.hiring_heroes
+#endregion

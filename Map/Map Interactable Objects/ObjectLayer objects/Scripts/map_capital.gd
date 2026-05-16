@@ -37,4 +37,7 @@ func _provide_income(faction: MapFaction) -> void:
 	object_owner.resource_container.receive_mana(mana_income)
 
 func _initialize() -> void:
+	assert(object_owner)
+	assert(not object_owner.capital)
+	object_owner.capital = self
 	EventBus.map_turn_started.connect(_provide_income)

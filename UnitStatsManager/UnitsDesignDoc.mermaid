@@ -323,7 +323,7 @@ end
 subgraph Church
     subgraph chSquire[Squire]
         chSquire_d("
-        Same unit as the Empire's
+Same unit as the Empire's
         "):::desc
     end
     subgraph chArcher[Archer]
@@ -339,27 +339,62 @@ subgraph Church
 
     subgraph Witch_Hunter
         Witch_Hunter_d("
-        increased damage
+increased damage
         "):::desc
     end
     
     subgraph Inquisitor
         Inquisitor_d("
-        increased damage
-        damage type *'None'* (no immunities or shields)
-        retaliation upon getting a debuffs
-        ward against *Mind*
+increased damage
+damage type *'None'* (no immunities or shields)
+retaliation upon getting a debuffs
+ward against *Mind*
         "):::desc
     end
     subgraph High_Inquisitor
         High_Inquisitor_d("
-        increased damage
-        damage type *'None'* (no immunities or shields)
-        immune to negative effects
-        ward against *Mind*
-        Buff to adjacent allies
+increased damage
+damage type *'None'* (no immunities or shields)
+immune to negative effects
+ward against *Mind*
+Buff to adjacent allies
         "):::desc
     end
+    subgraph Commissarius_Sacri_Officii
+        Commissarius_Sacri_Officii_d("
+increased damage
+damage type *'None'* (no immunities or shields)
+immune to negative effects
+ward against *Mind*
+Buff to adjacent allies
+When this unit's turn starts, applies random buff to a random ally
+        "):::desc
+    end
+    subgraph Sacrum_Officium_Scribe
+        Sacrum_Officium_Scribe_d("
+increased damage
+damage type *'None'*
+immune to negative effects
+ward against *Mind*
+Buff to adjacent allies
+When this unit's turn starts, applies random buff to a random ally
+If this unit has any buff applied, it has can attack two targers
+        "):::desc
+    end
+    subgraph Praefectus_Dei_Contender
+        Praefectus_Dei_Contender_d("
+increased damage
+damage type *'None'* (no immunities or shields)
+immune to negative effects
+ward against *Mind*
+Buff to adjacent allies
+When this unit's turn starts, applies random buff to a random ally
+If this unit has any buff applied, it has can attack two targers
+Any effect applied to this unit is permanent.
+        "):::desc
+    end
+
+
     root_church[ ]:::Empty ~~~ chSquire["Squire"]
     root_church ~~~ chApprentice["Apprentice"]
     root_church ~~~ chArcher["Archer"]
@@ -545,12 +580,12 @@ subgraph Undead
             "):::desc
         end
 
-        Destined --> Zombie["Zombie"]
+        Warrior --> Zombie["Zombie"]
         Zombie --> Phantom_warrior["Phantom warrior"]
         Zombie --> Skeleton["Skeleton"]
         Skeleton --> Skeleton_warrior["Skeleton warrior"]
         Skeleton_warrior --> Skeleton_champion["Skeleton champion"]
-        Destined --> Templar["Templar"]
+        Warrior --> Templar["Templar"]
         Templar --> Fallen_inquisitor["Fallen inquisitor"]
         Fallen_inquisitor --> Dark_lord["Dark lord"]
     end

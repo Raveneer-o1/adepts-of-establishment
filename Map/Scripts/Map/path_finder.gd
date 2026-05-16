@@ -50,12 +50,12 @@ func _check_distances(start: Vector2i, end: Array[Vector2i]) -> bool:
 ## to end (excluding start)
 func A_star(start: Vector2i, end: Array[Vector2i], travel_data: TravelData) -> Array[Vector2i]:
 	if start in end: 
-		return []
+		return [] as Array[Vector2i]
 	
 	if not _are_tiles_valid(start, end, travel_data):
-		return []
+		return [] as Array[Vector2i]
 	
-	if not _check_distances(start, end): return []
+	if not _check_distances(start, end): return [] as Array[Vector2i]
 	
 	var current_node := PathNode.new(start, terrain_layer, travel_data)
 	current_node.terrain_cost = 0
@@ -87,7 +87,7 @@ func A_star(start: Vector2i, end: Array[Vector2i], travel_data: TravelData) -> A
 			break  # No more nodes to evaluate
 	
 	if goal == start or not closed_set.has(goal):
-		return []
+		return [] as Array[Vector2i]
 	
 	return _reconstruct_path(closed_set[goal], start)
 
@@ -261,6 +261,7 @@ func _expand_neighbors(
 	open_set: Dictionary[MapTileData, int],
 	padding: int
 ) -> void:
+	# NOW: next_cost should be calculated as current_cost plus the cost of stepping on the tile
 	var next_cost := current_cost + 1
 	if next_cost >= radius + padding:
 		return

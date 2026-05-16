@@ -38,6 +38,7 @@ var units_owner: MapFaction:
 		return null
 
 ## Attempts to transfer specified [param unit] to the provided contaner.
+## Does not verify tile position.
 func try_transfer_unit(unit: UnitData, to: UnitsContainer) -> bool:
 	if not unit or not to: return false
 	if to == self: return true
@@ -77,6 +78,47 @@ func get_unit_list_copy() -> Array[UnitData]:
 		dupl.original = data
 		_unit_list_copy.append(dupl)
 	return _unit_list_copy
+
+func get_position() -> Vector2i:
+	var p := get_parent()
+	while p:
+		if p is MapInteractableObject: break
+		p = p.get_parent()
+	assert(p)
+	
+	return (p as MapInteractableObject).tile_position
+
+func get_object() -> MapInteractableObject:
+	var p := get_parent()
+	while p:
+		if p is MapInteractableObject: return p
+		p = p.get_parent()
+	return null
+
+func can_transfer(container: UnitsContainer) -> bool:
+	if not container: return false
+	var to_obj := container.get_object()
+	if not to_obj: return false
+	var self_obj := get_object()
+	if not self_obj: return false
+	
+	if to_obj is MapCity and self_obj is MapParty:
+		return (self_obj as MapParty).inside_city == to_obj
+	if self_obj is MapCity and to_obj is MapParty:
+		return (to_obj as MapParty).inside_city == self_obj
+
+	return self_obj.tile_position in \
+		to_obj.get_interaction_tiles()
+
+## Returns the interaction tiles of the [MapInteractableObject] this container is part of.
+func get_interaction_tiles() -> Array[Vector2i]:
+	var p := get_parent()
+	while p:
+		if p is MapInteractableObject: break
+		p = p.get_parent()
+	if not p: return [] as Array[Vector2i]
+	
+	return (p as MapInteractableObject).get_interaction_tiles()
 
 ## Returns a deep copy of the unit data list with all effects applied.
 ## The returned [UnitData] objects are not the original units; each copy has its
