@@ -196,7 +196,7 @@ func get_interactions(
 	for tile in list:
 		for o: MapInteractableObject in _map.tile_to_interaction.get(tile, []):
 			if o in result: continue
-			if party and o == party.inside_city: continue
+			if party and exclude_occupied_city and o == party.inside_city: continue
 			if not party or o.can_interact(party):
 				# null value doesn't mean anything, 
 				# it's a placeholder for the hashmap
