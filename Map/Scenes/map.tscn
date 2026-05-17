@@ -384,7 +384,7 @@ script = ExtResource("3_1tmes")
 script = ExtResource("18_jtf36")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(1379, 772)
+position = Vector2(788, 298)
 zoom = Vector2(1.615, 1.615)
 script = ExtResource("19_gdowr")
 movement_speed = 350.0

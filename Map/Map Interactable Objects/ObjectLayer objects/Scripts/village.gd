@@ -101,7 +101,8 @@ func _request_player_interaction(faction: MapFaction) -> bool:
 	# NOTE: Only handles "left-click" interactions
 	#       "right-click" for information and game settings are managed
 	#       through right_click_processed() (see above)
-	return false
+	return true
+
 
 func _player_interact(faction: MapFaction) -> void:
 	# Handle player interaction with this object
@@ -112,6 +113,8 @@ func _player_interact(faction: MapFaction) -> void:
 	
 	# This method is allowed to call UI functions directly as it's only called
 	# if provided faction is current screen-player
+	const TEST_DIALOGUE = preload("uid://b5qpt3nftkeo1")
+	EventBus.window_requested.emit(TEST_DIALOGUE)
 	return
 
 #endregion

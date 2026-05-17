@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bhc5nlf4nxnx6"]
+
+[node name="Button" type="Button"]
+custom_minimum_size = Vector2(250, 50)
+text = "Accept"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cy8rh77mxkncn"]
+[gd_scene load_steps=33 format=3 uid="uid://cy8rh77mxkncn"]
 
 [ext_resource type="Script" uid="uid://cium5533y6jdp" path="res://Map/Scripts/game_map.gd" id="1_mp6yi"]
 [ext_resource type="Script" uid="uid://ymq5kwxdp6r3" path="res://Map/Scripts/map_ui.gd" id="2_jwoqq"]
@@ -26,6 +26,8 @@
 [ext_resource type="Script" uid="uid://bugsl481wedlm" path="res://Map/UI/Scripts/Popups/unit_info_popup.gd" id="18_qmi5v"]
 [ext_resource type="PackedScene" uid="uid://d12hr40jjb8s8" path="res://Combat/Scenes/UnitInfoPanel.tscn" id="19_oranv"]
 [ext_resource type="Script" uid="uid://dprjkox21ayan" path="res://Map/UI/Scripts/Popups/hire_hero_popup.gd" id="22_3xuhj"]
+[ext_resource type="Script" uid="uid://dk4uplb2ri6rg" path="res://Map/UI/Scripts/Windows/dialogue_window.gd" id="26_5fv76"]
+[ext_resource type="PackedScene" uid="uid://bhc5nlf4nxnx6" path="res://Map/Dialogue/choice_button.tscn" id="27_fxkpy"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ru5ay"]
 font_size = 19
@@ -86,7 +88,6 @@ main_color = Color(0.49860322, 0.4958654, 0.48841393, 1)
 script = ExtResource("2_jwoqq")
 
 [node name="Main" type="CanvasLayer" parent="UILayers"]
-visible = false
 
 [node name="PanelContainer" type="PanelContainer" parent="UILayers/Main"]
 anchors_preset = 11
@@ -352,6 +353,7 @@ size_flags_vertical = 3
 visible = false
 
 [node name="City" type="CanvasLayer" parent="UILayers"]
+visible = false
 script = ExtResource("9_bqemh")
 
 [node name="PanelContainer" type="PanelContainer" parent="UILayers/City"]
@@ -741,6 +743,7 @@ size_flags_stretch_ratio = 2.0
 
 [node name="UI_Popups" type="Node" parent="UILayers"]
 unique_name_in_owner = true
+editor_description = "Popups display player-requested information, typically triggered by right-clicking objects."
 
 [node name="PartyInfoPopup" type="CanvasLayer" parent="UILayers/UI_Popups"]
 visible = false
@@ -1858,6 +1861,7 @@ mouse_filter = 2
 
 [node name="UI_Windows" type="Node" parent="UILayers"]
 unique_name_in_owner = true
+editor_description = "Windows present information not necessarily requested by the player, such as resource deficiency notifications or discovery alerts."
 
 [node name="PickUpWindow" type="CanvasLayer" parent="UILayers/UI_Windows"]
 visible = false
@@ -1911,6 +1915,111 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 expand_mode = 3
 stretch_mode = 4
+
+[node name="DialogueWindow" type="CanvasLayer" parent="UILayers/UI_Windows"]
+visible = false
+script = ExtResource("26_5fv76")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayers/UI_Windows/DialogueWindow"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/UI_Windows/DialogueWindow/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="UI_DialogueWindow_SkipDialogueButton" type="Button" parent="UILayers/UI_Windows/DialogueWindow/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "Skip dialogue"
+
+[node name="MarginContainer2" type="MarginContainer" parent="UILayers/UI_Windows/DialogueWindow/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayers/UI_Windows/DialogueWindow/HBoxContainer/VBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+
+[node name="UI_DialogueWindow_PortraitLeft" type="TextureRect" parent="UILayers/UI_Windows/DialogueWindow/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+expand_mode = 5
+stretch_mode = 6
+
+[node name="Padding" type="Control" parent="UILayers/UI_Windows/DialogueWindow/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="UI_DialogueWindow_PortraitRight" type="TextureRect" parent="UILayers/UI_Windows/DialogueWindow/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+expand_mode = 5
+stretch_mode = 6
+flip_h = true
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayers/UI_Windows/DialogueWindow/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayers/UI_Windows/DialogueWindow/HBoxContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="UILayers/UI_Windows/DialogueWindow/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayers/UI_Windows/DialogueWindow/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="UI_DialogueWindow_MainTextLabel" type="RichTextLabel" parent="UILayers/UI_Windows/DialogueWindow/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 22
+theme_override_font_sizes/bold_font_size = 22
+theme_override_font_sizes/bold_italics_font_size = 22
+theme_override_font_sizes/italics_font_size = 22
+theme_override_font_sizes/mono_font_size = 22
+bbcode_enabled = true
+text = "Lorem ipsum [b]dolor sit amet, consectetur adipiscing [i]elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. [/i]Ut enim ad minim veniam, quis nostrud [/b]exercitation ullamco laboris ni[i]si ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur[/i] sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
+[node name="UI_DialogueWindow_ChoiceButtons_Container" type="GridContainer" parent="UILayers/UI_Windows/DialogueWindow/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 3
+columns = 5
+
+[node name="Button" parent="UILayers/UI_Windows/DialogueWindow/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/UI_DialogueWindow_ChoiceButtons_Container" instance=ExtResource("27_fxkpy")]
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="UILayers/UI_Windows/DialogueWindow/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/UI_DialogueWindow_ChoiceButtons_Container"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+text = "Decline"
+
+[node name="Padding" type="Control" parent="UILayers/UI_Windows/DialogueWindow/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
 
 [node name="Independent" type="Node" parent="UILayers"]
 editor_description = "Layers with visibility not controlled by UILayers node. Intended as always visible UI components, though hiding them remains possible."
@@ -2041,3 +2150,4 @@ text = "version"
 [connection signal="pressed" from="UILayers/UI_Popups/HireHeroPopup/Control/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HireButton" to="UILayers/UI_Popups/HireHeroPopup" method="_on_hire_button_pressed"]
 [connection signal="gui_input" from="UILayers/UI_Windows/PickUpWindow/Root" to="UILayers/UI_Windows/PickUpWindow" method="_on_root_gui_input"]
 [connection signal="gui_input" from="UILayers/UI_Windows/PickUpWindow/Root/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" to="UILayers/UI_Windows/PickUpWindow" method="_on_h_box_container_gui_input"]
+[connection signal="pressed" from="UILayers/UI_Windows/DialogueWindow/HBoxContainer/VBoxContainer/UI_DialogueWindow_SkipDialogueButton" to="UILayers/UI_Windows/DialogueWindow" method="_on_ui_dialogue_window_skip_dialogue_button_pressed"]

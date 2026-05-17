@@ -17,6 +17,7 @@ var current_ui: CanvasLayer
 @onready var _party_portrait_texture_rect: TextureRect = \
 	%ActivePartyContainer/PortraitContainer/PanelContainer/PortraitTextureRect
 @onready var pick_up_window: PickUpWindow = %UI_Windows/PickUpWindow
+@onready var dialogue_window: DialogueUI = $UI_Windows/DialogueWindow
 @onready var item_info_popup: ItemInfoPopup = %UI_Popups/ItemInfoPopup
 @onready var party_info_popup: PartyInfoPopup = %UI_Popups/PartyInfoPopup
 @onready var object_info_popup: ObjectInfoPopup = %UI_Popups/ObjectInfoPopup
@@ -140,7 +141,9 @@ func handle_popup_request(info_object: Variant) -> void:
 ## This also means that you can call it with [code]await[/code] 
 ## to continue your execution after the window is closed.
 func handle_window_request(info: Variant) -> void:
-	if info is MapItem:
+	if info is DialogueNode:
+		dialogue_window.start_dialogue(info)
+	elif info is MapItem:
 		pick_up_window.show_item(info)
 		await pick_up_window.window_closed
 	elif info is Array:
