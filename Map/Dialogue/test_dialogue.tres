@@ -4,12 +4,12 @@
 
 [sub_resource type="Resource" id="Resource_qamwh"]
 script = ExtResource("1_qamwh")
-options = Dictionary[StringName, ExtResource("1_qamwh")]({
-&"Good": null
-})
 text = "Yeah, good."
 portrait_path = "res://Arts/Placeholders/Pirate captain.jpg"
 portrait_position = 1
+options = Dictionary[StringName, ExtResource("1_qamwh")]({
+&"Good": null
+})
 metadata/_custom_type_script = "uid://ch8tqms55ph08"
 
 [sub_resource type="Resource" id="Resource_6g3so"]
@@ -21,10 +21,10 @@ metadata/_custom_type_script = "uid://ch8tqms55ph08"
 
 [resource]
 script = ExtResource("1_qamwh")
+text = "Hey, hru?"
+portrait_path = "res://Arts/Placeholders/Thief.jpg"
 options = Dictionary[StringName, ExtResource("1_qamwh")]({
 &"Fine, hbu?": SubResource("Resource_qamwh"),
 &"Fuck off": SubResource("Resource_6g3so")
 })
-text = "Hey, hru?"
-portrait_path = "res://Arts/Placeholders/Thief.jpg"
 metadata/_custom_type_script = "uid://ch8tqms55ph08"

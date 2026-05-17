@@ -13,10 +13,6 @@ extends Resource
 ## players prefer to have the ability to skip dialogue at their own pace.
 @export var skippable := true
 
-## A dictionary mapping player‑visible dialogue options to the next dialogue node.
-## A value of [code]null[/code] indicates the end of the dialogue branch.
-@export var options: Dictionary[StringName, DialogueNode]
-
 ## The main text of this dialogue entry.
 @export var text: String
 
@@ -32,6 +28,12 @@ extends Resource
 
 ## Controls the placement of the portrait during this dialogue line.
 @export var portrait_position: PortraitPosition = PortraitPosition.AutoOpposite
+
+## A dictionary mapping player‑visible dialogue options to the next dialogue node.
+## A value of [code]null[/code] indicates the end of the dialogue branch.
+## If the dictionary is empty, a default [i]"End dialogue."[/i] 
+## option will be shown in the player's UI.
+@export var options: Dictionary[StringName, DialogueNode]
 
 enum PortraitPosition {
 	## Automatically chooses left or right based on the previous message's position,
