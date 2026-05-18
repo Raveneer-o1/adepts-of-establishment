@@ -17,6 +17,7 @@ script = ExtResource("1_qamwh")
 text = "Rude"
 portrait_path = "res://Arts/Placeholders/Pirate captain.jpg"
 portrait_position = 4
+dialogue_id = &"test fuckoff"
 metadata/_custom_type_script = "uid://ch8tqms55ph08"
 
 [resource]

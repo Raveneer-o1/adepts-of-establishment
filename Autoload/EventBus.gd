@@ -90,4 +90,7 @@ signal capital_changed(faction: MapFaction)
 signal unit_transferred(unit: UnitData, previous_container: UnitsContainer)
 
 signal item_equipped(item: MapItem, party: MapParty)
+
+signal dialogue_id_selected(id: StringName)
+
 #endregion

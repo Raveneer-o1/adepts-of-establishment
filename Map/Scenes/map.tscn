@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=4 uid="uid://dlu3vl2ltauc0"]
+[gd_scene load_steps=64 format=4 uid="uid://dlu3vl2ltauc0"]
 
 [ext_resource type="Script" uid="uid://dvi42dc2k0m2h" path="res://Map/Scripts/Map/map.gd" id="1_q0qov"]
 [ext_resource type="Texture2D" uid="uid://c462nhclviryl" path="res://Arts/Map objects/dis tiles (1).png" id="1_xec2n"]
@@ -40,7 +40,11 @@
 [ext_resource type="PackedScene" uid="uid://bppovohjijqbq" path="res://Map/Heroes/Thymaël Doux.tscn" id="36_t4h4h"]
 [ext_resource type="PackedScene" uid="uid://djeo7bmtq4rr5" path="res://Map/PartyEffects/Scenes/Effects from units/test.tscn" id="37_4hre8"]
 [ext_resource type="Script" uid="uid://c2l1im4bu5mkl" path="res://Map/Event System/Triggers/on_area_enter.gd" id="40_7wp4w"]
+[ext_resource type="Script" uid="uid://cneds7v8parck" path="res://Map/Event System/Triggers/on_dialogue_choice.gd" id="41_53upk"]
+[ext_resource type="Script" uid="uid://cuf2j6vgx4c44" path="res://Map/Event System/Events/show_dialogue.gd" id="41_exk0b"]
 [ext_resource type="Script" uid="uid://cmt0gigwhm8b1" path="res://Map/Scripts/map_pin.gd" id="41_pm5tj"]
+[ext_resource type="Resource" uid="uid://b5qpt3nftkeo1" path="res://Map/Dialogue/test_dialogue.tres" id="42_w1k4m"]
+[ext_resource type="Script" uid="uid://ccau4duve1np4" path="res://Map/Event System/Events/debug.gd" id="45_rikce"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iq1o3"]
 texture = ExtResource("1_xec2n")
@@ -503,11 +507,27 @@ source = NodePath("../Thymaël Doux")
 
 [node name="Events" type="Node" parent="."]
 
-[node name="MapTrigger_OnEnterArea" type="Node" parent="Events" node_paths=PackedStringArray("pin")]
+[node name="Triggers" type="Node" parent="Events"]
+
+[node name="MapTrigger_OnEnterArea" type="Node" parent="Events/Triggers" node_paths=PackedStringArray("pin")]
 script = ExtResource("40_7wp4w")
-pin = NodePath("../../Other/MapPin")
+pin = NodePath("../../../Other/MapPin")
 stop_movement = true
 metadata/_custom_type_script = "uid://c2l1im4bu5mkl"
+
+[node name="On dialogue choice" type="Node" parent="Events/Triggers"]
+script = ExtResource("41_53upk")
+dialogue_node_id = &"test fuckoff"
+
+[node name="ShowDialogue" type="Node" parent="Events" node_paths=PackedStringArray("triggers")]
+script = ExtResource("41_exk0b")
+dialogue = ExtResource("42_w1k4m")
+triggers = [NodePath("../Triggers/MapTrigger_OnEnterArea")]
+one_time = false
+
+[node name="Debug" type="Node" parent="Events" node_paths=PackedStringArray("triggers")]
+script = ExtResource("45_rikce")
+triggers = [NodePath("../Triggers/On dialogue choice")]
 
 [node name="Other" type="Node" parent="."]
 

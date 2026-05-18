@@ -48,7 +48,6 @@ func _set_portrait() -> void:
 
 func _make_choice(option: StringName) -> void:
 	_step_dialogue(_current_dialogue.options.get(option))
-	# TODO: attach triggers associated with the choice.
 
 func _step_dialogue(dialogue: DialogueNode) -> void:
 	if not dialogue: _clear(); return
@@ -56,6 +55,8 @@ func _step_dialogue(dialogue: DialogueNode) -> void:
 	main_text.text = dialogue.text
 	_set_portrait()
 	_set_choices()
+	if dialogue.dialogue_id != &"":
+		EventBus.dialogue_id_selected.emit(dialogue.dialogue_id)
 
 const DEFAULT_END_DIALOGUE_TEXT = "End dialogue."
 

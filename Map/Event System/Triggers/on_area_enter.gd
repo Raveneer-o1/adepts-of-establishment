@@ -14,7 +14,7 @@ func _check_trigger(party: MapParty) -> void:
 	if party.tile_position not in area_of_interest: return
 	triggered.emit()
 	if stop_movement: party.control.abort_moving()
-	print_debug("Triggered")
+	#print_debug("Triggered")
 
 func _initialize() -> void:
 	if not await _set_area_of_interest(): return

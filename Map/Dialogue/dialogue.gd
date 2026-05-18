@@ -29,6 +29,11 @@ extends Resource
 ## Controls the placement of the portrait during this dialogue line.
 @export var portrait_position: PortraitPosition = PortraitPosition.AutoOpposite
 
+## When not empty, selecting this dialogue option emits
+## [signal EventBus.dialogue_id_selected], which activates the associated
+## [MapTrigger_OnDialogueChoice] trigger(s).
+@export var dialogue_id := &""
+
 ## A dictionary mapping player‑visible dialogue options to the next dialogue node.
 ## A value of [code]null[/code] indicates the end of the dialogue branch.
 ## If the dictionary is empty, a default [i]"End dialogue."[/i] 
