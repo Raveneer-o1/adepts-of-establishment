@@ -30,7 +30,7 @@ func _handle_step(destination: Vector2i) -> bool:
 	if this_party.parameters.movement_points <= 0: return false
 	var tile_data := map.terrain_layer.get_cell_tile_data(destination)
 	if not tile_data:
-		push_error("Trying to move on an empty spot!")
+		push_error("Trying to move to an empty tile")
 		return false
 	this_party.parameters.subtract_mp(
 		this_party.parameters.get_movement_cost(tile_data)
@@ -57,6 +57,7 @@ func walk_to(
 	destination: Vector2i,
 	animate: bool = true,
 ) -> void:
+	cancel_movement = false
 	await _walk_to(destination, animate)
 	_finish_moving_animation()
 	
@@ -92,6 +93,7 @@ func walk_along_path(
 	target_object: MapInteractableObject = null
 ) -> bool:
 	if not path: return true
+	cancel_movement = false
 	if this_party.inside_city: this_party.exit_city(path[0])
 	var interrupted := await _walk_along_path(path, animate, target_object)
 	_finish_moving_animation()
@@ -141,7 +143,7 @@ func _walk_along_path(
 func abort_moving() -> void:
 	cancel_movement = true
 	if _is_moving: await _moving_finished
-	else: cancel_movement = false
+	#else: cancel_movement = false
 
 
 func _process(delta: float) -> void:
@@ -177,6 +179,9 @@ var _time_to_reach: float = 1.0 / map_speed
 var _time_passed: float = 0.0
 
 func _finish_moving() -> void:
+	cancel_movement = false
+	EventBus.party_moved.emit(this_party)
+	#print_debug("party_moved emitted %s" % str(tile_position))
 	_moving_finished.emit()
 
 func _finish_moving_animation() -> void:

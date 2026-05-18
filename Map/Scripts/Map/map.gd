@@ -50,6 +50,8 @@ extends Node2D
 ## that would normally be placed here are instead treated as "free" objects
 ## managed by the [member object_manager] for easier in-editor manipulation.
 @onready var objects_layer : MapObjectsLayer = %ObjectsLayer
+## Layer that determines ares - sets of tiles used for the event system.
+@onready var zones_layer: ZonesLayer = %ZonesLayer
 
 ## Handles "free" objects - objects that are not part of the [member objects_layer].
 ## [Party] objects are not managed by this node: they are managed separately. [br][br]

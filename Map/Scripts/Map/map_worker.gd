@@ -167,14 +167,16 @@ func move_active_party(destination: Vector2i) -> void:
 		return
 	var path := visualizer.get_highlighted_tiles()
 	if not _validate_path(active_party, path):
-		if not path: path = map.find_path(
-			active_party.inside_city.get_interaction_tiles() if \
-				active_party.inside_city else \
-				[active_party.tile_position] as Array[Vector2i],
-			destination,
-			active_party,
-			active_party.inside_city != null  # a bit hacky, might need redesign
-		)
+		if not path:
+			var ends: Array[Vector2i] = []
+			if active_party.inside_city: ends = active_party.inside_city.get_interaction_tiles()
+			else: ends.append(active_party.tile_position)
+			path = map.find_path(
+				ends,
+				destination,
+				active_party,
+				active_party.inside_city != null  # a bit hacky, might need redesign
+			)
 	if not _validate_path(active_party, path): return
 	if not path:
 		visualizer.reset_highlights()

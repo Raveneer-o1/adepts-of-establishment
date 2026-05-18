@@ -60,6 +60,7 @@ signal unit_question_ended(data: UnitData)
 ## Movement can be canceled by setting [code]party.cancel_movement[/code] to [code]true[/code].
 ## [i](cancel_movement is automatically reset to false after signal processing)[/i]
 signal party_move_started(party: MapParty, destination: Vector2i)
+signal party_moved(party: MapParty)
 signal map_turn_started(faction: MapFaction)
 signal map_turn_ended(faction: MapFaction)
 
