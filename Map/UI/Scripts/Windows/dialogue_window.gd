@@ -13,7 +13,6 @@ var _last_position_left := true
 
 const CHOICE_BUTTON = preload("uid://bhc5nlf4nxnx6")
 
-
 func start_dialogue(dialogue: DialogueNode) -> void:
 	if not dialogue: return
 	_last_position_left = true
@@ -86,4 +85,5 @@ func _clear_portraits() -> void:
 	portrait_right.texture = null
 
 func _on_ui_dialogue_window_skip_dialogue_button_pressed() -> void:
+	if _current_dialogue and not _current_dialogue.skippable: return
 	hide_window()
