@@ -235,7 +235,6 @@ func _move_unit(unit: UnitData, destination: UnitsContainer) -> bool:
 ## Creates a new [MapParty] at [param coords] on the specified [param _map]
 ## (defaults to current active map). Optionally adds a hero unit
 ## if [param hero_name] is provided.
-## @experimental: Heros are not properly implemented yet.
 func hire_party(coords: Vector2i, _map: Map = map, hero_name: StringName = &"") -> MapParty:
 	var hero_dict: Dictionary = GlobalDefs.units_database.database.get(hero_name, {})
 	var cost: Dictionary = hero_dict.get(&"cost", MapParty.DEFAULT_PARTY_COST)

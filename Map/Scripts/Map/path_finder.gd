@@ -233,7 +233,7 @@ func get_all_tiles(
 			#continue
 		
 		_process_tile(current_tile, current_cost, radius + padding, closed_set, result)
-		_expand_neighbors(current_tile, current_cost, radius, open_set, padding)
+		_expand_neighbors(current_tile, current_cost, radius + padding, open_set)
 	
 	return result
 
@@ -259,11 +259,9 @@ func _expand_neighbors(
 	current_cost: int,
 	radius: int,
 	open_set: Dictionary[MapTileData, int],
-	padding: int
 ) -> void:
-	# NOW: next_cost should be calculated as current_cost plus the cost of stepping on the tile
 	var next_cost := current_cost + 1
-	if next_cost >= radius + padding:
+	if next_cost >= radius:
 		return
 	
 	for neighbor in tile.get_neighbors():
