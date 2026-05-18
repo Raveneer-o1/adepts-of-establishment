@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://uac0vvy5awfg" path="res://Menu/tree_item_unit.gd" id="1_b84d5"]
 
 [node name="Tree Item Unit" type="PanelContainer"]
-custom_minimum_size = Vector2(100, 70)
+custom_minimum_size = Vector2(100, 40)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -30,6 +30,5 @@ theme_override_font_sizes/font_size = 12
 text = "UNIT"
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 3
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

@@ -503,15 +503,17 @@ layout_mode = 2
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 0
+current_tab = 2
 
 [node name="Humans" type="TabContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 0
+current_tab = 3
 metadata/_tab_index = 0
 
 [node name="Melee" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -531,10 +533,9 @@ size_flags_vertical = 3
 theme_override_constants/separation = 150
 alignment = 1
 
-[node name="Witch hunter" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee/Lvl2" instance=ExtResource("2_r33n7")]
+[node name="Mercenary" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee/Lvl2" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "Witch hunter"
-path = "res://Combat/Units/Derived units/Empire/e02 Witch hunter.tscn"
+unit_name = "Mercenary"
 
 [node name="Knight" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee/Lvl2" instance=ExtResource("2_r33n7")]
 layout_mode = 2
@@ -552,10 +553,9 @@ layout_mode = 2
 unit_name = "Samurai"
 path = "res://Combat/Units/Derived units/Empire/e04 Samurai.tscn"
 
-[node name="Inquisitor" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee/Lvl3" instance=ExtResource("2_r33n7")]
+[node name="Man at Arms" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee/Lvl3" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "Inquisitor"
-path = "res://Combat/Units/Derived units/Empire/e05 Inquisitor.tscn"
+unit_name = "Man at Arms"
 
 [node name="Horseman" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee/Lvl3" instance=ExtResource("2_r33n7")]
 layout_mode = 2
@@ -578,10 +578,9 @@ layout_mode = 2
 unit_name = "Blade Saint"
 path = "res://Combat/Units/Derived units/Empire/e08 Blade Saint.tscn"
 
-[node name="Grand inquisitor" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee/Lvl4" instance=ExtResource("2_r33n7")]
+[node name="Gendarme" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee/Lvl4" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "Grand Inquisitor"
-path = "res://Combat/Units/Derived units/Empire/e09 Grand Inquisitor.tscn"
+unit_name = "Gendarme"
 
 [node name="Royal cavalier" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee/Lvl4" instance=ExtResource("2_r33n7")]
 layout_mode = 2
@@ -695,7 +694,6 @@ metadata/_tab_index = 2
 
 [node name="Lvl1" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Archers"]
 layout_mode = 2
-size_flags_vertical = 3
 alignment = 1
 
 [node name="Archer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Archers/Lvl1" instance=ExtResource("2_r33n7")]
@@ -705,7 +703,6 @@ path = "res://Combat/Units/Derived units/Empire/e22 Archer.tscn"
 
 [node name="Lvl2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Archers"]
 layout_mode = 2
-size_flags_vertical = 3
 alignment = 1
 
 [node name="Marksman" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Archers/Lvl2" instance=ExtResource("2_r33n7")]
@@ -715,7 +712,6 @@ path = "res://Combat/Units/Derived units/Empire/e23 Marksman.tscn"
 
 [node name="Lvl3" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Archers"]
 layout_mode = 2
-size_flags_vertical = 3
 theme_override_constants/separation = 100
 alignment = 1
 
@@ -732,8 +728,7 @@ path = "res://Combat/Units/Derived units/Empire/e25 Assassin.tscn"
 [node name="Lvl4" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Archers"]
 custom_minimum_size = Vector2(275, 0)
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 3
+theme_override_constants/separation = 100
 alignment = 1
 
 [node name="Imperial ranger" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Archers/Lvl4" instance=ExtResource("2_r33n7")]
@@ -741,13 +736,29 @@ layout_mode = 2
 unit_name = "Imperial Ranger"
 path = "res://Combat/Units/Derived units/Empire/e26 Imperial Ranger.tscn"
 
-[node name="Lvl5" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Archers"]
+[node name="Padding" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Archers/Lvl4"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-size_flags_vertical = 3
+
+[node name="Lvl5" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Archers"]
+custom_minimum_size = Vector2(275, 0)
+layout_mode = 2
+theme_override_constants/separation = 100
 alignment = 1
 
+[node name="Nobleman" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Archers/Lvl5" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Nobleman"
+
+[node name="Legate" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Archers/Lvl5" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Legate"
+
+[node name="Padding" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Archers/Lvl5"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
 [node name="Special" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 
@@ -756,10 +767,9 @@ layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Acolyte" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Special/Lvl1" instance=ExtResource("2_r33n7")]
+[node name="Bear rider" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Special/Lvl1" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "Acolyte"
-path = "res://Combat/Units/Derived units/Empire/e27 Acolyte.tscn"
+unit_name = "Bear rider"
 
 [node name="Lvl2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Special"]
 layout_mode = 2
@@ -767,15 +777,13 @@ size_flags_vertical = 3
 theme_override_constants/separation = 100
 alignment = 1
 
-[node name="Cleric" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Special/Lvl2" instance=ExtResource("2_r33n7")]
+[node name="Panther outrider" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Special/Lvl2" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "Cleric"
-path = "res://Combat/Units/Derived units/Empire/e28 Cleric.tscn"
+unit_name = "Panther outrider"
 
-[node name="Priest" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Special/Lvl2" instance=ExtResource("2_r33n7")]
+[node name="Polar bear cavalry" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Special/Lvl2" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "Priest"
-path = "res://Combat/Units/Derived units/Empire/e29 Priest.tscn"
+unit_name = "Polar bear cavalry"
 
 [node name="Lvl3" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Special"]
 layout_mode = 2
@@ -783,15 +791,13 @@ size_flags_vertical = 3
 theme_override_constants/separation = 100
 alignment = 1
 
-[node name="Matriarch" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Special/Lvl3" instance=ExtResource("2_r33n7")]
+[node name="Padding" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Special/Lvl3"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-unit_name = "Matriarch"
-path = "res://Combat/Units/Derived units/Empire/e30 Matriarch.tscn"
 
-[node name="Clergyman" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Special/Lvl3" instance=ExtResource("2_r33n7")]
+[node name="Mammoth wrangler" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Special/Lvl3" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "Imperial priest"
-path = "res://Combat/Units/Derived units/Empire/e31 Imperial priest.tscn"
+unit_name = "Mammoth wrangler"
 
 [node name="Lvl4" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Special"]
 layout_mode = 2
@@ -799,15 +805,13 @@ size_flags_vertical = 3
 theme_override_constants/separation = 100
 alignment = 1
 
-[node name="Prophetess" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Special/Lvl4" instance=ExtResource("2_r33n7")]
+[node name="Padding" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Special/Lvl4"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-unit_name = "Prophetess"
-path = "res://Combat/Units/Derived units/Empire/e32 Prophetess.tscn"
 
-[node name="Hierophant" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Special/Lvl4" instance=ExtResource("2_r33n7")]
+[node name="Mastodon tamer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Special/Lvl4" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "Hierophant"
-path = "res://Combat/Units/Derived units/Empire/e33 Hierophant.tscn"
+unit_name = "Mastodon tamer"
 
 [node name="Lvl5" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Special"]
 layout_mode = 2
@@ -885,12 +889,637 @@ position = Vector2(119, 104)
 points = PackedVector2Array(306, 112, 441, 145)
 default_color = Color(0.187176, 0.187176, 0.187176, 1)
 
+[node name="Church" type="TabContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer"]
+visible = false
+layout_mode = 2
+current_tab = 0
+metadata/_tab_index = 1
+
+[node name="Melee" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Lvl1" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Melee"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Squire" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Melee/Lvl1" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Squire"
+path = "res://Combat/Units/Derived units/Empire/e01 Squire.tscn"
+
+[node name="Lvl2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Melee"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 150
+alignment = 1
+
+[node name="Witch hunter" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Melee/Lvl2" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Witch hunter"
+path = "res://Combat/Units/Derived units/Empire/e02 Witch hunter.tscn"
+
+[node name="Lvl3" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Melee"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 70
+alignment = 1
+
+[node name="Samurai" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Melee/Lvl3" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Inquisitor"
+
+[node name="Lvl4" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Melee"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 70
+alignment = 1
+
+[node name="Grand inquisitor" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Melee/Lvl4" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Grand Inquisitor"
+path = "res://Combat/Units/Derived units/Empire/e09 Grand Inquisitor.tscn"
+
+[node name="Lvl5" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Melee"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+theme_override_constants/separation = 70
+alignment = 1
+
+[node name="Paladin" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Melee/Lvl5" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Commissarius Sacri Officii"
+
+[node name="Lvl6" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Melee"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+theme_override_constants/separation = 70
+alignment = 1
+
+[node name="Sacrum Officium Scribe" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Melee/Lvl6" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Sacrum Officium Scribe"
+
+[node name="Lvl7" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Melee"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+theme_override_constants/separation = 70
+alignment = 1
+
+[node name="Praefectus Dei Contender" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Melee/Lvl7" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Praefectus Dei Contender"
+
+[node name="Mages" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Lvl1" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Mages"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Apprentice" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Mages/Lvl1" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Apprentice"
+path = "res://Combat/Units/Derived units/Empire/e14 Apprentice.tscn"
+
+[node name="Lvl2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Mages"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Zealot" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Mages/Lvl2" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Zealot"
+
+[node name="Lvl3" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Mages"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Protodeacon" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Mages/Lvl3" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Protodeacon"
+
+[node name="Minister" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Mages/Lvl3" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Minister"
+
+[node name="Lvl4" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Mages"]
+custom_minimum_size = Vector2(275, 0)
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Provost" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Mages/Lvl4" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Provost"
+
+[node name="Patriarch" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Mages/Lvl4" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Patriarch"
+
+[node name="Lvl5" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Mages"]
+custom_minimum_size = Vector2(275, 0)
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Exarch" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Mages/Lvl5" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Exarch"
+
+[node name="Padding" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Mages/Lvl5"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Lvl6" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Mages"]
+custom_minimum_size = Vector2(275, 0)
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Primate" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Mages/Lvl6" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Primate"
+
+[node name="Padding" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Mages/Lvl6"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Archers" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="Lvl1" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Archers"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Archer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Archers/Lvl1" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Archer"
+path = "res://Combat/Units/Derived units/Empire/e22 Archer.tscn"
+
+[node name="Lvl2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Archers"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Ordinator" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Archers/Lvl2" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Ordinator"
+
+[node name="Socius" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Archers/Lvl2" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Socius"
+
+[node name="Lvl3" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Archers"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Vicar general" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Archers/Lvl3" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Vicar general"
+
+[node name="Carcelero" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Archers/Lvl3" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Carcelero"
+
+[node name="Lvl4" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Archers"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Prefect" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Archers/Lvl4" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Prefect"
+
+[node name="Proctor" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Archers/Lvl4" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Proctor"
+
+[node name="Lvl5" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Archers"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Chief Camerlengo" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Archers/Lvl5" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Chief Camerlengo"
+
+[node name="Councillor Parvus" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Archers/Lvl5" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Councillor Parvus"
+
+[node name="Lvl6" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Archers"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="War Prelate" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Archers/Lvl6" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "War Prelate"
+
+[node name="Padding" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Archers/Lvl6"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Special" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="Lvl1" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Special"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Acolyte" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Special/Lvl1" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Acolyte"
+path = "res://Combat/Units/Derived units/Empire/e27 Acolyte.tscn"
+
+[node name="Lvl2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Special"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Cleric" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Special/Lvl2" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Cleric"
+path = "res://Combat/Units/Derived units/Empire/e28 Cleric.tscn"
+
+[node name="Priest" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Special/Lvl2" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Priest"
+path = "res://Combat/Units/Derived units/Empire/e29 Priest.tscn"
+
+[node name="Lvl3" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Special"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Matriarch" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Special/Lvl3" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Matriarch"
+path = "res://Combat/Units/Derived units/Empire/e30 Matriarch.tscn"
+
+[node name="Clergyman" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Special/Lvl3" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Imperial priest"
+path = "res://Combat/Units/Derived units/Empire/e31 Imperial priest.tscn"
+
+[node name="Lvl4" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Special"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Prophetess" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Special/Lvl4" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Prophetess"
+path = "res://Combat/Units/Derived units/Empire/e32 Prophetess.tscn"
+
+[node name="Hierophant" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Special/Lvl4" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Hierophant"
+path = "res://Combat/Units/Derived units/Empire/e33 Hierophant.tscn"
+
+[node name="Lvl5" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Special"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Apostle" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Special/Lvl5" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Apostle"
+
+[node name="The Sin Keeper" type="TabContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer"]
+layout_mode = 2
+current_tab = 3
+metadata/_tab_index = 2
+
+[node name="Melee" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Lvl1" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Melee"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Addicted" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Melee/Lvl1" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Addicted"
+
+[node name="Lvl2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Melee"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Berserker" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Melee/Lvl2" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Berserker"
+
+[node name="Lvl3" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Melee"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Shadow bearer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Melee/Lvl3" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Shadow bearer"
+
+[node name="Lvl4" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Melee"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Mad slasher" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Melee/Lvl4" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Mad slasher"
+
+[node name="Infernal knight" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Melee/Lvl4" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Infernal knight"
+
+[node name="Lvl5" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Melee"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Chaotic servant" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Melee/Lvl5" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Chaotic servant"
+
+[node name="Padding" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Melee/Lvl5"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Mages" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Lvl1" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Mages"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Cultist" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Mages/Lvl1" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Cultist"
+
+[node name="Lvl2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Mages"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Warlock" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Mages/Lvl2" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Warlock"
+
+[node name="Witch" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Mages/Lvl2" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Witch"
+
+[node name="Lvl3" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Mages"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Demonologist" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Mages/Lvl3" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Demonologist"
+
+[node name="Doppelganger" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Mages/Lvl3" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Doppelganger"
+
+[node name="Twisted prophet" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Mages/Lvl3" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Twisted prophet"
+
+[node name="Lvl4" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Mages"]
+custom_minimum_size = Vector2(275, 0)
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Anointed" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Mages/Lvl4" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Anointed"
+
+[node name="Padding" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Mages/Lvl4"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="Lvl5" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Mages"]
+custom_minimum_size = Vector2(275, 0)
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Archers" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="Lvl1" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Archers"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Crossbowman" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Archers/Lvl1" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Crossbowman"
+
+[node name="Lvl2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Archers"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Black hand" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Archers/Lvl2" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Black hand"
+
+[node name="Lvl3" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Archers"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Chaos seer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Archers/Lvl3" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Chaos seer"
+
+[node name="Blasphomous claw" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Archers/Lvl3" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Blasphomous claw"
+
+[node name="Lvl4" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Archers"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Padding" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Archers/Lvl4"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Butcher" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Archers/Lvl4" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Butcher"
+
+[node name="Corrupted Saint" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Archers/Lvl4" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Corrupted Saint"
+
+[node name="Lvl5" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Archers"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Special" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper"]
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="Lvl1" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Special"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Demon" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Special/Lvl1" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Demon"
+
+[node name="Lvl2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Special"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Padding" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Special/Lvl2"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Warped beast" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Special/Lvl2" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Warped beast"
+
+[node name="Moloch" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Special/Lvl2" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Moloch"
+
+[node name="Padding2" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Special/Lvl2"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Gargoyle" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Special/Lvl2" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Gargoyle"
+
+[node name="Lvl3" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Special"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Amalgam" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Special/Lvl3" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Amalgam"
+
+[node name="Infernal commander" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Special/Lvl3" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Infernal commander"
+
+[node name="Burning chaos" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Special/Lvl3" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Burning chaos"
+
+[node name="Runic statue" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Special/Lvl3" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Runic statue"
+
+[node name="Lvl4" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Special"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Padding" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Special/Lvl4"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+
+[node name="Tiamat" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Special/Lvl4" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Tiamat"
+
+[node name="Abyssasl devil" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Special/Lvl4" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Abyssasl devil"
+
+[node name="Padding2" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Special/Lvl4"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+
+[node name="Demonic destroyer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Special/Lvl4" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Demonic destroyer"
+
+[node name="Lvl5" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Special"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Padding" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Special/Lvl5"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="Firelord" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Special/Lvl5" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Firelord"
+
+[node name="Doom beacon" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Special/Lvl5" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Doom beacon"
+
+[node name="Defiled spirit" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/The Sin Keeper/Special/Lvl5" instance=ExtResource("2_r33n7")]
+layout_mode = 2
+unit_name = "Defiled spirit"
+
 [node name="Undead" type="TabContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 current_tab = 0
-metadata/_tab_index = 1
+metadata/_tab_index = 3
 
 [node name="Melee" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Undead"]
 layout_mode = 2
@@ -1230,7 +1859,7 @@ path = "res://Combat/Units/Derived units/Undead/u33_Dracolich.tscn"
 visible = false
 layout_mode = 2
 current_tab = 0
-metadata/_tab_index = 2
+metadata/_tab_index = 4
 
 [node name="Greenskin" type="GridContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Neutral"]
 layout_mode = 2
@@ -1295,7 +1924,7 @@ path = "uid://cm35mp2mfienx"
 visible = false
 layout_mode = 2
 current_tab = 0
-metadata/_tab_index = 3
+metadata/_tab_index = 5
 
 [node name="Empire" type="GridContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Heroes"]
 layout_mode = 2

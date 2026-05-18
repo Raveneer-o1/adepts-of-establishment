@@ -714,12 +714,12 @@ subgraph Undead
             "):::desc
         end
 
-        Warrior --> Zombie["Zombie"]
+        Destined --> Zombie["Zombie"]
         Zombie --> Phantom_warrior["Phantom warrior"]
         Zombie --> Skeleton["Skeleton"]
         Skeleton --> Skeleton_warrior["Skeleton warrior"]
         Skeleton_warrior --> Skeleton_champion["Skeleton champion"]
-        Warrior --> Templar["Templar"]
+        Destined --> Templar["Templar"]
         Templar --> Fallen_inquisitor["Fallen inquisitor"]
         Fallen_inquisitor --> Dark_lord["Dark lord"]
     end
@@ -981,7 +981,7 @@ subgraph Dark_Forces
     end
     subgraph DarkArchers
         direction TB
-        Crossbowmen --> Black_hand
+        Crossbowman --> Black_hand
         Black_hand --> Chaos_seer
         Black_hand --> Blasphomous_claw
         Blasphomous_claw --> Butcher
