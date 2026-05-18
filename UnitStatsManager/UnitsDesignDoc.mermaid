@@ -323,17 +323,17 @@ end
 subgraph Church
     subgraph chSquire[Squire]
         chSquire_d("
-Same unit as the Empire's
+            Same unit as the Empire's
         "):::desc
     end
     subgraph chArcher[Archer]
         chArcher_d("
-        Same unit as the Empire's
+            Same unit as the Empire's
         "):::desc
     end
     subgraph chApprentice[Apprentice]
         chApprentice_d("
-        Same unit as the Empire's
+            Same unit as the Empire's
         "):::desc
     end
 
@@ -410,6 +410,64 @@ Any effect applied to this unit is permanent.
     end
 
     subgraph ChurchMages
+
+        subgraph Zealot
+            Zealot_d("
+attacks with life
+can either attack or buff any ally
+            "):::desc
+        end
+        subgraph Protodeacon
+            Protodeacon_d("
+attacks with life
+can either attack or buff any ally
+also hits adjacent targets
+            "):::desc
+        end
+        subgraph Provost
+            Provost_d("
+attacks with life
+can either attack or buff any ally
+also hits adjacent targets
+whenever any ally is buffed, heals that unit for 5% of its max HP
+            "):::desc
+        end
+        subgraph Exarch
+            Exarch_d("
+attacks with life
+can either attack or buff any ally
+also hits adjacent targets
+whenever any ally is buffed, heals that unit for 5% of its max HP
+can give its turn to another unit (similar to alchemist from Disciples 2)
+            "):::desc
+        end
+        subgraph Primate
+            Primate_d("
+attacks with life
+can either attack or buff any ally
+also hits adjacent targets
+whenever any ally is buffed, heals that unit for 10% of its max HP
+can give its turn to another unit (similar to alchemist from Disciples 2)
+When this unit is chosen as a target for any attack, buffs all allies
+            "):::desc
+        end
+
+        subgraph Minister
+            Minister_d("
+<b>Smite</b>
+elemental attack
+attacks apply debuff that makes subsequent Smite attacks deal more damage
+            "):::desc
+        end
+        subgraph Patriarch
+            Patriarch_d("
+<b>Smite</b>
+two elemental attacks
+attacks apply debuff that makes subsequent Smite attacks deal more damage; the debuff can't be lifted
+the effect stacks
+            "):::desc
+        end
+
         chApprentice --> Zealot
         --> Protodeacon
         --> Provost
