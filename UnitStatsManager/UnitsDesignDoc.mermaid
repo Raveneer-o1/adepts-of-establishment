@@ -362,6 +362,7 @@ Buff to adjacent allies
     end
     subgraph Commissarius_Sacri_Officii
         Commissarius_Sacri_Officii_d("
+<b>Smite</b>
 increased damage
 damage type *'None'* (no immunities or shields)
 immune to negative effects
@@ -372,6 +373,7 @@ When this unit's turn starts, applies random buff to a random ally
     end
     subgraph Sacrum_Officium_Scribe
         Sacrum_Officium_Scribe_d("
+<b>Smite</b>
 increased damage
 damage type *'None'*
 immune to negative effects
@@ -383,6 +385,7 @@ If this unit has any buff applied, it has can attack two targers
     end
     subgraph Praefectus_Dei_Contender
         Praefectus_Dei_Contender_d("
+<b>Smite</b>
 increased damage
 damage type *'None'* (no immunities or shields)
 immune to negative effects
@@ -463,7 +466,8 @@ attacks apply debuff that makes subsequent Smite attacks deal more damage
             Patriarch_d("
 <b>Smite</b>
 two elemental attacks
-attacks apply debuff that makes subsequent Smite attacks deal more damage; the debuff can't be lifted
+attacks apply debuff that makes subsequent Smite attacks deal more damage;
+the debuff can't be lifted;
 the effect stacks
             "):::desc
         end
@@ -479,6 +483,78 @@ the effect stacks
     end
     
     subgraph ChurchArchers
+        subgraph Ordinator
+            Ordinator_d("
+<b>Smite</b>
+when this unit kills an enemy, it applies a buff to itself
+            "):::desc
+        end
+        subgraph Vicar_general
+            Vicar_general_d("
+<b>Smite</b>
+when this unit kills an enemy, it applies a buff to itself
+successful hits apply buff to this unit
+            "):::desc
+        end
+        subgraph Prefect
+            Prefect_d("
+<b>Smite</b>
+when this unit kills an enemy, it applies a buff to itself
+successful hits apply buff to this unit
+when an ally dies, gets an unliftable buff
+            "):::desc
+        end
+        subgraph Chief_Camerlengo
+            Chief_Camerlengo_d("
+<b>Smite</b>
+when this unit kills an enemy, it applies a buff to itself
+successful hits apply buff to this unit
+when an ally dies, gets an unliftable buff
+At the start of its turn makes a random buff applied to an ally permanent.
+            "):::desc
+        end
+        subgraph War_Prelate
+            War_Prelate_d("
+<b>Smite</b>
+when this unit kills an enemy, it applies a buff to itself
+successful hits apply buff to this unit
+when an ally dies, gets an unliftable buff
+At the start of its turn makes a random buff applied to an ally permanent.
+Has two attacks
+            "):::desc
+        end
+        
+        subgraph Socius
+            Socius_d("
+decreased damage
+significanlty decreases initiative and armor of the target
+            "):::desc
+        end
+        subgraph Carcelero
+            Carcelero_d("
+decreased damage
+significanlty decreases initiative and armor of the target
+whenever any ally recieves a buff, applies a random debuff to a random enemy
+            "):::desc
+        end
+        subgraph Proctor
+            Proctor_d("
+significanlty decreases initiative and armor of the target
+whenever any ally recieves a buff, applies a random debuff to a random enemy
+instead of attacking, can force any unit to assume defense stance at the cost of its next attack
+            "):::desc
+        end
+        subgraph Councillor_Parvus
+            Councillor_Parvus_d("
+significanlty decreases initiative and armor of the target
+whenever any ally recieves a buff, applies a random debuff to a random enemy
+instead of attacking, can force any unit to assume defense stance at the cost of its next attack
+instead of attacking, can force any unit to flee but leaves the combat as well
+            "):::desc
+        end
+        
+
+
         chArcher --> Ordinator
         --> Vicar_general
         --> Prefect
