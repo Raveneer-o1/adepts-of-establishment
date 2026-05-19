@@ -12,7 +12,9 @@ const database = {
  &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [3, 1]
  
 }]
-, &"base_damage": 90, &"max_hp": 600, &"armor": 20, &"evasion": 0.005, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Dreadwyrm.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 90, &"max_hp": 600, &"armor": 20, &"evasion": 0.005, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Dreadwyrm.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 500, &"stone": 2300, &"mana": 1800 
 } 
 },&"Vision of Darkness" : {
@@ -26,7 +28,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 25, &"max_hp": 150, &"armor": 0, &"evasion": 0.2, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Vision of darkness.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 25, &"max_hp": 150, &"armor": 0, &"evasion": 0.2, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Vision of darkness.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 2000 
 } 
 },&"Undying Nighthunter" : {
@@ -44,7 +48,9 @@ const database = {
  &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [3, 2]
  
 }]
-, &"base_damage": 180, &"max_hp": 800, &"armor": 35, &"evasion": 0.005, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Undying nighthunter.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 180, &"max_hp": 800, &"armor": 35, &"evasion": 0.005, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Undying nighthunter.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 400, &"stone": 4300, &"mana": 2500 
 } 
 },&"Templar" : {
@@ -63,7 +69,9 @@ const database = {
  &"effect_name": "Twisted will", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/random_retaliation_on_debuff.tscn", &"args": [2, 0, 1.2]
  
 }]
-, &"base_damage": 45, &"max_hp": 150, &"armor": 10, &"evasion": 0.05, &"shielding_chance": 0.75, &"portrait_texture_path": "res://Arts/Placeholders/Templar.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 45, &"max_hp": 150, &"armor": 10, &"evasion": 0.05, &"shielding_chance": 0.75, &"portrait_texture_path": "res://Arts/Placeholders/Templar.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 450, &"stone": 100, &"mana": 0 
 } 
 },&"Wyvern" : {
@@ -76,7 +84,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 50, &"max_hp": 300, &"armor": 0, &"evasion": 0.005, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Wyvern.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 50, &"max_hp": 300, &"armor": 0, &"evasion": 0.005, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Wyvern.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 100, &"stone": 400, &"mana": 100 
 } 
 },&"Herald of Death" : {
@@ -93,7 +103,9 @@ const database = {
  &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [0, 2]
  
 }]
-, &"base_damage": 95, &"max_hp": 180, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Herald of death.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 95, &"max_hp": 180, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Herald of death.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 0, &"stone": 300, &"mana": 1600 
 } 
 },&"Ghost" : {
@@ -107,7 +119,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 0, &"max_hp": 70, &"armor": 0, &"evasion": 0.07, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Ghost.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 0, &"max_hp": 70, &"armor": 0, &"evasion": 0.07, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Ghost.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 50 
 } 
 },&"The Devourer" : {
@@ -128,7 +142,9 @@ const database = {
  &"effect_name": "Agility", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/agility.tscn", &"args": [3, 1.3]
  
 }]
-, &"base_damage": 240, &"max_hp": 800, &"armor": 35, &"evasion": 0.1, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Devourer.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 240, &"max_hp": 800, &"armor": 35, &"evasion": 0.1, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Devourer.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 500, &"stone": 4000, &"mana": 2100 
 } 
 },&"Skeleton Hero" : {
@@ -155,7 +171,9 @@ const database = {
 }]
  
 }]
-, &"base_damage": 100, &"max_hp": 350, &"armor": 50, &"evasion": 0.05, &"shielding_chance": 0.3, &"portrait_texture_path": "res://Arts/Placeholders/Phantom warrior.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 100, &"max_hp": 350, &"armor": 50, &"evasion": 0.05, &"shielding_chance": 0.3, &"portrait_texture_path": "res://Arts/Placeholders/Phantom warrior.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 200, &"stone": 1000, &"mana": 500 
 } 
 },&"The Eternal" : {
@@ -170,7 +188,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 40, &"max_hp": 180, &"armor": 0, &"evasion": 0.2, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/The eternal.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 40, &"max_hp": 180, &"armor": 0, &"evasion": 0.2, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/The eternal.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 1666 
 } 
 },&"Dark Mage" : {
@@ -184,7 +204,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 45, &"max_hp": 75, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Dark mage.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 45, &"max_hp": 75, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Dark mage.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 50, &"stone": 50, &"mana": 200 
 } 
 },&"Skeleton warrior" : {
@@ -208,7 +230,9 @@ const database = {
 }]
  
 }]
-, &"base_damage": 80, &"max_hp": 275, &"armor": 35, &"evasion": 0.05, &"shielding_chance": 0.0, &"portrait_texture_path": "res://Arts/Placeholders/Skeleton champion.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 80, &"max_hp": 275, &"armor": 35, &"evasion": 0.05, &"shielding_chance": 0.0, &"portrait_texture_path": "res://Arts/Placeholders/Skeleton champion.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 200, &"stone": 1000, &"mana": 350 
 } 
 },&"Necromancer" : {
@@ -221,7 +245,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 30, &"max_hp": 75, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Necromancer.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 30, &"max_hp": 75, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Necromancer.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 50, &"stone": 0, &"mana": 150 
 } 
 },&"Dark Lord" : {
@@ -239,7 +265,9 @@ const database = {
 }, {
  &"effect_name": "Denial", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/negative_effect_negate.tscn", &"args": 3 
 }]
-, &"base_damage": 80, &"max_hp": 275, &"armor": 35, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Dark lord.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 80, &"max_hp": 275, &"armor": 35, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Dark lord.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 1200, &"stone": 200, &"mana": 0 
 } 
 },&"Destined" : {
@@ -252,7 +280,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 35, &"max_hp": 90, &"armor": 0, &"evasion": 0.04, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Destined.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 35, &"max_hp": 90, &"armor": 0, &"evasion": 0.04, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Destined.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 30, &"stone": 40, &"mana": 0 
 } 
 },&"Zombie" : {
@@ -267,7 +297,9 @@ const database = {
 , &"effects": [{
  &"effect_name": "Regeneration", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/on_turn_self_heal.tscn", &"args": 10 
 }]
-, &"base_damage": 35, &"max_hp": 200, &"armor": 15, &"evasion": 0.025, &"shielding_chance": 0.8, &"portrait_texture_path": "res://Arts/Placeholders/Zombie.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 35, &"max_hp": 200, &"armor": 15, &"evasion": 0.025, &"shielding_chance": 0.8, &"portrait_texture_path": "res://Arts/Placeholders/Zombie.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 100, &"stone": 100, &"mana": 0 
 } 
 },&"Vampire" : {
@@ -286,7 +318,9 @@ const database = {
  &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [3, 1]
  
 }]
-, &"base_damage": 40, &"max_hp": 150, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Vampire.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 40, &"max_hp": 150, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Vampire.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 200, &"stone": 500, &"mana": 700 
 } 
 },&"Specter" : {
@@ -300,7 +334,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 10, &"max_hp": 100, &"armor": 0, &"evasion": 0.1, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Specter.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 10, &"max_hp": 100, &"armor": 0, &"evasion": 0.1, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Specter.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 180 
 } 
 },&"Fallen Inquisitor" : {
@@ -321,7 +357,9 @@ const database = {
 }, {
  &"effect_name": "Denial", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/negative_effect_negate.tscn", &"args": 1 
 }]
-, &"base_damage": 60, &"max_hp": 200, &"armor": 20, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Fallen inquisitor.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 60, &"max_hp": 200, &"armor": 20, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Fallen inquisitor.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 600, &"stone": 150, &"mana": 0 
 } 
 },&"Elder vampire" : {
@@ -341,7 +379,9 @@ const database = {
  &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [3, 1]
  
 }]
-, &"base_damage": 60, &"max_hp": 220, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Vampire lord.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 60, &"max_hp": 220, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Vampire lord.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 200, &"stone": 600, &"mana": 1000 
 } 
 },&"Gluttonous Serpent" : {
@@ -359,7 +399,9 @@ const database = {
 }, {
  &"effect_name": "Devourer", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/devourer.tscn", &"args": 100 
 }]
-, &"base_damage": 120, &"max_hp": 600, &"armor": 20, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Gluttonous serpent.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 120, &"max_hp": 600, &"armor": 20, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Gluttonous serpent.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 300, &"stone": 1500, &"mana": 1200 
 } 
 },&"Archlich" : {
@@ -380,7 +422,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 60, &"max_hp": 150, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Archlich.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 60, &"max_hp": 150, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Archlich.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 1700 
 } 
 },&"Dracolich" : {
@@ -396,7 +440,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 200, &"max_hp": 1000, &"armor": 50, &"evasion": 0.01, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Dracolich.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 200, &"max_hp": 1000, &"armor": 50, &"evasion": 0.01, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Dracolich.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 400, &"stone": 6500, &"mana": 4500 
 } 
 },&"Blood spawn" : {
@@ -417,7 +463,9 @@ const database = {
  &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [3, 2]
  
 }]
-, &"base_damage": 100, &"max_hp": 350, &"armor": 50, &"evasion": 0.1, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Blood spawn.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 100, &"max_hp": 350, &"armor": 50, &"evasion": 0.1, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Blood spawn.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 0, &"stone": 1000, &"mana": 1000 
 } 
 },&"Wraith" : {
@@ -434,7 +482,9 @@ const database = {
  &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [0, 1]
  
 }]
-, &"base_damage": 60, &"max_hp": 100, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Wraith.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 60, &"max_hp": 100, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Wraith.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 1200 
 } 
 },&"Lich" : {
@@ -455,7 +505,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 40, &"max_hp": 85, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Lich.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 40, &"max_hp": 85, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Lich.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 0, &"stone": 300, &"mana": 900 
 } 
 },&"Will-o’-Wisp" : {
@@ -470,7 +522,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 30, &"max_hp": 140, &"armor": 0, &"evasion": 0.15, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Will-o-whisp.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 30, &"max_hp": 140, &"armor": 0, &"evasion": 0.15, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Will-o-whisp.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 350 
 } 
 },&"Skeleton" : {
@@ -487,7 +541,9 @@ const database = {
  &"max_HP": 30, &"armor": 10, &"base_damage": 20, &"evasion": 0.01 
 } 
 }]
-, &"base_damage": 60, &"max_hp": 200, &"armor": 20, &"evasion": 0.05, &"shielding_chance": 0.0, &"portrait_texture_path": "res://Arts/Placeholders/Skeleton.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 60, &"max_hp": 200, &"armor": 20, &"evasion": 0.05, &"shielding_chance": 0.0, &"portrait_texture_path": "res://Arts/Placeholders/Skeleton.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 150, &"stone": 600, &"mana": 300 
 } 
 },&"Shadow" : {
@@ -501,7 +557,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 15, &"max_hp": 11, &"armor": 0, &"evasion": 0.15, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Shadow.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 15, &"max_hp": 11, &"armor": 0, &"evasion": 0.15, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Shadow.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 380 
 } 
 },&"Vampire Lord" : {
@@ -528,7 +586,9 @@ const database = {
  &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [3, 2]
  
 }]
-, &"base_damage": 75, &"max_hp": 285, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Vampire lord (2).jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 75, &"max_hp": 285, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Vampire lord (2).jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 500, &"stone": 700, &"mana": 1100 
 } 
 },&"Phantom Warrior" : {
@@ -548,7 +608,9 @@ const database = {
  &"effect_name": "Phantom", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/Phantom.tscn", &"args": [0, 1]
  
 }]
-, &"base_damage": 45, &"max_hp": 180, &"armor": 10, &"evasion": 0.1, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Skeleton hero.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 45, &"max_hp": 180, &"armor": 10, &"evasion": 0.1, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Skeleton hero.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 100, &"stone": 300, &"mana": 300 
 } 
 },&"Doomdrake" : {
@@ -565,7 +627,9 @@ const database = {
  &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [3, 1]
  
 }]
-, &"base_damage": 65, &"max_hp": 450, &"armor": 10, &"evasion": 0.005, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Doomdrake.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 65, &"max_hp": 450, &"armor": 10, &"evasion": 0.005, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Doomdrake.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 200, &"stone": 700, &"mana": 300 
 } 
 },&"Death Acolyte" : {
@@ -578,7 +642,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 15, &"max_hp": 50, &"armor": 0, &"evasion": 0.045, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Death acolyte.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 15, &"max_hp": 50, &"armor": 0, &"evasion": 0.045, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Death acolyte.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 30, &"stone": 0, &"mana": 30 
 } 
 },&"Grave whisperer" : {
@@ -600,7 +666,9 @@ const database = {
  &"effect_name": "Vamirism", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/vampirism.tscn", &"args": [0.35, true]
  
 }]
-, &"base_damage": 80, &"max_hp": 150, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 80, &"max_hp": 150, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 400, &"stone": 0, &"mana": 0 
 } 
 },&"Dame The Seraph" : {
@@ -613,7 +681,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 70, &"max_hp": 200, &"armor": 20, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 70, &"max_hp": 200, &"armor": 20, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 500, &"stone": 100, &"mana": 100 
 } 
 },&"Virion the Bonebinder" : {
@@ -626,7 +696,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 50, &"max_hp": 170, &"armor": 15, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 50, &"max_hp": 170, &"armor": 15, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 500, &"stone": 100, &"mana": 100 
 } 
 },&"Knight Champion" : {
@@ -639,7 +711,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 70, &"max_hp": 200, &"armor": 65, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 70, &"max_hp": 200, &"armor": 65, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 400, &"stone": 0, &"mana": 0 
 } 
 },&"Thymaël Doux" : {
@@ -647,32 +721,17 @@ const database = {
 , &"description": "", &"brief_description": "", &"faction": 1, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 400, &"attacks": [{
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.85, &"targets_needed": 1, &"initiative": 45, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
-  &"hemorrhage": null
-}, &"alternative_actions": [{
-	"attack_name" = "Silence all",
-	"damage_multiplier" = 0.0,
-	"damage_override" = true,
-	"is_heal" = false,
-	"type" = GlobalDefs.AttackType.None,
-	"accuracy" = 1.0,
-	"targets_needed" = 1,
-	"initiative" = 0,
-	"evadable" = true,
-	"tags" = [],
-	"target_validation" = "res://Combat/Units/Parameters/Validation/standard_mage_validity.tres",
-	"additional_targets" = "res://Combat/Units/Parameters/Additional targets/all_targets.tres",
-	"damage_policy" = "",
-	"applying_effects" = {
-		"silence": 2
-	},
-	"alternative_actions" = [],
-}]
+  
+}, &"alternative_actions": []
  
 }]
-, &"effects": []
-, &"base_damage": 80, &"max_hp": 200, &"armor": 40, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "",
-&"map_effects": {"test": null},
-&"cost": {
+, &"effects": [{
+ &"effect_name": "Divine nature", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/cheat_death.tscn", &"args": [1, 1]
+ 
+}]
+, &"base_damage": 80, &"max_hp": 200, &"armor": 40, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 500, &"stone": 100, &"mana": 100 
 } 
 },&"Cartographer" : {
@@ -686,7 +745,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 30, &"max_hp": 160, &"armor": 10, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 30, &"max_hp": 160, &"armor": 10, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 300, &"stone": 50, &"mana": 50 
 } 
 },&"Bone collector" : {
@@ -701,7 +762,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 40, &"max_hp": 110, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 40, &"max_hp": 110, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 300, &"stone": 50, &"mana": 50 
 } 
 },&"Margrave Solreth" : {
@@ -714,7 +777,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 40, &"max_hp": 180, &"armor": 10, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 40, &"max_hp": 180, &"armor": 10, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 500, &"stone": 100, &"mana": 100 
 } 
 },&"High mage" : {
@@ -727,7 +792,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 30, &"max_hp": 150, &"armor": 30, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 30, &"max_hp": 150, &"armor": 30, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 500, &"stone": 100, &"mana": 100 
 } 
 },&"Sir Roland" : {
@@ -740,8 +807,179 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 60, &"max_hp": 200, &"armor": 40, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 60, &"max_hp": 200, &"armor": 40, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 500, &"stone": 100, &"mana": 100 
+} 
+},&"Witch hunter" : {
+ &"scene_path": "res://Combat/Units/Derived units//Church/e02 Witch hunter.tscn", &"level": 2, &"large_unit": false, &"immunities": []
+, &"description": "Trained by the Church to hunt down lesser evil spawns, witch hunters are skilled with blade and zeal. Though officially not part of the Inquisition, witch hunters serve The Empire as wards against darkness.", &"brief_description": "Melee fighter with increased evasion.", &"faction": 3, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 400, &"attacks": [{
+ &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
+, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
+  
+}, &"alternative_actions": []
+ 
+}]
+, &"effects": []
+, &"base_damage": 45, &"max_hp": 150, &"armor": 10, &"evasion": 0.1, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Witch hunter.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
+ &"gold": 130, &"stone": 0, &"mana": 10 
+} 
+},&"Priest" : {
+ &"scene_path": "res://Combat/Units/Derived units//Church/e29 Priest.tscn", &"level": 2, &"large_unit": false, &"immunities": []
+, &"description": "Through firm faith, Priests strengthen the bodies of combatants, healing them with divine magic and allowing them to endure against evil a little longer.", &"brief_description": "Single-target healer.", &"faction": 3, &"unit_type": 3, &"unit_class": 0, &"needed_xp": 400, &"attacks": [{
+ &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": true, &"type": 3, &"accuracy": 1.0, &"targets_needed": 1, &"initiative": 10, &"evadable": false, &"tags": []
+, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_healer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
+ "cure": null 
+}, &"alternative_actions": []
+ 
+}]
+, &"effects": []
+, &"base_damage": 40, &"max_hp": 110, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Priest.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
+ &"gold": 300, &"stone": 50, &"mana": 0 
+} 
+},&"Imperial priest" : {
+ &"scene_path": "res://Combat/Units/Derived units//Church/e31 Imperial priest.tscn", &"level": 3, &"large_unit": false, &"immunities": []
+, &"description": "\"... Thou art as dust beneath the feet of the Gods. Let all bear witness that thy deeds are the Church\'s bidding, not thy will. Thy tongue now speaketh with the Church\'s voice; thy light is a gift bestowed by the very Gods.\"\nFrom the \"Level 2 Ordination ceremony\", issued by decree #16-857 of The Church, approved by Council of Thorns.", &"brief_description": "Single-targrt strong healer able to cure allies.", &"faction": 3, &"unit_type": 3, &"unit_class": 0, &"needed_xp": 900, &"attacks": [{
+ &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": true, &"type": 3, &"accuracy": 1.0, &"targets_needed": 1, &"initiative": 10, &"evadable": false, &"tags": []
+, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_healer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
+ "cure": null 
+}, &"alternative_actions": []
+ 
+}]
+, &"effects": []
+, &"base_damage": 60, &"max_hp": 150, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Clergyman.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
+ &"gold": 800, &"stone": 300, &"mana": 0 
+} 
+},&"Cleric" : {
+ &"scene_path": "res://Combat/Units/Derived units//Church/e28 Cleric.tscn", &"level": 2, &"large_unit": false, &"immunities": []
+, &"description": "Gods may be hesitant to respond to prayers, but with enough diligence and faith, Clerics can bestow divine blessings upon the army, healing bodies and strengthening minds.", &"brief_description": "Weak healer, able to heal the entire party.", &"faction": 3, &"unit_type": 3, &"unit_class": 0, &"needed_xp": 400, &"attacks": [{
+ &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": true, &"type": 3, &"accuracy": 1.0, &"targets_needed": 1, &"initiative": 0, &"evadable": false, &"tags": []
+, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_healer_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/mass_heal_targets.tres", &"damage_policy": "", &"applying_effects": {
+  
+}, &"alternative_actions": []
+ 
+}]
+, &"effects": []
+, &"base_damage": 25, &"max_hp": 100, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Cleric.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
+ &"gold": 100, &"stone": 30, &"mana": 100 
+} 
+},&"High Inquisitor" : {
+ &"scene_path": "res://Combat/Units/Derived units//Church/e09 Grand Inquisitor.tscn", &"level": 4, &"large_unit": false, &"immunities": []
+, &"description": "\"... Arise now as High Inquisitor, bound henceforth by thine oath. Let thy soul stay pure, thy arm strong \'gainst all ill, for the Gods look down upon thy path, and Their holy ire shall scourge the bold who stand between thy will and destiny\'s fulfillment.\"\nFasteur de Miora, Praefectus Dei", &"brief_description": "Melee fighter with unblockable attacks, immute to negative effects.", &"faction": 3, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 1600, &"attacks": [{
+ &"attack_name": "Attack", &"damage_multiplier": 0.85, &"damage_override": false, &"is_heal": false, &"type": 4, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
+, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Splash.tres", &"damage_policy": "res://Combat/Units/Derived units/Church/e09 Grand Inquisitor.tscn::Resource_6n8jw", &"applying_effects": {
+  
+}, &"alternative_actions": []
+ 
+}]
+, &"effects": [{
+ &"effect_name": "HP buff Aura", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/hp_buff_aura.tscn", &"args": 50 
+}, {
+ &"effect_name": "Holy wrath", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/holy_wrath.tscn", &"args": [2, 1.3]
+ 
+}, {
+ &"effect_name": "Sturdy will", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/retaliation_on_debuff.tscn", &"args": 1.3 
+}, {
+ &"effect_name": "Purity", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/negative_effect_immune.tscn", &"args": null 
+}]
+, &"base_damage": 80, &"max_hp": 275, &"armor": 35, &"evasion": 0.15, &"shielding_chance": 0.6, &"portrait_texture_path": "res://Arts/Placeholders/Grand inquisitor.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
+ &"gold": 700, &"stone": 100, &"mana": 200 
+} 
+},&"Hierophant" : {
+ &"scene_path": "res://Combat/Units/Derived units//Church/e33 Hierophant.tscn", &"level": 4, &"large_unit": false, &"immunities": []
+, &"description": "\"... We hereby welcome thee as the face of the Church. Thine will shall now be the will of the Church, and thine heart shall belong to the Council of Thorns.\"\n- Council of Thorns", &"brief_description": "Single-target healer able to resurret fallen warriors.", &"faction": 3, &"unit_type": 3, &"unit_class": 0, &"needed_xp": 1600, &"attacks": [{
+ &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": true, &"type": 3, &"accuracy": 1.0, &"targets_needed": 1, &"initiative": 15, &"evadable": true, &"tags": []
+, &"target_validation": "res://Combat/Units/Parameters/Validation/resurrection_validation.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/resurrection_policy.tres", &"applying_effects": {
+  
+}, &"alternative_actions": []
+ 
+}]
+, &"effects": []
+, &"base_damage": 80, &"max_hp": 180, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Hierophant.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
+ &"gold": 2000, &"stone": 500, &"mana": 0 
+} 
+},&"Inquisitor" : {
+ &"scene_path": "res://Combat/Units/Derived units//Church/e05 Inquisitor.tscn", &"level": 3, &"large_unit": false, &"immunities": []
+, &"description": "When a witch hunter proves their devotion to the Church in battle, they are accepted as an Inquisitor. The Inquisition relentlessly pursues everything evil in this world, mercilessly burning heresies and the unfaithful with brimstone and prayer.", &"brief_description": "Melee fighter with unblockable attacks.", &"faction": 3, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 900, &"attacks": [{
+ &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 4, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
+, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
+  
+}, &"alternative_actions": []
+ 
+}]
+, &"effects": [{
+ &"effect_name": "Sturdy will", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/retaliation_on_debuff.tscn", &"args": 1.2 
+}, {
+ &"effect_name": "Holy wrath", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/holy_wrath.tscn", &"args": [2, 1.3]
+ 
+}, {
+ &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [2, 1]
+ 
+}]
+, &"base_damage": 60, &"max_hp": 200, &"armor": 20, &"evasion": 0.1, &"shielding_chance": 0.6, &"portrait_texture_path": "res://Arts/Placeholders/Inquisitor.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
+ &"gold": 250, &"stone": 0, &"mana": 30 
+} 
+},&"Matriarch" : {
+ &"scene_path": "res://Combat/Units/Derived units//Church/e30 Matriarch.tscn", &"level": 3, &"large_unit": false, &"immunities": []
+, &"description": "\"... Thus we name thee Matriarch. Thy duty is graven upon thine heart, mirrored in thy will. Thou art a shaft of light that cleaveth the deepest dark, and thy visage shall kindle hope in the hearts of all who look upon thee.\"\nFrom the \"Level 2 Ordination ceremony\", issued by decree #16-857 of The Church, approved by Council of Thorns.", &"brief_description": "Mass-healer able to buff allies.", &"faction": 3, &"unit_type": 3, &"unit_class": 0, &"needed_xp": 900, &"attacks": [{
+ &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": true, &"type": 3, &"accuracy": 1.0, &"targets_needed": 1, &"initiative": 10, &"evadable": false, &"tags": []
+, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_healer_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/mass_heal_targets.tres", &"damage_policy": "", &"applying_effects": {
+ "random_buff": [1, 5, 1.1]
+ 
+}, &"alternative_actions": []
+ 
+}]
+, &"effects": []
+, &"base_damage": 45, &"max_hp": 150, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Matriarch.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
+ &"gold": 600, &"stone": 0, &"mana": 600 
+} 
+},&"Acolyte" : {
+ &"scene_path": "res://Combat/Units/Derived units//Church/e27 Acolyte.tscn", &"level": 1, &"large_unit": false, &"immunities": []
+, &"description": "Though their faith might be weak, Acolyte\'s compassion for the suffering allows them to cure wounds on the battlefield.", &"brief_description": "Healer.", &"faction": 3, &"unit_type": 3, &"unit_class": 0, &"needed_xp": 1, &"attacks": [{
+ &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": true, &"type": 3, &"accuracy": 1.0, &"targets_needed": 1, &"initiative": 10, &"evadable": false, &"tags": []
+, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_healer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
+  
+}, &"alternative_actions": []
+ 
+}]
+, &"effects": []
+, &"base_damage": 20, &"max_hp": 70, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Acolyte.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
+ &"gold": 50, &"stone": 0, &"mana": 50 
+} 
+},&"Prophetess" : {
+ &"scene_path": "res://Combat/Units/Derived units//Church/e32 Prophetess.tscn", &"level": 4, &"large_unit": false, &"immunities": []
+, &"description": "\"... Let it be known that a new Eye has opened within the Church. Thou art the all-seer, the teller of the divine will. Prophetess we declare thee! Stand thou with us, our sister and our peer, and share in our rejoicing.\"\n- Voices of the Council of Thorns", &"brief_description": "Mass-healer with strong buffs", &"faction": 3, &"unit_type": 3, &"unit_class": 0, &"needed_xp": 1600, &"attacks": [{
+ &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": true, &"type": 3, &"accuracy": 1.0, &"targets_needed": 1, &"initiative": 10, &"evadable": false, &"tags": []
+, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_healer_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/mass_heal_targets.tres", &"damage_policy": "", &"applying_effects": {
+ "random_buff": [2, 20, 1.2]
+ 
+}, &"alternative_actions": []
+ 
+}]
+, &"effects": []
+, &"base_damage": 65, &"max_hp": 195, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Prophetess.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
+ &"gold": 1000, &"stone": 0, &"mana": 1000 
 } 
 },&"Marksman" : {
  &"scene_path": "res://Combat/Units/Derived units//Empire/e23 Marksman.tscn", &"level": 2, &"large_unit": false, &"immunities": []
@@ -759,21 +997,10 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 45, &"max_hp": 75, &"armor": 0, &"evasion": 0.136, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Marksman.jpg", &"custom_levelup_path": "", &"cost": {
- &"gold": 200, &"stone": 30, &"mana": 0 
-} 
-},&"Witch hunter" : {
- &"scene_path": "res://Combat/Units/Derived units//Empire/e02 Witch hunter.tscn", &"level": 2, &"large_unit": false, &"immunities": []
-, &"description": "Trained by the Church to hunt down lesser evil spawns, witch hunters are skilled with blade and zeal. Though officially not part of the Inquisition, witch hunters serve The Empire as wards against darkness.", &"brief_description": "Melee fighter with increased evasion.", &"faction": 1, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 400, &"attacks": [{
- &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
-, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
+, &"base_damage": 45, &"max_hp": 75, &"armor": 0, &"evasion": 0.136, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Marksman.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
   
-}, &"alternative_actions": []
- 
-}]
-, &"effects": []
-, &"base_damage": 45, &"max_hp": 150, &"armor": 10, &"evasion": 0.1, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Witch hunter.jpg", &"custom_levelup_path": "", &"cost": {
- &"gold": 130, &"stone": 0, &"mana": 10 
+}, &"cost": {
+ &"gold": 200, &"stone": 30, &"mana": 0 
 } 
 },&"Angel" : {
  &"scene_path": "res://Combat/Units/Derived units//Empire/e13 Angel.tscn", &"level": 5, &"large_unit": false, &"immunities": []
@@ -796,7 +1023,9 @@ const database = {
  &"effect_name": "Divine nature", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/cheat_death.tscn", &"args": [1, 1]
  
 }]
-, &"base_damage": 100, &"max_hp": 350, &"armor": 50, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Angel.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 100, &"max_hp": 350, &"armor": 50, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Angel.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 1000, &"stone": 300, &"mana": 800 
 } 
 },&"Blade Saint" : {
@@ -812,21 +1041,10 @@ const database = {
  &"effect_name": "Combo", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/combo.tscn", &"args": [30, 1.0]
  
 }]
-, &"base_damage": 80, &"max_hp": 275, &"armor": 35, &"evasion": 0.2, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Blade saint.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 80, &"max_hp": 275, &"armor": 35, &"evasion": 0.2, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Blade saint.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 800, &"stone": 150, &"mana": 50 
-} 
-},&"Priest" : {
- &"scene_path": "res://Combat/Units/Derived units//Empire/e29 Priest.tscn", &"level": 2, &"large_unit": false, &"immunities": []
-, &"description": "Through firm faith, Priests strengthen the bodies of combatants, healing them with divine magic and allowing them to endure against evil a little longer.", &"brief_description": "Single-target healer.", &"faction": 1, &"unit_type": 3, &"unit_class": 0, &"needed_xp": 400, &"attacks": [{
- &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": true, &"type": 3, &"accuracy": 1.0, &"targets_needed": 1, &"initiative": 10, &"evadable": false, &"tags": []
-, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_healer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
- "cure": null 
-}, &"alternative_actions": []
- 
-}]
-, &"effects": []
-, &"base_damage": 40, &"max_hp": 110, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Priest.jpg", &"custom_levelup_path": "", &"cost": {
- &"gold": 300, &"stone": 50, &"mana": 0 
 } 
 },&"White Mage" : {
  &"scene_path": "res://Combat/Units/Derived units//Empire/e19 White Mage.tscn", &"level": 4, &"large_unit": false, &"immunities": []
@@ -839,21 +1057,10 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 65, &"max_hp": 180, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/White mage.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 65, &"max_hp": 180, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/White mage.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 850, &"stone": 300, &"mana": 1200 
-} 
-},&"Imperial priest" : {
- &"scene_path": "res://Combat/Units/Derived units//Empire/e31 Imperial priest.tscn", &"level": 3, &"large_unit": false, &"immunities": []
-, &"description": "\"... Thou art as dust beneath the feet of the Gods. Let all bear witness that thy deeds are the Church\'s bidding, not thy will. Thy tongue now speaketh with the Church\'s voice; thy light is a gift bestowed by the very Gods.\"\nFrom the \"Level 2 Ordination ceremony\", issued by decree #16-857 of The Church, approved by Council of Thorns.", &"brief_description": "Single-targrt strong healer able to cure allies.", &"faction": 1, &"unit_type": 3, &"unit_class": 0, &"needed_xp": 900, &"attacks": [{
- &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": true, &"type": 3, &"accuracy": 1.0, &"targets_needed": 1, &"initiative": 10, &"evadable": false, &"tags": []
-, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_healer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
- "cure": null 
-}, &"alternative_actions": []
- 
-}]
-, &"effects": []
-, &"base_damage": 60, &"max_hp": 150, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Clergyman.jpg", &"custom_levelup_path": "", &"cost": {
- &"gold": 800, &"stone": 300, &"mana": 0 
 } 
 },&"Apprentice" : {
  &"scene_path": "res://Combat/Units/Derived units//Empire/e14 Apprentice.tscn", &"level": 1, &"large_unit": false, &"immunities": []
@@ -865,7 +1072,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 20, &"max_hp": 50, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Apprentice.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 20, &"max_hp": 50, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Apprentice.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 90, &"stone": 0, &"mana": 30 
 } 
 },&"Assassin" : {
@@ -889,7 +1098,9 @@ const database = {
  &"effect_name": "Agility", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/agility.tscn", &"args": [2, 1.2]
  
 }]
-, &"base_damage": 75, &"max_hp": 85, &"armor": -20, &"evasion": 0.3, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Assassin.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 75, &"max_hp": 85, &"armor": -20, &"evasion": 0.3, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Assassin.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 1000, &"stone": 0, &"mana": 0 
 } 
 },&"Paladin" : {
@@ -919,21 +1130,10 @@ const database = {
 }, {
  &"effect_name": "Damage buff Aura", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/damage_buff_aura.tscn", &"args": 40 
 }]
-, &"base_damage": 100, &"max_hp": 350, &"armor": 70, &"evasion": 0.05, &"shielding_chance": 0.8, &"portrait_texture_path": "res://Arts/Placeholders/Paladin.jpg", &"custom_levelup_path": "", &"cost": {
- &"gold": 1500, &"stone": 500, &"mana": 300 
-} 
-},&"Cleric" : {
- &"scene_path": "res://Combat/Units/Derived units//Empire/e28 Cleric.tscn", &"level": 2, &"large_unit": false, &"immunities": []
-, &"description": "Gods may be hesitant to respond to prayers, but with enough diligence and faith, Clerics can bestow divine blessings upon the army, healing bodies and strengthening minds.", &"brief_description": "Weak healer, able to heal the entire party.", &"faction": 1, &"unit_type": 3, &"unit_class": 0, &"needed_xp": 400, &"attacks": [{
- &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": true, &"type": 3, &"accuracy": 1.0, &"targets_needed": 1, &"initiative": 0, &"evadable": false, &"tags": []
-, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_healer_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/mass_heal_targets.tres", &"damage_policy": "", &"applying_effects": {
+, &"base_damage": 100, &"max_hp": 350, &"armor": 70, &"evasion": 0.05, &"shielding_chance": 0.8, &"portrait_texture_path": "res://Arts/Placeholders/Paladin.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
   
-}, &"alternative_actions": []
- 
-}]
-, &"effects": []
-, &"base_damage": 25, &"max_hp": 100, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Cleric.jpg", &"custom_levelup_path": "", &"cost": {
- &"gold": 100, &"stone": 30, &"mana": 100 
+}, &"cost": {
+ &"gold": 1500, &"stone": 500, &"mana": 300 
 } 
 },&"Royal Cavalier" : {
  &"scene_path": "res://Combat/Units/Derived units//Empire/e11 Royal Cavalier.tscn", &"level": 4, &"large_unit": false, &"immunities": []
@@ -960,7 +1160,9 @@ const database = {
  &"effect_name": "Giddy up", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/on_move_evasion_up.tscn", &"args": [1.5, 1]
  
 }]
-, &"base_damage": 80, &"max_hp": 275, &"armor": 50, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Royal cavalier.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 80, &"max_hp": 275, &"armor": 50, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Royal cavalier.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 800, &"stone": 300, &"mana": 100 
 } 
 },&"Squire" : {
@@ -973,7 +1175,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 30, &"max_hp": 100, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Squire.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 30, &"max_hp": 100, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Squire.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 70, &"stone": 0, &"mana": 0 
 } 
 },&"Archer" : {
@@ -986,7 +1190,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 30, &"max_hp": 50, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Archer.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 30, &"max_hp": 50, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Archer.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 70, &"stone": 10, &"mana": 0 
 } 
 },&"Imperial Ranger" : {
@@ -1022,43 +1228,10 @@ const database = {
 }, {
  &"effect_name": "Assistance", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/assistance.tscn", &"args": 0.5 
 }]
-, &"base_damage": 100, &"max_hp": 250, &"armor": 0, &"evasion": 0.296, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Imperial ranger.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 100, &"max_hp": 250, &"armor": 0, &"evasion": 0.296, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Imperial ranger.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 1000, &"stone": 500, &"mana": 100 
-} 
-},&"Grand Inquisitor" : {
- &"scene_path": "res://Combat/Units/Derived units//Empire/e09 Grand Inquisitor.tscn", &"level": 4, &"large_unit": false, &"immunities": []
-, &"description": "\"... Arise now as Grand Inquisitor, bound henceforth by thine oath. Let thy soul stay pure, thy arm strong \'gainst all ill, for the Gods look down upon thy path, and Their holy ire shall scourge the bold who stand between thy will and destiny\'s fulfillment.\"\nFasteur de Miora, Praefectus Dei", &"brief_description": "Melee fighter with unblockable attacks, immute to negative effects.", &"faction": 1, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 1600, &"attacks": [{
- &"attack_name": "Attack", &"damage_multiplier": 0.85, &"damage_override": false, &"is_heal": false, &"type": 4, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
-, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Splash.tres", &"damage_policy": "res://Combat/Units/Derived units/Empire/e09 Grand Inquisitor.tscn::Resource_6n8jw", &"applying_effects": {
-  
-}, &"alternative_actions": []
- 
-}]
-, &"effects": [{
- &"effect_name": "HP buff Aura", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/hp_buff_aura.tscn", &"args": 50 
-}, {
- &"effect_name": "Holy wrath", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/holy_wrath.tscn", &"args": [2, 1.3]
- 
-}, {
- &"effect_name": "Sturdy will", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/retaliation_on_debuff.tscn", &"args": 1.3 
-}, {
- &"effect_name": "Purity", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/negative_effect_immune.tscn", &"args": null 
-}]
-, &"base_damage": 80, &"max_hp": 275, &"armor": 35, &"evasion": 0.15, &"shielding_chance": 0.6, &"portrait_texture_path": "res://Arts/Placeholders/Grand inquisitor.jpg", &"custom_levelup_path": "", &"cost": {
- &"gold": 700, &"stone": 100, &"mana": 200 
-} 
-},&"Hierophant" : {
- &"scene_path": "res://Combat/Units/Derived units//Empire/e33 Hierophant.tscn", &"level": 4, &"large_unit": false, &"immunities": []
-, &"description": "\"... We hereby welcome thee as the face of the Church. Thine will shall now be the will of the Church, and thine heart shall belong to the Council of Thorns.\"\n- Council of Thorns", &"brief_description": "Single-target healer able to resurret fallen warriors.", &"faction": 1, &"unit_type": 3, &"unit_class": 0, &"needed_xp": 1600, &"attacks": [{
- &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": true, &"type": 3, &"accuracy": 1.0, &"targets_needed": 1, &"initiative": 15, &"evadable": true, &"tags": []
-, &"target_validation": "res://Combat/Units/Parameters/Validation/resurrection_validation.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/resurrection_policy.tres", &"applying_effects": {
-  
-}, &"alternative_actions": []
- 
-}]
-, &"effects": []
-, &"base_damage": 80, &"max_hp": 180, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Hierophant.jpg", &"custom_levelup_path": "", &"cost": {
- &"gold": 2000, &"stone": 500, &"mana": 0 
 } 
 },&"Ritualist" : {
  &"scene_path": "res://Combat/Units/Derived units//Empire/e17 Ritualist.tscn", &"level": 3, &"large_unit": false, &"immunities": []
@@ -1070,29 +1243,10 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 45, &"max_hp": 120, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Ritualist.jpg", &"custom_levelup_path": "", &"cost": {
- &"gold": 600, &"stone": 50, &"mana": 500 
-} 
-},&"Inquisitor" : {
- &"scene_path": "res://Combat/Units/Derived units//Empire/e05 Inquisitor.tscn", &"level": 3, &"large_unit": false, &"immunities": []
-, &"description": "When a witch hunter proves their devotion to the Church in battle, they are accepted as an Inquisitor. The Inquisition relentlessly pursues everything evil in this world, mercilessly burning heresies and the unfaithful with brimstone and prayer.", &"brief_description": "Melee fighter with unblockable attacks.", &"faction": 1, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 900, &"attacks": [{
- &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 4, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
-, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
+, &"base_damage": 45, &"max_hp": 120, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Ritualist.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
   
-}, &"alternative_actions": []
- 
-}]
-, &"effects": [{
- &"effect_name": "Sturdy will", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/retaliation_on_debuff.tscn", &"args": 1.2 
-}, {
- &"effect_name": "Holy wrath", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/holy_wrath.tscn", &"args": [2, 1.3]
- 
-}, {
- &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [2, 1]
- 
-}]
-, &"base_damage": 60, &"max_hp": 200, &"armor": 20, &"evasion": 0.1, &"shielding_chance": 0.6, &"portrait_texture_path": "res://Arts/Placeholders/Inquisitor.jpg", &"custom_levelup_path": "", &"cost": {
- &"gold": 250, &"stone": 0, &"mana": 30 
+}, &"cost": {
+ &"gold": 600, &"stone": 50, &"mana": 500 
 } 
 },&"Knight" : {
  &"scene_path": "res://Combat/Units/Derived units//Empire/e03 Knight.tscn", &"level": 2, &"large_unit": false, &"immunities": []
@@ -1107,7 +1261,9 @@ const database = {
  &"effect_name": "Taunt", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/taunt.tscn", &"args": [0.3, 1.0]
  
 }]
-, &"base_damage": 45, &"max_hp": 150, &"armor": 20, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Knight.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 45, &"max_hp": 150, &"armor": 20, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Knight.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 140, &"stone": 10, &"mana": 0 
 } 
 },&"Samurai" : {
@@ -1120,7 +1276,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 60, &"max_hp": 200, &"armor": 20, &"evasion": 0.15, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Samurai.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 60, &"max_hp": 200, &"armor": 20, &"evasion": 0.15, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Samurai.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 200, &"stone": 0, &"mana": 50 
 } 
 },&"Arcanist" : {
@@ -1146,7 +1304,9 @@ const database = {
 }]
  
 }]
-, &"base_damage": 75, &"max_hp": 200, &"armor": 25, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Arcanist.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 75, &"max_hp": 200, &"armor": 25, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Arcanist.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 900, &"stone": 300, &"mana": 1800 
 } 
 },&"Angel Knight" : {
@@ -1173,7 +1333,9 @@ const database = {
 }, {
  &"effect_name": "Healing aura", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/on_turn_heal.tscn", &"args": 25 
 }]
-, &"base_damage": 80, &"max_hp": 275, &"armor": 80, &"evasion": 0.05, &"shielding_chance": 0.85, &"portrait_texture_path": "res://Arts/Placeholders/Angel knight.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 80, &"max_hp": 275, &"armor": 80, &"evasion": 0.05, &"shielding_chance": 0.85, &"portrait_texture_path": "res://Arts/Placeholders/Angel knight.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 500, &"stone": 150, &"mana": 500 
 } 
 },&"Keeper of Knowledge" : {
@@ -1188,7 +1350,9 @@ const database = {
 , &"effects": [{
  &"effect_name": "All-knowing", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/change_attack_type.tscn", &"args": 2 
 }]
-, &"base_damage": 100, &"max_hp": 200, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Keeper of knowledge.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 100, &"max_hp": 200, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Keeper of knowledge.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 1000, &"stone": 200, &"mana": 1500 
 } 
 },&"Wizard" : {
@@ -1201,7 +1365,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 45, &"max_hp": 110, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Wizard.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 45, &"max_hp": 110, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Wizard.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 400, &"stone": 150, &"mana": 800 
 } 
 },&"Mage" : {
@@ -1214,7 +1380,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 30, &"max_hp": 75, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Mage.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 30, &"max_hp": 75, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Mage.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 200, &"stone": 0, &"mana": 80 
 } 
 },&"Scout" : {
@@ -1237,7 +1405,9 @@ const database = {
  &"effect_name": "Agility", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/agility.tscn", &"args": [2, 0.0]
  
 }]
-, &"base_damage": 60, &"max_hp": 100, &"armor": 0, &"evasion": 0.208, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Scout.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 60, &"max_hp": 100, &"armor": 0, &"evasion": 0.208, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Scout.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 500, &"stone": 300, &"mana": 50 
 } 
 },&"Knight Master" : {
@@ -1253,7 +1423,9 @@ const database = {
  &"effect_name": "Taunt", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/taunt.tscn", &"args": [0.4, 0.65]
  
 }]
-, &"base_damage": 60, &"max_hp": 200, &"armor": 50, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Knight master.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 60, &"max_hp": 200, &"armor": 50, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Knight master.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 220, &"stone": 70, &"mana": 0 
 } 
 },&"Horseman" : {
@@ -1272,7 +1444,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 60, &"max_hp": 200, &"armor": 35, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Horseman.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 60, &"max_hp": 200, &"armor": 35, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Horseman.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 200, &"stone": 50, &"mana": 0 
 } 
 },&"Elementalist" : {
@@ -1285,49 +1459,10 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 30, &"max_hp": 75, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Elementalist.jpg", &"custom_levelup_path": "", &"cost": {
- &"gold": 150, &"stone": 0, &"mana": 100 
-} 
-},&"Matriarch" : {
- &"scene_path": "res://Combat/Units/Derived units//Empire/e30 Matriarch.tscn", &"level": 3, &"large_unit": false, &"immunities": []
-, &"description": "\"... Thus we name thee Matriarch. Thy duty is graven upon thine heart, mirrored in thy will. Thou art a shaft of light that cleaveth the deepest dark, and thy visage shall kindle hope in the hearts of all who look upon thee.\"\nFrom the \"Level 2 Ordination ceremony\", issued by decree #16-857 of The Church, approved by Council of Thorns.", &"brief_description": "Mass-healer able to buff allies.", &"faction": 1, &"unit_type": 3, &"unit_class": 0, &"needed_xp": 900, &"attacks": [{
- &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": true, &"type": 3, &"accuracy": 1.0, &"targets_needed": 1, &"initiative": 10, &"evadable": false, &"tags": []
-, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_healer_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/mass_heal_targets.tres", &"damage_policy": "", &"applying_effects": {
- "random_buff": [1, 5, 1.1]
- 
-}, &"alternative_actions": []
- 
-}]
-, &"effects": []
-, &"base_damage": 45, &"max_hp": 150, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Matriarch.jpg", &"custom_levelup_path": "", &"cost": {
- &"gold": 600, &"stone": 0, &"mana": 600 
-} 
-},&"Acolyte" : {
- &"scene_path": "res://Combat/Units/Derived units//Empire/e27 Acolyte.tscn", &"level": 1, &"large_unit": false, &"immunities": []
-, &"description": "Though their faith might be weak, Acolyte\'s compassion for the suffering allows them to cure wounds on the battlefield.", &"brief_description": "Healer.", &"faction": 1, &"unit_type": 3, &"unit_class": 0, &"needed_xp": 1, &"attacks": [{
- &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": true, &"type": 3, &"accuracy": 1.0, &"targets_needed": 1, &"initiative": 10, &"evadable": false, &"tags": []
-, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_healer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
+, &"base_damage": 30, &"max_hp": 75, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Elementalist.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
   
-}, &"alternative_actions": []
- 
-}]
-, &"effects": []
-, &"base_damage": 20, &"max_hp": 70, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Acolyte.jpg", &"custom_levelup_path": "", &"cost": {
- &"gold": 50, &"stone": 0, &"mana": 50 
-} 
-},&"Prophetess" : {
- &"scene_path": "res://Combat/Units/Derived units//Empire/e32 Prophetess.tscn", &"level": 4, &"large_unit": false, &"immunities": []
-, &"description": "\"... Let it be known that a new Eye has opened within the Church. Thou art the all-seer, the teller of the divine will. Prophetess we declare thee! Stand thou with us, our sister and our peer, and share in our rejoicing.\"\n- Voices of the Council of Thorns", &"brief_description": "Mass-healer with strong buffs", &"faction": 1, &"unit_type": 3, &"unit_class": 0, &"needed_xp": 1600, &"attacks": [{
- &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": true, &"type": 3, &"accuracy": 1.0, &"targets_needed": 1, &"initiative": 10, &"evadable": false, &"tags": []
-, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_healer_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/mass_heal_targets.tres", &"damage_policy": "", &"applying_effects": {
- "random_buff": [2, 20, 1.2]
- 
-}, &"alternative_actions": []
- 
-}]
-, &"effects": []
-, &"base_damage": 65, &"max_hp": 195, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Prophetess.jpg", &"custom_levelup_path": "", &"cost": {
- &"gold": 1000, &"stone": 0, &"mana": 1000 
+}, &"cost": {
+ &"gold": 150, &"stone": 0, &"mana": 100 
 } 
 },&"Orc" : {
  &"scene_path": "res://Combat/Units/Derived units//Neutral/orc.tscn", &"level": 2, &"large_unit": false, &"immunities": []
@@ -1339,7 +1474,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 45, &"max_hp": 150, &"armor": 10, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Orc.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 45, &"max_hp": 150, &"armor": 10, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Orc.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 0 
 } 
 },&"Pirate capitan" : {
@@ -1352,7 +1489,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 90, &"max_hp": 275, &"armor": 20, &"evasion": 0.1, &"shielding_chance": 0.3, &"portrait_texture_path": "res://Arts/Placeholders/Pirate captain.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 90, &"max_hp": 275, &"armor": 20, &"evasion": 0.1, &"shielding_chance": 0.3, &"portrait_texture_path": "res://Arts/Placeholders/Pirate captain.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 0 
 } 
 },&"Rogue" : {
@@ -1380,7 +1519,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 30, &"max_hp": 150, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Rogue.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 30, &"max_hp": 150, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Rogue.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 0 
 } 
 },&"Ogre" : {
@@ -1393,7 +1534,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 130, &"max_hp": 450, &"armor": 30, &"evasion": 0.01, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Ogre.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 130, &"max_hp": 450, &"armor": 30, &"evasion": 0.01, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Ogre.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 0 
 } 
 },&"Goblin" : {
@@ -1412,7 +1555,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 30, &"max_hp": 100, &"armor": 0, &"evasion": 0.1, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Goblin.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 30, &"max_hp": 100, &"armor": 0, &"evasion": 0.1, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Goblin.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 0 
 } 
 },&"Robber" : {
@@ -1425,7 +1570,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 30, &"max_hp": 100, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 30, &"max_hp": 100, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 0 
 } 
 },&"Pirate" : {
@@ -1438,7 +1585,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 75, &"max_hp": 180, &"armor": 10, &"evasion": 0.08, &"shielding_chance": 0.0, &"portrait_texture_path": "res://Arts/Placeholders/Pirate.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 75, &"max_hp": 180, &"armor": 10, &"evasion": 0.08, &"shielding_chance": 0.0, &"portrait_texture_path": "res://Arts/Placeholders/Pirate.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 0 
 } 
 },&"Goblin shaman" : {
@@ -1451,7 +1600,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 45, &"max_hp": 75, &"armor": 10, &"evasion": 0.1, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Goblin shaman.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 45, &"max_hp": 75, &"armor": 10, &"evasion": 0.1, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Goblin shaman.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 0 
 } 
 },&"Orc chieftain" : {
@@ -1464,7 +1615,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 80, &"max_hp": 275, &"armor": 35, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Orc chieftain.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 80, &"max_hp": 275, &"armor": 35, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Orc chieftain.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 0 
 } 
 },&"Thief" : {
@@ -1483,7 +1636,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 25, &"max_hp": 100, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Thief.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 25, &"max_hp": 100, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Thief.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 0 
 } 
 },&"Elemental" : {
@@ -1496,7 +1651,9 @@ const database = {
  
 }]
 , &"effects": []
-, &"base_damage": 30, &"max_hp": 100, &"armor": 0, &"evasion": 0.1, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Elemental.jpg", &"custom_levelup_path": "", &"cost": {
+, &"base_damage": 30, &"max_hp": 100, &"armor": 0, &"evasion": 0.1, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Elemental.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 200 
 } 
 },
