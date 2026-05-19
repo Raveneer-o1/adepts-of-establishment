@@ -32,6 +32,10 @@ func _populate(path: String) -> void:
 	var new_node := resource.instantiate()
 	add_child(new_node)
 	
+	# FIXME: detect when any ugrade already exists and delete it from the tree
+	# e.g., if a buuilding is alreadty added to the faction's active upgrades,
+	# it should not be included in the tree
+	
 	if not evolution_buildings:
 		evolution_buildings = new_node
 		new_node.name = EVOLUTION_BUILDINGS_NODE_NAME
