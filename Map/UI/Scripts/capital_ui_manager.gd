@@ -20,7 +20,7 @@ func _get_ui_layout(faction: MapFaction) -> UI_DefaultCapitalLayout:
 	capital_layout_container.add_child(control)
 	return control
 
-@onready var active_upgades_item_list: ItemList = \
+@onready var active_upgrades_item_list: ItemList = \
 	%ActiveFactionUpgadesItemList
 @onready var selected_active_upgade_text: RichTextLabel = \
 	%SelectedActiveFactionUpgadeRichTextLabel
@@ -96,9 +96,9 @@ func fill_data(faction: MapFaction) -> void:
 	_fetch_active_upgrades_mapping(faction)
 	_fetch_available_upgrades_mapping(faction)
 	
-	active_upgades_item_list.clear()
+	active_upgrades_item_list.clear()
 	for _name in name_upgrade_mapping:
-		active_upgades_item_list.add_item(_name)
+		active_upgrades_item_list.add_item(_name)
 	
 	available_list.clear()
 	for _name in name_available_mapping:
@@ -146,7 +146,7 @@ func _on_visibility_changed() -> void:
 	fill_data(ui_layers.game_map.screen_player)
 
 func _on_active_faction_upgades_item_list_item_selected(index: int) -> void:
-	var upgrade_name := active_upgades_item_list.get_item_text(index)
+	var upgrade_name := active_upgrades_item_list.get_item_text(index)
 	if not name_upgrade_mapping.has(upgrade_name):
 		push_error("Unable to map '%s'" % upgrade_name)
 		return
