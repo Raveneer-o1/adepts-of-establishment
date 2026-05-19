@@ -102,7 +102,10 @@ func fill_data(faction: MapFaction) -> void:
 	
 	available_list.clear()
 	for _name in name_available_mapping:
-		available_list.add_item(_name)
+		available_list.set_item_disabled(
+			available_list.add_item(_name),
+			!name_available_mapping[_name].can_be_researched()
+		)
 	_remove_shown()
 
 func _remove_shown() -> void:

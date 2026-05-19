@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://by2dpdfejtk3l"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/Buildings/EvolutionBuildings/evolution_building.tscn" id="1_expxq"]
+
+[node name="Panther enclosure" instance=ExtResource("1_expxq")]
+evolving_from = &"Bear rider"
+evolving_into = &"Panther outrider"
+gold_cost = 200
+stone_cost = 70
+upgrade_name = "Panther enclosure"
+description = "This building allows Bear riders to become Panther outriders"

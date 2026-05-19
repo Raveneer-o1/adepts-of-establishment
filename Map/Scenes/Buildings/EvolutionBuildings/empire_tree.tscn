@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://qdtmkeo0dosq"]
+[gd_scene load_steps=32 format=3 uid="uid://qdtmkeo0dosq"]
 
 [ext_resource type="PackedScene" uid="uid://cd48yuojlj6oh" path="res://Map/Scenes/Buildings/EvolutionBuildings/Empire/squire_to_mercenary.tscn" id="1_kath8"]
 [ext_resource type="PackedScene" uid="uid://dyrh7yqj34o0q" path="res://Map/Scenes/Buildings/EvolutionBuildings/Empire/mercenary_to_samurai.tscn" id="2_c4ijs"]
@@ -25,7 +25,11 @@
 [ext_resource type="PackedScene" uid="uid://c4gbhh3lvak0" path="res://Map/Scenes/Buildings/EvolutionBuildings/Empire/wizard_to_whitemage.tscn" id="21_28usd"]
 [ext_resource type="PackedScene" uid="uid://chdxvlnp8bt4n" path="res://Map/Scenes/Buildings/EvolutionBuildings/Empire/whitemage_to_arcanist.tscn" id="22_obcpw"]
 [ext_resource type="PackedScene" uid="uid://cjf403l25cjdf" path="res://Map/Scenes/Buildings/EvolutionBuildings/Empire/whitemage_to_keeperofknowledge.tscn" id="23_vx1oe"]
+[ext_resource type="PackedScene" uid="uid://by2dpdfejtk3l" path="res://Map/Scenes/Buildings/EvolutionBuildings/Empire/bearrider_to_pantheroutrider.tscn" id="28_kath8"]
+[ext_resource type="PackedScene" uid="uid://bhxdadppjt52q" path="res://Map/Scenes/Buildings/EvolutionBuildings/Empire/bearrider_to_polarbearcavalry.tscn" id="29_gjn07"]
+[ext_resource type="PackedScene" uid="uid://dwow5c5cg3k32" path="res://Map/Scenes/Buildings/EvolutionBuildings/Empire/polarbearcavalry_to_mammothwrangler.tscn" id="30_3eune"]
 [ext_resource type="PackedScene" uid="uid://dkav1ogabpnxf" path="res://Map/Scenes/Buildings/Discount.tscn" id="30_kath8"]
+[ext_resource type="PackedScene" uid="uid://yfad375dockc" path="res://Map/Scenes/Buildings/EvolutionBuildings/Empire/mammothwrangler_to_mastodontamer.tscn" id="31_ce8xy"]
 [ext_resource type="PackedScene" uid="uid://b3gaj1o4425gc" path="res://Map/Scenes/Buildings/Increased production.tscn" id="31_gjn07"]
 
 [node name="EmpireTree" type="Node"]
@@ -83,3 +87,11 @@
 [node name="Discount" parent="." instance=ExtResource("30_kath8")]
 
 [node name="Increased production" parent="." instance=ExtResource("31_gjn07")]
+
+[node name="Panther enclosure" parent="." instance=ExtResource("28_kath8")]
+
+[node name="Frozen cavern" parent="." instance=ExtResource("29_gjn07")]
+
+[node name="Mammoth stables" parent="Frozen cavern" instance=ExtResource("30_3eune")]
+
+[node name="Mastodon housing" parent="Frozen cavern/Mammoth stables" instance=ExtResource("31_ce8xy")]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://yfad375dockc"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/Buildings/EvolutionBuildings/evolution_building.tscn" id="1_6hvyi"]
+
+[node name="Mastodon housing" instance=ExtResource("1_6hvyi")]
+evolving_from = &"Mammoth wrangler"
+evolving_into = &"Mastodon tamer"
+gold_cost = 900
+stone_cost = 1600
+upgrade_name = "Mastodon housing"
+description = "This building allows Mammoth wranglers to become Mastodon tamers"

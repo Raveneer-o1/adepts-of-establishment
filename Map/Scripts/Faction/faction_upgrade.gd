@@ -18,7 +18,10 @@ var cost: ResourceCost:
 
 var faction: MapFaction
 
+var valid := true
+
 func can_be_researched() -> bool:
+	if not valid: return false
 	var parent := get_parent()
 	if parent is EvolutionTreePopulator:
 		return true

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwow5c5cg3k32"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/Buildings/EvolutionBuildings/evolution_building.tscn" id="1_oh06y"]
+
+[node name="Mammoth stables" instance=ExtResource("1_oh06y")]
+evolving_from = &"Polar bear cavalry"
+evolving_into = &"Mammoth wrangler"
+gold_cost = 500
+stone_cost = 800
+upgrade_name = "Mammoth stables"
+description = "This building allows Polar bear cavalry to become Mammoth wranglers "
