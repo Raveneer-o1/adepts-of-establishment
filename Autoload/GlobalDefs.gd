@@ -51,10 +51,10 @@ enum Faction {
 	Empire,
 	## Playable faction (undead)
 	Necropolis,
+	## Playable faction (humans)
+	Church,
 	## Playable faction (demons)
 	DarkForces,
-	## Playable faction (elves and dwarves)
-	NaturePact,
 	
 	Neutral,
 	Pirates,

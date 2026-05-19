@@ -1,7 +1,6 @@
-[gd_scene load_steps=53 format=3 uid="uid://dyvbe6w1ymxve"]
+[gd_scene load_steps=52 format=3 uid="uid://dyvbe6w1ymxve"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_pd60s"]
-[ext_resource type="Texture2D" uid="uid://dhhsdgyipwxan" path="res://Arts/Placeholders/Grand inquisitor.jpg" id="2_7ao73"]
 [ext_resource type="Texture2D" uid="uid://clo4s23fyrcjk" path="res://Arts/Empire units/Grand inquisitor idle  (1).png" id="2_rp3ci"]
 [ext_resource type="Texture2D" uid="uid://24uqtg5835jc" path="res://Arts/Empire units/Grand inquisitor attack.png" id="2_s1fcq"]
 [ext_resource type="PackedScene" uid="uid://cjtnm7lly4yca" path="res://Combat/Effects/AppliedEffects/Scenes/hp_buff_aura.tscn" id="4_b4oav"]
@@ -186,13 +185,12 @@ script = ExtResource("10_8qrve")
 decay_rate = 0.3
 
 [node name="Unit" instance=ExtResource("1_pd60s")]
-unit_name = "Grand Inquisitor"
-faction = 1
+unit_name = "High Inquisitor"
+faction = 3
 needed_xp = 1600
 brief_description = "Melee fighter with unblockable attacks, immute to negative effects."
-full_description = "\"... Arise now as Grand Inquisitor, bound henceforth by thine oath. Let thy soul stay pure, thy arm strong 'gainst all ill, for the Gods look down upon thy path, and Their holy ire shall scourge the bold who stand between thy will and destiny's fulfillment.\"
+full_description = "\"... Arise now as High Inquisitor, bound henceforth by thine oath. Let thy soul stay pure, thy arm strong 'gainst all ill, for the Gods look down upon thy path, and Their holy ire shall scourge the bold who stand between thy will and destiny's fulfillment.\"
 Fasteur de Miora, Praefectus Dei"
-portrait_texture = ExtResource("2_7ao73")
 portrait_texture_path = "res://Arts/Placeholders/Grand inquisitor.jpg"
 cost_gold = 700
 cost_stone = 100

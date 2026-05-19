@@ -1,7 +1,6 @@
-[gd_scene load_steps=40 format=3 uid="uid://jlqcu2psmrph"]
+[gd_scene load_steps=39 format=3 uid="uid://jlqcu2psmrph"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_eiqlo"]
-[ext_resource type="Texture2D" uid="uid://demcuxubrkf3c" path="res://Arts/Placeholders/Matriarch.jpg" id="2_2p06v"]
 [ext_resource type="Texture2D" uid="uid://brrnnnhf34pbt" path="res://Arts/Empire units/Matriarch attack .png" id="2_cwyp3"]
 [ext_resource type="Texture2D" uid="uid://def6ktpgfwwy" path="res://Arts/Empire units/Matriarch idle .png" id="3_x4djd"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_fpf5w"]
@@ -126,12 +125,11 @@ base_damage = 45
 [node name="Matriarch" instance=ExtResource("1_eiqlo")]
 unit_name = "Matriarch"
 unit_type = 3
-faction = 1
+faction = 3
 needed_xp = 900
 brief_description = "Mass-healer able to buff allies."
 full_description = "\"... Thus we name thee Matriarch. Thy duty is graven upon thine heart, mirrored in thy will. Thou art a shaft of light that cleaveth the deepest dark, and thy visage shall kindle hope in the hearts of all who look upon thee.\"
 From the \"Level 2 Ordination ceremony\", issued by decree #16-857 of The Church, approved by Council of Thorns."
-portrait_texture = ExtResource("2_2p06v")
 portrait_texture_path = "res://Arts/Placeholders/Matriarch.jpg"
 cost_gold = 600
 cost_mana = 600

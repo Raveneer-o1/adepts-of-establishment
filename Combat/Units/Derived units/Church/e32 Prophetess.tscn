@@ -1,8 +1,7 @@
-[gd_scene load_steps=41 format=3 uid="uid://b28vra3v386au"]
+[gd_scene load_steps=40 format=3 uid="uid://b28vra3v386au"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_p4gqo"]
 [ext_resource type="Texture2D" uid="uid://bvr8x4a5qowsf" path="res://Arts/Empire units/prophetess attack .png" id="2_hth4n"]
-[ext_resource type="Texture2D" uid="uid://cu4d8ol8oqm3n" path="res://Arts/Placeholders/Prophetess.jpg" id="2_kdng4"]
 [ext_resource type="Texture2D" uid="uid://qjlqr01x7xk4" path="res://Arts/Empire units/prophetess idle .png" id="3_tad3d"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_h4fa4"]
 [ext_resource type="PackedScene" uid="uid://cvtcjsl55tqgq" path="res://Combat/Effects/Scenes/strong_heal.tscn" id="4_y4o6y"]
@@ -133,12 +132,11 @@ base_damage = 65
 [node name="Prophetess" instance=ExtResource("1_p4gqo")]
 unit_name = "Prophetess"
 unit_type = 3
-faction = 1
+faction = 3
 needed_xp = 1600
 brief_description = "Mass-healer with strong buffs"
 full_description = "\"... Let it be known that a new Eye has opened within the Church. Thou art the all-seer, the teller of the divine will. Prophetess we declare thee! Stand thou with us, our sister and our peer, and share in our rejoicing.\"
 - Voices of the Council of Thorns"
-portrait_texture = ExtResource("2_kdng4")
 portrait_texture_path = "res://Arts/Placeholders/Prophetess.jpg"
 cost_gold = 1000
 cost_mana = 1000

@@ -1,8 +1,7 @@
-[gd_scene load_steps=38 format=3 uid="uid://bnnj1tvjy65cq"]
+[gd_scene load_steps=37 format=3 uid="uid://bnnj1tvjy65cq"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_woc6m"]
 [ext_resource type="Texture2D" uid="uid://cwlebly6fh7xr" path="res://Arts/Empire units/cleric attack .png" id="2_8n3o2"]
-[ext_resource type="Texture2D" uid="uid://c3gbfqqws2n3a" path="res://Arts/Placeholders/Cleric.jpg" id="2_qwoac"]
 [ext_resource type="Texture2D" uid="uid://2rsrqu18raa0" path="res://Arts/Empire units/cleric idle .png" id="3_u5n3j"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_0mrxr"]
 [ext_resource type="PackedScene" uid="uid://cdicif6h0d041" path="res://Combat/Effects/Scenes/weak_heal.tscn" id="4_ly0be"]
@@ -112,11 +111,10 @@ base_damage = 25
 [node name="Cleric" instance=ExtResource("1_woc6m")]
 unit_name = "Cleric"
 unit_type = 3
-faction = 1
+faction = 3
 needed_xp = 400
 brief_description = "Weak healer, able to heal the entire party."
 full_description = "Gods may be hesitant to respond to prayers, but with enough diligence and faith, Clerics can bestow divine blessings upon the army, healing bodies and strengthening minds."
-portrait_texture = ExtResource("2_qwoac")
 portrait_texture_path = "res://Arts/Placeholders/Cleric.jpg"
 cost_gold = 100
 cost_stone = 30

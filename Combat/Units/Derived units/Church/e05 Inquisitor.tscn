@@ -1,98 +1,97 @@
-[gd_scene load_steps=49 format=3 uid="uid://ces8ntf3a67x7"]
+[gd_scene load_steps=48 format=3 uid="uid://ces8ntf3a67x7"]
 
-[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_iyxx7"]
-[ext_resource type="Texture2D" uid="uid://wmydp6fhr4el" path="res://Arts/Empire units/inquisitor attack.png" id="2_ckwba"]
-[ext_resource type="Texture2D" uid="uid://cdeiq421oukge" path="res://Arts/Placeholders/Inquisitor.jpg" id="2_qb4re"]
-[ext_resource type="Texture2D" uid="uid://y2oajwl4d6b6" path="res://Arts/Empire units/inquisitor idle.png" id="3_p1p2e"]
-[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_j3lff"]
-[ext_resource type="PackedScene" uid="uid://b5btb6pxaufjw" path="res://Combat/Effects/AppliedEffects/Scenes/holy_wrath.tscn" id="5_txbsl"]
-[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_dn7kg"]
-[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="7_7f3u0"]
-[ext_resource type="PackedScene" uid="uid://ctt0fnpade4bd" path="res://Combat/Effects/AppliedEffects/Scenes/retaliation_on_debuff.tscn" id="8_nopjn"]
-[ext_resource type="AudioStream" uid="uid://3up3xko4aipd" path="res://Sounds/using/Damage/Default_1.wav" id="9_yaaye"]
-[ext_resource type="PackedScene" uid="uid://b1i0mf1877mfo" path="res://Combat/Effects/AppliedEffects/Scenes/ward.tscn" id="10_1rxxv"]
-[ext_resource type="AudioStream" uid="uid://b7r3kee6rjmo4" path="res://Sounds/using/Damage/Default_2.wav" id="10_nopjn"]
-[ext_resource type="AudioStream" uid="uid://b8o5l8pxfg4my" path="res://Sounds/using/Damage/Default_3.wav" id="11_0ycb0"]
-[ext_resource type="AudioStream" uid="uid://cucn7770e3ayy" path="res://Sounds/using/Damage/Default_4.wav" id="12_66mgp"]
-[ext_resource type="AudioStream" uid="uid://b2kxyto2hwq4g" path="res://Sounds/using/Miss/27_sword_miss_1.wav" id="13_mf8y6"]
-[ext_resource type="AudioStream" uid="uid://dhnmwtvhk7cyt" path="res://Sounds/using/Miss/27_sword_miss_2.wav" id="14_b2m7c"]
-[ext_resource type="AudioStream" uid="uid://bp17gb60eejxb" path="res://Sounds/using/Miss/27_sword_miss_3.wav" id="15_n2ran"]
-[ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="16_13y3b"]
-[ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="17_j3neg"]
-[ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="18_d0whi"]
-[ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="19_1rxxv"]
-[ext_resource type="AudioStream" uid="uid://djt0afoqdeayl" path="res://Sounds/using/Attack/Empire/Inquisitor attack.wav" id="20_3foe0"]
-[ext_resource type="AudioStream" uid="uid://bcae4mab3j5u" path="res://Sounds/using/Death/body fall 12.wav" id="22_b2m7c"]
-[ext_resource type="AudioStream" uid="uid://57uq8ddrqmg0" path="res://Sounds/using/Heal/GP_Turbo_Select_1.wav" id="22_d0whi"]
-[ext_resource type="AudioStream" uid="uid://bvxxsyhcv73oo" path="res://Sounds/using/Heal/GP_Turbo_Select_2.wav" id="23_1rxxv"]
-[ext_resource type="AudioStream" uid="uid://ble86orlqio7s" path="res://Sounds/using/Death/body hit with grunt 1.wav" id="23_n2ran"]
-[ext_resource type="AudioStream" uid="uid://befag54021wep" path="res://Sounds/using/Heal/GP_Turbo_Select_3.wav" id="24_3foe0"]
-[ext_resource type="AudioStream" uid="uid://bdpingiq3vatc" path="res://Sounds/using/Death/body hit with grunt 2.wav" id="24_13y3b"]
-[ext_resource type="AudioStream" uid="uid://cpx2q3qkd8dab" path="res://Sounds/using/Death/body hit with grunt 3.wav" id="25_j3neg"]
-[ext_resource type="AudioStream" uid="uid://dsge1pqh4ihjr" path="res://Sounds/using/Heal/GP_Turbo_Select_4.wav" id="25_wi7uh"]
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_dhut5"]
+[ext_resource type="Texture2D" uid="uid://wmydp6fhr4el" path="res://Arts/Empire units/inquisitor attack.png" id="2_16t63"]
+[ext_resource type="Texture2D" uid="uid://y2oajwl4d6b6" path="res://Arts/Empire units/inquisitor idle.png" id="3_0ujep"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_dhnsm"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_316vb"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="6_r6rn1"]
+[ext_resource type="PackedScene" uid="uid://ctt0fnpade4bd" path="res://Combat/Effects/AppliedEffects/Scenes/retaliation_on_debuff.tscn" id="7_71ivh"]
+[ext_resource type="PackedScene" uid="uid://b5btb6pxaufjw" path="res://Combat/Effects/AppliedEffects/Scenes/holy_wrath.tscn" id="8_ajano"]
+[ext_resource type="PackedScene" uid="uid://b1i0mf1877mfo" path="res://Combat/Effects/AppliedEffects/Scenes/ward.tscn" id="9_grsl2"]
+[ext_resource type="AudioStream" uid="uid://3up3xko4aipd" path="res://Sounds/using/Damage/Default_1.wav" id="10_y3y7h"]
+[ext_resource type="AudioStream" uid="uid://b7r3kee6rjmo4" path="res://Sounds/using/Damage/Default_2.wav" id="11_1kw6n"]
+[ext_resource type="AudioStream" uid="uid://b8o5l8pxfg4my" path="res://Sounds/using/Damage/Default_3.wav" id="12_rv2gw"]
+[ext_resource type="AudioStream" uid="uid://cucn7770e3ayy" path="res://Sounds/using/Damage/Default_4.wav" id="13_lbuav"]
+[ext_resource type="AudioStream" uid="uid://clautx1ynxxyx" path="res://Sounds/using/Immunity/GP_Armor_Down_1.wav" id="14_c5yr6"]
+[ext_resource type="AudioStream" uid="uid://qghnv4ah7lqi" path="res://Sounds/using/Immunity/GP_Armor_Down_2.wav" id="15_8jbnn"]
+[ext_resource type="AudioStream" uid="uid://c1gp6o0qr418a" path="res://Sounds/using/Immunity/GP_Armor_Down_3.wav" id="16_3dk6m"]
+[ext_resource type="AudioStream" uid="uid://bcvvcyomt3pcn" path="res://Sounds/using/Immunity/GP_Armor_Down_4.wav" id="17_tiic7"]
+[ext_resource type="AudioStream" uid="uid://b2kxyto2hwq4g" path="res://Sounds/using/Miss/27_sword_miss_1.wav" id="18_jjqvf"]
+[ext_resource type="AudioStream" uid="uid://dhnmwtvhk7cyt" path="res://Sounds/using/Miss/27_sword_miss_2.wav" id="19_kk5v4"]
+[ext_resource type="AudioStream" uid="uid://bp17gb60eejxb" path="res://Sounds/using/Miss/27_sword_miss_3.wav" id="20_2csil"]
+[ext_resource type="AudioStream" uid="uid://djt0afoqdeayl" path="res://Sounds/using/Attack/Empire/Inquisitor attack.wav" id="21_2csk4"]
+[ext_resource type="AudioStream" uid="uid://57uq8ddrqmg0" path="res://Sounds/using/Heal/GP_Turbo_Select_1.wav" id="22_olwu2"]
+[ext_resource type="AudioStream" uid="uid://bvxxsyhcv73oo" path="res://Sounds/using/Heal/GP_Turbo_Select_2.wav" id="23_15k68"]
+[ext_resource type="AudioStream" uid="uid://befag54021wep" path="res://Sounds/using/Heal/GP_Turbo_Select_3.wav" id="24_tnhe2"]
+[ext_resource type="AudioStream" uid="uid://dsge1pqh4ihjr" path="res://Sounds/using/Heal/GP_Turbo_Select_4.wav" id="25_slrde"]
+[ext_resource type="AudioStream" uid="uid://bcae4mab3j5u" path="res://Sounds/using/Death/body fall 12.wav" id="26_hqhh4"]
+[ext_resource type="AudioStream" uid="uid://ble86orlqio7s" path="res://Sounds/using/Death/body hit with grunt 1.wav" id="27_plbjf"]
+[ext_resource type="AudioStream" uid="uid://bdpingiq3vatc" path="res://Sounds/using/Death/body hit with grunt 2.wav" id="28_xv0lj"]
+[ext_resource type="AudioStream" uid="uid://cpx2q3qkd8dab" path="res://Sounds/using/Death/body hit with grunt 3.wav" id="29_kr8kl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c7qjp"]
-atlas = ExtResource("2_ckwba")
+atlas = ExtResource("2_16t63")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j2nmd"]
-atlas = ExtResource("2_ckwba")
+atlas = ExtResource("2_16t63")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b2jsw"]
-atlas = ExtResource("2_ckwba")
+atlas = ExtResource("2_16t63")
 region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h4b8d"]
-atlas = ExtResource("2_ckwba")
+atlas = ExtResource("2_16t63")
 region = Rect2(0, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ypenb"]
-atlas = ExtResource("2_ckwba")
+atlas = ExtResource("2_16t63")
 region = Rect2(0, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_roh1a"]
-atlas = ExtResource("2_ckwba")
+atlas = ExtResource("2_16t63")
 region = Rect2(0, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jg5k2"]
-atlas = ExtResource("2_ckwba")
+atlas = ExtResource("2_16t63")
 region = Rect2(0, 192, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_158re"]
-atlas = ExtResource("2_ckwba")
+atlas = ExtResource("2_16t63")
 region = Rect2(0, 224, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pi10g"]
-atlas = ExtResource("2_ckwba")
+atlas = ExtResource("2_16t63")
 region = Rect2(0, 256, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pi4k7"]
-atlas = ExtResource("2_ckwba")
+atlas = ExtResource("2_16t63")
 region = Rect2(0, 288, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jwkq7"]
-atlas = ExtResource("2_ckwba")
+atlas = ExtResource("2_16t63")
 region = Rect2(0, 320, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_353j0"]
-atlas = ExtResource("3_p1p2e")
+atlas = ExtResource("3_0ujep")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s3rm1"]
-atlas = ExtResource("3_p1p2e")
+atlas = ExtResource("3_0ujep")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5n3r4"]
-atlas = ExtResource("3_p1p2e")
+atlas = ExtResource("3_0ujep")
 region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fofn0"]
-atlas = ExtResource("3_p1p2e")
+atlas = ExtResource("3_0ujep")
 region = Rect2(0, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1o8rg"]
-atlas = ExtResource("3_p1p2e")
+atlas = ExtResource("3_0ujep")
 region = Rect2(0, 128, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_luotl"]
@@ -158,22 +157,21 @@ animations = [{
 
 [sub_resource type="Resource" id="Resource_4tkcb"]
 resource_local_to_scene = true
-script = ExtResource("4_j3lff")
+script = ExtResource("4_dhnsm")
 max_HP = 200
 base_damage = 60
 armor = 20
 evasion = 0.1
 shielding_chance = 0.6
 
-[node name="Inquisitor" instance=ExtResource("1_iyxx7")]
+[node name="Inquisitor" instance=ExtResource("1_dhut5")]
 unit_name = "Inquisitor"
 unit_type = 0
-faction = 1
+faction = 3
 needed_xp = 900
 unit_class = 1
 brief_description = "Melee fighter with unblockable attacks."
 full_description = "When a witch hunter proves their devotion to the Church in battle, they are accepted as an Inquisitor. The Inquisition relentlessly pursues everything evil in this world, mercilessly burning heresies and the unfaithful with brimstone and prayer."
-portrait_texture = ExtResource("2_qb4re")
 portrait_texture_path = "res://Arts/Placeholders/Inquisitor.jpg"
 cost_gold = 250
 cost_mana = 30
@@ -192,76 +190,76 @@ level = 3
 base_paramaters = SubResource("Resource_4tkcb")
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
-script = ExtResource("6_dn7kg")
+script = ExtResource("5_316vb")
 type = 4
 initiative = 40
-target_validation = ExtResource("7_7f3u0")
+target_validation = ExtResource("6_r6rn1")
 
-[node name="RetaliationOnDebuff" parent="UnitParameters" index="2" instance=ExtResource("8_nopjn")]
+[node name="RetaliationOnDebuff" parent="UnitParameters" index="2" instance=ExtResource("7_71ivh")]
 
-[node name="Holy wrath" parent="UnitParameters" index="3" instance=ExtResource("5_txbsl")]
+[node name="Holy wrath" parent="UnitParameters" index="3" instance=ExtResource("8_ajano")]
 turns = 2
 multiplier = 1.3
 
-[node name="Ward" parent="UnitParameters" index="4" instance=ExtResource("10_1rxxv")]
+[node name="Ward" parent="UnitParameters" index="4" instance=ExtResource("9_grsl2")]
 damage_type = 2
 
 [node name="Default1" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
-stream = ExtResource("9_yaaye")
+stream = ExtResource("10_y3y7h")
 
 [node name="Default2" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="1"]
-stream = ExtResource("10_nopjn")
+stream = ExtResource("11_1kw6n")
 
 [node name="Default3" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="2"]
-stream = ExtResource("11_0ycb0")
+stream = ExtResource("12_rv2gw")
 
 [node name="Default4" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="3"]
-stream = ExtResource("12_66mgp")
+stream = ExtResource("13_lbuav")
 
 [node name="GpArmorDown1" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="0"]
-stream = ExtResource("16_13y3b")
+stream = ExtResource("14_c5yr6")
 
 [node name="GpArmorDown2" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="1"]
-stream = ExtResource("17_j3neg")
+stream = ExtResource("15_8jbnn")
 
 [node name="GpArmorDown3" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="2"]
-stream = ExtResource("18_d0whi")
+stream = ExtResource("16_3dk6m")
 
 [node name="GpArmorDown4" type="AudioStreamPlayer" parent="SoundPlayer/Immunity" index="3"]
-stream = ExtResource("19_1rxxv")
+stream = ExtResource("17_tiic7")
 
 [node name="27SwordMiss1" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="0"]
-stream = ExtResource("13_mf8y6")
+stream = ExtResource("18_jjqvf")
 
 [node name="27SwordMiss2" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="1"]
-stream = ExtResource("14_b2m7c")
+stream = ExtResource("19_kk5v4")
 
 [node name="27SwordMiss3" type="AudioStreamPlayer" parent="SoundPlayer/Shield" index="2"]
-stream = ExtResource("15_n2ran")
+stream = ExtResource("20_2csil")
 
 [node name="InquisitorAttack" type="AudioStreamPlayer" parent="SoundPlayer/Attack" index="0"]
-stream = ExtResource("20_3foe0")
+stream = ExtResource("21_2csk4")
 
 [node name="GpTurboSelect1" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="0"]
-stream = ExtResource("22_d0whi")
+stream = ExtResource("22_olwu2")
 
 [node name="GpTurboSelect2" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="1"]
-stream = ExtResource("23_1rxxv")
+stream = ExtResource("23_15k68")
 
 [node name="GpTurboSelect3" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="2"]
-stream = ExtResource("24_3foe0")
+stream = ExtResource("24_tnhe2")
 
 [node name="GpTurboSelect4" type="AudioStreamPlayer" parent="SoundPlayer/Heal" index="3"]
-stream = ExtResource("25_wi7uh")
+stream = ExtResource("25_slrde")
 
 [node name="BodyFall12" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="0"]
-stream = ExtResource("22_b2m7c")
+stream = ExtResource("26_hqhh4")
 
 [node name="BodyHitWithGrunt1" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="1"]
-stream = ExtResource("23_n2ran")
+stream = ExtResource("27_plbjf")
 
 [node name="BodyHitWithGrunt2" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="2"]
-stream = ExtResource("24_13y3b")
+stream = ExtResource("28_xv0lj")
 
 [node name="BodyHitWithGrunt3" type="AudioStreamPlayer" parent="SoundPlayer/Death" index="3"]
-stream = ExtResource("25_j3neg")
+stream = ExtResource("29_kr8kl")

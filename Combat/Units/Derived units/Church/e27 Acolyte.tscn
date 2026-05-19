@@ -1,7 +1,6 @@
-[gd_scene load_steps=38 format=3 uid="uid://cl0qshk8ts3v5"]
+[gd_scene load_steps=37 format=3 uid="uid://cl0qshk8ts3v5"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_88v6m"]
-[ext_resource type="Texture2D" uid="uid://cwvh1yjt5gr5b" path="res://Arts/Placeholders/Acolyte.jpg" id="2_iryao"]
 [ext_resource type="Texture2D" uid="uid://dkiakx2mjjirb" path="res://Arts/Empire units/acolyte attack .png" id="2_nas8g"]
 [ext_resource type="Texture2D" uid="uid://ce178ijrphgbd" path="res://Arts/Empire units/acolyte idle .png" id="3_m0a2m"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_aftsa"]
@@ -118,10 +117,9 @@ base_damage = 20
 [node name="Acolyte" instance=ExtResource("1_88v6m")]
 unit_name = "Acolyte"
 unit_type = 3
-faction = 1
+faction = 3
 brief_description = "Healer."
 full_description = "Though their faith might be weak, Acolyte's compassion for the suffering allows them to cure wounds on the battlefield."
-portrait_texture = ExtResource("2_iryao")
 portrait_texture_path = "res://Arts/Placeholders/Acolyte.jpg"
 cost_gold = 50
 cost_mana = 50

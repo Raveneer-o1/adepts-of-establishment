@@ -1,8 +1,7 @@
-[gd_scene load_steps=41 format=3 uid="uid://yhsyg68w5uf3"]
+[gd_scene load_steps=40 format=3 uid="uid://yhsyg68w5uf3"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_wpfih"]
 [ext_resource type="Texture2D" uid="uid://d4kd22gjmt85s" path="res://Arts/Empire units/clergyman attack .png" id="2_fwl8a"]
-[ext_resource type="Texture2D" uid="uid://b8j5e26vmh7xa" path="res://Arts/Placeholders/Clergyman.jpg" id="2_v4rxq"]
 [ext_resource type="Texture2D" uid="uid://b2f2k2uy7dheo" path="res://Arts/Empire units/clergyman idle .png" id="3_df5py"]
 [ext_resource type="PackedScene" uid="uid://d1uk2tsyu7ay0" path="res://Combat/Effects/Scenes/medium_heal.tscn" id="4_lf87e"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_lnkbd"]
@@ -139,12 +138,11 @@ base_damage = 60
 [node name="Clergyman" instance=ExtResource("1_wpfih")]
 unit_name = "Imperial priest"
 unit_type = 3
-faction = 1
+faction = 3
 needed_xp = 900
 brief_description = "Single-targrt strong healer able to cure allies."
 full_description = "\"... Thou art as dust beneath the feet of the Gods. Let all bear witness that thy deeds are the Church's bidding, not thy will. Thy tongue now speaketh with the Church's voice; thy light is a gift bestowed by the very Gods.\"
 From the \"Level 2 Ordination ceremony\", issued by decree #16-857 of The Church, approved by Council of Thorns."
-portrait_texture = ExtResource("2_v4rxq")
 portrait_texture_path = "res://Arts/Placeholders/Clergyman.jpg"
 cost_gold = 800
 cost_stone = 300
