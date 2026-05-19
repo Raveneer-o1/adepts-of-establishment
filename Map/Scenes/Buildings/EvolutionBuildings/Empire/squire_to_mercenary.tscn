@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cd48yuojlj6oh"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/Buildings/EvolutionBuildings/evolution_building.tscn" id="1_1xq7t"]
+
+[node name="Tavern" instance=ExtResource("1_1xq7t")]
+evolving_from = &"Squire"
+evolving_into = &"Mercenary"
+gold_cost = 100
+stone_cost = 100
+upgrade_name = "Tavern"
+description = "This building allows Squires to become Mercenaries"

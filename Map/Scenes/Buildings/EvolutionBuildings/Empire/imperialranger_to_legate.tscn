@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjwj2o7cegy7t"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/Buildings/EvolutionBuildings/evolution_building.tscn" id="1_3eyyn"]
+
+[node name="Council palace" instance=ExtResource("1_3eyyn")]
+evolving_from = &"Imperial Ranger"
+evolving_into = &"Legate"
+gold_cost = 900
+stone_cost = 1000
+upgrade_name = "Council palace"
+description = "This building allows Imperial rangers to become Legates"

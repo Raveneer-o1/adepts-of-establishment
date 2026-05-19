@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyrh7yqj34o0q"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/Buildings/EvolutionBuildings/evolution_building.tscn" id="1_xvlr4"]
+
+[node name="Dojo" instance=ExtResource("1_xvlr4")]
+evolving_from = &"Mercenary"
+evolving_into = &"Samurai"
+gold_cost = 200
+stone_cost = 550
+upgrade_name = "Dojo"
+description = "This building allows Mercenaries to become Samurai"

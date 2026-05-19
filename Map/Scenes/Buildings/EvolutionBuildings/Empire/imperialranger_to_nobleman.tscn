@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://hm64d8ufsx7"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/Buildings/EvolutionBuildings/evolution_building.tscn" id="1_hroxv"]
+
+[node name="Banquet hall" instance=ExtResource("1_hroxv")]
+evolving_from = &"Imperial Ranger"
+evolving_into = &"Nobleman"
+gold_cost = 600
+stone_cost = 1200
+upgrade_name = "Banquet hall"
+description = "This building allows Imperial rangers to become Noblemen"

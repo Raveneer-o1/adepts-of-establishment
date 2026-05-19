@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkujhdqvc08xa"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/Buildings/EvolutionBuildings/evolution_building.tscn" id="1_dq4pg"]
+
+[node name="Smith" instance=ExtResource("1_dq4pg")]
+evolving_from = &"Mercenary"
+evolving_into = &"Man at arms"
+gold_cost = 400
+stone_cost = 300
+upgrade_name = "Smith"
+description = "This building allows Mercenaries to become Men at arms"

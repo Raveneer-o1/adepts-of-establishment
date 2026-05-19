@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://8d6hx1ehums7"]
+
+[ext_resource type="PackedScene" uid="uid://15ul73he4llt" path="res://Map/Scenes/Buildings/EvolutionBuildings/evolution_building.tscn" id="1_3e1ua"]
+
+[node name="Gendarmerie" instance=ExtResource("1_3e1ua")]
+evolving_from = &"Man at arms"
+evolving_into = &"Gendarme"
+gold_cost = 850
+stone_cost = 600
+upgrade_name = "Gendarmerie office"
+description = "This building allows Men at arms to become Gendarmes"
