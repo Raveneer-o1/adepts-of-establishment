@@ -2,7 +2,8 @@ class_name MapVisualizer
 extends Node
 
 @onready var map: Map = $".."
-@onready var tile_data_layer: Node2D = %TileDataLayer
+#@onready var tile_data_layer: Node2D = %TileDataLayer
+@onready var tile_data_layer: Node2D = $"../MapLayers/TileDataLayer"
 
 # Array of currently highlighted tiles for pathfinding
 var _highlighted_tiles: Array[Vector2i] = []

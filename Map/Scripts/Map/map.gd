@@ -42,16 +42,16 @@ extends Node2D
 
 ## This layer should contain [code]traverse_cost[/code] custom
 ## data layer with [b]int[/b] type (value of -1 means the tile is not traversable)
-@onready var terrain_layer : TileMapLayer = %TerrainLayer
+@onready var terrain_layer: TileMapLayer = $MapLayers/TerrainLayer
 ## Layer containing map immovable objects like cities, mines, etc.
 ## [br][br]
 ## Note: In the current development workflow, this layer will often be empty
 ## because we're editing maps directly in Godot's editor. Tile-bound objects
 ## that would normally be placed here are instead treated as "free" objects
 ## managed by the [member object_manager] for easier in-editor manipulation.
-@onready var objects_layer : MapObjectsLayer = %ObjectsLayer
+@onready var objects_layer: MapObjectsLayer = $MapLayers/ObjectsLayer
 ## Layer that determines ares - sets of tiles used for the event system.
-@onready var zones_layer: ZonesLayer = %ZonesLayer
+@onready var zones_layer: ZonesLayer = $MapLayers/ZonesLayer
 @onready var fog_of_war_layer: TileMapLayer = $MapLayers/FogOfWarLayer
 
 ## Handles "free" objects - objects that are not part of the [member objects_layer].
@@ -64,7 +64,7 @@ extends Node2D
 @onready var object_manager: MapObjectManager = $ObjectManager
 
 ## Layer used for highlighting tiles during pathfinding and interactions
-@onready var highlight_layer: TileMapLayer = %HighlightLayer
+@onready var highlight_layer: TileMapLayer = $MapLayers/HighlightLayer
 
 ## Camera controller for the map
 @onready var camera: MapCamera = $Camera2D

@@ -271,7 +271,7 @@ func _create_td_mapping() -> Dictionary[Vector2i, MapFaction]:
 ## This operation is computationally expensive due to the volume of objects created.
 ## Should be executed behind a loading screen or other masking technique.
 func create_tile_data() -> void:
-	var data_layer := %TileDataLayer
+	var data_layer: Node2D = $"../MapLayers/TileDataLayer"
 	var mapping := _create_td_mapping()
 	for tile in map.terrain_layer.get_used_cells():
 		var data: MapTileData = TILE_DATA.instantiate()
