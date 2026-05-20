@@ -73,6 +73,26 @@ var is_active: bool = true
 
 @onready var units_container: UnitsContainer = _find_units_container()
 
+signal _object_ready
+var _is_object_ready: bool = false:
+	get: return _is_object_ready
+	set(value):
+		_is_object_ready = value
+		if value: _object_ready.emit()
+
+## Returns a signal that emits when the object has completed initialization.
+## If the object is already initialized, the signal will emit again immediately,
+## allowing this sugar syntax to work regardless of timing:
+## [codeblock]
+## await object.object_ready
+## # code that depends on the object being fully initialized
+## [/codeblock]
+var object_ready: Signal:
+	get:
+		if _is_object_ready:
+			_object_ready.emit.call_deferred()
+		return _object_ready
+
 func _find_units_container() -> UnitsContainer:
 	for c in get_children():
 		if c is UnitsContainer: return c
@@ -264,13 +284,13 @@ func can_accept_unit(unit: UnitData) -> bool:
 func _can_accept_unit(unit: UnitData) -> bool:
 	return true
 
-var _object_registered := false
+#var _object_registered := false
 
 func get_description() -> String:
 	return object_name
 
 func _register_object() -> void:
-	if _object_registered: return
+	if _is_object_ready: return
 	tile_position = map.get_tile_coords(global_position)
 	
 	if owner_capital:
@@ -280,7 +300,8 @@ func _register_object() -> void:
 		object_owner = map.game.get_faction(faction_index)
 	
 	_initialize()
-	_object_registered = true
+	#_object_registered = true
+	_is_object_ready = true
 
 func _ready() -> void:
 	var next_parent := get_parent()

@@ -52,6 +52,7 @@ extends Node2D
 @onready var objects_layer : MapObjectsLayer = %ObjectsLayer
 ## Layer that determines ares - sets of tiles used for the event system.
 @onready var zones_layer: ZonesLayer = %ZonesLayer
+@onready var fog_of_war_layer: TileMapLayer = $MapLayers/FogOfWarLayer
 
 ## Handles "free" objects - objects that are not part of the [member objects_layer].
 ## [Party] objects are not managed by this node: they are managed separately. [br][br]
@@ -448,3 +449,15 @@ func player_act(coords: Vector2i, faction: MapFaction) -> void:
 ## @experimental: arguments type and behavior are subjects to change
 func claim_tile(tile: MapTileData, faction: MapFaction, power: float) -> bool:
 	return worker.do_tile_claim(tile, faction, power)
+
+const _FOG_OF_WAR_ATLAS = 0
+func draw_fog_of_war(tile: Vector2i) -> void:
+	fog_of_war_layer.set_cell(
+		tile,
+		_FOG_OF_WAR_ATLAS,
+		Vector2i(0, randi_range(0, 2))
+	)
+func erase_fog_of_war(tile: Vector2i) -> void:
+	fog_of_war_layer.set_cell(
+		tile,
+	)

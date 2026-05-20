@@ -10,11 +10,11 @@ extends MapTrigger
 var area_of_interest: Array[Vector2i]
 
 func _check_trigger(party: MapParty) -> void:
+	if not active: return
 	if not party: return
 	if party.tile_position not in area_of_interest: return
-	triggered.emit()
 	if stop_movement: party.control.abort_moving()
-	#print_debug("Triggered")
+	trigger()
 
 func _initialize() -> void:
 	if not await _set_area_of_interest(): return

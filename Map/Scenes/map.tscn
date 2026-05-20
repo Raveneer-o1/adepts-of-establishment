@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=4 uid="uid://dlu3vl2ltauc0"]
+[gd_scene load_steps=67 format=4 uid="uid://dlu3vl2ltauc0"]
 
 [ext_resource type="Script" uid="uid://dvi42dc2k0m2h" path="res://Map/Scripts/Map/map.gd" id="1_q0qov"]
 [ext_resource type="Texture2D" uid="uid://c462nhclviryl" path="res://Arts/Map objects/dis tiles (1).png" id="1_xec2n"]
@@ -36,6 +36,7 @@
 [ext_resource type="PackedScene" uid="uid://bg1dfkhl176lq" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scenes/gold_mine.tscn" id="30_orlke"]
 [ext_resource type="Script" uid="uid://5q3186jl7wif" path="res://Map/Scripts/zones_layer.gd" id="31_i3pum"]
 [ext_resource type="Script" uid="uid://cbm1bjrf8g5x" path="res://Map/Scripts/Units/hero_data.gd" id="32_i47xn"]
+[ext_resource type="Texture2D" uid="uid://cgp7jlpnof1vl" path="res://Arts/Map/fog of war tiles.png" id="32_rikce"]
 [ext_resource type="Script" uid="uid://dxjdlitxm6del" path="res://Map/City Effects/increased_armor.gd" id="34_w38on"]
 [ext_resource type="PackedScene" uid="uid://bppovohjijqbq" path="res://Map/Heroes/Thymaël Doux.tscn" id="36_t4h4h"]
 [ext_resource type="PackedScene" uid="uid://djeo7bmtq4rr5" path="res://Map/PartyEffects/Scenes/Effects from units/test.tscn" id="37_4hre8"]
@@ -374,6 +375,19 @@ tile_size = Vector2i(27, 29)
 sources/1 = SubResource("TileSetAtlasSource_1tmes")
 sources/2 = SubResource("TileSetAtlasSource_1e4ck")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vgpes"]
+texture = ExtResource("32_rikce")
+texture_region_size = Vector2i(39, 39)
+0:0/0 = 0
+0:1/0 = 0
+0:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_hhu6e"]
+tile_shape = 3
+tile_layout = 2
+tile_size = Vector2i(27, 29)
+sources/0 = SubResource("TileSetAtlasSource_vgpes")
+
 [node name="Map" type="Node2D"]
 script = ExtResource("1_q0qov")
 battle_scene = ExtResource("2_pqwdj")
@@ -418,9 +432,15 @@ tile_set = SubResource("TileSet_1e4ck")
 
 [node name="ZonesLayer" type="TileMapLayer" parent="MapLayers"]
 unique_name_in_owner = true
-tile_map_data = PackedByteArray("AAAeACAAAgAAAAAAAAAeACEAAgAAAAAAAAAeACIAAgAAAAAAAAAdACIAAgAAAAAAAAAdACMAAgAAAAAAAAAcACQAAgAAAAAAAAAcACMAAgAAAAAAAAAcACIAAgAAAAAAAAAdACEAAgAAAAAAAAAeACMAAgACAAAAAAAeACQAAgACAAAAAAAdACQAAgACAAAAAAAdACUAAgACAAAAAAAeACUAAgACAAAAAAAeACYAAgACAAAAAAAdACYAAgACAAAAAAAcACYAAgACAAAAAAAcACUAAgACAAAAAAAfACQAAgAAAAAAAAAfACUAAgAAAAAAAAAfACYAAgAAAAAAAAAgACUAAgAAAAAAAAAgACQAAgAAAAAAAAAfACMAAgABAAAAAAAfACIAAgABAAAAAAAgACIAAgABAAAAAAAhACIAAgABAAAAAAAgACMAAgABAAAAAAAhACEAAgABAAAAAAAgACEAAgABAAAAAAAfACEAAgABAAAAAAA=")
+tile_map_data = PackedByteArray("AAAeACUAAgAAAAAAAAAeACQAAgAAAAAAAAAfACMAAgAAAAAAAAAeACMAAgAAAAAAAAAeACIAAgAAAAAAAAAfACEAAgAAAAAAAAAfACAAAgAAAAAAAAAgACAAAgAAAAAAAAAgACEAAgAAAAAAAAAfACIAAgAAAAAAAAAeACEAAgAAAAAAAAAeACAAAgAAAAAAAAAdACQAAgAAAAAAAAAdACUAAgAAAAAAAAAdACMAAgAAAAAAAAA=")
 tile_set = SubResource("TileSet_1e4ck")
 script = ExtResource("31_i3pum")
+
+[node name="FogOfWarLayer" type="TileMapLayer" parent="MapLayers"]
+z_index = 1
+z_as_relative = false
+tile_map_data = PackedByteArray("AAAcACIAAAAAAAIAAAAcACMAAAAAAAAAAAAbACQAAAAAAAAAAAAcACQAAAAAAAIAAAAdACMAAAAAAAAAAAAdACIAAAAAAAAAAAAbACMAAAAAAAEAAAAaACMAAAAAAAEAAAAaACQAAAAAAAAAAAAdACEAAAAAAAAAAAAcACEAAAAAAAIAAAAbACIAAAAAAAEAAAAcACAAAAAAAAIAAAAbACAAAAAAAAEAAAAaACEAAAAAAAIAAAAaACIAAAAAAAEAAAAZACMAAAAAAAIAAAAZACQAAAAAAAIAAAAeACIAAAAAAAIAAAAfACIAAAAAAAIAAAAeACMAAAAAAAAAAAAdACQAAAAAAAEAAAAcACUAAAAAAAIAAAAbACEAAAAAAAIAAAA=")
+tile_set = SubResource("TileSet_hhu6e")
 
 [node name="ObjectManager" type="Node" parent="."]
 script = ExtResource("3_ue3ts")
@@ -513,6 +533,7 @@ source = NodePath("../Thymaël Doux")
 script = ExtResource("40_7wp4w")
 pin = NodePath("../../../Other/MapPin")
 stop_movement = true
+one_time = true
 metadata/_custom_type_script = "uid://c2l1im4bu5mkl"
 
 [node name="On dialogue choice" type="Node" parent="Events/Triggers"]
@@ -523,7 +544,6 @@ dialogue_node_id = &"test fuckoff"
 script = ExtResource("41_exk0b")
 dialogue = ExtResource("42_w1k4m")
 triggers = [NodePath("../Triggers/MapTrigger_OnEnterArea")]
-one_time = false
 
 [node name="Debug" type="Node" parent="Events" node_paths=PackedStringArray("triggers")]
 script = ExtResource("45_rikce")
@@ -532,6 +552,6 @@ triggers = [NodePath("../Triggers/On dialogue choice")]
 [node name="Other" type="Node" parent="."]
 
 [node name="MapPin" type="Node2D" parent="Other"]
-position = Vector2(1365, 798)
+position = Vector2(1311, 797)
 script = ExtResource("41_pm5tj")
 metadata/_custom_type_script = "uid://cmt0gigwhm8b1"

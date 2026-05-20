@@ -5,6 +5,7 @@ extends Node
 func invoke() -> void:
 	if _activated and one_time: return
 	_invoke()
+	_activated = true
 
 @abstract func _invoke() -> void
 

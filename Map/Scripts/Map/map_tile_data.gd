@@ -47,11 +47,26 @@ var loyal_to: MapFaction = null
 var claim_status: float = 0.0
 ## Turn on which this tile was claimed
 var claimed_day: int = -1
+var visible_to: Dictionary[MapFaction, VisibilityMode] = {}
 #endregion
 
 ## Each turn loyalty of all claimed tiles is increased by this amount
 const LOYALTY_INCREASE = 0.025
 const TERRAIN_ATLAS_ID = 2
+
+func set_visibility(
+	faction: MapFaction,
+	visibility: VisibilityMode = VisibilityMode.Visible
+) -> void:
+	visible_to[faction] = visibility
+	map.game.update_visibility(self)
+
+func is_under_fog_of_war(faction: MapFaction) -> bool:
+	var mode: VisibilityMode = visible_to.get(faction, VisibilityMode.Hidden)
+	match mode:
+		VisibilityMode.Hidden: return true
+		VisibilityMode.Visible: return false
+	return true
 
 func _hindered_claim(faction: MapFaction, power: float) -> bool:
 	if is_zero_approx(loyalty):
@@ -118,3 +133,8 @@ func _ready() -> void:
 	tile_data = map.terrain_layer.get_cell_tile_data(coordinates)
 	claimable = tile_data.get_custom_data("claimable")
 	tile_owner = null
+
+enum VisibilityMode{
+	Hidden,
+	Visible,
+}

@@ -27,8 +27,24 @@ var screen_player: MapFaction:
 			var s := awaiting_screen_access[value]
 			awaiting_screen_access.erase(value)
 			s.emit()
+		_draw_fog_of_war(value)
 
 var awaiting_screen_access: Dictionary[MapFaction, Signal]
+
+func _draw_fog_of_war(faction: MapFaction) -> void:
+	for map in get_all_maps():
+		for coord in map.tile_data_hashmap:
+			if map.tile_data_hashmap[coord].is_under_fog_of_war(faction):
+				map.draw_fog_of_war(coord)
+			else:
+				map.erase_fog_of_war(coord)
+
+func update_visibility(tile: MapTileData) -> void:
+	if not tile: return
+	if tile.is_under_fog_of_war(screen_player):
+		tile.map.draw_fog_of_war(tile.coordinates)
+	else:
+		tile.map.erase_fog_of_war(tile.coordinates)
 
 ## Registers [param faction] for screen access notification.
 ## Returns [param _signal] unchanged, which will emit (without arguments)

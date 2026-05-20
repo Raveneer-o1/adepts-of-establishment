@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://2kk6w327nvk"]
+[gd_scene load_steps=29 format=3 uid="uid://2kk6w327nvk"]
 
 [ext_resource type="Script" uid="uid://ckonqee8nxgfi" path="res://Map/Scripts/Party/map_party.gd" id="1_rleo8"]
 [ext_resource type="Texture2D" uid="uid://djapeb4rjrhbe" path="res://Arts/Map/Parties/hero knight idle.png" id="2_jf7u3"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://3adojdwpeuss" path="res://Map/Scripts/Party/party_faction_banner.gd" id="9_xbt6h"]
 [ext_resource type="Script" uid="uid://cf2cqxddsxve0" path="res://Map/Scripts/units_container.gd" id="11_tu782"]
 [ext_resource type="Texture2D" uid="uid://bmmttflr3ye3d" path="res://Arts/Map objects/o04 white flag.png" id="12_8r1ka"]
+[ext_resource type="Script" uid="uid://d0sk6otb2ktdx" path="res://Map/Map Interactable Objects/Extentions/viewer.gd" id="13_yfams"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s3wsb"]
 atlas = ExtResource("2_jf7u3")
@@ -161,3 +162,9 @@ autoplay = "default"
 
 [node name="UnitsContainer" type="Node" parent="."]
 script = ExtResource("11_tu782")
+
+[node name="MapViewer" type="Node" parent="."]
+script = ExtResource("13_yfams")
+radius = 4
+padding = 2
+metadata/_custom_type_script = "uid://d0sk6otb2ktdx"

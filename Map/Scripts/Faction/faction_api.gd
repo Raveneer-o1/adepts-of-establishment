@@ -173,6 +173,7 @@ func can_be_researched(upgrade: FactionUpgrade) -> bool:
 ## Researches specified [param upgrade]. Returns if successful.
 func research(upgrade: FactionUpgrade) -> bool:
 	if not can_be_researched(upgrade): return false
+	if not this_faction.resource_container.spend(upgrade.cost): return false
 	this_faction.research(upgrade)
 	return true
 

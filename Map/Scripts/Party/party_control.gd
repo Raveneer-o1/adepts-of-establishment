@@ -183,10 +183,12 @@ func _finish_moving() -> void:
 	EventBus.party_moved.emit(this_party)
 	#print_debug("party_moved emitted %s" % str(tile_position))
 	_moving_finished.emit()
+	this_party.object_modified.emit()
 
 func _finish_moving_animation() -> void:
 	_is_moving = false
 	animation_handle.play_default()
+	this_party.object_modified.emit()
 
 func _start_moving_animation(p: Vector2i, time: float = 1.0 / map_speed) -> void:
 	_moving_to = map.get_global_coords(p)

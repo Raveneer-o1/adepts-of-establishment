@@ -5,7 +5,7 @@ extends MapTrigger
 
 func _check_id(id: StringName) -> void:
 	if id == dialogue_node_id:
-		triggered.emit()
+		trigger()
 		#print_debug("Triggered")
 
 func _initialize() -> void:
