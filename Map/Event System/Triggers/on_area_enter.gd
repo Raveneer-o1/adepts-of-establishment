@@ -1,7 +1,7 @@
 class_name MapTrigger_OnEnterArea
 extends MapTrigger
 
-## If the pin is place on an area, the entire are will serve as a trigger
+## If the pin is placed on an area, the entire area will serve as a trigger
 ## (see [ZonesLayer]).
 @export var pin: MapPin
 ## If [code]true[/code], stops the party that activated the trigger.

@@ -451,12 +451,18 @@ func claim_tile(tile: MapTileData, faction: MapFaction, power: float) -> bool:
 	return worker.do_tile_claim(tile, faction, power)
 
 const _FOG_OF_WAR_ATLAS = 0
+## Applies the fog‑of‑war effect to the specified [param tile].[br]
+## This method is not intended to be called directly — use
+## [method GameMap.update_visibility] instead.
 func draw_fog_of_war(tile: Vector2i) -> void:
 	fog_of_war_layer.set_cell(
 		tile,
 		_FOG_OF_WAR_ATLAS,
 		Vector2i(0, randi_range(0, 2))
 	)
+## Erases the fog‑of‑war effect from the specified [param tile].[br]
+## This method is not intended to be called directly — use
+## [method GameMap.update_visibility] instead.
 func erase_fog_of_war(tile: Vector2i) -> void:
 	fog_of_war_layer.set_cell(
 		tile,

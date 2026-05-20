@@ -1,18 +1,33 @@
 class_name GameMap
 extends Node
 
+## The root node of the main gameplay scene.
+##
+## This is the top‑level node for a play session, though not necessarily the root
+## of the entire project (for example, a main menu scene might instantiate [GameMap]
+## as a child). [GameMap] handles high‑level systems such as faction interaction,
+## screen access permissions, and global map state.
+
 const test_map = preload("res://Map/Scenes/map.tscn")
 
 @onready var ui_layers: MapUI = $UILayers
 @onready var turn_manager: MapTurnManager = $TurnManager
-@onready var maps_container: Node = $MapsContainer
+@onready var _maps_container: Node = $MapsContainer
 
+## The map currently being played. Determines which [Map] node is visible
+## and provides default values for various functions. [br][br]
+## [b]Important:[/b] Although multiple maps are theoretically supported,
+## the system has not been fully implemented for that scenario. The behavior
+## of this variable in multi‑map levels is likely incorrect and will need
+## further adjustment.
 var current_map: Map
 
+## Reference to the faction that controls factionless objects.
+## Used when [member MapInteractableObject.default_to_neutral] is [code]true[/code].
 @export var neutral_faction: MapFaction
 
-# WARNING: this will be replaced with a getter that dynamically finds all factions
-@onready var factions_in_game: int = $Factions.get_child_count()
+@onready var factions_in_game: int:
+	get: return $Factions.get_child_count()
 
 ## The faction currently viewing the game screen, controlling information visibility
 ## and UI action permissions. Determines which faction's perspective is active
@@ -23,13 +38,13 @@ var screen_player: MapFaction:
 		if value == screen_player: return
 		ui_layers.resources_panel.fill_data(value.resource_container)
 		screen_player = value
-		if awaiting_screen_access.has(value):
-			var s := awaiting_screen_access[value]
-			awaiting_screen_access.erase(value)
+		if _awaiting_screen_access.has(value):
+			var s := _awaiting_screen_access[value]
+			_awaiting_screen_access.erase(value)
 			s.emit()
 		_draw_fog_of_war(value)
 
-var awaiting_screen_access: Dictionary[MapFaction, Signal]
+var _awaiting_screen_access: Dictionary[MapFaction, Signal]
 
 func _draw_fog_of_war(faction: MapFaction) -> void:
 	for map in get_all_maps():
@@ -39,6 +54,10 @@ func _draw_fog_of_war(faction: MapFaction) -> void:
 			else:
 				map.erase_fog_of_war(coord)
 
+## Updates the visibility of the given [param tile] based on the current
+## [member screen_player]. [br]
+## [b]Note:[/b] When [member screen_player] changes, the entire map’s fog‑of‑war is
+## redrawn automatically; calling this method is not necessary in that case.
 func update_visibility(tile: MapTileData) -> void:
 	if not tile: return
 	if tile.is_under_fog_of_war(screen_player):
@@ -62,7 +81,7 @@ func screen_access(faction: MapFaction, _signal: Signal) -> Signal:
 	if faction == screen_player:
 		_signal.emit.call_deferred()
 		return _signal
-	awaiting_screen_access[faction] = _signal
+	_awaiting_screen_access[faction] = _signal
 	return _signal
 
 @onready var test_faction: MapFaction = $Factions/Empire
@@ -85,7 +104,7 @@ func disable_map() -> void:
 
 func get_all_maps() -> Array[Map]:
 	var res: Array[Map] = []
-	res.assign(maps_container.get_children())
+	res.assign(_maps_container.get_children())
 	return res
 
 var _temporarily_disabled := false

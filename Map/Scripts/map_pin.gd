@@ -1,6 +1,14 @@
 class_name MapPin
 extends Node2D
 
+## A marker that can be placed on a map in the editor.
+##
+## The sole purpose of a pin is to provide coordinates to other objects.
+## At game start, the pin automatically determines its tile location and stores
+## it in [member tile_position]. Map designers can place pins directly in the
+## editor to mark specific tiles (e.g., to mark an area), and other objects
+## (such as events) can reference the pin to obtain those coordinates at runtime.
+
 var map: Map
 var tile_position: Vector2i
 
