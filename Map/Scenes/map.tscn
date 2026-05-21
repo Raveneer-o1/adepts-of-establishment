@@ -392,6 +392,13 @@ sources/0 = SubResource("TileSetAtlasSource_vgpes")
 script = ExtResource("1_q0qov")
 battle_scene = ExtResource("2_pqwdj")
 
+[node name="StrategyCamera" type="Camera2D" parent="."]
+position = Vector2(1396, 768)
+script = ExtResource("46_rikce")
+key_zoom_speed = 1.0
+translation_speed = 800.0
+metadata/_custom_type_script = "uid://rirna2vebukw"
+
 [node name="Worker" type="Node" parent="."]
 script = ExtResource("3_ykca1")
 
@@ -544,8 +551,3 @@ triggers = [NodePath("../Triggers/On dialogue choice")]
 position = Vector2(1311, 797)
 script = ExtResource("41_pm5tj")
 metadata/_custom_type_script = "uid://cmt0gigwhm8b1"
-
-[node name="StrategyCamera" type="Camera2D" parent="."]
-script = ExtResource("46_rikce")
-translation_speed = 500.0
-metadata/_custom_type_script = "uid://rirna2vebukw"

@@ -11,7 +11,13 @@ extends Camera2D
 ## Camera zoom speed when controlled with keys
 @export var key_zoom_speed: float = 2.0
 ## Translation speed when controlled by keys
-@export var translation_speed: float = 100.0
+@export var translation_speed: float = 100.0:
+	get:
+		if not adaptive_speed: return translation_speed
+		return translation_speed / target_zoom.length()
+	set(value): translation_speed = value
+## Whether camera movement speed changes automatically based on the current zoom level.
+@export var adaptive_speed: bool = true
 
 @export_group("Camera Zoom Variables")
 ## Relative zoom in every scroll wheel tick.
