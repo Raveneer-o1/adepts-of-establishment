@@ -2,6 +2,13 @@
 class_name MapTrigger
 extends Node
 
+## The activator for the map event system.
+##
+## MapTrigger instances are the primary mechanism for activating [MapEvent] objects.
+## They monitor specific conditions or player actions on the map and emit the
+## [signal triggered] signal when those conditions are met. MapEvent objects listen
+## for this signal to execute their logic in response to the trigger.
+
 ## Emitted when the trigger is activated.
 ## Do not emit this signal directly — use [method trigger] instead.
 signal triggered
@@ -14,9 +21,10 @@ var _map: Map
 ## [member active] back to [code]true[/code],
 ## allowing it to trigger one additional time.
 ## [br][br]
-## [b]Note:[/b] This property disables the trigger itself, while [member MapEvent.one_time]
-## disables the associated event. Setting this value to [code]true[/code] does
-## not prevent other triggers from invoking the same event.
+## [b]Note:[/b] This property disables the trigger itself.
+## Setting this value to [code]true[/code] does
+## not prevent other triggers from invoking the same event. [br]
+## See also: [member MapEvent.one_time]
 @export var one_time := false
 ## Determines whether the trigger responds to activation attempts.
 ## [b]Note:[/b] When [code]false[/code], the trigger will not emit the
