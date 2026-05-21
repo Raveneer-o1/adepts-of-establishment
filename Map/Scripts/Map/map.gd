@@ -75,6 +75,8 @@ extends Node2D
 ## Shows the information (like highlights) to the player
 @onready var visualizer: MapVisualizer = $Visualizer
 
+@onready var camera: Camera2D = $StrategyCamera
+
 @onready var parties_container: Node = $Parties
 
 ## [i][img width=24]res://icons/Raveneer-o1.png[/img] 27.12.2025:[/i][br]

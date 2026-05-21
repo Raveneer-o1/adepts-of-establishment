@@ -93,6 +93,8 @@ func _player_interact(faction: MapFaction) -> void:
 func _initialize() -> void:
 	_set_neutral()
 	object_changed.connect(_set_neutral)
+	for c in get_children():
+		if c is UnitData: c.reparent(units_container)
 
 #endregion
 

@@ -99,6 +99,7 @@ func _switch_to_battle(battle: Control, left: Array[UnitData], right: Array[Unit
 	battle.show()
 	
 	game.ui_layers.switch_to(&"Battle")
+	#map.hide_map()
 	map.process_mode = Node.PROCESS_MODE_DISABLED
 	
 	var xp_reward_callable := _grant_xp.bind(left, right)
@@ -108,6 +109,7 @@ func _switch_to_battle(battle: Control, left: Array[UnitData], right: Array[Unit
 	
 	game.ui_layers.switch_to(&"Main")
 	battle.queue_free()
+	#map.show_map()
 	map.process_mode = Node.PROCESS_MODE_PAUSABLE
 	map.camera.make_current()
 

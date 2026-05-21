@@ -1,9 +1,5 @@
 extends Camera2D
 
-# See WARNING's below for detail on custom control binding.
-# Apart from scroll zooming, every key and mouse
-# press must be bound manually by the developer.
-
 @export var allow_mouse_controls: bool = true
 @export var allow_keyboard_controls: bool = true
 
@@ -62,7 +58,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	# Camera translation by clicking and dragging
 	if event is InputEventMouseMotion:
-		# WARNING: The dragging control must be defined WITHIN THIS PROJECT
 		if Input.is_action_pressed("cam_drag"):
 			position -= event.relative / zoom
 
@@ -76,7 +71,6 @@ func _process(delta: float) -> void:
 	var actual_TL: Vector2 = screen_centre + camera_TL / target_zoom
 	var actual_BR: Vector2 = screen_centre + camera_BR / target_zoom
 	
-	# WARNING: The keyboard controls must be defined WITHIN THIS PROJECT
 	if allow_keyboard_controls:
 		position.x += Input.get_axis("cam_left", "cam_right") * translation_speed * delta
 		position.y += Input.get_axis("cam_up", "cam_down") * translation_speed * delta

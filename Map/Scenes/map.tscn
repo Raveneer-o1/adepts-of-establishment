@@ -397,6 +397,8 @@ position = Vector2(1396, 768)
 script = ExtResource("46_rikce")
 key_zoom_speed = 1.0
 translation_speed = 800.0
+limit_TL = Vector2(-500, -500)
+limit_BR = Vector2(2500, 1800)
 metadata/_custom_type_script = "uid://rirna2vebukw"
 
 [node name="Worker" type="Node" parent="."]
@@ -428,15 +430,15 @@ script = ExtResource("20_1e4ck")
 tile_set = SubResource("TileSet_1e4ck")
 
 [node name="ZonesLayer" type="TileMapLayer" parent="MapLayers"]
-tile_map_data = PackedByteArray("AAAeACUAAgAAAAAAAAAeACQAAgAAAAAAAAAfACMAAgAAAAAAAAAeACMAAgAAAAAAAAAeACIAAgAAAAAAAAAfACEAAgAAAAAAAAAfACAAAgAAAAAAAAAgACAAAgAAAAAAAAAgACEAAgAAAAAAAAAfACIAAgAAAAAAAAAeACEAAgAAAAAAAAAeACAAAgAAAAAAAAAdACQAAgAAAAAAAAAdACUAAgAAAAAAAAAdACMAAgAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAeACUAAgAAAAAAAAAeACQAAgAAAAAAAAAdACUAAgAAAAAAAAAeACYAAgAAAAAAAAAfACQAAgAAAAAAAAA=")
 tile_set = SubResource("TileSet_1e4ck")
 script = ExtResource("31_i3pum")
 
 [node name="FogOfWarLayer" type="TileMapLayer" parent="MapLayers"]
 z_index = 1
 z_as_relative = false
-tile_map_data = PackedByteArray("AAAcACIAAAAAAAIAAAAcACMAAAAAAAAAAAAbACQAAAAAAAAAAAAcACQAAAAAAAIAAAAdACMAAAAAAAAAAAAdACIAAAAAAAAAAAAbACMAAAAAAAEAAAAaACMAAAAAAAEAAAAaACQAAAAAAAAAAAAdACEAAAAAAAAAAAAcACEAAAAAAAIAAAAbACIAAAAAAAEAAAAcACAAAAAAAAIAAAAbACAAAAAAAAEAAAAaACEAAAAAAAIAAAAaACIAAAAAAAEAAAAZACMAAAAAAAIAAAAZACQAAAAAAAIAAAAeACIAAAAAAAIAAAAfACIAAAAAAAIAAAAeACMAAAAAAAAAAAAdACQAAAAAAAEAAAAcACUAAAAAAAIAAAAbACEAAAAAAAIAAAA=")
 tile_set = SubResource("TileSet_hhu6e")
+navigation_enabled = false
 
 [node name="ObjectManager" type="Node" parent="."]
 script = ExtResource("3_ue3ts")
@@ -476,20 +478,20 @@ position = Vector2(1161, 779)
 [node name="Behind Walls" type="Node" parent="ObjectManager/MapCity2"]
 script = ExtResource("34_w38on")
 
-[node name="Parties" type="Node" parent="."]
-
-[node name="MapParty_" parent="Parties" node_paths=PackedStringArray("owner_capital") instance=ExtResource("12_kwhd2")]
-position = Vector2(1383, 772)
-party_name = "Strong dudes"
-owner_capital = NodePath("../../ObjectManager/EmpireCapital")
-
-[node name="Blade Saint" type="Node" parent="Parties/MapParty_"]
+[node name="Blade Saint" type="Node" parent="ObjectManager/MapCity2"]
 script = ExtResource("21_bl7ab")
 party_position = 2
 current_hp = 100
 unit_name = &"Blade Saint"
 max_hp = 100
 metadata/_custom_type_script = "uid://mn0dy1cf0p65"
+
+[node name="Parties" type="Node" parent="."]
+
+[node name="MapParty_" parent="Parties" node_paths=PackedStringArray("owner_capital") instance=ExtResource("12_kwhd2")]
+position = Vector2(1383, 772)
+party_name = "Strong dudes"
+owner_capital = NodePath("../../ObjectManager/EmpireCapital")
 
 [node name="Squire" type="Node" parent="Parties/MapParty_"]
 script = ExtResource("21_bl7ab")
