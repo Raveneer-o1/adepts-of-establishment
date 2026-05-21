@@ -47,6 +47,8 @@ var loyal_to: MapFaction = null
 var claim_status: float = 0.0
 ## Turn on which this tile was claimed
 var claimed_day: int = -1
+# enum instead of boolean to include more visibility options in the future
+# e.g., open but not visible
 var visible_to: Dictionary[MapFaction, VisibilityMode] = {}
 #endregion
 
@@ -59,7 +61,7 @@ func set_visibility(
 	visibility: VisibilityMode = VisibilityMode.Visible
 ) -> void:
 	visible_to[faction] = visibility
-	map.game.update_visibility(self)
+	map.update_visibility(self)
 
 func is_under_fog_of_war(faction: MapFaction) -> bool:
 	var mode: VisibilityMode = visible_to.get(faction, VisibilityMode.Hidden)

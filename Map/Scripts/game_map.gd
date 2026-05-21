@@ -54,16 +54,6 @@ func _draw_fog_of_war(faction: MapFaction) -> void:
 			else:
 				map.erase_fog_of_war(coord)
 
-## Updates the visibility of the given [param tile] based on the current
-## [member screen_player]. [br]
-## [b]Note:[/b] When [member screen_player] changes, the entire map’s fog‑of‑war is
-## redrawn automatically; calling this method is not necessary in that case.
-func update_visibility(tile: MapTileData) -> void:
-	if not tile: return
-	if tile.is_under_fog_of_war(screen_player):
-		tile.map.draw_fog_of_war(tile.coordinates)
-	else:
-		tile.map.erase_fog_of_war(tile.coordinates)
 
 ## Registers [param faction] for screen access notification.
 ## Returns [param _signal] unchanged, which will emit (without arguments)

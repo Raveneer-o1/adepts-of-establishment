@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://c77vxt0dfyo53"]
+[gd_scene load_steps=9 format=3 uid="uid://c77vxt0dfyo53"]
 
 [ext_resource type="Script" uid="uid://dqdhfd7gmfmae" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scripts/map_city.gd" id="1_03usw"]
 [ext_resource type="Texture2D" uid="uid://g22vk0350u61" path="res://Arts/Map objects/big city .png" id="2_03usw"]
 [ext_resource type="Script" uid="uid://dl0lsoe05e0ym" path="res://Map/Map Interactable Objects/Extentions/land_claimer.gd" id="3_03xhk"]
 [ext_resource type="Script" uid="uid://cf2cqxddsxve0" path="res://Map/Scripts/units_container.gd" id="4_4bahk"]
 [ext_resource type="Script" uid="uid://ce7jhle0sm057" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scripts/misc/map_city_flag.gd" id="5_16ar4"]
+[ext_resource type="Script" uid="uid://d0sk6otb2ktdx" path="res://Map/Map Interactable Objects/Extentions/viewer.gd" id="6_e0781"]
 
 [sub_resource type="Curve" id="Curve_16ar4"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
@@ -37,3 +38,8 @@ sprite = NodePath("Sprite2D")
 position = Vector2(0, -25.999998)
 scale = Vector2(0.07421875, 18.999998)
 texture = SubResource("CurveTexture_e0781")
+
+[node name="MapViewer" type="Node" parent="."]
+script = ExtResource("6_e0781")
+radius = 7
+metadata/_custom_type_script = "uid://d0sk6otb2ktdx"

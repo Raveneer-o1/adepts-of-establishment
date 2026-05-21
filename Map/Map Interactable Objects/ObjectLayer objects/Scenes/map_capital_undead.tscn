@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bmp8htqi7l1i"]
+[gd_scene load_steps=13 format=3 uid="uid://bmp8htqi7l1i"]
 
 [ext_resource type="Script" uid="uid://bjh2fm6srs7dd" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scripts/map_capital.gd" id="1_xml8a"]
 [ext_resource type="Texture2D" uid="uid://hqdbkrdckl6p" path="res://Arts/Map objects/undead capital.png" id="2_qeal6"]
 [ext_resource type="Script" uid="uid://dl0lsoe05e0ym" path="res://Map/Map Interactable Objects/Extentions/land_claimer.gd" id="3_v86wr"]
 [ext_resource type="Script" uid="uid://cf2cqxddsxve0" path="res://Map/Scripts/units_container.gd" id="4_j012p"]
+[ext_resource type="Script" uid="uid://d0sk6otb2ktdx" path="res://Map/Map Interactable Objects/Extentions/viewer.gd" id="5_17ebl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_naogk"]
 atlas = ExtResource("2_qeal6")
@@ -72,3 +73,8 @@ metadata/_custom_type_script = "uid://dl0lsoe05e0ym"
 
 [node name="UnitsContainer" type="Node" parent="."]
 script = ExtResource("4_j012p")
+
+[node name="MapViewer" type="Node" parent="."]
+script = ExtResource("5_17ebl")
+radius = 7
+metadata/_custom_type_script = "uid://d0sk6otb2ktdx"

@@ -455,6 +455,8 @@ const _FOG_OF_WAR_ATLAS = 0
 ## This method is not intended to be called directly — use
 ## [method GameMap.update_visibility] instead.
 func draw_fog_of_war(tile: Vector2i) -> void:
+	if fog_of_war_layer.get_cell_atlas_coords(tile) != Vector2i(-1, -1):
+		return
 	fog_of_war_layer.set_cell(
 		tile,
 		_FOG_OF_WAR_ATLAS,
@@ -467,3 +469,15 @@ func erase_fog_of_war(tile: Vector2i) -> void:
 	fog_of_war_layer.set_cell(
 		tile,
 	)
+
+## Updates the visibility of the given [param tile] based on the current
+## [member GameMap.screen_player]. [br]
+## [b]Note:[/b] When [member GameMap.screen_player] changes, the entire map’s fog‑of‑war is
+## redrawn automatically; calling this method is not necessary in that case.
+func update_visibility(tile: MapTileData) -> void:
+	if not tile: return
+	if tile.map != self: return
+	if tile.is_under_fog_of_war(game.screen_player):
+		draw_fog_of_war(tile.coordinates)
+	else:
+		erase_fog_of_war(tile.coordinates)

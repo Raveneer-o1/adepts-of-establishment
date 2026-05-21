@@ -39,6 +39,7 @@ func _ready() -> void:
 	_create_areas.call_deferred()
 
 func _visualize_areas() -> void:
+	if not OS.is_debug_build(): hide()
 	for area in areas:
 		var arg : Array[Vector2i] = []
 		arg.assign(area)
