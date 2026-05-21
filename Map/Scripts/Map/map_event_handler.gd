@@ -118,34 +118,34 @@ func _handle_mouse_input(event: InputEventMouseButton) -> void:
 			_process_click()
 		MouseButton.MOUSE_BUTTON_RIGHT:
 			_process_right_click()
-		MouseButton.MOUSE_BUTTON_WHEEL_DOWN:
-			camera.zoom_out()
-			get_viewport().set_input_as_handled()
-		MouseButton.MOUSE_BUTTON_WHEEL_UP:
-			camera.zoom_in()
-			get_viewport().set_input_as_handled()
+		#MouseButton.MOUSE_BUTTON_WHEEL_DOWN:
+			#camera.zoom_out()
+			#get_viewport().set_input_as_handled()
+		#MouseButton.MOUSE_BUTTON_WHEEL_UP:
+			#camera.zoom_in()
+			#get_viewport().set_input_as_handled()
 
-func _handle_camera_key(event: InputEventKey) -> void:
-	var key := event.keycode
-	var direction := Vector2.ZERO
-	match key:
-		Key.KEY_D:
-			direction += Vector2.RIGHT
-		Key.KEY_A:
-			direction += Vector2.LEFT
-		Key.KEY_S:
-			direction += Vector2.DOWN
-		Key.KEY_W:
-			direction += Vector2.UP
-	
-	if event.is_released():
-		direction = -direction
-	camera.start_drift(direction)
+#func _handle_camera_key(event: InputEventKey) -> void:
+	#var key := event.keycode
+	#var direction := Vector2.ZERO
+	#match key:
+		#Key.KEY_D:
+			#direction += Vector2.RIGHT
+		#Key.KEY_A:
+			#direction += Vector2.LEFT
+		#Key.KEY_S:
+			#direction += Vector2.DOWN
+		#Key.KEY_W:
+			#direction += Vector2.UP
+	#
+	#if event.is_released():
+		#direction = -direction
+	#camera.start_drift(direction)
 
-func _unhandled_key_input(event: InputEvent) -> void:
-	if event is InputEventKey:
-		_handle_camera_key(event)
-		get_viewport().set_input_as_handled()
+#func _unhandled_key_input(event: InputEvent) -> void:
+	#if event is InputEventKey:
+		#_handle_camera_key(event)
+		#get_viewport().set_input_as_handled()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed():

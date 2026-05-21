@@ -27,7 +27,6 @@
 [ext_resource type="Texture2D" uid="uid://dj7bwp2kwlwe6" path="res://Arts/Map/tile highlights atlas.png" id="17_aku2f"]
 [ext_resource type="Script" uid="uid://ijg56utnmlvn" path="res://Map/Scripts/Map/path_finder.gd" id="18_jtf36"]
 [ext_resource type="PackedScene" uid="uid://dhtkukvc6ee0n" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scenes/mana_source.tscn" id="18_wuamo"]
-[ext_resource type="Script" uid="uid://bx6fsao0crbjq" path="res://Map/Scripts/Map/map_camera.gd" id="19_gdowr"]
 [ext_resource type="PackedScene" uid="uid://dfeettylne7po" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scenes/stone_quarry.tscn" id="19_t4h4h"]
 [ext_resource type="Script" uid="uid://pn3mawujeix2" path="res://Map/Scripts/Map/objects_layer.gd" id="20_1e4ck"]
 [ext_resource type="Script" uid="uid://mn0dy1cf0p65" path="res://Map/Scripts/Units/unit_data.gd" id="21_bl7ab"]
@@ -46,6 +45,7 @@
 [ext_resource type="Script" uid="uid://cmt0gigwhm8b1" path="res://Map/Scripts/map_pin.gd" id="41_pm5tj"]
 [ext_resource type="Resource" uid="uid://b5qpt3nftkeo1" path="res://Map/Dialogue/test_dialogue.tres" id="42_w1k4m"]
 [ext_resource type="Script" uid="uid://ccau4duve1np4" path="res://Map/Event System/Events/debug.gd" id="45_rikce"]
+[ext_resource type="Script" uid="uid://rirna2vebukw" path="res://addons/strategy_cam/strategy_camera.gd" id="46_rikce"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iq1o3"]
 texture = ExtResource("1_xec2n")
@@ -404,12 +404,6 @@ script = ExtResource("3_1tmes")
 [node name="PathFinder" type="Node" parent="."]
 script = ExtResource("18_jtf36")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(1315, 772)
-zoom = Vector2(1.615, 1.615)
-script = ExtResource("19_gdowr")
-movement_speed = 350.0
-
 [node name="MapLayers" type="Node" parent="."]
 
 [node name="TerrainLayer" type="TileMapLayer" parent="MapLayers"]
@@ -550,3 +544,8 @@ triggers = [NodePath("../Triggers/On dialogue choice")]
 position = Vector2(1311, 797)
 script = ExtResource("41_pm5tj")
 metadata/_custom_type_script = "uid://cmt0gigwhm8b1"
+
+[node name="StrategyCamera" type="Camera2D" parent="."]
+script = ExtResource("46_rikce")
+translation_speed = 500.0
+metadata/_custom_type_script = "uid://rirna2vebukw"

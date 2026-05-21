@@ -66,8 +66,6 @@ extends Node2D
 ## Layer used for highlighting tiles during pathfinding and interactions
 @onready var highlight_layer: TileMapLayer = $MapLayers/HighlightLayer
 
-## Camera controller for the map
-@onready var camera: MapCamera = $Camera2D
 ## Pathfinding system for calculating routes between tiles
 @onready var path_finder: PathFinder = $PathFinder
 ## Handles user input and map events
