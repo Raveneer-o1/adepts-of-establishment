@@ -84,7 +84,7 @@ func _fill_units(party: MapParty) -> void:
 		if data.party_position < 0 or \
 			data.party_position >= places.size():
 				reserve_container.add_unit(data)
-		places[data.party_position].add_unit(data)
+		else: places[data.party_position].add_unit(data)
 
 func _fill_items(party: MapParty) -> void:
 	for item in party.inventory.items:

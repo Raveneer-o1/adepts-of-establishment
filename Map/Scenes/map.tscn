@@ -395,6 +395,7 @@ battle_scene = ExtResource("2_pqwdj")
 
 [node name="StrategyCamera" type="Camera2D" parent="."]
 position = Vector2(1396, 768)
+zoom = Vector2(2, 2)
 script = ExtResource("46_rikce")
 key_zoom_speed = 1.0
 translation_speed = 800.0
@@ -479,14 +480,6 @@ position = Vector2(1161, 779)
 [node name="Behind Walls" type="Node" parent="ObjectManager/MapCity2"]
 script = ExtResource("34_w38on")
 
-[node name="Blade Saint" type="Node" parent="ObjectManager/MapCity2"]
-script = ExtResource("21_bl7ab")
-party_position = 2
-current_hp = 100
-unit_name = &"Blade Saint"
-max_hp = 100
-metadata/_custom_type_script = "uid://mn0dy1cf0p65"
-
 [node name="Parties" type="Node" parent="."]
 
 [node name="MapParty_" parent="Parties" node_paths=PackedStringArray("owner_capital") instance=ExtResource("12_kwhd2")]
@@ -531,33 +524,11 @@ owner_capital = NodePath("../../ObjectManager/UndeadCapital")
 
 [node name="Squire" type="Node" parent="Parties/MapParty_2"]
 script = ExtResource("21_bl7ab")
+party_position = 1
 current_hp = 100
 unit_name = &"Squire"
 max_hp = 100
 metadata/_custom_type_script = "uid://mn0dy1cf0p65"
-
-[node name="Thymaël Doux" type="Node" parent="Parties/MapParty_2" node_paths=PackedStringArray("leading_party", "hero_levelup")]
-script = ExtResource("32_i47xn")
-leading_party = NodePath("..")
-hero_levelup = NodePath("Tree")
-party_position = 4
-current_hp = 100
-unit_name = &"Thymaël Doux"
-max_hp = 100
-metadata/_custom_type_script = "uid://cbm1bjrf8g5x"
-
-[node name="Tree" parent="Parties/MapParty_2/Thymaël Doux" instance=ExtResource("36_t4h4h")]
-
-[node name="Prophetess" type="Node" parent="Parties/MapParty_2"]
-script = ExtResource("21_bl7ab")
-party_position = 5
-current_hp = 100
-unit_name = &"Prophetess"
-max_hp = 100
-metadata/_custom_type_script = "uid://mn0dy1cf0p65"
-
-[node name="Test" parent="Parties/MapParty_2" node_paths=PackedStringArray("source") instance=ExtResource("37_4hre8")]
-source = NodePath("../Thymaël Doux")
 
 [node name="Events" type="Node" parent="."]
 

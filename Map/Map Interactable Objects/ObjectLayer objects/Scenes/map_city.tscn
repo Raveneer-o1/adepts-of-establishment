@@ -43,3 +43,5 @@ texture = SubResource("CurveTexture_e0781")
 script = ExtResource("6_e0781")
 radius = 7
 metadata/_custom_type_script = "uid://d0sk6otb2ktdx"
+
+[node name="Grave" type="Node" parent="."]

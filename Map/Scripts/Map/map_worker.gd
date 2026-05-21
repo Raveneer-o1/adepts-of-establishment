@@ -24,6 +24,7 @@ func do_siege(attacker: MapParty, defender: MapCity) -> bool:
 	var upd := func() -> void:
 		attacker.update_parameters()
 		defender.update_parameters()
+		if defender.party_inside: defender.party_inside.update_parameters()
 	
 	_update_units.connect(upd)
 	await _switch_to_battle(battle, attacker.units, defender.units)

@@ -30,4 +30,5 @@ func see_land() -> void:
 
 func _ready() -> void:
 	this_object.object_modified.connect(see_land)
+	this_object.object_changed.connect(see_land)
 	see_land.call_deferred()

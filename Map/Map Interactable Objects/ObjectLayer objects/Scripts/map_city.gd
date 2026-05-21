@@ -166,3 +166,15 @@ func get_available_units() -> Array[StringName]:
 		if not (_passes_whitelist(unit) and _passes_blacklist(unit)):
 			res.erase(unit_name)
 	return res
+
+
+func get_buried_parties() -> Array[MapParty]:
+	var res: Array[MapParty] = []
+	for child in $Grave.get_children():
+		if child is MapParty: res.append(child)
+	return res
+
+func bury_party(party: MapParty) -> void:
+	if not party: return
+	party.reparent($Grave, false)
+	party.hide()

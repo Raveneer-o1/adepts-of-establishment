@@ -176,21 +176,31 @@ func update_parameters() -> void:
 
 const GRAVE_PREFAB = preload("res://Map/Scenes/party_grave.tscn")
 
+func _bury() -> void:
+	if inside_city:
+		inside_city.bury_party(self)
+		return
+	
+	# if not inside a city, find a grave
+	for object: MapInteractableObject in map.tile_to_object.get(tile_position, []):
+		if object is MapPartyGrave:
+			object.bury_party(self)
+			return
+	
+	# if no grave present, instantiate a new one
+	var grave := map.object_manager.add_object(GRAVE_PREFAB, tile_position)
+	if grave: grave.bury_party(self)
+	else:
+		push_error("Unable to instantiate a grave! Party will be deleted")
+		map.free_map_object(self)
+
 ## Deactivates the party and transfers it to a [MapPartyGrave] node.
 ## If a grave already exists at the party's position, moves the party there.
 ## Otherwise, creates a new grave instance.
 func die() -> void:
 	is_dead = true
 	is_active = false
-	for object: MapInteractableObject in map.tile_to_object.get(tile_position, []):
-		if object is MapPartyGrave:
-			object.bury_party(self)
-			return
-	var grave := map.object_manager.add_object(GRAVE_PREFAB, tile_position)
-	if grave: grave.bury_party(self)
-	else:
-		push_error("Unable to instantiate a grave! Party will be deleted")
-		map.free_map_object(self)
+	_bury()
 
 var is_dead: bool
 
