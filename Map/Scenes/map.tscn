@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=4 uid="uid://dlu3vl2ltauc0"]
+[gd_scene load_steps=68 format=4 uid="uid://dlu3vl2ltauc0"]
 
 [ext_resource type="Script" uid="uid://dvi42dc2k0m2h" path="res://Map/Scripts/Map/map.gd" id="1_q0qov"]
 [ext_resource type="Texture2D" uid="uid://c462nhclviryl" path="res://Arts/Map objects/dis tiles (1).png" id="1_xec2n"]
@@ -43,6 +43,7 @@
 [ext_resource type="Script" uid="uid://cneds7v8parck" path="res://Map/Event System/Triggers/on_dialogue_choice.gd" id="41_53upk"]
 [ext_resource type="Script" uid="uid://cuf2j6vgx4c44" path="res://Map/Event System/Events/show_dialogue.gd" id="41_exk0b"]
 [ext_resource type="Script" uid="uid://cmt0gigwhm8b1" path="res://Map/Scripts/map_pin.gd" id="41_pm5tj"]
+[ext_resource type="Resource" uid="uid://f72q1md0orux" path="res://Filters/Party filters/test_party_filter.tres" id="42_vgpes"]
 [ext_resource type="Resource" uid="uid://b5qpt3nftkeo1" path="res://Map/Dialogue/test_dialogue.tres" id="42_w1k4m"]
 [ext_resource type="Script" uid="uid://ccau4duve1np4" path="res://Map/Event System/Events/debug.gd" id="45_rikce"]
 [ext_resource type="Script" uid="uid://rirna2vebukw" path="res://addons/strategy_cam/strategy_camera.gd" id="46_rikce"]
@@ -523,6 +524,41 @@ metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 [node name="Test" parent="Parties/MapParty_" node_paths=PackedStringArray("source") instance=ExtResource("37_4hre8")]
 source = NodePath("../Thymaël Doux")
 
+[node name="MapParty_2" parent="Parties" node_paths=PackedStringArray("owner_capital") instance=ExtResource("12_kwhd2")]
+position = Vector2(1325, 819)
+party_name = "Strong dudes"
+owner_capital = NodePath("../../ObjectManager/UndeadCapital")
+
+[node name="Squire" type="Node" parent="Parties/MapParty_2"]
+script = ExtResource("21_bl7ab")
+current_hp = 100
+unit_name = &"Squire"
+max_hp = 100
+metadata/_custom_type_script = "uid://mn0dy1cf0p65"
+
+[node name="Thymaël Doux" type="Node" parent="Parties/MapParty_2" node_paths=PackedStringArray("leading_party", "hero_levelup")]
+script = ExtResource("32_i47xn")
+leading_party = NodePath("..")
+hero_levelup = NodePath("Tree")
+party_position = 4
+current_hp = 100
+unit_name = &"Thymaël Doux"
+max_hp = 100
+metadata/_custom_type_script = "uid://cbm1bjrf8g5x"
+
+[node name="Tree" parent="Parties/MapParty_2/Thymaël Doux" instance=ExtResource("36_t4h4h")]
+
+[node name="Prophetess" type="Node" parent="Parties/MapParty_2"]
+script = ExtResource("21_bl7ab")
+party_position = 5
+current_hp = 100
+unit_name = &"Prophetess"
+max_hp = 100
+metadata/_custom_type_script = "uid://mn0dy1cf0p65"
+
+[node name="Test" parent="Parties/MapParty_2" node_paths=PackedStringArray("source") instance=ExtResource("37_4hre8")]
+source = NodePath("../Thymaël Doux")
+
 [node name="Events" type="Node" parent="."]
 
 [node name="Triggers" type="Node" parent="Events"]
@@ -531,6 +567,7 @@ source = NodePath("../Thymaël Doux")
 script = ExtResource("40_7wp4w")
 pin = NodePath("../../../Other/MapPin")
 stop_movement = true
+filter = ExtResource("42_vgpes")
 one_time = true
 metadata/_custom_type_script = "uid://c2l1im4bu5mkl"
 

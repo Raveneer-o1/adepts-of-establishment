@@ -1,9 +1,11 @@
+@abstract
 class_name MapTrigger
 extends Node
 
-## This signal is emitted when the trigger is activated.
+## Emitted when the trigger is activated.
+## Do not emit this signal directly — use [method trigger] instead.
 signal triggered
-var map: Map
+var _map: Map
 
 ## If [code]true[/code], this trigger will only activate once.
 ## After activation, the trigger is disabled by setting
@@ -26,6 +28,7 @@ var map: Map
 ## [/codeblock]
 @export var active := true
 
+## Activates this trigger.
 func trigger() -> void:
 	if not active: return
 	if one_time: active = false
@@ -36,11 +39,11 @@ func _initialize() -> void:
 
 func _ready() -> void:
 	var next_parent := get_parent()
-	while next_parent and not map:
-		if next_parent is Map: map = next_parent
+	while next_parent and not _map:
+		if next_parent is Map: _map = next_parent
 		else: next_parent = next_parent.get_parent()
-	if not map:
-		push_error("Unable to find map (Trigger)")
+	if not _map:
+		push_error("Unable to find map (Trigger %s)" % name)
 		queue_free()
 		return
 	_initialize.call_deferred()

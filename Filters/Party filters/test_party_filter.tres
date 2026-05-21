@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://f72q1md0orux"]
+
+[sub_resource type="GDScript" id="GDScript_61ftg"]
+script/source = "extends PartyFilter
+
+func validate_party(party: MapParty) -> bool:
+	return party.object_owner.api.ui_filter != null
+"
+
+[resource]
+script = SubResource("GDScript_61ftg")
