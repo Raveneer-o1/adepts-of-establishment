@@ -1,3 +1,4 @@
+class_name StrategyCamera
 extends Camera2D
 
 @export var allow_mouse_controls: bool = true
@@ -61,7 +62,31 @@ func _unhandled_input(event: InputEvent) -> void:
 		if Input.is_action_pressed("cam_drag"):
 			position -= event.relative / zoom
 
+var _forced := false
+var _forced_target: Vector2
+const _FORCED_TIME = 1.0
+var _forced_time_current := 0.0
+
+func force_to_position(pos: Vector2) -> void:
+	_forced_time_current = 0.0
+	_forced = true
+	_forced_target = pos
+
+func _process_forced(delta: float) -> void:
+	var weight := _forced_time_current / _FORCED_TIME
+	
+	global_position = \
+		global_position.lerp(_forced_target, clampf(weight, 0.0, 1.0))
+	
+	_forced_time_current += delta
+	if _forced_time_current >= _FORCED_TIME:
+		_forced = false
+
 func _process(delta: float) -> void:
+	if _forced:
+		_process_forced(delta)
+		return
+	
 	if target_zoom.length()-0.001 <= zoom.length() and zoom.length() <= target_zoom.length()+0.001:
 		zoom = target_zoom
 	else:

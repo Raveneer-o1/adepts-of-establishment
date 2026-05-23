@@ -1,0 +1,139 @@
+[gd_resource type="Resource" script_class="DialogueNode" load_steps=15 format=3 uid="uid://bfl6276o3n0sy"]
+
+[ext_resource type="Script" uid="uid://ch8tqms55ph08" path="res://Map/Dialogue/dialogue.gd" id="1_tvlm6"]
+
+[sub_resource type="Resource" id="Resource_romr2"]
+script = ExtResource("1_tvlm6")
+speaker = "Emperor"
+text = "Go, Sir Roland. I shall be awaiting your return."
+metadata/_custom_type_script = "uid://ch8tqms55ph08"
+
+[sub_resource type="Resource" id="Resource_csk4r"]
+script = ExtResource("1_tvlm6")
+speaker = "Sir Roland"
+text = "Understood, Your Majesty. I shall investigate the forest and try to learn what I can — about the sightings, about the scouts, and... about anything else I might find."
+options = Dictionary[String, ExtResource("1_tvlm6")]({
+"Next.": SubResource("Resource_romr2")
+})
+metadata/_custom_type_script = "uid://ch8tqms55ph08"
+
+[sub_resource type="Resource" id="Resource_1wh6f"]
+script = ExtResource("1_tvlm6")
+speaker = "Emperir"
+text = "The Nature Pact must not know about this. Do you understand, Sir Roland?"
+portrait_position = 4
+options = Dictionary[String, ExtResource("1_tvlm6")]({
+"Next.": SubResource("Resource_csk4r")
+})
+metadata/_custom_type_script = "uid://ch8tqms55ph08"
+
+[sub_resource type="Resource" id="Resource_tcaj8"]
+script = ExtResource("1_tvlm6")
+speaker = "Emperor"
+text = "Should you learn anything of their fate, send word. I am not tasking you to locate the Throne — your mission is to deal with the sightings. But if you stumble upon anything... anything at all about the Ascension Throne, you report back to me at once. No one else."
+portrait_position = 4
+options = Dictionary[String, ExtResource("1_tvlm6")]({
+"Next.": SubResource("Resource_1wh6f")
+})
+metadata/_custom_type_script = "uid://ch8tqms55ph08"
+
+[sub_resource type="Resource" id="Resource_j3tbv"]
+script = ExtResource("1_tvlm6")
+speaker = "Emperor"
+text = "And since they never reported back, we don't know if they succeeded. More importantly, we don't know if the Pact is aware of our true intentions."
+portrait_position = 4
+options = Dictionary[String, ExtResource("1_tvlm6")]({
+"Next.": SubResource("Resource_tcaj8")
+})
+metadata/_custom_type_script = "uid://ch8tqms55ph08"
+
+[sub_resource type="Resource" id="Resource_dt5ne"]
+script = ExtResource("1_tvlm6")
+speaker = "Emperor"
+text = "Rumor has it that the Ancient Grove contains something... old. A place of immense magical energy known only as the Ascension Throne. If the rumor is true, it could be a powerful tool for whoever controls it. The scouts were told to find it. Map its location. Nothing more."
+portrait_path = "res://Arts/Placeholders/Emperor.jpg"
+options = Dictionary[String, ExtResource("1_tvlm6")]({
+"Next.": SubResource("Resource_j3tbv")
+})
+metadata/_custom_type_script = "uid://ch8tqms55ph08"
+
+[sub_resource type="Resource" id="Resource_4sdfv"]
+script = ExtResource("1_tvlm6")
+speaker = "Sir Roland"
+text = "What kind of mission, sire?"
+portrait_path = "res://Arts/Placeholders/Sir Roland.jpg"
+options = Dictionary[String, ExtResource("1_tvlm6")]({
+"Next.": SubResource("Resource_dt5ne")
+})
+metadata/_custom_type_script = "uid://ch8tqms55ph08"
+
+[sub_resource type="Resource" id="Resource_hqkrd"]
+script = ExtResource("1_tvlm6")
+speaker = "Emperor"
+text = "But they also carried a second mission. One the Pact must never know about."
+portrait_position = 4
+options = Dictionary[String, ExtResource("1_tvlm6")]({
+"Next.": SubResource("Resource_4sdfv")
+})
+metadata/_custom_type_script = "uid://ch8tqms55ph08"
+
+[sub_resource type="Resource" id="Resource_b0acj"]
+script = ExtResource("1_tvlm6")
+speaker = "Emperor"
+text = "Officially, they were there to open a trading route with the tree gnomes. The Nature Pact knew of this mission — it was all above board."
+portrait_position = 4
+options = Dictionary[String, ExtResource("1_tvlm6")]({
+"Next.": SubResource("Resource_hqkrd")
+})
+metadata/_custom_type_script = "uid://ch8tqms55ph08"
+
+[sub_resource type="Resource" id="Resource_nu6il"]
+script = ExtResource("1_tvlm6")
+speaker = "Emperor"
+text = "Several weeks ago, I sent a small scout company into the Ancient Grove. Their primary objective was to find new allies for the Empire. They traveled to several locations, but their reports stopped the moment they entered those woods."
+portrait_position = 4
+options = Dictionary[String, ExtResource("1_tvlm6")]({
+"Next.": SubResource("Resource_b0acj")
+})
+metadata/_custom_type_script = "uid://ch8tqms55ph08"
+
+[sub_resource type="Resource" id="Resource_pjwsd"]
+script = ExtResource("1_tvlm6")
+speaker = "Emperor"
+text = "One more thing before you go."
+portrait_path = "res://Arts/Placeholders/Emperor.jpg"
+options = Dictionary[String, ExtResource("1_tvlm6")]({
+"Next.": SubResource("Resource_nu6il")
+})
+metadata/_custom_type_script = "uid://ch8tqms55ph08"
+
+[sub_resource type="Resource" id="Resource_tvlm6"]
+script = ExtResource("1_tvlm6")
+speaker = "Sir Roland"
+text = "It shall be done, Your Majesty."
+portrait_path = "res://Arts/Placeholders/Sir Roland.jpg"
+options = Dictionary[String, ExtResource("1_tvlm6")]({
+"Next.": SubResource("Resource_pjwsd")
+})
+metadata/_custom_type_script = "uid://ch8tqms55ph08"
+
+[sub_resource type="Resource" id="Resource_04q7n"]
+script = ExtResource("1_tvlm6")
+speaker = "Emperor"
+text = "I hereby command you, Sir Roland, to assemble a party of your choosing. Take only those you trust. Ride for the Ancient Grove, investigate these sightings, and report back with all haste. If something is corrupting that forest, we must know before it spreads."
+portrait_position = 4
+options = Dictionary[String, ExtResource("1_tvlm6")]({
+"Next.": SubResource("Resource_tvlm6")
+})
+metadata/_custom_type_script = "uid://ch8tqms55ph08"
+
+[resource]
+script = ExtResource("1_tvlm6")
+speaker = "Emperor"
+text = "We have received a troubling message from the Nature Pact. Strange sightings have been reported in the Ancient Grove. You know our situation. The main host marches south against the Dark Forces. Every sword is needed at the Iron Vale. I cannot spare a legion — not a single company — for what follows. But the Nature Pact has stood with us since the first days of this war. Their call for aid cannot be ignored."
+portrait_path = "res://Arts/Placeholders/Emperor.jpg"
+portrait_position = 3
+options = Dictionary[String, ExtResource("1_tvlm6")]({
+"Next.": SubResource("Resource_04q7n")
+})
+metadata/_custom_type_script = "uid://ch8tqms55ph08"

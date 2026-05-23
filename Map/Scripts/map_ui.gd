@@ -143,9 +143,12 @@ func handle_popup_request(info_object: Variant) -> void:
 func handle_window_request(info: Variant) -> void:
 	if info is DialogueNode:
 		dialogue_window.start_dialogue(info)
+		await dialogue_window.window_closed
+		EventBus.window_closed.emit(info)
 	elif info is MapItem:
 		pick_up_window.show_item(info)
 		await pick_up_window.window_closed
+		EventBus.window_closed.emit(info)
 	elif info is Array:
 		for inner_info: Variant in info:
 			await handle_window_request(inner_info)

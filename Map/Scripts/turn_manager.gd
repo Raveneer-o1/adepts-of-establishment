@@ -27,7 +27,10 @@ func next_turn() -> void:
 	active_faction = null
 	active_faction = _next_faction()
 	if not active_faction: return
-	EventBus.map_turn_started.emit(active_faction)
+	(
+		EventBus.first_map_turn_started if currnt_day == 0 \
+		else EventBus.map_turn_started\
+	).emit(active_faction)
 	active_faction.api.turn_started.emit()
 
 ## Emits [signal FactionAPI.end_turn_clicked] for the current faction.

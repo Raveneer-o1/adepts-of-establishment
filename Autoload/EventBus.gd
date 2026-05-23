@@ -61,6 +61,7 @@ signal unit_question_ended(data: UnitData)
 ## [i](cancel_movement is automatically reset to false after signal processing)[/i]
 signal party_move_started(party: MapParty, destination: Vector2i)
 signal party_moved(party: MapParty)
+signal first_map_turn_started(faction: MapFaction)
 signal map_turn_started(faction: MapFaction)
 signal map_turn_ended(faction: MapFaction)
 
@@ -76,6 +77,8 @@ signal popup_closure_requested
 ## Distinct from [signal popup_requested] - see that signal's documentation.[br][br]
 ## See also: [WindowBase]
 signal window_requested(info: Variant)
+## Emitted when any window is closed with the same argument used to open it.
+signal window_closed(info: Variant)
 
 signal tile_claimed(tile: MapTileData, previous_owner: MapFaction)
 

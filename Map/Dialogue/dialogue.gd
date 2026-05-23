@@ -13,8 +13,11 @@ extends Resource
 ## players prefer to have the ability to skip dialogue at their own pace.
 @export var skippable := true
 
+## The name of the speaker
+@export var speaker := ""
+
 ## The main text of this dialogue entry.
-@export var text: String
+@export_multiline var text: String
 
 ## Path to the portrait image file used for this dialogue node.
 ## Has no effect if [member dynamic_portrait] is [code]true[/code] or
@@ -38,7 +41,7 @@ extends Resource
 ## A value of [code]null[/code] indicates the end of the dialogue branch.
 ## If the dictionary is empty, a default [i]"End dialogue."[/i] 
 ## option will be shown in the player's UI.
-@export var options: Dictionary[StringName, DialogueNode]
+@export var options: Dictionary[String, DialogueNode]
 
 enum PortraitPosition {
 	## Automatically chooses left or right based on the previous message's position,
