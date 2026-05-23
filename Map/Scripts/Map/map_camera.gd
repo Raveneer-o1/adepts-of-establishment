@@ -1,13 +1,12 @@
 class_name MapCamera
 extends Camera2D
 
+## @deprecated: installed StrategyCamera addon instead
+
 @export var zoom_speed := 0.1
 @export var movement_speed := 100.0
 @export var min_zoom := 0.5
 @export var max_zoom := 5.0
-
-# FIXME: redesign the camera movement
-# reroute through input map
 
 func zoom_in() -> void:
 	if zoom.x >= max_zoom or zoom.y >= max_zoom: return

@@ -394,10 +394,22 @@ func _initialize() -> void:
 	
 	worker.check_object_layer()
 	objects_layer.map = self
+	_fill_for_of_war()
+	if not GameSettings.enable_fog_of_war:
+		fog_of_war_layer.hide()
 	EventBus.map_turn_ended.connect(new_turn)
 
 func _ready() -> void:
 	_initialize()
+
+func _fill_for_of_war() -> void:
+	var full_rect := \
+		terrain_layer.get_used_rect().merge(
+			fog_of_war_layer.get_used_rect()
+		)
+	for i in range(full_rect.position.x, full_rect.end.x):
+		for j in range(full_rect.position.y, full_rect.end.y):
+			draw_fog_of_war(Vector2i(i, j))
 
 ## Updates values for new turn. Does not start the turn,
 ## this is done through [GameMap] class

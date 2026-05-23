@@ -14,8 +14,8 @@ extends Node
 ## delegates execution to an implementation‑specific method.
 func invoke() -> void:
 	if _activated and one_time: return
-	_invoke()
 	_activated = true
+	_invoke()
 
 @abstract func _invoke() -> void
 

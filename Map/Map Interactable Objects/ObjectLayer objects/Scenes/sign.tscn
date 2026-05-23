@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://glgqnaq05m3u"]
+
+[ext_resource type="Script" uid="uid://c5jufxyunug8y" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scripts/sign.gd" id="1_0omvg"]
+[ext_resource type="Texture2D" uid="uid://cbm3wlhrsci2y" path="res://Arts/Map objects/o03 stuff.png" id="2_ux1qa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gptow"]
+atlas = ExtResource("2_ux1qa")
+region = Rect2(0, 39, 39, 39)
+
+[node name="Sign" type="Node2D"]
+script = ExtResource("1_0omvg")
+object_name = "Sign"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_gptow")
