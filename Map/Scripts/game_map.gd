@@ -8,9 +8,9 @@ extends Node
 ## as a child). [GameMap] handles high‑level systems such as faction interaction,
 ## screen access permissions, and global map state.
 
-const test_map = preload("uid://c8smxbiskq4el")  # old
+#const test_map = preload("uid://c8smxbiskq4el")  # old
 #const test_map = preload("res://Map/Scenes/map.tscn")  # template
-#const test_map = preload("uid://dbfy1fladbj48")  # demo
+const test_map = preload("uid://dbfy1fladbj48")  # demo
 
 @onready var ui_layers: MapUI = $UILayers
 @onready var turn_manager: MapTurnManager = $TurnManager
@@ -128,7 +128,9 @@ func _test_init() -> void:
 	test_faction.api.add_child(c.instantiate())
 	test_faction2.api.add_child(c2.instantiate())
 	test_faction_neutral.api.add_child(c3.instantiate())
+	
 	current_map.active_faction = test_faction
+	EventBus.first_map_turn_started.emit(test_faction)
 	EventBus.map_turn_started.emit(test_faction)
 	test_faction.api.turn_started.emit()
 
@@ -136,7 +138,7 @@ func _ready() -> void:
 	assert(neutral_faction)
 	load_maps()
 	ui_layers.clear_active_party()
-	_test_init()
+	_test_init.call_deferred()
 
 func _end_temporary_disable() -> void:
 	enable_map()

@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://dqvacin6ijb67"]
+
+[ext_resource type="Script" uid="uid://dqdhfd7gmfmae" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scripts/map_city.gd" id="1_mp3iy"]
+[ext_resource type="Texture2D" uid="uid://dwi4ftfj27hk1" path="res://Arts/Map objects/building.png" id="2_8sv58"]
+[ext_resource type="Script" uid="uid://cf2cqxddsxve0" path="res://Map/Scripts/units_container.gd" id="4_eeoxe"]
+[ext_resource type="Script" uid="uid://ce7jhle0sm057" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scripts/misc/map_city_flag.gd" id="5_q114c"]
+[ext_resource type="Script" uid="uid://d0sk6otb2ktdx" path="res://Map/Map Interactable Objects/Extentions/viewer.gd" id="6_p455r"]
+
+[sub_resource type="Curve" id="Curve_16ar4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveTexture" id="CurveTexture_e0781"]
+curve = SubResource("Curve_16ar4")
+
+[node name="MapCastle" type="Node2D"]
+script = ExtResource("1_mp3iy")
+ownable = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2, 18)
+texture = ExtResource("2_8sv58")
+offset = Vector2(0, -36)
+
+[node name="UnitsContainer" type="Node" parent="."]
+script = ExtResource("4_eeoxe")
+
+[node name="flag" type="Node2D" parent="." node_paths=PackedStringArray("sprite")]
+show_behind_parent = true
+position = Vector2(1, 9)
+script = ExtResource("5_q114c")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="flag"]
+position = Vector2(0, -25.999998)
+scale = Vector2(0.07421875, 18.999998)
+texture = SubResource("CurveTexture_e0781")
+
+[node name="MapViewer" type="Node" parent="."]
+script = ExtResource("6_p455r")
+metadata/_custom_type_script = "uid://d0sk6otb2ktdx"
+
+[node name="Grave" type="Node" parent="."]

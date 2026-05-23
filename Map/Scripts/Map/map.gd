@@ -75,7 +75,7 @@ extends Node2D
 ## Shows the information (like highlights) to the player
 @onready var visualizer: MapVisualizer = $Visualizer
 
-@onready var camera: Camera2D = $StrategyCamera
+@onready var camera: StrategyCamera = $StrategyCamera
 
 @onready var parties_container: Node = $Parties
 

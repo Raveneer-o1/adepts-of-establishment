@@ -20,7 +20,7 @@ extends Node
 var terrain_layer: TileMapLayer:
 	get: return map.terrain_layer
 
-var camera: MapCamera:
+var camera: StrategyCamera:
 	get: return map.camera
 
 var _game_access_allowed := false

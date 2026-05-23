@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7igum3ogaqi6"]
+
+[ext_resource type="Script" uid="uid://dif7xvx55smld" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scripts/small_pond.gd" id="1_y8hun"]
+[ext_resource type="Texture2D" uid="uid://bugwls130mkxq" path="res://Arts/Map objects/objects.png" id="2_y8hun"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kkmj"]
+atlas = ExtResource("2_y8hun")
+region = Rect2(39, 39, 39, 39)
+
+[node name="SmallPond" type="Node2D"]
+script = ExtResource("1_y8hun")
+ownable = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_4kkmj")

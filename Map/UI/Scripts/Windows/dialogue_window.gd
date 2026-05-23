@@ -16,8 +16,37 @@ const CHOICE_BUTTON = preload("uid://bhc5nlf4nxnx6")
 func start_dialogue(dialogue: DialogueNode) -> void:
 	if not dialogue: return
 	_last_position_left = true
+	_calculate_portraits(dialogue)
 	_step_dialogue(dialogue)
 	show()
+
+func _calculate_portraits(dialogue: DialogueNode) -> void:
+	var name_to_portrait: Dictionary[String, String] = {}
+	_step_portrait(dialogue, name_to_portrait)
+
+func _step_portrait(
+	dialogue: DialogueNode,
+	name_to_portrait: Dictionary[String, String]
+) -> void:
+	if not dialogue: return
+	__step_portrait_exec(dialogue, name_to_portrait)
+	for o in dialogue.options:
+		_step_portrait(dialogue.options[o], name_to_portrait)
+
+func __step_portrait_exec(
+	dialogue: DialogueNode,
+	name_to_portrait: Dictionary[String, String]
+) -> void:
+	if dialogue.portrait_path:
+		name_to_portrait[dialogue.speaker] = dialogue.portrait_path
+		return
+	if dialogue.portrait_position == DialogueNode.PortraitPosition.Unchanged: return
+	if dialogue.dynamic_portrait: return
+	var have_path: String = name_to_portrait.get(dialogue.speaker, "")
+	if not have_path:
+		print_debug("Unable to automatically fix the portrait (%s)" % dialogue.speaker)
+		return
+	dialogue.portrait_path = have_path
 
 func _get_portrait_texture() -> Texture2D:
 	if not _current_dialogue: return null
@@ -52,7 +81,9 @@ func _make_choice(option: StringName) -> void:
 func _step_dialogue(dialogue: DialogueNode) -> void:
 	if not dialogue: _clear(); return
 	_current_dialogue = dialogue
-	main_text.text = dialogue.text
+	if dialogue.speaker:
+		main_text.text = "[b]%s[/b]\n\n%s" % [dialogue.speaker, dialogue.text]
+	else: main_text.text = dialogue.text
 	_set_portrait()
 	_set_choices()
 	if dialogue.dialogue_id != &"":

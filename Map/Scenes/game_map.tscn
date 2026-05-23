@@ -565,6 +565,7 @@ Your color is blue."
 fit_content = true
 
 [node name="Capital" type="CanvasLayer" parent="UILayers"]
+visible = false
 script = ExtResource("11_vrvlx")
 
 [node name="MarginContainer" type="MarginContainer" parent="UILayers/Capital"]

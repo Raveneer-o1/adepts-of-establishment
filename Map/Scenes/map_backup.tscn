@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=4 uid="uid://c8smxbiskq4el"]
+[gd_scene load_steps=69 format=4 uid="uid://c8smxbiskq4el"]
 
 [ext_resource type="Script" uid="uid://dvi42dc2k0m2h" path="res://Map/Scripts/Map/map.gd" id="1_7wip3"]
 [ext_resource type="PackedScene" uid="uid://6lq6f06hma7" path="res://Combat/battle_scene.tscn" id="2_aa24s"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://dhtkukvc6ee0n" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scenes/mana_source.tscn" id="18_6h5g2"]
 [ext_resource type="PackedScene" uid="uid://dfeettylne7po" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scenes/stone_quarry.tscn" id="19_oob11"]
 [ext_resource type="Texture2D" uid="uid://b2v51mrky8rhp" path="res://Arts/Map objects/o02 village .png" id="20_1ko7g"]
+[ext_resource type="PackedScene" uid="uid://c7igum3ogaqi6" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scenes/small_pond.tscn" id="20_aa24s"]
 [ext_resource type="Texture2D" uid="uid://cbm3wlhrsci2y" path="res://Arts/Map objects/o03 stuff.png" id="21_vhjk5"]
 [ext_resource type="Texture2D" uid="uid://qbtgdgqgc535" path="res://Arts/Map objects/tree.png" id="22_tfndu"]
 [ext_resource type="Texture2D" uid="uid://d1pq5a63j8amt" path="res://Arts/Map objects/mana sources.png" id="23_fwhl3"]
@@ -281,6 +282,7 @@ scenes/5/scene = ExtResource("16_jj2m1")
 scenes/6/scene = ExtResource("17_3p4nh")
 scenes/7/scene = ExtResource("18_6h5g2")
 scenes/8/scene = ExtResource("19_oob11")
+scenes/9/scene = ExtResource("20_aa24s")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wp3p1"]
 texture = ExtResource("20_1ko7g")
@@ -424,7 +426,7 @@ tile_set = SubResource("TileSet_kyln5")
 [node name="TileDataLayer" type="Node2D" parent="MapLayers"]
 
 [node name="ObjectsLayer" type="TileMapLayer" parent="MapLayers"]
-tile_map_data = PackedByteArray("AAAgABAAAAADAAAAAAAPABgAAAAAAAIAAAAOABkAAAAAAAIAAAAKAAEABwAAAAAAAAAHAAAABwAAAAAAAAAPABkACgAAAAAAAAAIAA8ADQAAAAAABQAPAAUABgAAAAAAAAANAAwABwAAAAAAAAAnACQABwAAAAAAAAANAAQACAAAAAAAAAAGACcACgAAAAAAAAAKACMACwAAAAAAAAAHABMAAAABAAEAAAAGAA8AAAADAAAAAAAHABEAAAACAAEAAAAAACUAAAAAAAIAAAABACUAAAABAAIAAAABACYAAAABAAIAAAABACcAAAADAAEAAAAAACYAAAADAAEAAAAKABEAAAABAAIAAAAKABIAAAAAAAIAAAAKABMAAAAAAAIAAAAIABQAAAAAAAIAAAAJABQAAAAAAAIAAAAIABEAAAAAAAIAAAAPAAoAAAABAAIAAAAOAAsAAAADAAEAAAAPAAsAAAABAAIAAAAQAAsAAAADAAEAAAAPAAgAAAAAAAIAAAAOAAgAAAADAAEAAAANAAkAAAADAAEAAAAeABUAAAAAAAIAAAAdABUAAAADAAEAAAAgABQAAAAAAAIAAAAcABQAAAAAAAIAAAAQAB0AAAABAAIAAAAPAB4AAAABAAIAAAAPAB8AAAAAAAIAAAAPACAAAAADAAEAAAAQACAAAAAAAAIAAAARAB8AAAABAAIAAAASAB4AAAABAAIAAAASAB8AAAABAAIAAAARACAAAAAAAAIAAAAQACEAAAAAAAIAAAAPACIAAAABAAIAAAAPACEAAAABAAIAAAAOACEAAAADAAEAAAAVAAgABQACAAAAAAARAB0ABwAAAAAAAAAgACEADQAAAAAABwAFABoADQAAAAAABwAMABsADQAAAAAABwAiACUADQAAAAAACAA=")
+tile_map_data = PackedByteArray("AAAgABAAAAADAAAAAAAPABgAAAAAAAIAAAAOABkAAAAAAAIAAAAKAAEABwAAAAAAAAAHAAAABwAAAAAAAAAPABkACgAAAAAAAAAIAA8ADQAAAAAABQAPAAUABgAAAAAAAAANAAwABwAAAAAAAAAnACQABwAAAAAAAAANAAQACAAAAAAAAAAGACcACgAAAAAAAAAKACMACwAAAAAAAAAHABMAAAABAAEAAAAGAA8AAAADAAAAAAAHABEAAAACAAEAAAAAACUAAAAAAAIAAAABACUAAAABAAIAAAABACYAAAABAAIAAAABACcAAAADAAEAAAAAACYAAAADAAEAAAAKABEAAAABAAIAAAAKABIAAAAAAAIAAAAKABMAAAAAAAIAAAAIABQAAAAAAAIAAAAJABQAAAAAAAIAAAAIABEAAAAAAAIAAAAPAAoAAAABAAIAAAAOAAsAAAADAAEAAAAPAAsAAAABAAIAAAAQAAsAAAADAAEAAAAPAAgAAAAAAAIAAAAOAAgAAAADAAEAAAANAAkAAAADAAEAAAAeABUAAAAAAAIAAAAdABUAAAADAAEAAAAgABQAAAAAAAIAAAAcABQAAAAAAAIAAAAQAB0AAAABAAIAAAAPAB4AAAABAAIAAAAPAB8AAAAAAAIAAAAPACAAAAADAAEAAAAQACAAAAAAAAIAAAARAB8AAAABAAIAAAASAB4AAAABAAIAAAASAB8AAAABAAIAAAARACAAAAAAAAIAAAAQACEAAAAAAAIAAAAPACIAAAABAAIAAAAPACEAAAABAAIAAAAOACEAAAADAAEAAAAVAAgABQACAAAAAAARAB0ABwAAAAAAAAAgACEADQAAAAAABwAFABoADQAAAAAABwAMABsADQAAAAAABwAiACUADQAAAAAACAAgACQADQAAAAAACQA=")
 tile_set = SubResource("TileSet_3ily0")
 script = ExtResource("28_b4e46")
 
@@ -516,19 +518,6 @@ metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 
 [node name="Test" parent="Parties/MapParty_" node_paths=PackedStringArray("source") instance=ExtResource("40_slyfw")]
 source = NodePath("../Thymaël Doux")
-
-[node name="MapParty_2" parent="Parties" node_paths=PackedStringArray("owner_capital") instance=ExtResource("37_vybc1")]
-position = Vector2(1325, 819)
-party_name = "Strong dudes"
-owner_capital = NodePath("../../ObjectManager/UndeadCapital")
-
-[node name="Squire" type="Node" parent="Parties/MapParty_2"]
-script = ExtResource("34_2i1co")
-party_position = 1
-current_hp = 100
-unit_name = &"Squire"
-max_hp = 100
-metadata/_custom_type_script = "uid://mn0dy1cf0p65"
 
 [node name="Events" type="Node" parent="."]
 
