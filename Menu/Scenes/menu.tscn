@@ -503,17 +503,15 @@ layout_mode = 2
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 2
+current_tab = 0
 
 [node name="Humans" type="TabContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 3
+current_tab = 0
 metadata/_tab_index = 0
 
 [node name="Melee" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -759,6 +757,7 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
 [node name="Special" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 
@@ -1211,6 +1210,7 @@ layout_mode = 2
 unit_name = "Apostle"
 
 [node name="The Sin Keeper" type="TabContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer"]
+visible = false
 layout_mode = 2
 current_tab = 3
 metadata/_tab_index = 2
@@ -1933,7 +1933,7 @@ metadata/_tab_index = 0
 
 [node name="Thymaël Doux" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Heroes/Empire" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "Thymaël Doux, the Blade of Holy Light"
+unit_name = "Thymaël Doux"
 path = "uid://dkp1pwy5wygkg"
 
 [node name="High mage" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Heroes/Empire" instance=ExtResource("2_r33n7")]

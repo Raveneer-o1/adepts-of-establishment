@@ -185,7 +185,6 @@ layout_mode = 2
 text = "Show ownership"
 
 [node name="Party" type="CanvasLayer" parent="UILayers"]
-visible = false
 script = ExtResource("5_t0dwr")
 
 [node name="HBoxContainer" type="MarginContainer" parent="UILayers/Party"]

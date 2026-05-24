@@ -54,6 +54,11 @@ func _player_interact(faction: MapFaction) -> void:
 
 #endregion
 
+func _initialize() -> void:
+	for c in get_children():
+		if c is MapItem:
+			c.reparent($Contents)
+
 enum ChestState{
 	closed = 0,
 	open = 1,
@@ -63,7 +68,7 @@ enum ChestState{
 var state: ChestState:
 	get: return state
 	set(value):
-		($Closed.texture as AtlasTexture).region = _get_region_rect(value)
+		($Sprite.texture as AtlasTexture).region = _get_region_rect(value)
 		state = value
 
 const REGION_SIZE = Vector2(32., 32.)

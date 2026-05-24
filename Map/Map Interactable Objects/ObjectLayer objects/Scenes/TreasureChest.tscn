@@ -14,5 +14,5 @@ object_name = "Treasure chest"
 
 [node name="Contents" type="Node" parent="."]
 
-[node name="Closed" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_vriql")
