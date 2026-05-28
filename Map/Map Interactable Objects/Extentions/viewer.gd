@@ -23,7 +23,8 @@ func see_land() -> void:
 		this_object.tile_position,
 		radius,
 		TravelData.new(this_object) if this_object is MapParty else null,
-		padding
+		padding,
+		true
 	)
 	for tile in tiles:
 		this_object.map.tile_data_hashmap[tile].set_visibility(this_object.object_owner)

@@ -75,6 +75,7 @@ func _set_hovering_timer(t: float) -> void:
 
 # Handles mouse hovering to show pathfinding preview and interactions
 func _handle_mouse_hovering() -> void:
+	# TODO: filter hovering over tiles hidden by fog of war
 	var party := active_party
 	if not party: return
 	_hovering_mouse_coords = \

@@ -213,7 +213,8 @@ func get_all_tiles(
 	center: Vector2i,
 	radius: int,
 	for_traveller: TravelData = null,
-	padding := 0
+	padding := 0,
+	use_visibility_check := false
 ) -> Array[Vector2i]:
 	var center_tile: MapTileData = _get_center_tile(center)
 	if not center_tile:
@@ -228,7 +229,7 @@ func get_all_tiles(
 		var current_cost := open_set[current_tile]
 		open_set.erase(current_tile)
 		
-		if not _is_traversable(current_tile, for_traveller):
+		if not _make_check(current_tile, for_traveller, use_visibility_check):
 			current_cost = maxi(current_cost, radius)
 			#continue
 		
@@ -237,11 +238,19 @@ func get_all_tiles(
 	
 	return result
 
+func _make_check(
+	tile: MapTileData,
+	traveller: TravelData,
+	use_visibility_check: bool
+) -> bool:
+	# null traveller means we need to include all cells in a radius
+	if not traveller: return true
+	
+	if use_visibility_check: return traveller.can_see_through(tile.tile_data)
+	return traveller.can_traverse(tile.tile_data)
+
 func _get_center_tile(center: Vector2i) -> MapTileData:
 	return map.tile_data_hashmap.get(center)
-
-func _is_traversable(tile: MapTileData, traveller: TravelData) -> bool:
-	return traveller == null or traveller.can_traverse(tile.tile_data)
 
 func _process_tile(
 	tile: MapTileData,

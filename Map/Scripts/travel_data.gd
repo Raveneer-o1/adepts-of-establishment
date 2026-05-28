@@ -23,6 +23,24 @@ static func default_traversability(tile_data: TileData) -> bool:
 	# white-list approach doesn't let unexpected tile types to be passable
 	return false
 
+enum Visibility_ID{
+	always_hidden = -1,
+	always_visible = 0,
+	match_traversability = 1,
+	visible_to_some = 2,
+}
+
+## Returns if the provided [param tile_data] can be seen through by default
+static func default_transparency(tile_data: TileData) -> bool:
+	var visibility_id: Visibility_ID = tile_data.get_custom_data("visibility_id")
+	match visibility_id:
+		Visibility_ID.match_traversability: return default_traversability(tile_data)
+		Visibility_ID.always_hidden: return false
+		Visibility_ID.visible_to_some: return false
+	
+	# black-list approach makes unexpected types visible
+	return true
+
 ## Determines whether the party avoids forced interactions.
 ## Initialized to [member PartyParameters.safe_travel] if
 ## [member PartyParameters.safe_travel_override]
@@ -38,6 +56,10 @@ var _cost_multiplier: int = 1
 ## func (tile_data: TileData) -> bool
 ## [/codeblock]
 var custom_pass_check: Callable
+## [codeblock]
+## func (tile_data: TileData) -> bool
+## [/codeblock]
+var custom_sight_check: Callable
 ## [codeblock]
 ## func (tile_data: TileData) -> int
 ## [/codeblock]
@@ -55,6 +77,7 @@ func _init(party: MapParty) -> void:
 		GameSettings.safe_travel
 	travelling_party = party
 	custom_pass_check = parameters.check_pass
+	# TODO: custom_sight_check = parameters.check_sight
 
 ## Returns the cost of traversing the provided [param tile]
 func get_cost(tile: TileData) -> int:
@@ -65,3 +88,10 @@ func get_cost(tile: TileData) -> int:
 func can_traverse(tile_data: TileData) -> bool:
 	if custom_pass_check.is_valid(): return custom_pass_check.call(tile_data)
 	return default_traversability(tile_data)
+
+## Returns whether the given [param tile] is both visible itself
+## and does not block line of sight to tiles beyond it.
+func can_see_through(tile_data: TileData) -> bool:
+	if custom_sight_check.is_valid(): return custom_sight_check.call(tile_data)
+	return default_transparency(tile_data)
+	
