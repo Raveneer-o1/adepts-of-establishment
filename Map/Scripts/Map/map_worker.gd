@@ -236,7 +236,7 @@ func find_path(
 	var travel_data := TravelData.new(party)
 	for start in starts:
 		if include_start and \
-			not map.path_finder.is_passable(start, travel_data, end):
+			not map.path_finder.is_passable(start, travel_data, end, consider_visibility):
 				continue
 		var new_path := map.path_finder.A_star(start, end, travel_data, consider_visibility)
 		if not path or new_path.size() < path.size():

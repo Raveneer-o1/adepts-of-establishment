@@ -32,10 +32,6 @@ func _populate(path: String) -> void:
 	var new_node := resource.instantiate()
 	add_child(new_node)
 	
-	# FIXME: detect when any ugrade already exists and delete it from the tree
-	# e.g., if a buuilding is alreadty added to the faction's active upgrades,
-	# it should not be included in the tree
-	
 	if not evolution_buildings:
 		evolution_buildings = new_node
 		new_node.name = EVOLUTION_BUILDINGS_NODE_NAME
@@ -45,9 +41,24 @@ func _populate(path: String) -> void:
 		c.reparent(evolution_buildings)
 	new_node.queue_free()
 
+func _remove_duplicates() -> void:
+	var children := get_children()
+	var researched_upgrades := {}
+	for u: FactionUpgrade in get_parent().get_all_upgrades(true):
+		researched_upgrades[u.upgrade_name] = null
+	while children:
+		var c: Node = children.pop_front()
+		children.append_array(c.get_children())
+		if c is not FactionUpgrade: continue
+		if (c as FactionUpgrade).upgrade_name in researched_upgrades:
+			c.queue_free()
+			for cc in c.get_children():
+				cc.reparent(c.get_parent())
+
 func _ready() -> void:
 	var faction: MapFaction = get_parent()
 	if not faction:
 		queue_free()
 		return
 	_populate( _get_path(faction.base_faction) )
+	_remove_duplicates.call_deferred()
