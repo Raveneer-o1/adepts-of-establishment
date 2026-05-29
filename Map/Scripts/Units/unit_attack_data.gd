@@ -48,6 +48,12 @@ extends Resource
 
 @export var alternative_actions: Array[UnitAttackData]
 
+## Index of the attack animation to use. A value of [code]0[/code] selects
+## the default animation. Currently only the default and one alternative 
+## animation are supported, but an integer type is used to allow
+## for future expansion with multiple alternatives.
+@export var animation_index: int = 0
+
 ## Creates a new [UnitAttackData] instance with parameters from the provided dictionary.
 ## Missing entries use default values. [br][br]
 ##
@@ -87,6 +93,7 @@ static func from_dict(dict: Dictionary) -> UnitAttackData:
 	res.target_validation = dict.get("target_validation", "")
 	res.additional_targets = dict.get("additional_targets", "")
 	res.damage_policy = dict.get("damage_policy", "")
+	res.animation_index = dict.get("animation_index", 0)
 	res.applying_effects.assign(dict.get("applying_effects", {}))
 	var alt_actions: Array = dict.get("alternative_actions", [])
 	for a: Variant in alt_actions:

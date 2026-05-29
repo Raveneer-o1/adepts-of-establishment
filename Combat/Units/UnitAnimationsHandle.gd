@@ -25,12 +25,15 @@ func finish_death_animation() -> void:
 func play_death_animation() -> void:
 	(get_child(0) as AnimationPlayer).play(&"unit_standard_death_animation")
 
-func play_attack_animation() -> void:
+func play_attack_animation(index := 0) -> void:
+	var target_animation := &"attack2" \
+		if index != 0 and sprite_frames.has_animation(&"attack2") \
+		else &"attack"
 	if animation != &"default":
-		next_animation = &"attack"
+		next_animation = target_animation
 		return
-	if sprite_frames.has_animation(&"attack"):
-		play(&"attack")
+	if sprite_frames.has_animation(target_animation):
+		play(target_animation)
 	else:
 		(get_child(0) as AnimationPlayer).play(&"unit_standard_attack_animation")
 	if attack_sound_frame == 0:
@@ -69,6 +72,9 @@ func play_animation_by_name(animation_name: StringName) -> void:
 	match animation_name:
 		&"attack":
 			play_attack_animation()
+			return
+		&"attack2":
+			play_attack_animation(1)
 			return
 		&"death":
 			play_death_animation()

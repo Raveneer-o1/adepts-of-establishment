@@ -74,6 +74,12 @@ var unit: Unit
 ## @experimental: currently not implemented
 @export var effect_override : Resource
 
+## Index of the attack animation to use. A value of [code]0[/code] selects
+## the default animation. Currently only the default and one alternative 
+## animation are supported, but an integer type is used to allow
+## for future expansion with multiple alternatives.
+@export var animation_index: int = 0
+
 ## If not empty, this text is displayed to the player as the unit's ability description.
 ## Use this to explain unique attack policies, target selection rules,
 ## and automatic additional targets.
@@ -96,6 +102,7 @@ func _read_data(data: UnitAttackData) -> void:
 	initiative = data.initiative
 	evadable = data.evadable
 	tags = data.tags
+	animation_index = data.animation_index
 	target_validation = load(data.target_validation)
 	additional_targets = load(data.additional_targets) if data.additional_targets else null
 	damage_policy = load(data.damage_policy) if data.damage_policy else null
@@ -191,6 +198,7 @@ static func serialized(a: UnitAttack) -> Dictionary:
 		"additional_targets" = a.additional_targets.resource_path if a.additional_targets else "",
 		"damage_policy" = a.damage_policy.resource_path if a.damage_policy else "",
 		"applying_effects" = a.applying_effects,
+		"animation_index" = a.animation_index,
 		"alternative_actions" = alternative_actions,
 	}
 	return res

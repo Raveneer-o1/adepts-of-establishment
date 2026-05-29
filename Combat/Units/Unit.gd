@@ -481,7 +481,7 @@ func force_attack(target: Unit, native_attack: bool = true, attack: UnitAttack =
 	if unit_type == GlobalDefs.UnitType.Archer:
 		atk.tags.append(&"shot")
 	
-	animation_handle.play_attack_animation()
+	animation_handle.play_attack_animation(atk.unit_attack.animation_index)
 	system.combat_logic.book_damage(atk)
 
 ## Initiates an attack based on the chosen targets.
@@ -490,7 +490,7 @@ func start_attacking() -> void:
 		return
 	defense_stance = false
 	parameters.shielding = false
-	animation_handle.play_attack_animation()
+	animation_handle.play_attack_animation(current_attack.animation_index)
 	
 	var attack: Attack = create_attack(current_attack, chosen_spots.duplicate())
 	if unit_type == GlobalDefs.UnitType.Archer:
