@@ -44,10 +44,14 @@ func _check_interception(target_object: MapInteractableObject = null) -> bool:
 	# don't interact with target object
 	if o == target_object: return true
 	
-	var cost := o.force_interaction_on(this_party)
-	if cost < 0: return false
-	this_party.parameters.subtract_mp(cost)
+	_intercept(o)
 	return true
+
+func _intercept(object: MapInteractableObject) -> void:
+	@warning_ignore("redundant_await")
+	var cost := await object.force_interaction_on(this_party)
+	this_party.parameters.subtract_mp(cost)
+
 
 ## Moves the party to the specified coordinates. [br]
 ## If [param animate] is [code]false[/code], the unit teleports instantly to the destination.[br]

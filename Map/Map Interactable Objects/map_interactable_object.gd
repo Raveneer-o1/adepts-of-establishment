@@ -285,9 +285,14 @@ func can_accept_unit(unit: UnitData) -> bool:
 func _can_accept_unit(unit: UnitData) -> bool:
 	return true
 
+## Returns whether this object is visible to the specified [param faction].
+## By default, always returns [code]true[/code].
+## Subclasses can override this method to implement custom visibility logic.
 func is_visible_to(faction: MapFaction) -> bool:
 	return true
 
+## Returns a descriptive string for this object. Defaults to [member object_name].
+## Subclasses may override to provide custom descriptions.
 func get_description() -> String:
 	return object_name
 

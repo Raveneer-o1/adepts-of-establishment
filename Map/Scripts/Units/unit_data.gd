@@ -121,12 +121,21 @@ enum UnitClass{
 	Mage,       ## Focus on damage at the cost of health
 }
 
-@export_file_path("*.tscn") var scene_path: String
+
+## If [code]true[/code], [method initialize] is called when the scene starts.
+## In this mode, all parameters except [member unit_name] are ignored; the unit's
+## base properties are loaded from the database using [member unit_name].
+@export var is_to_be_initialized := false
+@export var unit_name: StringName
+## Overrides [member unit_name] for representation
+@export var personal_name: String
 
 ## Custom level-up function associated with this unit,
 ## overriding default levelup logic. [br]
 ## Has no effect if this unit is a [HeroData] instance.
 @export var custom_levelup: LevelupFunction = null
+
+# TODO: why is this here instead of HeroData class ?
 ## Hero ability tree associated with this unit. [br]
 ## Has no effect unless this unit is a [HeroData] instance.
 @export var hero_levelup: HeroAbilitiesTree = null
@@ -138,13 +147,12 @@ enum UnitClass{
 ## They will not break game logic but will produce error messages.
 ## Units with invalid positions are also considered [i]in garrison[/i].
 @export_range(-1, Party.MAX_UNITS_NUMBER - 1) var party_position: int = -1
-## Overrides [member unit_name] for representation
-@export var personal_name: String
+
 @export var current_hp: int
 @export var current_xp: int
 
-@export_category("Parameters")
-@export var unit_name: StringName
+@export_file_path("*.tscn") var scene_path: String
+@export_group("Parameters")
 @export var level: int
 @export var attack_data: Array[UnitAttackData]
 @export var large_unit: bool
@@ -282,8 +290,10 @@ func initialize(personal: String = "") -> bool:
 	assert(not _initializer)
 	_initializer = __UnitData_Initializer__.new()
 	add_child(_initializer, false, Node.INTERNAL_MODE_BACK)
-	
-	return _initializer.initialize(personal)
+	var res := _initializer.initialize(personal)
+	# this is a safeguard against reinitialization
+	if res: is_to_be_initialized = false
+	return res
 
 ## This method performs no validation - duplicate effects may be added without checks.
 func add_effect(effect: AppliedEffect) -> void:
@@ -380,5 +390,12 @@ func move_unit(to_container: Node) -> void:
 
 func _ready() -> void:
 	# WARNING: this is testing implementation, initialization here might be removed
-	if scene_path.is_empty():
+	if is_to_be_initialized:
+		initialize()
+	elif scene_path.is_empty():
+		push_error(
+			"Unit '%s' is not set to be initialized but its data is invalid. " %
+			unit_name +
+			"Forcing initialization regardless."
+		)
 		initialize()
