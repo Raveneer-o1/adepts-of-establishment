@@ -211,7 +211,9 @@ func _check_if_end_in_start(
 ## Finds a path from any tile in [param starts] to any tile in [param ends]
 ## for the specified [param party]. [br]
 ## If [param include_start] is [code]false[/code], the starting tile is excluded
-## from both passability checks and the resulting path.
+## from both passability checks and the resulting path. [br]
+## If [param consider_visibility] is [code]true[/code] (default),
+## tiles that are invisible to the party's owner are treated as impassable.
 ## [br][br]
 ## [b]Note:[/b] Not optimized for large arrays - expects [param starts]
 ## and [param ends] to contain not more than 10 elements each.
@@ -220,7 +222,8 @@ func find_path(
 	starts: Array[Vector2i],
 	end: Array[Vector2i],
 	party: MapParty,
-	include_start: bool
+	include_start: bool,
+	consider_visibility := true
 ) -> Array[Vector2i]:
 	if not party: return []
 	var start_index := _check_if_end_in_start(starts, end)
@@ -235,7 +238,7 @@ func find_path(
 		if include_start and \
 			not map.path_finder.is_passable(start, travel_data, end):
 				continue
-		var new_path := map.path_finder.A_star(start, end, travel_data)
+		var new_path := map.path_finder.A_star(start, end, travel_data, consider_visibility)
 		if not path or new_path.size() < path.size():
 			path = new_path
 			_start = start

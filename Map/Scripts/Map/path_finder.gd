@@ -48,11 +48,16 @@ func _check_distances(start: Vector2i, end: Array[Vector2i]) -> bool:
 ## [param travel_data]: Travel parameters that affect pathfinding[br][br]
 ## [b]Returns:[/b] Array of tile coordinates representing the path from start
 ## to end (excluding start)
-func A_star(start: Vector2i, end: Array[Vector2i], travel_data: TravelData) -> Array[Vector2i]:
+func A_star(
+	start: Vector2i,
+	end: Array[Vector2i],
+	travel_data: TravelData,
+	consider_visibility: bool
+) -> Array[Vector2i]:
 	if start in end: 
 		return [] as Array[Vector2i]
 	
-	if not _are_tiles_valid(start, end, travel_data):
+	if not _are_tiles_valid(start, end, travel_data, consider_visibility):
 		return [] as Array[Vector2i]
 	
 	if not _check_distances(start, end): return [] as Array[Vector2i]
@@ -71,7 +76,14 @@ func A_star(start: Vector2i, end: Array[Vector2i], travel_data: TravelData) -> A
 		#await get_tree().create_timer(0.1).timeout
 		
 		# Evaluate all neighbors of the current tile
-		_evaluate_neighbors(current_node, open_set, closed_set, travel_data, end)
+		_evaluate_neighbors(
+			current_node,
+			open_set,
+			closed_set,
+			travel_data,
+			end,
+			consider_visibility
+		)
 		
 		closed_set[current_node.tile_coords] = current_node
 		
@@ -97,7 +109,16 @@ func _is_tile_safe(tile: Vector2i, travel_data: TravelData) -> bool:
 	var interception := map.get_first_interception(tile, travel_data.travelling_party)
 	return interception == null
 
-func is_passable(tile: Vector2i, travel_data: TravelData, end: Array[Vector2i]) -> bool:
+func is_passable(
+	tile: Vector2i,
+	travel_data: TravelData,
+	end: Array[Vector2i],
+	consider_visibility: bool
+) -> bool:
+	if travel_data.travelling_party:
+		if not map.get_tile_data(tile): return false
+		if map.get_tile_data(tile).is_under_fog_of_war(travel_data.travelling_party.object_owner):
+			return false
 	var data := terrain_layer.get_cell_tile_data(tile)
 	if not data: return false
 	if data.get_custom_data("traverse_cost") < 0: return false
@@ -109,9 +130,14 @@ func is_passable(tile: Vector2i, travel_data: TravelData, end: Array[Vector2i]) 
 			return false
 	return travel_data.can_traverse(data)
 
-func _are_tiles_valid(start: Vector2i, end: Array[Vector2i], travel_data: TravelData) -> bool:
+func _are_tiles_valid(
+	start: Vector2i,
+	end: Array[Vector2i],
+	travel_data: TravelData,
+	consider_visibility: bool
+) -> bool:
 	for t in end:
-		if is_passable(t, travel_data, end): return true
+		if is_passable(t, travel_data, end, consider_visibility): return true
 	return false
 
 func _evaluate_repeating_neighbor(
@@ -132,7 +158,8 @@ func _evaluate_neighbors(
 	open_set: Dictionary,
 	closed_set: Dictionary,
 	travel_data: TravelData,
-	end: Array[Vector2i]
+	end: Array[Vector2i],
+	consider_visibility: bool
 ) -> void:
 	for neighbor_coords in map.get_neighbors(current_node.tile_coords):
 		if neighbor_coords in closed_set:
@@ -148,7 +175,7 @@ func _evaluate_neighbors(
 			if neighbor_coords in open_set:
 				continue
 			
-			if not is_passable(neighbor_coords, travel_data, end): continue
+			if not is_passable(neighbor_coords, travel_data, end, consider_visibility): continue
 			
 			open_set[neighbor_coords] = \
 				PathNode.new(neighbor_coords, terrain_layer, travel_data, current_node)

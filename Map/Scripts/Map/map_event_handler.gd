@@ -82,6 +82,11 @@ func _handle_mouse_hovering() -> void:
 		terrain_layer.local_to_map(terrain_layer.get_local_mouse_position())
 	if _last_target_tile == _hovering_mouse_coords: return
 	_last_target_tile = _hovering_mouse_coords
+	
+	var td := map.get_tile_data()
+	if not td: return
+	if td.is_under_fog_of_war(map.game.screen_player): return
+	
 	var dist := Map.get_distance(party.tile_position, _hovering_mouse_coords)
 	for region: Array in _MOUSE_DISTANCE_REGIONS:
 		if dist < region[0]:
