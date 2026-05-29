@@ -267,7 +267,8 @@ func validate_and_interact(party: MapParty, forced: bool = false) -> int:
 	if not is_active: return -1
 	if not can_interact(party): return -1
 	if party.tile_position not in get_interaction_tiles(party): return -1
-	if forced: return force_interaction_on(party)
+	@warning_ignore("redundant_await")
+	if forced: return await force_interaction_on(party)
 	@warning_ignore("redundant_await")
 	return await accept_interaction(party)
 
@@ -284,10 +285,14 @@ func can_accept_unit(unit: UnitData) -> bool:
 func _can_accept_unit(unit: UnitData) -> bool:
 	return true
 
-#var _object_registered := false
+func is_visible_to(faction: MapFaction) -> bool:
+	return true
 
 func get_description() -> String:
 	return object_name
+
+func _update_visibility() -> void:
+	visible = is_visible_to(map.game.screen_player)
 
 func _register_object() -> void:
 	if _is_object_ready: return
@@ -299,9 +304,13 @@ func _register_object() -> void:
 	elif faction_index >= 0:
 		object_owner = map.game.get_faction(faction_index)
 	
+	object_changed.connect(_update_visibility)
+	object_modified.connect(_update_visibility)
+	
 	_initialize()
 	#_object_registered = true
 	_is_object_ready = true
+	
 
 func _ready() -> void:
 	var next_parent := get_parent()

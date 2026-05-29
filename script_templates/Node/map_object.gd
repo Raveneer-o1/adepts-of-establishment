@@ -1,14 +1,18 @@
 #class_name YourClass
 
 # Choose what type of object you need:
+
 extends MapInteractableObject  # Regular object
 
 #extends ObjectLayerObject  # Object tied to the map grid system
 
-#extends OwnedByLandObject
 # Same as ObjectLayerObject, but automatically assigns the 
 # object owner from the tile it's occupying
+#extends OwnedByLandObject
 
+# Uncomment and implement the method below if the object has changing visibility
+#func is_visible_to(faction: MapFaction) -> bool:
+#	return true
 
 # Uncomment and implement the method below if the object occupies multiple tiles
 #func _get_occupied_tiles(main: Vector2i = tile_position) -> Array[Vector2i]:

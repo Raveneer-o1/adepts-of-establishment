@@ -493,3 +493,17 @@ func update_visibility(tile: MapTileData) -> void:
 		draw_fog_of_war(tile.coordinates)
 	else:
 		erase_fog_of_war(tile.coordinates)
+
+func get_all_objects() -> Array[MapInteractableObject]:
+	var res: Array[MapInteractableObject]
+	
+	for c in object_manager.get_children():
+		if c is MapInteractableObject: res.append(c)
+	
+	for c in objects_layer.get_children():
+		if c is MapInteractableObject: res.append(c)
+	
+	for c in parties_container.get_children():
+		if c is MapInteractableObject: res.append(c)
+	
+	return res

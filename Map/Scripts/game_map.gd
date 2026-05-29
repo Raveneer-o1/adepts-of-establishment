@@ -45,6 +45,7 @@ var screen_player: MapFaction:
 			_awaiting_screen_access.erase(value)
 			s.emit()
 		_draw_fog_of_war(value)
+		_set_objects_visibility(value)
 
 var _awaiting_screen_access: Dictionary[MapFaction, Signal]
 
@@ -56,6 +57,10 @@ func _draw_fog_of_war(faction: MapFaction) -> void:
 			else:
 				map.erase_fog_of_war(coord)
 
+func _set_objects_visibility(faction: MapFaction) -> void:
+	for map in get_all_maps():
+		for obj in map.get_all_objects():
+			obj.visible = obj.is_visible_to(faction)
 
 ## Registers [param faction] for screen access notification.
 ## Returns [param _signal] unchanged, which will emit (without arguments)
