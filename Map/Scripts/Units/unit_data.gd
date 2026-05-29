@@ -135,11 +135,6 @@ enum UnitClass{
 ## Has no effect if this unit is a [HeroData] instance.
 @export var custom_levelup: LevelupFunction = null
 
-# TODO: why is this here instead of HeroData class ?
-## Hero ability tree associated with this unit. [br]
-## Has no effect unless this unit is a [HeroData] instance.
-@export var hero_levelup: HeroAbilitiesTree = null
-
 ## Position of the unit within the party (see [Party] class documentation). [br]
 ## Units with position [code]-1[/code] are considered [i]in garrison[/i]
 ## and do not participate in combat. [br]
@@ -321,9 +316,6 @@ func grant_xp(points: int) -> void:
 ## Levels the unit up without evolving. For the latter use [method evolve]. [br]
 ## [HeroData] units automatically delegate to [member hero_levelup] if available.
 func level_up() -> void:
-	if hero_levelup and self is HeroData:
-		hero_levelup.levelup()
-		return
 	if custom_levelup:
 		custom_levelup.custom_levelup(self)
 		return
