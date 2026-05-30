@@ -23,7 +23,9 @@ static func default_traversability(tile_data: TileData) -> bool:
 	# white-list approach doesn't let unexpected tile types to be passable
 	return false
 
-enum Visibility_ID{
+## Default visibility values used during transparency checks for tiles.
+## Individual parties can override these with their own custom check functions.
+enum Visibility_ID {
 	## Always considered hidden by default
 	always_hidden = -1,
 	## Always considered visible by default
@@ -82,7 +84,7 @@ func _init(party: MapParty) -> void:
 		GameSettings.safe_travel
 	travelling_party = party
 	custom_pass_check = parameters.check_pass
-	# TODO: custom_sight_check = parameters.check_sight
+	custom_sight_check = parameters.check_sight
 
 ## Returns the cost of traversing the provided [param tile]
 func get_cost(tile: TileData) -> int:

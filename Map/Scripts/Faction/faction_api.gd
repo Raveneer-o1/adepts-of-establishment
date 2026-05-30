@@ -220,15 +220,22 @@ func get_reachable_tiles(party: MapParty) -> Array[Vector2i]:
 ## If [param destination] is the container currently storing the unit
 ## or [code]null[/code], the move is treated as identity and always succeeds.
 func move_unit(unit: UnitData, destination: UnitsContainer, position: int) -> bool:
-	# TODO: check for position on map
+	assert(unit.container, "Unit is not inside a container")
+	if not _check_position(unit, destination): return false
 	if not _move_unit(unit, destination): return false
 	unit.party_position = position
 	return true
 
+func _check_position(unit: UnitData, destination: UnitsContainer) -> bool:
+	if unit.container.get_position() in destination.get_object().get_interaction_tiles():
+		return true
+	if destination.get_position() in unit.container.get_object().get_interaction_tiles():
+		return true
+	return false
+
 func _move_unit(unit: UnitData, destination: UnitsContainer) -> bool:
 	if not destination: return true
 	if not unit: return false
-	assert(unit.container, "Unit is not inside a container")
 	if not unit.container.try_transfer_unit(unit, destination): return false
 	#unit.reparent(destination)
 	return true

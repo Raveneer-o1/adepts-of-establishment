@@ -49,6 +49,13 @@ var screen_player: MapFaction:
 
 var _awaiting_screen_access: Dictionary[MapFaction, Signal]
 
+## Stores a list of in-game variables that can be modified by
+## events and checked by both events and triggers. [br]
+## [b]Note:[/b] Although events are attached to a specific [Map] node and only affect
+## that map, these variables are global to the entire level. They are reset
+## at the start of a new mission but persist across different maps within the same level.
+var map_variables: Dictionary[StringName, int]
+
 func _draw_fog_of_war(faction: MapFaction) -> void:
 	for map in get_all_maps():
 		for coord in map.tile_data_hashmap:

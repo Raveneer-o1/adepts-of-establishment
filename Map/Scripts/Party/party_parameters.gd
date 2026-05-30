@@ -90,6 +90,11 @@ signal movement_cost_requested(tile_data: TileData)
 ## [br][br]
 ## Expected [member accumulated_value] type: [code]bool[/code]
 signal movement_pass_check_requested(tile_data: TileData)
+## Emitted when check if a specific tile is visible is requested.
+## External systems should listen for this signal and set [member accumulated_value].
+## [br][br]
+## Expected [member accumulated_value] type: [code]bool[/code]
+signal tile_transparency_check_requested(tile_data: TileData)
 ## Emitted when maximum movement points value is requested.
 ## External systems should listen for this signal and set [member accumulated_value].
 ## [br][br]
@@ -159,6 +164,10 @@ func get_movement_multiplier() -> int:
 func check_pass(tile_data: TileData) -> bool:
 	movement_pass_check_requested.emit(tile_data)
 	return _get_accumulated_value(TravelData.default_traversability(tile_data))
+
+func check_sight(tile_data: TileData) -> bool:
+	tile_transparency_check_requested.emit(tile_data)
+	return _get_accumulated_value(TravelData.default_transparency(tile_data))
 
 ## Instantiates a [PartyEffect] scene from the specified [param path]
 ## and adds it to this party. [br]
