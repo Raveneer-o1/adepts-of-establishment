@@ -24,9 +24,14 @@ static func default_traversability(tile_data: TileData) -> bool:
 	return false
 
 enum Visibility_ID{
+	## Always considered hidden by default
 	always_hidden = -1,
+	## Always considered visible by default
 	always_visible = 0,
+	## By default, the tile is considered visible if it is traversable
 	match_traversability = 1,
+	## By default behaves the same as [b]Always Hidden[/b],
+	## available for specific cases
 	visible_to_some = 2,
 }
 
@@ -94,4 +99,3 @@ func can_traverse(tile_data: TileData) -> bool:
 func can_see_through(tile_data: TileData) -> bool:
 	if custom_sight_check.is_valid(): return custom_sight_check.call(tile_data)
 	return default_transparency(tile_data)
-	

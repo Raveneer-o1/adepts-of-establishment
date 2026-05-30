@@ -1179,6 +1179,12 @@ script = ExtResource("18_jtf36")
 [node name="MapLayers" type="Node" parent="."]
 
 [node name="TerrainLayer" type="TileMapLayer" parent="MapLayers"]
+editor_description = "This map layer has the following custom data layers:
+- traverse_cost: Movement cost to enter the tile. A value of -1 marks the tile as completely impassable. Such tiles are never traversable, regardless of any party‑specific effects.
+- color_identifier: Used for selecting the highlight color. Currently only \"yellow\" is supported. May be deprecated in favor of automatic color adjustment based on terrain colors.
+- tile_type: Main identifier for tile type. See TravelData documentation.
+- claimable: Whether the tile can be claimed by a faction. This controls the ability to change ownership, not whether the tile can be owned at all.
+- visibility_id: Default behavior for visibility checks. See for recognized values."
 tile_set = SubResource("TileSet_kyln5")
 
 [node name="TileDataLayer" type="Node2D" parent="MapLayers"]

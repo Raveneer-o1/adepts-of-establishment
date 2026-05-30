@@ -40,8 +40,23 @@ extends Node2D
 ## configurations in Godot's [TileMapLayer].
 ## [/i]
 
-## This layer should contain [code]traverse_cost[/code] custom
-## data layer with [b]int[/b] type (value of -1 means the tile is not traversable)
+## This map layer has the following custom data layers:[br][br]
+## - [code]traverse_cost[/code] ([b]int[/b]): Movement cost to enter the tile.
+##   A value of [code]-1[/code] marks the tile as completely impassable.
+##   Such tiles are never traversable, regardless of any party‑specific effects.
+## [br]
+## - [code]color_identifier[/code] ([b]StringName[/b]): Used for selecting the highlight color.
+##   Currently only [code]&"yellow"[/code] is supported.
+##   May be deprecated in favor of automatic color adjustment based on terrain colors.
+## [br]
+## - [code]tile_type[/code] ([b]StringName[/b]): Main identifier for tile type.
+##   See [TravelData] documentation.
+## [br]
+## - [code]claimable[/code] ([b]bool[/b]): Whether the tile can be claimed by a faction.
+##   This controls the ability to change ownership, not whether the tile can be owned at all.
+## [br]
+## - [code]visibility_id[/code] ([b]int[/b]): Default behavior for visibility checks.
+##   See [enum TravelData.Visibility_ID] for recognized values.
 @onready var terrain_layer: TileMapLayer = $MapLayers/TerrainLayer
 ## Layer containing map immovable objects like cities, mines, etc.
 ## [br][br]
