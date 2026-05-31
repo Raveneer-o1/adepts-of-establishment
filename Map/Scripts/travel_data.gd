@@ -41,7 +41,7 @@ enum Visibility_ID {
 
 ## Returns if the provided [param tile_data] can be seen through by default
 static func default_transparency(tile_data: MapTileData) -> bool:
-	var visibility_id := tile_data.get_transparency() as Visibility_ID
+	var visibility_id := tile_data.get_transparency()
 	match visibility_id:
 		Visibility_ID.match_traversability: return default_traversability(tile_data.tile_data)
 		Visibility_ID.force_hidden: return false

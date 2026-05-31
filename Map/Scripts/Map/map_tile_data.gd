@@ -58,6 +58,7 @@ const TERRAIN_ATLAS_ID = 2
 
 var _unused := false
 
+## Marks the tile as unused. It becomes impassable, non-transparent, and unclaimable.
 func set_as_unused() -> void:
 	_unused = true
 
@@ -127,11 +128,15 @@ func get_neighbors() -> Array[MapTileData]:
 		if data: res.append(data)
 	return res
 
+## Returns the movement cost required to enter this tile. A value of [code]-1[/code]
+## indicates the tile is impassable under any circumstances.
 func get_traverse_cost() -> int:
 	if _unused: return -1
 	return tile_data.get_custom_data("traverse_cost")
 
-func get_transparency() -> int:
+## Returns the transparency value of this tile. The meaning of different return
+## values is described in [enum TravelData.Visibility_ID].
+func get_transparency() -> TravelData.Visibility_ID:
 	if _unused: return TravelData.Visibility_ID.force_hidden
 	return tile_data.get_custom_data("visibility_id")
 
