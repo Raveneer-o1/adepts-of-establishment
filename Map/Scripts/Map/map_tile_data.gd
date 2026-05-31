@@ -56,6 +56,11 @@ var visible_to: Dictionary[MapFaction, VisibilityMode] = {}
 const LOYALTY_INCREASE = 0.025
 const TERRAIN_ATLAS_ID = 2
 
+var _unused := false
+
+func set_as_unused() -> void:
+	_unused = true
+
 func set_visibility(
 	faction: MapFaction,
 	visibility: VisibilityMode = VisibilityMode.Visible
@@ -108,6 +113,7 @@ func _update_owner(faction: MapFaction) -> void:
 
 ## Tries to claim the tile. Returns if the claim was successful.
 func try_claiming(faction: MapFaction, power: float) -> bool:
+	if _unused: return false
 	var claimed := _claim(faction, power)
 	if claimed: _update_owner(faction)
 	return claimed
@@ -120,6 +126,14 @@ func get_neighbors() -> Array[MapTileData]:
 		var data:= map.get_tile_data(coords)
 		if data: res.append(data)
 	return res
+
+func get_traverse_cost() -> int:
+	if _unused: return -1
+	return tile_data.get_custom_data("traverse_cost")
+
+func get_transparency() -> int:
+	if _unused: return TravelData.Visibility_ID.force_hidden
+	return tile_data.get_custom_data("visibility_id")
 
 func _find_map() -> Map:
 	var parent := get_parent()

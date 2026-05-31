@@ -21,11 +21,11 @@ class PathNode extends RefCounted:
 	
 	func _init(
 		coords: Vector2i,
-		terrain_layer: TileMapLayer,
+		_map: Map,
 		travel_data: TravelData,
 		from: PathNode = null
 	) -> void:
-		var tile_data := terrain_layer.get_cell_tile_data(coords)
+		var tile_data := _map.get_tile_data(coords)
 		terrain_cost = travel_data.get_cost(tile_data)
 		tile_coords = coords
 		came_from = from
@@ -62,7 +62,7 @@ func A_star(
 	
 	if not _check_distances(start, end): return [] as Array[Vector2i]
 	
-	var current_node := PathNode.new(start, terrain_layer, travel_data)
+	var current_node := PathNode.new(start, map, travel_data)
 	current_node.terrain_cost = 0
 	var closed_set: Dictionary[Vector2i, PathNode] = {}  # Tiles that have been evaluated
 	var open_set: Dictionary[Vector2i, PathNode] = {}    # Tiles to be evaluated
@@ -119,16 +119,16 @@ func is_passable(
 		if not map.get_tile_data(tile): return false
 		if map.get_tile_data(tile).is_under_fog_of_war(travel_data.travelling_party.object_owner):
 			return false
-	var data := terrain_layer.get_cell_tile_data(tile)
+	var data := map.get_tile_data(tile)
 	if not data: return false
-	if data.get_custom_data("traverse_cost") < 0: return false
+	if data.get_traverse_cost() < 0: return false
 	for obj: MapInteractableObject in map.tile_to_object.get(tile, []):
 		if not obj.is_active: continue
 		if not obj.passable(travel_data): return false
 	if travel_data.safe_travel and tile not in end:
 		if not _is_tile_safe(tile, travel_data):
 			return false
-	return travel_data.can_traverse(data)
+	return travel_data.can_traverse(data.tile_data)
 
 func _are_tiles_valid(
 	start: Vector2i,
@@ -178,7 +178,7 @@ func _evaluate_neighbors(
 			if not is_passable(neighbor_coords, travel_data, end, consider_visibility): continue
 			
 			open_set[neighbor_coords] = \
-				PathNode.new(neighbor_coords, terrain_layer, travel_data, current_node)
+				PathNode.new(neighbor_coords, map, travel_data, current_node)
 
 
 func _reconstruct_path(end_node: PathNode, start_coords: Vector2i) -> Array[Vector2i]:
@@ -273,7 +273,7 @@ func _make_check(
 	# null traveller means we need to include all cells in a radius
 	if not traveller: return true
 	
-	if use_visibility_check: return traveller.can_see_through(tile.tile_data)
+	if use_visibility_check: return traveller.can_see_through(tile)
 	return traveller.can_traverse(tile.tile_data)
 
 func _get_center_tile(center: Vector2i) -> MapTileData:

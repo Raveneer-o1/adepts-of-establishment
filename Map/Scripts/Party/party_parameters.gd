@@ -126,11 +126,11 @@ func subtract_mp(value: int) -> void:
 	if value < 0: return
 	movement_points -= value
 
-func get_movement_cost(tile_data: TileData) -> int:
+func get_movement_cost(tile_data: MapTileData) -> int:
 	movement_cost_requested.emit(tile_data)
 	var cost: int = _get_accumulated_value(-1)
 	if cost >= 0: return cost
-	return get_movement_multiplier() * tile_data.get_custom_data("traverse_cost")
+	return get_movement_multiplier() * tile_data.get_traverse_cost()
 
 func _get_accumulated_value(default: Variant) -> Variant:
 	if accumulated_value == null: return default
@@ -165,7 +165,7 @@ func check_pass(tile_data: TileData) -> bool:
 	movement_pass_check_requested.emit(tile_data)
 	return _get_accumulated_value(TravelData.default_traversability(tile_data))
 
-func check_sight(tile_data: TileData) -> bool:
+func check_sight(tile_data: MapTileData) -> bool:
 	tile_transparency_check_requested.emit(tile_data)
 	return _get_accumulated_value(TravelData.default_transparency(tile_data))
 

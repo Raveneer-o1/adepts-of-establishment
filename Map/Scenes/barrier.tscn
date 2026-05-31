@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvgsw3fds7jsc"]
+
+[ext_resource type="Script" uid="uid://dt1j8i5kmknrn" path="res://Map/Scripts/Map/barrier.gd" id="1_ulon7"]
+[ext_resource type="Texture2D" uid="uid://cg16h8gv72n3f" path="res://Arts/Map/white_tiles_02.png" id="2_fj8wn"]
+
+[node name="Barrier" type="Node2D"]
+script = ExtResource("1_ulon7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, -1)
+texture = ExtResource("2_fj8wn")

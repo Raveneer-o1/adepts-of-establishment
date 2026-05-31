@@ -26,6 +26,8 @@ static func default_traversability(tile_data: TileData) -> bool:
 ## Default visibility values used during transparency checks for tiles.
 ## Individual parties can override these with their own custom check functions.
 enum Visibility_ID {
+	## Always hidden, bypassing any checks
+	force_hidden = -2,
 	## Always considered hidden by default
 	always_hidden = -1,
 	## Always considered visible by default
@@ -38,10 +40,11 @@ enum Visibility_ID {
 }
 
 ## Returns if the provided [param tile_data] can be seen through by default
-static func default_transparency(tile_data: TileData) -> bool:
-	var visibility_id: Visibility_ID = tile_data.get_custom_data("visibility_id")
+static func default_transparency(tile_data: MapTileData) -> bool:
+	var visibility_id := tile_data.get_transparency() as Visibility_ID
 	match visibility_id:
-		Visibility_ID.match_traversability: return default_traversability(tile_data)
+		Visibility_ID.match_traversability: return default_traversability(tile_data.tile_data)
+		Visibility_ID.force_hidden: return false
 		Visibility_ID.always_hidden: return false
 		Visibility_ID.visible_to_some: return false
 	
@@ -64,7 +67,7 @@ var _cost_multiplier: int = 1
 ## [/codeblock]
 var custom_pass_check: Callable
 ## [codeblock]
-## func (tile_data: TileData) -> bool
+## func (tile_data: MapTileData) -> bool
 ## [/codeblock]
 var custom_sight_check: Callable
 ## [codeblock]
@@ -87,9 +90,9 @@ func _init(party: MapParty) -> void:
 	custom_sight_check = parameters.check_sight
 
 ## Returns the cost of traversing the provided [param tile]
-func get_cost(tile: TileData) -> int:
+func get_cost(tile: MapTileData) -> int:
 	if custom_cost.is_valid(): return custom_cost.call(tile)
-	return tile.get_custom_data("traverse_cost") * _cost_multiplier
+	return tile.get_traverse_cost() * _cost_multiplier
 
 ## Returns if the provided [param tile] can be traversed
 func can_traverse(tile_data: TileData) -> bool:
@@ -98,6 +101,8 @@ func can_traverse(tile_data: TileData) -> bool:
 
 ## Returns whether the given [param tile] is both visible itself
 ## and does not block line of sight to tiles beyond it.
-func can_see_through(tile_data: TileData) -> bool:
+func can_see_through(tile_data: MapTileData) -> bool:
+	if tile_data.get_transparency() == Visibility_ID.force_hidden:
+		return false
 	if custom_sight_check.is_valid(): return custom_sight_check.call(tile_data)
 	return default_transparency(tile_data)

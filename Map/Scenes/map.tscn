@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://dlu3vl2ltauc0"]
+[gd_scene load_steps=59 format=3 uid="uid://dlu3vl2ltauc0"]
 
 [ext_resource type="Script" uid="uid://dvi42dc2k0m2h" path="res://Map/Scripts/Map/map.gd" id="1_q0qov"]
 [ext_resource type="Texture2D" uid="uid://c462nhclviryl" path="res://Arts/Map objects/dis tiles (1).png" id="1_xec2n"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://bmp8htqi7l1i" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scenes/map_capital_undead.tscn" id="12_l17lq"]
 [ext_resource type="PackedScene" uid="uid://c7igum3ogaqi6" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scenes/small_pond.tscn" id="13_wuamo"]
 [ext_resource type="PackedScene" uid="uid://cru6m63h7miiu" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scenes/TreasureChest.tscn" id="14_esgc1"]
+[ext_resource type="PackedScene" uid="uid://bvgsw3fds7jsc" path="res://Map/Scenes/barrier.tscn" id="15_4hre8"]
 [ext_resource type="PackedScene" uid="uid://dns1v60yltqme" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scenes/map_capital_empire.tscn" id="15_ue3ts"]
 [ext_resource type="Texture2D" uid="uid://518ilab6qsv7" path="res://Arts/Map/tile highlight.png" id="16_ab646"]
 [ext_resource type="PackedScene" uid="uid://capvq01yuowhj" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scenes/village.tscn" id="16_hhhnw"]
@@ -1045,6 +1046,7 @@ scenes/7/scene = ExtResource("18_wuamo")
 scenes/8/scene = ExtResource("19_t4h4h")
 scenes/9/scene = ExtResource("20_hhhnw")
 scenes/10/scene = ExtResource("13_wuamo")
+scenes/11/scene = ExtResource("15_4hre8")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wp3p1"]
 texture = ExtResource("3_b45i2")

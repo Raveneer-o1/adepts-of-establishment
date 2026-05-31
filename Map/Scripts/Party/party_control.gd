@@ -28,7 +28,7 @@ var map_speed: float = 5.0:
 
 func _handle_step(destination: Vector2i) -> bool:
 	if this_party.parameters.movement_points <= 0: return false
-	var tile_data := map.terrain_layer.get_cell_tile_data(destination)
+	var tile_data := map.get_tile_data(destination)
 	if not tile_data:
 		push_error("Trying to move to an empty tile")
 		return false
