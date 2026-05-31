@@ -125,18 +125,20 @@ func _move_mapping(destination: Vector2i) -> void:
 
 ## Primary tile position of this object.
 ## Position changes can be expensive - minimize assignments by calculating
-## the final position before setting.
+## the final position before setting.[br][br]
+## For example, don't do this:
 ## [codeblock]
-## # Don't do this:
-## object.tile_position = start
-## object.tile_position.x += dx
-## object.tile_position.y += dy
-## object.tile_position = Vector2i(Vector2(start).lerp(object.tile_position, t))
+## object.tile_position = start  # first assignment
+## object.tile_position.x += dx  # second assignment
+## object.tile_position.y += dy  # third assignment
+## object.tile_position = Vector2i(Vector2(start).lerp(object.tile_position, weight))  # fourth assignment
+## [/codeblock]
 ##
-## # Do this instead:
+## Do this instead:
+## [codeblock]
 ## var move := Vector2i(dx, dy)
 ## var end := start + move
-## end = Vector2i(Vector2(start).lerp(end, t))
+## end = Vector2i(Vector2(start).lerp(end, weight))
 ## object.tile_position = end  # Single assignment
 ## [/codeblock]
 var tile_position: Vector2i:

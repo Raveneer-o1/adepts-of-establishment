@@ -109,13 +109,17 @@ func _is_tile_safe(tile: Vector2i, travel_data: TravelData) -> bool:
 	var interception := map.get_first_interception(tile, travel_data.travelling_party)
 	return interception == null
 
+## Returns whether the specified [param tile] is passable for the given [param travel_data].
+## The [param end] array allows destination tiles to be excluded from interruption checks
+## (can be left empty if not needed). When [param consider_visibility] is [code]true[/code],
+## tiles hidden under fog of war are treated as impassable.
 func is_passable(
 	tile: Vector2i,
 	travel_data: TravelData,
 	end: Array[Vector2i],
 	consider_visibility: bool
 ) -> bool:
-	if travel_data.travelling_party:
+	if consider_visibility and travel_data.travelling_party:
 		if not map.get_tile_data(tile): return false
 		if map.get_tile_data(tile).is_under_fog_of_war(travel_data.travelling_party.object_owner):
 			return false

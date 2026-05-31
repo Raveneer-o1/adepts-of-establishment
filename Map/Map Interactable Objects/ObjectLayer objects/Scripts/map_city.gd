@@ -119,7 +119,7 @@ func level_up_unit(unit: UnitData) -> void:
 ## List of units inside this city.
 ## Does not include units in the [member party_inside].
 var units: Array[UnitData]:
-	get: return units_container.units if units_container else []
+	get: return units_container.units if units_container else ([] as Array[UnitData])
 
 ## [code]null[/code] if there is no party inside this city.
 var party_inside: MapParty
@@ -167,13 +167,15 @@ func get_available_units() -> Array[StringName]:
 			res.erase(unit_name)
 	return res
 
-
+## Returns the list of all parties buried in this city.
 func get_buried_parties() -> Array[MapParty]:
 	var res: Array[MapParty] = []
 	for child in $Grave.get_children():
 		if child is MapParty: res.append(child)
 	return res
 
+## Raparents the provided [param party] to this city's [b]Grave[/b] node.
+## Use [method get_buried_parties] to get the list of all parties buried here.
 func bury_party(party: MapParty) -> void:
 	if not party: return
 	party.reparent($Grave, false)

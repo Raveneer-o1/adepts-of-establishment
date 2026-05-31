@@ -34,7 +34,7 @@ tile_map_data = PackedByteArray("AADx/zMAAgAAAAAAAADx/zQAAgAAAAAAAADw/zQAAgAAAAA
 position = Vector2(814, 388)
 
 [node name="MapCastle2" parent="ObjectManager" index="1" instance=ExtResource("2_xtdmr")]
-position = Vector2(1364, 852)
+position = Vector2(1141, 1076)
 
 [node name="Sign" parent="ObjectManager" index="2" instance=ExtResource("2_p3ewj")]
 position = Vector2(1283, 796)
@@ -54,7 +54,7 @@ position = Vector2(-221, 570)
 faction_index = 1
 
 [node name="Sir Roland party" parent="Parties" index="0" instance=ExtResource("4_r0qhm")]
-position = Vector2(1164, 1104)
+position = Vector2(1173, 1102)
 party_name = "Sir Roland's party"
 faction_index = 0
 
