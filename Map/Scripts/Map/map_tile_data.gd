@@ -56,11 +56,16 @@ var visible_to: Dictionary[MapFaction, VisibilityMode] = {}
 const LOYALTY_INCREASE = 0.025
 const TERRAIN_ATLAS_ID = 2
 
-var _unused := false
+## When [code]true[/code], this tile is forced to be impassable, non‑transparent,
+## and unclaimable. [br][br]
+## Intended for blocking paths for narrative or gameplay reasons — for example,
+## to create a proper boundary instead of an abrupt map edge.
+var unused := false
 
 ## Marks the tile as unused. It becomes impassable, non-transparent, and unclaimable.
+## Equivalent to setting [member unused] to [code]true[/code]
 func set_as_unused() -> void:
-	_unused = true
+	unused = true
 
 func set_visibility(
 	faction: MapFaction,
@@ -114,7 +119,7 @@ func _update_owner(faction: MapFaction) -> void:
 
 ## Tries to claim the tile. Returns if the claim was successful.
 func try_claiming(faction: MapFaction, power: float) -> bool:
-	if _unused: return false
+	if unused: return false
 	var claimed := _claim(faction, power)
 	if claimed: _update_owner(faction)
 	return claimed
@@ -131,13 +136,13 @@ func get_neighbors() -> Array[MapTileData]:
 ## Returns the movement cost required to enter this tile. A value of [code]-1[/code]
 ## indicates the tile is impassable under any circumstances.
 func get_traverse_cost() -> int:
-	if _unused: return -1
+	if unused: return -1
 	return tile_data.get_custom_data("traverse_cost")
 
 ## Returns the transparency value of this tile. The meaning of different return
 ## values is described in [enum TravelData.Visibility_ID].
 func get_transparency() -> TravelData.Visibility_ID:
-	if _unused: return TravelData.Visibility_ID.force_hidden
+	if unused: return TravelData.Visibility_ID.force_hidden
 	return tile_data.get_custom_data("visibility_id")
 
 func _find_map() -> Map:

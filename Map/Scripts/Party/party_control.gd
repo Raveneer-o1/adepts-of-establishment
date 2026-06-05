@@ -88,7 +88,7 @@ func _walk_to(
 	else: _jump_to(destination)
 
 ## Moves a party along a proveded coordinates [br][br]
-## if [param target_object] ia specified, ignores interception from that object
+## if [param target_object] is specified, ignores interception from that object
 ## (expected to be handled by caller) [br][br]
 ## Returns if the party reached the destination without interruptions.
 func walk_along_path(

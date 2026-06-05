@@ -138,6 +138,10 @@ func _get_accumulated_value(default: Variant) -> Variant:
 		var res: Variant = accumulated_value
 		accumulated_value = null
 		return res
+	push_error("Unexpected value type. Expected %s, got %s" % [
+		type_string(typeof(default)),
+		type_string(typeof(accumulated_value)),
+	])
 	accumulated_value = null
 	return default
 

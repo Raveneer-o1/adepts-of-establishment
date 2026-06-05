@@ -29,9 +29,10 @@ class Modifier:
 	var active: bool:
 		get:
 			return is_instance_valid(effect) and \
-				effect != null and \
+				#effect != null and \
 				not effect.is_queued_for_deletion() and \
-				not effect.silenced
+				not effect.silenced and \
+				influence.is_valid()
 
 	var influence: Callable
 	
