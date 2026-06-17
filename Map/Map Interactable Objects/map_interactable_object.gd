@@ -38,6 +38,9 @@ var map: Map
 ## When ownership is enabled, tracks the controlling faction.
 ## Can be [code]null[/code] even for ownable objects, indicating unclaimed status.
 ## [br][br]
+## If [member default_to_neutral] is [code]true[/code] and the owner is not
+## defined (set to [code]null[/code]), returns [member GameMap.neutral_faction].
+## [br][br]
 ## When editing the map, you can assign [member owner_capital] or 
 ## [member faction_index] to set the owner of the object.
 var object_owner: MapFaction = null:
@@ -86,7 +89,10 @@ var _is_object_ready: bool = false:
 ## [codeblock]
 ## await object.object_ready
 ## # code that depends on the object being fully initialized
+## # this code will be executed in the current frame if the object is already initialized
 ## [/codeblock]
+## [b]Note:[/b] The signal is emitted in deferred mode,
+## so execution will continue at the end of the current stack frame.
 var object_ready: Signal:
 	get:
 		if _is_object_ready:
@@ -131,12 +137,15 @@ func _move_mapping(destination: Vector2i) -> void:
 ## object.tile_position = start  # first assignment
 ## object.tile_position.x += dx  # second assignment
 ## object.tile_position.y += dy  # third assignment
-## object.tile_position = Vector2i(Vector2(start).lerp(object.tile_position, weight))  # fourth assignment
+## # fourth assignment
+## object.tile_position = \
+## Vector2i(Vector2(start).lerp(object.tile_position, weight))
 ## [/codeblock]
 ##
 ## Do this instead:
 ## [codeblock]
 ## var move := Vector2i(dx, dy)
+## var start := object.tile_position
 ## var end := start + move
 ## end = Vector2i(Vector2(start).lerp(end, weight))
 ## object.tile_position = end  # Single assignment
@@ -251,6 +260,7 @@ func player_interact(faction: MapFaction) -> void:
 signal object_changed
 ## Emitted for minor object modifications that don't warrant full reinitialization.
 ## May not require any response beyond internal updates.
+## Automatically emitted when [signal object_changed] is emitted.
 signal object_modified
 
 func _initialize() -> void:
@@ -312,10 +322,11 @@ func _register_object() -> void:
 		object_owner = map.game.get_faction(faction_index)
 	
 	object_changed.connect(_update_visibility)
-	object_modified.connect(_update_visibility)
+	#object_modified.connect(_update_visibility)
 	
 	_initialize()
-	#_object_registered = true
+	object_changed.connect(object_modified.emit)
+	
 	_is_object_ready = true
 	
 

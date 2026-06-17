@@ -31,12 +31,20 @@ var current_map: Map
 @onready var factions_in_game: int:
 	get: return $Factions.get_child_count()
 
+## Stores a list of in-game variables that can be modified by
+## events and checked by both events and triggers. [br]
+## [b]Note:[/b] Although events are attached to a specific [Map] node and only affect
+## that map, these variables are global to the entire level. They are reset
+## at the start of a new mission but persist across different maps within the same level.
+var map_variables: Dictionary[StringName, int]
+
 ## The faction currently viewing the game screen, controlling information visibility
 ## and UI action permissions. Determines which faction's perspective is active
 ## for UI elements, ensuring players access only appropriate data for their view.
 var screen_player: MapFaction:
 	get: return screen_player
 	set(value):
+		assert(value, "Attempt to assign null value to 'screen_player'")
 		if value == screen_player: return
 		ui_layers.resources_panel.fill_data(value.resource_container)
 		screen_player = value
@@ -48,13 +56,6 @@ var screen_player: MapFaction:
 		_set_objects_visibility(value)
 
 var _awaiting_screen_access: Dictionary[MapFaction, Signal]
-
-## Stores a list of in-game variables that can be modified by
-## events and checked by both events and triggers. [br]
-## [b]Note:[/b] Although events are attached to a specific [Map] node and only affect
-## that map, these variables are global to the entire level. They are reset
-## at the start of a new mission but persist across different maps within the same level.
-var map_variables: Dictionary[StringName, int]
 
 func _draw_fog_of_war(faction: MapFaction) -> void:
 	for map in get_all_maps():
