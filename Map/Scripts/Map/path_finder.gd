@@ -239,7 +239,11 @@ func _visualize_current_tile(tile_coords: Vector2i) -> void:
 ## When [param padding] is greater than zero, the original area is expanded outward
 ## by that many tiles in all directions, without any passability checks.
 ## This is useful for determining visibility ranges that should cover obstacles
-## themselves, not just traversable tiles.
+## themselves, not just traversable tiles. [br][br]
+## If [param use_visibility_check] is [code]true[/code], instead of passable
+## tiles includes transparent tiles (see [method MapTileData.get_transparency]
+## and [enum TravelData.Visibility_ID]). Has no effect if [param for_traveller]
+## is [code]null[/code].
 func get_all_tiles(
 	center: Vector2i,
 	radius: int,

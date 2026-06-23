@@ -14,7 +14,8 @@ extends Node
 func _see_land_by_party(party: MapParty) -> void:
 	pass
 
-
+## Sets the the visibility of the tiles this viewer can see.
+## Does not check for the tiles that exited the area of sight.
 func see_land() -> void:
 	if not this_object: return
 	await this_object.object_ready
