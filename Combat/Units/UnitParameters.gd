@@ -478,7 +478,8 @@ func apply_effect_path(
 	effect_path: String, 
 	params: Variant, 
 	force_stackability: bool = false, 
-	override_stackability: bool = false
+	override_stackability: bool = false,
+	silent := false
 ) -> AppliedEffect:
 	var res: Resource = load(effect_path)
 	if not res:
@@ -499,7 +500,7 @@ func apply_effect_path(
 	if not is_instance_valid(child) or child.is_queued_for_deletion():
 		child = null
 	
-	if child: EventBus.effect_applied.emit(child)
+	if not silent and child: EventBus.effect_applied.emit(child)
 	return child
 
 ## Applies the effect specified by [param effect_name] by loading and instantiating its scene.
@@ -511,6 +512,8 @@ func apply_effect_path(
 ## Type and format depend on the specific effect.[br]
 ## [param force_stackability] defines if [member AppliedEffect.stackable] should
 ## be overridden with [param override_stackability].[br]
+## [param silent]: If set to [code]true[/code], the effect is applied without
+## emitting [signal EventBus.effect_applied]. [br]
 ## Returns: The instantiated [AppliedEffect] node, or [code]null[/code] if the effect was immediately 
 ## removed (e.g., some one-time effects like cure effects might self-destruct after application). [br]
 ## Returns [code]null[/code] and prints a debug warning if the effect scene isn't found.
@@ -518,7 +521,8 @@ func apply_effect(
 		effect_name: String, 
 		params: Variant, 
 		force_stackability: bool = false, 
-		override_stackability: bool = false
+		override_stackability: bool = false,
+		silent := false
 	) -> AppliedEffect:
 	
 	var effect_path := "res://Combat/Effects/AppliedEffects/Scenes/%s.tscn" % effect_name
@@ -527,6 +531,7 @@ func apply_effect(
 		params,
 		force_stackability,
 		override_stackability,
+		silent
 	)
 
 func _turn_start_reaction(_unit: Unit) -> void:
