@@ -132,6 +132,6 @@ func _apply_effect(params: Variant) -> void:
 	if turns > 0:
 		_signal_function_pairs[EventBus.turn_ended] = count_turn
 		
-		# this is not a relevant for the effect function,
+		# this is not relevant for the effect function,
 		# so there's not need to use the dictionary
 		EventBus.turn_started.connect(_drop_safeguard)

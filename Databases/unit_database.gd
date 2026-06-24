@@ -1055,7 +1055,7 @@ const database = {
 },&"Man at arms" : {
  &"scene_path": "res://Combat/Units/Derived units//Empire/man_at_arms.tscn", &"level": 3, &"large_unit": false, &"immunities": []
 , &"description": "", &"brief_description": "", &"faction": 1, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 900, &"attacks": [{
- &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
+ &"attack_name": "Attack", &"damage_multiplier": 0.5, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Double_attack.tres", &"damage_policy": "", &"applying_effects": {
   
 }, &"animation_index": 0, &"alternative_actions": []

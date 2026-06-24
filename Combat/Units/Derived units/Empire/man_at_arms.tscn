@@ -162,6 +162,7 @@ base_paramaters = SubResource("Resource_b3n3e")
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("5_xuvs5")
+damage_multiplier = 0.5
 initiative = 40
 target_validation = ExtResource("6_jpelr")
 additional_targets = ExtResource("7_6qlug")
