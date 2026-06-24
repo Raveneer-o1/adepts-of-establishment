@@ -1,0 +1,167 @@
+[gd_scene load_steps=26 format=3 uid="uid://dlv1d0uljf76n"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_n8kqo"]
+[ext_resource type="Texture2D" uid="uid://ngrto0kyxo7h" path="res://Arts/Empire units/man at arms attack.png" id="2_b3n3e"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="2_j1c4k"]
+[ext_resource type="Texture2D" uid="uid://c8uib1m7r1mhk" path="res://Arts/Empire units/man at arms.png" id="3_jiykt"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_xuvs5"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="6_jpelr"]
+[ext_resource type="Resource" uid="uid://d3v4hhqcmpw7w" path="res://Combat/Units/Parameters/Additional targets/Double_attack.tres" id="7_6qlug"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_425bf"]
+atlas = ExtResource("2_b3n3e")
+region = Rect2(0, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xuvs5"]
+atlas = ExtResource("2_b3n3e")
+region = Rect2(0, 48, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jpelr"]
+atlas = ExtResource("2_b3n3e")
+region = Rect2(0, 96, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qlug"]
+atlas = ExtResource("2_b3n3e")
+region = Rect2(0, 144, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1c7en"]
+atlas = ExtResource("2_b3n3e")
+region = Rect2(0, 192, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxf8d"]
+atlas = ExtResource("2_b3n3e")
+region = Rect2(0, 240, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ro3ch"]
+atlas = ExtResource("2_b3n3e")
+region = Rect2(0, 288, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_07fva"]
+atlas = ExtResource("2_b3n3e")
+region = Rect2(0, 336, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4wk8"]
+atlas = ExtResource("2_b3n3e")
+region = Rect2(0, 384, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymbto"]
+atlas = ExtResource("2_b3n3e")
+region = Rect2(0, 432, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7br36"]
+atlas = ExtResource("2_b3n3e")
+region = Rect2(0, 480, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_034ea"]
+atlas = ExtResource("2_b3n3e")
+region = Rect2(0, 528, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_msncp"]
+atlas = ExtResource("3_jiykt")
+region = Rect2(0, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8x4rl"]
+atlas = ExtResource("3_jiykt")
+region = Rect2(0, 48, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5cpd5"]
+atlas = ExtResource("3_jiykt")
+region = Rect2(0, 96, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0uynu"]
+atlas = ExtResource("3_jiykt")
+region = Rect2(0, 144, 64, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5k5ga"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_425bf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xuvs5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpelr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6qlug")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1c7en")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxf8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ro3ch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_07fva")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i4wk8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ymbto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7br36")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_034ea")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_msncp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8x4rl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5cpd5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0uynu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_b3n3e"]
+resource_local_to_scene = true
+script = ExtResource("2_j1c4k")
+max_HP = 220
+base_damage = 60
+armor = 60
+
+[node name="Man at arms" instance=ExtResource("1_n8kqo")]
+unit_name = "Man at arms"
+unit_type = 0
+faction = 1
+needed_xp = 900
+unit_class = 1
+cost_gold = 320
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_5k5ga")
+animation = &"attack"
+autoplay = "default"
+offset = Vector2(16, -8)
+frames_to_emit = Array[int]([6, 10])
+
+[node name="UnitParameters" parent="." index="1"]
+level = 3
+base_paramaters = SubResource("Resource_b3n3e")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("5_xuvs5")
+initiative = 40
+target_validation = ExtResource("6_jpelr")
+additional_targets = ExtResource("7_6qlug")
+metadata/_custom_type_script = "uid://c5u15vrtdf7kf"

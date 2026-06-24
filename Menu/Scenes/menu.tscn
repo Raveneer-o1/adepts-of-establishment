@@ -553,7 +553,7 @@ path = "res://Combat/Units/Derived units/Empire/e04 Samurai.tscn"
 
 [node name="Man at Arms" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee/Lvl3" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "Man at Arms"
+unit_name = "Man at arms"
 
 [node name="Horseman" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Humans/Melee/Lvl3" instance=ExtResource("2_r33n7")]
 layout_mode = 2
