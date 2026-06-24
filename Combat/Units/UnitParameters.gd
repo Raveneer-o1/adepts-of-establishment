@@ -393,7 +393,13 @@ var initializtion_successful: bool = false
 func _init_effects(array: Array[Dictionary]) -> void:
 	for e in get_all_effects(): e.free()
 	for effect_data in array:
-		apply_effect_path(effect_data[&"effect_path"], effect_data[&"args"])
+		apply_effect_path(
+			effect_data[&"effect_path"],
+			effect_data[&"args"],
+			false,  # force_stackability
+			false,  # override_stackability
+			true,   # silent
+		)
 
 func _init_attacks(array: Array[UnitAttackData]) -> void:
 	for a in attacks: a.free()
@@ -445,18 +451,18 @@ func update_effects() -> void:
 		stats_modifiers[stack_name].clean()
 	parent_unit.update_visuals()
 
-var initialized: bool = false
-
-## Applies all effects. Safe to call multiple times: has no effect after the first call.
-func initialize_effects() -> void:
-	if initialized:
-		return
-	initialized = true
-	for child in get_children():
-		if child is AppliedEffect:
-			child.initialize()
-	parent_unit.update_visuals()
-	EventBus.turn_started.connect(_turn_start_reaction)
+#var initialized: bool = false
+#
+# ## Applies all effects. Safe to call multiple times: has no effect after the first call.
+#func initialize_effects() -> void:
+	#if initialized:
+		#return
+	#initialized = true
+	#for child in get_children():
+		#if child is AppliedEffect:
+			#child.initialize()
+	#parent_unit.update_visuals()
+	#EventBus.turn_started.connect(_turn_start_reaction)
 
 func set_references() -> void:
 	hp = max_hp
@@ -476,10 +482,10 @@ func check_parameters() -> void:
 ## Functionally identical to [method apply_effect] but uses direct path reference.
 func apply_effect_path(
 	effect_path: String, 
-	params: Variant, 
+	params: Variant,
 	force_stackability: bool = false, 
 	override_stackability: bool = false,
-	silent := false
+	silent: bool = false
 ) -> AppliedEffect:
 	var res: Resource = load(effect_path)
 	if not res:
@@ -575,8 +581,8 @@ func take_damage(
 	@warning_ignore("narrowing_conversion")
 	dmg *= armor_multiplier
 	if randomize_damage:
-		var random_deviation: int = max(
-			dmg * STANDARD_FRACTIONAL_DAMAGE_DEVIATION, 
+		var random_deviation: int = maxi(
+			int(dmg * STANDARD_FRACTIONAL_DAMAGE_DEVIATION),
 			STANDARD_DAMAGE_DEVIATION
 		)
 		dmg += randi_range(-random_deviation, random_deviation)

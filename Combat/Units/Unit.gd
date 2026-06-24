@@ -780,6 +780,7 @@ func update_visuals() -> void:
 	visual_bar.value = parameters.hp
 	parameter_snapshots.clear()
 	if parameters.dead: die()
+	clean_effects()
 
 #region Global Interaction
 
