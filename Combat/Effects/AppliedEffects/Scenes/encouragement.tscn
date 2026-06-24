@@ -4,4 +4,5 @@
 
 [node name="Encouragement" type="Node"]
 script = ExtResource("1_u6tos")
+effect_name = "Encouragement"
 description = "Positive effects recieved by this unit are duplicated %d times and propagated to all adjacent units."

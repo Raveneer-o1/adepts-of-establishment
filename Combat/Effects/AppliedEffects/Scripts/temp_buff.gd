@@ -26,6 +26,8 @@ var strength: int = 0
 # Multiplier for the parameter (optional)
 var multiplier: float = 1.0
 
+var _applied_this_turn := true
+
 func _get_description() -> String:
 	var text_increase: String = description
 	
@@ -43,10 +45,15 @@ func _get_description() -> String:
 	return text_increase
 
 func count_turn(unit: Unit) -> void:
+	if _applied_this_turn: return
 	if unit == target_unit and turns > 0:
 		turns -= 1
 		if turns == 0:
 			lift_effect()
+
+func _drop_safeguard() -> void:
+	_applied_this_turn = false
+	EventBus.turn_started.disconnect(_drop_safeguard)
 
 func apply_modifier() -> void:
 	var param := parameter
@@ -123,4 +130,8 @@ func _apply_effect(params: Variant) -> void:
 	apply_modifier()
 	
 	if turns > 0:
-		_signal_function_pairs[EventBus.turn_started] = count_turn
+		_signal_function_pairs[EventBus.turn_ended] = count_turn
+		
+		# this is not a relevant for the effect function,
+		# so there's not need to use the dictionary
+		EventBus.turn_started.connect(_drop_safeguard)
