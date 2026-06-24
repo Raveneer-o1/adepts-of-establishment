@@ -219,7 +219,7 @@ func initialize_variables(data: UnitData) -> bool:
 	if data: _read_data(data)
 	
 	EventBus.turn_ended.connect(reset_chosen_targets)
-	EventBus.turn_ended.connect(clean_effects)
+	EventBus.turn_started.connect(clean_effects.call_deferred)
 	EventBus.round_started.connect(arrange_attacks_and_set_next)
 	EventBus.attack_reached.connect(check_taking_damage)
 	EventBus.unit_evolved.connect(_check_evolution)
