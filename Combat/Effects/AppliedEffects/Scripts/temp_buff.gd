@@ -51,7 +51,7 @@ func count_turn(unit: Unit) -> void:
 		if turns == 0:
 			lift_effect()
 
-func _drop_safeguard() -> void:
+func _drop_safeguard(_u: Unit = null) -> void:
 	_applied_this_turn = false
 	EventBus.turn_started.disconnect(_drop_safeguard)
 

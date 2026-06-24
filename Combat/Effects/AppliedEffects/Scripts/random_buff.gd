@@ -42,9 +42,6 @@ func _apply_effect(params: Variant) -> void:
 			"multiplier" = multiplier,
 			"turns" = turns
 		},
-		false,  # force_stackability
-		false,  # override_stackability
-		true    # silent
 	)
 	# After temporary effect is applied, remove this effect
 	queue_free()
