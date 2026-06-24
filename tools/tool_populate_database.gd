@@ -119,9 +119,11 @@ func _run() -> void:
 	scan_directory("res://Combat/Units/Derived units/")
 	#handle_file("res://Combat/Units/Derived units/Empire/e21 Arcanist.tscn")
 	
-	print("Storing end line")
+	print("\nStoring end line")
 	file.store_line("\n# end of database\n}")
 	
 	print("Closing file")
 	file.close()
-	print("Done")
+	print("==============================")
+	print("============ Done ============")
+	print("==============================")
