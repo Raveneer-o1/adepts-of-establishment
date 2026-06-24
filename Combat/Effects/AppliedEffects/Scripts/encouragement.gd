@@ -16,6 +16,14 @@ func check_trigger(e: AppliedEffect) -> void:
 	# get_full_data() returns a dictionary
 	var serialized_effect: Dictionary = e.get_full_data()
 	for i in range(copies):
+		for u in target_unit.party.get_adjacent_units(target_unit.party_position):
+			u.parameters.apply_effect_path(
+				serialized_effect["effect_path"],
+				serialized_effect["args"],
+				false,  # force_stackability
+				false,  # override_stackability
+				true    # silent
+			)
 		target_unit.parameters.apply_effect_path(
 			serialized_effect["effect_path"],
 			serialized_effect["args"],

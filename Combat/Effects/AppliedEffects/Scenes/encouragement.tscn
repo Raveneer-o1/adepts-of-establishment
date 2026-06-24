@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bov6u8gy7wndx"]
+
+[ext_resource type="Script" uid="uid://db81cytoted33" path="res://Combat/Effects/AppliedEffects/Scripts/encouragement.gd" id="1_u6tos"]
+
+[node name="Encouragement" type="Node"]
+script = ExtResource("1_u6tos")
+description = "Positive effects recieved by this unit are duplicated %d times and propagated to all adjacent units."
