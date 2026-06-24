@@ -1,0 +1,141 @@
+[gd_scene load_steps=22 format=3 uid="uid://cfy7wvmrryuys"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_5tyxd"]
+[ext_resource type="Texture2D" uid="uid://c04tshqsbpa3s" path="res://Arts/Empire units/Gendarme attack.png" id="2_mrveh"]
+[ext_resource type="Texture2D" uid="uid://congy8qlht8y6" path="res://Arts/Empire units/Gendarme idle.png" id="3_2blsj"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_bvxqh"]
+[ext_resource type="PackedScene" uid="uid://bov6u8gy7wndx" path="res://Combat/Effects/AppliedEffects/Scenes/encouragement.tscn" id="5_t2363"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_2blsj"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="7_bvxqh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjxfg"]
+atlas = ExtResource("2_mrveh")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5863h"]
+atlas = ExtResource("2_mrveh")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpl40"]
+atlas = ExtResource("2_mrveh")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxwen"]
+atlas = ExtResource("2_mrveh")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7wai"]
+atlas = ExtResource("2_mrveh")
+region = Rect2(0, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3si3"]
+atlas = ExtResource("2_mrveh")
+region = Rect2(0, 240, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hbkd"]
+atlas = ExtResource("2_mrveh")
+region = Rect2(0, 288, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mrh6w"]
+atlas = ExtResource("2_mrveh")
+region = Rect2(0, 336, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r04yy"]
+atlas = ExtResource("3_2blsj")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54pxt"]
+atlas = ExtResource("3_2blsj")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b54yf"]
+atlas = ExtResource("3_2blsj")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8615"]
+atlas = ExtResource("3_2blsj")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wclj7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjxfg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5863h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpl40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxwen")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7wai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3si3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hbkd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mrh6w")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r04yy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_54pxt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b54yf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n8615")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_pitbm"]
+resource_local_to_scene = true
+script = ExtResource("4_bvxqh")
+max_HP = 350
+base_damage = 80
+armor = 80
+shielding_chance = 0.85
+
+[node name="Gendarme" instance=ExtResource("1_5tyxd")]
+unit_name = "Gendarme"
+unit_type = 0
+faction = 1
+needed_xp = 1250
+unit_class = 1
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_wclj7")
+animation = &"attack"
+autoplay = "default"
+offset = Vector2(8, -8)
+frames_to_emit = Array[int]([5])
+
+[node name="UnitParameters" parent="." index="1"]
+level = 4
+base_paramaters = SubResource("Resource_pitbm")
+
+[node name="Encouragement" parent="UnitParameters" index="1" instance=ExtResource("5_t2363")]
+liftable = false
+icon_index = 8
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
+script = ExtResource("6_2blsj")
+target_validation = ExtResource("7_bvxqh")
+metadata/_custom_type_script = "uid://c5u15vrtdf7kf"

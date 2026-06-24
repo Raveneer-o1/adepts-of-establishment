@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dlv1d0uljf76n"]
+[gd_scene load_steps=27 format=3 uid="uid://dlv1d0uljf76n"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_n8kqo"]
 [ext_resource type="Texture2D" uid="uid://ngrto0kyxo7h" path="res://Arts/Empire units/man at arms attack.png" id="2_b3n3e"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_xuvs5"]
 [ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="6_jpelr"]
 [ext_resource type="Resource" uid="uid://d3v4hhqcmpw7w" path="res://Combat/Units/Parameters/Additional targets/Double_attack.tres" id="7_6qlug"]
+[ext_resource type="PackedScene" uid="uid://diw2063c3h50m" path="res://Combat/Effects/AppliedEffects/Scenes/positive_alignment.tscn" id="8_jpelr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_425bf"]
 atlas = ExtResource("2_b3n3e")
@@ -165,3 +166,5 @@ initiative = 40
 target_validation = ExtResource("6_jpelr")
 additional_targets = ExtResource("7_6qlug")
 metadata/_custom_type_script = "uid://c5u15vrtdf7kf"
+
+[node name="PositiveAlignment" parent="UnitParameters" index="2" instance=ExtResource("8_jpelr")]
