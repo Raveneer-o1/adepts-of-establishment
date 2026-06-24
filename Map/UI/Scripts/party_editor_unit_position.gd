@@ -5,6 +5,7 @@ extends TextureRect
 @export var reparent_data := false
 
 var unit: PartyEditorUnit
+# FIXME: null value will break the logic with NRE
 var parent: Node
 
 var parent_owner: MapFaction:
@@ -81,7 +82,7 @@ func _move_unit_in(received_unit: PartyEditorUnit) -> bool:
 	
 	return received_owner.api.move_unit(
 		received_unit.unit_data,
-		parent,
+		parent if reparent_data else received_unit.unit_data.container,
 		party_position
 	)
 
