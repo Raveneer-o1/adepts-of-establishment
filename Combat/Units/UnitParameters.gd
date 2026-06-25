@@ -381,11 +381,10 @@ func get_actual_damage(attack: UnitAttack) -> int:
 
 
 ## Returns full damage potential of a unit on a per turn basis accounting for accuracy.
-## Does not account for multi-targeted attacks
 func get_full_damage() -> int:
 	var result: float = 0.0
 	for attack in attacks:
-		result += get_actual_damage(attack) * attack.accuracy * attack.targets_needed
+		result += attack.get_damage_potential()
 	return roundi(result)
 
 var initializtion_successful: bool = false

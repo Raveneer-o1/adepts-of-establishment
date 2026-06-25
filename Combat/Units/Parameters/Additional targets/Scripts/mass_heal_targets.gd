@@ -10,3 +10,6 @@ func find_additional_targets(attacker: Unit, chosen_targets: Array[UnitSpot]) ->
 		
 		result.append(u.spot)
 	return result
+
+func _max_number_of_targets(attack: UnitAttack) -> int:
+	return attack.unit.party.get_units_number()

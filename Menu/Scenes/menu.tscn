@@ -925,7 +925,7 @@ size_flags_vertical = 3
 theme_override_constants/separation = 70
 alignment = 1
 
-[node name="Samurai" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Melee/Lvl3" instance=ExtResource("2_r33n7")]
+[node name="Inquisitor" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Melee/Lvl3" instance=ExtResource("2_r33n7")]
 layout_mode = 2
 unit_name = "Inquisitor"
 
@@ -935,9 +935,9 @@ size_flags_vertical = 3
 theme_override_constants/separation = 70
 alignment = 1
 
-[node name="Grand inquisitor" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Melee/Lvl4" instance=ExtResource("2_r33n7")]
+[node name="High Inquisitor" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Melee/Lvl4" instance=ExtResource("2_r33n7")]
 layout_mode = 2
-unit_name = "Grand Inquisitor"
+unit_name = "High Inquisitor"
 path = "res://Combat/Units/Derived units/Empire/e09 Grand Inquisitor.tscn"
 
 [node name="Lvl5" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/NinePatchRect/MarginContainer/TabContainer/Church/Melee"]

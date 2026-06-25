@@ -24,3 +24,6 @@ func all_units_filter(unit: Unit) -> bool:
 	if unit.parameters.dead:
 		return false
 	return true
+
+func _max_number_of_targets(attack: UnitAttack) -> int:
+	return attack.unit.party.other_party.get_units_number()

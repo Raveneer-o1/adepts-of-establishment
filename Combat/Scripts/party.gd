@@ -37,6 +37,16 @@ var units: Array[Unit]:
 
 var unit_spots: Array[UnitSpot] = []
 
+## Returns the number of alive units in this party.
+func get_units_number() -> int:
+	var r := 0
+	for s in unit_spots:
+		if not s.active: continue
+		if not s.unit: continue
+		if s.unit.parameters.dead: continue
+		r += 1
+	return r
+
 func check_if_empty() -> bool:
 	for unit in units:
 		if unit != null and not unit.parameters.dead:
@@ -89,6 +99,7 @@ func front_line_is_empty() -> bool:
 ## Filters units based on a custom function.
 ## Signature if a function is expected to be [codeblock](unit: Unit) -> bool[/codeblock]
 func get_units_custom(filter_func: Callable) -> Array[Unit]:
+	assert(filter_func.is_valid(), "Invalid callable")
 	var result: Array[Unit] = []
 	for u in units:
 		if filter_func.call(u) and not result.has(u):

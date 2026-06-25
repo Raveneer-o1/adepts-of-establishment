@@ -155,6 +155,29 @@ func make_current() -> void:
 	unit.attacks_for_this_round[pos] = prev_atk
 	unit.current_attack = self
 
+## Returns the maximum number of targets this attack can affect.
+## This is intended for informational purposes only — for example, to estimate
+## the unit's maximum potential damage output.
+func expected_targets() -> int:
+	if not additional_targets: return targets_needed
+	return additional_targets.max_number_of_targets(self)
+
+## Returns the UI-displayed damage value for this attack — the effective damage
+## per single target, excluding multi‑target effects and accuracy adjustments.
+## For the maximum total damage the attack can deal, use [method get_damage_potential].
+func get_actual_damage() -> float:
+	return damage_multiplier if damage_override else \
+			damage_multiplier * unit.parameters.base_damage
+
+## Returns the maximum total damage this attack can deal across all targets.
+## For the per‑target effective damage, use [method get_actual_damage].
+func get_damage_potential() -> float:
+	if damage_policy: return damage_policy.get_full_damage_potential(self)
+	return \
+		expected_targets() * \
+		get_actual_damage() * \
+		clampf(accuracy, 0.0, 1.0)
+
 ## Returns a human-friendly accuracy representation rather than raw probabilities.
 ## The idea is to never show actual percentages to the player and avoid behind-the-scenes
 ## number manipulation (as it's usually done to improve player perception). [br]

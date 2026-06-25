@@ -20,3 +20,28 @@ func _apply_policy(attack: Attack, finalize: bool) -> void:
 		dmg *= pow(decay_rate, distance)
 		attack.damages[target] = dmg
 	attack.standard_resolution(true)
+
+const MAX_ADJACENT_UNITS = 4
+
+func get_full_damage_potential(attack: UnitAttack) -> float:
+	assert(attack, "Null attack detected")
+	var targets_number := attack.expected_targets()
+	if targets_number == 0: return 0.0
+	var damage := attack.get_actual_damage()
+	if targets_number == 1: return damage
+	var total := damage
+	
+	for i in range(MAX_ADJACENT_UNITS):
+		total += damage * decay_rate
+		
+		targets_number -= 1
+		# targets_number should be 1 at the end as tha last one if the primary target itself
+		if targets_number <= 1: break
+	
+	var decay_rate_sq := decay_rate * decay_rate
+	while targets_number > 1:
+		total += damage * decay_rate_sq
+		
+		targets_number -= 1
+	
+	return total * clampf(attack.accuracy, 0.0, 1.0)
