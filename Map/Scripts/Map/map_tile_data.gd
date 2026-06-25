@@ -38,10 +38,17 @@ var loyalty: float = 1.0:
 		loyal_to = tile_owner
 		claimed_day = map.game.turn_manager.currnt_day
 		return loyalty
-	set(value): loyalty = value
+	set(value):
+		claimed_day = map.game.turn_manager.currnt_day
+		claimed_loyalty = value
+		loyalty = value
+		loyal_to = tile_owner
 var claimed_loyalty: float = 0.0
-## Specifies which faction receives benefits from high [member loyalty] values.
+## Specifies which faction receives benefits from high [member loyalty] values. [br]
+## [b]Note:[/b] This field may be stale — use [method get_loyal_faction]
+## to get the current, updated value.
 var loyal_to: MapFaction = null
+
 ## If this value reaches zero, the tile is claimed. By default, ranges from
 ## [code]0.0[/code] to [code]1.0[/code]
 var claim_status: float = 0.0
@@ -62,6 +69,11 @@ const TERRAIN_ATLAS_ID = 2
 ## to create a proper boundary instead of an abrupt map edge.
 var unused := false
 
+## Updates the [member loyal_to] field and returns the faction this tile is loyal to.
+func get_loyal_faction() -> MapFaction:
+	@warning_ignore("standalone_expression") loyalty
+	return loyal_to
+
 ## Marks the tile as unused. It becomes impassable, non-transparent, and unclaimable.
 ## Equivalent to setting [member unused] to [code]true[/code]
 func set_as_unused() -> void:
@@ -79,6 +91,7 @@ func is_under_fog_of_war(faction: MapFaction) -> bool:
 	match mode:
 		VisibilityMode.Hidden: return true
 		VisibilityMode.Visible: return false
+	push_error("Unexpected VisibilityMode value (%d)" % mode)
 	return true
 
 func _hindered_claim(faction: MapFaction, power: float) -> bool:
@@ -100,8 +113,8 @@ func _regular_claim(faction: MapFaction, power: float) -> bool:
 func _claim(faction: MapFaction, power: float) -> bool:
 	if not claimable: return false
 	if tile_owner == faction: return false
-	if loyal_to == tile_owner: return _hindered_claim(faction, power)
-	if loyal_to == faction: return _helped_claim(faction, power)
+	if get_loyal_faction() == tile_owner: return _hindered_claim(faction, power)
+	if get_loyal_faction() == faction: return _helped_claim(faction, power)
 	return _regular_claim(faction, power)
 
 func _update_owner(faction: MapFaction) -> void:
