@@ -287,8 +287,8 @@ var stats_modifiers: Dictionary[StringName, ModifierStack] = {}
 ## Returns a human-friendly evasion representation rather than raw probabilities.
 ## The idea is to never show actual percentages to the player and avoid behind-the-scenes
 ## number manipulation (as it's usually done to improve player perception). [br]
-## Returns [code]0.0[/code] if evasion is 0.0 (can not evade) [br]
-## Returns [code]INF[/code] if evasion is 1.0 (guaranteed evasion) [br] [br]
+## Returns [code]NAN[/code] if evasion is 0.0 or less (can not evade) [br]
+## Returns [code]INF[/code] if evasion is 1.0 or more (guaranteed evasion) [br] [br]
 ## [center][i]
 ## Conversion examples: [br]
 ## 0.05 (5%) → 0.052631 [br]
@@ -299,8 +299,8 @@ var stats_modifiers: Dictionary[StringName, ModifierStack] = {}
 ## 0.75 (75%) → 3.0
 ## [/i][/center]
 static func get_evasion_representation(ev: float) -> float:
-	if ev >= 1.0: return INF
-	if ev <= 0.0: return NAN
+	if is_equal_approx(ev, 1.0) or ev > 1.0: return INF
+	if is_zero_approx(ev) or ev < 0.0: return NAN
 	return ev / (1.0 - ev)
 
 

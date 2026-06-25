@@ -159,8 +159,8 @@ func make_current() -> void:
 ## The idea is to never show actual percentages to the player and avoid behind-the-scenes
 ## number manipulation (as it's usually done to improve player perception). [br]
 ## The formula essentially gives X for the phrase [b]"unit will miss 1 in X attacks"[/b]. [br]
-## Returns [code]NAN[/code] if accuracy is 0.0 (guaranteed miss) [br]
-## Returns [code]INF[/code] if accuracy is 1.0 (guaranteed hit) [br] [br]
+## Returns [code]NAN[/code] if accuracy is 0.0 or less (guaranteed miss) [br]
+## Returns [code]INF[/code] if accuracy is 1.0 or more (guaranteed hit) [br] [br]
 ## [center][i]Conversion examples: [br]
 ## 0.25 (25%) → 1.333333 [br]
 ## 0.5 (50%) → 2.0 [br]
@@ -172,9 +172,9 @@ func make_current() -> void:
 ## 0.99 (99%) → 100.0 [br]
 ## 0.995 (99.5%) → 199.999... [/i] [/center]
 static func get_accuracy_representation(acc: float) -> float:
-	if is_zero_approx(acc): return NAN
+	if is_zero_approx(acc) or acc < 0.0: return NAN
 	var chance_to_miss: float = 1.0 - acc
-	if is_zero_approx(chance_to_miss): return INF
+	if is_zero_approx(chance_to_miss) or acc < 0.0: return INF
 	return 1.0 / chance_to_miss
 
 ## Returns the attack serialized as a dictionary.
