@@ -44,6 +44,9 @@ func highlight_externally() -> void:
 func reset_highlight() -> void:
 	external_highlight.visible = false
 
+## Places the specified [param u] at this spot.
+## The spot must be empty ([member unit] must be [code]null[/code]) and
+## the provided unit must not already be a child of any node.
 func assign_unit(u: Unit) -> void:
 	if not u: return
 	if unit != null:

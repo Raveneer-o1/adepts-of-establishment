@@ -97,7 +97,8 @@ func front_line_is_empty() -> bool:
 	return true
 
 ## Filters units based on a custom function.
-## Signature if a function is expected to be [codeblock](unit: Unit) -> bool[/codeblock]
+## Signature of the function is expected to be
+## [codeblock](unit: Unit) -> bool[/codeblock]
 func get_units_custom(filter_func: Callable) -> Array[Unit]:
 	assert(filter_func.is_valid(), "Invalid callable")
 	var result: Array[Unit] = []
@@ -106,7 +107,7 @@ func get_units_custom(filter_func: Callable) -> Array[Unit]:
 			result.append(u)
 	return result
 
-func place_spots() -> void:
+func _place_spots() -> void:
 	for spot in unit_spots:
 		if spot.unit: spot.unit.free()
 		spot.free()
@@ -121,7 +122,7 @@ func place_spots() -> void:
 
 ## Places units based on a list of unit names.
 func place_units(list: Array[UnitData]) -> void:
-	place_spots()
+	_place_spots()
 	
 	for unit_data: UnitData in list:
 		#await get_tree().process_frame

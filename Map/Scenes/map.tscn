@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://dlu3vl2ltauc0"]
+[gd_scene load_steps=57 format=3 uid="uid://dlu3vl2ltauc0"]
 
 [ext_resource type="Script" uid="uid://dvi42dc2k0m2h" path="res://Map/Scripts/Map/map.gd" id="1_q0qov"]
 [ext_resource type="Texture2D" uid="uid://c462nhclviryl" path="res://Arts/Map objects/dis tiles (1).png" id="1_xec2n"]
@@ -24,7 +24,6 @@
 [ext_resource type="PackedScene" uid="uid://cru6m63h7miiu" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scenes/TreasureChest.tscn" id="14_esgc1"]
 [ext_resource type="PackedScene" uid="uid://bvgsw3fds7jsc" path="res://Map/Scenes/barrier.tscn" id="15_4hre8"]
 [ext_resource type="PackedScene" uid="uid://dns1v60yltqme" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scenes/map_capital_empire.tscn" id="15_ue3ts"]
-[ext_resource type="Texture2D" uid="uid://518ilab6qsv7" path="res://Arts/Map/tile highlight.png" id="16_ab646"]
 [ext_resource type="PackedScene" uid="uid://capvq01yuowhj" path="res://Map/Map Interactable Objects/ObjectLayer objects/Scenes/village.tscn" id="16_hhhnw"]
 [ext_resource type="Texture2D" uid="uid://dj7bwp2kwlwe6" path="res://Arts/Map/tile highlights atlas.png" id="17_aku2f"]
 [ext_resource type="Script" uid="uid://ijg56utnmlvn" path="res://Map/Scripts/Map/path_finder.gd" id="18_jtf36"]
@@ -1123,11 +1122,6 @@ sources/10 = SubResource("TileSetAtlasSource_xno3x")
 sources/11 = SubResource("TileSetAtlasSource_bl7ab")
 sources/13 = SubResource("TileSetScenesCollectionSource_ykca1")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1tmes"]
-texture = ExtResource("16_ab646")
-texture_region_size = Vector2i(39, 39)
-0:0/0 = 0
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1e4ck"]
 texture = ExtResource("17_aku2f")
 texture_region_size = Vector2i(39, 39)
@@ -1139,7 +1133,6 @@ texture_region_size = Vector2i(39, 39)
 tile_shape = 3
 tile_layout = 2
 tile_size = Vector2i(27, 29)
-sources/1 = SubResource("TileSetAtlasSource_1tmes")
 sources/2 = SubResource("TileSetAtlasSource_1e4ck")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vgpes"]

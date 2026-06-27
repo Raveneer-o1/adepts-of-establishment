@@ -8,9 +8,9 @@ extends Node
 ## as a child). [GameMap] handles high‑level systems such as faction interaction,
 ## screen access permissions, and global map state.
 
-#const test_map = preload("uid://c8smxbiskq4el")  # old
+#const test_map = preload("uid://c8smxbiskq4el")        # old
 #const test_map = preload("res://Map/Scenes/map.tscn")  # template
-const test_map = preload("uid://dbfy1fladbj48")  # demo
+const test_map = preload("uid://dbfy1fladbj48")         # demo
 
 @onready var ui_layers: MapUI = $UILayers
 @onready var turn_manager: MapTurnManager = $TurnManager

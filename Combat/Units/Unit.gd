@@ -409,7 +409,7 @@ func arrange_attacks_and_set_next() -> void:
 func attempt_shielding(attack: Attack, unit: Unit) -> void:
 	if not unit: return
 	var chance := parameters.shielding_chance if parameters.shielding else \
-		parameters.shielding_chance / 2
+		parameters.shielding_chance / 2.0
 	
 	if not GlobalDefs.rand_roll(chance, party): return
 	

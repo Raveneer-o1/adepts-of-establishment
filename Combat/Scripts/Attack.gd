@@ -30,6 +30,14 @@ extends RefCounted
 ## [b]Note:[/b] If a specific key exists in this dictionary but not in
 ## [member target_references], it will be ignored.
 var damages: Dictionary[UnitSpotReference, int] = {}
+## The main list of targets for this attack.
+## This list takes precedence over the [member damages] dictionary.
+##
+## [b]Important:[/b] The array contains [UnitSpotReference] objects, not direct [UnitSpot]s.
+## For the [member damages] dictionary to work correctly, its keys must correspond
+## to the exact same [UnitSpotReference] instances used in this list. Creating new
+## [UnitSpotReference] instances for the dictionary will not work — use
+## [method find_reference] or [method find_all_references] to obtain the correct references.
 var target_references: Array[UnitSpotReference] = []
 
 ## If target can't be found in [member damages] dictionary,
@@ -40,9 +48,15 @@ var default_damage: int
 ## [method redirect_to], [method redirect_all], or [method deep_redirect].
 var redirected: bool = false
 
+## The chance this attack won't be missed
 var accuracy: float
+## Damage type
 var type: GlobalDefs.AttackType
+## The unit that initiatad the attack
 var attacker: Unit
+## List of all unit spots this attack is aimed at.
+## This list is generated dynamically from [member target_references]
+## and cannot be modified directly.
 var target_spots: Array[UnitSpot]:
 	get:
 		var result: Array[UnitSpot] = []
@@ -50,6 +64,9 @@ var target_spots: Array[UnitSpot]:
 			if not ref: continue
 			result.append(ref.spot)
 		return result
+## List of all units this attack is aimed at.
+## This list is generated dynamically from [member target_references]
+## and cannot be modified directly.
 var targets: Array[Unit]:
 	get:
 		var result : Array[Unit] = []
@@ -58,6 +75,16 @@ var targets: Array[Unit]:
 			if ref.spot and ref.spot.unit:
 				result.append(ref.spot.unit)
 		return result
+## The visual effect associated with this attack.
+## This field is set to [member UnitAttack.effect_override] if present; otherwise,
+## the [Attack] constructor must recieve it as an argument —
+## [member UnitParameters.attack_effect] is not checked automatically.
+## [br][br]
+## This effect is instantiated as the target's child when the unit attacks.
+## Intended for visual effects, though this resource undergoes no validation.
+## The instantiated object is not tracked as it should free itself after animation
+## completion. If using this for objects other than [TemporaryEffect],
+## manual memory management is required.
 var effect: Resource
 
 ## Number of targets selected by the player. Used for animation synchronization.[br]
@@ -174,7 +201,9 @@ func _check_ward(ref: UnitSpotReference) -> bool:
 ## Filters targets by removing immune units and calculating misses based on accuracy.
 ## Processes each target reference to determine validity before damage application.
 func filter_targets() -> void:
-	var refs := target_references
+	# original target_references could be modified, creating a duplicate
+	# NOTE: this should not work without the diplicate() and yet it does?
+	var refs: Array[UnitSpotReference] = target_references.duplicate()
 	for ref in refs:
 		var unit := ref.spot.unit
 		if not unit: continue
@@ -184,6 +213,9 @@ func filter_targets() -> void:
 		if _check_ward(ref): continue
 		if _check_miss(ref): continue
 		# Evasion is handled within the unit's resolution logic
+		
+		# the "_check" functions handle the all the logic related to modifying
+		# the related parameters, there's nothing else to do here
 
 ## Filters out immune, warded, and missed targets, then resolves the attack.
 ## Applies [member damage_policy] if defined, otherwise calls [method Unit.resolve_attack]

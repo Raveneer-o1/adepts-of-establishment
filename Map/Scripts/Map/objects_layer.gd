@@ -16,10 +16,10 @@ func _clear_refs (coords: Vector2i) -> void:
 
 ## Returns [ObjectLayerObject] on the specified tile on [code]null[/code]
 ## if the tile is empty
-func get_object(coords: Vector2i) -> ObjectLayerObject:
-	for o: MapInteractableObject in map.tile_to_object.get(coords, []):
-		if o is ObjectLayerObject: return o
-	return null
+#func get_object(coords: Vector2i) -> ObjectLayerObject:
+	#for o: MapInteractableObject in map.tile_to_object.get(coords, []):
+		#if o is ObjectLayerObject: return o
+	#return null
 
 ## Changes the cell at specified [param coords] to [param scene_id].
 ## IDs can be found in the [TileSet] settings. Value of [code]-1[/code] erases the tile.

@@ -71,7 +71,7 @@ var unit: Unit
 @export var applying_effects : Dictionary[String, Variant]
 
 ## If set, attack will use this effect instead if unit's one
-## @experimental: currently not implemented
+## @experimental: currently not tested
 @export var effect_override : Resource
 
 ## Index of the attack animation to use. A value of [code]0[/code] selects
