@@ -1228,7 +1228,7 @@ const database = {
  
 }]
 , &"effects": [{
- &"effect_name": "Undefined", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/encouragement.tscn", &"args": 1 
+ &"effect_name": "Encouragement", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/encouragement.tscn", &"args": 1 
 }]
 , &"base_damage": 80, &"max_hp": 350, &"armor": 80, &"evasion": 0.05, &"shielding_chance": 0.85, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
   
@@ -1248,7 +1248,7 @@ const database = {
  &"effect_name": "Taunt", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/taunt.tscn", &"args": [0.3, 1.0]
  
 }]
-, &"base_damage": 45, &"max_hp": 150, &"armor": 20, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Knight.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+, &"base_damage": 45, &"max_hp": 150, &"armor": 20, &"evasion": 0.05, &"shielding_chance": 0.8, &"portrait_texture_path": "res://Arts/Placeholders/Knight.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
   
 }, &"cost": {
  &"gold": 140, &"stone": 10, &"mana": 0 
@@ -1314,6 +1314,21 @@ const database = {
   
 }, &"cost": {
  &"gold": 1000, &"stone": 0, &"mana": 0 
+} 
+},&"Mercenary" : {
+ &"scene_path": "res://Combat/Units/Derived units//Empire/mercenary.tscn", &"level": 2, &"large_unit": false, &"immunities": []
+, &"description": "", &"brief_description": "", &"faction": 1, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 400, &"attacks": [{
+ &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
+, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
+  
+}, &"animation_index": 0, &"alternative_actions": []
+ 
+}]
+, &"effects": []
+, &"base_damage": 45, &"max_hp": 150, &"armor": 10, &"evasion": 0.075, &"shielding_chance": 0.7, &"portrait_texture_path": "220", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
+ &"gold": 0, &"stone": 0, &"mana": 0 
 } 
 },&"Angel Knight" : {
  &"scene_path": "res://Combat/Units/Derived units//Empire/e10 Angel Knight.tscn", &"level": 4, &"large_unit": false, &"immunities": []
