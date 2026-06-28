@@ -1,6 +1,6 @@
 extends BasePolicy
 
-func apply_policy(attack: Attack, finalize: bool) -> void:
+func _apply_policy(attack: Attack, finalize: bool) -> void:
 	for t in attack.target_references:
 		if not t: continue
 		if not t.spot: continue
