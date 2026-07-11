@@ -221,6 +221,7 @@ func filter_targets() -> void:
 ## Applies [member damage_policy] if defined, otherwise calls [method Unit.resolve_attack]
 ## on each remaining valid target.
 func resolve(finalize: bool = false) -> void:
+	GlobalLogger.add_message("Attack is being resolved", self)
 	filter_targets()
 	if damage_policy:
 		damage_policy.apply_policy(self, finalize)
@@ -353,3 +354,17 @@ func _init(_unit_attack: UnitAttack, _spots: Array[UnitSpot],
 	for spot: UnitSpot in _spots:
 		var ref: UnitSpotReference = UnitSpotReference.new(spot)
 		target_references.append(ref)
+	
+
+func _to_string() -> String:
+	var d: Dictionary = {
+		"is_heal": is_heal,
+		"attacker": attacker,
+		"targets": targets,
+		"type": type,
+		"accuracy": accuracy,
+		"evadable": evadable,
+		"unit_attack": unit_attack,
+		"targets_chosen": targets_chosen,
+	}
+	return "Attack %s" % str(d)

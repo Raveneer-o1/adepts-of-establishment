@@ -12,4 +12,4 @@ func validate_target(attacker: Unit, target_spot: UnitSpot) -> bool:
 			return false
 		return true
 	
-	return target_spot.unit != null
+	return target_spot.unit and not target_spot.unit.parameters.dead

@@ -497,6 +497,8 @@ func apply_effect_path(
 	if force_stackability:
 		child.stackable = override_stackability
 	
+	GlobalLogger.add_message("Added AppliedEffect instance", self)
+	
 	# Initialize effect with parameters (implementation-specific logic)
 	child.initialize(params)
 	
@@ -613,3 +615,6 @@ func heal(value: int, flags: Array[StringName] = []) -> int:
 		)
 	EventBus.unit_healed.emit(parent_unit, healed_hp, flags)
 	return healed_hp
+
+func _to_string() -> String:
+	return "UnitParameters: %s" % parent_unit.to_string()

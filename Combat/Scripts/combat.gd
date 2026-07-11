@@ -509,6 +509,7 @@ func _apply_city_effects() -> void:
 			c.apply_to_combat(self)
 
 func _ready() -> void:
+	GlobalLogger.force_write("New combat inititialized", self)
 	initialize_variables()
 	
 	load_units()

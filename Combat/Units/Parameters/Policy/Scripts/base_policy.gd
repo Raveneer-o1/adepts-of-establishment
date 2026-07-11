@@ -6,7 +6,9 @@ class_name BasePolicy
 func apply_policy(attack: Attack, finalize: bool) -> void:
 	if not attack: return
 	if attack.target_references.is_empty():
-		return
+		return  # why?
+	
+	GlobalLogger.add_message("Policy is being applied", self)
 	
 	_apply_policy(attack, finalize)
 

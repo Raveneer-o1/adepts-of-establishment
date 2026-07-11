@@ -18,6 +18,8 @@ const Y_START_POSITION = 29.0
 const X_OFFSET = 43.0
 const Y_OFFSET = 27.0
 
+@export var is_left: bool
+
 # References to other components in the system
 var other_party: Party
 var main_system: CombatSystem

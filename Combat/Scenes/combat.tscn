@@ -80,6 +80,7 @@ right_player = NodePath("Right Player API")
 [node name="LeftParty" parent="." instance=ExtResource("1_g80uy")]
 position = Vector2(150, 0)
 scale = Vector2(3.5, 3.5)
+is_left = true
 
 [node name="RightParty" parent="." instance=ExtResource("1_g80uy")]
 position = Vector2(1200, 0)

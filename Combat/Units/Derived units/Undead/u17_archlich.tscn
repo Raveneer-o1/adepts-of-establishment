@@ -1,7 +1,6 @@
-[gd_scene load_steps=42 format=3 uid="uid://c42n73wmostxu"]
+[gd_scene load_steps=41 format=3 uid="uid://c42n73wmostxu"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_jlfmv"]
-[ext_resource type="Texture2D" uid="uid://d3rtwmp4xvfdg" path="res://Arts/Placeholders/Archlich.jpg" id="2_6wk45"]
 [ext_resource type="Texture2D" uid="uid://bhoee7tysve3i" path="res://Arts/Undead units/u21 archlich attack.png" id="2_d3c0n"]
 [ext_resource type="Texture2D" uid="uid://dvnlrgwkd4lgp" path="res://Arts/Undead units/u21 archlich idle .png" id="3_ppol0"]
 [ext_resource type="PackedScene" uid="uid://bq5fuvt6gwhs6" path="res://Combat/Effects/Scenes/sythe.tscn" id="4_11wyg"]
@@ -167,7 +166,6 @@ needed_xp = 1600
 unit_class = 5
 brief_description = "Weak mage with ability to resurrect and two double actions per round."
 full_description = "The strongest of the Necropolis' mages bear the name of Archliches. These beings can bend life and death to their will. Nothing alive can stand in their way, and nothing dead can resist their command."
-portrait_texture = ExtResource("2_6wk45")
 portrait_texture_path = "res://Arts/Placeholders/Archlich.jpg"
 cost_mana = 1700
 

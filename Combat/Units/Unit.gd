@@ -359,14 +359,12 @@ func check_taking_damage(unit: Unit) -> void:
 
 #region Delivering attacks
 
-
 ## Resets attack targets and emits a signal that the attack has finished.
 func finish_attacking() -> void:
 	reset_chosen_targets(self)
 	set_next_attack()
 	EventBus.attack_animation_finished.emit(self)
 	#EventBus.attack_concluded.emit(self)
-
 
 ## Set to false when you need to skip next call of [method set_next_attack]
 var attack_setting: bool = true
@@ -496,6 +494,8 @@ func start_attacking() -> void:
 	if unit_type == GlobalDefs.UnitType.Archer:
 		attack.tags.append(&"shot")
 	
+	GlobalLogger.force_message("Unit is attacking", self)
+	
 	system.combat_logic.book_damage(attack)
 
 ## Returns if it was possible and thereby the unit has taken defense stance
@@ -567,6 +567,7 @@ func resurrect(message: String = "Revived!") -> void:
 		effect.activate()
 	
 	system.display_text_near_unit(self, message)
+	GlobalLogger.add_message("Revived", self)
 	EventBus.unit_revived.emit(self)
 
 ## Restores health to the unit and plays associated animations and sounds. [br]
@@ -584,6 +585,7 @@ func heal(value: int, message: String = "", text_color: Color = Color.TRANSPAREN
 	
 	var hp_healed: int = parameters.heal(value)
 	display_heal(hp_healed, message, text_color)
+	GlobalLogger.add_message("Healed by %d" % hp_healed, self)
 	return hp_healed
 
 ## [b]Returns:[/b] the actual amount of health restored (may differ from the provided
@@ -605,6 +607,7 @@ func schedule_heal(
 	parameter_snapshots.append(
 		UnitParametersSnapshot.new(parameters, message, HEAL_COLOR)
 	)
+	GlobalLogger.add_message("scheduled heal by %d" % healed, self)
 	return healed
 
 
@@ -613,6 +616,12 @@ const MAX_DAMAGE_COLOR = Color(1.0, 0.1, 0.1)
 const HEAL_COLOR = Color.LIME_GREEN
 
 
+# TODO: make cubic interpolation, e.g.
+#var gradient := Gradient.new()
+#gradient.interpolation_mode = Gradient.GRADIENT_INTERPOLATE_CUBIC
+#gradient.add_point(0.0, MIN_DAMAGE_COLOR)
+#gradient.add_point(1.0, MAX_DAMAGE_COLOR)
+#gradient.sample(damage_percentage)
 ## Returnes interpolated color between [member MIN_DAMAGE_COLOR] and [member MAX_DAMAGE_COLOR]
 ## with the factor of damage dealt as a percentage of total health
 func damage_color(dmg: int) -> Color:
@@ -646,6 +655,8 @@ func take_direct_damage(
 			message,
 			color
 	)
+	update_visuals()
+	GlobalLogger.add_message("Taken %d direct damage" % damage_taken, self)
 
 ## Applies damage to the unit and triggers associated animations.[br]
 ## [param dmg] is damage that is to be taken by unit.[br]
@@ -670,6 +681,8 @@ func take_damage(
 	
 	var damage_taken := parameters.take_damage(dmg)
 	display_damage(damage_taken, message, text_color)
+	GlobalLogger.add_message("Taken %d damage" % damage_taken, self)
+	update_visuals()
 	return damage_taken
 
 ## [b]Returns:[/b] the actual amount of health lost (may differ from the provided
@@ -718,6 +731,7 @@ func schedule_damage(
 	parameter_snapshots.append(
 		UnitParametersSnapshot.new(parameters, message, text_color)
 	)
+	GlobalLogger.add_message("Scheduled %d damage" % damage_taken, self)
 	return damage_taken
 
 func display_heal(dmg: int, message: String = "", text_color: Color = Color.TRANSPARENT) -> void:
@@ -755,6 +769,10 @@ func display_damage(dmg: int, message: String = "", text_color: Color = Color.TR
 
 var death_visualized: bool = false
 
+## Handles the unit's death. Unlike other methods in this class, this method
+## modifies the actual game state, not just visuals. The unit is reparented to
+## the [UnitSpot]'s graveyard, which may cause incorrect behavior if checks are
+## performed before this method is called.
 func die() -> void:
 	if not initialized:
 		return
@@ -769,6 +787,8 @@ func die() -> void:
 	death_visualized = true
 	for effect in parameters.get_all_effects():
 		effect.deactivate()
+	
+	GlobalLogger.force_write("Unit died", self)
 
 #endregion
 
@@ -856,13 +876,20 @@ func display_effect_icon(image: Image, effect: AppliedEffect) -> void:
 	texture_rect.scale = Vector2(EFFECT_ICONS_SCALE, EFFECT_ICONS_SCALE)
 	displayed_icons[texture_rect] = effect
 
-
 func visualize_death() -> void:
 	if summoned_unit:
 		queue_free()
 		return
 	
 	visible = false
+
+func _to_string() -> String:
+	return "Unit \"%s\" (position %d on the %s)" % \
+		[
+			unit_name,
+			party_position, 
+			("left" if party.is_left else "right") if party else "??"
+		]
 
 #endregion
 

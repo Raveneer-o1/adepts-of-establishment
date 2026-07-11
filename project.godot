@@ -22,6 +22,7 @@ EventBus="*res://Autoload/EventBus.gd"
 GlobalDefs="*res://Autoload/GlobalDefs.gd"
 DataBuffer="*res://Autoload/DataBuffer.gd"
 GameSettings="*res://Autoload/GameSettings.gd"
+GlobalLogger="*res://Autoload/Logger.gd"
 
 [debug]
 

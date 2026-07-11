@@ -329,6 +329,9 @@ func initialize(params: Variant = null) -> void:
 			return
 	
 	_apply_effect(params)
+	
+	GlobalLogger.force_write("Effect is being applied", self)
+	
 	if is_queued_for_deletion(): return
 	connect_callables()
 	
@@ -339,6 +342,8 @@ func initialize(params: Variant = null) -> void:
 			return
 		target_unit.display_effect_icon(image, self)
 
+func _to_string() -> String:
+	return "%s (%s)" % [effect_name, str(get_full_data().args)]
 
 ## Marks the effect as persistent by setting [member persistent] to [code]true[/code]. [br]
 ## If [param immediately] is [code]true[/code], adds the entry to [member UnitData.effects],
