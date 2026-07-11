@@ -70,7 +70,7 @@ func force_write(message: String, object: Variant) -> void:
 	for d: Dictionary in get_stack():
 		# Might want to skip the first line, as it is always this logger function.
 		file.store_line("\t%s" % str(d))
-	file.store_line("")
+	#file.store_line("")
 	
 	file.store_line(_form_message(message, object))
 	file.store_line(MSG_DELIM)
@@ -79,9 +79,9 @@ func force_write(message: String, object: Variant) -> void:
 
 func _get_file() -> FileAccess:
 	var file := FileAccess.open(LOG_FILE, FileAccess.READ_WRITE)
-	file.seek_end()
 	if not file:
 		push_warning("Unable to write a log message. Error: %s" % \
 			str( FileAccess.get_open_error() )
 		)
+	else: file.seek_end()
 	return file

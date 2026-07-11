@@ -475,6 +475,9 @@ func force_attack(target: Unit, native_attack: bool = true, attack: UnitAttack =
 	if atk == null:
 		return
 	
+	GlobalLogger.write("Unit is forced to attack", self)
+	GlobalLogger.add_message("Created attack", atk)
+	
 	atk.tags.append(&"forced")
 	if unit_type == GlobalDefs.UnitType.Archer:
 		atk.tags.append(&"shot")

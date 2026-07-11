@@ -24,6 +24,11 @@ func check_trigger(attack: Attack) -> void:
 	if not attack.targets.has(target_unit):
 		return
 	
+	# there was a bug with the electrified effect
+	# I can't reproduce it so this should provide the explanation
+	# if it happens again
+	GlobalLogger.write("%s, damage dealt" % message_trigger, self)
+	
 	target_unit.take_direct_damage(damage, message_trigger, color_effect)
 
 func read_params(params: Variant) -> void:

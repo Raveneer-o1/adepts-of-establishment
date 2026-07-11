@@ -219,7 +219,11 @@ func lift_effect() -> void:
 	# queue_free() should be called before emitting signal and calling clean_effects()
 	queue_free()
 	EventBus.effect_lifted.emit(self)
+	
+	# this does not work
+	# was intended to allow calling cancel_free() but this is not how it works
 	if not is_queued_for_deletion(): return
+	
 	_remove_effect()
 	target_unit.clean_effects()
 
