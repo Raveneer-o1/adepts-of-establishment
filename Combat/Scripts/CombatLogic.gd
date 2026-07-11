@@ -78,7 +78,7 @@ func remove_unit_from_queue(unit: Unit) -> void:
 	# Iterate through attacks_queue instead of unit.attacks_for_this_round for robustness:
 	# attacks_for_this_round could theoretically be out of sync with attacks_queue
 	# (e.g., when adding a new attack to the unit)
-	for attack in attacks_queue:
+	for attack: UnitAttack in attacks_queue.duplicate():
 		if attack != null and \
 				attack.unit == unit:
 			remove_attack_from_queue(attack)
