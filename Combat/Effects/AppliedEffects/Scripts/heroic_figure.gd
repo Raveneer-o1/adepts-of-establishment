@@ -39,7 +39,6 @@ func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
 	return xp_bonus
 
 func _apply_effect(params: Variant) -> void:
-	read_params(params)
 	# Override this method in derived classes to implement the effect's application logic.
 	# Do not connect to signals manually - this is handled automatically via the 
 	# _signal_function_pairs dictionary.

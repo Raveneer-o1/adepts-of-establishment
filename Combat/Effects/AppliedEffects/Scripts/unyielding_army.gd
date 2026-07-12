@@ -36,7 +36,6 @@ func _check_if_should_apply() -> bool:
 	return false
 
 func _apply_effect(params: Variant) -> void:
-	read_params(params)
 	for u in target_unit.party.units:
 		if not u: continue
 		u.parameters.add_modifier(

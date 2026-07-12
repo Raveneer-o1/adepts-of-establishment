@@ -21,5 +21,4 @@ func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
 	return triggers
 
 func _apply_effect(params: Variant) -> void:
-	read_params(params)
 	_signal_function_pairs[EventBus.effect_applied] = check_trigger

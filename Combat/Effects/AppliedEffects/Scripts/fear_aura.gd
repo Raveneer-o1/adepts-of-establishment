@@ -13,7 +13,6 @@ func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
 	return evasion_decrease
 
 func _apply_effect(params: Variant) -> void:
-	read_params(params)
 	var pos := target_unit.party_position
 	var affected_units := \
 			target_unit.party.get_adjacent_units(pos)

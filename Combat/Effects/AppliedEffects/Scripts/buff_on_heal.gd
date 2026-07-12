@@ -66,7 +66,6 @@ func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
 	}
 
 func _apply_effect(params: Variant) -> void:
-	read_params(params)
 	if parameter_to_buff == "":
 		print_debug("Empty parameter value!")
 		queue_free()

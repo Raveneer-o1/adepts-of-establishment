@@ -14,6 +14,6 @@ func set_value(val: int) -> void:
 	fraction = snappedf(fraction, SHIELD_WIDTH)
 	label.text = str(val)
 	if is_zero_approx(fraction):
-		hide()  # 0 min size does not hide the texture
+		armor_texture_rect.hide()  # 0 min size does not hide the texture
 		return
 	armor_texture_rect.custom_minimum_size.x = fraction

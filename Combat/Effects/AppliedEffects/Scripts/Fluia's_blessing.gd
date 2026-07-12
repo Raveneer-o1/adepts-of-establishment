@@ -4,6 +4,9 @@ extends AppliedEffect
 
 const TARGET_FLAG = &"hemorrhage"
 
+func read_params(params: Variant) -> void:
+	pass
+
 func check_trigger(unit: Unit, dmg: int, flags: Array[StringName]) -> void:
 	if is_queued_for_deletion(): return
 	if unit == target_unit: return

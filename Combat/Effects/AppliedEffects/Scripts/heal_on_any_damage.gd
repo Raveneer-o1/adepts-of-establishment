@@ -20,5 +20,4 @@ func read_params(params: Variant) -> void:
 		percentage = params
 
 func _apply_effect(params: Variant) -> void:
-	read_params(params)
 	_signal_function_pairs[EventBus.damage_taken] = check_trigger

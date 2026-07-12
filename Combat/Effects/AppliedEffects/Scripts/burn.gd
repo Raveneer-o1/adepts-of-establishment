@@ -27,5 +27,4 @@ func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
 	return [turns, damage_pet_turn]
 
 func _apply_effect(params: Variant) -> void:
-	read_params(params)
 	_signal_function_pairs[EventBus.turn_started] = deal_damage

@@ -34,5 +34,4 @@ func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
 	return [triggers, reset_hp_to]
 
 func _apply_effect(params: Variant) -> void:
-	read_params(params)
 	_signal_function_pairs[EventBus.damage_taken] = check_tigger

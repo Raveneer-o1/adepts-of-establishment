@@ -41,8 +41,6 @@ func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
 	return shielding_chance_multiplier
 
 func _apply_effect(params: Variant) -> void:
-	read_params(params)
-	
 	decrease_shielding()
 	_signal_function_pairs[EventBus.attack_shielded] = check_shield_trigger
 	_signal_function_pairs[EventBus.attack_resolved] = check_defend_trigger

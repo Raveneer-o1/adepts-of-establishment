@@ -33,7 +33,6 @@ func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
 	return [turns, damage]
 
 func _apply_effect(params: Variant) -> void:
-	read_params(params)
 	const arg_number = 2
 	if turns == 0:
 		lift_effect()

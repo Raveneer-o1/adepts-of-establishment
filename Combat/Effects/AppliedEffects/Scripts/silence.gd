@@ -14,8 +14,6 @@ func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
 	return turns
 
 func _apply_effect(params: Variant) -> void:
-	read_params(params)
-	
 	for node in get_parent().get_children():
 		if node == self:
 			continue

@@ -25,7 +25,6 @@ func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
 	return [evasion_decrease, turns]
 
 func _apply_effect(params: Variant) -> void:
-	read_params(params)
 	if turns == 0:
 		lift_effect()
 		return

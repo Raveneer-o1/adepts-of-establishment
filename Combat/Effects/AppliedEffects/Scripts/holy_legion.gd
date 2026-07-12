@@ -53,7 +53,5 @@ func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
 	return [buff_chance, attack_buff]
 
 func _apply_effect(params: Variant) -> void:
-	read_params(params)
-	
 	_signal_function_pairs[EventBus.attack_booked] = check_trigger
 	_signal_function_pairs[EventBus.unit_died] = check_resurrection

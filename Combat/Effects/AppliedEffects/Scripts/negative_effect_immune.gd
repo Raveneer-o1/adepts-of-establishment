@@ -2,6 +2,9 @@ extends AppliedEffect
 
 @export var message: String = "Immune to effects"
 
+func read_params(params: Variant) -> void:
+	pass
+
 func check_trigger(e: AppliedEffect) -> void:
 	if not e.negative_effect: return
 	if e.target_unit != target_unit: return

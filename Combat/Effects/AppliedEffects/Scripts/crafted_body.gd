@@ -22,5 +22,4 @@ func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
 	return buff_parameters
 
 func _apply_effect(params: Variant) -> void:
-	read_params(params)
 	_signal_function_pairs[EventBus.unit_revived] = check_trigger

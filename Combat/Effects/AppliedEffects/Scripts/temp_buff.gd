@@ -74,11 +74,11 @@ func apply_modifier() -> void:
 
 ## Attempts to initialize the effect's parameters from a dictionary
 ## returns if initialization was succsessful
-func try_init_params(params: Variant) -> bool:
+func read_params(params: Variant) -> void:
 	if params is not Dictionary:
 		print_debug("Invalid parameter for 'temporary buff' effect. \
 				Expected Dictionary, found %s!" % type_string(typeof(params)))
-		return false
+		return
 	
 	var p : StringName = &"parameter"
 	if params.has(p):
@@ -86,7 +86,7 @@ func try_init_params(params: Variant) -> bool:
 			_parameter = params[p]
 		else:
 			print_debug("Unknown parameter '%s' for 'temporary buff' effect." % params[p])
-			return false
+			return
 	
 	p = &"turns"
 	if params.has(p):
@@ -99,8 +99,6 @@ func try_init_params(params: Variant) -> bool:
 	p = &"multiplier"
 	if params.has(p):
 		multiplier = params[p]
-	
-	return true
 
 func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
 	if other_effect: return {
@@ -118,10 +116,6 @@ func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
 
 # Called when the effect is applied to a unit
 func _apply_effect(params: Variant) -> void:
-	if not try_init_params(params):
-		queue_free()
-		return
-	
 	# If the effect duration is zero, remove it immediately
 	if turns == 0:
 		queue_free()

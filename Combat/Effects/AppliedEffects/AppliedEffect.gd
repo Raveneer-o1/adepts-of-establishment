@@ -95,6 +95,8 @@ var _signal_function_pairs: Dictionary[Signal, Callable]
 const NOT_LIFTABLE_LINE = " Cannot be dispelled."
 const NOT_SILENSABLE_LINE = " Cannot be silenced."
 
+func read_params(params: Variant) -> void: pass
+
 func get_description() -> String:
 	var base := _get_description()
 	base = base.rstrip(" ")
@@ -332,6 +334,7 @@ func initialize(params: Variant = null) -> void:
 			queue_free()
 			return
 	
+	read_params(params)
 	_apply_effect(params)
 	
 	GlobalLogger.force_write("Effect is being applied", self)

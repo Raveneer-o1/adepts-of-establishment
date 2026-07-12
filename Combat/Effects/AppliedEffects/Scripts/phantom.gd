@@ -25,8 +25,6 @@ func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
 	return [type, rounds]
 
 func _apply_effect(params: Variant) -> void:
-	read_params(params)
-	
 	if rounds == 0:
 		queue_free()
 		return

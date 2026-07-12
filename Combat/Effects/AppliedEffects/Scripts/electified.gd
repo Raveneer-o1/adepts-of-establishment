@@ -42,7 +42,6 @@ func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
 	return [turns, damage]
 
 func _apply_effect(params: Variant) -> void:
-	read_params(params)
 	if turns <= 0:
 		queue_free()
 		return

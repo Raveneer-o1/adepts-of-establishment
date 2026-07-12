@@ -16,7 +16,6 @@ func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
 	return damage_increase
 
 func _apply_effect(params: Variant) -> void:
-	read_params(params)
 	var affected_units := target_unit.party.get_adjacent_units(target_unit.party_position)
 	for unit in affected_units:
 		unit.display_effect_icon(ICONS.get_layer_data(BUFF_ICON_INDEX), self)

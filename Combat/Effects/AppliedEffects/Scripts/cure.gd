@@ -2,6 +2,9 @@ extends AppliedEffect
 
 @export var display_text: String = "Cured"
 
+func read_params(params: Variant) -> void:
+	pass
+
 ## Called when the effect is applied to a unit.
 func _apply_effect(params: Variant) -> void:
 	for child in target_unit.parameters.get_children():

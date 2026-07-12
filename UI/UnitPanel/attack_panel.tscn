@@ -27,6 +27,20 @@ text = "Attack"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="InitiativeContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Initiative"
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/InitiativeContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("4_25reu")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/InitiativeContainer"]
+layout_mode = 2
+text = "40"
+
 [node name="DMG_ACC" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
@@ -55,19 +69,6 @@ texture = ExtResource("3_d7uec")
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/DMG_ACC/AccuracyContainer"]
 layout_mode = 2
 text = "20"
-
-[node name="InitiativeContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-tooltip_text = "Initiative"
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/InitiativeContainer"]
-layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("4_25reu")
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/InitiativeContainer"]
-layout_mode = 2
-text = "40"
 
 [node name="TypeContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

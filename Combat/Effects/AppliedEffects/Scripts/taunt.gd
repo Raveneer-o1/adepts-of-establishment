@@ -45,5 +45,4 @@ func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
 	return [chance_to_taunt, damage_reduction_during_taunting]
 
 func _apply_effect(params: Variant) -> void:
-	read_params(params)
 	_signal_function_pairs[EventBus.attack_booked] = check_trigger

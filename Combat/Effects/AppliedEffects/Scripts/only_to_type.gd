@@ -16,7 +16,6 @@ func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
 	return [type, effect, passing_params]
 
 func _apply_effect(params: Variant) -> void:
-	read_params(params)
 	if target_unit.unit_type == type:
 		target_unit.parameters.apply_effect(effect, passing_params)
 	queue_free()
