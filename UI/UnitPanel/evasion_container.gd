@@ -3,5 +3,6 @@ extends VBoxContainer
 
 @onready var evasion_label: Label = $EvasionLabel
 
-func set_value(val: int) -> void:
+func set_value(val: float) -> void:
+	#print(val)
 	evasion_label.text = UnitInfoPanel.get_evasion_text(val)

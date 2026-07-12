@@ -5,12 +5,12 @@ class_name UnitInfoPanel
 #@onready var full_info: RichTextLabel = $Panel/MainContainer/RightContainer/FullInfo
 @onready var portrait: TextureRect = $Panel/MainContainer/LeftContainer/PortraitPanel/PortraitMargin/Portrait
 
-@onready var hp_container: UI_UnitPanel_HP_Container = $Panel/MainContainer/RightContainer/BaseInfo/HPContainer
-@onready var armor_container: UI_UnitPanel_ArmorContainer = $Panel/MainContainer/RightContainer/BaseInfo/ArmorContainer
-@onready var evasion_container: UI_UnitPanel_EvasionContainer = $Panel/MainContainer/RightContainer/BaseInfo/EvasionContainer
-@onready var base_damage_container: UI_UnitPanel_BaseDamageContainer = $Panel/MainContainer/RightContainer/BaseInfo/BaseDamageContainer
-@onready var level_label: Label = $Panel/MainContainer/RightContainer/LevelLabel
-@onready var attacks_container: UI_UnitPanel_AttacksContainer = $Panel/MainContainer/RightContainer/Attacks
+@onready var hp_container: UI_UnitPanel_HP_Container = $Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/HPContainer
+@onready var armor_container: UI_UnitPanel_ArmorContainer = $Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/ArmorContainer
+@onready var evasion_container: UI_UnitPanel_EvasionContainer = $Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/EvasionContainer
+@onready var base_damage_container: UI_UnitPanel_BaseDamageContainer = $Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/BaseDamageContainer
+@onready var level_label: Label = $Panel/MainContainer/MarginContainer/RightContainer/LevelLabel
+@onready var attacks_container: UI_UnitPanel_AttacksContainer = $Panel/MainContainer/MarginContainer/RightContainer/Attacks
 
 # Formatting constants for unit stats to maintain consistency in text presentation.
 const HP_LINE = "HP: %d/%d\n"
@@ -43,7 +43,7 @@ static func get_evasion_text(val: float) -> String:
 	if is_nan(val): s = "0"
 	elif is_inf(val): s = "Guaranteed"
 	else: s = str(int(val * 100.0))
-	return EVASION_LINE % s
+	return s
 
 func _set_hp(u: Variant) -> void:
 	if u is Unit:

@@ -132,27 +132,36 @@ size_flags_vertical = 8
 mouse_filter = 2
 text = "HP = "
 
-[node name="RightContainer" type="VBoxContainer" parent="Panel/MainContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="RightContainer" type="VBoxContainer" parent="Panel/MainContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 mouse_filter = 2
 
-[node name="LevelLabel" type="Label" parent="Panel/MainContainer/RightContainer"]
+[node name="LevelLabel" type="Label" parent="Panel/MainContainer/MarginContainer/RightContainer"]
 layout_mode = 2
 text = "Level 1"
 label_settings = SubResource("LabelSettings_4tmex")
 horizontal_alignment = 1
 
-[node name="BaseInfo" type="HBoxContainer" parent="Panel/MainContainer/RightContainer"]
+[node name="BaseInfo" type="HBoxContainer" parent="Panel/MainContainer/MarginContainer/RightContainer"]
 layout_mode = 2
 
-[node name="HPContainer" type="VBoxContainer" parent="Panel/MainContainer/RightContainer/BaseInfo"]
+[node name="HPContainer" type="VBoxContainer" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo"]
 layout_mode = 2
 alignment = 1
 script = ExtResource("4_u8sgo")
 
-[node name="HPProgressBar" type="TextureProgressBar" parent="Panel/MainContainer/RightContainer/BaseInfo/HPContainer"]
+[node name="HPProgressBar" type="TextureProgressBar" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/HPContainer"]
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
 tooltip_text = "Health"
@@ -162,7 +171,7 @@ texture_under = ExtResource("4_4wkid")
 texture_over = ExtResource("5_yamot")
 texture_progress = ExtResource("6_t7euk")
 
-[node name="Label" type="Label" parent="Panel/MainContainer/RightContainer/BaseInfo/HPContainer/HPProgressBar"]
+[node name="Label" type="Label" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/HPContainer/HPProgressBar"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -173,63 +182,64 @@ text = "50/100"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ArmorContainer" type="VBoxContainer" parent="Panel/MainContainer/RightContainer/BaseInfo"]
+[node name="ArmorContainer" type="VBoxContainer" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo"]
 custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
-tooltip_text = "Armor"
 script = ExtResource("8_u8sgo")
 
-[node name="Armor_TextureRect" type="TextureRect" parent="Panel/MainContainer/RightContainer/BaseInfo/ArmorContainer"]
+[node name="Armor_TextureRect" type="TextureRect" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/ArmorContainer"]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 texture = ExtResource("7_t7euk")
 stretch_mode = 1
 
-[node name="Label" type="Label" parent="Panel/MainContainer/RightContainer/BaseInfo/ArmorContainer"]
+[node name="Label" type="Label" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/ArmorContainer"]
+visible = false
 layout_mode = 2
-text = "35"
+mouse_filter = 1
+text = "—"
 horizontal_alignment = 1
 
-[node name="EvasionContainer" type="VBoxContainer" parent="Panel/MainContainer/RightContainer/BaseInfo"]
+[node name="EvasionContainer" type="VBoxContainer" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo"]
 layout_mode = 2
 tooltip_text = "Evasion"
 script = ExtResource("10_uoi4i")
 
-[node name="EvasionHeader" type="TextureRect" parent="Panel/MainContainer/RightContainer/BaseInfo/EvasionContainer"]
+[node name="EvasionHeader" type="TextureRect" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/EvasionContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 texture = SubResource("AtlasTexture_j547b")
 expand_mode = 3
 stretch_mode = 4
 
-[node name="EvasionLabel" type="Label" parent="Panel/MainContainer/RightContainer/BaseInfo/EvasionContainer"]
+[node name="EvasionLabel" type="Label" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/EvasionContainer"]
 layout_mode = 2
 text = "10"
 horizontal_alignment = 1
 
-[node name="BaseDamageContainer" type="VBoxContainer" parent="Panel/MainContainer/RightContainer/BaseInfo"]
+[node name="BaseDamageContainer" type="VBoxContainer" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo"]
 layout_mode = 2
 tooltip_text = "Base damage"
 script = ExtResource("11_x1pog")
 
-[node name="BaseDamageHeader" type="TextureRect" parent="Panel/MainContainer/RightContainer/BaseInfo/BaseDamageContainer"]
+[node name="BaseDamageHeader" type="TextureRect" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/BaseDamageContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 texture = SubResource("AtlasTexture_6nmij")
 expand_mode = 3
 stretch_mode = 4
 
-[node name="BaseDamageLabel" type="Label" parent="Panel/MainContainer/RightContainer/BaseInfo/BaseDamageContainer"]
+[node name="BaseDamageLabel" type="Label" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/BaseDamageContainer"]
 layout_mode = 2
 text = "50"
 horizontal_alignment = 1
 
-[node name="Attacks" type="HBoxContainer" parent="Panel/MainContainer/RightContainer"]
+[node name="Attacks" type="HBoxContainer" parent="Panel/MainContainer/MarginContainer/RightContainer"]
 layout_mode = 2
 script = ExtResource("12_x1pog")
 
-[node name="AttackPanel" parent="Panel/MainContainer/RightContainer/Attacks" instance=ExtResource("14_j547b")]
+[node name="AttackPanel" parent="Panel/MainContainer/MarginContainer/RightContainer/Attacks" instance=ExtResource("14_j547b")]
 layout_mode = 2
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
