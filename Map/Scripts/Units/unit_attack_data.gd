@@ -54,6 +54,11 @@ extends Resource
 ## for future expansion with multiple alternatives.
 @export var animation_index: int = 0
 
+## If not empty, this text is displayed to the player as the unit's ability description.
+## Use this to explain unique attack policies, target selection rules,
+## and automatic additional targets.
+@export_multiline var description: String = ""
+
 var unit: UnitData
 
 ## Returns the UI-displayed damage value for this attack — the effective damage
@@ -84,6 +89,7 @@ func get_actual_damage() -> float:
 ##     "additional_targets" = "",
 ##     "damage_policy" = "",
 ##     "applying_effects" = {},
+##     "description" = "",
 ##     "alternative_actions" = [],  # Array[UnitAttackData] or Array[Dictionary]
 ##     # Dictionaries in alternative_actions are recursively converted to UnitAttackData
 ## }
@@ -105,6 +111,7 @@ static func from_dict(dict: Dictionary) -> UnitAttackData:
 	res.damage_policy = dict.get("damage_policy", "")
 	res.animation_index = dict.get("animation_index", 0)
 	res.applying_effects.assign(dict.get("applying_effects", {}))
+	res.description = dict.get("description", "")
 	var alt_actions: Array = dict.get("alternative_actions", [])
 	for a: Variant in alt_actions:
 		if a is Dictionary:

@@ -222,6 +222,7 @@ static func serialized(a: UnitAttack) -> Dictionary:
 		"damage_policy" = a.damage_policy.resource_path if a.damage_policy else "",
 		"applying_effects" = a.applying_effects,
 		"animation_index" = a.animation_index,
+		"description" = a.description,
 		"alternative_actions" = alternative_actions,
 	}
 	return res

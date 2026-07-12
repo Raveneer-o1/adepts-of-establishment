@@ -96,3 +96,6 @@ script = ExtResource("6_es246")
 
 [node name="Label" parent="MarginContainer/VBoxContainer/Attack_Effects_GridContainer" instance=ExtResource("7_vshi4")]
 layout_mode = 2
+
+[node name="DescriptionLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2

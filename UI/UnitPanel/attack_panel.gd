@@ -8,6 +8,7 @@ extends PanelContainer
 @onready var attack_effects: UI_UnitPanel_AttackPanel_Effects = $MarginContainer/VBoxContainer/Attack_Effects_GridContainer
 @onready var attack_name: Label = $MarginContainer/VBoxContainer/AttackName
 @onready var effects_label: Label = $MarginContainer/VBoxContainer/EffectsLabel
+@onready var description_label: RichTextLabel = $MarginContainer/VBoxContainer/DescriptionLabel
 
 const NO_EFFECTS_LINE = "—"
 const EFFECTS_LINE = "Effects on hit:"
@@ -31,6 +32,7 @@ func _fill_data_attack(a: UnitAttack) -> void:
 	else:
 		effects_label.text = NO_EFFECTS_LINE
 		effects_label.tooltip_text = NO_EFFECTS_TOOLTIP
+	description_label.text = a.description
 
 func _fill_data_attack_data(a: UnitAttackData) -> void:
 	attack_name.text = a.attack_name
@@ -46,3 +48,4 @@ func _fill_data_attack_data(a: UnitAttackData) -> void:
 	else:
 		effects_label.text = NO_EFFECTS_LINE
 		effects_label.tooltip_text = NO_EFFECTS_TOOLTIP
+	description_label.text = a.description
