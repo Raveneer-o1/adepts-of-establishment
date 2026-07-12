@@ -83,6 +83,13 @@ texture = ExtResource("5_4yooj")
 layout_mode = 2
 text = "Physical"
 
+[node name="EffectsLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "Effects on hit:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Attack_Effects_GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 script = ExtResource("6_es246")

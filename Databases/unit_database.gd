@@ -318,7 +318,7 @@ const database = {
  &"evasion_buff": 0.03, &"other_stat_buff": "Attack", &"other_stat_buff_strength": 10, &"other_stat_buff_multiplier": 1.0 
 } 
 }, {
- &"effect_name": "Phantom", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/Phantom.tscn", &"args": [0, 1]
+ &"effect_name": "Phantom", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/phantom.tscn", &"args": [0, 1]
  
 }]
 , &"base_damage": 45, &"max_hp": 180, &"armor": 10, &"evasion": 0.1, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Skeleton hero.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {

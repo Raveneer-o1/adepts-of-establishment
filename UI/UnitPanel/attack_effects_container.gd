@@ -7,15 +7,16 @@ func fill_effects(effects: Dictionary[String, Variant]) -> void:
 	for c in get_children():
 		c.queue_free()
 	for e in effects:
-		var path := e
+		var path := e.to_lower()
 		if not FileAccess.file_exists(path):
-			path = "res://Combat/Effects/AppliedEffects/Scenes/%s.tscn" % e
+			path = "res://Combat/Effects/AppliedEffects/Scenes/%s.tscn" % e.to_lower()
 		if not FileAccess.file_exists(path): 
-			push_error("Unlnown effect '%s'" % e)
+			push_error("Unknown effect '%s'" % e.to_lower())
 			continue
 		var sc: AppliedEffect = load(path).instantiate()
 		sc.read_params(effects[e])
 		
 		var eff: UI_UnitPanel_AttackPanel_Effects_EffectPanel = ATTACK_EFFECTS_EFFECT_PANEL.instantiate()
 		add_child(eff)
+		eff.add_child(sc)
 		eff.set_effect(sc)

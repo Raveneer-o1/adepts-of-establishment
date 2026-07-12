@@ -7,6 +7,11 @@ extends PanelContainer
 @onready var type_label: Label = $MarginContainer/VBoxContainer/TypeContainer/Label
 @onready var attack_effects: UI_UnitPanel_AttackPanel_Effects = $MarginContainer/VBoxContainer/Attack_Effects_GridContainer
 @onready var attack_name: Label = $MarginContainer/VBoxContainer/AttackName
+@onready var effects_label: Label = $MarginContainer/VBoxContainer/EffectsLabel
+
+const NO_EFFECTS_LINE = "—"
+const EFFECTS_LINE = "Effects on hit:"
+const NO_EFFECTS_TOOLTIP = "This attack applies no effects"
 
 func fill_data(a: Variant) -> void:
 	if a is UnitAttack: _fill_data_attack(a)
@@ -20,6 +25,12 @@ func _fill_data_attack(a: UnitAttack) -> void:
 	initiative_label.text = str(a.initiative)
 	type_label.text = UnitInfoPanel.attack_type_to_str(a.type)
 	attack_effects.fill_effects(a.applying_effects)
+	if a.applying_effects:
+		effects_label.text = EFFECTS_LINE
+		effects_label.tooltip_text = ""
+	else:
+		effects_label.text = NO_EFFECTS_LINE
+		effects_label.tooltip_text = NO_EFFECTS_TOOLTIP
 
 func _fill_data_attack_data(a: UnitAttackData) -> void:
 	attack_name.text = a.attack_name
@@ -29,3 +40,9 @@ func _fill_data_attack_data(a: UnitAttackData) -> void:
 	initiative_label.text = str(a.initiative)
 	type_label.text = UnitInfoPanel.attack_type_to_str(a.type)
 	attack_effects.fill_effects(a.applying_effects)
+	if a.applying_effects:
+		effects_label.text = EFFECTS_LINE
+		effects_label.tooltip_text = ""
+	else:
+		effects_label.text = NO_EFFECTS_LINE
+		effects_label.tooltip_text = NO_EFFECTS_TOOLTIP

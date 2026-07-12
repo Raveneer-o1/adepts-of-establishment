@@ -4,6 +4,7 @@ class_name UnitInfoPanel
 #@onready var info := get_node("Panel/MainContainer/LeftContainer/DesctiprionPanel/DescriptionLabel") as RichTextLabel
 #@onready var full_info: RichTextLabel = $Panel/MainContainer/RightContainer/FullInfo
 @onready var portrait: TextureRect = $Panel/MainContainer/LeftContainer/PortraitPanel/PortraitMargin/Portrait
+@onready var description_label: RichTextLabel = $Panel/MainContainer/LeftContainer/DesctiprionPanel/DescriptionLabel
 
 @onready var hp_container: UI_UnitPanel_HP_Container = $Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/HPContainer
 @onready var armor_container: UI_UnitPanel_ArmorContainer = $Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/ArmorContainer
@@ -110,6 +111,12 @@ func _set_name(u: Variant) -> void:
 		]
 	else: push_error("Unexpected type")
 
+func _set_small_description(u: Variant) -> void:
+	if u is Unit:
+		description_label.text = u.brief_description
+	elif u is UnitData:
+		description_label.text = u.brief_description
+	else: push_error("Unexpected type")
 
 func fill_data(unit: Variant) -> void:
 	assert(unit is Unit or unit is UnitData)
@@ -119,6 +126,7 @@ func fill_data(unit: Variant) -> void:
 	_set_evasion(unit)
 	_set_armor(unit)
 	_set_hp(unit)
+	_set_small_description(unit)
 
 func fill_text_data(unit: Unit) -> void:
 	fill_data(unit)

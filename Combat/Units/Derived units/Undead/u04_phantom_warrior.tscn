@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://baen1w1a16rc7" path="res://Combat/Effects/AppliedEffects/Scenes/illusive.tscn" id="7_g2u3k"]
 [ext_resource type="Resource" uid="uid://bi8ttsckdonmo" path="res://Combat/Units/Parameters/Validation/melee_with_self.tres" id="7_pdd6m"]
 [ext_resource type="Resource" uid="uid://bxequ2hnqmd6l" path="res://Combat/Units/Parameters/Policy/phantom_warrior_policy.tres" id="8_x6hmv"]
-[ext_resource type="PackedScene" uid="uid://cb84o5ukeamvu" path="res://Combat/Effects/AppliedEffects/Scenes/Phantom.tscn" id="9_4a8ga"]
+[ext_resource type="PackedScene" uid="uid://cb84o5ukeamvu" path="res://Combat/Effects/AppliedEffects/Scenes/phantom.tscn" id="9_4a8ga"]
 [ext_resource type="AudioStream" uid="uid://i6bja4p08ldu" path="res://Sounds/using/Damage/Undead/phantom warrior.wav" id="10_d4c5e"]
 [ext_resource type="AudioStream" uid="uid://dbdb8tlqberuq" path="res://Sounds/using/Damage/Undead/PhantomWarror 2.wav" id="11_pdd6m"]
 [ext_resource type="AudioStream" uid="uid://n66k04l3ybaj" path="res://Sounds/using/Ghost woosh 2.wav" id="12_x6hmv"]
