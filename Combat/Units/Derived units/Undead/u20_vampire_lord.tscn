@@ -1,7 +1,6 @@
-[gd_scene load_steps=46 format=3 uid="uid://c4wmjlxgojxgm"]
+[gd_scene load_steps=45 format=3 uid="uid://c4wmjlxgojxgm"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_7kl12"]
-[ext_resource type="Texture2D" uid="uid://cuni5j4njr66u" path="res://Arts/Placeholders/Vampire lord (2).jpg" id="2_8nuui"]
 [ext_resource type="Texture2D" uid="uid://b0jud4o3yt06w" path="res://Arts/Undead units/u16 vampire lord attack .png" id="2_fcnea"]
 [ext_resource type="Texture2D" uid="uid://be72taapo0gaf" path="res://Arts/Undead units/u16 vampire lord idle .png" id="3_7m43w"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_v6g03"]
@@ -158,7 +157,6 @@ needed_xp = 1700
 unit_class = 4
 brief_description = "Mage with lifesteal."
 full_description = "Untouched by time, Vampire Lords hone their magic eternally, growing ever stronger in power."
-portrait_texture = ExtResource("2_8nuui")
 portrait_texture_path = "res://Arts/Placeholders/Vampire lord (2).jpg"
 cost_gold = 500
 cost_stone = 700
@@ -188,8 +186,7 @@ applying_effects = Dictionary[String, Variant]({
 "clumsiness": [0.05, 2],
 "vulnerability": [3, 10]
 })
-description = "Also hits adjacent targets.
-Applies [b]clumsiness[/b] and [b]vulnerability[/b]."
+description = "Also hits adjacent targets."
 
 [node name="Disappear" type="Node" parent="UnitParameters/UnitAttack" index="0"]
 script = ExtResource("5_mqc6w")

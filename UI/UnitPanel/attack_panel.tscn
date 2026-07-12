@@ -44,6 +44,19 @@ text = "40"
 [node name="DMG_ACC" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
+[node name="TypeContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/DMG_ACC"]
+layout_mode = 2
+tooltip_text = "Damage type"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/DMG_ACC/TypeContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("5_4yooj")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/DMG_ACC/TypeContainer"]
+layout_mode = 2
+text = "Physical"
+
 [node name="DamageContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/DMG_ACC"]
 layout_mode = 2
 tooltip_text = "Damage"
@@ -70,18 +83,11 @@ texture = ExtResource("3_d7uec")
 layout_mode = 2
 text = "20"
 
-[node name="TypeContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="DescriptionLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-tooltip_text = "Damage type"
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/TypeContainer"]
-layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("5_4yooj")
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TypeContainer"]
-layout_mode = 2
-text = "Physical"
+bbcode_enabled = true
+fit_content = true
 
 [node name="EffectsLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -95,7 +101,4 @@ layout_mode = 2
 script = ExtResource("6_es246")
 
 [node name="Label" parent="MarginContainer/VBoxContainer/Attack_Effects_GridContainer" instance=ExtResource("7_vshi4")]
-layout_mode = 2
-
-[node name="DescriptionLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
