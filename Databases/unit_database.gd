@@ -7,7 +7,7 @@ const database = {
  "vulnerability": [1, 15]
 , "weakness": [1, 15]
  
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -22,7 +22,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 3, &"accuracy": 0.8, &"targets_needed": 1, &"initiative": 0, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_mage_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Splash.tres", &"damage_policy": "res://Combat/Units/Parameters/Policy/decay_policy.tres", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -37,7 +37,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.85, &"targets_needed": 1, &"initiative": 45, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -55,7 +55,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 3, &"accuracy": 0.8, &"targets_needed": 1, &"initiative": 30, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_mage_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/standard_mage_targets.tres", &"damage_policy": "res://Combat/Units/Parameters/Policy/decay_policy.tres", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -70,7 +70,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.8, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -86,7 +86,7 @@ const database = {
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
  "Weakness": [1, 30]
  
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -101,7 +101,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.8, &"targets_needed": 1, &"initiative": 0, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -116,7 +116,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 0, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_mage_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/standard_mage_targets.tres", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -131,7 +131,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.8, &"targets_needed": 1, &"initiative": 0, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -146,13 +146,13 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 0.65, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.8, &"targets_needed": 1, &"initiative": 65, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }, {
  &"attack_name": "Attack", &"damage_multiplier": 0.95, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.8, &"targets_needed": 1, &"initiative": 45, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -171,14 +171,14 @@ const database = {
 , &"target_validation": "res://Combat/Units/Parameters/Validation/necromancer_validity.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Derived units/Undead/u17_archlich.tscn::Resource_avfpn", &"applying_effects": {
  "death_curse": [-1, 10]
  
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "This unit can resurrect instead of attacking.", &"alternative_actions": []
  
 }, {
  &"attack_name": "Attack", &"damage_multiplier": 0.2, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 2, &"initiative": 30, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/necromancer_validity.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/necromancer_policy.tres", &"applying_effects": {
  "death_curse": [-1, 10]
  
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -193,7 +193,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 35, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -213,7 +213,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 30, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -231,7 +231,9 @@ const database = {
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_mage_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Splash.tres", &"damage_policy": "res://Combat/Units/Derived units/Undead/u18_herald_of_death.tscn::Resource_4fa37", &"applying_effects": {
  "weakness": [2, 30]
  
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Also hits adjacent targets.\nAttacks apply [b]
+weakness[/b]
+.", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -250,7 +252,7 @@ const database = {
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_mage_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
  "weakness": [1, 10]
  
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -266,7 +268,9 @@ const database = {
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_mage_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Splash.tres", &"damage_policy": "res://Combat/Units/Derived units/Undead/u15_wraith.tscn::Resource_uj6co", &"applying_effects": {
  "weakness": [1, 10]
  
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Also hits adjacent targets.\nAttacks apply [b]
+weakness[/b]
+.", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -284,7 +288,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -310,7 +314,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 2, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/melee_with_self.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/phantom_warrior_policy.tres", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -334,7 +338,7 @@ const database = {
  "burn": [1, 25]
 , "confused": [3, 0.65]
  
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -349,7 +353,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -370,7 +374,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.9, &"targets_needed": 1, &"initiative": 35, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -385,7 +389,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -408,7 +412,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 0.5, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 35, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/entire_line.tres", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Also damages targets behind and in front of the main target", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -429,7 +433,7 @@ const database = {
 , "only_to_type": [2, "weakness", [3, 35]
 ]
  
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -444,7 +448,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -465,7 +469,9 @@ const database = {
  "only_to_type": [2, "weakness", [3, 35]
 ]
  
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Applies [b]
+weakness[/b]
+ to mages.", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -484,7 +490,7 @@ const database = {
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
  "paralysis": [1.0, 1]
  
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -499,7 +505,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 3, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -520,7 +526,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -549,7 +555,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 35, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -564,7 +570,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.85, &"targets_needed": 1, &"initiative": 30, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/necromancer_validity.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Derived units/Undead/u11_necromancer.tscn::Resource_0m3ru", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -579,7 +585,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 0.5, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 2, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -603,7 +609,7 @@ const database = {
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Splash.tres", &"damage_policy": "", &"applying_effects": {
  "paralysis": [0.9, 1]
  
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -619,7 +625,7 @@ const database = {
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
  "Poison": [20, 2]
  
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -639,11 +645,15 @@ const database = {
  "clumsiness": [0.05, 2]
 , "vulnerability": [3, 10]
  
-}, &"animation_index": 0, &"alternative_actions": [{
+}, &"animation_index": 0, &"description": "Also hits adjacent targets.\nApplies [b]
+clumsiness[/b]
+ and [b]
+vulnerability[/b]
+.", &"alternative_actions": [{
  &"attack_name": "Disappear", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 2, &"accuracy": 1.0, &"targets_needed": 1, &"initiative": 0, &"evadable": false, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/any_unit.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/disappear_policy.tres", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
  
@@ -666,7 +676,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -682,7 +692,7 @@ const database = {
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Splash.tres", &"damage_policy": "", &"applying_effects": {
  "paralysis": [0.9, 2]
  
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -697,7 +707,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 0.65, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 2, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
  "silence": 1 
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -718,14 +728,14 @@ const database = {
 , &"target_validation": "res://Combat/Units/Parameters/Validation/necromancer_validity.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Derived units/Undead/u14_lich.tscn::Resource_4gd0u", &"applying_effects": {
  "death_curse": [-1, 7]
  
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "This unit can resurrect instead of attacking.", &"alternative_actions": []
  
 }, {
  &"attack_name": "Attack", &"damage_multiplier": 0.4, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 25, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/necromancer_validity.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Derived units/Undead/u14_lich.tscn::Resource_4gd0u", &"applying_effects": {
  "death_curse": [-1, 7]
  
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -741,7 +751,9 @@ const database = {
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_mage_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Splash.tres", &"damage_policy": "res://Combat/Units/Derived units/Undead/u16_elder_vampire.tscn::Resource_5sbny", &"applying_effects": {
  "clumsiness": [0.05, 2]
  
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Also hits adjacent targets.\nApplies [b]
+clumsiness[/b]
+.", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -762,7 +774,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
  "silence": 0 
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -786,7 +798,7 @@ const database = {
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
  "paralysis": [0.7, 1]
  
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -803,7 +815,7 @@ const database = {
  "burn": [1, 25]
 , "confused": [2, 0.5]
  
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -818,7 +830,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -833,7 +845,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 0.65, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.975, &"targets_needed": 2, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "This unit can choose two targets", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -851,7 +863,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 30, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/elementalist_validity.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/elementalist_policy.tres", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Can summon an elemental on an empty spot.", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -866,25 +878,25 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 0.25, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.985, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }, {
  &"attack_name": "Attack", &"damage_multiplier": 0.25, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.985, &"targets_needed": 1, &"initiative": 30, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }, {
  &"attack_name": "Attack", &"damage_multiplier": 0.25, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.985, &"targets_needed": 1, &"initiative": 20, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }, {
  &"attack_name": "Attack", &"damage_multiplier": 0.25, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.985, &"targets_needed": 1, &"initiative": 10, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -904,7 +916,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 0.56, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Double_attack.tres", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "This unit attacks the target twice", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -919,7 +931,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 0.6, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 2, &"initiative": 30, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/elementalist_validity.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/elementalist_policy.tres", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -934,13 +946,13 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 0.4, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 70, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/melee_with_move.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/melee_with_move_policy.tres", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "This unit can move to attack.", &"alternative_actions": []
  
 }, {
  &"attack_name": "Attack", &"damage_multiplier": 0.6, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/melee_with_move.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/melee_with_move_policy.tres", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -955,19 +967,19 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 0.4, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 70, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Derived units/Empire/e12 Paladin.tscn::Resource_rww7o", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/melee_with_move_policy.tres", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "This unit can move to attack.", &"alternative_actions": []
  
 }, {
  &"attack_name": "Attack", &"damage_multiplier": 0.5, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Derived units/Empire/e12 Paladin.tscn::Resource_rww7o", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/melee_with_move_policy.tres", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "This unit can move to attack.", &"alternative_actions": []
  
 }, {
  &"attack_name": "Attack", &"damage_multiplier": 0.4, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 30, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Derived units/Empire/e12 Paladin.tscn::Resource_rww7o", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/melee_with_move_policy.tres", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "This unit can move to attack.", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -988,7 +1000,7 @@ const database = {
 , &"target_validation": "res://Combat/Units/Parameters/Validation/any_unit.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Splash.tres", &"damage_policy": "res://Combat/Units/Derived units/Empire/e21 Arcanist.tscn::Resource_xbk8a", &"applying_effects": {
  "electrified": [3, 18]
  
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -999,7 +1011,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 1.0, &"targets_needed": 1, &"initiative": 0, &"evadable": false, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_mage_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
  
@@ -1015,7 +1027,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/melee_with_self.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/provoke_valid_targets_policy.tres", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "This unit can provoke all avaliable targets to attack itself (once every three turns).", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -1034,13 +1046,13 @@ const database = {
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
  "vulnerability": [1, 30]
  
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }, {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.97, &"targets_needed": 1, &"initiative": 50, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -1058,7 +1070,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 0.5, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Double_attack.tres", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -1075,7 +1087,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -1090,7 +1102,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.9, &"targets_needed": 1, &"initiative": 30, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_mage_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -1105,7 +1117,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 50, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -1120,7 +1132,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 30, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/any_unit.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/filter_allies_policy.tres", &"applying_effects": {
  "exposed": 2 
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -1137,7 +1149,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 30, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/any_unit.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Derived units/Empire/e16 Mage.tscn::Resource_6f3w4", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "This unit can apply a weak shield to an ally", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -1152,19 +1164,19 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 0.5, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 60, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/melee_with_move.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/melee_with_move_policy.tres", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "This unit can move to attack.", &"alternative_actions": []
  
 }, {
  &"attack_name": "Attack", &"damage_multiplier": 0.4, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/melee_with_move.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/melee_with_move_policy.tres", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }, {
  &"attack_name": "Attack", &"damage_multiplier": 0.3, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 35, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/melee_with_move.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/melee_with_move_policy.tres", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -1182,11 +1194,11 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": [{
+}, &"animation_index": 0, &"description": "Can purify any unit: lift all effects that unit has.", &"alternative_actions": [{
  &"attack_name": "Purification", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 4, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/any_unit.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/purify_policy.tres", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
  
@@ -1209,7 +1221,7 @@ const database = {
 , &"target_validation": "res://Combat/Units/Parameters/Validation/any_unit.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Splash.tres", &"damage_policy": "res://Combat/Units/Derived units/Empire/e19 White Mage.tscn::Resource_yeav1", &"applying_effects": {
  "electrified": [2, 10]
  
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Applies *electrified* to the target.\nThis unit can apply a weak shield to an ally.", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -1224,7 +1236,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 0, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -1241,7 +1253,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -1259,13 +1271,13 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 0.5, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.96, &"targets_needed": 1, &"initiative": 50, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }, {
  &"attack_name": "Attack", &"damage_multiplier": 25.0, &"damage_override": true, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 35, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -1280,7 +1292,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 0.85, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 30, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/any_unit.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Splash.tres", &"damage_policy": "res://Combat/Units/Parameters/Policy/applying_shield_policy.tres", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "This unit can apply a weak shield to an ally", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -1296,14 +1308,14 @@ const database = {
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
  "Poison": [15, 3]
  
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "This unit applies poison on attacks", &"alternative_actions": []
  
 }, {
  &"attack_name": "Attack", &"damage_multiplier": 0.5, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 50, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
  "Poison": [20, 2]
  
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -1321,7 +1333,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -1336,13 +1348,13 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 0.5, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/melee_with_self.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Derived units/Empire/e10 Angel Knight.tscn::Resource_5c7t2", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "This unit can provoke all avaliable targets to attack itself (once every two turns).", &"alternative_actions": []
  
 }, {
  &"attack_name": "Attack", &"damage_multiplier": 0.5, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 30, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/melee_with_self.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Derived units/Empire/e10 Angel Knight.tscn::Resource_5c7t2", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -1365,7 +1377,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 4, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -1388,7 +1400,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -1403,7 +1415,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": true, &"type": 3, &"accuracy": 1.0, &"targets_needed": 1, &"initiative": 0, &"evadable": false, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_healer_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/mass_heal_targets.tres", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -1418,7 +1430,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": true, &"type": 3, &"accuracy": 1.0, &"targets_needed": 1, &"initiative": 10, &"evadable": false, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_healer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
  "cure": null 
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -1433,7 +1445,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": true, &"type": 3, &"accuracy": 1.0, &"targets_needed": 1, &"initiative": 15, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/resurrection_validation.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/resurrection_policy.tres", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -1448,7 +1460,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": true, &"type": 3, &"accuracy": 1.0, &"targets_needed": 1, &"initiative": 10, &"evadable": false, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_healer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
  "cure": null 
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -1464,7 +1476,7 @@ const database = {
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_healer_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/mass_heal_targets.tres", &"damage_policy": "", &"applying_effects": {
  "random_buff": [2, 20, 1.2]
  
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -1479,7 +1491,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": true, &"type": 3, &"accuracy": 1.0, &"targets_needed": 1, &"initiative": 10, &"evadable": false, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_healer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -1495,7 +1507,7 @@ const database = {
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_healer_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/mass_heal_targets.tres", &"damage_policy": "", &"applying_effects": {
  "random_buff": [1, 5, 1.1]
  
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -1510,7 +1522,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 0.85, &"damage_override": false, &"is_heal": false, &"type": 4, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Splash.tres", &"damage_policy": "res://Combat/Units/Derived units/Church/e09 Grand Inquisitor.tscn::Resource_6n8jw", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Also damages adjacent units", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -1534,7 +1546,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -1549,7 +1561,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 30, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -1564,7 +1576,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -1579,13 +1591,13 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 0.667, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }, {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -1600,7 +1612,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 0.5, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 15, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Double_attack.tres", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -1615,13 +1627,13 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 65, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }, {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 30, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -1636,7 +1648,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 2, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -1652,21 +1664,21 @@ const database = {
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
  "poison": [10, 3]
  
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }, {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 45, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
  "poison": [10, 3]
  
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }, {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 30, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
  "poison": [10, 3]
  
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -1681,7 +1693,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 0.35, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 15, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_mage_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/standard_mage_targets.tres", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -1696,7 +1708,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 0, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
