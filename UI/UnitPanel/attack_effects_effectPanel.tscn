@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dv6rhlj3ijuya"]
+
+[ext_resource type="Script" uid="uid://dit84d8erddx6" path="res://UI/UnitPanel/attack_effects_effectPanel.gd" id="1_wuwif"]
+
+[node name="Label" type="Label"]
+text = "Death curse"
+script = ExtResource("1_wuwif")

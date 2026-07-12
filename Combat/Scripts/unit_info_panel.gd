@@ -1,9 +1,16 @@
 extends Control
 class_name UnitInfoPanel
 
-@onready var info := get_node("Panel/MainContainer/LeftContainer/DesctiprionPanel/DescriptionLabel") as RichTextLabel
-@onready var full_info: RichTextLabel = $Panel/MainContainer/RightContainer/FullInfo
+#@onready var info := get_node("Panel/MainContainer/LeftContainer/DesctiprionPanel/DescriptionLabel") as RichTextLabel
+#@onready var full_info: RichTextLabel = $Panel/MainContainer/RightContainer/FullInfo
 @onready var portrait: TextureRect = $Panel/MainContainer/LeftContainer/PortraitPanel/PortraitMargin/Portrait
+
+@onready var hp_container: UI_UnitPanel_HP_Container = $Panel/MainContainer/RightContainer/BaseInfo/HPContainer
+@onready var armor_container: UI_UnitPanel_ArmorContainer = $Panel/MainContainer/RightContainer/BaseInfo/ArmorContainer
+@onready var evasion_container: UI_UnitPanel_EvasionContainer = $Panel/MainContainer/RightContainer/BaseInfo/EvasionContainer
+@onready var base_damage_container: UI_UnitPanel_BaseDamageContainer = $Panel/MainContainer/RightContainer/BaseInfo/BaseDamageContainer
+@onready var level_label: Label = $Panel/MainContainer/RightContainer/LevelLabel
+@onready var attacks_container: UI_UnitPanel_AttacksContainer = $Panel/MainContainer/RightContainer/Attacks
 
 # Formatting constants for unit stats to maintain consistency in text presentation.
 const HP_LINE = "HP: %d/%d\n"
@@ -38,156 +45,83 @@ static func get_evasion_text(val: float) -> String:
 	else: s = str(int(val * 100.0))
 	return EVASION_LINE % s
 
-func fill_data(unit: UnitData) -> void:
-	info.text = ""
-	full_info.text = ""
-	
-	var hp_text: String = HP_LINE % [unit.current_hp, unit.max_hp]
-	var xp_text: String = XP_LINE % [unit.current_xp, unit.needed_xp]
-	var armor_text := ARMOR_LINE % unit.armor
-	var evasion_text := get_evasion_text(unit.evasion)
-	var damage_text: String = ""
-	var type_text: String = ""
-	var initiative_text: String = ""
-	var accuracy_text: String = ""
-	var effect_text: String = ""
-	var applied_effect_text: String = ""
-	
-	for a in unit.attack_data:
-		@warning_ignore("narrowing_conversion") 
-		var dmg: int = a.damage_multiplier if a.damage_override else \
-				a.damage_multiplier * unit.base_damage
-		
-		if a.targets_needed == 1:
-			damage_text += str(dmg) + ", "
-		else:
-			damage_text += str(dmg) + " x%d, " % a.targets_needed
-		
-		initiative_text += str(a.initiative) + ", "
-		accuracy_text += get_accuracy_text(a.accuracy) + ", "
-		type_text += attack_type_to_str(a.type) + ", "
-		
-		var local_effect_list: String = ""
-		for effect: String in a.applying_effects:
-			local_effect_list += effect.to_snake_case().replace("_", " ") + ", "
-		effect_text += BRACKETS_ENCLOSURE % local_effect_list.trim_suffix(", ") \
-				if local_effect_list != "" else "-"
-	
-	for effect in unit.effects:
-		applied_effect_text += SHORT_APPLIED_EFFECT_LINE % effect[&"effect_name"]
-	
-	applied_effect_text = applied_effect_text.trim_suffix(", ")
-	initiative_text = initiative_text.trim_suffix(", ")
-	damage_text = damage_text.trim_suffix(", ")
-	type_text = type_text.trim_suffix(", ")
-	accuracy_text = accuracy_text.trim_suffix(", ")
-	
-	damage_text = DAMAGE_LINE % [unit.base_damage, damage_text]
-	accuracy_text = ACCURACY_LINE % accuracy_text
-	initiative_text = INITIATIVE_LINE % initiative_text
-	type_text = TYPE_LINE % type_text
-	effect_text = EFFECT_LINE % effect_text
-	
-	full_info.append_text(\
-			hp_text + \
-			armor_text + \
-			evasion_text + \
-			damage_text + \
-			effect_text + \
-			accuracy_text + \
-			initiative_text + \
-			type_text + \
-			applied_effect_text
-	)
-	
-	full_info.append_text(DESCRIOTION_LINE % unit.description)
-	
-	info.text = "%s%s\n%s" % [
-		hp_text,
-		xp_text,
-		unit.brief_description
-	] 
+func _set_hp(u: Variant) -> void:
+	if u is Unit:
+		hp_container.set_value(
+			u.parameters.hp,
+			u.parameters.max_hp
+		)
+	elif u is UnitData:
+		hp_container.set_value(
+			u.current_hp,
+			u.max_hp
+		)
+	else: push_error("Unexpected type")
+
+func _set_armor(u: Variant) -> void:
+	if u is Unit:
+		armor_container.set_value(
+			u.parameters.armor
+		)
+	elif u is UnitData:
+		armor_container.set_value(
+			u.armor
+		)
+	else: push_error("Unexpected type")
+
+func _set_evasion(u: Variant) -> void:
+	if u is Unit:
+		evasion_container.set_value(
+			u.parameters.evasion
+		)
+	elif u is UnitData:
+		evasion_container.set_value(
+			u.evasion
+		)
+	else: push_error("Unexpected type")
+
+func _set_base_dmg(u: Variant) -> void:
+	if u is Unit:
+		base_damage_container.set_value(
+			u.parameters.base_damage
+		)
+	elif u is UnitData:
+		base_damage_container.set_value(
+			u.base_damage
+		)
+	else: push_error("Unexpected type")
+
+func _set_attacks(u: Variant) -> void:
+	const LEVEL_TEXT = "%s, \tLevel %d"
+	if u is Unit:
+		attacks_container.fill_attacks(u.parameters.attacks)
+	elif u is UnitData:
+		attacks_container.fill_attacks(u.attack_data)
+	else: push_error("Unexpected type")
+
+func _set_name(u: Variant) -> void:
+	const LEVEL_TEXT = "%s, \tLevel %d"
+	if u is Unit:
+		level_label.text = LEVEL_TEXT % [u.unit_name, u.parameters.level]
+	elif u is UnitData:
+		level_label.text = LEVEL_TEXT % [
+			u.personal_name if u.personal_name else u.unit_name,
+			u.level
+		]
+	else: push_error("Unexpected type")
+
+
+func fill_data(unit: Variant) -> void:
+	assert(unit is Unit or unit is UnitData)
+	_set_name(unit)
+	_set_attacks(unit)
+	_set_base_dmg(unit)
+	_set_evasion(unit)
+	_set_armor(unit)
+	_set_hp(unit)
 
 func fill_text_data(unit: Unit) -> void:
-	info.text = ""
-	full_info.text = ""
-	
-	var hp_text: String = HP_LINE % [unit.parameters.hp, unit.parameters.max_hp]
-	var xp_text: String = XP_LINE % [unit.current_xp, unit.needed_xp]
-	var armor_text := ARMOR_LINE % unit.parameters.armor
-	var evasion_text := get_evasion_text(unit.parameters.evasion)
-	var damage_text: String = ""
-	var type_text: String = ""
-	var initiative_text: String = ""
-	var accuracy_text: String = ""
-	var effect_text: String = ""
-	var applied_effect_text: String = ""
-	
-	for a in unit.parameters.attacks:
-		@warning_ignore("narrowing_conversion") 
-		var dmg: int = a.damage_multiplier if a.damage_override else \
-				a.damage_multiplier * unit.parameters.base_damage
-		
-		if a.targets_needed == 1:
-			damage_text += str(dmg) + ", "
-		else:
-			damage_text += str(dmg) + " x%d, " % a.targets_needed
-		
-		initiative_text += str(a.initiative) + ", "
-		accuracy_text += get_accuracy_text(a.accuracy) + ", "
-		type_text += attack_type_to_str(a.type) + ", "
-		
-		var local_effect_list: String = ""
-		for effect: String in a.applying_effects:
-			local_effect_list += effect.to_snake_case().replace("_", " ") + ", "
-		effect_text += BRACKETS_ENCLOSURE % local_effect_list.trim_suffix(", ") \
-				if local_effect_list != "" else "-"
-	
-	for effect in unit.parameters.get_children():
-		if effect is not AppliedEffect:
-			continue
-		applied_effect_text += APPLIED_EFFECT_LINE % [
-			(effect as AppliedEffect).effect_name,
-			(effect as AppliedEffect).get_description()
-		]
-	
-	initiative_text = initiative_text.trim_suffix(", ")
-	damage_text = damage_text.trim_suffix(", ")
-	type_text = type_text.trim_suffix(", ")
-	accuracy_text = accuracy_text.trim_suffix(", ")
-	
-	damage_text = DAMAGE_LINE % [unit.parameters.base_damage, damage_text]
-	accuracy_text = ACCURACY_LINE % accuracy_text
-	initiative_text = INITIATIVE_LINE % initiative_text
-	type_text = TYPE_LINE % type_text
-	effect_text = EFFECT_LINE % effect_text
-	
-	full_info.append_text(\
-			hp_text + \
-			armor_text + \
-			evasion_text + \
-			damage_text + \
-			effect_text + \
-			accuracy_text + \
-			initiative_text + \
-			type_text + \
-			applied_effect_text
-	)
-	
-	var ability_text: String = ""
-	for a in unit.parameters.attacks:
-		if a.description != "":
-			ability_text += "\n%s\n" % a.description
-	if ability_text != "":
-		full_info.append_text(DESCRIOTION_LINE % ability_text)
-	
-	full_info.append_text(DESCRIOTION_LINE % unit.full_description)
-	
-	info.text = "%s\n%s\n%s" %[
-		hp_text,
-		xp_text,
-		unit.brief_description
-	] 
+	fill_data(unit)
 
 func replace_portrait(texture_path: String) -> void:
 	var texture := DataBuffer.get_image(texture_path)

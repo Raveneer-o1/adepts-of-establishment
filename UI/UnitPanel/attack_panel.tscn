@@ -1,0 +1,90 @@
+[gd_scene load_steps=8 format=3 uid="uid://cn26iuo3vxrgy"]
+
+[ext_resource type="Script" uid="uid://curv76xh2drvy" path="res://UI/UnitPanel/attack_panel.gd" id="1_7i06e"]
+[ext_resource type="Texture2D" uid="uid://2kg5glgwgia1" path="res://Arts/itch assets/Pixel Art Icon Pack - RPG [Cainos]/Weapon & Tool/Iron Sword.png" id="2_0ymqr"]
+[ext_resource type="Texture2D" uid="uid://bsw5np50n35r2" path="res://Arts/itch assets/Pixel Art Icon Pack - RPG [Cainos]/Weapon & Tool/Arrow.png" id="3_d7uec"]
+[ext_resource type="Texture2D" uid="uid://cajtwk2xrwxta" path="res://Arts/itch assets/Pixel Art Icon Pack - RPG [Cainos]/Equipment/Leather Boot.png" id="4_25reu"]
+[ext_resource type="Texture2D" uid="uid://5cs46chf2ou8" path="res://Arts/itch assets/Pixel Art Icon Pack - RPG [Cainos]/Weapon & Tool/Sapphire Staff.png" id="5_4yooj"]
+[ext_resource type="Script" uid="uid://mx5t5noif80y" path="res://UI/UnitPanel/attack_effects_container.gd" id="6_es246"]
+[ext_resource type="PackedScene" uid="uid://dv6rhlj3ijuya" path="res://UI/UnitPanel/attack_effects_effectPanel.tscn" id="7_vshi4"]
+
+[node name="AttackPanel" type="PanelContainer"]
+script = ExtResource("1_7i06e")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="AttackName" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Attack"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DMG_ACC" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="DamageContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/DMG_ACC"]
+layout_mode = 2
+tooltip_text = "Damage"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/DMG_ACC/DamageContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_0ymqr")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/DMG_ACC/DamageContainer"]
+layout_mode = 2
+text = "100"
+
+[node name="AccuracyContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/DMG_ACC"]
+layout_mode = 2
+tooltip_text = "Accuracy"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/DMG_ACC/AccuracyContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_d7uec")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/DMG_ACC/AccuracyContainer"]
+layout_mode = 2
+text = "20"
+
+[node name="InitiativeContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Initiative"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/InitiativeContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("4_25reu")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/InitiativeContainer"]
+layout_mode = 2
+text = "40"
+
+[node name="TypeContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Damage type"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/TypeContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("5_4yooj")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TypeContainer"]
+layout_mode = 2
+text = "Physical"
+
+[node name="Attack_Effects_GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("6_es246")
+
+[node name="Label" parent="MarginContainer/VBoxContainer/Attack_Effects_GridContainer" instance=ExtResource("7_vshi4")]
+layout_mode = 2

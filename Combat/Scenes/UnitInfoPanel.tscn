@@ -1,14 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://d12hr40jjb8s8"]
+[gd_scene load_steps=19 format=3 uid="uid://d12hr40jjb8s8"]
 
 [ext_resource type="Script" uid="uid://df3o7avtisvgt" path="res://Combat/Scripts/unit_info_panel.gd" id="1_udonc"]
 [ext_resource type="Texture2D" uid="uid://bqxx85jbcslr4" path="res://Arts/Placeholder portrait.jpg" id="2_ljltd"]
 [ext_resource type="Texture2D" uid="uid://dxhnooqfvgjkt" path="res://Arts/itch assets/Custom Border and Panels Menu All Part [BDragon1727]/border.tres" id="3_5gem6"]
+[ext_resource type="Texture2D" uid="uid://w7f4iwtoa1tw" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/CharacterBox_56x57.png" id="4_4wkid"]
+[ext_resource type="Script" uid="uid://dy1ach6w1qmww" path="res://UI/UnitPanel/hp_container.gd" id="4_u8sgo"]
+[ext_resource type="Texture2D" uid="uid://b0g2xysqat0bs" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/ValueBar_128x16.png" id="5_yamot"]
+[ext_resource type="Texture2D" uid="uid://d4hcy4nph4c5k" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/ValueRed_120x8.png" id="6_t7euk"]
+[ext_resource type="Texture2D" uid="uid://s65ckn22qjc3" path="res://Arts/itch assets/Pixel Art Icon Pack - RPG [Cainos]/Weapon & Tool/Iron Shield.png" id="7_t7euk"]
+[ext_resource type="Script" uid="uid://c1iujde8yohcc" path="res://UI/UnitPanel/armor_texture_rect.gd" id="8_u8sgo"]
+[ext_resource type="Script" uid="uid://ctyx75k4wvo0b" path="res://UI/UnitPanel/evasion_container.gd" id="10_uoi4i"]
+[ext_resource type="Texture2D" uid="uid://cw6f0qvti507f" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/AttributesIcons_17x17.png" id="11_4tmex"]
+[ext_resource type="Script" uid="uid://os3553ff14d8" path="res://UI/UnitPanel/base_damage_container.gd" id="11_x1pog"]
+[ext_resource type="Script" uid="uid://bci0eyr7wn3eg" path="res://UI/UnitPanel/attacks_container.gd" id="12_x1pog"]
+[ext_resource type="PackedScene" uid="uid://cn26iuo3vxrgy" path="res://UI/UnitPanel/attack_panel.tscn" id="14_j547b"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_s8qj1"]
 font_size = 50
 font_color = Color(1, 0.01999998, 0.01999998, 0.5019608)
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4tmex"]
+font_size = 22
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j547b"]
+atlas = ExtResource("11_4tmex")
+region = Rect2(51, 0, 17, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6nmij"]
+atlas = ExtResource("11_4tmex")
+region = Rect2(17, 0, 17, 0)
 
 [node name="UnitInfoPanel" type="Control"]
 layout_mode = 3
@@ -116,11 +138,98 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 mouse_filter = 2
 
-[node name="FullInfo" type="RichTextLabel" parent="Panel/MainContainer/RightContainer"]
+[node name="LevelLabel" type="Label" parent="Panel/MainContainer/RightContainer"]
+layout_mode = 2
+text = "Level 1"
+label_settings = SubResource("LabelSettings_4tmex")
+horizontal_alignment = 1
+
+[node name="BaseInfo" type="HBoxContainer" parent="Panel/MainContainer/RightContainer"]
+layout_mode = 2
+
+[node name="HPContainer" type="VBoxContainer" parent="Panel/MainContainer/RightContainer/BaseInfo"]
+layout_mode = 2
+alignment = 1
+script = ExtResource("4_u8sgo")
+
+[node name="HPProgressBar" type="TextureProgressBar" parent="Panel/MainContainer/RightContainer/BaseInfo/HPContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+tooltip_text = "Health"
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("4_4wkid")
+texture_over = ExtResource("5_yamot")
+texture_progress = ExtResource("6_t7euk")
+
+[node name="Label" type="Label" parent="Panel/MainContainer/RightContainer/BaseInfo/HPContainer/HPProgressBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "50/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ArmorContainer" type="VBoxContainer" parent="Panel/MainContainer/RightContainer/BaseInfo"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+tooltip_text = "Armor"
+script = ExtResource("8_u8sgo")
+
+[node name="Armor_TextureRect" type="TextureRect" parent="Panel/MainContainer/RightContainer/BaseInfo/ArmorContainer"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("7_t7euk")
+stretch_mode = 1
+
+[node name="Label" type="Label" parent="Panel/MainContainer/RightContainer/BaseInfo/ArmorContainer"]
+layout_mode = 2
+text = "35"
+horizontal_alignment = 1
+
+[node name="EvasionContainer" type="VBoxContainer" parent="Panel/MainContainer/RightContainer/BaseInfo"]
+layout_mode = 2
+tooltip_text = "Evasion"
+script = ExtResource("10_uoi4i")
+
+[node name="EvasionHeader" type="TextureRect" parent="Panel/MainContainer/RightContainer/BaseInfo/EvasionContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-mouse_filter = 2
-text = "Damage
-"
+texture = SubResource("AtlasTexture_j547b")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="EvasionLabel" type="Label" parent="Panel/MainContainer/RightContainer/BaseInfo/EvasionContainer"]
+layout_mode = 2
+text = "10"
+horizontal_alignment = 1
+
+[node name="BaseDamageContainer" type="VBoxContainer" parent="Panel/MainContainer/RightContainer/BaseInfo"]
+layout_mode = 2
+tooltip_text = "Base damage"
+script = ExtResource("11_x1pog")
+
+[node name="BaseDamageHeader" type="TextureRect" parent="Panel/MainContainer/RightContainer/BaseInfo/BaseDamageContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = SubResource("AtlasTexture_6nmij")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="BaseDamageLabel" type="Label" parent="Panel/MainContainer/RightContainer/BaseInfo/BaseDamageContainer"]
+layout_mode = 2
+text = "50"
+horizontal_alignment = 1
+
+[node name="Attacks" type="HBoxContainer" parent="Panel/MainContainer/RightContainer"]
+layout_mode = 2
+script = ExtResource("12_x1pog")
+
+[node name="AttackPanel" parent="Panel/MainContainer/RightContainer/Attacks" instance=ExtResource("14_j547b")]
+layout_mode = 2
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

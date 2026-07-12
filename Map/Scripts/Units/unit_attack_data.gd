@@ -54,6 +54,16 @@ extends Resource
 ## for future expansion with multiple alternatives.
 @export var animation_index: int = 0
 
+var unit: UnitData
+
+## Returns the UI-displayed damage value for this attack — the effective damage
+## per single target, excluding multi‑target effects and accuracy adjustments.
+## For the maximum total damage the attack can deal, use [method get_damage_potential].
+func get_actual_damage() -> float:
+	return damage_multiplier if damage_override else \
+			(damage_multiplier * unit.base_damage if unit else \
+			NAN)
+
 ## Creates a new [UnitAttackData] instance with parameters from the provided dictionary.
 ## Missing entries use default values. [br][br]
 ##

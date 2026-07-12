@@ -25,6 +25,7 @@ func _initialize_attack_data() -> void:
 	for a in attacks_array:
 		var data := UnitAttackData.from_dict(a)
 		this_unit.attack_data.append(data)
+		data.unit = this_unit
 
 func _set_levelup() -> void:
 	var custom_levelup_path: String = database_dict.get(&"custom_levelup_path", "")
