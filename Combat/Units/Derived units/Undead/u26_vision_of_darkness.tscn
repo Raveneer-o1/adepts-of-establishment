@@ -1,7 +1,6 @@
-[gd_scene load_steps=46 format=3 uid="uid://cqa7pi3fgdon4"]
+[gd_scene load_steps=45 format=3 uid="uid://cqa7pi3fgdon4"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_8j244"]
-[ext_resource type="Texture2D" uid="uid://w6i5ipie2wwd" path="res://Arts/Placeholders/Vision of darkness.jpg" id="2_auyjr"]
 [ext_resource type="Texture2D" uid="uid://cgw1dq87t2t3c" path="res://Arts/Undead units/u27 Vision of darkness attack .png" id="2_c0ip2"]
 [ext_resource type="Texture2D" uid="uid://drnlmh2d7ad3h" path="res://Arts/Undead units/u27 Vision of darkness idle.png" id="3_kn74n"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_op4sp"]
@@ -203,7 +202,6 @@ faction = 2
 needed_xp = 1600
 brief_description = "Archer with almost no damage that pralyses several targets."
 full_description = "A quick glance into the darkness that awaits every soul at the end makes even the bravest tremble in fear."
-portrait_texture = ExtResource("2_auyjr")
 portrait_texture_path = "res://Arts/Placeholders/Vision of darkness.jpg"
 cost_mana = 2000
 
@@ -222,6 +220,7 @@ attack_effect = ExtResource("4_vagcr")
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("6_dvqmr")
+type = 2
 accuracy = 0.685
 initiative = 25
 target_validation = ExtResource("7_1atva")

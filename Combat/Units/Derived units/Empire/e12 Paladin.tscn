@@ -1,7 +1,6 @@
-[gd_scene load_steps=55 format=3 uid="uid://chwmireeop57v"]
+[gd_scene load_steps=54 format=3 uid="uid://chwmireeop57v"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_v252y"]
-[ext_resource type="Texture2D" uid="uid://d2twbl0lwlb0d" path="res://Arts/Placeholders/Paladin.jpg" id="2_bb4no"]
 [ext_resource type="Texture2D" uid="uid://8rxcuhro2ji3" path="res://Arts/Empire units/Defender of Faith attack .png" id="2_m0rao"]
 [ext_resource type="Texture2D" uid="uid://dkvu558ho6w8r" path="res://Arts/Empire units/Defender of Faith idle .png" id="3_v31eh"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_gsene"]
@@ -194,7 +193,6 @@ needed_xp = 2500
 unit_class = 2
 brief_description = "Melee fighter with multiple attacks, mobility and offensive aura."
 full_description = "In the hour of need, the Emperor personally grants the worthy the title of Paladin. Clad in crimson resolve, they are the last light of hope when the night of despair threatens to be eternal."
-portrait_texture = ExtResource("2_bb4no")
 portrait_texture_path = "res://Arts/Placeholders/Paladin.jpg"
 cost_gold = 1500
 cost_stone = 500
@@ -218,7 +216,7 @@ damage_multiplier = 0.4
 initiative = 70
 target_validation = SubResource("Resource_rww7o")
 damage_policy = ExtResource("8_x5w7n")
-description = "This unit can move to attack."
+description = "Can move to attack."
 
 [node name="UnitAttack2" type="Node" parent="UnitParameters" index="2"]
 script = ExtResource("6_3s88y")
@@ -226,7 +224,7 @@ damage_multiplier = 0.5
 initiative = 40
 target_validation = SubResource("Resource_rww7o")
 damage_policy = ExtResource("8_x5w7n")
-description = "This unit can move to attack."
+description = "Can move to attack."
 
 [node name="UnitAttack3" type="Node" parent="UnitParameters" index="3"]
 script = ExtResource("6_3s88y")
@@ -234,7 +232,7 @@ damage_multiplier = 0.4
 initiative = 30
 target_validation = SubResource("Resource_rww7o")
 damage_policy = ExtResource("8_x5w7n")
-description = "This unit can move to attack."
+description = "Can move to attack."
 
 [node name="OnMoveEvasionUp" parent="UnitParameters" index="4" instance=ExtResource("9_x5w7n")]
 buff = 1.7

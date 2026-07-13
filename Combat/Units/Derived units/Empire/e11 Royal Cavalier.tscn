@@ -1,8 +1,7 @@
-[gd_scene load_steps=54 format=3 uid="uid://bb7xobbcumx1x"]
+[gd_scene load_steps=53 format=3 uid="uid://bb7xobbcumx1x"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_atu73"]
 [ext_resource type="Texture2D" uid="uid://cjx47768wmvsj" path="res://Arts/Empire units/royal cavalier attack .png" id="2_54rgk"]
-[ext_resource type="Texture2D" uid="uid://dr7osc6etg4oj" path="res://Arts/Placeholders/Royal cavalier.jpg" id="2_mfi4u"]
 [ext_resource type="Texture2D" uid="uid://dyqemxeff2s2j" path="res://Arts/Empire units/royal cavalier idle .png" id="3_1wlrl"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_kgaai"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_ksxxa"]
@@ -176,7 +175,6 @@ needed_xp = 1600
 unit_class = 1
 brief_description = "Melee fighter with multiple attacks per round and mobility."
 full_description = "Those who serve in the personal forces of lords and counts are called Royal Cavaliers. They ride the best steeds The Empire can offer and wield the finest armor and weapons from the royal armories."
-portrait_texture = ExtResource("2_mfi4u")
 portrait_texture_path = "res://Arts/Placeholders/Royal cavalier.jpg"
 cost_gold = 800
 cost_stone = 300
@@ -200,7 +198,7 @@ damage_multiplier = 0.5
 initiative = 60
 target_validation = ExtResource("6_gqn05")
 damage_policy = ExtResource("7_ru8kw")
-description = "This unit can move to attack."
+description = "Can move to attack."
 
 [node name="UnitAttack2" type="Node" parent="UnitParameters" index="2"]
 script = ExtResource("5_ksxxa")
@@ -208,6 +206,7 @@ damage_multiplier = 0.4
 initiative = 40
 target_validation = ExtResource("6_gqn05")
 damage_policy = ExtResource("7_ru8kw")
+description = "Can move to attack."
 
 [node name="UnitAttack3" type="Node" parent="UnitParameters" index="3"]
 script = ExtResource("5_ksxxa")
@@ -215,6 +214,7 @@ damage_multiplier = 0.3
 initiative = 35
 target_validation = ExtResource("6_gqn05")
 damage_policy = ExtResource("7_ru8kw")
+description = "Can move to attack."
 
 [node name="OnMoveEvasionUp" parent="UnitParameters" index="4" instance=ExtResource("8_oyp3v")]
 

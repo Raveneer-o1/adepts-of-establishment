@@ -1,8 +1,7 @@
-[gd_scene load_steps=48 format=3 uid="uid://due6cek848mty"]
+[gd_scene load_steps=47 format=3 uid="uid://due6cek848mty"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_8bqrg"]
 [ext_resource type="Texture2D" uid="uid://ragymeslg6lq" path="res://Arts/Generic/g01 orc chieftain attack .png" id="2_nnypv"]
-[ext_resource type="Texture2D" uid="uid://ds82f830n3c0" path="res://Arts/Placeholders/Orc chieftain.jpg" id="2_qguc2"]
 [ext_resource type="Texture2D" uid="uid://b861bayrkpx0o" path="res://Arts/Generic/g01 orc chieftain idle .png" id="3_xhkvy"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_rcpxb"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_olqh7"]
@@ -196,8 +195,6 @@ armor = 35
 unit_name = "Orc chieftain"
 faction = 8
 needed_xp = 1600
-full_description = "Orc Chieftains are the leaders of their clans, commanding respect through strength and cunning. They inspire their kin with battle cries and powerful strikes, rallying their forces to victory."
-portrait_texture = ExtResource("2_qguc2")
 portrait_texture_path = "res://Arts/Placeholders/Orc chieftain.jpg"
 
 [node name="AnimationHandle" parent="." index="0"]

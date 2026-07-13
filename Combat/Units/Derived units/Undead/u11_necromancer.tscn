@@ -1,8 +1,7 @@
-[gd_scene load_steps=41 format=3 uid="uid://1xjofqtit2aj"]
+[gd_scene load_steps=40 format=3 uid="uid://1xjofqtit2aj"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_tcv8q"]
 [ext_resource type="Texture2D" uid="uid://dx47i00lvfvoa" path="res://Arts/Undead units/u23 necromancer attack .png" id="2_0chdl"]
-[ext_resource type="Texture2D" uid="uid://dkar2ja0n1he4" path="res://Arts/Placeholders/Necromancer.jpg" id="2_0m3ru"]
 [ext_resource type="Texture2D" uid="uid://k3hv7kx0p26j" path="res://Arts/Undead units/u23 necromancer idle .png" id="3_itfo3"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_4j4yj"]
 [ext_resource type="PackedScene" uid="uid://n7w0136buyjd" path="res://Combat/Effects/Scenes/circle_attack.tscn" id="4_npxus"]
@@ -141,7 +140,6 @@ needed_xp = 400
 unit_class = 5
 brief_description = "Weak mage with ability to resurrect."
 full_description = "When a mortal gazes into the essence of life, they discover that death does not dictate the end of one's being. Those who can manipulate this knowledge to revive a body are called Necromancers."
-portrait_texture = ExtResource("2_0m3ru")
 portrait_texture_path = "res://Arts/Placeholders/Necromancer.jpg"
 cost_gold = 50
 cost_mana = 150
@@ -165,6 +163,7 @@ accuracy = 0.85
 initiative = 30
 target_validation = ExtResource("7_0xeya")
 damage_policy = SubResource("Resource_0m3ru")
+description = "Can resurrect an ally instead."
 
 [node name="AliveOof2" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("10_0m3ru")

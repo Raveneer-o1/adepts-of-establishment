@@ -27,6 +27,7 @@ func fill_effects_data(effects: Array[Dictionary]) -> void:
 			continue
 		var sc: AppliedEffect = load(path).instantiate()
 		sc.read_params(e.get("args"))
+		sc.effect_name = e.get("effect_name", sc.effect_name)
 		
 		var eff: UI_UnitPanel_AttackPanel_Effects_EffectPanel = ATTACK_EFFECTS_EFFECT_PANEL.instantiate()
 		add_child(eff)

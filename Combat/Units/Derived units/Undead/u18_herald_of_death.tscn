@@ -1,7 +1,6 @@
-[gd_scene load_steps=47 format=3 uid="uid://bjf64unkm13v7"]
+[gd_scene load_steps=46 format=3 uid="uid://bjf64unkm13v7"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_sqfu4"]
-[ext_resource type="Texture2D" uid="uid://crjcndu0pbsro" path="res://Arts/Placeholders/Herald of death.jpg" id="2_bsj1p"]
 [ext_resource type="Texture2D" uid="uid://domqvoferonvo" path="res://Arts/Undead units/u13 wraith attack .png" id="2_ookue"]
 [ext_resource type="Texture2D" uid="uid://i06l4f6eumgu" path="res://Arts/Undead units/u13 wraith  idle .png" id="3_lmnsb"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_mp57r"]
@@ -207,7 +206,6 @@ needed_xp = 1600
 unit_class = 5
 brief_description = "Mage with ward against physical damage."
 full_description = "When the King sends his Heralds, fate becomes determined. They bring Death - unyielding, unmoving, imminent. There is no going back, for the Herald of Death has announced his message."
-portrait_texture = ExtResource("2_bsj1p")
 portrait_texture_path = "res://Arts/Placeholders/Herald of death.jpg"
 cost_stone = 300
 cost_mana = 1600
@@ -238,8 +236,7 @@ damage_policy = SubResource("Resource_4fa37")
 applying_effects = Dictionary[String, Variant]({
 "weakness": [2, 30]
 })
-description = "Also hits adjacent targets.
-Attacks apply [b]weakness[/b]."
+description = "Also hits adjacent targets."
 
 [node name="Ward" parent="UnitParameters" index="2" instance=ExtResource("10_wgph8")]
 damage_type = 0

@@ -1,7 +1,7 @@
 extends AppliedEffect
 
 ## for description only
-@export var unit_name: String
+@export var unit_name: String = "Skeleton"
 
 @export var summon: Resource
 @export var effects: Dictionary[String, Variant]

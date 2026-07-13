@@ -1,7 +1,6 @@
-[gd_scene load_steps=38 format=3 uid="uid://0gkab1f2csfn"]
+[gd_scene load_steps=37 format=3 uid="uid://0gkab1f2csfn"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_k4b78"]
-[ext_resource type="Texture2D" uid="uid://cv1n5yg655r0h" path="res://Arts/Placeholders/Thief.jpg" id="2_vtb4r"]
 [ext_resource type="Texture2D" uid="uid://dys4htvlwcr2r" path="res://Arts/Generic/g06 thief attack .png" id="2_xcqht"]
 [ext_resource type="Texture2D" uid="uid://rhoo6oqn04u7" path="res://Arts/Generic/g06 thief idle .png" id="3_gvceb"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_erptq"]
@@ -112,8 +111,6 @@ base_damage = 25
 [node name="Thief" instance=ExtResource("1_k4b78")]
 unit_name = "Thief"
 faction = 1
-full_description = "Thieves are nimble and cunning, excelling in stealth and precision strikes. They specialize in exploiting enemy weaknesses, targeting vulnerabilities for devastating effect."
-portrait_texture = ExtResource("2_vtb4r")
 portrait_texture_path = "res://Arts/Placeholders/Thief.jpg"
 
 [node name="AnimationHandle" parent="." index="0"]

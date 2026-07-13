@@ -2,13 +2,15 @@
 
 [ext_resource type="Script" uid="uid://curv76xh2drvy" path="res://UI/UnitPanel/attack_panel.gd" id="1_7i06e"]
 [ext_resource type="Texture2D" uid="uid://2kg5glgwgia1" path="res://Arts/itch assets/Pixel Art Icon Pack - RPG [Cainos]/Weapon & Tool/Iron Sword.png" id="2_0ymqr"]
+[ext_resource type="PackedScene" uid="uid://bstufbu4uucgy" path="res://UI/damagetype_texture_rect.tscn" id="3_7i06e"]
 [ext_resource type="Texture2D" uid="uid://bsw5np50n35r2" path="res://Arts/itch assets/Pixel Art Icon Pack - RPG [Cainos]/Weapon & Tool/Arrow.png" id="3_d7uec"]
 [ext_resource type="Texture2D" uid="uid://cajtwk2xrwxta" path="res://Arts/itch assets/Pixel Art Icon Pack - RPG [Cainos]/Equipment/Leather Boot.png" id="4_25reu"]
-[ext_resource type="Texture2D" uid="uid://5cs46chf2ou8" path="res://Arts/itch assets/Pixel Art Icon Pack - RPG [Cainos]/Weapon & Tool/Sapphire Staff.png" id="5_4yooj"]
 [ext_resource type="Script" uid="uid://mx5t5noif80y" path="res://UI/UnitPanel/attack_effects_container.gd" id="6_es246"]
 [ext_resource type="PackedScene" uid="uid://dv6rhlj3ijuya" path="res://UI/UnitPanel/attack_effects_effectPanel.tscn" id="7_vshi4"]
 
 [node name="AttackPanel" type="PanelContainer"]
+offset_right = 240.0
+offset_bottom = 173.0
 script = ExtResource("1_7i06e")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -48,14 +50,12 @@ layout_mode = 2
 layout_mode = 2
 tooltip_text = "Damage type"
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/DMG_ACC/TypeContainer"]
+[node name="TextureRect" parent="MarginContainer/VBoxContainer/DMG_ACC/TypeContainer" instance=ExtResource("3_7i06e")]
 layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("5_4yooj")
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/DMG_ACC/TypeContainer"]
+[node name="PaddingR" type="Control" parent="MarginContainer/VBoxContainer/DMG_ACC/TypeContainer"]
+custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
-text = "Physical"
 
 [node name="DamageContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/DMG_ACC"]
 layout_mode = 2
@@ -84,7 +84,7 @@ layout_mode = 2
 text = "20"
 
 [node name="DescriptionLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 bbcode_enabled = true
 fit_content = true

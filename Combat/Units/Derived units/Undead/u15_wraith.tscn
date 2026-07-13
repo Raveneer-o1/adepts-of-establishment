@@ -1,7 +1,6 @@
-[gd_scene load_steps=42 format=3 uid="uid://debujdw84uwas"]
+[gd_scene load_steps=41 format=3 uid="uid://debujdw84uwas"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_lnsio"]
-[ext_resource type="Texture2D" uid="uid://dht3tlqe1o3ub" path="res://Arts/Placeholders/Wraith.jpg" id="2_h5mis"]
 [ext_resource type="Texture2D" uid="uid://ci1uq27t0uuhm" path="res://Arts/Undead units/u12 death attack.png" id="2_qbo8e"]
 [ext_resource type="Texture2D" uid="uid://bm2yfgor1dhws" path="res://Arts/Undead units/u12 death idle .png" id="3_e205o"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_4vmmi"]
@@ -143,7 +142,6 @@ needed_xp = 900
 unit_class = 5
 brief_description = "Mage with ward against physical damage."
 full_description = "Those who delve too deep into the arts of dark magic eventually fall into the abyss. The King of Necropolis returns them, not as people, but as vengeful spirits - wraiths. Consumed by their desire to harvest suffering, these souls are morphed into horrifying creatures."
-portrait_texture = ExtResource("2_h5mis")
 portrait_texture_path = "res://Arts/Placeholders/Wraith.jpg"
 cost_mana = 1200
 
@@ -174,8 +172,7 @@ damage_policy = SubResource("Resource_uj6co")
 applying_effects = Dictionary[String, Variant]({
 "weakness": [1, 10]
 })
-description = "Also hits adjacent targets.
-Attacks apply [b]weakness[/b]."
+description = "Also hits adjacent targets."
 
 [node name="Default1" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("9_y11iu")

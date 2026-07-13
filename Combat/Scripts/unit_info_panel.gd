@@ -14,6 +14,7 @@ class_name UnitInfoPanel
 @onready var attacks_container: UI_UnitPanel_AttacksContainer = $Panel/MainContainer/MarginContainer/RightContainer/Attacks
 @onready var effects_container: UI_UnitPanel_Effects = $Panel/MainContainer/MarginContainer/RightContainer/EffectsContainer
 @onready var full_description_label: RichTextLabel = $Panel/MainContainer/MarginContainer/RightContainer/BottomContainer/DescriptionLabel
+@onready var immunities_container: UI_UnitPanel_ImmunitiesContainer = $Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/ImmunitiesContainer
 
 # Formatting constants for unit stats to maintain consistency in text presentation.
 const HP_LINE = "HP: %d/%d\n"
@@ -134,6 +135,13 @@ func _set_effects(u: Variant) -> void:
 		effects_container.fill_effects_data(u.effects)
 	else: push_error("Unexpected type")
 
+func _set_immunities(u: Variant) -> void:
+	if u is Unit:
+		immunities_container.set_value(u.parameters.immunities)
+	elif u is UnitData:
+		immunities_container.set_value(u.immunities)
+	else: push_error("Unexpected type")
+
 func fill_data(unit: Variant) -> void:
 	assert(unit is Unit or unit is UnitData)
 	_set_name(unit)
@@ -145,6 +153,7 @@ func fill_data(unit: Variant) -> void:
 	_set_small_description(unit)
 	_set_effects(unit)
 	_set_description(unit)
+	_set_immunities(unit)
 
 func fill_text_data(unit: Unit) -> void:
 	fill_data(unit)

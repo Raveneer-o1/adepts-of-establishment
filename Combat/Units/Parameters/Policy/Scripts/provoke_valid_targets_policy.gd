@@ -1,5 +1,7 @@
 extends BasePolicy
 
+# TODO: redesign with alternative action instead
+
 ## Indicates period in rounds between using the ability
 @export var period: int = 3
 @export var damage_reduction: float = 0.5

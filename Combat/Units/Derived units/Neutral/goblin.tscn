@@ -1,8 +1,7 @@
-[gd_scene load_steps=40 format=3 uid="uid://bbn7oowueyb2d"]
+[gd_scene load_steps=39 format=3 uid="uid://bbn7oowueyb2d"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_3oyoe"]
 [ext_resource type="Texture2D" uid="uid://bgihi2b2t55ff" path="res://Arts/Generic/g02 goblin attack .png" id="2_d5iwd"]
-[ext_resource type="Texture2D" uid="uid://g4msedjk6e83" path="res://Arts/Placeholders/Goblin.jpg" id="2_subec"]
 [ext_resource type="Texture2D" uid="uid://2wrdm3qvhlb8" path="res://Arts/Generic/g02 goblin idle .png" id="3_8wcna"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_3oi2l"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_k20xa"]
@@ -128,8 +127,6 @@ evasion = 0.1
 unit_name = "Goblin"
 unit_type = 1
 faction = 8
-full_description = "Goblin Archers are small but surprisingly deadly, using their agility to stay out of reach while raining arrows on their enemies. Though their aim can be erratic, their sheer numbers often compensate for individual accuracy. They are often deployed as harassers, chipping away at enemy forces from a safe distance."
-portrait_texture = ExtResource("2_subec")
 portrait_texture_path = "res://Arts/Placeholders/Goblin.jpg"
 
 [node name="AnimationHandle" parent="." index="0"]

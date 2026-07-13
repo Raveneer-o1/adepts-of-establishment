@@ -1,8 +1,7 @@
-[gd_scene load_steps=54 format=3 uid="uid://d2d0dy4l6eowh"]
+[gd_scene load_steps=53 format=3 uid="uid://d2d0dy4l6eowh"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_kms13"]
 [ext_resource type="Texture2D" uid="uid://drtoiblrvstcc" path="res://Arts/Empire units/assassin attack .png" id="2_2bipl"]
-[ext_resource type="Texture2D" uid="uid://dqo3b54fl0a5r" path="res://Arts/Placeholders/Assassin.jpg" id="2_26dl6"]
 [ext_resource type="Texture2D" uid="uid://caio4jypwuilk" path="res://Arts/Empire units/assassin idle .png" id="3_bgwsp"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_2iua4"]
 [ext_resource type="PackedScene" uid="uid://b3gssbgpd05vu" path="res://Combat/Effects/Scenes/assassin_clone.tscn" id="4_h3kiw"]
@@ -153,7 +152,6 @@ needed_xp = 900
 unit_class = 3
 brief_description = "Archer with multiple poisoned attacks."
 full_description = "Acting from the shadows, Assassins pick off unsuspecting victims, unconcerned with honor and valor. When duty demands, even the most righteous of generals must rely on their services."
-portrait_texture = ExtResource("2_26dl6")
 portrait_texture_path = "res://Arts/Placeholders/Assassin.jpg"
 cost_gold = 1000
 
@@ -181,7 +179,6 @@ target_validation = ExtResource("8_vc7xq")
 applying_effects = Dictionary[String, Variant]({
 "Poison": [15, 3]
 })
-description = "This unit applies poison on attacks"
 
 [node name="UnitAttack2" type="Node" parent="UnitParameters" index="3"]
 script = ExtResource("7_gd61f")

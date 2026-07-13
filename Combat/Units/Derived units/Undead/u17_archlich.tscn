@@ -192,7 +192,7 @@ damage_policy = SubResource("Resource_avfpn")
 applying_effects = Dictionary[String, Variant]({
 "death_curse": [-1, 10]
 })
-description = "This unit can resurrect instead of attacking."
+description = "Can resurrect an ally instead."
 
 [node name="UnitAttack2" type="Node" parent="UnitParameters" index="2"]
 script = ExtResource("6_e10lm")
@@ -205,6 +205,7 @@ damage_policy = ExtResource("9_7xkoy")
 applying_effects = Dictionary[String, Variant]({
 "death_curse": [-1, 10]
 })
+description = "Can resurrect an ally instead."
 
 [node name="Skeleton" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("11_i7f8t")

@@ -1,8 +1,7 @@
-[gd_scene load_steps=38 format=3 uid="uid://bd1qlt6xdi7ru"]
+[gd_scene load_steps=37 format=3 uid="uid://bd1qlt6xdi7ru"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_qtvxl"]
 [ext_resource type="Texture2D" uid="uid://c870pi1x3r4v0" path="res://Arts/Generic/g07 rogue attack .png" id="2_hlh76"]
-[ext_resource type="Texture2D" uid="uid://camqx13ymfvh7" path="res://Arts/Placeholders/Rogue.jpg" id="2_vv05r"]
 [ext_resource type="Texture2D" uid="uid://c5jcma42n8c3c" path="res://Arts/Generic/g07 rogue idle .png" id="3_asnxk"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_a75rt"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_p8weg"]
@@ -113,8 +112,6 @@ base_damage = 30
 unit_name = "Rogue"
 faction = 7
 needed_xp = 400
-full_description = "Rogues are seasoned fighters who blend agility and combat prowess, striking quickly and decisively. They are masters of deception, often using dirty tricks to gain the upper hand. Though they prefer to avoid direct confrontation, their versatility makes them a dangerous adversary."
-portrait_texture = ExtResource("2_vv05r")
 portrait_texture_path = "res://Arts/Placeholders/Rogue.jpg"
 
 [node name="AnimationHandle" parent="." index="0"]

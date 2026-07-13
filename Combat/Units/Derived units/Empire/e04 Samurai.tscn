@@ -1,8 +1,7 @@
-[gd_scene load_steps=47 format=3 uid="uid://myudchej460j"]
+[gd_scene load_steps=46 format=3 uid="uid://myudchej460j"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_34hwq"]
 [ext_resource type="Texture2D" uid="uid://bqy4vj0v38yak" path="res://Arts/Empire units/samurai attack .png" id="2_i31ko"]
-[ext_resource type="Texture2D" uid="uid://dxxemlykgsa5o" path="res://Arts/Placeholders/Samurai.jpg" id="2_utg5b"]
 [ext_resource type="Texture2D" uid="uid://dqmsdyslq5xbc" path="res://Arts/Empire units/samurai idle .png" id="3_26pc1"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_mc75p"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_ol2r7"]
@@ -176,7 +175,6 @@ needed_xp = 900
 unit_class = 3
 brief_description = "Melee fighter with increased evasion and double attack."
 full_description = "Hailing from the distant continent of Ari'Tonia, Samurai answer The Empire's call, honoring the ancient alliance that once united the world."
-portrait_texture = ExtResource("2_utg5b")
 portrait_texture_path = "res://Arts/Placeholders/Samurai.jpg"
 cost_gold = 200
 cost_mana = 50
@@ -198,7 +196,7 @@ damage_multiplier = 0.56
 initiative = 40
 target_validation = ExtResource("6_plv2k")
 additional_targets = ExtResource("8_40pmu")
-description = "This unit attacks the target twice"
+description = "Deals damage twice."
 
 [node name="Steel1" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("8_7bnht")

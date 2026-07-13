@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://d12hr40jjb8s8"]
+[gd_scene load_steps=26 format=3 uid="uid://d12hr40jjb8s8"]
 
 [ext_resource type="Theme" uid="uid://ivyypdgptsec" path="res://Themes/UI_Theme.tres" id="1_88rkb"]
 [ext_resource type="Script" uid="uid://df3o7avtisvgt" path="res://Combat/Scripts/unit_info_panel.gd" id="1_udonc"]
@@ -19,6 +19,8 @@
 [ext_resource type="Script" uid="uid://bci0eyr7wn3eg" path="res://UI/UnitPanel/attacks_container.gd" id="12_x1pog"]
 [ext_resource type="PackedScene" uid="uid://cn26iuo3vxrgy" path="res://UI/UnitPanel/attack_panel.tscn" id="14_j547b"]
 [ext_resource type="Script" uid="uid://bipxhyxmyjlhy" path="res://Combat/Scenes/effects_panel.gd" id="15_6nmij"]
+[ext_resource type="Script" uid="uid://ciri5h88u0ccf" path="res://UI/UnitPanel/immunities_container.gd" id="16_lf3mo"]
+[ext_resource type="PackedScene" uid="uid://bstufbu4uucgy" path="res://UI/damagetype_texture_rect.tscn" id="17_ekmk6"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lf3mo"]
 texture = ExtResource("3_rcadf")
@@ -282,6 +284,21 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "50"
 horizontal_alignment = 1
+
+[node name="ImmunitiesContainer" type="VBoxContainer" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo"]
+layout_mode = 2
+script = ExtResource("16_lf3mo")
+
+[node name="Label" type="Label" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/ImmunitiesContainer"]
+layout_mode = 2
+text = "Immunities:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/ImmunitiesContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/ImmunitiesContainer/HBoxContainer" instance=ExtResource("17_ekmk6")]
+layout_mode = 2
 
 [node name="Attacks" type="ScrollContainer" parent="Panel/MainContainer/MarginContainer/RightContainer"]
 layout_mode = 2

@@ -1,7 +1,6 @@
-[gd_scene load_steps=42 format=3 uid="uid://5ouvt0ouuy23"]
+[gd_scene load_steps=41 format=3 uid="uid://5ouvt0ouuy23"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_878kx"]
-[ext_resource type="Texture2D" uid="uid://b38mbtym0suxr" path="res://Arts/Placeholders/Ogre.jpg" id="2_6ygjt"]
 [ext_resource type="Texture2D" uid="uid://v616i1dyc5im" path="res://Arts/Generic/g03 ogre attack .png" id="2_67f6v"]
 [ext_resource type="Texture2D" uid="uid://b6hkkb86o6qxt" path="res://Arts/Generic/g03 ogre idle  (2).png" id="3_hi10f"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_wgrcg"]
@@ -149,8 +148,6 @@ evasion = 0.01
 unit_name = "Ogre"
 faction = 8
 needed_xp = 400
-full_description = "Ogres are hulking brutes with unparalleled physical power, smashing through enemies and obstacles alike. Though not known for their intelligence, their immense strength and resilience make them formidable foes. These behemoths are often used as shock troops, devastating enemy ranks with crushing blows."
-portrait_texture = ExtResource("2_6ygjt")
 portrait_texture_path = "res://Arts/Placeholders/Ogre.jpg"
 
 [node name="AnimationHandle" parent="." index="0"]

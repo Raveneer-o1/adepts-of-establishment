@@ -1,8 +1,7 @@
-[gd_scene load_steps=44 format=3 uid="uid://b7jgva2bs2d6e"]
+[gd_scene load_steps=43 format=3 uid="uid://b7jgva2bs2d6e"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_fstih"]
 [ext_resource type="Texture2D" uid="uid://7k0j7p0lbbcg" path="res://Arts/Generic/g04 goblin shaman attack .png" id="2_mqek8"]
-[ext_resource type="Texture2D" uid="uid://cdy0hegk46yy0" path="res://Arts/Placeholders/Goblin shaman.jpg" id="2_uktgu"]
 [ext_resource type="Texture2D" uid="uid://h6542div5f7v" path="res://Arts/Generic/g04 goblin shaman idle .png" id="3_1862s"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_s7gjm"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_d4ejt"]
@@ -152,8 +151,6 @@ unit_name = "Goblin shaman"
 unit_type = 2
 faction = 8
 needed_xp = 400
-full_description = "Goblin Shamans wield primitive but potent magic, channeling the chaotic energy of their tribe’s spirit rituals. They serve as both support and disruptors, casting spells that weaken enemies or bolster their allies."
-portrait_texture = ExtResource("2_uktgu")
 portrait_texture_path = "res://Arts/Placeholders/Goblin shaman.jpg"
 
 [node name="AnimationHandle" parent="." index="0"]

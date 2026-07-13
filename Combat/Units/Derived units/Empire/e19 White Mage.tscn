@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://bkgd75ppe6uv0"]
+[gd_scene load_steps=49 format=3 uid="uid://bkgd75ppe6uv0"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_mbqb6"]
 [ext_resource type="Texture2D" uid="uid://cuix8vdx6us1h" path="res://Arts/Empire units/white Mage attack .png" id="2_xltu8"]
@@ -9,7 +9,6 @@
 [ext_resource type="Resource" uid="uid://brc057x45ipra" path="res://Combat/Units/Parameters/Validation/any_unit.tres" id="7_0vekf"]
 [ext_resource type="Resource" uid="uid://bhe5cl2bujg8i" path="res://Combat/Units/Parameters/Additional targets/Splash.tres" id="8_4kvwf"]
 [ext_resource type="Resource" uid="uid://cxvfk7vgegqq2" path="res://Combat/Units/Parameters/Policy/decay_policy.tres" id="10_4kvwf"]
-[ext_resource type="Texture2D" uid="uid://dg775sg6vv364" path="res://Arts/Placeholders/White mage.jpg" id="10_t48w5"]
 [ext_resource type="AudioStream" uid="uid://3up3xko4aipd" path="res://Sounds/using/Damage/Default_1.wav" id="11_0vekf"]
 [ext_resource type="Script" uid="uid://ckke14dwjpicd" path="res://Combat/Units/Parameters/Policy/Scripts/applying_shield_policy.gd" id="11_cugem"]
 [ext_resource type="AudioStream" uid="uid://b7r3kee6rjmo4" path="res://Sounds/using/Damage/Default_2.wav" id="12_4kvwf"]
@@ -182,7 +181,6 @@ needed_xp = 1600
 unit_class = 5
 brief_description = "Powerdul mage."
 full_description = "Only the most talented and peerless of battle mages can be granted the title of White Mage. These spellcasters bend the fabric of reality to unleash brimstone and storms upon any foolish enough to oppose The Empire."
-portrait_texture = ExtResource("10_t48w5")
 portrait_texture_path = "res://Arts/Placeholders/White mage.jpg"
 cost_gold = 850
 cost_stone = 300
@@ -211,8 +209,7 @@ damage_policy = SubResource("Resource_yeav1")
 applying_effects = Dictionary[String, Variant]({
 "electrified": [2, 10]
 })
-description = "Applies *electrified* to the target.
-This unit can apply a weak shield to an ally."
+description = "Can apply a weak shield to an ally."
 
 [node name="Default1" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("11_0vekf")

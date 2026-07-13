@@ -7,4 +7,3 @@ script = ExtResource("1_7gysg")
 liftable = false
 silencable = false
 icon_index = -1
-description = "OnlyToType"

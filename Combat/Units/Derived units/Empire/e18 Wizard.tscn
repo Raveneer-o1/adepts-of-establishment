@@ -1,7 +1,6 @@
-[gd_scene load_steps=44 format=3 uid="uid://1rl6dm844fpl"]
+[gd_scene load_steps=43 format=3 uid="uid://1rl6dm844fpl"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_ve23n"]
-[ext_resource type="Texture2D" uid="uid://cb70rcr845fe7" path="res://Arts/Placeholders/Wizard.jpg" id="2_r2nux"]
 [ext_resource type="Texture2D" uid="uid://byu24fd4nedmf" path="res://Arts/Empire units/wizard  attack .png" id="2_xmxyf"]
 [ext_resource type="Texture2D" uid="uid://otn2ysi3b0j1" path="res://Arts/Empire units/wizard idle .png" id="3_bsups"]
 [ext_resource type="PackedScene" uid="uid://djw732rkcoqi0" path="res://Combat/Effects/Scenes/mid_lightning.tscn" id="4_1dpwb"]
@@ -147,7 +146,6 @@ needed_xp = 900
 unit_class = 5
 brief_description = "Fragile mage."
 full_description = "Wizards wield devastating spells to wipe out entire armies. Commanding the power of lightning, they are a formidable force to any commander."
-portrait_texture = ExtResource("2_r2nux")
 portrait_texture_path = "res://Arts/Placeholders/Wizard.jpg"
 cost_gold = 400
 cost_stone = 150
@@ -172,7 +170,7 @@ initiative = 30
 target_validation = ExtResource("8_foq2d")
 additional_targets = ExtResource("9_foq2d")
 damage_policy = ExtResource("10_foq2d")
-description = "This unit can apply a weak shield to an ally"
+description = "Can apply a weak shield to an ally."
 
 [node name="Default2" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("11_foq2d")

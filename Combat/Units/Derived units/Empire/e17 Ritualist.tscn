@@ -1,8 +1,7 @@
-[gd_scene load_steps=36 format=3 uid="uid://cym0kgm6smmss"]
+[gd_scene load_steps=35 format=3 uid="uid://cym0kgm6smmss"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_nifrr"]
 [ext_resource type="Texture2D" uid="uid://sc0d8fqujvac" path="res://Arts/Empire units/ritualist idle .png" id="2_ejkvf"]
-[ext_resource type="Texture2D" uid="uid://pmrchfasytci" path="res://Arts/Placeholders/Ritualist.jpg" id="2_uayg2"]
 [ext_resource type="Texture2D" uid="uid://cglqyia4neegl" path="res://Arts/Empire units/ritualist idle  (1).png" id="3_r8476"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_fdnoa"]
 [ext_resource type="PackedScene" uid="uid://c7bbto2q5jen7" path="res://Combat/Effects/Scenes/ritual_attack.tscn" id="4_v7wvv"]
@@ -115,7 +114,6 @@ needed_xp = 900
 unit_class = 5
 brief_description = "Mage able to summon multiple elementals."
 full_description = "Through acrabe rituals, some mages weave bonds with the world's very spirits and command multiple elementals at once."
-portrait_texture = ExtResource("2_uayg2")
 portrait_texture_path = "res://Arts/Placeholders/Ritualist.jpg"
 cost_gold = 600
 cost_stone = 50
@@ -141,6 +139,7 @@ targets_needed = 2
 initiative = 30
 target_validation = ExtResource("8_gc5xf")
 damage_policy = ExtResource("9_1v8eb")
+description = "Can summon an elemental on an empty spot."
 
 [node name="Default1" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("11_7knwt")

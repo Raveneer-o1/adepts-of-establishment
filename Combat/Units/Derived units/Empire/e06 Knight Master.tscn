@@ -1,7 +1,6 @@
-[gd_scene load_steps=59 format=3 uid="uid://pflh07f22p8k"]
+[gd_scene load_steps=58 format=3 uid="uid://pflh07f22p8k"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_f361o"]
-[ext_resource type="Texture2D" uid="uid://bukkwx22lxebi" path="res://Arts/Placeholders/Knight master.jpg" id="2_f4ity"]
 [ext_resource type="Texture2D" uid="uid://drdetioi5wbdq" path="res://Arts/Empire units/knight master attack .png" id="2_g7vf6"]
 [ext_resource type="Texture2D" uid="uid://d4fj0kuj58f3t" path="res://Arts/Empire units/knight master idle .png" id="3_vs23i"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_ks2vf"]
@@ -193,7 +192,6 @@ needed_xp = 900
 unit_class = 2
 brief_description = "Melee fighter with sturdy armor and ability to protect others."
 full_description = "The most noble of knights are granted the title of Knight Master. Their will an unbreakable bulwark, a living shield sworn to guard The Empire's cause."
-portrait_texture = ExtResource("2_f4ity")
 portrait_texture_path = "res://Arts/Placeholders/Knight master.jpg"
 cost_gold = 220
 cost_stone = 70
@@ -215,7 +213,6 @@ script = ExtResource("5_8np7n")
 initiative = 40
 target_validation = ExtResource("7_qiqwx")
 damage_policy = ExtResource("8_qiqwx")
-description = "This unit can provoke all avaliable targets to attack itself (once every three turns)."
 
 [node name="Taunt" parent="UnitParameters" index="2" instance=ExtResource("8_d6vlj")]
 chance_to_taunt = 0.4

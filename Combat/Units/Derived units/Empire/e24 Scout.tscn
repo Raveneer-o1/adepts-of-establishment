@@ -1,8 +1,7 @@
-[gd_scene load_steps=66 format=3 uid="uid://dq7l1aj4psenm"]
+[gd_scene load_steps=65 format=3 uid="uid://dq7l1aj4psenm"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_65je8"]
 [ext_resource type="Texture2D" uid="uid://cpkd3cvehefh4" path="res://Arts/Empire units/Scout attack .png" id="2_dtgb5"]
-[ext_resource type="Texture2D" uid="uid://bvcxy42evytn5" path="res://Arts/Placeholders/Scout.jpg" id="2_s7q1u"]
 [ext_resource type="Texture2D" uid="uid://d20ho4xfcw5ci" path="res://Arts/Empire units/Scout idle .png" id="3_o6itt"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_ptq6f"]
 [ext_resource type="PackedScene" uid="uid://cnlyt2k5jjchq" path="res://Combat/Effects/Scenes/target_throw.tscn" id="4_vlh87"]
@@ -236,7 +235,6 @@ needed_xp = 900
 unit_class = 4
 brief_description = "Archer with debuff."
 full_description = "An army is only as effective as its scouts are good. Imperial scouts are trained to spy on enemy forces and remain unnoticed."
-portrait_texture = ExtResource("2_s7q1u")
 portrait_texture_path = "res://Arts/Placeholders/Scout.jpg"
 cost_gold = 500
 cost_stone = 300
@@ -268,6 +266,9 @@ script = ExtResource("6_fc8i6")
 accuracy = 0.97
 initiative = 50
 target_validation = ExtResource("7_l3bih")
+applying_effects = Dictionary[String, Variant]({
+"vulnerability": [1, 30]
+})
 
 [node name="Agility" parent="UnitParameters" index="3" instance=ExtResource("8_sss3p")]
 

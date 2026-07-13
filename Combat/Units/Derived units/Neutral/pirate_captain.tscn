@@ -1,7 +1,6 @@
-[gd_scene load_steps=42 format=3 uid="uid://dkjn6j1f7evlx"]
+[gd_scene load_steps=41 format=3 uid="uid://dkjn6j1f7evlx"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_ddhxo"]
-[ext_resource type="Texture2D" uid="uid://d2pe4eb0kos7r" path="res://Arts/Placeholders/Pirate captain.jpg" id="2_mwrg4"]
 [ext_resource type="Texture2D" uid="uid://bauupjsr2umdm" path="res://Arts/Generic/g10 pirate captain attack .png" id="3_5b6rl"]
 [ext_resource type="Texture2D" uid="uid://dpmq1g1c1hj7r" path="res://Arts/Generic/g10 pirate captain idle.png" id="4_vx7bf"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="5_gc6o6"]
@@ -144,8 +143,6 @@ shielding_chance = 0.3
 unit_name = "Pirate capitan"
 faction = 6
 needed_xp = 1600
-full_description = "Pirate Captains are charismatic and ruthless leaders, commanding their crews with a mix of fear and admiration. Their combat skills are matched by their ability to inspire their followers, turning a ragtag crew into a formidable fighting force."
-portrait_texture = ExtResource("2_mwrg4")
 portrait_texture_path = "res://Arts/Placeholders/Pirate captain.jpg"
 
 [node name="AnimationHandle" parent="." index="0"]

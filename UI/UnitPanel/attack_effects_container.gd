@@ -15,6 +15,8 @@ func fill_effects(effects: Dictionary[String, Variant]) -> void:
 			continue
 		var sc: AppliedEffect = load(path).instantiate()
 		sc.read_params(effects[e])
+		if not sc.description: sc.queue_free(); continue
+		if sc.effect_name == "Undefined": sc.effect_name = e.capitalize()
 		
 		var eff: UI_UnitPanel_AttackPanel_Effects_EffectPanel = ATTACK_EFFECTS_EFFECT_PANEL.instantiate()
 		add_child(eff)

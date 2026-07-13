@@ -1,8 +1,7 @@
-[gd_scene load_steps=35 format=3 uid="uid://dgj6r83d15wkr"]
+[gd_scene load_steps=34 format=3 uid="uid://dgj6r83d15wkr"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_ufroq"]
 [ext_resource type="Texture2D" uid="uid://33b0j1wp4u1p" path="res://Arts/Undead units/u19 lich attack .png" id="2_f8uy4"]
-[ext_resource type="Texture2D" uid="uid://w4cuefv4qj5r" path="res://Arts/Placeholders/Lich.jpg" id="2_jn4dx"]
 [ext_resource type="Texture2D" uid="uid://ddv2liwnd3nry" path="res://Arts/Undead units/u19 lich idle .png" id="3_v01q3"]
 [ext_resource type="PackedScene" uid="uid://jcge4l3lj63w" path="res://Combat/Effects/Scenes/skull_medium.tscn" id="4_bbbue"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_vyg4y"]
@@ -124,7 +123,6 @@ needed_xp = 900
 unit_class = 5
 brief_description = "Weak mage with ability to resurrect and two actions per round."
 full_description = "When a necromancer willingly parts with their life in the name of the Necropolis, they are bestowed a place among the elite. They are now a Lich - a conduit of eternal rest for all who oppose the will of the King."
-portrait_texture = ExtResource("2_jn4dx")
 portrait_texture_path = "res://Arts/Placeholders/Lich.jpg"
 cost_stone = 300
 cost_mana = 900
@@ -154,7 +152,7 @@ damage_policy = SubResource("Resource_4gd0u")
 applying_effects = Dictionary[String, Variant]({
 "death_curse": [-1, 7]
 })
-description = "This unit can resurrect instead of attacking."
+description = "Can resurrect an ally instead."
 
 [node name="UnitAttack2" type="Node" parent="UnitParameters" index="2"]
 script = ExtResource("6_vg25s")

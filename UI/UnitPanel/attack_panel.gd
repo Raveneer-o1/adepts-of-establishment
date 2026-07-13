@@ -4,7 +4,8 @@ extends PanelContainer
 @onready var damage_label: Label = $MarginContainer/VBoxContainer/DMG_ACC/DamageContainer/Label
 @onready var accuracy_label: Label = $MarginContainer/VBoxContainer/DMG_ACC/AccuracyContainer/Label
 @onready var initiative_label: Label = $MarginContainer/VBoxContainer/InitiativeContainer/Label
-@onready var type_label: Label = $MarginContainer/VBoxContainer/DMG_ACC/TypeContainer/Label
+#@onready var type_label: Label = $MarginContainer/VBoxContainer/DMG_ACC/TypeContainer/Label
+@onready var type_texture: UI_DamageTypeTexture = $MarginContainer/VBoxContainer/DMG_ACC/TypeContainer/TextureRect
 @onready var attack_effects: UI_UnitPanel_AttackPanel_Effects = $MarginContainer/VBoxContainer/Attack_Effects_GridContainer
 @onready var attack_name: Label = $MarginContainer/VBoxContainer/AttackName
 @onready var effects_label: Label = $MarginContainer/VBoxContainer/EffectsLabel
@@ -24,7 +25,7 @@ func _fill_data_attack(a: UnitAttack) -> void:
 	damage_label.text = _get_damage_text(a)
 	accuracy_label.text = UnitInfoPanel.get_accuracy_text( a.accuracy )
 	initiative_label.text = str(a.initiative)
-	type_label.text = UnitInfoPanel.attack_type_to_str(a.type)
+	type_texture.set_val(a.type)
 	attack_effects.fill_effects(a.applying_effects)
 	if a.applying_effects:
 		effects_label.text = EFFECTS_LINE
@@ -39,7 +40,7 @@ func _fill_data_attack_data(a: UnitAttackData) -> void:
 	damage_label.text = _get_damage_text_data(a)
 	accuracy_label.text = UnitInfoPanel.get_accuracy_text(a.accuracy)
 	initiative_label.text = str(a.initiative)
-	type_label.text = UnitInfoPanel.attack_type_to_str(a.type)
+	type_texture.set_val(a.type)
 	attack_effects.fill_effects(a.applying_effects)
 	if a.applying_effects:
 		effects_label.text = EFFECTS_LINE

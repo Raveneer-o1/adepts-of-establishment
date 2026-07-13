@@ -1,7 +1,6 @@
-[gd_scene load_steps=44 format=3 uid="uid://b2cco7yp1owg6"]
+[gd_scene load_steps=43 format=3 uid="uid://b2cco7yp1owg6"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_qktib"]
-[ext_resource type="Texture2D" uid="uid://ckdsn5q7gfq5q" path="res://Arts/Placeholders/Mage.jpg" id="2_p2es4"]
 [ext_resource type="Texture2D" uid="uid://cl0heaqd4pul5" path="res://Arts/Empire units/Mage attack .png" id="2_rubtw"]
 [ext_resource type="Texture2D" uid="uid://do3smis1u70i" path="res://Arts/Empire units/Mage idle .png" id="3_hnq6f"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_w74yc"]
@@ -133,7 +132,6 @@ needed_xp = 400
 unit_class = 5
 brief_description = "Fragile mage."
 full_description = "Over time apprentice makes themselves a name and can be called a Mage. As their experience grows, so does their knowledge and power of their spells."
-portrait_texture = ExtResource("2_p2es4")
 portrait_texture_path = "res://Arts/Placeholders/Mage.jpg"
 cost_gold = 200
 cost_mana = 80
@@ -157,7 +155,7 @@ type = 1
 initiative = 30
 target_validation = ExtResource("8_whik4")
 damage_policy = SubResource("Resource_6f3w4")
-description = "This unit can apply a weak shield to an ally"
+description = "Can apply a weak shield to an ally."
 
 [node name="Oof17" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("9_8e6q5")

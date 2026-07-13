@@ -1,8 +1,7 @@
-[gd_scene load_steps=45 format=3 uid="uid://duh7llp4hbfkx"]
+[gd_scene load_steps=44 format=3 uid="uid://duh7llp4hbfkx"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_insub"]
 [ext_resource type="Texture2D" uid="uid://c3anqse1cnpqu" path="res://Arts/Empire units/Arcanist attack  (1).png" id="2_plg4p"]
-[ext_resource type="Texture2D" uid="uid://taw0yoxl7k38" path="res://Arts/Placeholders/Arcanist.jpg" id="2_qovuj"]
 [ext_resource type="Texture2D" uid="uid://cn17qdspnulne" path="res://Arts/Empire units/Arcanist idle .png" id="3_50umb"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_aurst"]
 [ext_resource type="PackedScene" uid="uid://7xdms7uje677" path="res://Combat/Effects/Scenes/strong_lightning.tscn" id="5_ugj4y"]
@@ -146,7 +145,6 @@ needed_xp = 2500
 unit_class = 5
 brief_description = "Powerful mage with huge damage but weak defense."
 full_description = "Transcending the limits of human soul and body, Arcanists weave their spells by commanding nature itself to eliminate their enemies. Tapping into the Element Temple, an Arcanist's power borders on divinity."
-portrait_texture = ExtResource("2_qovuj")
 portrait_texture_path = "res://Arts/Placeholders/Arcanist.jpg"
 cost_gold = 900
 cost_stone = 300
@@ -175,6 +173,7 @@ damage_policy = SubResource("Resource_xbk8a")
 applying_effects = Dictionary[String, Variant]({
 "electrified": [3, 18]
 })
+description = "Can apply a shield to an ally."
 
 [node name="ProtectOnAttack" parent="UnitParameters" index="2" instance=ExtResource("12_1qqvb")]
 visual_path = "res://Combat/Effects/Scenes/generic_blue_effect.tscn"

@@ -1,7 +1,6 @@
-[gd_scene load_steps=40 format=3 uid="uid://cvmvfp5vmhexe"]
+[gd_scene load_steps=39 format=3 uid="uid://cvmvfp5vmhexe"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_m5le8"]
-[ext_resource type="Texture2D" uid="uid://bj8v2uofp5x24" path="res://Arts/Placeholders/Skeleton champion.jpg" id="2_bljp6"]
 [ext_resource type="Texture2D" uid="uid://cygngvfp300mb" path="res://Arts/Undead units/u08 skeleton warrior attack .png" id="2_k4rwu"]
 [ext_resource type="Texture2D" uid="uid://dmplixpgmcvnc" path="res://Arts/Undead units/u08 skeleton warrior idle.png" id="3_y50yy"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_mtitt"]
@@ -157,7 +156,6 @@ needed_xp = 1600
 unit_class = 1
 brief_description = "Melee fighter that rises stronger every time it's resurrected."
 full_description = "Restless in death are those whose souls, too attached to worldly treasures, are barred from The Dark. The Necropolis grants these spirits a home and a chance to find worth in death. Their payment is eternal service as the King's Skeleton Warriors."
-portrait_texture = ExtResource("2_bljp6")
 portrait_texture_path = "res://Arts/Placeholders/Skeleton champion.jpg"
 cost_gold = 200
 cost_stone = 1000
@@ -175,6 +173,7 @@ attack_sound_frame = 3
 [node name="UnitParameters" parent="." index="1"]
 level = 4
 base_paramaters = SubResource("Resource_0i66v")
+underlying_immunities = Array[int]([3])
 
 [node name="Crafted body" parent="UnitParameters" index="1" instance=ExtResource("5_a3k2t")]
 buff_parameters = {
@@ -190,7 +189,6 @@ initiative = 40
 target_validation = ExtResource("8_1bqap")
 
 [node name="OnDeathSummon" parent="UnitParameters" index="3" instance=ExtResource("10_e6uwm")]
-unit_name = "Skeleton"
 summon = ExtResource("11_m170s")
 effects = Dictionary[String, Variant]({
 "reanimation": {
@@ -202,6 +200,7 @@ effects = Dictionary[String, Variant]({
 })
 effect_name = "Crypt spirit"
 icon_index = 16
+description = "Upon death this unit summons a %s on a random spot"
 
 [node name="Skeleton" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("10_g4616")

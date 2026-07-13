@@ -1,7 +1,6 @@
-[gd_scene load_steps=35 format=3 uid="uid://talu2uhdeu5q"]
+[gd_scene load_steps=34 format=3 uid="uid://talu2uhdeu5q"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_u1jip"]
-[ext_resource type="Texture2D" uid="uid://dko104m56ngub" path="res://Arts/Placeholders/Shadow.jpg" id="2_0opmo"]
 [ext_resource type="Texture2D" uid="uid://b6shvfbdyr6th" path="res://Arts/Undead units/u24 shadow attack  (1).png" id="2_skljb"]
 [ext_resource type="Texture2D" uid="uid://bfjwgwrgvddfr" path="res://Arts/Undead units/u24 shadow idle .png" id="3_i3ayl"]
 [ext_resource type="PackedScene" uid="uid://cqi6uvygpbulg" path="res://Combat/Effects/Scenes/Undead_spider_effect.tscn" id="4_2tpcm"]
@@ -109,7 +108,7 @@ animations = [{
 [sub_resource type="Resource" id="Resource_cbcbq"]
 resource_local_to_scene = true
 script = ExtResource("4_onv2w")
-max_HP = 11
+max_HP = 110
 base_damage = 15
 evasion = 0.15
 
@@ -121,7 +120,6 @@ needed_xp = 900
 unit_class = 4
 brief_description = "Archer with almost no damage that pralyses several targets."
 full_description = "The King's presence is in everything, following every living soul, for he knows everyone will bow to him one day. Flee if you can, tiny mortal, for your very shadow has turned against you."
-portrait_texture = ExtResource("2_0opmo")
 portrait_texture_path = "res://Arts/Placeholders/Shadow.jpg"
 cost_mana = 380
 
@@ -139,6 +137,7 @@ attack_effect = ExtResource("4_2tpcm")
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("6_f03p3")
+type = 2
 accuracy = 0.65
 initiative = 25
 target_validation = ExtResource("7_e144q")

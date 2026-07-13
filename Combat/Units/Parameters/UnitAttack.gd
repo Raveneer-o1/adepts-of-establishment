@@ -80,7 +80,7 @@ var unit: Unit
 ## for future expansion with multiple alternatives.
 @export var animation_index: int = 0
 
-## If not empty, this text is displayed to the player as the unit's ability description.
+## If not empty, this text is displayed to the player as the attack's description.
 ## Use this to explain unique attack policies, target selection rules,
 ## and automatic additional targets.
 @export_multiline var description: String = ""

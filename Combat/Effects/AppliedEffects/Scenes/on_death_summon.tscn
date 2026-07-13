@@ -4,4 +4,4 @@
 
 [node name="OnDeathSummon" type="Node"]
 script = ExtResource("1_byvx1")
-description = "Upon death this unit summons [b]%s[/b] on a random spot"
+description = "Upon death this unit summons %s on a random spot"

@@ -1,7 +1,6 @@
-[gd_scene load_steps=43 format=3 uid="uid://1hu3f7g1ei2k"]
+[gd_scene load_steps=42 format=3 uid="uid://1hu3f7g1ei2k"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_d17v1"]
-[ext_resource type="Texture2D" uid="uid://ba03cnoc6gyfb" path="res://Arts/Placeholders/Undying nighthunter.jpg" id="2_5hg6d"]
 [ext_resource type="Texture2D" uid="uid://5185ul1k5i8x" path="res://Arts/Undead units/u33 Undying nighthunter attack .png" id="2_s7d44"]
 [ext_resource type="Texture2D" uid="uid://vn6g8isngl4i" path="res://Arts/Undead units/u33 Undying nighthunter idle .png" id="3_i4tnq"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_kq7e2"]
@@ -154,7 +153,6 @@ needed_xp = 1600
 unit_class = 5
 brief_description = "Large unit, can attack entire line."
 full_description = "Dragons defiled by the King's power and granted eternal life become his servants—the Undying Nighthunters. Vanishing into the nocturnal darkness, these creatures will let no one pass the Necropolis borders."
-portrait_texture = ExtResource("2_5hg6d")
 portrait_texture_path = "res://Arts/Placeholders/Undying nighthunter.jpg"
 cost_gold = 400
 cost_stone = 4300
@@ -185,7 +183,7 @@ damage_policy = ExtResource("8_2bjgu")
 applying_effects = Dictionary[String, Variant]({
 "only_to_type": [2, "weakness", [3, 35]]
 })
-description = "Applies [b]weakness[/b] to mages."
+description = "Applies weakness to mages."
 
 [node name="Ward" parent="UnitParameters" index="2" instance=ExtResource("10_ypvfv")]
 damage_type = 3

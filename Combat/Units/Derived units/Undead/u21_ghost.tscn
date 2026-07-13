@@ -1,7 +1,6 @@
-[gd_scene load_steps=31 format=3 uid="uid://bij67u1mx8c1"]
+[gd_scene load_steps=30 format=3 uid="uid://bij67u1mx8c1"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_ste1w"]
-[ext_resource type="Texture2D" uid="uid://c4lsh5aje6npj" path="res://Arts/Placeholders/Ghost.jpg" id="2_axmat"]
 [ext_resource type="Texture2D" uid="uid://bak4dqdmvowmw" path="res://Arts/Undead units/u11 ghost attack .png" id="2_mtewv"]
 [ext_resource type="Texture2D" uid="uid://3s52m6y30rqh" path="res://Arts/Undead units/u11 ghost idle .png" id="3_ilocx"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_ibcd7"]
@@ -109,7 +108,6 @@ faction = 2
 unit_class = 4
 brief_description = "Archer with no damage that pralyses targets."
 full_description = "When a soul cannot find its way to The Dark, it may be materialized as a ghost. Though unable to interfere directly, these creatures trap unsuspecting victims in illusions, rendering them vulnerable to other Necropolis forces."
-portrait_texture = ExtResource("2_axmat")
 portrait_texture_path = "res://Arts/Placeholders/Ghost.jpg"
 cost_mana = 50
 
