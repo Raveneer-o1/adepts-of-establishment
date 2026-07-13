@@ -4,7 +4,7 @@ class_name UnitInfoPanel
 #@onready var info := get_node("Panel/MainContainer/LeftContainer/DesctiprionPanel/DescriptionLabel") as RichTextLabel
 #@onready var full_info: RichTextLabel = $Panel/MainContainer/RightContainer/FullInfo
 @onready var portrait: TextureRect = $Panel/MainContainer/LeftContainer/PortraitPanel/PortraitMargin/Portrait
-@onready var description_label: RichTextLabel = $Panel/MainContainer/LeftContainer/DesctiprionPanel/DescriptionLabel
+@onready var description_label: RichTextLabel = $Panel/MainContainer/LeftContainer/DesctiprionPanel/MarginContainer/DescriptionLabel
 
 @onready var hp_container: UI_UnitPanel_HP_Container = $Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/HPContainer
 @onready var armor_container: UI_UnitPanel_ArmorContainer = $Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/ArmorContainer
@@ -103,7 +103,7 @@ func _set_attacks(u: Variant) -> void:
 	else: push_error("Unexpected type")
 
 func _set_name(u: Variant) -> void:
-	const LEVEL_TEXT = "%s, \tLevel %d"
+	const LEVEL_TEXT = "%s\nLevel %d"
 	if u is Unit:
 		level_label.text = LEVEL_TEXT % [u.unit_name, u.parameters.level]
 	elif u is UnitData:
@@ -171,5 +171,9 @@ func _ready() -> void:
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN or \
+			event.button_index == MOUSE_BUTTON_WHEEL_LEFT or \
+			event.button_index == MOUSE_BUTTON_WHEEL_RIGHT or \
+			event.button_index == MOUSE_BUTTON_WHEEL_UP: return
 		if not (event as InputEventMouse).is_pressed():
 			visible = false

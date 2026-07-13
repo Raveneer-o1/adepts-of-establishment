@@ -1,8 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://d12hr40jjb8s8"]
+[gd_scene load_steps=24 format=3 uid="uid://d12hr40jjb8s8"]
 
+[ext_resource type="Theme" uid="uid://ivyypdgptsec" path="res://Themes/UI_Theme.tres" id="1_88rkb"]
 [ext_resource type="Script" uid="uid://df3o7avtisvgt" path="res://Combat/Scripts/unit_info_panel.gd" id="1_udonc"]
 [ext_resource type="Texture2D" uid="uid://bqxx85jbcslr4" path="res://Arts/Placeholder portrait.jpg" id="2_ljltd"]
 [ext_resource type="Texture2D" uid="uid://dxhnooqfvgjkt" path="res://Arts/itch assets/Custom Border and Panels Menu All Part [BDragon1727]/border.tres" id="3_5gem6"]
+[ext_resource type="Texture2D" uid="uid://8k5dgjqyxmmh" path="res://Arts/itch assets/Retro Inventory [ElvGames]/Retro Inventory/Scaled 3x/Inventory_9Slices.png" id="3_rcadf"]
 [ext_resource type="Texture2D" uid="uid://w7f4iwtoa1tw" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/CharacterBox_56x57.png" id="4_4wkid"]
 [ext_resource type="Texture2D" uid="uid://onvwb0ot7iwa" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/BottomPatternPanel_119x17.png" id="4_iheml"]
 [ext_resource type="Script" uid="uid://dy1ach6w1qmww" path="res://UI/UnitPanel/hp_container.gd" id="4_u8sgo"]
@@ -18,14 +20,20 @@
 [ext_resource type="PackedScene" uid="uid://cn26iuo3vxrgy" path="res://UI/UnitPanel/attack_panel.tscn" id="14_j547b"]
 [ext_resource type="Script" uid="uid://bipxhyxmyjlhy" path="res://Combat/Scenes/effects_panel.gd" id="15_6nmij"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lf3mo"]
+texture = ExtResource("3_rcadf")
+texture_margin_left = 24.0
+texture_margin_top = 18.0
+texture_margin_right = 25.0
+texture_margin_bottom = 15.0
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+
 [sub_resource type="LabelSettings" id="LabelSettings_s8qj1"]
 font_size = 50
 font_color = Color(1, 0.01999998, 0.01999998, 0.5019608)
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_4tmex"]
-font_size = 22
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j547b"]
 atlas = ExtResource("11_4tmex")
@@ -43,6 +51,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+theme = ExtResource("1_88rkb")
 script = ExtResource("1_udonc")
 
 [node name="Panel" type="Panel" parent="."]
@@ -81,6 +90,7 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_lf3mo")
 
 [node name="PortraitMargin" type="MarginContainer" parent="Panel/MainContainer/LeftContainer/PortraitPanel"]
 layout_mode = 1
@@ -123,15 +133,22 @@ texture = ExtResource("3_5gem6")
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_lf3mo")
 
-[node name="DescriptionLabel" type="RichTextLabel" parent="Panel/MainContainer/LeftContainer/DesctiprionPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MainContainer/LeftContainer/DesctiprionPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_vertical = 8
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 20
+
+[node name="DescriptionLabel" type="RichTextLabel" parent="Panel/MainContainer/LeftContainer/DesctiprionPanel/MarginContainer"]
+layout_mode = 2
 mouse_filter = 2
 text = "HP = "
 fit_content = true
@@ -153,8 +170,9 @@ mouse_filter = 2
 
 [node name="LevelLabel" type="Label" parent="Panel/MainContainer/MarginContainer/RightContainer"]
 layout_mode = 2
-text = "Level 1"
-label_settings = SubResource("LabelSettings_4tmex")
+theme_override_font_sizes/font_size = 24
+text = "Level N
+Unit Name"
 horizontal_alignment = 1
 
 [node name="Control" type="Control" parent="Panel/MainContainer/MarginContainer/RightContainer"]
@@ -185,7 +203,7 @@ alignment = 1
 script = ExtResource("4_u8sgo")
 
 [node name="HPProgressBar" type="TextureProgressBar" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/HPContainer"]
-custom_minimum_size = Vector2(300, 50)
+custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 tooltip_text = "Health"
 value = 50.0
@@ -238,6 +256,7 @@ stretch_mode = 4
 
 [node name="EvasionLabel" type="Label" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/EvasionContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 22
 text = "10"
 horizontal_alignment = 1
 
@@ -255,14 +274,21 @@ stretch_mode = 4
 
 [node name="BaseDamageLabel" type="Label" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/BaseDamageContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 22
 text = "50"
 horizontal_alignment = 1
 
-[node name="Attacks" type="HBoxContainer" parent="Panel/MainContainer/MarginContainer/RightContainer"]
+[node name="Attacks" type="ScrollContainer" parent="Panel/MainContainer/MarginContainer/RightContainer"]
 layout_mode = 2
+vertical_scroll_mode = 0
 script = ExtResource("12_x1pog")
 
-[node name="AttackPanel" parent="Panel/MainContainer/MarginContainer/RightContainer/Attacks" instance=ExtResource("14_j547b")]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MainContainer/MarginContainer/RightContainer/Attacks"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="AttackPanel" parent="Panel/MainContainer/MarginContainer/RightContainer/Attacks/HBoxContainer" instance=ExtResource("14_j547b")]
 layout_mode = 2
 
 [node name="EffectsLabel" type="Label" parent="Panel/MainContainer/MarginContainer/RightContainer"]
