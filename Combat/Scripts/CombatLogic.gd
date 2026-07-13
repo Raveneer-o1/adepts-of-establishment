@@ -105,6 +105,7 @@ func try_wait() -> bool:
 func start_round() -> void:
 	if not battle_in_progress:
 		return
+	EventBus.round_ended.emit()
 	waited_attacks.clear()
 	current_round += 1
 	print("Round " + str(current_round))
