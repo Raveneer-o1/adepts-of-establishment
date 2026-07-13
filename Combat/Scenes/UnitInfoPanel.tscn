@@ -1,10 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://d12hr40jjb8s8"]
+[gd_scene load_steps=22 format=3 uid="uid://d12hr40jjb8s8"]
 
 [ext_resource type="Script" uid="uid://df3o7avtisvgt" path="res://Combat/Scripts/unit_info_panel.gd" id="1_udonc"]
 [ext_resource type="Texture2D" uid="uid://bqxx85jbcslr4" path="res://Arts/Placeholder portrait.jpg" id="2_ljltd"]
 [ext_resource type="Texture2D" uid="uid://dxhnooqfvgjkt" path="res://Arts/itch assets/Custom Border and Panels Menu All Part [BDragon1727]/border.tres" id="3_5gem6"]
 [ext_resource type="Texture2D" uid="uid://w7f4iwtoa1tw" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/CharacterBox_56x57.png" id="4_4wkid"]
+[ext_resource type="Texture2D" uid="uid://onvwb0ot7iwa" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/BottomPatternPanel_119x17.png" id="4_iheml"]
 [ext_resource type="Script" uid="uid://dy1ach6w1qmww" path="res://UI/UnitPanel/hp_container.gd" id="4_u8sgo"]
+[ext_resource type="Texture2D" uid="uid://bhfjk30ourb5x" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/TopPatternPanel_02_33x15.png" id="5_88rkb"]
 [ext_resource type="Texture2D" uid="uid://b0g2xysqat0bs" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/ValueBar_128x16.png" id="5_yamot"]
 [ext_resource type="Texture2D" uid="uid://d4hcy4nph4c5k" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/ValueRed_120x8.png" id="6_t7euk"]
 [ext_resource type="Texture2D" uid="uid://s65ckn22qjc3" path="res://Arts/itch assets/Pixel Art Icon Pack - RPG [Cainos]/Weapon & Tool/Iron Shield.png" id="7_t7euk"]
@@ -14,6 +16,7 @@
 [ext_resource type="Script" uid="uid://os3553ff14d8" path="res://UI/UnitPanel/base_damage_container.gd" id="11_x1pog"]
 [ext_resource type="Script" uid="uid://bci0eyr7wn3eg" path="res://UI/UnitPanel/attacks_container.gd" id="12_x1pog"]
 [ext_resource type="PackedScene" uid="uid://cn26iuo3vxrgy" path="res://UI/UnitPanel/attack_panel.tscn" id="14_j547b"]
+[ext_resource type="Script" uid="uid://bipxhyxmyjlhy" path="res://Combat/Scenes/effects_panel.gd" id="15_6nmij"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_s8qj1"]
 font_size = 50
@@ -131,6 +134,7 @@ grow_vertical = 2
 size_flags_vertical = 8
 mouse_filter = 2
 text = "HP = "
+fit_content = true
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel/MainContainer"]
 layout_mode = 2
@@ -152,6 +156,25 @@ layout_mode = 2
 text = "Level 1"
 label_settings = SubResource("LabelSettings_4tmex")
 horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="Panel/MainContainer/MarginContainer/RightContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Line" type="TextureRect" parent="Panel/MainContainer/MarginContainer/RightContainer/Control"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0517578e-05
+offset_top = -114.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("4_iheml")
+expand_mode = 3
+stretch_mode = 5
 
 [node name="BaseInfo" type="HBoxContainer" parent="Panel/MainContainer/MarginContainer/RightContainer"]
 layout_mode = 2
@@ -241,5 +264,29 @@ script = ExtResource("12_x1pog")
 
 [node name="AttackPanel" parent="Panel/MainContainer/MarginContainer/RightContainer/Attacks" instance=ExtResource("14_j547b")]
 layout_mode = 2
+
+[node name="EffectsLabel" type="Label" parent="Panel/MainContainer/MarginContainer/RightContainer"]
+layout_mode = 2
+text = "Active effects:"
+
+[node name="EffectsContainer" type="GridContainer" parent="Panel/MainContainer/MarginContainer/RightContainer"]
+layout_mode = 2
+script = ExtResource("15_6nmij")
+
+[node name="BottomContainer" type="VBoxContainer" parent="Panel/MainContainer/MarginContainer/RightContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 2
+
+[node name="Line" type="TextureRect" parent="Panel/MainContainer/MarginContainer/RightContainer/BottomContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+texture = ExtResource("5_88rkb")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="DescriptionLabel" type="RichTextLabel" parent="Panel/MainContainer/MarginContainer/RightContainer/BottomContainer"]
+layout_mode = 2
+fit_content = true
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

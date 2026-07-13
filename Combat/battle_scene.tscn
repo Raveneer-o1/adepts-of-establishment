@@ -34,10 +34,6 @@ layout_mode = 1
 
 [node name="Combat" parent="." instance=ExtResource("2_wgwyx")]
 
-[node name="UnitInfoPanel" parent="." instance=ExtResource("3_0wrh2")]
-visible = false
-layout_mode = 1
-
 [node name="UI" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -144,6 +140,10 @@ unique_name_in_owner = true
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="UnitInfoPanel" parent="." instance=ExtResource("3_0wrh2")]
+visible = false
+layout_mode = 1
 
 [connection signal="pressed" from="UI/ParentContainer/PanelContainer/HBoxContainer/ButtonSwitchAction" to="Combat" method="_on_button_switch_action_pressed"]
 [connection signal="pressed" from="UI/ParentContainer/PanelContainer/HBoxContainer/ButtonDefense" to="Combat" method="_on_button_defense_pressed"]

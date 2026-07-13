@@ -15,6 +15,7 @@ data = {
 image = SubResource("Image_wuwif")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dbepj"]
+resource_local_to_scene = true
 atlas = SubResource("ImageTexture_qybfs")
 region = Rect2(0, 0, 8, 8)
 

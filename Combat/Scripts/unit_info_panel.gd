@@ -12,6 +12,8 @@ class_name UnitInfoPanel
 @onready var base_damage_container: UI_UnitPanel_BaseDamageContainer = $Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/BaseDamageContainer
 @onready var level_label: Label = $Panel/MainContainer/MarginContainer/RightContainer/LevelLabel
 @onready var attacks_container: UI_UnitPanel_AttacksContainer = $Panel/MainContainer/MarginContainer/RightContainer/Attacks
+@onready var effects_container: UI_UnitPanel_Effects = $Panel/MainContainer/MarginContainer/RightContainer/EffectsContainer
+@onready var full_description_label: RichTextLabel = $Panel/MainContainer/MarginContainer/RightContainer/BottomContainer/DescriptionLabel
 
 # Formatting constants for unit stats to maintain consistency in text presentation.
 const HP_LINE = "HP: %d/%d\n"
@@ -118,6 +120,20 @@ func _set_small_description(u: Variant) -> void:
 		description_label.text = u.brief_description
 	else: push_error("Unexpected type")
 
+func _set_description(u: Variant) -> void:
+	if u is Unit:
+		full_description_label.text = u.full_description
+	elif u is UnitData:
+		full_description_label.text = u.description
+	else: push_error("Unexpected type")
+
+func _set_effects(u: Variant) -> void:
+	if u is Unit:
+		effects_container.fill_effects(u.parameters.get_all_effects())
+	elif u is UnitData:
+		effects_container.fill_effects([] as Array[AppliedEffect])
+	else: push_error("Unexpected type")
+
 func fill_data(unit: Variant) -> void:
 	assert(unit is Unit or unit is UnitData)
 	_set_name(unit)
@@ -127,6 +143,8 @@ func fill_data(unit: Variant) -> void:
 	_set_armor(unit)
 	_set_hp(unit)
 	_set_small_description(unit)
+	_set_effects(unit)
+	_set_description(unit)
 
 func fill_text_data(unit: Unit) -> void:
 	fill_data(unit)
