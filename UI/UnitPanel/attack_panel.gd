@@ -21,7 +21,7 @@ func fill_data(a: Variant) -> void:
 
 func _fill_data_attack(a: UnitAttack) -> void:
 	attack_name.text = a.attack_name
-	damage_label.text = str( roundi(a.get_actual_damage()) )
+	damage_label.text = _get_damage_text(a)
 	accuracy_label.text = UnitInfoPanel.get_accuracy_text( a.accuracy )
 	initiative_label.text = str(a.initiative)
 	type_label.text = UnitInfoPanel.attack_type_to_str(a.type)
@@ -36,8 +36,7 @@ func _fill_data_attack(a: UnitAttack) -> void:
 
 func _fill_data_attack_data(a: UnitAttackData) -> void:
 	attack_name.text = a.attack_name
-	var dmg := a.get_actual_damage()
-	damage_label.text = "—" if is_nan(dmg) else str( roundi(dmg) )
+	damage_label.text = _get_damage_text_data(a)
 	accuracy_label.text = UnitInfoPanel.get_accuracy_text(a.accuracy)
 	initiative_label.text = str(a.initiative)
 	type_label.text = UnitInfoPanel.attack_type_to_str(a.type)
@@ -49,3 +48,17 @@ func _fill_data_attack_data(a: UnitAttackData) -> void:
 		effects_label.text = NO_EFFECTS_LINE
 		effects_label.tooltip_text = NO_EFFECTS_TOOLTIP
 	description_label.text = a.description
+
+func _get_damage_text(a: UnitAttack) -> String:
+	var res := str( roundi(a.get_actual_damage()) )
+	if (a.targets_needed > 1):
+		res += "x%d" % a.targets_needed
+	return res
+
+func _get_damage_text_data(a: UnitAttackData) -> String:
+	var dmg := a.get_actual_damage()
+	if is_nan(dmg): return "—"
+	var res := str( roundi(a.get_actual_damage()) )
+	if (a.targets_needed > 1):
+		res += " (x%d)" % a.targets_needed
+	return res

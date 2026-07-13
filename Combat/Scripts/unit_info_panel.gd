@@ -6,8 +6,8 @@ class_name UnitInfoPanel
 @onready var portrait: TextureRect = $Panel/MainContainer/LeftContainer/PortraitPanel/PortraitMargin/Portrait
 @onready var description_label: RichTextLabel = $Panel/MainContainer/LeftContainer/DesctiprionPanel/MarginContainer/DescriptionLabel
 
-@onready var hp_container: UI_UnitPanel_HP_Container = $Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/HPContainer
-@onready var armor_container: UI_UnitPanel_ArmorContainer = $Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/ArmorContainer
+@onready var hp_container: UI_UnitPanel_HP_Container = $Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/AR_HP/HPContainer
+@onready var armor_container: UI_UnitPanel_ArmorContainer = $Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/AR_HP/ArmorContainer
 @onready var evasion_container: UI_UnitPanel_EvasionContainer = $Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/EvasionContainer
 @onready var base_damage_container: UI_UnitPanel_BaseDamageContainer = $Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/BaseDamageContainer
 @onready var level_label: Label = $Panel/MainContainer/MarginContainer/RightContainer/LevelLabel

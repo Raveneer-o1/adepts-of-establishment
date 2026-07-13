@@ -170,7 +170,7 @@ mouse_filter = 2
 
 [node name="LevelLabel" type="Label" parent="Panel/MainContainer/MarginContainer/RightContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 text = "Level N
 Unit Name"
 horizontal_alignment = 1
@@ -196,23 +196,26 @@ stretch_mode = 5
 
 [node name="BaseInfo" type="HBoxContainer" parent="Panel/MainContainer/MarginContainer/RightContainer"]
 layout_mode = 2
+alignment = 1
 
-[node name="HPContainer" type="VBoxContainer" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo"]
+[node name="AR_HP" type="VBoxContainer" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo"]
+layout_mode = 2
+
+[node name="HPContainer" type="VBoxContainer" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/AR_HP"]
 layout_mode = 2
 alignment = 1
 script = ExtResource("4_u8sgo")
 
-[node name="HPProgressBar" type="TextureProgressBar" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/HPContainer"]
-custom_minimum_size = Vector2(400, 50)
+[node name="HPProgressBar" type="TextureProgressBar" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/AR_HP/HPContainer"]
+custom_minimum_size = Vector2(400, 40)
 layout_mode = 2
-tooltip_text = "Health"
 value = 50.0
 nine_patch_stretch = true
 texture_under = ExtResource("4_4wkid")
 texture_over = ExtResource("5_yamot")
 texture_progress = ExtResource("6_t7euk")
 
-[node name="Label" type="Label" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/HPContainer/HPProgressBar"]
+[node name="Label" type="Label" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/AR_HP/HPContainer/HPProgressBar"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -223,19 +226,19 @@ text = "50/100"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ArmorContainer" type="VBoxContainer" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo"]
+[node name="ArmorContainer" type="VBoxContainer" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/AR_HP"]
 custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 script = ExtResource("8_u8sgo")
 
-[node name="Armor_TextureRect" type="TextureRect" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/ArmorContainer"]
+[node name="Armor_TextureRect" type="TextureRect" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/AR_HP/ArmorContainer"]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 texture = ExtResource("7_t7euk")
 stretch_mode = 1
 
-[node name="Label" type="Label" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/ArmorContainer"]
+[node name="Label" type="Label" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/AR_HP/ArmorContainer"]
 visible = false
 layout_mode = 2
 mouse_filter = 1
@@ -243,6 +246,7 @@ text = "—"
 horizontal_alignment = 1
 
 [node name="EvasionContainer" type="VBoxContainer" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo"]
+custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 tooltip_text = "Evasion"
 script = ExtResource("10_uoi4i")
@@ -252,7 +256,7 @@ layout_mode = 2
 size_flags_vertical = 3
 texture = SubResource("AtlasTexture_j547b")
 expand_mode = 3
-stretch_mode = 4
+stretch_mode = 5
 
 [node name="EvasionLabel" type="Label" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/EvasionContainer"]
 layout_mode = 2
@@ -261,6 +265,7 @@ text = "10"
 horizontal_alignment = 1
 
 [node name="BaseDamageContainer" type="VBoxContainer" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo"]
+custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 tooltip_text = "Base damage"
 script = ExtResource("11_x1pog")
@@ -270,7 +275,7 @@ layout_mode = 2
 size_flags_vertical = 3
 texture = SubResource("AtlasTexture_6nmij")
 expand_mode = 3
-stretch_mode = 4
+stretch_mode = 5
 
 [node name="BaseDamageLabel" type="Label" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/BaseDamageContainer"]
 layout_mode = 2
