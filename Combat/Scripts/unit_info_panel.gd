@@ -131,7 +131,7 @@ func _set_effects(u: Variant) -> void:
 	if u is Unit:
 		effects_container.fill_effects(u.parameters.get_all_effects())
 	elif u is UnitData:
-		effects_container.fill_effects([] as Array[AppliedEffect])
+		effects_container.fill_effects_data(u.effects)
 	else: push_error("Unexpected type")
 
 func fill_data(unit: Variant) -> void:
