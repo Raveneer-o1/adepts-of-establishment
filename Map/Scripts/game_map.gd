@@ -149,6 +149,7 @@ func _test_init() -> void:
 
 func _ready() -> void:
 	assert(neutral_faction)
+	GlobalLogger.mark_session("Global map session")
 	load_maps()
 	ui_layers.clear_active_party()
 	_test_init.call_deferred()

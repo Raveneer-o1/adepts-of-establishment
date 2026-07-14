@@ -142,6 +142,8 @@ func _set_immunities(u: Variant) -> void:
 		immunities_container.set_value(u.immunities)
 	else: push_error("Unexpected type")
 
+## Fills the info panel with information about the provided [param unit].
+## The argument [b]must[/b] be either [Unit] or [UnitData].
 func fill_data(unit: Variant) -> void:
 	assert(unit is Unit or unit is UnitData)
 	_set_name(unit)
@@ -155,9 +157,6 @@ func fill_data(unit: Variant) -> void:
 	_set_description(unit)
 	_set_immunities(unit)
 
-func fill_text_data(unit: Unit) -> void:
-	fill_data(unit)
-
 func replace_portrait(texture_path: String) -> void:
 	var texture := DataBuffer.get_image(texture_path)
 	if texture != null:
@@ -165,18 +164,17 @@ func replace_portrait(texture_path: String) -> void:
 		portrait.show()
 	else: portrait.hide()
 
-## Populates the UI panel with formatted unit information.
-## Displays HP, armor, base damage, and details of each attack
-## (damage, initiative, accuracy, type, effects).
+## Fills the UI panel with formatted information for the given [param unit] and makes it visible.
+## The panel will automatically hide when the user interacts with it — no additional handling is required.
 func populate_panel_with_info(unit: Unit) -> void:
-	fill_text_data(unit)
+	fill_data(unit)
 	
 	replace_portrait(unit.portrait_texture_path)
 	
 	visible = true
 
 func _ready() -> void:
-	get_node("/root/EventBus").unit_description_requested.connect(populate_panel_with_info)
+	EventBus.unit_description_requested.connect(populate_panel_with_info)
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:

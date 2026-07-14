@@ -155,6 +155,7 @@ func _on_clear_button_pressed() -> void:
 		(panel.get_parent() as MenuUnitPlace).clear_child_info()
 
 func _ready() -> void:
+	GlobalLogger.mark_session()
 	item_list_left_controller.select(STANDARD_AI_CONTROLLER)
 	item_list_right_controller.select(PLAYER_CONTROLLER)
 	%VesrionLabel.text = ProjectSettings.get_setting("application/config/version")

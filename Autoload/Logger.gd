@@ -3,6 +3,8 @@ extends Node
 const LOG_FILE = "log.txt"
 const BLOCK_DELIM = "====================="
 const MSG_DELIM = "---"
+const SESSION_DELIM = "\t=========================================="
+const SESSION_HEADER = "\t========= %s"
 
 # NOTE: This variable is meant to be changed directly in the code when needed.
 ## Filters out most log messages. If the build is run with the [code]-v[/code] or
@@ -10,6 +12,7 @@ const MSG_DELIM = "---"
 var verbose_mode := true
 
 func _ready() -> void:
+	if not OS.is_debug_build(): verbose_mode = false
 	if not verbose_mode and OS.is_stdout_verbose():
 		verbose_mode = true
 	if not FileAccess.file_exists(LOG_FILE):
@@ -25,6 +28,31 @@ func _ready() -> void:
 func add_message(message: String, object: Variant) -> void:
 	if not verbose_mode: return
 	force_message(message, object)
+
+## Writes a session header into the log file.
+## Meant to be called at the start of a new scene (e.g., start of a combat).
+## If [param message] is specified, it will be printed as the name of this session
+func mark_session(message := "") -> void:
+	var file := _get_file()
+	if not file: return
+	
+	var time_date := Time.get_datetime_dict_from_system()
+	var time_date_str := "%d.%d.%d \t%d:%d" % [
+		time_date.day,
+		time_date.month,
+		time_date.year,
+		time_date.hour,
+		time_date.minute,
+	]
+	
+	file.store_line("")
+	file.store_line(SESSION_DELIM)
+	if message: file.store_line(SESSION_HEADER % message)
+	file.store_line(SESSION_HEADER % time_date_str)
+	file.store_line(SESSION_DELIM)
+	file.store_line("")
+	
+	file.close()
 
 ## Similar to [method add_message], but writes the log regardless of
 ## [member verbose_mode].
@@ -59,7 +87,7 @@ func write(message: String, object: Variant) -> void:
 ## [member verbose_mode].
 func force_write(message: String, object: Variant) -> void:
 	if not OS.is_debug_build():
-		add_message(message, object)
+		force_message(message, object)
 		return
 	
 	var file := _get_file()
