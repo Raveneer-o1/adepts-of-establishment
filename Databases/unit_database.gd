@@ -171,14 +171,14 @@ const database = {
 , &"target_validation": "res://Combat/Units/Parameters/Validation/necromancer_validity.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Derived units/Undead/u17_archlich.tscn::Resource_avfpn", &"applying_effects": {
  "death_curse": [-1, 10]
  
-}, &"animation_index": 0, &"description": "This unit can resurrect instead of attacking.", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Can resurrect an ally instead.", &"alternative_actions": []
  
 }, {
  &"attack_name": "Attack", &"damage_multiplier": 0.2, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 2, &"initiative": 30, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/necromancer_validity.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/necromancer_policy.tres", &"applying_effects": {
  "death_curse": [-1, 10]
  
-}, &"animation_index": 0, &"description": "", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Can resurrect an ally instead.", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -231,9 +231,7 @@ const database = {
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_mage_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Splash.tres", &"damage_policy": "res://Combat/Units/Derived units/Undead/u18_herald_of_death.tscn::Resource_4fa37", &"applying_effects": {
  "weakness": [2, 30]
  
-}, &"animation_index": 0, &"description": "Also hits adjacent targets.\nAttacks apply [b]
-weakness[/b]
-.", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Also hits adjacent targets.", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -268,9 +266,7 @@ weakness[/b]
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_mage_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Splash.tres", &"damage_policy": "res://Combat/Units/Derived units/Undead/u15_wraith.tscn::Resource_uj6co", &"applying_effects": {
  "weakness": [1, 10]
  
-}, &"animation_index": 0, &"description": "Also hits adjacent targets.\nAttacks apply [b]
-weakness[/b]
-.", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Also hits adjacent targets.", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -283,7 +279,7 @@ weakness[/b]
  &"gold": 0, &"stone": 0, &"mana": 1200 
 } 
 },&"Skeleton warrior" : {
- &"scene_path": "res://Combat/Units/Derived units//Undead/u07_skeleton_warrior.tscn", &"level": 4, &"large_unit": false, &"immunities": []
+ &"scene_path": "res://Combat/Units/Derived units//Undead/u07_skeleton_warrior.tscn", &"level": 4, &"large_unit": false, &"immunities": [3]
 , &"description": "Restless in death are those whose souls, too attached to worldly treasures, are barred from The Dark. The Necropolis grants these spirits a home and a chance to find worth in death. Their payment is eternal service as the King\'s Skeleton Warriors.", &"brief_description": "Melee fighter that rises stronger every time it\'s resurrected.", &"faction": 2, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 1600, &"attacks": [{
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
@@ -469,9 +465,7 @@ weakness[/b]
  "only_to_type": [2, "weakness", [3, 35]
 ]
  
-}, &"animation_index": 0, &"description": "Applies [b]
-weakness[/b]
- to mages.", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Applies weakness to mages.", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -521,7 +515,7 @@ weakness[/b]
  &"gold": 200, &"stone": 500, &"mana": 700 
 } 
 },&"Skeleton Hero" : {
- &"scene_path": "res://Combat/Units/Derived units//Undead/u09_skeleton_hero.tscn", &"level": 5, &"large_unit": false, &"immunities": []
+ &"scene_path": "res://Combat/Units/Derived units//Undead/u09_skeleton_hero.tscn", &"level": 5, &"large_unit": false, &"immunities": [3]
 , &"description": "The most powerful of the undead troops are called Skeleton Heroes. Cursing the very land they walk on, these creatures are able to defy the laws of nature to impose their Master\'s will and spread the Necropolis\'s domain.", &"brief_description": "Melee fighter that rises stronger every time it\'s resurrected.", &"faction": 2, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 2500, &"attacks": [{
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
@@ -570,7 +564,7 @@ weakness[/b]
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.85, &"targets_needed": 1, &"initiative": 30, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/necromancer_validity.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Derived units/Undead/u11_necromancer.tscn::Resource_0m3ru", &"applying_effects": {
   
-}, &"animation_index": 0, &"description": "", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Can resurrect an ally instead.", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -605,7 +599,7 @@ weakness[/b]
 },&"Vision of Darkness" : {
  &"scene_path": "res://Combat/Units/Derived units//Undead/u26_vision_of_darkness.tscn", &"level": 4, &"large_unit": false, &"immunities": [3]
 , &"description": "A quick glance into the darkness that awaits every soul at the end makes even the bravest tremble in fear.", &"brief_description": "Archer with almost no damage that pralyses several targets.", &"faction": 2, &"unit_type": 1, &"unit_class": 0, &"needed_xp": 1600, &"attacks": [{
- &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.685, &"targets_needed": 1, &"initiative": 25, &"evadable": true, &"tags": []
+ &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 2, &"accuracy": 0.685, &"targets_needed": 1, &"initiative": 25, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Splash.tres", &"damage_policy": "", &"applying_effects": {
  "paralysis": [0.9, 1]
  
@@ -684,7 +678,7 @@ weakness[/b]
 },&"Shadow" : {
  &"scene_path": "res://Combat/Units/Derived units//Undead/u24_shadow.tscn", &"level": 3, &"large_unit": false, &"immunities": [3]
 , &"description": "The King\'s presence is in everything, following every living soul, for he knows everyone will bow to him one day. Flee if you can, tiny mortal, for your very shadow has turned against you.", &"brief_description": "Archer with almost no damage that pralyses several targets.", &"faction": 2, &"unit_type": 1, &"unit_class": 4, &"needed_xp": 900, &"attacks": [{
- &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.65, &"targets_needed": 1, &"initiative": 25, &"evadable": true, &"tags": []
+ &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 2, &"accuracy": 0.65, &"targets_needed": 1, &"initiative": 25, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Splash.tres", &"damage_policy": "", &"applying_effects": {
  "paralysis": [0.9, 2]
  
@@ -692,7 +686,7 @@ weakness[/b]
  
 }]
 , &"effects": []
-, &"base_damage": 15, &"max_hp": 11, &"armor": 0, &"evasion": 0.15, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Shadow.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+, &"base_damage": 15, &"max_hp": 110, &"armor": 0, &"evasion": 0.15, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Shadow.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
   
 }, &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 380 
@@ -724,7 +718,7 @@ weakness[/b]
 , &"target_validation": "res://Combat/Units/Parameters/Validation/necromancer_validity.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Derived units/Undead/u14_lich.tscn::Resource_4gd0u", &"applying_effects": {
  "death_curse": [-1, 7]
  
-}, &"animation_index": 0, &"description": "This unit can resurrect instead of attacking.", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Can resurrect an ally instead.", &"alternative_actions": []
  
 }, {
  &"attack_name": "Attack", &"damage_multiplier": 0.4, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 25, &"evadable": true, &"tags": []
@@ -747,9 +741,7 @@ weakness[/b]
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_mage_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Splash.tres", &"damage_policy": "res://Combat/Units/Derived units/Undead/u16_elder_vampire.tscn::Resource_5sbny", &"applying_effects": {
  "clumsiness": [0.05, 2]
  
-}, &"animation_index": 0, &"description": "Also hits adjacent targets.\nApplies [b]
-clumsiness[/b]
-.", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Also hits adjacent targets.", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -841,7 +833,7 @@ clumsiness[/b]
  &"attack_name": "Attack", &"damage_multiplier": 0.65, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.975, &"targets_needed": 2, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"description": "This unit can choose two targets", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -912,7 +904,7 @@ clumsiness[/b]
  &"attack_name": "Attack", &"damage_multiplier": 0.56, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Double_attack.tres", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"description": "This unit attacks the target twice", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Deals damage twice.", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -927,7 +919,7 @@ clumsiness[/b]
  &"attack_name": "Attack", &"damage_multiplier": 0.6, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 2, &"initiative": 30, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/elementalist_validity.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/elementalist_policy.tres", &"applying_effects": {
   
-}, &"animation_index": 0, &"description": "", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Can summon an elemental on an empty spot.", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -942,13 +934,13 @@ clumsiness[/b]
  &"attack_name": "Attack", &"damage_multiplier": 0.4, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 70, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/melee_with_move.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/melee_with_move_policy.tres", &"applying_effects": {
   
-}, &"animation_index": 0, &"description": "This unit can move to attack.", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Can move to attack.", &"alternative_actions": []
  
 }, {
  &"attack_name": "Attack", &"damage_multiplier": 0.6, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/melee_with_move.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/melee_with_move_policy.tres", &"applying_effects": {
   
-}, &"animation_index": 0, &"description": "", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Can move to attack.", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -963,19 +955,19 @@ clumsiness[/b]
  &"attack_name": "Attack", &"damage_multiplier": 0.4, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 70, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Derived units/Empire/e12 Paladin.tscn::Resource_rww7o", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/melee_with_move_policy.tres", &"applying_effects": {
   
-}, &"animation_index": 0, &"description": "This unit can move to attack.", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Can move to attack.", &"alternative_actions": []
  
 }, {
  &"attack_name": "Attack", &"damage_multiplier": 0.5, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Derived units/Empire/e12 Paladin.tscn::Resource_rww7o", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/melee_with_move_policy.tres", &"applying_effects": {
   
-}, &"animation_index": 0, &"description": "This unit can move to attack.", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Can move to attack.", &"alternative_actions": []
  
 }, {
  &"attack_name": "Attack", &"damage_multiplier": 0.4, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 30, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Derived units/Empire/e12 Paladin.tscn::Resource_rww7o", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/melee_with_move_policy.tres", &"applying_effects": {
   
-}, &"animation_index": 0, &"description": "This unit can move to attack.", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Can move to attack.", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -996,7 +988,7 @@ clumsiness[/b]
 , &"target_validation": "res://Combat/Units/Parameters/Validation/any_unit.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Splash.tres", &"damage_policy": "res://Combat/Units/Derived units/Empire/e21 Arcanist.tscn::Resource_xbk8a", &"applying_effects": {
  "electrified": [3, 18]
  
-}, &"animation_index": 0, &"description": "", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Can apply a shield to an ally.", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -1023,7 +1015,7 @@ clumsiness[/b]
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/melee_with_self.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/provoke_valid_targets_policy.tres", &"applying_effects": {
   
-}, &"animation_index": 0, &"description": "This unit can provoke all avaliable targets to attack itself (once every three turns).", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -1047,7 +1039,8 @@ clumsiness[/b]
 }, {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.97, &"targets_needed": 1, &"initiative": 50, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
-  
+ "vulnerability": [1, 30]
+ 
 }, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
@@ -1145,7 +1138,7 @@ clumsiness[/b]
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 30, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/any_unit.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Derived units/Empire/e16 Mage.tscn::Resource_6f3w4", &"applying_effects": {
   
-}, &"animation_index": 0, &"description": "This unit can apply a weak shield to an ally", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Can apply a weak shield to an ally.", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -1160,19 +1153,19 @@ clumsiness[/b]
  &"attack_name": "Attack", &"damage_multiplier": 0.5, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 60, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/melee_with_move.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/melee_with_move_policy.tres", &"applying_effects": {
   
-}, &"animation_index": 0, &"description": "This unit can move to attack.", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Can move to attack.", &"alternative_actions": []
  
 }, {
  &"attack_name": "Attack", &"damage_multiplier": 0.4, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/melee_with_move.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/melee_with_move_policy.tres", &"applying_effects": {
   
-}, &"animation_index": 0, &"description": "", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Can move to attack.", &"alternative_actions": []
  
 }, {
  &"attack_name": "Attack", &"damage_multiplier": 0.3, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 35, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/melee_with_move.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/melee_with_move_policy.tres", &"applying_effects": {
   
-}, &"animation_index": 0, &"description": "", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Can move to attack.", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -1190,7 +1183,7 @@ clumsiness[/b]
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"description": "Can purify any unit: lift all effects that unit has.", &"alternative_actions": [{
+}, &"animation_index": 0, &"description": "", &"alternative_actions": [{
  &"attack_name": "Purification", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 4, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/any_unit.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/purify_policy.tres", &"applying_effects": {
   
@@ -1217,7 +1210,7 @@ clumsiness[/b]
 , &"target_validation": "res://Combat/Units/Parameters/Validation/any_unit.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Splash.tres", &"damage_policy": "res://Combat/Units/Derived units/Empire/e19 White Mage.tscn::Resource_yeav1", &"applying_effects": {
  "electrified": [2, 10]
  
-}, &"animation_index": 0, &"description": "Applies *electrified* to the target.\nThis unit can apply a weak shield to an ally.", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Can apply a weak shield to an ally.", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -1288,7 +1281,7 @@ clumsiness[/b]
  &"attack_name": "Attack", &"damage_multiplier": 0.85, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 30, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/any_unit.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Splash.tres", &"damage_policy": "res://Combat/Units/Parameters/Policy/applying_shield_policy.tres", &"applying_effects": {
   
-}, &"animation_index": 0, &"description": "This unit can apply a weak shield to an ally", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Can apply a weak shield to an ally.", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -1304,7 +1297,7 @@ clumsiness[/b]
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
  "Poison": [15, 3]
  
-}, &"animation_index": 0, &"description": "This unit applies poison on attacks", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }, {
  &"attack_name": "Attack", &"damage_multiplier": 0.5, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 50, &"evadable": true, &"tags": []
@@ -1344,7 +1337,7 @@ clumsiness[/b]
  &"attack_name": "Attack", &"damage_multiplier": 0.5, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/melee_with_self.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Derived units/Empire/e10 Angel Knight.tscn::Resource_5c7t2", &"applying_effects": {
   
-}, &"animation_index": 0, &"description": "This unit can provoke all avaliable targets to attack itself (once every two turns).", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }, {
  &"attack_name": "Attack", &"damage_multiplier": 0.5, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 30, &"evadable": true, &"tags": []
@@ -1538,7 +1531,7 @@ clumsiness[/b]
 } 
 },&"Pirate capitan" : {
  &"scene_path": "res://Combat/Units/Derived units//Neutral/pirate_captain.tscn", &"level": 4, &"large_unit": false, &"immunities": []
-, &"description": "Pirate Captains are charismatic and ruthless leaders, commanding their crews with a mix of fear and admiration. Their combat skills are matched by their ability to inspire their followers, turning a ragtag crew into a formidable fighting force.", &"brief_description": "", &"faction": 6, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 1600, &"attacks": [{
+, &"description": "", &"brief_description": "", &"faction": 6, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 1600, &"attacks": [{
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
@@ -1553,7 +1546,7 @@ clumsiness[/b]
 } 
 },&"Orc" : {
  &"scene_path": "res://Combat/Units/Derived units//Neutral/orc.tscn", &"level": 2, &"large_unit": false, &"immunities": []
-, &"description": "Orcs are fearsome warriors known for their brute strength and relentless aggression. They thrive in battle, often overpowering their foes with sheer force and determination. While they lack finesse, their loyalty to their clan and ferocity make them a dangerous presence on the battlefield.", &"brief_description": "", &"faction": 8, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 400, &"attacks": [{
+, &"description": "", &"brief_description": "", &"faction": 8, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 400, &"attacks": [{
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 30, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
@@ -1568,7 +1561,7 @@ clumsiness[/b]
 } 
 },&"Orc chieftain" : {
  &"scene_path": "res://Combat/Units/Derived units//Neutral/orc_chieftain.tscn", &"level": 4, &"large_unit": false, &"immunities": []
-, &"description": "Orc Chieftains are the leaders of their clans, commanding respect through strength and cunning. They inspire their kin with battle cries and powerful strikes, rallying their forces to victory.", &"brief_description": "", &"faction": 8, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 1600, &"attacks": [{
+, &"description": "", &"brief_description": "", &"faction": 8, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 1600, &"attacks": [{
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
@@ -1583,7 +1576,7 @@ clumsiness[/b]
 } 
 },&"Goblin" : {
  &"scene_path": "res://Combat/Units/Derived units//Neutral/goblin.tscn", &"level": 1, &"large_unit": false, &"immunities": []
-, &"description": "Goblin Archers are small but surprisingly deadly, using their agility to stay out of reach while raining arrows on their enemies. Though their aim can be erratic, their sheer numbers often compensate for individual accuracy. They are often deployed as harassers, chipping away at enemy forces from a safe distance.", &"brief_description": "", &"faction": 8, &"unit_type": 1, &"unit_class": 0, &"needed_xp": 1, &"attacks": [{
+, &"description": "", &"brief_description": "", &"faction": 8, &"unit_type": 1, &"unit_class": 0, &"needed_xp": 1, &"attacks": [{
  &"attack_name": "Attack", &"damage_multiplier": 0.667, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
@@ -1604,7 +1597,7 @@ clumsiness[/b]
 } 
 },&"Ogre" : {
  &"scene_path": "res://Combat/Units/Derived units//Neutral/ogre.tscn", &"level": 2, &"large_unit": true, &"immunities": []
-, &"description": "Ogres are hulking brutes with unparalleled physical power, smashing through enemies and obstacles alike. Though not known for their intelligence, their immense strength and resilience make them formidable foes. These behemoths are often used as shock troops, devastating enemy ranks with crushing blows.", &"brief_description": "", &"faction": 8, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 400, &"attacks": [{
+, &"description": "", &"brief_description": "", &"faction": 8, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 400, &"attacks": [{
  &"attack_name": "Attack", &"damage_multiplier": 0.5, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 15, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Double_attack.tres", &"damage_policy": "", &"applying_effects": {
   
@@ -1619,7 +1612,7 @@ clumsiness[/b]
 } 
 },&"Thief" : {
  &"scene_path": "res://Combat/Units/Derived units//Neutral/thief.tscn", &"level": 1, &"large_unit": false, &"immunities": []
-, &"description": "Thieves are nimble and cunning, excelling in stealth and precision strikes. They specialize in exploiting enemy weaknesses, targeting vulnerabilities for devastating effect.", &"brief_description": "", &"faction": 1, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 1, &"attacks": [{
+, &"description": "", &"brief_description": "", &"faction": 1, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 1, &"attacks": [{
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 65, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
@@ -1640,7 +1633,7 @@ clumsiness[/b]
 } 
 },&"Pirate" : {
  &"scene_path": "res://Combat/Units/Derived units//Neutral/pirate.tscn", &"level": 3, &"large_unit": false, &"immunities": []
-, &"description": "Pirates are rowdy and fearless, driven by a lust for gold and adventure. Armed with an array of mismatched weapons, they thrive in chaotic battles where their opportunistic nature shines. Their unpredictability and savage fighting style make them a force to be reckoned with.", &"brief_description": "", &"faction": 6, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 900, &"attacks": [{
+, &"description": "", &"brief_description": "", &"faction": 6, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 900, &"attacks": [{
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 2, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
@@ -1655,7 +1648,7 @@ clumsiness[/b]
 } 
 },&"Rogue" : {
  &"scene_path": "res://Combat/Units/Derived units//Neutral/rogue.tscn", &"level": 2, &"large_unit": false, &"immunities": []
-, &"description": "Rogues are seasoned fighters who blend agility and combat prowess, striking quickly and decisively. They are masters of deception, often using dirty tricks to gain the upper hand. Though they prefer to avoid direct confrontation, their versatility makes them a dangerous adversary.", &"brief_description": "", &"faction": 7, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 400, &"attacks": [{
+, &"description": "", &"brief_description": "", &"faction": 7, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 400, &"attacks": [{
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 60, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
  "poison": [10, 3]
@@ -1685,7 +1678,7 @@ clumsiness[/b]
 } 
 },&"Goblin shaman" : {
  &"scene_path": "res://Combat/Units/Derived units//Neutral/goblin_shaman.tscn", &"level": 2, &"large_unit": false, &"immunities": []
-, &"description": "Goblin Shamans wield primitive but potent magic, channeling the chaotic energy of their tribe’s spirit rituals. They serve as both support and disruptors, casting spells that weaken enemies or bolster their allies.", &"brief_description": "", &"faction": 8, &"unit_type": 2, &"unit_class": 0, &"needed_xp": 400, &"attacks": [{
+, &"description": "", &"brief_description": "", &"faction": 8, &"unit_type": 2, &"unit_class": 0, &"needed_xp": 400, &"attacks": [{
  &"attack_name": "Attack", &"damage_multiplier": 0.35, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 15, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_mage_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/standard_mage_targets.tres", &"damage_policy": "", &"applying_effects": {
   
