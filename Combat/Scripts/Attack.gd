@@ -358,13 +358,13 @@ func _init(_unit_attack: UnitAttack, _spots: Array[UnitSpot],
 
 func _to_string() -> String:
 	var d: Dictionary = {
-		"is_heal": is_heal,
 		"attacker": attacker,
-		"targets": targets,
+		"is_heal": is_heal,
 		"type": type,
 		"accuracy": accuracy,
 		"evadable": evadable,
-		"unit_attack": unit_attack,
+		#"unit_attack": unit_attack,
 		"targets_chosen": targets_chosen,
+		"targets": targets,
 	}
 	return "Attack %s" % str(d)

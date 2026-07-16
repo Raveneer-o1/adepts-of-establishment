@@ -497,7 +497,7 @@ func start_attacking() -> void:
 	if unit_type == GlobalDefs.UnitType.Archer:
 		attack.tags.append(&"shot")
 	
-	GlobalLogger.force_message("Unit is attacking", self)
+	GlobalLogger.force_write("Unit is attacking", self)
 	
 	system.combat_logic.book_damage(attack)
 
@@ -563,7 +563,7 @@ func resurrect(message: String = "Revived!") -> void:
 	parameters.dead = false
 	sp.assign_unit(self)
 	visible = true
-	death_visualized = false
+	_death_visualized = false
 	animation_handle.play(&"default")
 	
 	for effect in parameters.get_all_effects():
@@ -770,7 +770,7 @@ func display_damage(dmg: int, message: String = "", text_color: Color = Color.TR
 	animation_handle.play_damage_animation(message)
 	system.display_text_near_unit(self, message, color)
 
-var death_visualized: bool = false
+var _death_visualized: bool = false
 
 ## Handles the unit's death. Unlike other methods in this class, this method
 ## modifies the actual game state, not just visuals. The unit is reparented to
@@ -779,7 +779,7 @@ var death_visualized: bool = false
 func die() -> void:
 	if not initialized:
 		return
-	if death_visualized: return
+	if _death_visualized: return
 	
 	EventBus.unit_died.emit(self)
 	animation_handle.play_death_animation()
@@ -787,7 +787,7 @@ func die() -> void:
 	
 	#party.units[party_position] = null
 	spot.move_unit_to_graveyard()
-	death_visualized = true
+	_death_visualized = true
 	for effect in parameters.get_all_effects():
 		effect.deactivate()
 	
@@ -798,7 +798,7 @@ func die() -> void:
 ## Updates the unit's visual representation to match current parameter values.
 ## Resets [member parameter_snapshots], triggers death animation if applicable.
 func update_visuals() -> void:
-	if death_visualized: return
+	if _death_visualized: return
 	visual_bar.max_value = parameters.max_hp
 	visual_bar.value = parameters.hp
 	parameter_snapshots.clear()

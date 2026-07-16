@@ -169,7 +169,8 @@ func get_actual_damage() -> float:
 	return damage_multiplier if damage_override else \
 			damage_multiplier * unit.parameters.base_damage
 
-## Returns the maximum total damage this attack can deal across all targets.
+## Returns the maximum total damage this attack can deal across all targets,
+## accounting for accuracy.
 ## For the per‑target effective damage, use [method get_actual_damage].
 func get_damage_potential() -> float:
 	if damage_policy: return damage_policy.get_full_damage_potential(self)
@@ -200,9 +201,12 @@ static func get_accuracy_representation(acc: float) -> float:
 	if is_zero_approx(chance_to_miss) or acc < 0.0: return INF
 	return 1.0 / chance_to_miss
 
+func _to_string() -> String:
+	return "UnitAttack %s" % str(serialized(self))
+
 ## Returns the attack serialized as a dictionary.
 static func serialized(a: UnitAttack) -> Dictionary:
-	print("constructing attack")
+	#print("constructing attack")
 	var alternative_actions: Array[Dictionary] = []
 	for child: UnitAttack in a.get_children():
 		alternative_actions.append(UnitAttack.serialized(child))

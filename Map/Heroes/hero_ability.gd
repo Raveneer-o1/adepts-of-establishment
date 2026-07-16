@@ -39,12 +39,21 @@ extends Node
 var learned := false
 
 ## When [code]false[/code], prevents this ability from being learned.
-## @experimental: not used, may be removed
 var active := true
 
 @abstract func _learn(hero: HeroData) -> void
 
+func _can_be_learned_override(hero: HeroData, default_value: bool) -> bool:
+	return default_value
+
 func can_be_learned(hero: HeroData) -> bool:
+	if not hero:
+		push_error("Null hero reference")
+		return false
+	var default_value := _can_be_learned(hero)
+	return _can_be_learned_override(hero, default_value)
+
+func _can_be_learned(hero: HeroData) -> bool:
 	if not active: return false
 	if learned: return false
 	if hero.level < required_level: return false
