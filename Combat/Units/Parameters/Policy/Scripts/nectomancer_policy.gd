@@ -14,7 +14,10 @@ func _apply_policy(attack: Attack, finalize: bool) -> void:
 		if not ref: continue
 		first_position = ref.spot.party_position
 		break
-	assert(first_position >= 0)
+	
+	# if the attack is missed, the reference will be null
+	if first_position < 0: return
+	
 	var new_refs: Array[UnitSpotReference] = []
 	for t: UnitSpotReference in attack.target_references:
 		if not t: continue

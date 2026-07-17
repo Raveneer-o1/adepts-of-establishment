@@ -172,6 +172,7 @@ func _check_immunity(ref: UnitSpotReference) -> bool:
 	unit.sound_player.play_immunity_sound()
 	tags.append(&"immuned")
 	_remove_target(ref)
+	GlobalLogger.add_message("Attack immuned by %s" % str(unit), self)
 	return true
 
 func _check_miss(ref: UnitSpotReference) -> bool:
@@ -183,6 +184,7 @@ func _check_miss(ref: UnitSpotReference) -> bool:
 	EventBus.attack_missed.emit(unit, self)
 	attacker.sound_player.play_miss_sound()
 	tags.append(&"missed")
+	GlobalLogger.add_message("Attack missed on %s" % str(unit), self)
 	_remove_target(ref)
 	return true
 
@@ -194,6 +196,7 @@ func _check_ward(ref: UnitSpotReference) -> bool:
 	unit.system.display_text_near_unit(unit, "Ward!")
 	unit.sound_player.play_shield_sound()
 	tags.append(&"warded")
+	GlobalLogger.add_message("Attack warded by %s" % str(unit), self)
 	_remove_target(ref)
 	return true
 
