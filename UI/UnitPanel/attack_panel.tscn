@@ -11,6 +11,7 @@
 [node name="AttackPanel" type="PanelContainer"]
 offset_right = 240.0
 offset_bottom = 173.0
+mouse_filter = 1
 script = ExtResource("1_7i06e")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

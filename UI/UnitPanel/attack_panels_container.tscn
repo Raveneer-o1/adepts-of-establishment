@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cl5xq0emjsk46"]
+
+[ext_resource type="Script" uid="uid://dq0ije5dxfj26" path="res://UI/UnitPanel/attackPanels_container.gd" id="1_e4dfj"]
+[ext_resource type="PackedScene" uid="uid://cn26iuo3vxrgy" path="res://UI/UnitPanel/attack_panel.tscn" id="2_tw1ab"]
+
+[node name="AttackPanels_Container" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_e4dfj")
+
+[node name="AttackPanel2" parent="." instance=ExtResource("2_tw1ab")]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 23.0
+offset_right = 263.0
+offset_bottom = 196.0
+
+[node name="AttackPanel" parent="." instance=ExtResource("2_tw1ab")]
+layout_mode = 0
