@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://d12hr40jjb8s8"]
+[gd_scene load_steps=27 format=3 uid="uid://d12hr40jjb8s8"]
 
 [ext_resource type="Theme" uid="uid://ivyypdgptsec" path="res://Themes/UI_Theme.tres" id="1_88rkb"]
 [ext_resource type="Script" uid="uid://df3o7avtisvgt" path="res://Combat/Scripts/unit_info_panel.gd" id="1_udonc"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://cw6f0qvti507f" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/AttributesIcons_17x17.png" id="11_4tmex"]
 [ext_resource type="Script" uid="uid://os3553ff14d8" path="res://UI/UnitPanel/base_damage_container.gd" id="11_x1pog"]
 [ext_resource type="Script" uid="uid://bci0eyr7wn3eg" path="res://UI/UnitPanel/attacks_container.gd" id="12_x1pog"]
+[ext_resource type="Texture2D" uid="uid://boll1a3dsm2os" path="res://Arts/itch assets/Pixel Art Icon Pack - RPG [Cainos]/Weapon & Tool/Knife.png" id="13_chodd"]
 [ext_resource type="Script" uid="uid://bipxhyxmyjlhy" path="res://Combat/Scenes/effects_panel.gd" id="15_6nmij"]
 [ext_resource type="Script" uid="uid://ciri5h88u0ccf" path="res://UI/UnitPanel/immunities_container.gd" id="16_lf3mo"]
 [ext_resource type="PackedScene" uid="uid://bstufbu4uucgy" path="res://UI/damagetype_texture_rect.tscn" id="17_ekmk6"]
@@ -239,6 +240,17 @@ layout_mode = 2
 size_flags_horizontal = 4
 texture = ExtResource("7_t7euk")
 stretch_mode = 1
+
+[node name="Weakness_TextureRect" type="TextureRect" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/AR_HP/ArmorContainer"]
+visible = false
+modulate = Color(0.79, 0.3318, 0.33943656, 1)
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("13_chodd")
+stretch_mode = 1
+flip_h = true
+flip_v = true
 
 [node name="Label" type="Label" parent="Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/AR_HP/ArmorContainer"]
 visible = false
