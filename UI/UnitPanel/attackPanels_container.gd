@@ -5,7 +5,7 @@ const ATTACK_PANEL = preload("uid://cn26iuo3vxrgy")
 ## Should be the same as style margins for the attack panel texture
 const MARGINS = Vector2(15.0, 15.0)
 const _ACTUAL_MARGINS = MARGINS * 2.0
-const CHILDREN_STEP = Vector2(25.0, 5.0)
+const CHILDREN_STEP = Vector2(25.0, 10.0)
 
 var _current_visible_child := 0
 
@@ -28,16 +28,27 @@ func _fill_data_attack(a: UnitAttack) -> void:
 		add_child(alt_obj)
 		alt_obj.fill_data(alt_a)
 		alt_obj.position = CHILDREN_STEP * current_child
-		current_max_size = alt_obj.position + alt_obj.size
+		var current_end := alt_obj.position + alt_obj.size
+		current_max_size.x = maxf(current_end.x, current_max_size.x)
+		current_max_size.y = maxf(current_end.y, current_max_size.y)
 		alt_obj.mouse_behavior_recursive = Control.MOUSE_BEHAVIOR_DISABLED
 	
 	var obj: UI_UnitPanel_AttackPanel = ATTACK_PANEL.instantiate()
 	add_child(obj)
 	obj.fill_data(a)
 	
-	if current_child == 0:
-		current_max_size = obj.position + obj.size
+	await get_tree().process_frame
+	
+	var _end := obj.position + obj.size
+	current_max_size.x = maxf(_end.x, current_max_size.x)
+	current_max_size.y = maxf(_end.y, current_max_size.y)
 	custom_minimum_size = current_max_size + _ACTUAL_MARGINS
+	
+	# this is actual max size of the nodes, without the shift
+	current_max_size -= CHILDREN_STEP * current_child
+	for c in get_children():
+		if c is UI_UnitPanel_AttackPanel:
+			c.custom_minimum_size = current_max_size
 
 
 func _fill_data_attack_data(a: UnitAttackData) -> void:
@@ -50,17 +61,27 @@ func _fill_data_attack_data(a: UnitAttackData) -> void:
 		add_child(alt_obj)
 		alt_obj.fill_data(alt_a)
 		alt_obj.position = CHILDREN_STEP * current_child
-		current_max_size = alt_obj.position + alt_obj.size
+		var current_end := alt_obj.position + alt_obj.size
+		current_max_size.x = maxf(current_end.x, current_max_size.x)
+		current_max_size.y = maxf(current_end.y, current_max_size.y)
 		alt_obj.mouse_behavior_recursive = Control.MOUSE_BEHAVIOR_DISABLED
-		
 	
 	var obj: UI_UnitPanel_AttackPanel = ATTACK_PANEL.instantiate()
 	add_child(obj)
 	obj.fill_data(a)
 	
-	if current_child == 0:
-		current_max_size = obj.position + obj.size
+	await get_tree().process_frame
+	
+	var _end := obj.position + obj.size
+	current_max_size.x = maxf(_end.x, current_max_size.x)
+	current_max_size.y = maxf(_end.y, current_max_size.y)
 	custom_minimum_size = current_max_size + _ACTUAL_MARGINS
+	
+	# this is actual max size of the nodes, without the shift
+	current_max_size -= CHILDREN_STEP * current_child
+	for c in get_children():
+		if c is UI_UnitPanel_AttackPanel:
+			c.custom_minimum_size = current_max_size
 
 const NORMAL_Z_INDEX = 0
 const VISIBLE_Z_INDEX = 1
