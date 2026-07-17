@@ -304,7 +304,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Top padding" type="Container" parent="MarginContainer/HBoxContainer/VBoxContainer2/VBoxContainer"]
+[node name="Top padding" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.6
@@ -378,7 +378,7 @@ text = "5"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Bottom padding" type="Container" parent="MarginContainer/HBoxContainer/VBoxContainer2/VBoxContainer"]
+[node name="Bottom padding" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.6
@@ -2172,7 +2172,7 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Top padding" type="Container" parent="MarginContainer/HBoxContainer/VBoxContainer3/VBoxContainer"]
+[node name="Top padding" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer3/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.6
@@ -2246,7 +2246,7 @@ text = "4"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Bottom padding" type="Container" parent="MarginContainer/HBoxContainer/VBoxContainer3/VBoxContainer"]
+[node name="Bottom padding" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer3/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.6
