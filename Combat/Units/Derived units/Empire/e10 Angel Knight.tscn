@@ -216,6 +216,7 @@ shielding_chance = 0.85
 resource_local_to_scene = true
 script = ExtResource("8_q6cur")
 damage_reduction = 0.8
+targets = ExtResource("6_1ymhj")
 
 [sub_resource type="Resource" id="Resource_fvn0p"]
 resource_local_to_scene = true

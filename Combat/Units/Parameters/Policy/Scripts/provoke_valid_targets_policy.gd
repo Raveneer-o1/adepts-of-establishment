@@ -4,6 +4,8 @@ extends BasePolicy
 @export var period: int = 3
 @export var damage_reduction: float = 0.5
 
+@export var targets: BaseValidation
+
 var cooldown: int = 0
 var can_use_ability: bool:
 	get: return cooldown <= 0
@@ -12,7 +14,7 @@ func use_ability(attack: Attack) -> void:
 	EventBus.round_ended.connect(count_cooldown)
 	cooldown = period
 	attack.attacker.parameters.shielding = true
-	for t in attack.attacker.system.find_targets_for_attack(attack.unit_attack):
+	for t in attack.attacker.system.find_valid_targets(targets, attack.attacker):
 		if t.unit and t.unit.party != attack.attacker.party:
 			t.unit.parameters.apply_effect(
 				"forced_attack",
@@ -34,4 +36,7 @@ func _apply_policy(attack: Attack, finalize: bool) -> void:
 		#attack.standard_resolution()
 		#return
 	if cooldown > 0: return
+	if not targets:
+		push_error("Unassigned target validation")
+		return
 	use_ability(attack)

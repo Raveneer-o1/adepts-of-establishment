@@ -537,7 +537,10 @@ func clear_emittings() -> void:
 func find_targets_for_attack(attack: UnitAttack) -> Array[UnitSpot]:
 	if attack == null:
 		return []
-	if not attack.target_validation:
+	return find_valid_targets(attack.target_validation, attack.unit)
+
+func find_valid_targets(validation: BaseValidation, attacker: Unit) -> Array[UnitSpot]:
+	if not validation:
 		print_debug("Trying to address empty target validation!")
 		return []
 	
@@ -547,7 +550,7 @@ func find_targets_for_attack(attack: UnitAttack) -> Array[UnitSpot]:
 	for spot in all_unit_spots:
 		if spot == null:
 			continue
-		if attack.target_validation.validate_target(attack.unit, spot):
+		if validation.validate_target(attacker.unit, spot):
 			result.append(spot)
 	
 	return result
