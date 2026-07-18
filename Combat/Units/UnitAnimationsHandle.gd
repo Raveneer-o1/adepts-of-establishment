@@ -28,9 +28,9 @@ func play_death_animation() -> void:
 	(get_child(0) as AnimationPlayer).play(&"unit_standard_death_animation")
 
 func play_attack_animation(index := 0) -> void:
-	var target_animation := &"attack2" \
-		if index != 0 and sprite_frames.has_animation(&"attack2") \
-		else &"attack"
+	var target_animation: StringName = &"attack" \
+		if index == 0 \
+		else StringName( "attack%d" % (index + 1) )
 	if animation != &"default":
 		next_animation = target_animation
 		return
