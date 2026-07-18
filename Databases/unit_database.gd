@@ -1013,9 +1013,15 @@ const database = {
  &"scene_path": "res://Combat/Units/Derived units//Empire/e06 Knight Master.tscn", &"level": 3, &"large_unit": false, &"immunities": []
 , &"description": "The most noble of knights are granted the title of Knight Master. Their will an unbreakable bulwark, a living shield sworn to guard The Empire\'s cause.", &"brief_description": "Melee fighter with sturdy armor and ability to protect others.", &"faction": 1, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 900, &"attacks": [{
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
+, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
+  
+}, &"animation_index": 0, &"description": "", &"alternative_actions": [{
+ &"attack_name": "Provoke", &"damage_multiplier": 0.0, &"damage_override": false, &"is_heal": false, &"type": 2, &"accuracy": 0.99, &"targets_needed": 1, &"initiative": 40, &"evadable": false, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/melee_with_self.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/provoke_valid_targets_policy.tres", &"applying_effects": {
   
-}, &"animation_index": 0, &"description": "", &"alternative_actions": []
+}, &"animation_index": -1, &"description": "Forces all available targets to attack this unit", &"alternative_actions": []
+ 
+}]
  
 }]
 , &"effects": [{
@@ -1059,7 +1065,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 0.5, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Double_attack.tres", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"description": "", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Deals damage twice.", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -1335,15 +1341,27 @@ const database = {
  &"scene_path": "res://Combat/Units/Derived units//Empire/e10 Angel Knight.tscn", &"level": 4, &"large_unit": false, &"immunities": []
 , &"description": "When the Sin Keeper began its march, many angels - who are usually too proud and consider themselves above other mortals - looked upon humanity with mercy. They took up the knightly vow, protecting the weak with the celestial powers.", &"brief_description": "Melee fighter with increased armor and ability to restore other\'s health.", &"faction": 1, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 1600, &"attacks": [{
  &"attack_name": "Attack", &"damage_multiplier": 0.5, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
-, &"target_validation": "res://Combat/Units/Parameters/Validation/melee_with_self.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Derived units/Empire/e10 Angel Knight.tscn::Resource_5c7t2", &"applying_effects": {
+, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"description": "", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": [{
+ &"attack_name": "Provoke", &"damage_multiplier": 0.0, &"damage_override": false, &"is_heal": false, &"type": 2, &"accuracy": 0.99, &"targets_needed": 1, &"initiative": 40, &"evadable": false, &"tags": []
+, &"target_validation": "res://Combat/Units/Parameters/Validation/melee_with_self.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Derived units/Empire/e10 Angel Knight.tscn::Resource_1ymhj", &"applying_effects": {
+  
+}, &"animation_index": 1, &"description": "Forces all available targets to attack this unit", &"alternative_actions": []
+ 
+}]
  
 }, {
  &"attack_name": "Attack", &"damage_multiplier": 0.5, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 30, &"evadable": true, &"tags": []
-, &"target_validation": "res://Combat/Units/Parameters/Validation/melee_with_self.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Derived units/Empire/e10 Angel Knight.tscn::Resource_5c7t2", &"applying_effects": {
+, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"description": "", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": [{
+ &"attack_name": "Provoke", &"damage_multiplier": 0.0, &"damage_override": false, &"is_heal": false, &"type": 2, &"accuracy": 0.99, &"targets_needed": 1, &"initiative": 40, &"evadable": false, &"tags": []
+, &"target_validation": "res://Combat/Units/Parameters/Validation/melee_with_self.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Derived units/Empire/e10 Angel Knight.tscn::Resource_fvn0p", &"applying_effects": {
+  
+}, &"animation_index": 1, &"description": "Forces all available targets to attack this unit", &"alternative_actions": []
+ 
+}]
  
 }]
 , &"effects": [{
