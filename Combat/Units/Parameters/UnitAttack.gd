@@ -103,6 +103,7 @@ func _read_data(data: UnitAttackData) -> void:
 	evadable = data.evadable
 	tags = data.tags
 	animation_index = data.animation_index
+	description = data.description
 	target_validation = load(data.target_validation)
 	additional_targets = load(data.additional_targets) if data.additional_targets else null
 	damage_policy = load(data.damage_policy) if data.damage_policy else null
