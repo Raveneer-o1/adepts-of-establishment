@@ -1,10 +1,11 @@
-[gd_scene load_steps=58 format=3 uid="uid://pflh07f22p8k"]
+[gd_scene load_steps=59 format=3 uid="uid://pflh07f22p8k"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_f361o"]
 [ext_resource type="Texture2D" uid="uid://drdetioi5wbdq" path="res://Arts/Empire units/knight master attack .png" id="2_g7vf6"]
 [ext_resource type="Texture2D" uid="uid://d4fj0kuj58f3t" path="res://Arts/Empire units/knight master idle .png" id="3_vs23i"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_ks2vf"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_8np7n"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="6_k0xs8"]
 [ext_resource type="Resource" uid="uid://bi8ttsckdonmo" path="res://Combat/Units/Parameters/Validation/melee_with_self.tres" id="7_qiqwx"]
 [ext_resource type="PackedScene" uid="uid://b7l7e3cr20yw1" path="res://Combat/Effects/AppliedEffects/Scenes/taunt.tscn" id="8_d6vlj"]
 [ext_resource type="Resource" uid="uid://tktdkb7tedbd" path="res://Combat/Units/Parameters/Policy/provoke_valid_targets_policy.tres" id="8_qiqwx"]
@@ -211,8 +212,20 @@ base_paramaters = SubResource("Resource_qli5x")
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("5_8np7n")
 initiative = 40
+target_validation = ExtResource("6_k0xs8")
+
+[node name="Provoke" type="Node" parent="UnitParameters/UnitAttack" index="0"]
+script = ExtResource("5_8np7n")
+attack_name = "Provoke"
+damage_multiplier = 0.0
+type = 2
+accuracy = 0.99
+initiative = 40
+evadable = false
 target_validation = ExtResource("7_qiqwx")
 damage_policy = ExtResource("8_qiqwx")
+animation_index = -1
+description = "Forces all available targets to attack this unit"
 
 [node name="Taunt" parent="UnitParameters" index="2" instance=ExtResource("8_d6vlj")]
 chance_to_taunt = 0.4

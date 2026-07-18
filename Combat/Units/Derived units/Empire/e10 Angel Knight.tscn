@@ -1,9 +1,10 @@
-[gd_scene load_steps=55 format=3 uid="uid://bjc7d7g3ses0e"]
+[gd_scene load_steps=57 format=3 uid="uid://bjc7d7g3ses0e"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_ktuuv"]
 [ext_resource type="Texture2D" uid="uid://lno0n5fcsi4v" path="res://Arts/Empire units/angel knight attack .png" id="2_j41lp"]
 [ext_resource type="Texture2D" uid="uid://cihokcoa4syjt" path="res://Arts/Empire units/angel knight idle .png" id="3_kq1jr"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_fmxe7"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="6_1ymhj"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_86cfn"]
 [ext_resource type="Resource" uid="uid://bi8ttsckdonmo" path="res://Combat/Units/Parameters/Validation/melee_with_self.tres" id="7_q6cur"]
 [ext_resource type="Script" uid="uid://ck75djo8w44fg" path="res://Combat/Units/Parameters/Policy/Scripts/provoke_valid_targets_policy.gd" id="8_q6cur"]
@@ -211,11 +212,15 @@ base_damage = 80
 armor = 80
 shielding_chance = 0.85
 
-[sub_resource type="Resource" id="Resource_5c7t2"]
+[sub_resource type="Resource" id="Resource_1ymhj"]
 resource_local_to_scene = true
 script = ExtResource("8_q6cur")
-period = 2
-damage_reduction = 0.4
+damage_reduction = 0.8
+
+[sub_resource type="Resource" id="Resource_fvn0p"]
+resource_local_to_scene = true
+script = ExtResource("8_q6cur")
+damage_reduction = 0.8
 
 [node name="AngelKinght" instance=ExtResource("1_ktuuv")]
 unit_name = "Angel Knight"
@@ -248,16 +253,40 @@ script = ExtResource("6_86cfn")
 damage_multiplier = 0.5
 type = 1
 initiative = 40
+target_validation = ExtResource("6_1ymhj")
+
+[node name="Provoke" type="Node" parent="UnitParameters/UnitAttack" index="0"]
+script = ExtResource("6_86cfn")
+attack_name = "Provoke"
+damage_multiplier = 0.0
+type = 2
+accuracy = 0.99
+initiative = 40
+evadable = false
 target_validation = ExtResource("7_q6cur")
-damage_policy = SubResource("Resource_5c7t2")
+damage_policy = SubResource("Resource_1ymhj")
+animation_index = 1
+description = "Forces all available targets to attack this unit"
 
 [node name="UnitAttack2" type="Node" parent="UnitParameters" index="2"]
 script = ExtResource("6_86cfn")
 damage_multiplier = 0.5
 type = 1
 initiative = 30
+target_validation = ExtResource("6_1ymhj")
+
+[node name="Provoke" type="Node" parent="UnitParameters/UnitAttack2" index="0"]
+script = ExtResource("6_86cfn")
+attack_name = "Provoke"
+damage_multiplier = 0.0
+type = 2
+accuracy = 0.99
+initiative = 40
+evadable = false
 target_validation = ExtResource("7_q6cur")
-damage_policy = SubResource("Resource_5c7t2")
+damage_policy = SubResource("Resource_fvn0p")
+animation_index = 1
+description = "Forces all available targets to attack this unit"
 
 [node name="CheatDeath" parent="UnitParameters" index="3" instance=ExtResource("9_5c7t2")]
 message = "Intervention!"

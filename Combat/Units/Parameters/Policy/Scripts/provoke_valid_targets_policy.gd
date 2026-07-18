@@ -1,7 +1,5 @@
 extends BasePolicy
 
-# TODO: redesign with alternative action instead
-
 ## Indicates period in rounds between using the ability
 @export var period: int = 3
 @export var damage_reduction: float = 0.5
@@ -31,9 +29,9 @@ func count_cooldown() -> void:
 		EventBus.round_ended.disconnect(count_cooldown)
 
 func _apply_policy(attack: Attack, finalize: bool) -> void:
-	var self_ref: UnitSpotReference = attack.find_reference(attack.attacker.spot)
-	if not self_ref:
-		attack.standard_resolution()
-		return
+	#var self_ref: UnitSpotReference = attack.find_reference(attack.attacker.spot)
+	#if not self_ref:
+		#attack.standard_resolution()
+		#return
 	if cooldown > 0: return
 	use_ability(attack)
