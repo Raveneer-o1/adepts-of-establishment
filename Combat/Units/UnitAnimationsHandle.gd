@@ -2,6 +2,8 @@ class_name UnitAnimationsHandle extends AnimatedSprite2D
 
 @onready var parent_unit: Unit = get_parent() as Unit
 
+## List of frames at which the [signal EventBus.attack_reached] is emitted.
+## Set this to the frames where the attack connects visualy.
 @export var frames_to_emit: Array[int] = []
 
 ## All attacks are finalized after this frame number, allowing player input

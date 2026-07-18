@@ -95,6 +95,11 @@ var _signal_function_pairs: Dictionary[Signal, Callable]
 const NOT_LIFTABLE_LINE = " Cannot be dispelled."
 const NOT_SILENSABLE_LINE = " Cannot be silenced."
 
+## Initializes the effect's values from the provided [param params].
+## This method is called by [method initialize] and does not need to be called
+## manually when adding a new effect.
+## It can be used to set up an effect without applying it
+## (e.g., when creating a placeholder instance).
 func read_params(params: Variant) -> void: pass
 
 func get_description() -> String:
@@ -224,7 +229,7 @@ func lift_effect() -> void:
 	
 	# this does not work
 	# was intended to allow calling cancel_free() but this is not how it works
-	if not is_queued_for_deletion(): return
+	#if not is_queued_for_deletion(): return
 	
 	_remove_effect()
 	target_unit.clean_effects()
