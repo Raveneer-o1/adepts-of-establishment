@@ -43,7 +43,6 @@ func _fill(main_attack: Variant, alternatives: Array) -> void:
 			CHILDREN_STEP * alternative_count,
 			false
 		)
-		max_size = _expand_bounds(max_size, panel)
 	
 	# Main attack is always on top.
 	var main_panel := _create_panel(main_attack, Vector2.ZERO, true)
@@ -51,13 +50,19 @@ func _fill(main_attack: Variant, alternatives: Array) -> void:
 	await get_tree().process_frame
 	
 	max_size = _expand_bounds(max_size, main_panel)
-	custom_minimum_size = max_size + ACTUAL_MARGINS
 	
 	# Remove the stacking offset so every panel has the same internal size.
-	var panel_size := max_size - CHILDREN_STEP * alternative_count
 	for child in get_children():
 		if child is UI_UnitPanel_AttackPanel:
+			max_size = _expand_bounds(max_size, child)
+	custom_minimum_size = max_size + ACTUAL_MARGINS
+	
+	var panel_size := max_size - CHILDREN_STEP * alternative_count * 2
+	for child in get_children():
+		if child is UI_UnitPanel_AttackPanel:
+			max_size = _expand_bounds(max_size, child)
 			child.custom_minimum_size = panel_size
+			child.queue_redraw()
 
 
 func _create_panel(data: Variant, position_: Vector2, interactive: bool) -> UI_UnitPanel_AttackPanel:

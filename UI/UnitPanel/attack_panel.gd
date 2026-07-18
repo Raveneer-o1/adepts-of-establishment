@@ -10,10 +10,16 @@ extends PanelContainer
 @onready var attack_name: Label = $MarginContainer/VBoxContainer/AttackName
 @onready var effects_label: Label = $MarginContainer/VBoxContainer/EffectsLabel
 @onready var description_label: RichTextLabel = $MarginContainer/VBoxContainer/DescriptionLabel
+@onready var accuracy_container: HBoxContainer = $MarginContainer/VBoxContainer/DMG_ACC/AccuracyContainer
 
 const NO_EFFECTS_LINE = "—"
 const EFFECTS_LINE = "Effects on hit:"
 const NO_EFFECTS_TOOLTIP = "This attack applies no effects"
+const UNEVADABLE_TOOLTIP_TEXT = "Accuracy\n(can't be evaded)"
+const ACCURACY_TOOLTIP_TEXT = "Accuracy"
+
+const UNEVADABLE_MODULATE = Color("52c4bd")
+const BLANK_MODULATE = Color.WHITE
 
 func fill_data(a: Variant) -> void:
 	if a is UnitAttack: _fill_data_attack(a)
@@ -34,6 +40,12 @@ func _fill_data_attack(a: UnitAttack) -> void:
 		effects_label.text = NO_EFFECTS_LINE
 		effects_label.tooltip_text = NO_EFFECTS_TOOLTIP
 	description_label.text = a.description
+	if not a.evadable:
+		accuracy_container.modulate = UNEVADABLE_MODULATE
+		accuracy_container.tooltip_text = UNEVADABLE_TOOLTIP_TEXT
+	else:
+		accuracy_container.modulate = BLANK_MODULATE
+		accuracy_container.tooltip_text = ACCURACY_TOOLTIP_TEXT
 
 func _fill_data_attack_data(a: UnitAttackData) -> void:
 	attack_name.text = a.attack_name
@@ -49,6 +61,12 @@ func _fill_data_attack_data(a: UnitAttackData) -> void:
 		effects_label.text = NO_EFFECTS_LINE
 		effects_label.tooltip_text = NO_EFFECTS_TOOLTIP
 	description_label.text = a.description
+	if not a.evadable:
+		accuracy_container.modulate = UNEVADABLE_MODULATE
+		accuracy_container.tooltip_text = UNEVADABLE_TOOLTIP_TEXT
+	else:
+		accuracy_container.modulate = BLANK_MODULATE
+		accuracy_container.tooltip_text = ACCURACY_TOOLTIP_TEXT
 
 func _get_damage_text(a: UnitAttack) -> String:
 	var res := str( roundi(a.get_actual_damage()) )

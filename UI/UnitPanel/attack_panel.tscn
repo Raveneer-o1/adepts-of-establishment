@@ -46,42 +46,55 @@ text = "40"
 
 [node name="DMG_ACC" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 0
 
 [node name="TypeContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/DMG_ACC"]
 layout_mode = 2
+size_flags_vertical = 0
 tooltip_text = "Damage type"
 
 [node name="TextureRect" parent="MarginContainer/VBoxContainer/DMG_ACC/TypeContainer" instance=ExtResource("3_7i06e")]
 layout_mode = 2
+size_flags_vertical = 0
 
 [node name="PaddingR" type="Control" parent="MarginContainer/VBoxContainer/DMG_ACC/TypeContainer"]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
+size_flags_vertical = 0
 
 [node name="DamageContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/DMG_ACC"]
 layout_mode = 2
+size_flags_vertical = 0
 tooltip_text = "Damage"
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/DMG_ACC/DamageContainer"]
 layout_mode = 2
+size_flags_vertical = 0
 mouse_filter = 2
 texture = ExtResource("2_0ymqr")
+stretch_mode = 5
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/DMG_ACC/DamageContainer"]
 layout_mode = 2
+size_flags_vertical = 0
 text = "100"
 
 [node name="AccuracyContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/DMG_ACC"]
+modulate = Color(0.3234, 0.77, 0.7402267, 1)
 layout_mode = 2
+size_flags_vertical = 0
 tooltip_text = "Accuracy"
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/DMG_ACC/AccuracyContainer"]
 layout_mode = 2
+size_flags_vertical = 0
 mouse_filter = 2
 texture = ExtResource("3_d7uec")
+stretch_mode = 5
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/DMG_ACC/AccuracyContainer"]
 layout_mode = 2
+size_flags_vertical = 0
 text = "20"
 
 [node name="DescriptionLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
@@ -92,6 +105,7 @@ fit_content = true
 
 [node name="EffectsLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 mouse_filter = 1
 text = "Effects on hit:"
 horizontal_alignment = 1
@@ -99,6 +113,7 @@ vertical_alignment = 1
 
 [node name="Attack_Effects_GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 8
 script = ExtResource("6_es246")
 
 [node name="Label" parent="MarginContainer/VBoxContainer/Attack_Effects_GridContainer" instance=ExtResource("7_vshi4")]
