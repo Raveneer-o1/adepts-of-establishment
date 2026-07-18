@@ -166,6 +166,7 @@ damage_multiplier = 0.5
 initiative = 40
 target_validation = ExtResource("6_jpelr")
 additional_targets = ExtResource("7_6qlug")
+description = "Deals damage twice."
 metadata/_custom_type_script = "uid://c5u15vrtdf7kf"
 
 [node name="PositiveAlignment" parent="UnitParameters" index="2" instance=ExtResource("8_jpelr")]
