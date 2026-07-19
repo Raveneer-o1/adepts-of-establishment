@@ -211,7 +211,7 @@ func initialize_variables(data: UnitData) -> bool:
 		return true
 	parameters = get_node("UnitParameters")
 	party = spot.get_parent() as Party
-	system = party.main_system
+	system = CombatSystem.get_combat_system()
 	
 	if not parameters.initialize_variables(data):
 		return false

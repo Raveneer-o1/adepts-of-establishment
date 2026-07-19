@@ -118,5 +118,6 @@ bbcode_enabled = true
 text = "[center]Well, this is awkward.[/center]"
 
 [node name="Left Player API" parent="." instance=ExtResource("5_ano00")]
+is_left = true
 
 [node name="Right Player API" parent="." instance=ExtResource("5_ano00")]

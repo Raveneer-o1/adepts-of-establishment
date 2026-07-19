@@ -83,7 +83,6 @@ const TIME_TO_END = 2.5
 
 ## Predefined positions for label placement to prevent overlap.[br]
 ## Using random positioning often results in labels being too close, making them unreadable.[br]
-## This array is shuffled at game start. 
 ## Use the getter [member label_position] to retrieve positions sequentially.
 const label_positions : Array[Vector2] = [
 	Vector2(0.0, _DISTANCE_TO_LABEL),
@@ -451,23 +450,11 @@ func initialize_variables() -> void:
 		end_scene()
 		return
 	
-	left_party.main_system = self
-	left_party.other_party = right_party
-	left_party.player = left_player
+	left_party.initialize()
+	right_party.initialize()
 	
-	right_party.main_system = self
-	right_party.other_party = left_party
-	right_party.player = right_player
-	
-	left_player.combat_system = self
-	left_player.party = left_party
-	if EventBus.left_controller != null:
-		left_player.add_child(EventBus.left_controller.instantiate())
-	
-	right_player.combat_system = self
-	right_player.party = right_party
-	if EventBus.right_controller != null:
-		right_player.add_child(EventBus.right_controller.instantiate())
+	left_player.initialize()
+	right_player.initialize()
 	
 	EventBus.attack_animation_finished.connect(check_finished_animation)
 	left_party_units = EventBus.left_units
@@ -478,7 +465,6 @@ func initialize_variables() -> void:
 
 func register_unit_death(unit: Unit) -> void:
 	if not is_instance_valid(unit): return
-	if not unit: return
 	if unit.is_queued_for_deletion(): return
 	if unit.summoned_unit: return
 	var list := units_died_this_combat_on_left if \
@@ -509,6 +495,10 @@ func _apply_city_effects() -> void:
 			c.apply_to_combat(self)
 
 func _ready() -> void:
+	if is_instance_valid(_active_combat_system):
+		push_error("Previous instance of CombatSystem is still valid, possible memory leak.")
+		GlobalLogger.force_write("Previous instance of CombatSystem is still valid, possible memory leak.", self)
+	_active_combat_system = self
 	GlobalLogger.force_write("New combat inititialized", self)
 	initialize_variables()
 	
@@ -550,7 +540,7 @@ func find_valid_targets(validation: BaseValidation, attacker: Unit) -> Array[Uni
 	for spot in all_unit_spots:
 		if spot == null:
 			continue
-		if validation.validate_target(attacker.unit, spot):
+		if validation.validate_target(attacker, spot):
 			result.append(spot)
 	
 	return result
@@ -565,11 +555,11 @@ func find_available_targets(unit: Unit = current_unit) -> Array[UnitSpot]:
 ## Parent scene is expected to free the combat scene.
 func end_scene() -> void:
 	EventBus.battle_ended.emit()
-	#queue_free()
-	#if EventBus.packed_menu == null:
-		#get_tree().change_scene_to_file("res://Menu/Scenes/menu.tscn")
-	#else:
-		#get_tree().change_scene_to_packed(EventBus.packed_menu)
+	# NOTE: The _active_combat_system reference is treated as invalid by design,
+	# so we do not need to explicitly assign null.
+	# Not sure if this could introduce a SEGFAULT or security risk.
+	# If it becomes an issue, uncomment the following line:
+	#_active_combat_system = null
 
 
 ## Starts a countdown timer for [member TIME_TO_END] seconds.
@@ -664,3 +654,10 @@ func _on_button_switch_action_pressed() -> void:
 	if not current_unit.try_switch_action():
 		print("Unable to switch!")
 	else: update_switch_button_text()
+
+static var _active_combat_system: CombatSystem = null
+## Returns the currently active [CombatSystem] instance, if a battle is in progress.
+## If no battle is active, returns [code]null[/code].
+static func get_combat_system() -> CombatSystem:
+	return _active_combat_system \
+		if is_instance_valid(_active_combat_system) else null

@@ -15,12 +15,22 @@ const ACTION_DELAY = 0.5
 # this signal rather than global EventBus
 signal _turn_started(unit: Unit)
 
+@export var is_left: bool
+
 var combat_system: CombatSystem
 
 ## Party under this player's control
 var party: Party
 
 var disabled: bool = true
+
+func initialize() -> void:
+	combat_system = CombatSystem.get_combat_system()
+	assert(combat_system)
+	party = combat_system.left_party if is_left else combat_system.right_party
+	var controller: Resource = EventBus.left_controller if is_left else EventBus.right_controller
+	if controller: add_child(controller.instantiate())
+	
 
 func start_turn() -> void:
 	get_tree().create_timer(ACTION_DELAY).timeout.connect(

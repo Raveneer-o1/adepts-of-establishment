@@ -55,6 +55,12 @@ func check_if_empty() -> bool:
 			return false
 	return true
 
+func initialize() -> void:
+	main_system = CombatSystem.get_combat_system()
+	assert(main_system)
+	other_party = main_system.right_party if is_left else main_system.left_party
+	player = main_system.left_player if is_left else main_system.right_player
+
 ## Returns references to units at specified [params positions]. [br]
 ## - Empty spaces and dead units are skipped. [br]
 ## - Out-of-bounds positions return null if [param include_nulls] is [code]true[/code].
