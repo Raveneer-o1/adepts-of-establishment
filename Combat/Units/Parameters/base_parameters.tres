@@ -5,5 +5,4 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_rcmmf")
-max_HP = 100
-base_damage = 30
+max_HP = 1000

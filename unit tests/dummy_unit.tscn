@@ -1,0 +1,213 @@
+[gd_scene load_steps=18 format=3 uid="uid://bf28ttrgiypwi"]
+
+[ext_resource type="Script" uid="uid://dgh5eqp2li5p7" path="res://unit tests/dummy_unit.gd" id="1_78xpn"]
+[ext_resource type="Texture2D" uid="uid://4cbpg61x2kbw" path="res://Arts/scarecrow.png" id="2_78xpn"]
+[ext_resource type="Script" uid="uid://bu4xv8t0akojp" path="res://Combat/Units/UnitAnimationsHandle.gd" id="2_exceq"]
+[ext_resource type="Resource" uid="uid://dnpnrs2yevm0p" path="res://Combat/Units/Parameters/base_parameters.tres" id="4_6mk1i"]
+[ext_resource type="Script" uid="uid://crfq0qvriwbd5" path="res://unit tests/dummy_unit_params.gd" id="4_78xpn"]
+[ext_resource type="Script" uid="uid://cyunvlypb18dt" path="res://Combat/Units/SoundPlayer.gd" id="5_f3f7g"]
+[ext_resource type="Texture2D" uid="uid://w7f4iwtoa1tw" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/CharacterBox_56x57.png" id="6_5wjl1"]
+[ext_resource type="Texture2D" uid="uid://b0g2xysqat0bs" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/ValueBar_128x16.png" id="7_n2fbd"]
+[ext_resource type="Texture2D" uid="uid://d4hcy4nph4c5k" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/ValueRed_120x8.png" id="8_wocki"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nd0u3"]
+atlas = ExtResource("2_78xpn")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f2jw0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nd0u3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_t5xf5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xrkt7"]
+resource_name = "unit_standard_attack_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.06666667, 0.25207967, 0.47833368),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(3, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yce8f"]
+resource_name = "unit_standard_damage_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.09, 0.275413, 0.501667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-2, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.07, 0.238898, 0.303857, 0.500826),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_lqbyk"]
+resource_name = "unit_standard_death_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.07, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.633333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"finish_death_animation"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_e0237"]
+resource_name = "unit_standard_heal_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.07, 0.166667, 0.3, 0.4, 0.500826),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.2695, 0.77, 0.352917, 1), Color(0.154, 0.77, 0.256667, 1), Color(0.308, 0.77, 0.385, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vl4j0"]
+_data = {
+&"RESET": SubResource("Animation_t5xf5"),
+&"unit_standard_attack_animation": SubResource("Animation_xrkt7"),
+&"unit_standard_damage_animation": SubResource("Animation_yce8f"),
+&"unit_standard_death_animation": SubResource("Animation_lqbyk"),
+&"unit_standard_heal_animation": SubResource("Animation_e0237")
+}
+
+[node name="Unit" type="Node2D"]
+script = ExtResource("1_78xpn")
+
+[node name="AnimationHandle" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_f2jw0")
+autoplay = "default"
+script = ExtResource("2_exceq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationHandle"]
+libraries = {
+&"": SubResource("AnimationLibrary_vl4j0")
+}
+
+[node name="UnitParameters" type="Node" parent="."]
+script = ExtResource("4_78xpn")
+base_paramaters = ExtResource("4_6mk1i")
+
+[node name="SilencedEffects" type="Node" parent="UnitParameters"]
+
+[node name="EffectIconsContainer" type="HBoxContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = 23.0
+offset_bottom = 23.0
+grow_horizontal = 2
+
+[node name="SoundPlayer" type="Node" parent="."]
+script = ExtResource("5_f3f7g")
+
+[node name="Damage" type="Node" parent="SoundPlayer"]
+
+[node name="Miss" type="Node" parent="SoundPlayer"]
+
+[node name="Evade" type="Node" parent="SoundPlayer"]
+
+[node name="Immunity" type="Node" parent="SoundPlayer"]
+
+[node name="Shield" type="Node" parent="SoundPlayer"]
+
+[node name="Attack" type="Node" parent="SoundPlayer"]
+
+[node name="Heal" type="Node" parent="SoundPlayer"]
+
+[node name="Death" type="Node" parent="SoundPlayer"]
+
+[node name="VisualBar" type="TextureProgressBar" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -15.0
+offset_top = 18.0
+offset_right = 15.0
+offset_bottom = 24.0
+grow_horizontal = 2
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("6_5wjl1")
+texture_over = ExtResource("7_n2fbd")
+texture_progress = ExtResource("8_wocki")
+
+[connection signal="animation_finished" from="AnimationHandle" to="AnimationHandle" method="_on_animation_finished"]
+[connection signal="frame_changed" from="AnimationHandle" to="AnimationHandle" method="_on_frame_changed"]
+[connection signal="animation_finished" from="AnimationHandle/AnimationPlayer" to="AnimationHandle" method="_on_animation_player_animation_finished"]
