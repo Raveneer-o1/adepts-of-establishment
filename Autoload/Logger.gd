@@ -1,7 +1,7 @@
 extends Node
 
 const LOG_FILE = "log.txt"
-const BLOCK_DELIM = "====================="
+const BLOCK_DELIM = "-------"
 const MSG_DELIM = "---"
 const SESSION_DELIM = "\t=========================================="
 const SESSION_HEADER = "\t========= %s"
@@ -10,6 +10,9 @@ const SESSION_HEADER = "\t========= %s"
 ## Filters out most log messages. If the build is run with the [code]-v[/code] or
 ## [code]--verbose[/code] command‑line argument, this is set to [code]true[/code] automatically.
 var verbose_mode := true
+
+var __testing_mode__: GlobalDefs.TestingMode:
+	get: return GlobalDefs.__testing_mode__
 
 func _ready() -> void:
 	if not OS.is_debug_build(): verbose_mode = false
@@ -26,6 +29,7 @@ func _ready() -> void:
 ## This method only writes when [member verbose_mode] is enabled.
 ## For important logs, use [method force_message].
 func add_message(message: String, object: Variant) -> void:
+	if __testing_mode__ != GlobalDefs.TestingMode.Off: return
 	if not verbose_mode: return
 	force_message(message, object)
 
@@ -33,6 +37,7 @@ func add_message(message: String, object: Variant) -> void:
 ## Meant to be called at the start of a new scene (e.g., start of a combat).
 ## If [param message] is specified, it will be printed as the name of this session
 func mark_session(message := "") -> void:
+	if __testing_mode__ != GlobalDefs.TestingMode.Off: return
 	var file := _get_file()
 	if not file: return
 	
@@ -57,6 +62,7 @@ func mark_session(message := "") -> void:
 ## Similar to [method add_message], but writes the log regardless of
 ## [member verbose_mode].
 func force_message(message: String, object: Variant) -> void:
+	if __testing_mode__ != GlobalDefs.TestingMode.Off: return
 	var file := _get_file()
 	if not file: return
 	
@@ -80,12 +86,14 @@ func _form_message(message: String, object: Variant) -> String:
 ## This method only writes when [member verbose_mode] is enabled.
 ## For important logs, use [method force_write].
 func write(message: String, object: Variant) -> void:
+	if __testing_mode__ != GlobalDefs.TestingMode.Off: return
 	if not verbose_mode: return
 	force_write(message, object)
 
 ## Similar to [method write], but writes the log regardless of
 ## [member verbose_mode].
 func force_write(message: String, object: Variant) -> void:
+	if __testing_mode__ != GlobalDefs.TestingMode.Off: return
 	if not OS.is_debug_build():
 		force_message(message, object)
 		return
