@@ -496,12 +496,13 @@ func _apply_city_effects() -> void:
 
 func _ready() -> void:
 	if is_instance_valid(_active_combat_system):
-		push_error("Previous instance of CombatSystem is still valid, possible memory leak.")
-		GlobalLogger.force_write("Previous instance of CombatSystem is still valid, possible memory leak.", self)
+		const ERROR_MSG = "Previous instance of CombatSystem is still valid, possible memory leak."
+		push_error(ERROR_MSG)
+		GlobalLogger.force_write(ERROR_MSG, self)
 	_active_combat_system = self
 	GlobalLogger.force_write("New combat inititialized", self)
-	initialize_variables()
 	
+	initialize_variables()
 	load_units()
 	place_units()
 	_apply_city_effects()

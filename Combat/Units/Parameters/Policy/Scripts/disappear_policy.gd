@@ -41,7 +41,7 @@ func _apply_policy(attack: Attack, finalize: bool) -> void:
 		u.deactivate()
 		turns = min_turns
 		if random_additional_turns > 0:
-			turns += randi_range(0, random_additional_turns)
+			turns += GlobalDefs.rand_range(0, random_additional_turns, 0)
 		EventBus.turn_ended.connect(check_turn)
 		if not EventBus.unit_died.is_connected(_check_if_last):
 			EventBus.unit_died.connect(_check_if_last)

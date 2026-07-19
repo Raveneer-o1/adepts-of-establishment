@@ -555,7 +555,7 @@ func take_direct_damage(
 			dmg * STANDARD_FRACTIONAL_DAMAGE_DEVIATION,
 			STANDARD_DAMAGE_DEVIATION
 		)
-		dmg += randi_range(-random_deviation, random_deviation)
+		dmg = GlobalDefs.rand_range(dmg, random_deviation)
 	
 	var original_hp := hp
 	hp -= dmg
@@ -586,7 +586,7 @@ func take_damage(
 			int(dmg * STANDARD_FRACTIONAL_DAMAGE_DEVIATION),
 			STANDARD_DAMAGE_DEVIATION
 		)
-		dmg += randi_range(-random_deviation, random_deviation)
+		dmg = GlobalDefs.rand_range(dmg, random_deviation)
 	
 	# needs to be this way because hp is a property that does some more calculations
 	var original_hp := hp

@@ -97,6 +97,45 @@ func _increase_roll_statistics(party: Party) -> void:
 	else:
 		rolls_statistic[party] = 1
 
+## Sets the testing mode to the specified [param value].
+## In this mode, all random functions become deterministic.
+## See [enum TestingMode] for details.
+func set_testing_mode(value: TestingMode) -> void:
+	if not OS.is_debug_build():
+		__testing_mode__ = TestingMode.Off
+		return
+	__testing_mode__ = value
+
+var __testing_mode__: TestingMode = TestingMode.Off
+
+enum TestingMode{
+	Off,
+	## Random functions always return the result beneficial to the left party
+	## or [code]true[/code] if the [b]benefits[/b] parameter not specified.
+	Left,
+	## Random functions always return the result beneficial to the right party
+	## or [code]true[/code] if the [b]benefits[/b] parameter not specified.
+	Right,
+}
+
+func _ready() -> void:
+	if not OS.is_debug_build(): __testing_mode__ = TestingMode.Off
+
+## Returns a random integer between [param average] - [param lower_deviation] and
+## [param average] + [param upper_deviation], inclusive.
+## If [param lower_deviation] is omitted, it defaults to the negation of
+## [param upper_deviation].[br][br]
+## This function is recommended over the built‑in one because it respects
+## testing mode: when testing mode is enabled, it returns exactly [param average].
+func rand_range(
+	average: int,
+	upper_deviation: int,
+	lower_deviation: int = -upper_deviation,
+) -> int:
+	if __testing_mode__ == TestingMode.Off:
+		return randi_range(average - lower_deviation, average + upper_deviation)
+	return average
+
 ## Returns [code]true[/code] or [code]false[/code] based on the specified
 ## probability [param chance] and records statistics. [br][br]
 ## [param benefits]: The party that benefits from a positive outcome ([b]true[/b] result).
@@ -110,6 +149,10 @@ func rand_roll(
 	benefits: Party = null,
 	force_statistic_recording: bool = false,
 ) -> bool:
+	match __testing_mode__:
+		TestingMode.Right: return false if benefits and benefits.is_left else true
+		TestingMode.Left: return false if benefits and !benefits.is_left else true
+	
 	if is_zero_approx(chance):
 		if force_statistic_recording and benefits != null:
 			_increase_roll_statistics(benefits.other_party)
