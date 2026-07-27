@@ -38,7 +38,9 @@ var unit: Unit
 @export var is_heal: bool = false
 ## Damage type
 @export var type: GlobalDefs.AttackType
-## Chance the attack won't be missed
+## Chance the attack won't be missed. [br]
+## [b]Important:[/b] Do not display this raw value to the player directly.
+## Use [member accuracy_representation] for UI‑friendly display.
 @export var accuracy: float = 0.95
 ## Number of units player will need to choose for a unit to perform this attack
 @export var targets_needed: int = 1

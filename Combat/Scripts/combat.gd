@@ -563,7 +563,7 @@ func end_scene() -> void:
 	#_active_combat_system = null
 
 
-## Starts a countdown timer for [member TIME_TO_END] seconds.
+## Starts a countdown timer for [constant TIME_TO_END] seconds.
 ## When the timer expires, the menu scene will be loaded.
 ## The created timer is stored in [member timer].
 ## Safe to call multiple times - has no effect if [member timer] already exists.

@@ -129,16 +129,15 @@ func start_turn(remove_miniature: bool = true) -> void:
 	current_attack = null
 	
 	# trying to assign current_attack while the queue in not empty
-	while attacks_queue.size() > 0:
+	while attacks_queue:
 		# Skipping all dead references and dead units
 		# If we skip all entries,
 		# method will return without setting current_unit which means no unit was found
-		if not is_instance_valid(attacks_queue.front()):
-			attacks_queue.remove_at(0)
+		var attack_attempt: UnitAttack = attacks_queue.pop_front()
+		if not is_instance_valid(attack_attempt):
 			continue
-		current_attack = attacks_queue.pop_front()
-		if current_attack == null:
-			continue
+		
+		current_attack = attack_attempt
 		
 		assert(current_attack.unit != null, "unit field of a current_attack is empty!")
 		EventBus.turn_started.emit(current_attack.unit)
@@ -186,6 +185,8 @@ func _init_variables() -> void:
 	battle_in_progress = true
 	main_system.win_label.visible = false
 
+## Begins the combat.
+## This resets combat variables: [membr current_round], [mamber battle_in_progress]
 func start_battle() -> void:
 	#initialize_effects()
 	_init_variables()
@@ -197,6 +198,10 @@ func initialize_effects() -> void:
 		if unit != null:
 			unit.parameters.initialize_effects()
 
+## Finalizes the battle: updates all units' original data, stops battle progression,
+## and begins the end countdown. After [constant TIME_TO_END] seconds,
+## [signal EventBus.battle_ended] is emitted, and the parent scene is expected
+## to free the combat scene.
 func end_battle() -> void:
 	if not battle_in_progress:
 		return
