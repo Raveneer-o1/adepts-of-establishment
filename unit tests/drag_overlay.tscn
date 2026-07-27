@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bogotlbnkyeb7"]
+
+[ext_resource type="Script" uid="uid://de14x8bbvb7yg" path="res://unit tests/drag_overlay.gd" id="1_83vyw"]
+
+[node name="DragOverlay" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 15.0
+offset_bottom = 15.0
+mouse_filter = 1
+script = ExtResource("1_83vyw")

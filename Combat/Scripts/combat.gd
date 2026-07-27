@@ -121,7 +121,7 @@ var current_unit: Unit:
 			active_unit_marker.visible = false
 			current_player = null
 		else:
-			active_unit_marker.position = value.global_position
+			_move_marker(value)
 			active_unit_marker.visible = true
 			current_player = value.party.player
 
@@ -164,6 +164,9 @@ var units_died_this_combat_on_right: Array[Unit] = []
 ## will gain additional effects from the specified city node
 ## (e.g., increased unit armor, defensive towers, etc.).
 var city_siege: MapCity = null
+
+func _move_marker(to: Unit) -> void:
+	active_unit_marker.position = to.global_position
 
 ## Checks if any party is empty and determines a winner
 func check_winner(_unit: Unit = null) -> void:
@@ -246,13 +249,15 @@ func try_swapping_units(unit: Unit, pos: int) -> bool:
 	if pos < 0 or pos >= Party.MAX_UNITS_NUMBER: return false
 	var party: Party = unit.party
 	
+	var old_pos: int = unit.spot.party_position
+	if old_pos == pos: return false
+	
 	var another_unit: Unit = null
-	if party.unitsrelease_unit[pos]:
+	if party.units[pos]:
 		another_unit = party.units[pos]
 		if another_unit.parameters.large_unit: return false
 		party.unit_spots[pos].release_unit()
 	
-	var old_pos: int = unit.spot.party_position
 	unit.spot.release_unit()
 		
 	party.unit_spots[pos].assign_unit(unit)
@@ -260,7 +265,10 @@ func try_swapping_units(unit: Unit, pos: int) -> bool:
 	if another_unit:
 		party.unit_spots[old_pos].assign_unit(another_unit)
 		EventBus.unit_moved.emit(another_unit, pos)
-	return false
+	
+	if unit == current_unit: _move_marker(unit)
+	
+	return true
 
 ## Attempts to move [param unit] to the specified position [param pos].
 ## Returns [code]true[/code] if the move was successful, [code]false[/code] otherwise. [br]
@@ -564,7 +572,7 @@ func end_scene() -> void:
 
 
 ## Starts a countdown timer for [constant TIME_TO_END] seconds.
-## When the timer expires, the menu scene will be loaded.
+## When the timer expires, the [signal EventBus.battle_ended] is emitted.
 ## The created timer is stored in [member timer].
 ## Safe to call multiple times - has no effect if [member timer] already exists.
 func start_end_countdown() -> void:

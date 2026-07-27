@@ -121,6 +121,10 @@ enum TestingMode{
 func _ready() -> void:
 	if not OS.is_debug_build(): __testing_mode__ = TestingMode.Off
 
+## Returns if the execution is in testing mode.
+func is_testing() -> bool:
+	return __testing_mode__ != TestingMode.Off
+
 ## Returns a random integer between [param average] - [param lower_deviation] and
 ## [param average] + [param upper_deviation], inclusive.
 ## If [param lower_deviation] is omitted, it defaults to the negation of
@@ -138,6 +142,8 @@ func rand_range(
 
 ## Returns [code]true[/code] or [code]false[/code] based on the specified
 ## probability [param chance] and records statistics. [br][br]
+## If in testing mode, always returns the result specifien in the testing mode
+## (see [enum TestingMode]).
 ## [param benefits]: The party that benefits from a positive outcome ([b]true[/b] result).
 ## Leave null for neutral rolls where no statistics should be recorded. [br][br]
 ## By default, chance values outside the [code](0.0, 1.0)[/code]

@@ -856,9 +856,16 @@ func create_attack(unit_attack: UnitAttack, targets: Array[UnitSpot]) -> Attack:
 		#__debug_track_ref()
 		#__debug_timer = 1.0
 
+## Experience points awarded for defeating a unit, per point of maximum health.
 const XP_FACTOR_HP = 0.25
+## Experience points awarded for defeating a unit, per point of damage it could deal.
 const XP_FACTOR_DMG = 0.5
 
+# TODO: add additional calculations for active effects and alternative actions
+## Returns the amount of experience awarded for defeating this unit. [br]
+## [b]Note:[/b] This method uses the current [member UnitParameters.max_hp] value,
+## along with any active effects affecting HP or damage. The result may be skewed
+## if the unit is currently affected by buffs or debuffs.
 func get_xp_for_killing() -> int:
 	var hp_xp := int(parameters.max_hp * XP_FACTOR_HP)
 	var dmg_xp := int(parameters.get_full_damage() * XP_FACTOR_DMG)

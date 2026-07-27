@@ -205,6 +205,7 @@ type = 4
 initiative = 40
 target_validation = ExtResource("7_s2143")
 damage_policy = ExtResource("8_s2143")
+description = "Dispels all effects from any unit."
 
 [node name="Armor buff (aura)" parent="UnitParameters" index="2" instance=ExtResource("7_fqy2s")]
 armor_increase = 30
