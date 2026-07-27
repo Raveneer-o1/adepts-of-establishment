@@ -181,8 +181,14 @@ func _move_to_next_stage(remove_miniature: bool) -> void:
 	
 	main_system.update_switch_button_text()
 
+func _init_variables() -> void:
+	current_round = 0
+	battle_in_progress = true
+	main_system.win_label.visible = false
+
 func start_battle() -> void:
 	#initialize_effects()
+	_init_variables()
 	start_round()
 	next_stage()
 
