@@ -24,9 +24,14 @@ func _ready() -> void:
 	var combat_root := BATTLE_SCENE.instantiate()
 	_combat = combat_root.find_child("Combat", false)
 	add_child(combat_root)
-	#await _combat.ready
 	for spot in _combat.right_party.unit_spots:
 		spot.add_unit(DUMMY_UNIT, null)
-	_combat.combat_logic.battle_in_progress = true
-	_combat.win_label.visible = false
+	#_combat.combat_logic.battle_in_progress = true
+	#_combat.win_label.visible = false
 	_combat.combat_logic.start_battle()
+ 
+func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("testing_pause"):
+		_combat.process_mode = Node.PROCESS_MODE_PAUSABLE if \
+			_combat.process_mode == Node.PROCESS_MODE_DISABLED else \
+			Node.PROCESS_MODE_DISABLED
