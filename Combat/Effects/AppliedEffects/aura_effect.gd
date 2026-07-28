@@ -41,7 +41,12 @@ func initialize(params: Variant = null) -> void:
 	_signal_function_pairs[EventBus.unit_moved] = _check_move
 	_signal_function_pairs[EventBus.units_moved] = _check_swap
 	super.initialize(params)
+	_apply_to_targets()
 
-func _apply_effect(params: Variant) -> void:
+func activate() -> void:
+	super.activate()
+	_apply_to_targets()
+
+func _apply_to_targets() -> void:
 	for pos in _get_affected_positions():
 		_apply_to.call_deferred(pos)  # deferring call to wait for unit initialization

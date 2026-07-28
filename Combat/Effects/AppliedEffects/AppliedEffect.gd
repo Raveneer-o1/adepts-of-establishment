@@ -297,7 +297,7 @@ func restore_effect() -> void:
 	silenced_effects_node.remove_child(self)
 	silenced_effects_node.get_parent().add_child(self)
 	
-	connect_callables()
+	activate()
 	silenced = false
 	
 	if EventBus.turn_ended.is_connected(check_silence_countdown):
