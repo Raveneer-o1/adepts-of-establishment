@@ -128,7 +128,6 @@ func _place_spots() -> void:
 		unit_spots[i].party_position = i
 		unit_spots[i].party = self
 
-## Places units based on a list of unit names.
 func place_units(list: Array[UnitData]) -> void:
 	_place_spots()
 	

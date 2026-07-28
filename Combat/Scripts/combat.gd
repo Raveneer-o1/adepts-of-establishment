@@ -266,7 +266,9 @@ func try_swapping_units(unit: Unit, pos: int) -> bool:
 		EventBus.units_moved.emit(unit, another_unit)
 	else: EventBus.unit_moved.emit(unit, old_pos)
 	
-	if unit == current_unit: _move_marker(unit)
+	if unit == current_unit:
+		_move_marker(unit)
+		display_hints()
 	
 	return true
 
@@ -286,6 +288,9 @@ func try_moving_unit(unit: Unit, pos: int) -> bool:
 	unit.spot.release_unit()
 	party.unit_spots[pos].assign_unit(unit)
 	EventBus.unit_moved.emit(unit, old_pos)
+	if unit == current_unit:
+		_move_marker(unit)
+		display_hints()
 	return true
 
 #region Display text
@@ -387,7 +392,7 @@ func remove_hints() -> void:
 			continue
 		spot.get_node("Area2D/HighlightAnimation").modulate = Color.WHITE
 
-## Shows hints according to the value of [member CombatSystem.show_hitns_mode]
+## Shows hints according to the value of [member show_hitns_mode]
 func display_hints() -> void:
 	remove_hints()
 	match show_hitns_mode:
