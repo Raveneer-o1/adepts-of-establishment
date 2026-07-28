@@ -19,5 +19,6 @@ func _get_drag_data(at_position: Vector2) -> Variant:
 	if this_spot.unit.parameters.large_unit: return
 	set_drag_preview(DRAG_UNIT_HINT.instantiate())
 	for s in this_spot.party.unit_spots:
+		if not s.is_active: continue
 		s.highlight_externally()
 	return this_spot.unit

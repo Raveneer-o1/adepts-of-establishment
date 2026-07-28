@@ -2,6 +2,7 @@ extends Control
 
 const DUMMY_UNIT = preload("uid://bf28ttrgiypwi")
 const BATTLE_SCENE = preload("uid://6lq6f06hma7")
+const DRAG_OVERLAY = preload("uid://bogotlbnkyeb7")
 
 @export var units: Array[StringName]
 
@@ -20,7 +21,6 @@ func _set_vars() -> void:
 		data.party_position = i
 		EventBus.left_units.append(data)
 
-const DRAG_OVERLAY = preload("uid://bogotlbnkyeb7")
 
 func _create_overlay(spot: UnitSpot) -> void:
 	var overlay: UnitTests_DragOverlay = DRAG_OVERLAY.instantiate()

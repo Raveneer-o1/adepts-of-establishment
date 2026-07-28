@@ -7,10 +7,32 @@ class_name UnitSpot
 ## Includes a corpse container for storing fallen units as children and
 ## an Area2D with collision detection for handling mouse interactions.
 
+## Whether this [UnitSpot] is currently being processed. Setting this to [code]false[/code]
+## disables both node processing and game logic related to this spot. [br]
+## [b]Note:[/b] This is the same as [member active], but returns the correct value.
+var is_active: bool:
+	get:
+		return process_mode != PROCESS_MODE_DISABLED
+	set(value):
+		if not value:
+			process_mode = PROCESS_MODE_DISABLED
+		else:
+			process_mode = PROCESS_MODE_INHERIT
+
+# NOTE: This field is not removed due to the large number of potential dependencies.
+# A search for "active" currently returns 251 matches across files (not all are variables).
+# This should be used only during initialization, primarily to block spots occupied
+# by large units... but who knows what else may rely on it.
+## There is an error in the implementation: when reading this value,
+## it returns the opposite; writing works correctly.
+## Use [member is_active] for correct behavior.
+## @deprecated: use [member is_active] instead.
 var active: bool:
 	get:
+		push_warning("Deprecated usage")
 		return process_mode == PROCESS_MODE_DISABLED
 	set(value):
+		push_warning("Deprecated usage")
 		if not value:
 			process_mode = PROCESS_MODE_DISABLED
 		else:

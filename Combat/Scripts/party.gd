@@ -162,9 +162,9 @@ func place_units(list: Array[UnitData]) -> void:
 				unit_spots[i].unit = null
 				continue
 			unit_spots[i].position = get_large_unit_position(i)
-			unit_spots[i - 1].active = false
+			unit_spots[i - 1].is_active = false
 			unit_spots[i - 1].unit = added_unit
-			unit_spots[i + 1].active = false
+			unit_spots[i + 1].is_active = false
 			unit_spots[i + 1].unit = added_unit
 
 ## Returns the coordinates to place a large unit.
