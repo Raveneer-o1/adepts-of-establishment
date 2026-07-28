@@ -22,14 +22,10 @@ func _set_vars() -> void:
 
 const DRAG_OVERLAY = preload("uid://bogotlbnkyeb7")
 
-const SIZE = 43.0
-
 func _create_overlay(spot: UnitSpot) -> void:
 	var overlay: UnitTests_DragOverlay = DRAG_OVERLAY.instantiate()
 	spot.add_child(overlay)
 	overlay.this_spot = spot
-	#overlay.global_position = spot.global_position
-	#overlay.size = Party
 
 func _ready() -> void:
 	_set_vars()
