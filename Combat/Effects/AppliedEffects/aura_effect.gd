@@ -15,6 +15,10 @@ func _get_affected_positions(relative_to: int = target_unit.party_position) -> A
 			res.append(res_pos)
 	return res
 
+func _check_swap(first_unit: Unit, second_unit: Unit) -> void:
+	_check_move(first_unit, second_unit.party_position)
+	_check_move(second_unit, first_unit.party_position)
+
 func _check_move(unit: Unit, old_pos: int) -> void:
 	if not unit: return
 	if unit == target_unit: _full_reapply(old_pos); return
@@ -35,6 +39,7 @@ func _full_reapply(old_pos: int) -> void:
 
 func initialize(params: Variant = null) -> void:
 	_signal_function_pairs[EventBus.unit_moved] = _check_move
+	_signal_function_pairs[EventBus.units_moved] = _check_swap
 	super.initialize(params)
 
 func _apply_effect(params: Variant) -> void:

@@ -261,10 +261,10 @@ func try_swapping_units(unit: Unit, pos: int) -> bool:
 	unit.spot.release_unit()
 		
 	party.unit_spots[pos].assign_unit(unit)
-	EventBus.unit_moved.emit(unit, old_pos)
 	if another_unit:
 		party.unit_spots[old_pos].assign_unit(another_unit)
-		EventBus.unit_moved.emit(another_unit, pos)
+		EventBus.units_moved.emit(unit, another_unit)
+	else: EventBus.unit_moved.emit(unit, old_pos)
 	
 	if unit == current_unit: _move_marker(unit)
 	
