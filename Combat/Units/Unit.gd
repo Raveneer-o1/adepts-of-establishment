@@ -240,10 +240,14 @@ func clear_objects() -> void:
 ## [param _unit] doesn't do anythig, it's only there to connect this method to signals
 ## that have this parameter as part of their signatures
 func clean_effects(_unit: Unit = null) -> void:
+	_clean_effects.call_deferred()
+
+func _clean_effects() -> void:
 	var _displayed_icons := displayed_icons
 	displayed_icons = {}
 	for icon: TextureRect in _displayed_icons:
-		if is_instance_valid(_displayed_icons[icon]):
+		if is_instance_valid(_displayed_icons[icon]) and \
+				not _displayed_icons[icon].is_queued_for_deletion():
 			displayed_icons[icon] = _displayed_icons[icon]
 			icon.visible = not (_displayed_icons[icon] as AppliedEffect).silenced
 			continue
