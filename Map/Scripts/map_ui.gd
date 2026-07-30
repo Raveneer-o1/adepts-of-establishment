@@ -78,6 +78,7 @@ func _switch_ui(target_ui: CanvasLayer) -> void:
 ## When switching away from "Main" mode, the map is temporarily disabled
 ## and will automatically re-enable when returning to "Main" mode.
 func switch_to(ui: StringName) -> void:
+	# WARNING: should probably store the node references in a hashmap
 	var target_ui: CanvasLayer = find_child(ui, false)
 	if not target_ui:
 		push_error("Unknown UI type: %s" % ui)

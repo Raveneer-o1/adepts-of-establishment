@@ -28,9 +28,9 @@ static func default_traversability(tile_data: TileData) -> bool:
 enum Visibility_ID {
 	## Always hidden, bypassing any checks
 	force_hidden = -2,
-	## Always considered hidden by default
+	## Considered hidden by default
 	always_hidden = -1,
-	## Always considered visible by default
+	## Considered visible by default
 	always_visible = 0,
 	## By default, the tile is considered visible if it is traversable
 	match_traversability = 1,

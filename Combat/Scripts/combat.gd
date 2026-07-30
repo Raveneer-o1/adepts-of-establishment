@@ -470,10 +470,10 @@ func initialize_variables() -> void:
 	right_player.initialize()
 	
 	EventBus.attack_animation_finished.connect(check_finished_animation)
+	EventBus.unit_died.connect(register_unit_death)
+	
 	left_party_units = EventBus.left_units
 	right_party_units = EventBus.right_units
-	
-	EventBus.unit_died.connect(register_unit_death)
 
 
 func register_unit_death(unit: Unit) -> void:

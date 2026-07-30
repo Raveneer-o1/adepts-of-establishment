@@ -28,4 +28,4 @@ func set_tile(
 	scene_id: int = -1
 ) -> void:
 	set_cell(coords, SCENE_SOURCE_ID, Vector2i(0, 0), scene_id)
-	call_deferred(&"_clear_refs", coords)
+	_clear_refs(coords)

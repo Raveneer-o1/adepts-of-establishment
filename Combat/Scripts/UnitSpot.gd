@@ -49,12 +49,13 @@ var party: Party
 
 @onready var corpse_container: Node = $Corpses
 
+## Reparents the [member unit] to a graveyard.
+## This should not be called directly, as it does not deactivate the unit.
+## Use [method Unit.die] for proper death processing.
 func move_unit_to_graveyard() -> void:
-	var u := unit
-	if u == null:
-		return
-	remove_child(u)
-	corpse_container.add_child(u)
+	if not unit: return
+	assert(unit.get_parent() == self, "Invalid unit parent")
+	unit.reparent(corpse_container)
 	unit = null
 
 ## Highlights the unit externally.
@@ -103,6 +104,11 @@ func add_unit(loaded_unit: Resource, data: UnitData) -> Unit:
 		return null
 	return u
 
+## Removes the [member unit] from this spot.[br][br]
+## The unit becomes an orphan — you must store a reference to it
+## [b]before[/b] calling this method. [br]
+## Caution: If this was the last unit in the game or the party, removing it
+## may trigger battle end and cause memory leaks.
 func release_unit() -> void:
 	if not unit:
 		print_debug("Trying to release unit from empty spot!")

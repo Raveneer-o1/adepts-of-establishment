@@ -552,6 +552,12 @@ func activate() -> void:
 	if active: return
 	active = true
 
+## Resurrects the unit. The unit must be a child of a [UnitSpot]'s graveyard.
+## [i](The actual requirement is being a grandchild of a [UnitSpot], meant to be
+## achieved by calling [method die], but the validity
+## of the structure is not checked.)[/i][br][br]
+## The method will fail silently if the [UnitSpot] is already occupied.
+## The [param message] will be displayed near the revived unit.
 func resurrect(message: String = "Revived!") -> void:
 	var sp := get_parent().get_parent()
 	if sp is UnitSpot:
@@ -565,7 +571,7 @@ func resurrect(message: String = "Revived!") -> void:
 	
 	parameters.underlying_HP = 1
 	parameters.dead = false
-	sp.assign_unit(self)
+	(sp as UnitSpot).assign_unit(self)
 	visible = true
 	_death_visualized = false
 	animation_handle.play(&"default")
@@ -574,7 +580,7 @@ func resurrect(message: String = "Revived!") -> void:
 		effect.activate()
 	
 	system.display_text_near_unit(self, message)
-	GlobalLogger.add_message("Revived", self)
+	GlobalLogger.write("Revived", self)
 	EventBus.unit_revived.emit(self)
 
 ## Restores health to the unit and plays associated animations and sounds. [br]
@@ -629,7 +635,7 @@ const HEAL_COLOR = Color.LIME_GREEN
 #gradient.add_point(0.0, MIN_DAMAGE_COLOR)
 #gradient.add_point(1.0, MAX_DAMAGE_COLOR)
 #gradient.sample(damage_percentage)
-## Returnes interpolated color between [member MIN_DAMAGE_COLOR] and [member MAX_DAMAGE_COLOR]
+## Returns interpolated color between [member MIN_DAMAGE_COLOR] and [member MAX_DAMAGE_COLOR]
 ## with the factor of damage dealt as a percentage of total health
 func damage_color(dmg: int) -> Color:
 	var damage_percentage: float = float(dmg) / float(parameters.max_hp)

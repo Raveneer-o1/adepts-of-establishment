@@ -79,6 +79,9 @@ func get_units_at_positions(positions: Array[int], include_nulls: bool = true) -
 	
 	return result
 
+## Returns all [Unit]s adjacent to the provided [param pos].
+## Correctly handles cases where the position is occupied by a large unit.
+## If there are no adjacent units, returns an empty array.
 func get_adjacent_units(pos: int) -> Array[Unit]:
 	if pos < 0 or pos > MAX_UNITS_NUMBER:
 		return []
@@ -156,7 +159,7 @@ func place_units(list: Array[UnitData]) -> void:
 		if not unit_spots[i].unit: continue
 		if unit_spots[i].unit.parameters.large_unit:
 			if i == 0 or i == MAX_UNITS_NUMBER - 1 or units[i - 1] != null:
-				print_debug("Not enough space for large unit at position " + str(i) + "!")
+				push_error("Not enough space for large unit at position " + str(i) + "!")
 				unit_spots[i].unit.free()
 				unit_spots[i].unit = null
 				continue

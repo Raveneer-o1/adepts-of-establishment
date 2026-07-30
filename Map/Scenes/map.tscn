@@ -1179,7 +1179,7 @@ editor_description = "This map layer has the following custom data layers:
 - color_identifier: Used for selecting the highlight color. Currently only \"yellow\" is supported. May be deprecated in favor of automatic color adjustment based on terrain colors.
 - tile_type: Main identifier for tile type. See TravelData documentation.
 - claimable: Whether the tile can be claimed by a faction. This controls the ability to change ownership, not whether the tile can be owned at all.
-- visibility_id: Default behavior for visibility checks. See for recognized values."
+- visibility_id: Default behavior for visibility checks. See TravelData.Visibility_ID for recognized values."
 tile_set = SubResource("TileSet_kyln5")
 
 [node name="TileDataLayer" type="Node2D" parent="MapLayers"]

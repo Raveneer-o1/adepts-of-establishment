@@ -42,8 +42,5 @@ func fill_data(container: MapResourceContainer) -> void:
 		_reset_contents()
 		return
 	
-	get_Label(ui_resource_panel_gold).text = str(container.gold)
-	get_Label(ui_resource_panel_stone).text = str(container.stone)
-	get_Label(ui_resource_panel_crystals).text = str(container.mana)
-	
 	_currently_filled = container
+	update_values()

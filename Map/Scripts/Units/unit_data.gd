@@ -254,8 +254,6 @@ var _initializer: __UnitData_Initializer__
 signal unit_moved
 
 ## Returns the file path to the unit scene resource.
-## This path must be added to either [member EventBus.left_units] or
-## [member EventBus.right_units] to instantiate the unit when battle begins.
 func get_scene_path() -> String:
 	var provided_file_exists := FileAccess.file_exists(scene_path)
 	var database_file_exists := FileAccess.file_exists(database_scene_path)

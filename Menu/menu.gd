@@ -51,11 +51,11 @@ func load_unit_composition() -> void:
 	if FileAccess.file_exists(DEFAULT_PATH):
 		get_tree().change_scene_to_file(DEFAULT_PATH)
 
-func save_unit_composition() -> void:
-	EventBus.packed_menu = PackedScene.new()
-	EventBus.packed_menu.pack(self)
-	
-	ResourceSaver.save(EventBus.packed_menu, DEFAULT_PATH)
+#func save_unit_composition() -> void:
+	#EventBus.packed_menu = PackedScene.new()
+	#EventBus.packed_menu.pack(self)
+	#
+	#ResourceSaver.save(EventBus.packed_menu, DEFAULT_PATH)
 
 
 const PLAYER_CONTROLLER = 0

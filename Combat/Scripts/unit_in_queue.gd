@@ -16,11 +16,11 @@ func set_text() -> void:
 
 func _ready() -> void:
 	get_parent().custom_minimum_size = CUSTOM_MINIMUM
-	if unit != null:
-		set_text()
-	else :
-		print_debug("Unit is not assigned")
+	if not unit:
+		push_error("Unit is not assigned")
 		get_parent().queue_free()
+		return
+	set_text()
 	
 	if disable_player:
 		$AnimationPlayer.active = false

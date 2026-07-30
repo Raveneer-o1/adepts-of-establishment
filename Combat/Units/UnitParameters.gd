@@ -32,6 +32,16 @@ var attacks: Array[UnitAttack]:
 				res.append(child)
 		return res
 
+## If [code]true[/code], this unit is considered [b]large[/b] — it occupies
+## three adjacent party positions and cannot be moved. [br]
+## The occupied positions are: the main [member Unit.party_position] and
+## the two neighboring positions on the opposite line.[br]
+## For example, if the unit is on the front line, it also occupies the two
+## corresponding positions in the back line, and vice versa.
+## The additional positions are [member Unit.party_position] - 1 and
+## [member Unit.party_position] + 1.[br]
+## Large units cannot be placed at the first position (0) or the last position
+## ([constant Party.MAX_UNITS_NUMBER] - 1).
 @export var large_unit: bool = false
 
 ## Base immunities that are intended to remain unmodified under normal circumstances.

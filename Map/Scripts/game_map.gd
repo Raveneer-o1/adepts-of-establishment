@@ -144,7 +144,9 @@ func _test_init() -> void:
 	
 	current_map.active_faction = test_faction
 	EventBus.first_map_turn_started.emit(test_faction)
-	EventBus.map_turn_started.emit(test_faction)
+	
+	EventBus.map_turn_started.emit(test_faction)  # why? this shouldn't be here
+	
 	test_faction.api.turn_started.emit()
 
 func _ready() -> void:
