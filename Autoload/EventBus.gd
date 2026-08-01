@@ -70,7 +70,10 @@ signal damage_taken(unit: Unit, dmg: int, flags: Array[StringName])
 signal unit_healed(unit: Unit, heal: int, flags: Array[StringName])
 signal attack_shielded(attack: Attack, shielding_unit: Unit)
 
+## Emitted when a unit‑related popup is displayed. The associated [Unit] object
+## becomes active (unpausable) and marks itself as currently in use.
 signal unit_question_started(data: UnitData)
+## Emitted when the UI returns to its normal state after [signal unit_question_started].
 signal unit_question_ended(data: UnitData)
 #endregion
 

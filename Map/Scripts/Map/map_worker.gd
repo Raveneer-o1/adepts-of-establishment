@@ -123,12 +123,23 @@ func _play_effect(pos: Vector2) -> void:
 func _validate_path(party: MapParty, path: Array[Vector2i]) -> bool:
 	if not is_instance_valid(party): return false
 	if not path: return false
-	var last_position := party.tile_position
+	var last_position: Vector2i = path.front()
+	var _first := true
+	
+	# validating the first position depending on whether the party is inside a city
+	if party.inside_city:
+		if last_position not in party.inside_city.get_interaction_tiles(): return false
+		last_position += Vector2i.ONE
+	else:
+		if Map.get_distance(party.tile_position, last_position) != 1: return false
+	
 	for position in path:
+		#if _first: continue
 		if Map.get_distance(position, last_position) != 1:
 			return false
 		last_position = position
 	return true
+
 
 ## Moves [Map.active_party] to the specified [param object] and 
 ## triggers interaction if applicable.[br][br]
@@ -142,13 +153,14 @@ func move_active_party_to_object(object: MapInteractableObject) -> void:
 		return
 	var path := visualizer.get_highlighted_tiles()
 	if not _validate_path(active_party, path):
-		if not path: path = map.find_path_to_object(
-			[active_party.tile_position],
-			object,
-			active_party,
-			active_party.inside_city != null  # a bit hacky, might need redesign
-		)
-	if not _validate_path(active_party, path): return
+		if not path: 
+			path = map.find_path_to_object(
+				[active_party.tile_position],
+				object,
+				active_party,
+				active_party.inside_city != null  # a bit hacky, might need redesign
+			)
+			if not _validate_path(active_party, path): return
 	if path:
 		await active_party.control.walk_along_path(
 			path,
@@ -180,7 +192,7 @@ func move_active_party(destination: Vector2i) -> void:
 				active_party,
 				active_party.inside_city != null  # a bit hacky, might need redesign
 			)
-	if not _validate_path(active_party, path): return
+			if not _validate_path(active_party, path): return
 	if not path:
 		visualizer.reset_highlights()
 		return

@@ -58,8 +58,8 @@ func move_unit(received_unit: PartyEditorUnit) -> void:
 	received_unit.position = Vector2.ZERO
 
 func _move_unit_out(to: UnitsContainer, pos: int) -> bool:
-	if not unit: return true
 	if not to: return false
+	if not unit: return true
 	if unit.unit_data.container == to: return true
 	if not to.units_owner.api.ui_filter:
 		push_error("Filtered UI input")

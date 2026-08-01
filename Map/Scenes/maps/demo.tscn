@@ -36,7 +36,7 @@ tile_map_data = PackedByteArray("AADx/zMAAgAAAAAAAADx/zQAAgAAAAAAAADw/zQAAgAAAAA
 position = Vector2(814, 388)
 
 [node name="MapCastle2" parent="ObjectManager" index="1" instance=ExtResource("2_xtdmr")]
-position = Vector2(1353, 820)
+position = Vector2(1215, 1065)
 
 [node name="Sign" parent="ObjectManager" index="2" instance=ExtResource("2_p3ewj")]
 position = Vector2(1283, 796)
