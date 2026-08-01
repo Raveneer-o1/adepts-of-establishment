@@ -1,14 +1,18 @@
-[gd_scene load_steps=33 format=3 uid="uid://cy8rh77mxkncn"]
+[gd_scene load_steps=38 format=3 uid="uid://cy8rh77mxkncn"]
 
 [ext_resource type="Script" uid="uid://cium5533y6jdp" path="res://Map/Scripts/game_map.gd" id="1_mp6yi"]
 [ext_resource type="Script" uid="uid://ymq5kwxdp6r3" path="res://Map/Scripts/map_ui.gd" id="2_jwoqq"]
 [ext_resource type="Texture2D" uid="uid://b6vh1ulubj26i" path="res://Arts/Placeholders/Army.jpg" id="3_ankfc"]
 [ext_resource type="Texture2D" uid="uid://by3bbk6m8geey" path="res://Arts/itch assets/Pixel Art Icon Pack - RPG [Cainos]/Misc/Golden Coin.png" id="4_ru5ay"]
 [ext_resource type="Texture2D" uid="uid://cvcocjvddoc5d" path="res://Arts/itch assets/Pixel Art Icon Pack - RPG [Cainos]/Ore & Gem/Crystal.png" id="5_3g8al"]
+[ext_resource type="Theme" uid="uid://ivyypdgptsec" path="res://Themes/UI_Theme.tres" id="5_ga8st"]
 [ext_resource type="Script" uid="uid://bn6k53ctf405x" path="res://Map/UI/Scripts/resources_manager.gd" id="5_mddr6"]
 [ext_resource type="Script" uid="uid://cxswnm25ylr5" path="res://Map/UI/Scripts/party_ui_manager.gd" id="5_t0dwr"]
 [ext_resource type="PackedScene" uid="uid://dqwc116n3br4m" path="res://Map/UI/Scenes/party_editor_unit_position.tscn" id="6_3g8al"]
 [ext_resource type="Texture2D" uid="uid://djqnop6d6x58n" path="res://Arts/itch assets/Pixel Art Icon Pack - RPG [Cainos]/Ore & Gem/Silver Nugget.png" id="6_6qwde"]
+[ext_resource type="Texture2D" uid="uid://b0g2xysqat0bs" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/ValueBar_128x16.png" id="6_boja4"]
+[ext_resource type="Texture2D" uid="uid://buikur6gi1smn" path="res://Arts/itch assets/Retro Pixel Ribbons, Banners and Frames 2 [BDragon1727]/17.png" id="6_usmls"]
+[ext_resource type="Texture2D" uid="uid://cblfuncupmup3" path="res://Arts/itch assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free [ETA]/UI/ValueBlue_120x8.png" id="7_boja4"]
 [ext_resource type="Script" uid="uid://byrx58pdoch0v" path="res://Map/UI/Scripts/city_ui_manager.gd" id="9_bqemh"]
 [ext_resource type="Script" uid="uid://bsrs0hq73vpin" path="res://Map/UI/Scripts/reserve_container.gd" id="9_iv7qx"]
 [ext_resource type="Script" uid="uid://db2fl4l22gmmv" path="res://Map/UI/Scripts/Popups/item_info_popup.gd" id="9_ommir"]
@@ -28,6 +32,8 @@
 [ext_resource type="Script" uid="uid://dprjkox21ayan" path="res://Map/UI/Scripts/Popups/hire_hero_popup.gd" id="22_3xuhj"]
 [ext_resource type="Script" uid="uid://dk4uplb2ri6rg" path="res://Map/UI/Scripts/Windows/dialogue_window.gd" id="26_5fv76"]
 [ext_resource type="PackedScene" uid="uid://bhc5nlf4nxnx6" path="res://Map/Dialogue/choice_button.tscn" id="27_fxkpy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_usmls"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ru5ay"]
 font_size = 19
@@ -88,23 +94,45 @@ main_color = Color(0.49860322, 0.4958654, 0.48841393, 1)
 script = ExtResource("2_jwoqq")
 
 [node name="Main" type="CanvasLayer" parent="UILayers"]
-visible = false
+
+[node name="NinePatchRect" type="NinePatchRect" parent="UILayers/Main"]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -362.0
+offset_right = -290.79993
+offset_bottom = -720.80005
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(5, 5)
+texture = ExtResource("6_usmls")
+region_rect = Rect2(81, 4, 44, 44)
+patch_margin_left = 20
+patch_margin_top = 10
+patch_margin_right = 20
+patch_margin_bottom = 5
 
 [node name="PanelContainer" type="PanelContainer" parent="UILayers/Main"]
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -237.0
+offset_left = -298.0
+offset_right = -61.0
+offset_bottom = -7.0
 grow_horizontal = 0
 grow_vertical = 2
 size_flags_vertical = 3
+theme = ExtResource("5_ga8st")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_usmls")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UILayers/Main/PanelContainer"]
 layout_mode = 2
 alignment = 1
 
 [node name="QuitButton" type="Button" parent="UILayers/Main/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 45)
 layout_mode = 2
 text = "Quit"
 
@@ -128,6 +156,7 @@ size_flags_horizontal = 3
 alignment = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="UILayers/Main/PanelContainer/VBoxContainer/ActivePartyContainer/PortraitContainer"]
+custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
@@ -138,10 +167,10 @@ expand_mode = 2
 
 [node name="Disclaimer" type="Label" parent="UILayers/Main/PanelContainer/VBoxContainer/ActivePartyContainer/PortraitContainer/PanelContainer/PortraitTextureRect"]
 layout_mode = 0
-offset_left = -5.0
-offset_top = 77.0
-offset_right = 114.0
-offset_bottom = 134.0
+offset_left = -36.131958
+offset_top = 40.264828
+offset_right = 82.86804
+offset_bottom = 148.81573
 rotation = -0.70302343
 text = "AI-generated
 Placeholder"
@@ -153,25 +182,32 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MovementPoints" type="ProgressBar" parent="UILayers/Main/PanelContainer/VBoxContainer/ActivePartyContainer"]
-custom_minimum_size = Vector2(0, 20)
+[node name="MovementPoints" type="TextureProgressBar" parent="UILayers/Main/PanelContainer/VBoxContainer/ActivePartyContainer"]
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 tooltip_text = "Movement points"
-step = 1.0
-show_percentage = false
+value = 50.0
+nine_patch_stretch = true
+texture_over = ExtResource("6_boja4")
+texture_progress = ExtResource("7_boja4")
 
 [node name="Label" type="Label" parent="UILayers/Main/PanelContainer/VBoxContainer/ActivePartyContainer/MovementPoints"]
-layout_mode = 0
-offset_right = 236.0
-offset_bottom = 23.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "20/20"
 horizontal_alignment = 1
 
 [node name="CapitalButton" type="Button" parent="UILayers/Main/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 45)
 layout_mode = 2
 text = "Capital"
 
 [node name="EndTurnButton" type="Button" parent="UILayers/Main/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 45)
 layout_mode = 2
 text = "End turn"
 
@@ -185,6 +221,7 @@ layout_mode = 2
 text = "Show ownership"
 
 [node name="Party" type="CanvasLayer" parent="UILayers"]
+visible = false
 script = ExtResource("5_t0dwr")
 
 [node name="HBoxContainer" type="MarginContainer" parent="UILayers/Party"]

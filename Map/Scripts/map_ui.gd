@@ -12,7 +12,7 @@ var current_ui: CanvasLayer
 
 @onready var _active_party_container: VBoxContainer = %ActivePartyContainer
 @onready var _party_name_label: Label = %ActivePartyContainer/PartyNameLabel
-@onready var _movement_points: ProgressBar = %ActivePartyContainer/MovementPoints
+@onready var _movement_points: TextureProgressBar = %ActivePartyContainer/MovementPoints
 @onready var _movement_points_label: Label = %ActivePartyContainer/MovementPoints/Label
 @onready var _party_portrait_texture_rect: TextureRect = \
 	%ActivePartyContainer/PortraitContainer/PanelContainer/PortraitTextureRect
