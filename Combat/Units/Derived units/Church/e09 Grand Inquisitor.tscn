@@ -203,6 +203,7 @@ autoplay = "default"
 offset = Vector2(8, -8)
 frames_to_emit = Array[int]([6])
 attack_sound_frame = 5
+screen_shake = true
 
 [node name="UnitParameters" parent="." index="1"]
 level = 4

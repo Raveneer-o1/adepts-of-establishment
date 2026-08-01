@@ -15,3 +15,5 @@ var show_tile_ownership: bool = false:
 		if value == show_tile_ownership: return
 		show_tile_ownership = value
 		show_tile_ownership_changed.emit()
+
+var combat_camera_shake := true

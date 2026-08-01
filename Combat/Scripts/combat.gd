@@ -156,6 +156,7 @@ var timer: SceneTreeTimer
 @onready var win_label: RichTextLabel = get_node("Win Label")
 @onready var miniature_queue_manager: MiniatureQueueManager = \
 	$"../UI/ParentContainer/PanelContainer/HBoxContainer/Queue"
+@export var camera: CombatCamera
 
 var units_died_this_combat_on_left: Array[Unit] = []
 var units_died_this_combat_on_right: Array[Unit] = []

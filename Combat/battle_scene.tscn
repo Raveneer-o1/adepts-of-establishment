@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://6lq6f06hma7"]
+[gd_scene load_steps=12 format=3 uid="uid://6lq6f06hma7"]
 
 [ext_resource type="PackedScene" uid="uid://dsk1e0o76tdgv" path="res://Combat/Scenes/background.tscn" id="1_j1oy4"]
+[ext_resource type="Script" uid="uid://blvf70a5tx6cx" path="res://Combat/Scripts/combat_camera.gd" id="1_wgwyx"]
 [ext_resource type="PackedScene" uid="uid://cku7rhe8jn3tx" path="res://Combat/Scenes/combat.tscn" id="2_wgwyx"]
 [ext_resource type="PackedScene" uid="uid://d12hr40jjb8s8" path="res://Combat/Scenes/UnitInfoPanel.tscn" id="3_0wrh2"]
 [ext_resource type="Script" uid="uid://q44rjos0ku5w" path="res://ui.gd" id="4_sop5q"]
@@ -28,11 +29,13 @@ theme = SubResource("Theme_ehkex")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(800, 450)
+script = ExtResource("1_wgwyx")
 
 [node name="Control" parent="." instance=ExtResource("1_j1oy4")]
 layout_mode = 1
 
-[node name="Combat" parent="." instance=ExtResource("2_wgwyx")]
+[node name="Combat" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("2_wgwyx")]
+camera = NodePath("../Camera2D")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 1

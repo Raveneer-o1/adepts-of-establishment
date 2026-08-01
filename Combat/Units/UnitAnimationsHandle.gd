@@ -13,6 +13,9 @@ class_name UnitAnimationsHandle extends AnimatedSprite2D
 
 @export var attack_sound_frame: int = 1
 
+## The larget this value, the stronger the screen shake
+@export var screen_shake := 0.0
+
 var now_attacking: bool = false
 
 var next_animation: StringName
@@ -105,6 +108,7 @@ func _on_frame_changed() -> void:
 		return
 	if frames_to_emit.has(frame):
 		EventBus.attack_reached.emit(parent_unit)
+		CombatSystem.get_combat_system().camera.shake(screen_shake)
 	if last_frame > 0 and frame >= last_frame:
 		finish_attack()
 	if frame == attack_sound_frame and attack_sound_frame > 0:

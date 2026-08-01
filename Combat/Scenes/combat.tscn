@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cku7rhe8jn3tx"]
+[gd_scene load_steps=17 format=3 uid="uid://cku7rhe8jn3tx"]
 
 [ext_resource type="PackedScene" uid="uid://dpt3c8srdp3wx" path="res://Combat/Scenes/party.tscn" id="1_g80uy"]
 [ext_resource type="Script" uid="uid://b4bd6xsmu2lag" path="res://Combat/Scripts/combat.gd" id="1_y8ty4"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://baracsktpldx5" path="res://Combat/Scenes/UnitMarker.tscn" id="3_tn6ox"]
 [ext_resource type="Script" uid="uid://brvuaxxt0xj5n" path="res://Combat/Scripts/CombatLogic.gd" id="4_qfjqk"]
 [ext_resource type="PackedScene" uid="uid://bnurbl8wl4www" path="res://Combat/Scenes/player_api.tscn" id="5_ano00"]
+[ext_resource type="Script" uid="uid://blvf70a5tx6cx" path="res://Combat/Scripts/combat_camera.gd" id="6_eu40k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cqvtd"]
 atlas = ExtResource("3_58fml")
@@ -98,6 +99,7 @@ script = ExtResource("4_qfjqk")
 [node name="Camera2D" type="Camera2D" parent="."]
 visible = false
 anchor_mode = 0
+script = ExtResource("6_eu40k")
 
 [node name="Win Label" type="RichTextLabel" parent="."]
 visible = false

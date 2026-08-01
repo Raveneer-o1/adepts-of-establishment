@@ -159,6 +159,7 @@ frame_progress = 1.0
 offset = Vector2(0, -16)
 frames_to_emit = Array[int]([3, 5])
 attack_sound_frame = 3
+screen_shake = 1.0
 
 [node name="UnitParameters" parent="." index="1"]
 level = 2
@@ -171,6 +172,7 @@ damage_multiplier = 0.5
 initiative = 15
 target_validation = ExtResource("6_hw85c")
 additional_targets = ExtResource("7_hgv6i")
+description = "Deals damage twice"
 metadata/_custom_type_script = "uid://c5u15vrtdf7kf"
 
 [node name="Stone1" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
