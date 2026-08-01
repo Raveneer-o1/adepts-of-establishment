@@ -133,41 +133,69 @@ func _place_spots() -> void:
 
 func place_units(list: Array[UnitData]) -> void:
 	_place_spots()
-	
-	for unit_data: UnitData in list:
-		#await get_tree().process_frame
-		var i := unit_data.party_position
-		if i < 0: continue
-		if i >= MAX_UNITS_NUMBER:
-			push_error("Incorrect placement (%d) of a unit '%s'" % [i, unit_data.unit_name])
-			continue
-		var path := unit_data.scene_path
-		if path.is_empty(): continue
-		if not main_system.loaded_units.has(path):
-			push_error(unit_data.unit_name + " is not loaded!")
-			continue
-		if unit_spots[i].unit != null:
-			push_error("Position %d is already occupied!" % i)
-			continue
-		var loaded_unit: Resource = main_system.loaded_units[path]
-		var added_unit := unit_spots[i].add_unit(loaded_unit, unit_data)
-		if not added_unit:
-			push_error("Unit '%s' is not registered!" % unit_data.unit_name)
-			continue
-		all_units.append(added_unit)
-		
-		if not unit_spots[i].unit: continue
-		if unit_spots[i].unit.parameters.large_unit:
-			if i == 0 or i == MAX_UNITS_NUMBER - 1 or units[i - 1] != null:
-				push_error("Not enough space for large unit at position " + str(i) + "!")
-				unit_spots[i].unit.free()
-				unit_spots[i].unit = null
-				continue
-			unit_spots[i].position = get_large_unit_position(i)
-			unit_spots[i - 1].is_active = false
-			unit_spots[i - 1].unit = added_unit
-			unit_spots[i + 1].is_active = false
-			unit_spots[i + 1].unit = added_unit
+
+	for unit: UnitData in list:
+		place_unit(unit)
+
+
+func place_unit(unit_data: UnitData) -> void:
+	var index := _validate_placement(unit_data)
+	if index == -1:
+		return
+
+	var loaded_unit: Resource = main_system.loaded_units[unit_data.scene_path]
+	var added_unit := unit_spots[index].add_unit(loaded_unit, unit_data)
+
+	if not added_unit:
+		push_error("Unit '%s' is not registered!" % unit_data.unit_name)
+		return
+
+	all_units.append(added_unit)
+
+	if unit_spots[index].unit and unit_spots[index].unit.parameters.large_unit:
+		_setup_large_unit(index, added_unit)
+
+
+func _validate_placement(unit_data: UnitData) -> int:
+	var index := unit_data.party_position
+
+	if index < 0:
+		return -1
+
+	if index >= MAX_UNITS_NUMBER:
+		push_error("Incorrect placement (%d) of a unit '%s'" % [index, unit_data.unit_name])
+		return -1
+
+	if unit_data.scene_path.is_empty():
+		return -1
+
+	if not main_system.loaded_units.has(unit_data.scene_path):
+		push_error("%s is not loaded!" % unit_data.unit_name)
+		return -1
+
+	if unit_spots[index].unit != null:
+		push_error("Position %d is already occupied!" % index)
+		return -1
+
+	return index
+
+
+func _setup_large_unit(index: int, unit: Unit) -> void:
+	if index == 0 \
+			or index == MAX_UNITS_NUMBER - 1 \
+			or units[index - 1] != null:
+		push_error("Not enough space for large unit at position %d!" % index)
+		unit.free()
+		unit_spots[index].unit = null
+		return
+
+	unit_spots[index].position = get_large_unit_position(index)
+
+	unit_spots[index - 1].is_active = false
+	unit_spots[index - 1].unit = unit
+
+	unit_spots[index + 1].is_active = false
+	unit_spots[index + 1].unit = unit
 
 ## Returns the coordinates to place a large unit.
 func get_large_unit_position(pos: int) -> Vector2:
