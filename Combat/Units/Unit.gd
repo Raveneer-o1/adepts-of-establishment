@@ -888,6 +888,7 @@ func now_attacking() -> bool:
 		return true
 	return false
 
+# TODO: limit the number of effects displayed in the UI
 func display_effect_icon(image: Image, effect: AppliedEffect) -> void:
 	clean_effects()
 	var texture_rect: TextureRect = TextureRect.new()
