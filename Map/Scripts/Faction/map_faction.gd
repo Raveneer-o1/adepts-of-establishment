@@ -116,6 +116,9 @@ func is_enemy(other_faction: MapFaction) -> bool:
 	# TODO: implement is_enemy()
 	return true
 
+# WARNING: this hard-coded list mush be changed every time the heroes of any faction change.
+# Alternitavly, we can implement another way to initializae available heroes.
+# Maybe even scrap this function altogether and rely on hiring_heroes list.
 func _append_heroes() -> void:
 	match base_faction:
 		GlobalDefs.Faction.Empire:

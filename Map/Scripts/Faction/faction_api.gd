@@ -228,6 +228,7 @@ func move_unit(unit: UnitData, destination: UnitsContainer, position: int) -> bo
 
 func _check_position(unit: UnitData, destination: UnitsContainer) -> bool:
 	if unit.container == destination: return true
+	if not destination: return true
 	if unit.container.get_position() in destination.get_object().get_interaction_tiles():
 		return true
 	if destination.get_position() in unit.container.get_object().get_interaction_tiles():

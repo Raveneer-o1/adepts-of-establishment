@@ -5,7 +5,6 @@ extends TextureRect
 @export var reparent_data := false
 
 var unit: PartyEditorUnit
-# FIXME: null value will break the logic with NRE
 var parent: Node
 
 var parent_owner: MapFaction:
