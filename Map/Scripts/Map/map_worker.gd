@@ -147,10 +147,7 @@ func _validate_path(party: MapParty, path: Array[Vector2i]) -> bool:
 ## [method MapVisualizer.get_highlighted_tiles]), this method uses that path
 ## rather than computing a new route, following UI cue.
 func move_active_party_to_object(object: MapInteractableObject) -> void:
-	if not active_party: return
-	if active_party.is_moving:
-		active_party.control.abort_moving()
-		return
+	if not _can_active_party_move(): return
 	var path := visualizer.get_highlighted_tiles()
 	if not _validate_path(active_party, path):
 		if not path: 
@@ -176,10 +173,7 @@ func move_active_party_to_object(object: MapInteractableObject) -> void:
 ## If no path is provided, uses the pre-highlighted tiles as the path
 ## (retrieved via [method MapVisualizer.get_highlighted_tiles]).
 func move_active_party(destination: Vector2i) -> void:
-	if not active_party: return
-	if active_party.is_moving:
-		active_party.control.abort_moving()
-		return
+	if not _can_active_party_move(): return
 	var path := visualizer.get_highlighted_tiles()
 	if not _validate_path(active_party, path):
 		if not path:
@@ -202,6 +196,11 @@ func move_active_party(destination: Vector2i) -> void:
 	# moving party creates an empty entry for each tile that party walked over
 	map.clean_hashtable()
 
+func _can_active_party_move() -> bool:
+	if not active_party: return false
+	if active_party.is_moving: return false
+	if active_party.parameters.movement_points <= 0: return false
+	return true
 
 ## Cancels all currently active map actions (e.g., party movement).
 ## Use with [code]await[/code] to wait for animations to complete before proceeding.
