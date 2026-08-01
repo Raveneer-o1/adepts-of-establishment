@@ -181,6 +181,8 @@ func _on_gui_input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN or \
 			event.button_index == MOUSE_BUTTON_WHEEL_LEFT or \
 			event.button_index == MOUSE_BUTTON_WHEEL_RIGHT or \
-			event.button_index == MOUSE_BUTTON_WHEEL_UP: return
+			event.button_index == MOUSE_BUTTON_WHEEL_UP or \
+			event.button_index == MOUSE_BUTTON_RIGHT: return
 		if not (event as InputEventMouse).is_pressed():
+			EventBus.popup_closure_requested.emit()
 			visible = false

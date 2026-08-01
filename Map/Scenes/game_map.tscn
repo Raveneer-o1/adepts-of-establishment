@@ -94,6 +94,7 @@ main_color = Color(0.49860322, 0.4958654, 0.48841393, 1)
 script = ExtResource("2_jwoqq")
 
 [node name="Main" type="CanvasLayer" parent="UILayers"]
+visible = false
 
 [node name="NinePatchRect" type="NinePatchRect" parent="UILayers/Main"]
 anchors_preset = 11
@@ -221,7 +222,6 @@ layout_mode = 2
 text = "Show ownership"
 
 [node name="Party" type="CanvasLayer" parent="UILayers"]
-visible = false
 script = ExtResource("5_t0dwr")
 
 [node name="HBoxContainer" type="MarginContainer" parent="UILayers/Party"]
@@ -1897,7 +1897,6 @@ visible = false
 script = ExtResource("18_qmi5v")
 
 [node name="UnitInfoPanel" parent="UILayers/UI_Popups/UnitInfoPopup" instance=ExtResource("19_oranv")]
-mouse_filter = 2
 
 [node name="UI_Windows" type="Node" parent="UILayers"]
 unique_name_in_owner = true

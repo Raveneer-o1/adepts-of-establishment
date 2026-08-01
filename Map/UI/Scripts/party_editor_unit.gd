@@ -55,9 +55,10 @@ func _on_gui_input(event: InputEvent) -> void:
 			if event.is_pressed():
 				EventBus.popup_requested.emit(unit_data)
 				get_viewport().set_input_as_handled()
-			else:
-				EventBus.popup_closure_requested.emit()
+			#else:
+				#EventBus.popup_closure_requested.emit()
 
 
 func _on_mouse_exited() -> void:
-	EventBus.popup_closure_requested.emit()
+	pass
+	#EventBus.popup_closure_requested.emit()
