@@ -27,7 +27,10 @@ func read_attack(parameters: Dictionary) -> void:
 func read_params(params: Variant) -> void:
 	if params is Array:
 		damage = params[0]
-		read_attack(params[1])
+		if params[1] is Dictionary:
+			read_attack(params[1])
+		elif params[1] is UnitAttack: attack_on_retaliation = params[1]
+		else: push_error("Unknown argument type")
 	elif params is UnitAttack:
 		if attack_on_retaliation: attack_on_retaliation.queue_free()
 		attack_on_retaliation = params
