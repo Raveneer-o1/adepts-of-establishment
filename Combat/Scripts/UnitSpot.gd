@@ -113,6 +113,13 @@ func release_unit() -> void:
 	if not unit:
 		print_debug("Trying to release unit from empty spot!")
 		return
+	if not is_active: return
+	if unit.parameters.large_unit:
+		unit.party.unit_spots[unit.party_position - 1].is_active = true
+		unit.party.unit_spots[unit.party_position - 1].unit = null
+		unit.party.unit_spots[unit.party_position + 1].is_active = true
+		unit.party.unit_spots[unit.party_position + 1].unit = null
+		position = unit.party.get_unit_position(party_position)
 	unit.party_position = -1
 	unit.spot = null
 	#party.units[party_position] = null

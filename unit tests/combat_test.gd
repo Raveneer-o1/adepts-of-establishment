@@ -44,3 +44,30 @@ func _physics_process(delta: float) -> void:
 		_combat.process_mode = Node.PROCESS_MODE_PAUSABLE if \
 			_combat.process_mode == Node.PROCESS_MODE_DISABLED else \
 			Node.PROCESS_MODE_DISABLED
+
+func next_unit() -> void:
+	_is_first_unit = false
+	for unit_name:StringName in GlobalDefs.units_database.database.keys():
+		_clear_party()
+		var data := UnitData.get_new(unit_name)
+		assert(data)
+		data.party_position = 3
+		_combat.load_single_unit(data)
+		_combat.left_party.place_unit(data)
+		await _next_unit_pressed
+
+func _clear_party() -> void:
+	for unit in _combat.left_party.all_units:
+		if not is_instance_valid(unit): continue
+		unit.deactivate()
+		unit.queue_free()
+
+signal _next_unit_pressed
+
+var _is_first_unit := true
+
+func _on_next_unit_button_pressed() -> void:
+	if _is_first_unit: next_unit()
+	else: _next_unit_pressed.emit()
+	if not _combat.combat_logic.battle_in_progress:
+		_combat.combat_logic.start_battle()

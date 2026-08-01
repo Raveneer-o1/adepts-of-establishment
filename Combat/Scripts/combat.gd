@@ -417,14 +417,18 @@ func display_hints() -> void:
 #endregion
 
 #region Initialization
+
 func load_unit_list(list: Array[UnitData]) -> void:
 	for unit_data in list:
-		var path := unit_data.scene_path
-		if not path.is_empty() and not loaded_units.has(path):
-			var resource := load(path)
-			if resource: loaded_units[path] = resource
-			else: push_error("Resource not found: " + path)
-			#await get_tree().process_frame
+		load_single_unit(unit_data)
+		#await get_tree().process_frame
+
+func load_single_unit(unit_data: UnitData) -> void:
+	var path := unit_data.scene_path
+	if not path.is_empty() and not loaded_units.has(path):
+		var resource := load(path)
+		if resource: loaded_units[path] = resource
+		else: push_error("Resource not found: " + path)
 
 func load_units() -> void:
 	load_unit_list(left_party_units)

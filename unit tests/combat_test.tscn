@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dolx1f7fylsob"]
+[gd_scene load_steps=3 format=3 uid="uid://dolx1f7fylsob"]
 
 [ext_resource type="Script" uid="uid://d1ke24g54d3di" path="res://unit tests/combat_test.gd" id="1_rs7f7"]
+[ext_resource type="Script" uid="uid://vp8i3f7xdjjc" path="res://unit tests/delete_unit_panel.gd" id="2_3g8yr"]
 
 [node name="CombatTest" type="Control"]
 layout_mode = 3
@@ -11,4 +12,33 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_rs7f7")
-units = Array[StringName]([&"", &"", &"", &"Ogre", &"", &"", &""])
+units = Array[StringName]([&"", &"", &"", &"Squire", &"", &"", &""])
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+top_level = true
+z_index = 100
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+script = ExtResource("2_3g8yr")
+
+[node name="Label" type="Label" parent="HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Delete unit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Next unit"
+
+[connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_next_unit_button_pressed"]

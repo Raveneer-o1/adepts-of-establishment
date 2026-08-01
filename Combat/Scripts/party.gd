@@ -25,6 +25,9 @@ var other_party: Party
 var main_system: CombatSystem
 var player: PlayerAPI
 
+## [color=red]Warning:[/color] This list [b]may[/b] contain invalid (i.e., freed) instances.
+## This should not happen under normal conditions, but there is no safeguard
+## against it.
 var all_units: Array[Unit]
 
 ## Retuns an array of all units. This includes [code]null[/code] values for vacant spots. [br]
@@ -34,7 +37,9 @@ var units: Array[Unit]:
 	get:
 		var res: Array[Unit] = []
 		for spot in unit_spots:
-			res.append(spot.unit)
+			if is_instance_valid(spot.unit):
+				res.append(spot.unit)
+			else: res.append(null)
 		return res
 
 var unit_spots: Array[UnitSpot] = []
@@ -183,7 +188,7 @@ func _validate_placement(unit_data: UnitData) -> int:
 func _setup_large_unit(index: int, unit: Unit) -> void:
 	if index == 0 \
 			or index == MAX_UNITS_NUMBER - 1 \
-			or units[index - 1] != null:
+			or unit_spots[index - 1].unit:
 		push_error("Not enough space for large unit at position %d!" % index)
 		unit.free()
 		unit_spots[index].unit = null

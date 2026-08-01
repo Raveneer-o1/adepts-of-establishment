@@ -13,7 +13,8 @@ class_name UnitAnimationsHandle extends AnimatedSprite2D
 
 @export var attack_sound_frame: int = 1
 
-## The larget this value, the stronger the screen shake
+## Strength of the screen shake. Larger values produce more intense shaking.
+## Shake events are triggered only on frames specified in the [member frames_to_emit] list.
 @export var screen_shake := 0.0
 
 var now_attacking: bool = false

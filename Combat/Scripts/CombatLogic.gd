@@ -33,7 +33,7 @@ func sorting_by_initiative(a: UnitAttack, b: UnitAttack) -> bool:
 	return b.initiative < a.initiative
 
 func filter_nulls(a: Unit) -> bool:
-	return a != null and not a.parameters.dead
+	return a != null and not a.is_queued_for_deletion() and not a.parameters.dead
 
 func filter_duplicates(arr: Array[Unit]) -> Array[Unit]:
 	var result: Array[Unit] = []
@@ -82,6 +82,12 @@ func remove_unit_from_queue(unit: Unit) -> void:
 		if attack != null and \
 				attack.unit == unit:
 			remove_attack_from_queue(attack)
+	if current_attack in unit.attacks_for_this_round or \
+			current_attack == unit.current_attack or \
+			main_system.current_unit == unit:
+		#current_attack = null
+		next_stage()
+		main_system.current_unit = null
 
 func check_dead_unit(unit: Unit) -> void:
 	if not unit.parameters.dead: return
@@ -134,7 +140,9 @@ func start_turn(remove_miniature: bool = true) -> void:
 		# If we skip all entries,
 		# method will return without setting current_unit which means no unit was found
 		var attack_attempt: UnitAttack = attacks_queue.pop_front()
-		if not is_instance_valid(attack_attempt):
+		if not is_instance_valid(attack_attempt) or \
+				attack_attempt.is_queued_for_deletion() or \
+				not attack_attempt.unit.active:
 			continue
 		
 		current_attack = attack_attempt
