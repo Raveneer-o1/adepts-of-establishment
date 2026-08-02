@@ -2,7 +2,7 @@ extends BasePolicy
 
 func apply_phantom(unit: Unit) -> void:
 	unit.parameters.apply_effect(
-		"Phantom",
+		"phantom",
 		[GlobalDefs.AttackType.Physical, 1]
 	)
 
