@@ -71,3 +71,10 @@ func _on_next_unit_button_pressed() -> void:
 	else: _next_unit_pressed.emit()
 	if not _combat.combat_logic.battle_in_progress:
 		_combat.combat_logic.start_battle()
+
+
+func _on_left_random_bias_check_button_toggled(toggled_on: bool) -> void:
+	GlobalDefs.set_testing_mode(
+		GlobalDefs.TestingMode.Left if toggled_on \
+		else GlobalDefs.TestingMode.Right
+	)

@@ -41,4 +41,16 @@ vertical_alignment = 1
 layout_mode = 2
 text = "Next unit"
 
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+tooltip_text = "If toggled on, overrides all random event to favor left side.
+Otherwise - the right side."
+
+[node name="Left_random_bias_CheckButton" type="CheckButton" parent="HBoxContainer/PanelContainer"]
+layout_mode = 2
+mouse_filter = 1
+button_pressed = true
+text = "Left random bias"
+
 [connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_next_unit_button_pressed"]
+[connection signal="toggled" from="HBoxContainer/PanelContainer/Left_random_bias_CheckButton" to="." method="_on_left_random_bias_check_button_toggled"]
