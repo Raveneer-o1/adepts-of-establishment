@@ -1,7 +1,6 @@
-[gd_scene load_steps=42 format=3 uid="uid://dr3gv7u8esdos"]
+[gd_scene load_steps=41 format=3 uid="uid://dr3gv7u8esdos"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_7w0k8"]
-[ext_resource type="Texture2D" uid="uid://bkx33l0ydgt7f" path="res://Arts/Placeholders/Dracolich.jpg" id="2_hxxnl"]
 [ext_resource type="Texture2D" uid="uid://1gr4ofkugpfe" path="res://Arts/Undead units/u34 dracolich attack .png" id="2_l7hsi"]
 [ext_resource type="Texture2D" uid="uid://d1lph1ra82nk4" path="res://Arts/Undead units/u34 dracolich idle .png" id="3_eg5ke"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_xokj1"]
@@ -172,7 +171,6 @@ unit_class = 5
 brief_description = "Large unit, can attack any target."
 full_description = "\"... Never have we ever seen a creature so magnificent and yet so terrifying. Its wings are nothing but bones with lumps of dead flesh, its head is a deformed skull, and an arcane power that broke our greatest wards like glass ...\"
 \"Survivor's diary\", by Elara Pustolik"
-portrait_texture = ExtResource("2_hxxnl")
 portrait_texture_path = "res://Arts/Placeholders/Dracolich.jpg"
 cost_gold = 400
 cost_stone = 6500
@@ -205,6 +203,7 @@ applying_effects = Dictionary[String, Variant]({
 "death_curse": [-1, 10],
 "only_to_type": [2, "weakness", [3, 35]]
 })
+description = "Attacks the entire line."
 
 [node name="Dracolich" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("11_iap7j")

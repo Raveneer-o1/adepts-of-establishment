@@ -317,7 +317,7 @@ func disconnect_callables() -> void:
 
 
 ## Called when this node is added to a unit. Automatically applies the effect.
-func initialize(params: Variant = null) -> void:
+func initialize(params: Variant = null, name_override := "") -> void:
 	target_unit = (get_parent() as UnitParameters).parent_unit
 	if target_unit == null:
 		print_debug("Effect is missing a target unit!")
@@ -341,6 +341,7 @@ func initialize(params: Variant = null) -> void:
 	
 	read_params(params)
 	_apply_effect(params)
+	if name_override: effect_name = name_override
 	
 	GlobalLogger.force_write("Effect is being applied", self)
 	

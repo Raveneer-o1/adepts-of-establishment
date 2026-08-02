@@ -155,7 +155,6 @@ type = 1
 initiative = 30
 target_validation = ExtResource("8_whik4")
 damage_policy = SubResource("Resource_6f3w4")
-description = "Can apply a weak shield to an ally."
 
 [node name="Oof17" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("9_8e6q5")

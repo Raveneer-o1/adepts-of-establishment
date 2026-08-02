@@ -228,6 +228,7 @@ additional_targets = ExtResource("8_wnb78")
 applying_effects = Dictionary[String, Variant]({
 "paralysis": [0.9, 1]
 })
+description = "Also hits adjacent targets."
 
 [node name="GhostDamage" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("10_ovnl3")

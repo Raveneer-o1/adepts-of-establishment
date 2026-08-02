@@ -1,8 +1,7 @@
-[gd_scene load_steps=37 format=3 uid="uid://d3c7npnpxkrt4"]
+[gd_scene load_steps=36 format=3 uid="uid://d3c7npnpxkrt4"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_27vee"]
 [ext_resource type="Texture2D" uid="uid://bbaimy1tm8hob" path="res://Arts/Undead units/u20 will-o-wisp attack .png" id="2_1rynm"]
-[ext_resource type="Texture2D" uid="uid://l3juwit4wyei" path="res://Arts/Placeholders/Will-o-whisp.jpg" id="2_7liif"]
 [ext_resource type="Texture2D" uid="uid://b0reqmykfsus1" path="res://Arts/Undead units/u20 will-o-wisp idle .png" id="3_osvqp"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_co076"]
 [ext_resource type="PackedScene" uid="uid://7vboji3lb2aa" path="res://Combat/Effects/Scenes/whisp_attack.tscn" id="4_gye3m"]
@@ -153,7 +152,6 @@ needed_xp = 900
 unit_class = 5
 brief_description = "Mage with low damage but significant debuff."
 full_description = "Flickering lights above the bog, Will-o’-Wisps lure travelers in only to drain them of their willpower. They serve no one, but the King's promise of new, delicious mortals makes them join the undead march."
-portrait_texture = ExtResource("2_7liif")
 portrait_texture_path = "res://Arts/Placeholders/Will-o-whisp.jpg"
 cost_mana = 350
 
@@ -163,7 +161,7 @@ animation = &"attack"
 autoplay = "default"
 frame = 10
 frame_progress = 1.0
-attack_sound_frame = 4
+frames_to_emit = Array[int]([4])
 
 [node name="UnitParameters" parent="." index="1"]
 level = 3

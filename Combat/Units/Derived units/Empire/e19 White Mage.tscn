@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://bkgd75ppe6uv0"]
+[gd_scene load_steps=50 format=3 uid="uid://bkgd75ppe6uv0"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_mbqb6"]
 [ext_resource type="Texture2D" uid="uid://cuix8vdx6us1h" path="res://Arts/Empire units/white Mage attack .png" id="2_xltu8"]
@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://bhe5cl2bujg8i" path="res://Combat/Units/Parameters/Additional targets/Splash.tres" id="8_4kvwf"]
 [ext_resource type="Resource" uid="uid://cxvfk7vgegqq2" path="res://Combat/Units/Parameters/Policy/decay_policy.tres" id="10_4kvwf"]
 [ext_resource type="AudioStream" uid="uid://3up3xko4aipd" path="res://Sounds/using/Damage/Default_1.wav" id="11_0vekf"]
+[ext_resource type="PackedScene" uid="uid://3acaeiikm4d" path="res://Combat/Effects/AppliedEffects/Scenes/protect_on_attack.tscn" id="11_4kvwf"]
 [ext_resource type="Script" uid="uid://ckke14dwjpicd" path="res://Combat/Units/Parameters/Policy/Scripts/applying_shield_policy.gd" id="11_cugem"]
 [ext_resource type="AudioStream" uid="uid://b7r3kee6rjmo4" path="res://Sounds/using/Damage/Default_2.wav" id="12_4kvwf"]
 [ext_resource type="AudioStream" uid="uid://b8o5l8pxfg4my" path="res://Sounds/using/Damage/Default_3.wav" id="13_cugem"]
@@ -209,7 +210,12 @@ damage_policy = SubResource("Resource_yeav1")
 applying_effects = Dictionary[String, Variant]({
 "electrified": [2, 10]
 })
-description = "Can apply a weak shield to an ally."
+description = "Also hits adjacent targets."
+
+[node name="ProtectOnAttack" parent="UnitParameters" index="2" instance=ExtResource("11_4kvwf")]
+durability = 30
+visual_path = "res://Combat/Effects/Scenes/generic_blue_effect.tscn"
+shield_visual_path = "res://Combat/Effects/Scenes/shield.tscn"
 
 [node name="Default1" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("11_0vekf")

@@ -207,6 +207,7 @@ offset = Vector2(8, -8)
 frames_to_emit = Array[int]([5])
 last_frame = 10
 attack_sound_frame = 4
+screen_shake = 0.8
 
 [node name="UnitParameters" parent="." index="1"]
 level = 4

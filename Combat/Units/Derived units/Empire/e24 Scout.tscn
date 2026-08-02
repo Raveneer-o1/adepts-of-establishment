@@ -254,6 +254,7 @@ attack_effect = ExtResource("4_vlh87")
 
 [node name="UnitAttack2" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("6_fc8i6")
+damage_multiplier = 0.6
 accuracy = 0.97
 initiative = 50
 target_validation = ExtResource("7_l3bih")
@@ -263,6 +264,7 @@ applying_effects = Dictionary[String, Variant]({
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
 script = ExtResource("6_fc8i6")
+damage_multiplier = 0.6
 accuracy = 0.97
 initiative = 50
 target_validation = ExtResource("7_l3bih")
@@ -271,6 +273,7 @@ applying_effects = Dictionary[String, Variant]({
 })
 
 [node name="Agility" parent="UnitParameters" index="3" instance=ExtResource("8_sss3p")]
+buff = 0.1
 
 [node name="Default1" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("10_tpyqj")

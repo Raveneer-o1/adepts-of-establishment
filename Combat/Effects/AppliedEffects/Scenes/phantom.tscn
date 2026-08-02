@@ -6,4 +6,4 @@
 script = ExtResource("1_wdi2a")
 effect_name = "Protection"
 icon_index = 12
-description = "This unit is immune to the damage type [i]%s[/i]"
+description = "This unit is immune to the damage type %s"

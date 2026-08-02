@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_ks2vf"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_8np7n"]
 [ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="6_k0xs8"]
-[ext_resource type="Resource" uid="uid://bi8ttsckdonmo" path="res://Combat/Units/Parameters/Validation/melee_with_self.tres" id="7_qiqwx"]
+[ext_resource type="Resource" uid="uid://bi8ttsckdonmo" path="res://Combat/Units/Parameters/Validation/self_only.tres" id="7_qiqwx"]
 [ext_resource type="PackedScene" uid="uid://b7l7e3cr20yw1" path="res://Combat/Effects/AppliedEffects/Scenes/taunt.tscn" id="8_d6vlj"]
 [ext_resource type="Resource" uid="uid://tktdkb7tedbd" path="res://Combat/Units/Parameters/Policy/provoke_valid_targets_policy.tres" id="8_qiqwx"]
 [ext_resource type="AudioStream" uid="uid://jjx4crj3vvo6" path="res://Sounds/using/Damage/Steel_1.wav" id="10_lnedi"]
@@ -224,7 +224,7 @@ initiative = 40
 evadable = false
 target_validation = ExtResource("7_qiqwx")
 damage_policy = ExtResource("8_qiqwx")
-animation_index = -1
+animation_index = 1
 description = "Forces all available targets to attack this unit"
 
 [node name="Taunt" parent="UnitParameters" index="2" instance=ExtResource("8_d6vlj")]

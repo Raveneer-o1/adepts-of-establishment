@@ -6,4 +6,4 @@
 script = ExtResource("1_dovcq")
 effect_name = "Illusive"
 icon_index = 9
-description = "Whenever an attack targeted at this unit is missed, increases [b]%s[/b]"
+description = "Whenever an attack targeted at this unit is missed, increases %s"

@@ -183,7 +183,8 @@ damage_policy = ExtResource("8_2bjgu")
 applying_effects = Dictionary[String, Variant]({
 "only_to_type": [2, "weakness", [3, 35]]
 })
-description = "Applies weakness to mages."
+description = "Attacks the entire line.
+Applies weakness to mages."
 
 [node name="Ward" parent="UnitParameters" index="2" instance=ExtResource("10_ypvfv")]
 damage_type = 3

@@ -173,7 +173,7 @@ damage_policy = SubResource("Resource_xbk8a")
 applying_effects = Dictionary[String, Variant]({
 "electrified": [3, 18]
 })
-description = "Can apply a shield to an ally."
+description = "Also hits adjacent targets."
 
 [node name="ProtectOnAttack" parent="UnitParameters" index="2" instance=ExtResource("12_1qqvb")]
 visual_path = "res://Combat/Effects/Scenes/generic_blue_effect.tscn"

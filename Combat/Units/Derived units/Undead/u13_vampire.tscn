@@ -1,7 +1,6 @@
-[gd_scene load_steps=40 format=3 uid="uid://dfs7pvexbq8o"]
+[gd_scene load_steps=39 format=3 uid="uid://dfs7pvexbq8o"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_nnejl"]
-[ext_resource type="Texture2D" uid="uid://dpnbjltuc2ibj" path="res://Arts/Placeholders/Vampire.jpg" id="2_ahyrf"]
 [ext_resource type="Texture2D" uid="uid://bu2k8r3jpr0md" path="res://Arts/Undead units/u14 vampire attack .png" id="2_hms6t"]
 [ext_resource type="Texture2D" uid="uid://ghavp4bl4tup" path="res://Arts/Undead units/u14 vampire idle.png" id="3_8315t"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_6owde"]
@@ -142,8 +141,7 @@ faction = 2
 needed_xp = 900
 unit_class = 4
 brief_description = "Mage with lifesteal."
-full_description = "Very few mortals dare to perform the blood ritual and become the hunters of the night - Vampires. These creatures are neither dead nor alive. Straddling the border between life and death, they sustain their accursed existence only by consuming the life force of others can."
-portrait_texture = ExtResource("2_ahyrf")
+full_description = "Very few mortals dare to perform the blood ritual and become the hunters of the night - Vampires. These creatures are neither dead nor alive. Straddling the border between life and death, they sustain their accursed existence only by consuming the life force of others."
 portrait_texture_path = "res://Arts/Placeholders/Vampire.jpg"
 cost_gold = 200
 cost_stone = 500

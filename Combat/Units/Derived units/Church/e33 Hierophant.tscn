@@ -175,12 +175,15 @@ attack_effect = ExtResource("4_e1vxq")
 
 [node name="Resurrection" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("6_x7on8")
+attack_name = "Heal/Resurrect"
 is_heal = true
 type = 3
 accuracy = 1.0
 initiative = 15
+evadable = false
 target_validation = ExtResource("7_umx74")
 damage_policy = ExtResource("8_3owpt")
+description = "Can resurrect fallen allies."
 
 [node name="Default1" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("11_ddtem")

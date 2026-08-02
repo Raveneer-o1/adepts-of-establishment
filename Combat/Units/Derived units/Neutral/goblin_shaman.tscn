@@ -170,6 +170,7 @@ type = 1
 initiative = 15
 target_validation = ExtResource("6_g5vpg")
 additional_targets = ExtResource("7_fqagl")
+description = "Hits the entire party."
 metadata/_custom_type_script = "uid://c5u15vrtdf7kf"
 
 [node name="Default1" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]

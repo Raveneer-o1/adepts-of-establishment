@@ -17,7 +17,7 @@ func _get_description() -> String:
 		if inceases_evsion:
 			return description % "Evasion"
 		return description % other_stat_buff
-	return description % ("Evasion[/b] and [b]" + other_stat_buff)
+	return description % ("Evasion and " + other_stat_buff)
 
 func check_trigger(attack: Attack) -> void:
 	if target_unit not in attack.targets: return

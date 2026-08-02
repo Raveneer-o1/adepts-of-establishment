@@ -1,8 +1,7 @@
-[gd_scene load_steps=42 format=3 uid="uid://cctpkb760qvr8"]
+[gd_scene load_steps=41 format=3 uid="uid://cctpkb760qvr8"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_tkxce"]
 [ext_resource type="Texture2D" uid="uid://v276k8xloke5" path="res://Arts/Undead units/u02 Templar attack .png" id="2_f5d7c"]
-[ext_resource type="Texture2D" uid="uid://pqlfkqrdcj3i" path="res://Arts/Placeholders/Templar.jpg" id="2_imxh0"]
 [ext_resource type="Texture2D" uid="uid://cq1hi8gpmdq5w" path="res://Arts/Undead units/u02 Templar idle .png" id="3_jnlcm"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_a5q33"]
 [ext_resource type="PackedScene" uid="uid://b1i0mf1877mfo" path="res://Combat/Effects/AppliedEffects/Scenes/ward.tscn" id="5_0k2wg"]
@@ -140,8 +139,7 @@ faction = 2
 needed_xp = 400
 unit_class = 1
 brief_description = "Living warrior with ward against elemental damage."
-full_description = "Mocking the Holy Church, the King of Necropolis created his own order of Templars. Its members gain powers ovet the elements and authority, serving the Necropolis not as mindless thralls, but as willing champions of its dark purpose."
-portrait_texture = ExtResource("2_imxh0")
+full_description = "Mocking the Holy Church, the King of Necropolis created his own order of Templars. Its members gain powers over the elements and authority, serving the Necropolis not as mindless thralls, but as willing champions of its dark purpose."
 portrait_texture_path = "res://Arts/Placeholders/Templar.jpg"
 cost_gold = 450
 cost_stone = 100

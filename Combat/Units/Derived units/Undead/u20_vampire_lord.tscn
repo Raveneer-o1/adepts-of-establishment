@@ -191,6 +191,7 @@ description = "Also hits adjacent targets."
 [node name="Disappear" type="Node" parent="UnitParameters/UnitAttack" index="0"]
 script = ExtResource("5_mqc6w")
 attack_name = "Disappear"
+damage_multiplier = 0.0
 type = 2
 accuracy = 1.0
 evadable = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bit78176xambc"]
+[gd_scene load_steps=34 format=3 uid="uid://bit78176xambc"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_8bfir"]
 [ext_resource type="Texture2D" uid="uid://6jj45kplnwsc" path="res://Arts/Empire units/elemental attack .png" id="2_wfcjt"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://n106oxapxy1v" path="res://Combat/Effects/Scenes/medium_wind.tscn" id="4_nay0k"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="7_6bnhw"]
 [ext_resource type="AudioStream" uid="uid://cv0d1ko7ydvf8" path="res://Sounds/using/poof in cloud.mp3" id="7_iykxo"]
+[ext_resource type="PackedScene" uid="uid://b1i0mf1877mfo" path="res://Combat/Effects/AppliedEffects/Scenes/ward.tscn" id="8_6bnhw"]
 [ext_resource type="Resource" uid="uid://dsaomlp8ev7ty" path="res://Combat/Units/Parameters/Validation/standard_archer_validity.tres" id="8_axxaw"]
 [ext_resource type="AudioStream" uid="uid://dkehm8jupfwc2" path="res://Sounds/using/air shuffle.wav" id="8_p5grj"]
 [ext_resource type="AudioStream" uid="uid://6t2c0vlv5v8l" path="res://Sounds/using/puff of smoke.wav" id="9_6bnhw"]
@@ -148,10 +149,12 @@ cost_mana = 200
 sprite_frames = SubResource("SpriteFrames_qguhu")
 animation = &"attack"
 autoplay = "default"
+frames_to_emit = Array[int]([3])
 attack_sound_frame = 3
 
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_eejty")
+underlying_immunities = Array[int]([1])
 attack_effect = ExtResource("4_nay0k")
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
@@ -160,6 +163,9 @@ type = 1
 initiative = 40
 target_validation = ExtResource("8_axxaw")
 metadata/_custom_type_script = "uid://c5u15vrtdf7kf"
+
+[node name="Ward" parent="UnitParameters" index="2" instance=ExtResource("8_6bnhw")]
+damage_type = 0
 
 [node name="PoofInCloud" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("7_iykxo")

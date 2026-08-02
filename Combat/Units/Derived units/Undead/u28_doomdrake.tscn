@@ -1,8 +1,7 @@
-[gd_scene load_steps=38 format=3 uid="uid://c7fw6vrje4vcu"]
+[gd_scene load_steps=37 format=3 uid="uid://c7fw6vrje4vcu"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_i1163"]
 [ext_resource type="Texture2D" uid="uid://dtdwq2u2vvrj1" path="res://Arts/Undead units/u29 doomdrake attack .png" id="2_b78kq"]
-[ext_resource type="Texture2D" uid="uid://cygt1ttr4fu2e" path="res://Arts/Placeholders/Doomdrake.jpg" id="2_r53jd"]
 [ext_resource type="Texture2D" uid="uid://dugp5vcx1f86y" path="res://Arts/Undead units/u29 doomdrake idle .png" id="3_j74lj"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_b6sio"]
 [ext_resource type="PackedScene" uid="uid://b1i0mf1877mfo" path="res://Combat/Effects/AppliedEffects/Scenes/ward.tscn" id="5_oslu2"]
@@ -131,7 +130,6 @@ needed_xp = 400
 unit_class = 1
 brief_description = "Large unit, single target archer."
 full_description = "When a wyvern consumes enough bodies on the battlefield, it grows larger and more grotesque, transforming into a Doomdrake. Its breath is poisonous and its flesh is rotten, defiling the living creature it once was."
-portrait_texture = ExtResource("2_r53jd")
 portrait_texture_path = "res://Arts/Placeholders/Doomdrake.jpg"
 cost_gold = 200
 cost_stone = 700
@@ -157,6 +155,7 @@ silencable = false
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="2"]
 script = ExtResource("6_a55j1")
+type = 1
 initiative = 35
 target_validation = ExtResource("7_h4uqg")
 applying_effects = Dictionary[String, Variant]({

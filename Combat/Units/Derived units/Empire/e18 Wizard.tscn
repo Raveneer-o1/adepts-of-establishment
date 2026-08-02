@@ -170,7 +170,7 @@ initiative = 30
 target_validation = ExtResource("8_foq2d")
 additional_targets = ExtResource("9_foq2d")
 damage_policy = ExtResource("10_foq2d")
-description = "Can apply a weak shield to an ally."
+description = "Also hits adjacent targets."
 
 [node name="Default2" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("11_foq2d")

@@ -1,7 +1,6 @@
-[gd_scene load_steps=43 format=3 uid="uid://b43q5ajr0udev"]
+[gd_scene load_steps=42 format=3 uid="uid://b43q5ajr0udev"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_wepdu"]
-[ext_resource type="Texture2D" uid="uid://bmd6p0cu2wwci" path="res://Arts/Placeholders/Elementalist.jpg" id="2_0ppj8"]
 [ext_resource type="Texture2D" uid="uid://cr7bywqyioriv" path="res://Arts/Empire units/elementalist attack .png" id="2_qdt4o"]
 [ext_resource type="Texture2D" uid="uid://gb5mdntmnw15" path="res://Arts/Empire units/elementalist idle .png" id="3_tmf5a"]
 [ext_resource type="PackedScene" uid="uid://n106oxapxy1v" path="res://Combat/Effects/Scenes/medium_wind.tscn" id="4_jm0nb"]
@@ -134,7 +133,6 @@ needed_xp = 400
 unit_class = 5
 brief_description = "Mage that can summon units during battle."
 full_description = "Those who have learned to communicate with nature are called Elementalists. They call upon elemental spirits, summoning them to unleash their primordial power."
-portrait_texture = ExtResource("2_0ppj8")
 portrait_texture_path = "res://Arts/Placeholders/Elementalist.jpg"
 cost_gold = 150
 cost_mana = 100
@@ -145,7 +143,8 @@ animation = &"attack"
 autoplay = "default"
 frame = 6
 frame_progress = 1.0
-attack_sound_frame = 4
+frames_to_emit = Array[int]([3])
+attack_sound_frame = 2
 
 [node name="UnitParameters" parent="." index="1"]
 level = 2

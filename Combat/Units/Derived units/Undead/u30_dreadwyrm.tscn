@@ -1,8 +1,7 @@
-[gd_scene load_steps=44 format=3 uid="uid://bp1r2pdt68e7t"]
+[gd_scene load_steps=43 format=3 uid="uid://bp1r2pdt68e7t"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_23at2"]
 [ext_resource type="Texture2D" uid="uid://ehjmefd3goaw" path="res://Arts/Undead units/u30 dreadwyrm attack .png" id="2_ai7dd"]
-[ext_resource type="Texture2D" uid="uid://b3bd32qc5nm5i" path="res://Arts/Placeholders/Dreadwyrm.jpg" id="2_twryw"]
 [ext_resource type="Texture2D" uid="uid://bb7lt67qjylfk" path="res://Arts/Undead units/u30 dreadwyrm idle .png" id="3_txq8v"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_ju4yq"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_asghm"]
@@ -167,7 +166,6 @@ needed_xp = 900
 unit_class = 5
 brief_description = "Large unit, can attack entire line."
 full_description = "Terrifying Dreadwyrms are often confused with true dragons: their necrotic breath can cover entire cities, leaving only lifeless wastelands"
-portrait_texture = ExtResource("2_twryw")
 portrait_texture_path = "res://Arts/Placeholders/Dreadwyrm.jpg"
 cost_gold = 500
 cost_stone = 2300
@@ -192,7 +190,7 @@ type = 1
 initiative = 35
 target_validation = ExtResource("6_15ntb")
 additional_targets = ExtResource("8_if3kt")
-description = "Also damages targets behind and in front of the main target"
+description = "Attacks the entire line."
 
 [node name="Shield" parent="UnitParameters" index="2" instance=ExtResource("7_3uj7m")]
 damage_type = 3

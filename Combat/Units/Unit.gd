@@ -328,7 +328,10 @@ func finalize_attack() -> void:
 ## it calls [method schedule_damage] for visual sequencing,
 ## unless [param finalize] is set to [code]true[/code].
 func resolve_attack(attack: Attack, damage: int, delay: int = 0, finalize: bool = false) -> void:
-	if attack.evadable and GlobalDefs.rand_roll(clampf(parameters.evasion, 0.0, 1.0), party):
+	if attack.evadable and GlobalDefs.rand_roll(
+				clampf(parameters.evasion, 0.0, 1.0), 
+				party.other_party if attack.is_heal else party
+			):
 		EventBus.attack_evaded.emit(self, attack)
 		system.display_text_near_unit(self, "Evaded!")
 		sound_player.play_evade_sound()

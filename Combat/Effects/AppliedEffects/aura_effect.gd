@@ -37,10 +37,10 @@ func _full_reapply(old_pos: int) -> void:
 	for pos in _get_affected_positions():
 		_apply_to(pos)
 
-func initialize(params: Variant = null) -> void:
+func initialize(params: Variant = null, name_override := "") -> void:
 	_signal_function_pairs[EventBus.unit_moved] = _check_move
 	_signal_function_pairs[EventBus.units_moved] = _check_swap
-	super.initialize(params)
+	super.initialize(params, name_override)
 	_apply_to_targets()
 
 func activate() -> void:

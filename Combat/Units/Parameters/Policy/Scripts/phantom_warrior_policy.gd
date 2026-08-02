@@ -13,5 +13,4 @@ func _apply_policy(attack: Attack, finalize: bool) -> void:
 		if ref.spot == attack.attacker.spot:
 			apply_phantom(attack.attacker)
 			new_refs.erase(ref)
-	attack.target_references = new_refs
-	attack.standard_resolution(finalize)
+			if not attack.is_heal: attack.reverse_healing_flag()

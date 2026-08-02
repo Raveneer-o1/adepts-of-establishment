@@ -164,6 +164,7 @@ damage_policy = SubResource("Resource_4gd0u")
 applying_effects = Dictionary[String, Variant]({
 "death_curse": [-1, 7]
 })
+description = "Can resurrect an ally instead."
 
 [node name="Skeleton" type="AudioStreamPlayer" parent="SoundPlayer/Damage" index="0"]
 stream = ExtResource("11_bd22n")

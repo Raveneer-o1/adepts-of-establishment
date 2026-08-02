@@ -337,6 +337,18 @@ func find_first_primary_target() -> UnitSpotReference:
 		if target_references[i]: return target_references[i]
 	return null
 
+## Toggles the [member is_heal] flag to mark this attack as positive or negative. [br]
+## [b]Note:[/b] This also flips the sign of [member default_damage] and all entries
+## in [member damages] so that the actual effect remains unchanged (a damaging attack
+## still damages targets, but is now treated as a healing attack, and vice versa).
+## If you need to change both the behavior and the numbers, simply assign the
+## desired value directly to [member is_heal].
+func reverse_healing_flag() -> void:
+	is_heal = !is_heal
+	default_damage = -default_damage
+	for d in damages:
+		damages[d] = -damages[d]
+
 func __init_via_UnitAttack(_unit_attack: UnitAttack, eff: Resource) -> void:
 	type = _unit_attack.type
 	attacker = _unit_attack.unit

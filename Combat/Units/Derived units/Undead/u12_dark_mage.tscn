@@ -1,7 +1,6 @@
-[gd_scene load_steps=42 format=3 uid="uid://vxd86ehx8d5b"]
+[gd_scene load_steps=41 format=3 uid="uid://vxd86ehx8d5b"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_382ol"]
-[ext_resource type="Texture2D" uid="uid://c0kbxu312yikh" path="res://Arts/Placeholders/Dark mage.jpg" id="2_bp74a"]
 [ext_resource type="Texture2D" uid="uid://cukkko3k56o86" path="res://Arts/Undead units/dark mage.png" id="2_wv2qb"]
 [ext_resource type="Texture2D" uid="uid://c0pvhtoy5ldwa" path="res://Arts/Undead units/dark mage idle.png" id="3_dfv7s"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_aw483"]
@@ -163,7 +162,6 @@ needed_xp = 400
 unit_class = 5
 brief_description = "Single target mage."
 full_description = "Sometimes death brings not peace and rest, but despair, suffering, and agony. Dark Mages focus on that aspect of death, bringing unimaginable curses upon anyone who stands in the way of the King."
-portrait_texture = ExtResource("2_bp74a")
 portrait_texture_path = "res://Arts/Placeholders/Dark mage.jpg"
 cost_gold = 50
 cost_stone = 50
@@ -173,7 +171,6 @@ cost_mana = 200
 sprite_frames = SubResource("SpriteFrames_ita1u")
 animation = &"attack"
 autoplay = "default"
-attack_sound_frame = 4
 
 [node name="UnitParameters" parent="." index="1"]
 level = 2
@@ -182,6 +179,7 @@ attack_effect = ExtResource("4_ymfcx")
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("6_fhcc8")
+type = 1
 initiative = 40
 target_validation = ExtResource("7_klj5n")
 applying_effects = Dictionary[String, Variant]({
