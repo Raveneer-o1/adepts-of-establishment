@@ -246,7 +246,7 @@ const database = {
 },&"Dark Mage" : {
  &"scene_path": "res://Combat/Units/Derived units//Undead/u12_dark_mage.tscn", &"level": 2, &"large_unit": false, &"immunities": []
 , &"description": "Sometimes death brings not peace and rest, but despair, suffering, and agony. Dark Mages focus on that aspect of death, bringing unimaginable curses upon anyone who stands in the way of the King.", &"brief_description": "Single target mage.", &"faction": 2, &"unit_type": 2, &"unit_class": 5, &"needed_xp": 400, &"attacks": [{
- &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
+ &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_mage_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
  "weakness": [1, 10]
  
@@ -308,9 +308,15 @@ const database = {
  &"scene_path": "res://Combat/Units/Derived units//Undead/u04_phantom_warrior.tscn", &"level": 3, &"large_unit": false, &"immunities": [3]
 , &"description": "When an enemy seems too strong to confront directly, necromancers create Phantom Warriors. Their spectral nature makes them invulnerable to physical attacks - perfect for facing troops that rely on brute force.", &"brief_description": "Melee fighter immune to physical damage for limited time.", &"faction": 2, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 900, &"attacks": [{
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 2, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
-, &"target_validation": "res://Combat/Units/Parameters/Validation/melee_with_self.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/phantom_warrior_policy.tres", &"applying_effects": {
+, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"description": "", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Can be targeted at selt to apply a Phantom effect", &"alternative_actions": [{
+ &"attack_name": "Spectral shift", &"damage_multiplier": 0.0, &"damage_override": false, &"is_heal": true, &"type": 4, &"accuracy": 1.0, &"targets_needed": 1, &"initiative": 40, &"evadable": false, &"tags": []
+, &"target_validation": "res://Combat/Units/Parameters/Validation/self_only.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/phantom_warrior_policy.tres", &"applying_effects": {
+  
+}, &"animation_index": 0, &"description": "Applies a Phantom effect.", &"alternative_actions": []
+ 
+}]
  
 }]
 , &"effects": [{
@@ -345,7 +351,7 @@ const database = {
 } 
 },&"Templar" : {
  &"scene_path": "res://Combat/Units/Derived units//Undead/u03_Templar.tscn", &"level": 2, &"large_unit": false, &"immunities": []
-, &"description": "Mocking the Holy Church, the King of Necropolis created his own order of Templars. Its members gain powers ovet the elements and authority, serving the Necropolis not as mindless thralls, but as willing champions of its dark purpose.", &"brief_description": "Living warrior with ward against elemental damage.", &"faction": 2, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 400, &"attacks": [{
+, &"description": "Mocking the Holy Church, the King of Necropolis created his own order of Templars. Its members gain powers over the elements and authority, serving the Necropolis not as mindless thralls, but as willing champions of its dark purpose.", &"brief_description": "Living warrior with ward against elemental damage.", &"faction": 2, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 400, &"attacks": [{
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
@@ -408,7 +414,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 0.5, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 35, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/entire_line.tres", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"description": "Also damages targets behind and in front of the main target", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Attacks the entire line.", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -429,7 +435,7 @@ const database = {
 , "only_to_type": [2, "weakness", [3, 35]
 ]
  
-}, &"animation_index": 0, &"description": "", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Attacks the entire line.", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -465,7 +471,7 @@ const database = {
  "only_to_type": [2, "weakness", [3, 35]
 ]
  
-}, &"animation_index": 0, &"description": "Applies weakness to mages.", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Attacks the entire line.\nApplies weakness to mages.", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -495,7 +501,7 @@ const database = {
 } 
 },&"Vampire" : {
  &"scene_path": "res://Combat/Units/Derived units//Undead/u13_vampire.tscn", &"level": 3, &"large_unit": false, &"immunities": []
-, &"description": "Very few mortals dare to perform the blood ritual and become the hunters of the night - Vampires. These creatures are neither dead nor alive. Straddling the border between life and death, they sustain their accursed existence only by consuming the life force of others can.", &"brief_description": "Mage with lifesteal.", &"faction": 2, &"unit_type": 2, &"unit_class": 4, &"needed_xp": 900, &"attacks": [{
+, &"description": "Very few mortals dare to perform the blood ritual and become the hunters of the night - Vampires. These creatures are neither dead nor alive. Straddling the border between life and death, they sustain their accursed existence only by consuming the life force of others.", &"brief_description": "Mage with lifesteal.", &"faction": 2, &"unit_type": 2, &"unit_class": 4, &"needed_xp": 900, &"attacks": [{
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 3, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
@@ -603,7 +609,7 @@ const database = {
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Splash.tres", &"damage_policy": "", &"applying_effects": {
  "paralysis": [0.9, 1]
  
-}, &"animation_index": 0, &"description": "", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Also hits adjacent targets.", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -615,7 +621,7 @@ const database = {
 },&"Doomdrake" : {
  &"scene_path": "res://Combat/Units/Derived units//Undead/u28_doomdrake.tscn", &"level": 2, &"large_unit": true, &"immunities": []
 , &"description": "When a wyvern consumes enough bodies on the battlefield, it grows larger and more grotesque, transforming into a Doomdrake. Its breath is poisonous and its flesh is rotten, defiling the living creature it once was.", &"brief_description": "Large unit, single target archer.", &"faction": 2, &"unit_type": 1, &"unit_class": 1, &"needed_xp": 400, &"attacks": [{
- &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 35, &"evadable": true, &"tags": []
+ &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 35, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
  "Poison": [20, 2]
  
@@ -640,7 +646,7 @@ const database = {
 , "vulnerability": [3, 10]
  
 }, &"animation_index": 0, &"description": "Also hits adjacent targets.", &"alternative_actions": [{
- &"attack_name": "Disappear", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 2, &"accuracy": 1.0, &"targets_needed": 1, &"initiative": 0, &"evadable": false, &"tags": []
+ &"attack_name": "Disappear", &"damage_multiplier": 0.0, &"damage_override": false, &"is_heal": false, &"type": 2, &"accuracy": 1.0, &"targets_needed": 1, &"initiative": 0, &"evadable": false, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/any_unit.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/disappear_policy.tres", &"applying_effects": {
   
 }, &"animation_index": 0, &"description": "", &"alternative_actions": []
@@ -682,7 +688,7 @@ const database = {
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Splash.tres", &"damage_policy": "", &"applying_effects": {
  "paralysis": [0.9, 2]
  
-}, &"animation_index": 0, &"description": "", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Also hits adjacent targets.", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -725,7 +731,7 @@ const database = {
 , &"target_validation": "res://Combat/Units/Parameters/Validation/necromancer_validity.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Derived units/Undead/u14_lich.tscn::Resource_4gd0u", &"applying_effects": {
  "death_curse": [-1, 7]
  
-}, &"animation_index": 0, &"description": "", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Can resurrect an ally instead.", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -813,7 +819,7 @@ const database = {
  &"gold": 0, &"stone": 0, &"mana": 350 
 } 
 },&"Elemental" : {
- &"scene_path": "res://Combat/Units/Derived units//Elemental.tscn", &"level": 1, &"large_unit": false, &"immunities": []
+ &"scene_path": "res://Combat/Units/Derived units//Elemental.tscn", &"level": 1, &"large_unit": false, &"immunities": [1]
 , &"description": "Elementals are spirits of the magic, they roam the Fourfold without any innate purpose. Elementalists have learned how to communicate with them and summon them in times of need.", &"brief_description": "", &"faction": 5, &"unit_type": 2, &"unit_class": 0, &"needed_xp": 100, &"attacks": [{
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
@@ -821,7 +827,10 @@ const database = {
 }, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
-, &"effects": []
+, &"effects": [{
+ &"effect_name": "Ward", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/ward.tscn", &"args": [0, 1]
+ 
+}]
 , &"base_damage": 30, &"max_hp": 100, &"armor": 0, &"evasion": 0.1, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Elemental.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
   
 }, &"cost": {
@@ -915,7 +924,7 @@ const database = {
 } 
 },&"Ritualist" : {
  &"scene_path": "res://Combat/Units/Derived units//Empire/e17 Ritualist.tscn", &"level": 3, &"large_unit": false, &"immunities": []
-, &"description": "Through acrabe rituals, some mages weave bonds with the world\'s very spirits and command multiple elementals at once.", &"brief_description": "Mage able to summon multiple elementals.", &"faction": 1, &"unit_type": 2, &"unit_class": 5, &"needed_xp": 900, &"attacks": [{
+, &"description": "Through acrane rituals, some mages weave bonds with the world\'s very spirits and command multiple elementals at once.", &"brief_description": "Mage able to summon multiple elementals.", &"faction": 1, &"unit_type": 2, &"unit_class": 5, &"needed_xp": 900, &"attacks": [{
  &"attack_name": "Attack", &"damage_multiplier": 0.6, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 2, &"initiative": 30, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/elementalist_validity.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/elementalist_policy.tres", &"applying_effects": {
   
@@ -988,7 +997,7 @@ const database = {
 , &"target_validation": "res://Combat/Units/Parameters/Validation/any_unit.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Splash.tres", &"damage_policy": "res://Combat/Units/Derived units/Empire/e21 Arcanist.tscn::Resource_xbk8a", &"applying_effects": {
  "electrified": [3, 18]
  
-}, &"animation_index": 0, &"description": "Can apply a shield to an ally.", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Also hits adjacent targets.", &"alternative_actions": []
  
 }]
 , &"effects": [{
@@ -1017,9 +1026,9 @@ const database = {
   
 }, &"animation_index": 0, &"description": "", &"alternative_actions": [{
  &"attack_name": "Provoke", &"damage_multiplier": 0.0, &"damage_override": false, &"is_heal": false, &"type": 2, &"accuracy": 0.99, &"targets_needed": 1, &"initiative": 40, &"evadable": false, &"tags": []
-, &"target_validation": "res://Combat/Units/Parameters/Validation/melee_with_self.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/provoke_valid_targets_policy.tres", &"applying_effects": {
+, &"target_validation": "res://Combat/Units/Parameters/Validation/self_only.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/provoke_valid_targets_policy.tres", &"applying_effects": {
   
-}, &"animation_index": -1, &"description": "Forces all available targets to attack this unit", &"alternative_actions": []
+}, &"animation_index": 1, &"description": "Forces all available targets to attack this unit", &"alternative_actions": []
  
 }]
  
@@ -1036,14 +1045,14 @@ const database = {
 },&"Scout" : {
  &"scene_path": "res://Combat/Units/Derived units//Empire/e24 Scout.tscn", &"level": 3, &"large_unit": false, &"immunities": []
 , &"description": "An army is only as effective as its scouts are good. Imperial scouts are trained to spy on enemy forces and remain unnoticed.", &"brief_description": "Archer with debuff.", &"faction": 1, &"unit_type": 1, &"unit_class": 4, &"needed_xp": 900, &"attacks": [{
- &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.97, &"targets_needed": 1, &"initiative": 50, &"evadable": true, &"tags": []
+ &"attack_name": "Attack", &"damage_multiplier": 0.6, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.97, &"targets_needed": 1, &"initiative": 50, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
  "vulnerability": [1, 30]
  
 }, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }, {
- &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.97, &"targets_needed": 1, &"initiative": 50, &"evadable": true, &"tags": []
+ &"attack_name": "Attack", &"damage_multiplier": 0.6, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.97, &"targets_needed": 1, &"initiative": 50, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_archer_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
  "vulnerability": [1, 30]
  
@@ -1051,7 +1060,7 @@ const database = {
  
 }]
 , &"effects": [{
- &"effect_name": "Agility", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/agility.tscn", &"args": [2, 0.0]
+ &"effect_name": "Agility", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/agility.tscn", &"args": [2, 0.1]
  
 }]
 , &"base_damage": 60, &"max_hp": 100, &"armor": 0, &"evasion": 0.208, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/Scout.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
@@ -1144,7 +1153,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 30, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/any_unit.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Derived units/Empire/e16 Mage.tscn::Resource_6f3w4", &"applying_effects": {
   
-}, &"animation_index": 0, &"description": "Can apply a weak shield to an ally.", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -1190,10 +1199,10 @@ const database = {
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
   
 }, &"animation_index": 0, &"description": "", &"alternative_actions": [{
- &"attack_name": "Purification", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 4, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
+ &"attack_name": "Purification", &"damage_multiplier": 0.0, &"damage_override": false, &"is_heal": false, &"type": 4, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": false, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/any_unit.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/purify_policy.tres", &"applying_effects": {
   
-}, &"animation_index": 0, &"description": "", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Dispels all effects from any unit.", &"alternative_actions": []
  
 }]
  
@@ -1216,10 +1225,13 @@ const database = {
 , &"target_validation": "res://Combat/Units/Parameters/Validation/any_unit.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Splash.tres", &"damage_policy": "res://Combat/Units/Derived units/Empire/e19 White Mage.tscn::Resource_yeav1", &"applying_effects": {
  "electrified": [2, 10]
  
-}, &"animation_index": 0, &"description": "Can apply a weak shield to an ally.", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Also hits adjacent targets.", &"alternative_actions": []
  
 }]
-, &"effects": []
+, &"effects": [{
+ &"effect_name": "Defender", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/protect_on_attack.tscn", &"args": [30, true, 0.5, 0.3, -1, "res://Combat/Effects/Scenes/generic_blue_effect.tscn", "res://Combat/Effects/Scenes/shield.tscn"]
+ 
+}]
 , &"base_damage": 65, &"max_hp": 180, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "res://Arts/Placeholders/White mage.jpg", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
   
 }, &"cost": {
@@ -1287,7 +1299,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 0.85, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 30, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/any_unit.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Splash.tres", &"damage_policy": "res://Combat/Units/Parameters/Policy/applying_shield_policy.tres", &"applying_effects": {
   
-}, &"animation_index": 0, &"description": "Can apply a weak shield to an ally.", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Also hits adjacent targets.", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -1345,7 +1357,7 @@ const database = {
   
 }, &"animation_index": 0, &"description": "", &"alternative_actions": [{
  &"attack_name": "Provoke", &"damage_multiplier": 0.0, &"damage_override": false, &"is_heal": false, &"type": 2, &"accuracy": 0.99, &"targets_needed": 1, &"initiative": 40, &"evadable": false, &"tags": []
-, &"target_validation": "res://Combat/Units/Parameters/Validation/melee_with_self.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Derived units/Empire/e10 Angel Knight.tscn::Resource_1ymhj", &"applying_effects": {
+, &"target_validation": "res://Combat/Units/Parameters/Validation/self_only.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Derived units/Empire/e10 Angel Knight.tscn::Resource_1ymhj", &"applying_effects": {
   
 }, &"animation_index": 1, &"description": "Forces all available targets to attack this unit", &"alternative_actions": []
  
@@ -1357,7 +1369,7 @@ const database = {
   
 }, &"animation_index": 0, &"description": "", &"alternative_actions": [{
  &"attack_name": "Provoke", &"damage_multiplier": 0.0, &"damage_override": false, &"is_heal": false, &"type": 2, &"accuracy": 0.99, &"targets_needed": 1, &"initiative": 40, &"evadable": false, &"tags": []
-, &"target_validation": "res://Combat/Units/Parameters/Validation/melee_with_self.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Derived units/Empire/e10 Angel Knight.tscn::Resource_fvn0p", &"applying_effects": {
+, &"target_validation": "res://Combat/Units/Parameters/Validation/self_only.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Derived units/Empire/e10 Angel Knight.tscn::Resource_fvn0p", &"applying_effects": {
   
 }, &"animation_index": 1, &"description": "Forces all available targets to attack this unit", &"alternative_actions": []
  
@@ -1449,10 +1461,10 @@ const database = {
 },&"Hierophant" : {
  &"scene_path": "res://Combat/Units/Derived units//Church/e33 Hierophant.tscn", &"level": 4, &"large_unit": false, &"immunities": []
 , &"description": "\"... We hereby welcome thee as the face of the Church. Thine will shall now be the will of the Church, and thine heart shall belong to the Council of Thorns.\"\n- Council of Thorns", &"brief_description": "Single-target healer able to resurret fallen warriors.", &"faction": 3, &"unit_type": 3, &"unit_class": 0, &"needed_xp": 1600, &"attacks": [{
- &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": true, &"type": 3, &"accuracy": 1.0, &"targets_needed": 1, &"initiative": 15, &"evadable": true, &"tags": []
+ &"attack_name": "Heal/Resurrect", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": true, &"type": 3, &"accuracy": 1.0, &"targets_needed": 1, &"initiative": 15, &"evadable": false, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/resurrection_validation.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/resurrection_policy.tres", &"applying_effects": {
   
-}, &"animation_index": 0, &"description": "", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Can resurrect fallen allies.", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -1619,7 +1631,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 0.5, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 15, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Double_attack.tres", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"description": "", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Deals damage twice", &"alternative_actions": []
  
 }]
 , &"effects": []
@@ -1700,7 +1712,7 @@ const database = {
  &"attack_name": "Attack", &"damage_multiplier": 0.35, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 15, &"evadable": true, &"tags": []
 , &"target_validation": "res://Combat/Units/Parameters/Validation/standard_mage_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/standard_mage_targets.tres", &"damage_policy": "", &"applying_effects": {
   
-}, &"animation_index": 0, &"description": "", &"alternative_actions": []
+}, &"animation_index": 0, &"description": "Hits the entire party.", &"alternative_actions": []
  
 }]
 , &"effects": []
