@@ -4,14 +4,19 @@ func find_additional_targets(attacker: Unit, chosen_targets: Array[UnitSpot]) ->
 	if chosen_targets.is_empty():
 		return []
 	
-	var result_units := chosen_targets[0].party. \
-		get_adjacent_units(chosen_targets[0].party_position)
 	var result: Array[UnitSpot] = []
-	for unit in result_units:
-		result.append(unit.spot)
+	for chosen_target in chosen_targets:
+		var result_units := chosen_target.party. \
+			get_adjacent_units(chosen_target.party_position)
+		for unit in result_units:
+			result.append(unit.spot)
 	return result
 
 func _max_number_of_targets(attack: UnitAttack) -> int:
-	# TODO: account for the fact that the target party might not have all
-	# five units adjacent to each other
-	return attack.targets_needed * 5
+	var n := 0
+	var party := attack.unit.party.other_party
+	for i in range(Party.MAX_UNITS_NUMBER):
+		var targets_here := party.get_adjacent_units(i).size() + \
+			(1 if party.unit_spots[i].unit else 0)
+		if targets_here > n: n = targets_here
+	return attack.targets_needed * n
