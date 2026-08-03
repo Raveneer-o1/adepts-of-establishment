@@ -22,23 +22,44 @@ The AppliedEffect system allows you to create modular unit abilities that can be
 
 ### Configuring Parameters
 
+The simplest effect is the one that modifies unit's parameters. This is done through a `ModifierStack` class.
+In order to add your modifier, call `add_modifier()` on the parameters of your taget unit.
+For example:
+```gdscript
+func _apply_effect(params: Variant) -> void:
+	target_unit.parameters.add_modifier(
+		&"evasion",        # this can be any parameter defined in add_modifier() documentation
+		self,              # this helps to deactive mofiers when this effect is no longet valid
+		increase_function  # this is a function that affect the values recieved after modification
+	)
+```
+
 Implement the `_apply_effect()` method to define your effect's behavior. Here are two common patterns:
 
 #### **Instantaneous Effect** (applies once and removes itself):
 ```gdscript
+# Even if your effect does not need any parameters, always override this function
+# with an explicitly empty body. This documents that the effect intentionally
+# does not read parameters and you didn't just forget it.
+func read_params(params: Variant) -> void:
+	pass
+
 func _apply_effect(params: Variant) -> void:
-	# Extract parameters
-	read_arguments(params)
-	
 	# Perform the effect's action
-    do_stuff()
-    
-    # Remove the effect after application
-    queue_free()
+	do_stuff()
+	
+	# Remove the effect after application
+	queue_free()
 ```
 
 #### **Triggered Effect** (responds to game events):
 ```gdscript
+# Even if your effect does not need any parameters, always override this function
+# with an explicitly empty body. This documents that the effect intentionally
+# does not read parameters and you didn't just forget it.
+func read_params(params: Variant) -> void:
+	pass
+
 # This function will be called when the specified signal is emmitted
 # pay attention to the signature: it should match the signal's
 func check_trigger(attack: Attack) -> void:
@@ -50,12 +71,9 @@ func check_trigger(attack: Attack) -> void:
 		do_stuff()
 
 func _apply_effect(params: Variant) -> void:
-	# Extract parameters
-	read_arguments(params)
-	
 	# Register for game events using the signal mapping system
 	# Don't connect signals manually - use this dictionary
-    _signal_function_pairs[EventBus.attack_booked] = check_trigger
+	_signal_function_pairs[EventBus.attack_booked] = check_trigger
 ```
 
 ### Defining Effect Properties
