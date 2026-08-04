@@ -15,7 +15,7 @@ func clean() -> void:
 	var stack_copy := stack
 	stack = []
 	for modifier in stack_copy:
-		if modifier.active:
+		if modifier.valid:
 			stack.append(modifier)
 
 func add_modifier(effect: AppliedEffect, influence: Callable) -> void:
@@ -23,17 +23,18 @@ func add_modifier(effect: AppliedEffect, influence: Callable) -> void:
 	stack.append(modifier)
 
 class Modifier:
-
 	var effect: AppliedEffect
-
-	var active: bool:
+	
+	var valid: bool:
 		get:
 			return is_instance_valid(effect) and \
-				#effect != null and \
 				not effect.is_queued_for_deletion() and \
-				not effect.silenced and \
 				influence.is_valid()
-
+	
+	var active: bool:
+		get:
+			return valid and \
+				not effect.silenced
 	var influence: Callable
 	
 	func _init(eff: AppliedEffect, infl: Callable) -> void:
