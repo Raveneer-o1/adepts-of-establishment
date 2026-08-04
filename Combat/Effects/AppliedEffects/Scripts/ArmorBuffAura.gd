@@ -32,6 +32,7 @@ func _apply_to(pos: int) -> void:
 		true    # silent
 	)
 	if not eff:
+		GlobalLogger.force_message("Unable to apply the temporary", self)
 		push_error("Unable to apply the effect")
 		return
 	eff.silencable = false
