@@ -7,7 +7,9 @@ const BUFF_ICON_INDEX = 5
 var _added_effects: Dictionary[Unit, AppliedEffect] = {}
 
 func _remove_from(pos: int) -> void:
-	var unit := target_unit.party.unit_spots[pos].unit
+	var spot := get_unit_spot(pos)
+	if not spot: return
+	var unit := spot.unit
 	if not unit: return
 	if is_instance_valid(_added_effects.get(unit)):
 		_added_effects[unit].queue_free()
@@ -15,7 +17,9 @@ func _remove_from(pos: int) -> void:
 	unit.update_visuals()
 
 func _apply_to(pos: int) -> void:
-	var unit := target_unit.party.unit_spots[pos].unit
+	var spot := get_unit_spot(pos)
+	if not spot: return
+	var unit := spot.unit
 	if not unit: return
 	if is_instance_valid(_added_effects.get(unit)):
 		_added_effects[unit].queue_free()

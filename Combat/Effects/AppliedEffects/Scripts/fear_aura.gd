@@ -7,7 +7,9 @@ const DEBUFF_ICON_INDEX = 6
 var _added_effects: Dictionary[Unit, AppliedEffect] = {}
 
 func _remove_from(pos: int) -> void:
-	var unit := target_unit.party.unit_spots[pos].unit
+	var spot := get_unit_spot(pos)
+	if not spot: return
+	var unit := spot.unit
 	if not unit: return
 	if is_instance_valid(_added_effects.get(unit)):
 		_added_effects[unit].queue_free()
@@ -15,7 +17,9 @@ func _remove_from(pos: int) -> void:
 	unit.update_visuals()
 
 func _apply_to(pos: int) -> void:
-	var unit := target_unit.party.unit_spots[pos].unit
+	var spot := get_unit_spot(pos)
+	if not spot: return
+	var unit := spot.unit
 	if not unit: return
 	if is_instance_valid(_added_effects.get(unit)):
 		_added_effects[unit].queue_free()
@@ -69,5 +73,5 @@ func _get_affected_positions(relative_to: int = target_unit.party_position) -> A
 	
 	var result: Array[int] = []
 	for unit in affected_units:
-		result.append(unit.party_position)
+		result.append(encode_spot(unit.spot))
 	return result
