@@ -219,5 +219,8 @@ static func get_distance(pos1: int, pos2: int) -> int:
 	if pos1 == pos2: return 0
 	return ceili(absf(pos1 - pos2) / 2.0)
 
+## Returns whether the given position [param pos] is on the front line.
+## This is equivalent to the following line (but more readable):
+## [codeblock] pos % 2 == 0 [/codeblock]
 static func is_front_line(pos: int) -> bool:
 	return pos % 2 == 0
