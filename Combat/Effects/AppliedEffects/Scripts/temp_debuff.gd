@@ -17,19 +17,19 @@ const PARAMETERS_NAMES: Dictionary[StringName, StringName] = {
 	"Shielding chance" = &"shielding_chance",
 }
 
-# Number of turns the effect will last
-var turns: int = 1
+## Number of turns the effect will last
+@export var turns: int = 1
 
-# Flat value to add to the parameter (optional)
-var strength: int = 0
+## Flat value to add to the parameter (optional)
+@export var strength: int = 0
 
-# Multiplier for the parameter (optional)
-var multiplier: float = 1.0
+## Multiplier for the parameter (optional)
+@export var multiplier: float = 1.0
 
 var _applied_this_turn := true
 
 func _get_description() -> String:
-	if _parameter == &"Evasion": return "Evasion of this unit is increased."
+	if _parameter == &"Evasion": return "Evasion of this unit is decreased."
 	var text_increase: String = description
 	
 	if not is_equal_approx(multiplier, 1.0):
@@ -63,14 +63,14 @@ func apply_modifier() -> void:
 				param,
 				self,
 				func (value: float) -> float:
-					return value * multiplier + float(strength)
+					return value * multiplier - float(strength)
 		)
 	else:
 		target_unit.parameters.add_modifier(
 				param,
 				self,
 				func (value: int) -> int:
-					return roundi(float(value) * multiplier + strength)
+					return roundi(float(value) * multiplier - strength)
 		)
 
 ## Attempts to initialize the effect's parameters from a dictionary

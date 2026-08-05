@@ -1,6 +1,8 @@
 extends AuraEffect
 
-@export var evasion_decrease: float = 0.01
+## Multiplier applied to the target's evasion chance.
+## Should be less than [code]1.0[/code].
+@export var evasion_decrease: float = 0.5
 
 const DEBUFF_ICON_INDEX = 6
 
@@ -25,11 +27,11 @@ func _apply_to(pos: int) -> void:
 		_added_effects[unit].queue_free()
 		_added_effects[unit] = null
 	var eff := unit.parameters.apply_effect(
-		"temporary_buff",
+		"temporary_debuff",
 		{
 			&"parameter" : "Evasion",
 			&"turns" : -1,
-			&"strength" : -evasion_decrease,
+			&"multiplier" : evasion_decrease,
 		},
 		false,  # force_stackability
 		false,  # override_stackability

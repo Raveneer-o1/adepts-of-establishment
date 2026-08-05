@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cw2jyyrh77xev"]
+
+[ext_resource type="PackedScene" uid="uid://8d3sodh68huv" path="res://Combat/Effects/AppliedEffects/applied_effect.tscn" id="1_rfe37"]
+[ext_resource type="Script" uid="uid://dsr6ltj6b5usr" path="res://Combat/Effects/AppliedEffects/Scripts/temp_debuff.gd" id="2_rfe37"]
+
+[node name="Temporary buff" instance=ExtResource("1_rfe37")]
+script = ExtResource("2_rfe37")
+turns = 1
+strength = 0
+multiplier = 1.0
+effect_name = "Temporary"
+icon_index = 6
+description = "Decreases %s by %d"
+stackable = true
