@@ -22,8 +22,7 @@ extends Control
 @export var battle_scene: PackedScene
 
 var right_array : Array[UnitPanel]:
-	get:
-		return [
+	get: return [
 		(r_position_0 as MenuUnitPlace).panel,
 		(r_position_1 as MenuUnitPlace).panel,
 		(r_position_2 as MenuUnitPlace).panel,
@@ -31,11 +30,10 @@ var right_array : Array[UnitPanel]:
 		(r_position_4 as MenuUnitPlace).panel,
 		(r_position_5 as MenuUnitPlace).panel,
 		(r_position_6 as MenuUnitPlace).panel,
-]
+	]
 
 var left_array : Array[UnitPanel]:
-	get:
-		return [
+	get: return [
 		(position_0 as MenuUnitPlace).panel,
 		(position_1 as MenuUnitPlace).panel,
 		(position_2 as MenuUnitPlace).panel,
@@ -43,9 +41,11 @@ var left_array : Array[UnitPanel]:
 		(position_4 as MenuUnitPlace).panel,
 		(position_5 as MenuUnitPlace).panel,
 		(position_6 as MenuUnitPlace).panel,
-]
+	]
 
 const DEFAULT_PATH = "res://Party_composition.tscn"
+
+# TODO: fix UI scale values and screen scaling
 
 func load_unit_composition() -> void:
 	if FileAccess.file_exists(DEFAULT_PATH):
@@ -65,7 +65,7 @@ const STANDARD_AI_CONTROLLER = 2
 func save_left_controller() -> void:
 	var items := item_list_left_controller.get_selected_items()
 	if items.size() == 0:
-		print_debug("No items selected on the left!")
+		push_error("No items selected on the left!")
 		return
 	match items[0]:
 		PLAYER_CONTROLLER:
@@ -78,7 +78,7 @@ func save_left_controller() -> void:
 func save_right_controller() -> void:
 	var items := item_list_right_controller.get_selected_items()
 	if items.size() == 0:
-		print_debug("No items selected on the right!")
+		push_error("No items selected on the right!")
 		return
 	match items[0]:
 		PLAYER_CONTROLLER:
