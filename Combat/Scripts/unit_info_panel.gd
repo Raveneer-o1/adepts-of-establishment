@@ -12,7 +12,7 @@ class_name UnitInfoPanel
 @onready var base_damage_container: UI_UnitPanel_BaseDamageContainer = $Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/BaseDamageContainer
 @onready var level_label: Label = $Panel/MainContainer/MarginContainer/RightContainer/LevelLabel
 @onready var attacks_container: UI_UnitPanel_AttacksContainer = $Panel/MainContainer/MarginContainer/RightContainer/Attacks
-@onready var effects_container: UI_UnitPanel_Effects = $Panel/MainContainer/MarginContainer/RightContainer/EffectsContainer
+@onready var effects_container: UI_UnitPanel_Effects = $Panel/MainContainer/MarginContainer/RightContainer/ScrollContainer/EffectsContainer
 @onready var full_description_label: RichTextLabel = $Panel/MainContainer/MarginContainer/RightContainer/BottomContainer/DescriptionLabel
 @onready var immunities_container: UI_UnitPanel_ImmunitiesContainer = $Panel/MainContainer/MarginContainer/RightContainer/BaseInfo/ImmunitiesContainer
 

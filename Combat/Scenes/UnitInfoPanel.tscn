@@ -329,7 +329,11 @@ layout_mode = 2
 layout_mode = 2
 text = "Active effects:"
 
-[node name="EffectsContainer" type="GridContainer" parent="Panel/MainContainer/MarginContainer/RightContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/MainContainer/MarginContainer/RightContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="EffectsContainer" type="VBoxContainer" parent="Panel/MainContainer/MarginContainer/RightContainer/ScrollContainer"]
 layout_mode = 2
 script = ExtResource("15_6nmij")
 

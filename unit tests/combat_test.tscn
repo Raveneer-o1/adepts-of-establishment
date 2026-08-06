@@ -13,7 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_rs7f7")
-units = Array[StringName]([&"Blood spawn", &"Blood spawn", &"Blood spawn", &"Blood spawn", &"", &"", &"Blood spawn"])
+units = Array[StringName]([&"Paladin", &"", &"", &"", &"", &"", &""])
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 top_level = true

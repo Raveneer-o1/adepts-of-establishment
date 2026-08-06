@@ -1,5 +1,5 @@
 class_name UI_UnitPanel_Effects
-extends GridContainer
+extends VBoxContainer
 
 const ATTACK_EFFECTS_EFFECT_PANEL = preload("uid://dv6rhlj3ijuya")
 
