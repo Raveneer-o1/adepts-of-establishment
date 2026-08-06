@@ -20,30 +20,30 @@ const PARAMETERS_NAMES: Dictionary[StringName, StringName] = {
 ## Number of turns the effect will last
 @export var turns: int = 1
 
-## Flat value to add to the parameter (optional)
+## Flat value to subtract from the parameter
 @export var strength: int = 0
 
-## Multiplier for the parameter (optional)
+## Multiplier for the parameter
 @export var multiplier: float = 1.0
 
 var _applied_this_turn := true
 
 func _get_description() -> String:
 	if _parameter == &"Evasion": return "Evasion of this unit is decreased."
-	var text_increase: String = description
+	var text_decrease: String = description
 	
 	if not is_equal_approx(multiplier, 1.0):
-		text_increase += " percent"
+		text_decrease += " percent"
 		
 		if strength != 0:
-			text_increase += " plus %d"
-			text_increase = text_increase % [_parameter, roundi((multiplier - 1) * 100), strength]
+			text_decrease += " plus %d"
+			text_decrease = text_decrease % [_parameter, roundi((multiplier - 1) * 100), strength]
 		else:
-			text_increase = text_increase % [_parameter, roundi((multiplier - 1) * 100)]
+			text_decrease = text_decrease % [_parameter, roundi((multiplier - 1) * 100)]
 	else:
-		text_increase = text_increase % [_parameter, strength]
+		text_decrease = text_decrease % [_parameter, strength]
 	
-	return text_increase
+	return text_decrease
 
 func count_turn(unit: Unit) -> void:
 	if _applied_this_turn: return
@@ -54,30 +54,29 @@ func count_turn(unit: Unit) -> void:
 
 func _drop_safeguard(_u: Unit = null) -> void:
 	_applied_this_turn = false
-	EventBus.turn_started.disconnect(_drop_safeguard)
+	if EventBus.turn_started.is_connected(_drop_safeguard):
+		EventBus.turn_started.disconnect(_drop_safeguard)
 
 func apply_modifier() -> void:
 	var param := parameter
 	if param == &"evasion" or param == &"shielding_chance":
 		target_unit.parameters.add_modifier(
-				param,
-				self,
-				func (value: float) -> float:
-					return value * multiplier - float(strength)
+			param,
+			self,
+			func (value: float) -> float:
+				return value * multiplier - float(strength)
 		)
 	else:
 		target_unit.parameters.add_modifier(
-				param,
-				self,
-				func (value: int) -> int:
-					return roundi(float(value) * multiplier - strength)
+			param,
+			self,
+			func (value: int) -> int:
+				return roundi(float(value) * multiplier - strength)
 		)
 
-## Attempts to initialize the effect's parameters from a dictionary
-## returns if initialization was succsessful
 func read_params(params: Variant) -> void:
 	if params is not Dictionary:
-		print_debug("Invalid parameter for 'temporary buff' effect. \
+		print_debug("Invalid parameter for 'temporary debuff' effect. \
 				Expected Dictionary, found %s!" % type_string(typeof(params)))
 		return
 	
@@ -86,7 +85,7 @@ func read_params(params: Variant) -> void:
 		if PARAMETERS_NAMES.has(params[p]):
 			_parameter = params[p]
 		else:
-			print_debug("Unknown parameter '%s' for 'temporary buff' effect." % params[p])
+			print_debug("Unknown parameter '%s' for 'temporary debuff' effect." % params[p])
 			return
 	
 	p = &"turns"
