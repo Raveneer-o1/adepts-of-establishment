@@ -359,7 +359,7 @@ func find_effect(effect_name: StringName, except: AppliedEffect = null) -> Appli
 
 ## Removes inactive modifiers from all [ModifierStack]s.
 ## A modifier is considered inactive if its associated [AppliedEffect] reference
-## is invalid (e.g., the effect was freed) or if the effect is currently silenced.
+## is invalid (e.g., the effect was freed).
 func clean_modifiers() -> void:
 	for modifier: ModifierStack in stats_modifiers.values():
 		modifier.clean()

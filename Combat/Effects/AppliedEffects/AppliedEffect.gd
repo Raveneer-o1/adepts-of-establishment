@@ -69,6 +69,11 @@ const ICONS := preload("res://Arts/icons.png")
 ## 17 - Purple bottle [br]
 ## 18 - Yellow bottle [br]
 ## 19 - Blue bottle [br]
+## 20 - Blue flame [br]
+## 21 - Purple void [br]
+## 22 - Axe [br]
+## 23 - Two white circles [br]
+## 24 - Three dots [br]
 @export var icon_index: int = 2
 
 ## If [code]true[/code], this effect will be lifted when unit is cured.
@@ -94,6 +99,15 @@ var _signal_function_pairs: Dictionary[Signal, Callable]
 
 const NOT_LIFTABLE_LINE = " Cannot be dispelled."
 const NOT_SILENSABLE_LINE = " Cannot be silenced."
+
+## The maximum number of effect icons displayed on screen for a single unit.
+const MAX_DISPLAYED_EFFECTS: int = 5
+
+## Returns the image used as the "etc." icon, displayed when a unit has more effects
+## than [constant MAX_DISPLAYED_EFFECTS].
+static func get_etc_image() -> Image:
+	const THREE_DOTS_INDEX = 24
+	return ICONS.get_layer_data(THREE_DOTS_INDEX)
 
 ## Initializes the effect's values from the provided [param params].
 ## This method is called by [method initialize] and does not need to be called
@@ -351,7 +365,7 @@ func initialize(params: Variant = null, name_override := "") -> void:
 	if icon_index >= 0:
 		var image: Image = ICONS.get_layer_data(icon_index)
 		if image == null:
-			print_debug("Icon not found!")
+			push_error("Icon not found")
 			return
 		target_unit.display_effect_icon(image, self)
 

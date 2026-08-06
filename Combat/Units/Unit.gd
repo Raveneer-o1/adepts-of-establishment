@@ -178,6 +178,8 @@ var original_data: UnitData = null
 var current_xp: int:
 	get: return original_data.current_xp if original_data else 0
 
+var etc_icon: TextureRect
+
 const LEVELUP_EFFECT = preload("uid://bdxoklt2vs33j")
 
 #endregion
@@ -249,12 +251,34 @@ func _clean_effects() -> void:
 		if is_instance_valid(_displayed_icons[icon]) and \
 				not _displayed_icons[icon].is_queued_for_deletion():
 			displayed_icons[icon] = _displayed_icons[icon]
-			icon.visible = not (_displayed_icons[icon] as AppliedEffect).silenced
+			#icon.visible = not (_displayed_icons[icon] as AppliedEffect).silenced
 			continue
 		icon.queue_free()
-	
+	_determine_effect_icons_visibility()
 	parameters.clean_modifiers()
 
+func _determine_effect_icons_visibility() -> void:
+	var visible_count := 0
+	# WARNING: this might be inefficient but should be fine
+	if etc_icon: 
+		etc_icon.queue_free()
+		etc_icon = null
+	for icon: TextureRect in displayed_icons:
+		if icon.is_queued_for_deletion(): continue
+		if not is_instance_valid(displayed_icons[icon]): continue
+		if displayed_icons[icon].is_queued_for_deletion(): continue
+		if displayed_icons[icon].silenced:
+			icon.visible = false
+			continue
+		if visible_count >= AppliedEffect.MAX_DISPLAYED_EFFECTS:
+			icon.visible = false
+			# TODO: if only one effect, display it instead of dots
+			_show_etc_icon()
+		else: visible_count += 1
+
+func _show_etc_icon() -> void:
+	if not etc_icon: etc_icon = _add_new_icon( AppliedEffect.get_etc_image() )
+	etc_icon.show()
 
 ## Attempts to register a target for attack. Returns success or failure.
 func give_target(_spot: UnitSpot) -> bool:
@@ -893,12 +917,16 @@ func now_attacking() -> bool:
 
 # TODO: limit the number of effects displayed in the UI
 func display_effect_icon(image: Image, effect: AppliedEffect) -> void:
+	var texture_rect := _add_new_icon(image)
+	displayed_icons[texture_rect] = effect
 	clean_effects()
+
+func _add_new_icon(image: Image) -> TextureRect:
 	var texture_rect: TextureRect = TextureRect.new()
 	effect_icons_container.add_child(texture_rect)
 	texture_rect.texture = ImageTexture.create_from_image(image)
 	texture_rect.scale = Vector2(EFFECT_ICONS_SCALE, EFFECT_ICONS_SCALE)
-	displayed_icons[texture_rect] = effect
+	return texture_rect
 
 func visualize_death() -> void:
 	if summoned_unit:
