@@ -258,7 +258,9 @@ func _clean_effects() -> void:
 	parameters.clean_modifiers()
 
 func _determine_effect_icons_visibility() -> void:
+	const LAST_EFFECT_ICON_NUMBER = AppliedEffect.MAX_DISPLAYED_EFFECTS - 1
 	var visible_count := 0
+	var last_icon: TextureRect = null
 	# WARNING: this might be inefficient but should be fine
 	if etc_icon: 
 		etc_icon.queue_free()
@@ -267,14 +269,19 @@ func _determine_effect_icons_visibility() -> void:
 		if icon.is_queued_for_deletion(): continue
 		if not is_instance_valid(displayed_icons[icon]): continue
 		if displayed_icons[icon].is_queued_for_deletion(): continue
+		icon.show()
 		if displayed_icons[icon].silenced:
-			icon.visible = false
+			icon.hide()
 			continue
-		if visible_count >= AppliedEffect.MAX_DISPLAYED_EFFECTS:
-			icon.visible = false
-			# TODO: if only one effect, display it instead of dots
+		if visible_count == LAST_EFFECT_ICON_NUMBER:
+			last_icon = icon
+		if visible_count > LAST_EFFECT_ICON_NUMBER:
+			icon.hide()
 			_show_etc_icon()
-		else: visible_count += 1
+			if last_icon:
+				last_icon.hide()
+			continue
+		visible_count += 1
 
 func _show_etc_icon() -> void:
 	if not etc_icon: etc_icon = _add_new_icon( AppliedEffect.get_etc_image() )
