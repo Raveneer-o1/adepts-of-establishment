@@ -95,11 +95,10 @@ func save_controllers() -> void:
 
 
 func _on_start_button_pressed() -> void:
-	# Clear any existing units from both sides before populating them
 	EventBus.left_units.clear()
 	EventBus.right_units.clear()
 	
-	var can_start: bool = false  # Flag to check if the game can start
+	var can_start: bool = false
 	
 	if OS.is_debug_build():
 		can_start = true
@@ -107,36 +106,30 @@ func _on_start_button_pressed() -> void:
 	var i := -1
 	for panel in left_array:
 		i += 1
-		# If the panel is invalid or null, mark spot as empty by appending an empty string
-		if not is_instance_valid(panel) or panel == null:
-			#EventBus.left_units.append("")
+		if not is_instance_valid(panel):
 			continue
 		
 		var data_obj := (panel as UnitPanel).get_data_object()
 		data_obj.party_position = i
 		EventBus.left_units.append(data_obj)
-		can_start = true  # At least one valid unit is present, so the game can start
+		can_start = true
 	
 	i = -1
 	for panel in right_array:
 		i += 1
-		# If the panel is invalid or null, mark spot as empty by appending an empty string
-		if not is_instance_valid(panel) or panel == null:
-			#EventBus.right_units.append("")
+		if not is_instance_valid(panel):
 			continue
 		
 		var data_obj := (panel as UnitPanel).get_data_object()
 		data_obj.party_position = i
 		EventBus.right_units.append(data_obj)
-		can_start = true  # At least one valid unit is present, so the game can start
+		can_start = true
 	
-	# If no valid units were added to either side, do not proceed
 	if not can_start:
 		return
 	
 	save_controllers()
 	
-	#var battle_scene := load("res://test.tscn") as PackedScene
 	var battle := battle_scene.instantiate()
 	process_mode = Node.PROCESS_MODE_DISABLED
 	battle.process_mode = Node.PROCESS_MODE_ALWAYS
@@ -150,7 +143,7 @@ func _on_start_button_pressed() -> void:
 
 func _on_clear_button_pressed() -> void:
 	for panel in left_array + right_array:
-		if not is_instance_valid(panel) or panel == null:
+		if not is_instance_valid(panel):
 			continue
 		(panel.get_parent() as MenuUnitPlace).clear_child_info()
 
