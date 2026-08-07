@@ -55,8 +55,12 @@ func _get_full_data(other_effect: AppliedEffect = null) -> Variant:
 	return evasion_decrease
 
 func _get_affected_positions(relative_to: int = target_unit.party_position) -> Array[int]:
-	var affected_units := \
-			target_unit.party.get_adjacent_units(relative_to)
+	var affected_positions: Array[int] = [
+		relative_to - 2,
+		relative_to - 1,
+		relative_to + 1,
+		relative_to + 2,
+	]
 	
 	# if unit is in front line, append units of another party as well
 	if Party.is_front_line(relative_to):
@@ -71,9 +75,7 @@ func _get_affected_positions(relative_to: int = target_unit.party_position) -> A
 				# don't need nulls for out-of-bounds positions
 				false 
 			)
-		affected_units.append_array(adjacent_units_from_another_party)
+		for u in adjacent_units_from_another_party:
+			affected_positions.append( encode_spot(u.spot) )
 	
-	var result: Array[int] = []
-	for unit in affected_units:
-		result.append(encode_spot(unit.spot))
-	return result
+	return affected_positions
