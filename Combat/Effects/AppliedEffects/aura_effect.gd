@@ -52,10 +52,8 @@ func _check_move(unit: Unit, old_pos: int) -> void:
 			_apply_to(unit.party_position)
 
 func _full_reapply(old_pos: int) -> void:
-	for pos in _get_affected_positions(old_pos):
-		_remove_from(pos)
-	for pos in _get_affected_positions():
-		_apply_to(pos)
+	_remove_from_targets(old_pos)
+	_apply_to_targets()
 
 func initialize(params: Variant = null, name_override := "") -> void:
 	_signal_function_pairs[EventBus.unit_moved] = _check_move
@@ -63,10 +61,18 @@ func initialize(params: Variant = null, name_override := "") -> void:
 	super.initialize(params, name_override)
 	_apply_to_targets()
 
+func deactivate() -> void:
+	super.deactivate()
+	_remove_from_targets.call_deferred()  # deferring call to wait for unit initialization
+
 func activate() -> void:
 	super.activate()
-	_apply_to_targets()
+	_apply_to_targets.call_deferred()  # deferring call to wait for unit initialization
 
-func _apply_to_targets() -> void:
-	for pos in _get_affected_positions():
-		_apply_to.call_deferred(pos)  # deferring call to wait for unit initialization
+func _remove_from_targets(relative_to: int = target_unit.party_position) -> void:
+	for pos in _get_affected_positions(relative_to):
+		_remove_from(pos)
+
+func _apply_to_targets(relative_to: int = target_unit.party_position) -> void:
+	for pos in _get_affected_positions(relative_to):
+		_apply_to(pos)
