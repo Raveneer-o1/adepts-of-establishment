@@ -251,7 +251,6 @@ func _clean_effects() -> void:
 		if is_instance_valid(_displayed_icons[icon]) and \
 				not _displayed_icons[icon].is_queued_for_deletion():
 			displayed_icons[icon] = _displayed_icons[icon]
-			#icon.visible = not (_displayed_icons[icon] as AppliedEffect).silenced
 			continue
 		icon.queue_free()
 	_determine_effect_icons_visibility()
@@ -319,6 +318,9 @@ func skip_attack(message: String = "", color: Color = Color.WHITE) -> void:
 			skipping_turn = false
 	)
 
+## Attempts to switch the [member current_attack] to its alternative action.
+## The switch fails if the attack has no alternative actions defined.
+## Returns [code]true[/code] if the switch succeeded, [code]false[/code] otherwise.
 func try_switch_action() -> bool:
 	if not current_attack: return false
 	var possible_action_count := _current_attack.get_child_count()
@@ -922,7 +924,10 @@ func now_attacking() -> bool:
 		return true
 	return false
 
-# TODO: limit the number of effects displayed in the UI
+## Adds a new effect icon to the unit.
+## If the unit is already displaying the maximum of
+## [constant AppliedEffect.MAX_DISPLAYED_EFFECTS]
+## icons, the new icon will be hidden and an "etc." icon will appear.
 func display_effect_icon(image: Image, effect: AppliedEffect) -> void:
 	var texture_rect := _add_new_icon(image)
 	displayed_icons[texture_rect] = effect

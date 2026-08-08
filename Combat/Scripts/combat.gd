@@ -84,7 +84,7 @@ const TIME_TO_END = 2.5
 ## Predefined positions for label placement to prevent overlap.[br]
 ## Using random positioning often results in labels being too close, making them unreadable.[br]
 ## Use the getter [member label_position] to retrieve positions sequentially.
-const label_positions : Array[Vector2] = [
+const LABEL_POSITIONS : Array[Vector2] = [
 	Vector2(0.0, _DISTANCE_TO_LABEL),
 	Vector2(0.0, -_DISTANCE_TO_LABEL),
 	Vector2(_DISTANCE_TO_LABEL, 0.0),
@@ -95,16 +95,16 @@ const label_positions : Array[Vector2] = [
 	Vector2(- _DISTANCE_TO_LABEL / SQRT_2, - _DISTANCE_TO_LABEL / SQRT_2),
 ]
 
-var label_positions_length: int = label_positions.size()
+var label_positions_length: int = LABEL_POSITIONS.size()
 var current_label_position: int = 0
 
 ## This getter advances [member current_label_position] and returns the next 
-## position from [member label_positions]
+## position from [constant LABEL_POSITIONS]
 var label_position: Vector2:
 	get:
 		current_label_position += 1
 		current_label_position = current_label_position % label_positions_length
-		return label_positions[current_label_position]
+		return LABEL_POSITIONS[current_label_position]
 
 var loaded_units: Dictionary[String, Resource] = {}
 var highlighted_units: Array[UnitSpot] = []
