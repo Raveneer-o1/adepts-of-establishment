@@ -167,7 +167,7 @@ var units_died_this_combat_on_right: Array[Unit] = []
 var city_siege: MapCity = null
 
 func _move_marker(to: Unit) -> void:
-	active_unit_marker.position = to.global_position
+	active_unit_marker.global_position = to.global_position
 
 ## Checks if any party is empty and determines a winner
 func check_winner(_unit: Unit = null) -> void:
