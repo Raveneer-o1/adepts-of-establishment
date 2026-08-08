@@ -16,6 +16,9 @@ const DEFAULT_SCALE = Vector2(3.5, 3.5)
 	layer_walls_and_decor,
 ]
 
+func _ready() -> void:
+	_on_resized()
+
 func _on_resized() -> void:
 	var _scale := minf(
 		size.x / DEFAULT_SIZE.x,

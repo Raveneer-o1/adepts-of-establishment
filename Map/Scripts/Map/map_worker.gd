@@ -84,7 +84,8 @@ func _load_battle() -> Node:
 	return battle
 
 func _start_battle(battle: Control) -> void:
-	map.add_sibling(battle)
+	game.start_combat(battle)
+	#map.add_sibling(battle)
 
 func _grant_xp(combat: CombatSystem, left: Array[UnitData], right: Array[UnitData]) -> void:
 	combat.grant_xp(left, right)

@@ -134,6 +134,11 @@ func update_active_party(party: MapParty) -> void:
 	if not party: ui_layers.clear_active_party()
 	else: ui_layers.fill_active_party(party)
 
+func start_combat(battle: Control) -> void:
+	if not battle: return
+	$UILayers/Battle.add_child(battle)
+	ui_layers.switch_to(&"Battle")
+
 func _test_init() -> void:
 	var c := load(GlobalDefs.get_faction_controller(test_faction.controller))
 	var c2 := load(GlobalDefs.get_faction_controller(test_faction2.controller))

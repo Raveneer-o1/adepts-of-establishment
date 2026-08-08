@@ -45,8 +45,6 @@ var left_array : Array[UnitPanel]:
 
 const DEFAULT_PATH = "res://Party_composition.tscn"
 
-# NOW: fix UI scale values and screen scaling
-
 func load_unit_composition() -> void:
 	if FileAccess.file_exists(DEFAULT_PATH):
 		get_tree().change_scene_to_file(DEFAULT_PATH)
