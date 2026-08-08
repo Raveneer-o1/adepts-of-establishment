@@ -6,4 +6,4 @@
 script = ExtResource("1_olbpa")
 effect_name = "Fear aura"
 icon_index = 9
-description = "Decreases evasion of ALL adjacent units by %.2f"
+description = "Decreases evasion of ALL adjacent units."

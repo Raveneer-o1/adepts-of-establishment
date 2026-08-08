@@ -59,15 +59,15 @@ func initialize(params: Variant = null, name_override := "") -> void:
 	_signal_function_pairs[EventBus.unit_moved] = _check_move
 	_signal_function_pairs[EventBus.units_moved] = _check_swap
 	super.initialize(params, name_override)
-	_apply_to_targets()
+	_apply_to_targets.call_deferred()  # deferring call to wait for unit initialization
 
 func deactivate() -> void:
 	super.deactivate()
-	_remove_from_targets.call_deferred()  # deferring call to wait for unit initialization
+	_remove_from_targets()
 
 func activate() -> void:
 	super.activate()
-	_apply_to_targets.call_deferred()  # deferring call to wait for unit initialization
+	_apply_to_targets()
 
 func _remove_from_targets(relative_to: int = target_unit.party_position) -> void:
 	for pos in _get_affected_positions(relative_to):
