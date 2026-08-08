@@ -79,7 +79,7 @@ func research(upgrade: FactionUpgrade) -> void:
 ## Can be asynchronous (use [code]await[/code]).
 func choose_evolution(unit: UnitData, options: Array[StringName]) -> StringName:
 	if not options: return &""
-	if options.size() == 1: return options[0]
+	#if options.size() == 1: return options[0]
 	var chosen := await api.choose_evolution(unit, options)
 	return chosen
 

@@ -19,8 +19,6 @@ var api: FactionAPI
 
 @abstract func _initialize() -> void
 
-# TODO: redesign this. it should be invoked even with a single evolution path as
-# the player might want to not evolve the unit
 ## Selects an evolutionary path from available options for the specified unit.
 ## Can be asynchronous (use [code]await[/code]).
 ## Not invoked when only one evolutionary option available.
