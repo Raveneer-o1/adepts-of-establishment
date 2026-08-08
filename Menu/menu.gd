@@ -45,7 +45,7 @@ var left_array : Array[UnitPanel]:
 
 const DEFAULT_PATH = "res://Party_composition.tscn"
 
-# TODO: fix UI scale values and screen scaling
+# NOW: fix UI scale values and screen scaling
 
 func load_unit_composition() -> void:
 	if FileAccess.file_exists(DEFAULT_PATH):
@@ -133,7 +133,7 @@ func _on_start_button_pressed() -> void:
 	var battle := battle_scene.instantiate()
 	process_mode = Node.PROCESS_MODE_DISABLED
 	battle.process_mode = Node.PROCESS_MODE_ALWAYS
-	add_child(battle)
+	$CombatLayer.add_child(battle)
 	
 	await EventBus.battle_ended
 	battle.queue_free()

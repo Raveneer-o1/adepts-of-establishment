@@ -4,21 +4,13 @@
 [ext_resource type="Script" uid="uid://vp8i3f7xdjjc" path="res://unit tests/delete_unit_panel.gd" id="2_3g8yr"]
 [ext_resource type="Script" uid="uid://bbeppqp3w3btp" path="res://unit tests/unit_tests_item_list.gd" id="3_jxom5"]
 
-[node name="CombatTest" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
+[node name="CombatTest" type="CanvasLayer"]
 script = ExtResource("1_rs7f7")
 units = Array[StringName]([&"Blood spawn", &"Blood spawn", &"", &"", &"", &"", &""])
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 top_level = true
 z_index = 100
-layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
@@ -57,7 +49,6 @@ text = "Left random bias"
 unique_name_in_owner = true
 top_level = true
 z_index = 100
-layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0

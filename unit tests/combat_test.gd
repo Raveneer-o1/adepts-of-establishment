@@ -1,5 +1,5 @@
 class_name UnitTests_Root
-extends Control
+extends CanvasLayer
 
 const DUMMY_UNIT = preload("uid://bf28ttrgiypwi")
 const BATTLE_SCENE = preload("uid://6lq6f06hma7")
