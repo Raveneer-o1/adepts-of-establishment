@@ -1,0 +1,141 @@
+[gd_scene load_steps=22 format=3 uid="uid://cm5jkx6jbq1kn"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_23cy1"]
+[ext_resource type="Texture2D" uid="uid://cfuycwn1dnlwr" path="res://Arts/Dark units/d13 cultist attack.png" id="2_obr12"]
+[ext_resource type="Texture2D" uid="uid://mqgl54gsmfwq" path="res://Arts/Dark units/d13 cultist idle.png" id="3_8x5cg"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_3orkw"]
+[ext_resource type="PackedScene" uid="uid://dw608j1fdldb2" path="res://Combat/Effects/Scenes/cultist_effect.tscn" id="5_obr12"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4mu8"]
+atlas = ExtResource("2_obr12")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_npmvb"]
+atlas = ExtResource("2_obr12")
+region = Rect2(0, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3c7n"]
+atlas = ExtResource("2_obr12")
+region = Rect2(0, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6ugh"]
+atlas = ExtResource("2_obr12")
+region = Rect2(0, 96, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qn3q"]
+atlas = ExtResource("2_obr12")
+region = Rect2(0, 128, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgd7g"]
+atlas = ExtResource("2_obr12")
+region = Rect2(0, 160, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ua8t5"]
+atlas = ExtResource("2_obr12")
+region = Rect2(0, 192, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cm4th"]
+atlas = ExtResource("2_obr12")
+region = Rect2(0, 224, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eeka8"]
+atlas = ExtResource("2_obr12")
+region = Rect2(0, 256, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qa6dv"]
+atlas = ExtResource("2_obr12")
+region = Rect2(0, 288, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0hlo1"]
+atlas = ExtResource("3_8x5cg")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2r8ip"]
+atlas = ExtResource("3_8x5cg")
+region = Rect2(0, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5u4sx"]
+atlas = ExtResource("3_8x5cg")
+region = Rect2(0, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3wwy"]
+atlas = ExtResource("3_8x5cg")
+region = Rect2(0, 96, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mewsu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4mu8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_npmvb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w3c7n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6ugh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qn3q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgd7g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ua8t5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cm4th")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eeka8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qa6dv")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0hlo1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2r8ip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5u4sx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l3wwy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_fsaoi"]
+resource_local_to_scene = true
+script = ExtResource("4_3orkw")
+max_HP = 130
+evasion = 0.07
+
+[node name="Unit" instance=ExtResource("1_23cy1")]
+unit_name = "Cultist"
+unit_type = 2
+faction = 4
+needed_xp = 100
+unit_class = 5
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_mewsu")
+animation = &"attack"
+autoplay = "default"
+offset = Vector2(8, 0)
+
+[node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_fsaoi")
+attack_effect = ExtResource("5_obr12")

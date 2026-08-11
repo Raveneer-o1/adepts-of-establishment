@@ -1,0 +1,93 @@
+[gd_scene load_steps=15 format=3 uid="uid://07sikhkk0p58"]
+
+[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/Scenes/abstract_effect.tscn" id="1_25lbt"]
+[ext_resource type="Texture2D" uid="uid://ho3vwfefiw8q" path="res://Arts/Dark units/d12 corrupted god effect.png" id="2_fh5pr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gul3w"]
+atlas = ExtResource("2_fh5pr")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k243u"]
+atlas = ExtResource("2_fh5pr")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2q25g"]
+atlas = ExtResource("2_fh5pr")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uu6o0"]
+atlas = ExtResource("2_fh5pr")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxsiu"]
+atlas = ExtResource("2_fh5pr")
+region = Rect2(0, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anoi7"]
+atlas = ExtResource("2_fh5pr")
+region = Rect2(0, 240, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ynjy"]
+atlas = ExtResource("2_fh5pr")
+region = Rect2(0, 288, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsra5"]
+atlas = ExtResource("2_fh5pr")
+region = Rect2(0, 336, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v88y2"]
+atlas = ExtResource("2_fh5pr")
+region = Rect2(0, 384, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ce1lp"]
+atlas = ExtResource("2_fh5pr")
+region = Rect2(0, 432, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbetb"]
+atlas = ExtResource("2_fh5pr")
+region = Rect2(0, 480, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2o1um"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gul3w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k243u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2q25g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uu6o0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxsiu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anoi7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ynjy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bsra5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v88y2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ce1lp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gbetb")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Effect" instance=ExtResource("1_25lbt")]
+sprite_frames = SubResource("SpriteFrames_2o1um")
+autoplay = "default"

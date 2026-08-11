@@ -1,0 +1,163 @@
+[gd_scene load_steps=25 format=3 uid="uid://dblse8ofi1qxj"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_ulg5r"]
+[ext_resource type="Texture2D" uid="uid://cmndhp5xxv8l1" path="res://Arts/Dark units/d17 demonologist attack.png" id="2_kuqv2"]
+[ext_resource type="Texture2D" uid="uid://d1r1ipg3qfqjg" path="res://Arts/Dark units/d17 demonologist idle.png" id="3_eppym"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_vb1uc"]
+[ext_resource type="PackedScene" uid="uid://ceqgmyaos1qjf" path="res://Combat/Effects/Scenes/demonologist_effect.tscn" id="5_kuqv2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbwn5"]
+atlas = ExtResource("2_kuqv2")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxgqj"]
+atlas = ExtResource("2_kuqv2")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4wu2"]
+atlas = ExtResource("2_kuqv2")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ii6ig"]
+atlas = ExtResource("2_kuqv2")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ae2km"]
+atlas = ExtResource("2_kuqv2")
+region = Rect2(0, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jpfbx"]
+atlas = ExtResource("2_kuqv2")
+region = Rect2(0, 240, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d78iw"]
+atlas = ExtResource("2_kuqv2")
+region = Rect2(0, 288, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hck7m"]
+atlas = ExtResource("2_kuqv2")
+region = Rect2(0, 336, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xl8m3"]
+atlas = ExtResource("2_kuqv2")
+region = Rect2(0, 384, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wj406"]
+atlas = ExtResource("2_kuqv2")
+region = Rect2(0, 432, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_easel"]
+atlas = ExtResource("2_kuqv2")
+region = Rect2(0, 480, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_igitf"]
+atlas = ExtResource("2_kuqv2")
+region = Rect2(0, 528, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djli5"]
+atlas = ExtResource("2_kuqv2")
+region = Rect2(0, 576, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oylln"]
+atlas = ExtResource("3_eppym")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sne3b"]
+atlas = ExtResource("3_eppym")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_us3qr"]
+atlas = ExtResource("3_eppym")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpxj4"]
+atlas = ExtResource("3_eppym")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a0j0e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbwn5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxgqj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4wu2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ii6ig")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ae2km")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpfbx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d78iw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hck7m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xl8m3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wj406")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_easel")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_igitf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_djli5")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oylln")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sne3b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_us3qr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpxj4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_fkt3o"]
+resource_local_to_scene = true
+script = ExtResource("4_vb1uc")
+max_HP = 100
+base_damage = 60
+
+[node name="Unit" instance=ExtResource("1_ulg5r")]
+unit_name = "Demonologist"
+unit_type = 2
+faction = 4
+needed_xp = 900
+unit_class = 5
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_a0j0e")
+animation = &"attack"
+autoplay = "default"
+offset = Vector2(8, -8)
+
+[node name="UnitParameters" parent="." index="1"]
+level = 3
+base_paramaters = SubResource("Resource_fkt3o")
+attack_effect = ExtResource("5_kuqv2")

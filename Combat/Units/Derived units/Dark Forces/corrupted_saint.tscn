@@ -1,0 +1,122 @@
+[gd_scene load_steps=19 format=3 uid="uid://dft71uy5uir3v"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_i0o04"]
+[ext_resource type="Texture2D" uid="uid://ppsdaxg6a04h" path="res://Arts/Dark units/d12 corrupted god attack.png" id="2_x10j1"]
+[ext_resource type="Texture2D" uid="uid://dc6t76rgybjdy" path="res://Arts/Dark units/d12 corrupted god idle.png" id="3_flmwq"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_eenft"]
+[ext_resource type="PackedScene" uid="uid://07sikhkk0p58" path="res://Combat/Effects/Scenes/corrupted_saint_effect.tscn" id="5_x10j1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_if7hg"]
+atlas = ExtResource("2_x10j1")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_emyxl"]
+atlas = ExtResource("2_x10j1")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5mr88"]
+atlas = ExtResource("2_x10j1")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38qwr"]
+atlas = ExtResource("2_x10j1")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_487nh"]
+atlas = ExtResource("2_x10j1")
+region = Rect2(0, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h471t"]
+atlas = ExtResource("2_x10j1")
+region = Rect2(0, 240, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sb5w6"]
+atlas = ExtResource("2_x10j1")
+region = Rect2(0, 288, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7oimb"]
+atlas = ExtResource("3_flmwq")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iee7q"]
+atlas = ExtResource("3_flmwq")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5n2w"]
+atlas = ExtResource("3_flmwq")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyqp3"]
+atlas = ExtResource("3_flmwq")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ea8ei"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_if7hg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_emyxl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5mr88")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38qwr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_487nh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h471t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sb5w6")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7oimb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iee7q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5n2w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dyqp3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_ykj8g"]
+resource_local_to_scene = true
+script = ExtResource("4_eenft")
+max_HP = 175
+base_damage = 80
+evasion = 0.296
+
+[node name="Unit" instance=ExtResource("1_i0o04")]
+unit_name = "Corrupted Saint"
+unit_type = 2
+faction = 4
+needed_xp = 1600
+unit_class = 4
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_ea8ei")
+animation = &"attack"
+autoplay = "default"
+offset = Vector2(0, -8)
+
+[node name="UnitParameters" parent="." index="1"]
+level = 4
+base_paramaters = SubResource("Resource_ykj8g")
+attack_effect = ExtResource("5_x10j1")

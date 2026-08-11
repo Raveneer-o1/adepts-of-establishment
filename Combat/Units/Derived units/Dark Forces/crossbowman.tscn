@@ -1,0 +1,127 @@
+[gd_scene load_steps=19 format=3 uid="uid://ympq7w8r23xm"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_5r4ph"]
+[ext_resource type="Texture2D" uid="uid://pom2r47rd2r5" path="res://Arts/Dark units/d07 crossbowman attack.png" id="2_lme6h"]
+[ext_resource type="Texture2D" uid="uid://bywsml1mh0loj" path="res://Arts/Dark units/d07 crossbowman idle.png" id="3_brd0s"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_s4lye"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qflak"]
+atlas = ExtResource("2_lme6h")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xr3ox"]
+atlas = ExtResource("2_lme6h")
+region = Rect2(0, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5i0cj"]
+atlas = ExtResource("2_lme6h")
+region = Rect2(0, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfjr2"]
+atlas = ExtResource("2_lme6h")
+region = Rect2(0, 96, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5y8q4"]
+atlas = ExtResource("2_lme6h")
+region = Rect2(0, 128, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rsext"]
+atlas = ExtResource("2_lme6h")
+region = Rect2(0, 160, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rlha2"]
+atlas = ExtResource("2_lme6h")
+region = Rect2(0, 192, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_glggt"]
+atlas = ExtResource("2_lme6h")
+region = Rect2(0, 224, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m61ne"]
+atlas = ExtResource("3_brd0s")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4i6c"]
+atlas = ExtResource("3_brd0s")
+region = Rect2(0, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4q3pm"]
+atlas = ExtResource("3_brd0s")
+region = Rect2(0, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lyiqi"]
+atlas = ExtResource("3_brd0s")
+region = Rect2(0, 96, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7sl34"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qflak")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xr3ox")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5i0cj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qfjr2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5y8q4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rsext")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rlha2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_glggt")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m61ne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4i6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4q3pm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lyiqi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_kah3s"]
+resource_local_to_scene = true
+script = ExtResource("4_s4lye")
+max_HP = 50
+base_damage = 30
+armor = 15
+
+[node name="Unit" instance=ExtResource("1_5r4ph")]
+unit_name = "Crossbowman"
+unit_type = 1
+faction = 4
+needed_xp = 150
+unit_class = 4
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_7sl34")
+animation = &"attack"
+autoplay = "default"
+offset = Vector2(8, 0)
+frames_to_emit = Array[int]([3])
+
+[node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_kah3s")

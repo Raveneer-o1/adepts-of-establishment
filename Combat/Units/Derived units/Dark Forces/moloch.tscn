@@ -1,0 +1,171 @@
+[gd_scene load_steps=25 format=3 uid="uid://mdupaqlmap1x"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_fkyyc"]
+[ext_resource type="Texture2D" uid="uid://baynym5qbcnel" path="res://Arts/Dark units/d21 moloch attack.png" id="2_lbupe"]
+[ext_resource type="Texture2D" uid="uid://dxa0wddrqagwm" path="res://Arts/Dark units/d21 moloch idle.png" id="3_k13uq"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_qxmfu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5v4ry"]
+atlas = ExtResource("2_lbupe")
+region = Rect2(0, 0, 112, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1nsy"]
+atlas = ExtResource("2_lbupe")
+region = Rect2(0, 96, 112, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oaes4"]
+atlas = ExtResource("2_lbupe")
+region = Rect2(0, 192, 112, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_obh4r"]
+atlas = ExtResource("2_lbupe")
+region = Rect2(0, 288, 112, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4nt2"]
+atlas = ExtResource("2_lbupe")
+region = Rect2(0, 384, 112, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfgfr"]
+atlas = ExtResource("2_lbupe")
+region = Rect2(0, 480, 112, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkgip"]
+atlas = ExtResource("2_lbupe")
+region = Rect2(0, 576, 112, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xop2x"]
+atlas = ExtResource("2_lbupe")
+region = Rect2(0, 672, 112, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jreic"]
+atlas = ExtResource("2_lbupe")
+region = Rect2(0, 768, 112, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_euv5b"]
+atlas = ExtResource("2_lbupe")
+region = Rect2(0, 864, 112, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_327tv"]
+atlas = ExtResource("2_lbupe")
+region = Rect2(0, 960, 112, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50it0"]
+atlas = ExtResource("2_lbupe")
+region = Rect2(0, 1056, 112, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0e82q"]
+atlas = ExtResource("2_lbupe")
+region = Rect2(0, 1152, 112, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10dyv"]
+atlas = ExtResource("2_lbupe")
+region = Rect2(0, 1248, 112, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfhnk"]
+atlas = ExtResource("3_k13uq")
+region = Rect2(0, 0, 112, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vy6ul"]
+atlas = ExtResource("3_k13uq")
+region = Rect2(0, 96, 112, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eevtg"]
+atlas = ExtResource("3_k13uq")
+region = Rect2(0, 192, 112, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cnar4"]
+atlas = ExtResource("3_k13uq")
+region = Rect2(0, 288, 112, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g1tmx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5v4ry")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k1nsy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oaes4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_obh4r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4nt2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfgfr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nkgip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xop2x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jreic")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_euv5b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_327tv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50it0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0e82q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10dyv")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xfhnk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vy6ul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eevtg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cnar4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_synqf"]
+resource_local_to_scene = true
+script = ExtResource("4_qxmfu")
+max_HP = 450
+base_damage = 90
+armor = 30
+evasion = 0.02
+
+[node name="Unit" instance=ExtResource("1_fkyyc")]
+unit_name = "Moloch"
+unit_type = 0
+faction = 4
+needed_xp = 1200
+unit_class = 2
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_g1tmx")
+animation = &"attack"
+autoplay = "default"
+offset = Vector2(24, -32)
+
+[node name="UnitParameters" parent="." index="1"]
+level = 2
+base_paramaters = SubResource("Resource_synqf")
+large_unit = true

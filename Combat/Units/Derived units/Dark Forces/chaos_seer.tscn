@@ -1,0 +1,143 @@
+[gd_scene load_steps=22 format=3 uid="uid://dvk3amfokgui4"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_j7f4h"]
+[ext_resource type="Texture2D" uid="uid://bq5fyv36nfeps" path="res://Arts/Dark units/d09 chaos seer attack .png" id="2_pxuvi"]
+[ext_resource type="Texture2D" uid="uid://cijnwyijf7tng" path="res://Arts/Dark units/d09 chaos seer idle.png" id="3_toco6"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_iwtkx"]
+[ext_resource type="PackedScene" uid="uid://273yfboecqrj" path="res://Combat/Effects/Scenes/chaos_seer_effect.tscn" id="5_pxuvi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqrmq"]
+atlas = ExtResource("2_pxuvi")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s54b8"]
+atlas = ExtResource("2_pxuvi")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3qr6e"]
+atlas = ExtResource("2_pxuvi")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uws2a"]
+atlas = ExtResource("2_pxuvi")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ih15i"]
+atlas = ExtResource("2_pxuvi")
+region = Rect2(0, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgt46"]
+atlas = ExtResource("2_pxuvi")
+region = Rect2(0, 240, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tt86r"]
+atlas = ExtResource("2_pxuvi")
+region = Rect2(0, 288, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgufi"]
+atlas = ExtResource("2_pxuvi")
+region = Rect2(0, 336, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_unevx"]
+atlas = ExtResource("2_pxuvi")
+region = Rect2(0, 384, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8lg7"]
+atlas = ExtResource("2_pxuvi")
+region = Rect2(0, 432, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bttea"]
+atlas = ExtResource("3_toco6")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6xo8"]
+atlas = ExtResource("3_toco6")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qf6l3"]
+atlas = ExtResource("3_toco6")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1abp"]
+atlas = ExtResource("3_toco6")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6lkij"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xqrmq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s54b8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3qr6e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uws2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ih15i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgt46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tt86r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dgufi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_unevx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8lg7")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bttea")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n6xo8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qf6l3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1abp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_lj1i6"]
+resource_local_to_scene = true
+script = ExtResource("4_iwtkx")
+max_HP = 100
+base_damage = 60
+armor = 10
+
+[node name="Unit" instance=ExtResource("1_j7f4h")]
+unit_name = "Chaos seer"
+unit_type = 2
+faction = 4
+needed_xp = 1600
+unit_class = 5
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_6lkij")
+animation = &"attack"
+autoplay = "default"
+offset = Vector2(8, -8)
+
+[node name="UnitParameters" parent="." index="1"]
+level = 3
+base_paramaters = SubResource("Resource_lj1i6")
+attack_effect = ExtResource("5_pxuvi")

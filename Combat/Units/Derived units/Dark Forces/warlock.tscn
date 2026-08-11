@@ -1,0 +1,161 @@
+[gd_scene load_steps=24 format=3 uid="uid://lc2pyeubssmk"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_0ohyn"]
+[ext_resource type="Texture2D" uid="uid://hgtejs0dw461" path="res://Arts/Dark units/d15 warlock attack.png" id="2_c2bcn"]
+[ext_resource type="Texture2D" uid="uid://dy6ktnvjpjy5v" path="res://Arts/Dark units/d15 warlock idle.png" id="3_6b3ly"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_fwmtw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3351k"]
+atlas = ExtResource("2_c2bcn")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcbhj"]
+atlas = ExtResource("2_c2bcn")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4c56y"]
+atlas = ExtResource("2_c2bcn")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5f38"]
+atlas = ExtResource("2_c2bcn")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s01fs"]
+atlas = ExtResource("2_c2bcn")
+region = Rect2(0, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_olqpq"]
+atlas = ExtResource("2_c2bcn")
+region = Rect2(0, 240, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dlxdt"]
+atlas = ExtResource("2_c2bcn")
+region = Rect2(0, 288, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46bs6"]
+atlas = ExtResource("2_c2bcn")
+region = Rect2(0, 336, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_laads"]
+atlas = ExtResource("2_c2bcn")
+region = Rect2(0, 384, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ig7q2"]
+atlas = ExtResource("2_c2bcn")
+region = Rect2(0, 432, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gyx1d"]
+atlas = ExtResource("2_c2bcn")
+region = Rect2(0, 480, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgdos"]
+atlas = ExtResource("2_c2bcn")
+region = Rect2(0, 528, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_npj1k"]
+atlas = ExtResource("2_c2bcn")
+region = Rect2(0, 576, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lwmo"]
+atlas = ExtResource("3_6b3ly")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmhad"]
+atlas = ExtResource("3_6b3ly")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nqkkk"]
+atlas = ExtResource("3_6b3ly")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ho27g"]
+atlas = ExtResource("3_6b3ly")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4oswe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3351k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fcbhj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4c56y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5f38")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s01fs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_olqpq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dlxdt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46bs6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_laads")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ig7q2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gyx1d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fgdos")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_npj1k")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2lwmo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mmhad")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqkkk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ho27g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_mngdy"]
+resource_local_to_scene = true
+script = ExtResource("4_fwmtw")
+max_HP = 120
+base_damage = 45
+
+[node name="Unit" instance=ExtResource("1_0ohyn")]
+unit_name = "Warlock"
+unit_type = 2
+faction = 4
+needed_xp = 450
+unit_class = 5
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_4oswe")
+animation = &"attack"
+autoplay = "default"
+offset = Vector2(8, -8)
+
+[node name="UnitParameters" parent="." index="1"]
+level = 2
+base_paramaters = SubResource("Resource_mngdy")

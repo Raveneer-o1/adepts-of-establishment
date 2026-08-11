@@ -1,0 +1,135 @@
+[gd_scene load_steps=21 format=3 uid="uid://bgxskip7tlb5w"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_h5fnx"]
+[ext_resource type="Texture2D" uid="uid://di4vbn75w2c77" path="res://Arts/Dark units/d06 chaotic servant attack.png" id="2_h5fnx"]
+[ext_resource type="Texture2D" uid="uid://blt88nskq5vwv" path="res://Arts/Dark units/d06 chaotic servant idle.png" id="3_heaua"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_b3nvq"]
+[ext_resource type="PackedScene" uid="uid://ckwi8f72xeske" path="res://Combat/Effects/Scenes/chaotic_servant_effect.tscn" id="5_heaua"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pi2pf"]
+atlas = ExtResource("2_h5fnx")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3nvq"]
+atlas = ExtResource("2_h5fnx")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ff23"]
+atlas = ExtResource("2_h5fnx")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2l3mn"]
+atlas = ExtResource("2_h5fnx")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jsj1j"]
+atlas = ExtResource("2_h5fnx")
+region = Rect2(0, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_obs0q"]
+atlas = ExtResource("2_h5fnx")
+region = Rect2(0, 240, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0nmn"]
+atlas = ExtResource("2_h5fnx")
+region = Rect2(0, 288, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mj5xo"]
+atlas = ExtResource("2_h5fnx")
+region = Rect2(0, 336, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1r8fr"]
+atlas = ExtResource("2_h5fnx")
+region = Rect2(0, 384, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjl6x"]
+atlas = ExtResource("3_heaua")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xv25h"]
+atlas = ExtResource("3_heaua")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kwstr"]
+atlas = ExtResource("3_heaua")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwmxv"]
+atlas = ExtResource("3_heaua")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nfk2j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pi2pf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b3nvq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ff23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2l3mn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jsj1j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_obs0q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0nmn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mj5xo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1r8fr")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjl6x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xv25h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kwstr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wwmxv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_tqhm2"]
+resource_local_to_scene = true
+script = ExtResource("4_b3nvq")
+max_HP = 350
+base_damage = 100
+armor = 10
+
+[node name="Unit" instance=ExtResource("1_h5fnx")]
+unit_name = "Chaotic servant"
+unit_type = 2
+faction = 4
+needed_xp = 2500
+unit_class = 5
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_nfk2j")
+autoplay = "default"
+offset = Vector2(8, -8)
+
+[node name="UnitParameters" parent="." index="1"]
+level = 5
+base_paramaters = SubResource("Resource_tqhm2")
+attack_effect = ExtResource("5_heaua")

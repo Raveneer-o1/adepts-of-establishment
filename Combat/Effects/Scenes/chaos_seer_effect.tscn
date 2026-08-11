@@ -1,0 +1,72 @@
+[gd_scene load_steps=12 format=3 uid="uid://273yfboecqrj"]
+
+[ext_resource type="PackedScene" uid="uid://3t6073robhji" path="res://Combat/Effects/Scenes/abstract_effect.tscn" id="1_f7b5l"]
+[ext_resource type="Texture2D" uid="uid://ku307e3d5064" path="res://Arts/Dark units/d09 chaos seer effect.png" id="2_pla64"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gr7d6"]
+atlas = ExtResource("2_pla64")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgj2y"]
+atlas = ExtResource("2_pla64")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8h1f"]
+atlas = ExtResource("2_pla64")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oojdc"]
+atlas = ExtResource("2_pla64")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1mefe"]
+atlas = ExtResource("2_pla64")
+region = Rect2(0, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_glm6w"]
+atlas = ExtResource("2_pla64")
+region = Rect2(0, 240, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugf2m"]
+atlas = ExtResource("2_pla64")
+region = Rect2(0, 288, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvgrf"]
+atlas = ExtResource("2_pla64")
+region = Rect2(0, 336, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4xhsg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gr7d6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgj2y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y8h1f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oojdc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1mefe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_glm6w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugf2m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gvgrf")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Effect" instance=ExtResource("1_f7b5l")]
+sprite_frames = SubResource("SpriteFrames_4xhsg")
+autoplay = "default"

@@ -1,0 +1,135 @@
+[gd_scene load_steps=20 format=3 uid="uid://bfkuw8c7bd60m"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_w1lbt"]
+[ext_resource type="Texture2D" uid="uid://q61jb1vggtve" path="res://Arts/Dark units/d04 infernal knight attack.png" id="2_ds8y4"]
+[ext_resource type="Texture2D" uid="uid://bggkwhl80xmmb" path="res://Arts/Dark units/d04 infernal knight idle.png" id="3_dirrh"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_ipvv0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10umx"]
+atlas = ExtResource("2_ds8y4")
+region = Rect2(0, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7wpg"]
+atlas = ExtResource("2_ds8y4")
+region = Rect2(0, 48, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x0chq"]
+atlas = ExtResource("2_ds8y4")
+region = Rect2(0, 96, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3rry"]
+atlas = ExtResource("2_ds8y4")
+region = Rect2(0, 144, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qcu20"]
+atlas = ExtResource("2_ds8y4")
+region = Rect2(0, 192, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3ky3"]
+atlas = ExtResource("2_ds8y4")
+region = Rect2(0, 240, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjhi2"]
+atlas = ExtResource("2_ds8y4")
+region = Rect2(0, 288, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0hor3"]
+atlas = ExtResource("2_ds8y4")
+region = Rect2(0, 336, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfk3l"]
+atlas = ExtResource("2_ds8y4")
+region = Rect2(0, 384, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uxdtk"]
+atlas = ExtResource("3_dirrh")
+region = Rect2(0, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tb67t"]
+atlas = ExtResource("3_dirrh")
+region = Rect2(0, 48, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_si6l5"]
+atlas = ExtResource("3_dirrh")
+region = Rect2(0, 96, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6udgg"]
+atlas = ExtResource("3_dirrh")
+region = Rect2(0, 144, 64, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5w554"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10umx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c7wpg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x0chq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3rry")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qcu20")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y3ky3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjhi2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0hor3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfk3l")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uxdtk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tb67t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_si6l5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6udgg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_e3akb"]
+resource_local_to_scene = true
+script = ExtResource("4_ipvv0")
+max_HP = 275
+base_damage = 80
+armor = 50
+
+[node name="Unit" instance=ExtResource("1_w1lbt")]
+unit_name = "Infernal knight"
+unit_type = 0
+faction = 4
+needed_xp = 1600
+unit_class = 2
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_5w554")
+animation = &"attack"
+autoplay = "default"
+offset = Vector2(0, -8)
+frames_to_emit = Array[int]([5])
+
+[node name="UnitParameters" parent="." index="1"]
+level = 4
+base_paramaters = SubResource("Resource_e3akb")

@@ -1,0 +1,184 @@
+[gd_scene load_steps=27 format=3 uid="uid://bwrloyblwwewo"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_pxrs3"]
+[ext_resource type="Texture2D" uid="uid://42edl6cy8asn" path="res://Arts/Dark units/d02 berserker attack.png" id="2_fecvl"]
+[ext_resource type="Texture2D" uid="uid://dvyrwggabjv0k" path="res://Arts/Dark units/d02 berserker idle.png" id="3_23u4k"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_msb3a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xcj4a"]
+atlas = ExtResource("2_fecvl")
+region = Rect2(0, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5ey7"]
+atlas = ExtResource("2_fecvl")
+region = Rect2(0, 48, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hl2h0"]
+atlas = ExtResource("2_fecvl")
+region = Rect2(0, 96, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_87tc7"]
+atlas = ExtResource("2_fecvl")
+region = Rect2(0, 144, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orc1n"]
+atlas = ExtResource("2_fecvl")
+region = Rect2(0, 192, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hk5gl"]
+atlas = ExtResource("2_fecvl")
+region = Rect2(0, 240, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5spn"]
+atlas = ExtResource("2_fecvl")
+region = Rect2(0, 288, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywmp3"]
+atlas = ExtResource("2_fecvl")
+region = Rect2(0, 336, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6s8m8"]
+atlas = ExtResource("2_fecvl")
+region = Rect2(0, 384, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5lpfp"]
+atlas = ExtResource("2_fecvl")
+region = Rect2(0, 432, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ykleq"]
+atlas = ExtResource("2_fecvl")
+region = Rect2(0, 480, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7r6vp"]
+atlas = ExtResource("2_fecvl")
+region = Rect2(0, 528, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uogiw"]
+atlas = ExtResource("2_fecvl")
+region = Rect2(0, 576, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nblvb"]
+atlas = ExtResource("2_fecvl")
+region = Rect2(0, 624, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmtw1"]
+atlas = ExtResource("2_fecvl")
+region = Rect2(0, 672, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bfyr2"]
+atlas = ExtResource("2_fecvl")
+region = Rect2(0, 720, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nur10"]
+atlas = ExtResource("3_23u4k")
+region = Rect2(0, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5jnji"]
+atlas = ExtResource("3_23u4k")
+region = Rect2(0, 48, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kh2gh"]
+atlas = ExtResource("3_23u4k")
+region = Rect2(0, 96, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ykc1a"]
+atlas = ExtResource("3_23u4k")
+region = Rect2(0, 144, 64, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q7gxr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xcj4a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r5ey7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hl2h0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_87tc7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_orc1n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hk5gl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p5spn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywmp3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6s8m8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5lpfp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ykleq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7r6vp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uogiw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nblvb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kmtw1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bfyr2")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nur10")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5jnji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kh2gh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ykc1a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_mw7di"]
+resource_local_to_scene = true
+script = ExtResource("4_msb3a")
+max_HP = 150
+base_damage = 55
+shielding_chance = 0.4
+
+[node name="Unit" instance=ExtResource("1_pxrs3")]
+unit_name = "Berserker"
+unit_type = 0
+faction = 4
+needed_xp = 400
+unit_class = 1
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_q7gxr")
+animation = &"attack"
+autoplay = "default"
+offset = Vector2(16, -8)
+frames_to_emit = Array[int]([8])
+
+[node name="UnitParameters" parent="." index="1"]
+level = 2
+base_paramaters = SubResource("Resource_mw7di")

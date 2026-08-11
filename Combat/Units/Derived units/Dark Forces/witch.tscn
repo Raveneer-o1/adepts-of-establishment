@@ -1,0 +1,163 @@
+[gd_scene load_steps=25 format=3 uid="uid://xaba3fvdg3o"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_6ou0f"]
+[ext_resource type="Texture2D" uid="uid://bmlimfo8ctdvv" path="res://Arts/Dark units/d14 witch attack .png" id="2_12odd"]
+[ext_resource type="Texture2D" uid="uid://byykscjm6qccm" path="res://Arts/Dark units/d14 witch idle .png" id="3_e3be8"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_i3e33"]
+[ext_resource type="PackedScene" uid="uid://et0y2mgitpj1" path="res://Combat/Effects/Scenes/witch_effect.tscn" id="5_12odd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6gio"]
+atlas = ExtResource("2_12odd")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ylde"]
+atlas = ExtResource("2_12odd")
+region = Rect2(0, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7bh5"]
+atlas = ExtResource("2_12odd")
+region = Rect2(0, 96, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1eua"]
+atlas = ExtResource("2_12odd")
+region = Rect2(0, 144, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wm3r2"]
+atlas = ExtResource("2_12odd")
+region = Rect2(0, 192, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yf0vs"]
+atlas = ExtResource("2_12odd")
+region = Rect2(0, 240, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jorx8"]
+atlas = ExtResource("2_12odd")
+region = Rect2(0, 288, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eik1v"]
+atlas = ExtResource("2_12odd")
+region = Rect2(0, 336, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ce1qm"]
+atlas = ExtResource("2_12odd")
+region = Rect2(0, 384, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_we1ot"]
+atlas = ExtResource("2_12odd")
+region = Rect2(0, 432, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ivccs"]
+atlas = ExtResource("2_12odd")
+region = Rect2(0, 480, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wn7t6"]
+atlas = ExtResource("2_12odd")
+region = Rect2(0, 528, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5y6k"]
+atlas = ExtResource("2_12odd")
+region = Rect2(0, 576, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebbm6"]
+atlas = ExtResource("3_e3be8")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfyqu"]
+atlas = ExtResource("3_e3be8")
+region = Rect2(0, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvw4s"]
+atlas = ExtResource("3_e3be8")
+region = Rect2(0, 96, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2huee"]
+atlas = ExtResource("3_e3be8")
+region = Rect2(0, 144, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lf30q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6gio")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ylde")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m7bh5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1eua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wm3r2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yf0vs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jorx8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eik1v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ce1qm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_we1ot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ivccs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wn7t6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5y6k")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebbm6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hfyqu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gvw4s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2huee")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_pri7o"]
+resource_local_to_scene = true
+script = ExtResource("4_i3e33")
+max_HP = 100
+base_damage = 45
+evasion = 0.075
+
+[node name="Unit" instance=ExtResource("1_6ou0f")]
+unit_name = "Witch"
+unit_type = 3
+faction = 4
+needed_xp = 450
+unit_class = 4
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_lf30q")
+autoplay = "default"
+offset = Vector2(0, -8)
+
+[node name="UnitParameters" parent="." index="1"]
+level = 2
+base_paramaters = SubResource("Resource_pri7o")
+attack_effect = ExtResource("5_12odd")

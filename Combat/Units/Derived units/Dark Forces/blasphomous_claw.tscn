@@ -1,0 +1,142 @@
+[gd_scene load_steps=21 format=3 uid="uid://d2p7hjrjh1rkl"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_p11jy"]
+[ext_resource type="Texture2D" uid="uid://jcsprf8y1bns" path="res://Arts/Dark units/d10 blasphemous claw attack.png" id="2_2i2h8"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="2_08xbg"]
+[ext_resource type="Texture2D" uid="uid://3gfqxb65ln2" path="res://Arts/Dark units/d10 blasphemous claw idle.png" id="3_lysw1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otla7"]
+atlas = ExtResource("2_2i2h8")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jglx7"]
+atlas = ExtResource("2_2i2h8")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bp2bu"]
+atlas = ExtResource("2_2i2h8")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sv3jf"]
+atlas = ExtResource("2_2i2h8")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20cqf"]
+atlas = ExtResource("2_2i2h8")
+region = Rect2(0, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yegdk"]
+atlas = ExtResource("2_2i2h8")
+region = Rect2(0, 240, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdk5u"]
+atlas = ExtResource("2_2i2h8")
+region = Rect2(0, 288, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a77r2"]
+atlas = ExtResource("2_2i2h8")
+region = Rect2(0, 336, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_es18y"]
+atlas = ExtResource("2_2i2h8")
+region = Rect2(0, 384, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mlkaq"]
+atlas = ExtResource("2_2i2h8")
+region = Rect2(0, 432, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n2gys"]
+atlas = ExtResource("3_lysw1")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbc5p"]
+atlas = ExtResource("3_lysw1")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sngwo"]
+atlas = ExtResource("3_lysw1")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xum8"]
+atlas = ExtResource("3_lysw1")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_38a6t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otla7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jglx7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bp2bu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sv3jf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20cqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yegdk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdk5u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a77r2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_es18y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mlkaq")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n2gys")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbc5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sngwo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7xum8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_2i2h8"]
+resource_local_to_scene = true
+script = ExtResource("2_08xbg")
+max_HP = 270
+base_damage = 45
+armor = 20
+
+[node name="Unit" instance=ExtResource("1_p11jy")]
+unit_name = "Blasphomous claw"
+unit_type = 0
+faction = 4
+needed_xp = 900
+unit_class = 2
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_38a6t")
+animation = &"attack"
+autoplay = "default"
+offset = Vector2(8, -8)
+frames_to_emit = Array[int]([4])
+
+[node name="UnitParameters" parent="." index="1"]
+level = 3
+base_paramaters = SubResource("Resource_2i2h8")

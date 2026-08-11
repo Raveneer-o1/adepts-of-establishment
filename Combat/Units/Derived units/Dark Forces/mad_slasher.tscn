@@ -1,0 +1,172 @@
+[gd_scene load_steps=25 format=3 uid="uid://d4cavea2p0av6"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_v28nh"]
+[ext_resource type="Texture2D" uid="uid://cnnlbdxnpomt8" path="res://Arts/Dark units/d05 mad slasher attack .png" id="2_l23rd"]
+[ext_resource type="Texture2D" uid="uid://de6l2w5llr7v5" path="res://Arts/Dark units/d05 mad slasher idle.png" id="3_k2jne"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_jvbli"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ff23"]
+atlas = ExtResource("2_l23rd")
+region = Rect2(0, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2l3mn"]
+atlas = ExtResource("2_l23rd")
+region = Rect2(0, 64, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jsj1j"]
+atlas = ExtResource("2_l23rd")
+region = Rect2(0, 128, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_obs0q"]
+atlas = ExtResource("2_l23rd")
+region = Rect2(0, 192, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0nmn"]
+atlas = ExtResource("2_l23rd")
+region = Rect2(0, 256, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mj5xo"]
+atlas = ExtResource("2_l23rd")
+region = Rect2(0, 320, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1r8fr"]
+atlas = ExtResource("2_l23rd")
+region = Rect2(0, 384, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjl6x"]
+atlas = ExtResource("2_l23rd")
+region = Rect2(0, 448, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xv25h"]
+atlas = ExtResource("2_l23rd")
+region = Rect2(0, 512, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kwstr"]
+atlas = ExtResource("2_l23rd")
+region = Rect2(0, 576, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwmxv"]
+atlas = ExtResource("2_l23rd")
+region = Rect2(0, 640, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfk2j"]
+atlas = ExtResource("2_l23rd")
+region = Rect2(0, 704, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqhm2"]
+atlas = ExtResource("2_l23rd")
+region = Rect2(0, 768, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0cxl"]
+atlas = ExtResource("2_l23rd")
+region = Rect2(0, 832, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_117ax"]
+atlas = ExtResource("3_k2jne")
+region = Rect2(0, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8yoes"]
+atlas = ExtResource("3_k2jne")
+region = Rect2(0, 64, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ce2ps"]
+atlas = ExtResource("3_k2jne")
+region = Rect2(0, 128, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wmv73"]
+atlas = ExtResource("3_k2jne")
+region = Rect2(0, 192, 96, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ywi7o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ff23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2l3mn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jsj1j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_obs0q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0nmn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mj5xo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1r8fr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjl6x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xv25h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kwstr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wwmxv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfk2j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqhm2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0cxl")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_117ax")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8yoes")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ce2ps")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wmv73")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_miyy7"]
+resource_local_to_scene = true
+script = ExtResource("4_jvbli")
+max_HP = 275
+base_damage = 80
+armor = 15
+evasion = 0.1
+shielding_chance = 0.0
+
+[node name="Unit" instance=ExtResource("1_v28nh")]
+unit_name = "Mad slasher"
+unit_type = 0
+faction = 4
+needed_xp = 1600
+unit_class = 3
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_ywi7o")
+animation = &"attack"
+autoplay = "default"
+offset = Vector2(32, -16)
+frames_to_emit = Array[int]([7, 9, 10])
+
+[node name="UnitParameters" parent="." index="1"]
+level = 4
+base_paramaters = SubResource("Resource_miyy7")

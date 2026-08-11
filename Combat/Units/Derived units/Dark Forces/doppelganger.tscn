@@ -1,0 +1,188 @@
+[gd_scene load_steps=28 format=3 uid="uid://dy1cj13p5u1um"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_ujqeo"]
+[ext_resource type="Texture2D" uid="uid://vr7w70bjl52o" path="res://Arts/Dark units/d16 Doppelganger attack .png" id="2_lef23"]
+[ext_resource type="Texture2D" uid="uid://b076urwns5d4f" path="res://Arts/Dark units/d16 Doppelganger transform .png" id="3_glu86"]
+[ext_resource type="Texture2D" uid="uid://p1178ps8g4bf" path="res://Arts/Dark units/d16 Doppelganger idle.png" id="4_jxijx"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="5_yycl5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i45s3"]
+atlas = ExtResource("2_lef23")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpfk2"]
+atlas = ExtResource("2_lef23")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6f3rg"]
+atlas = ExtResource("2_lef23")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ocgmb"]
+atlas = ExtResource("2_lef23")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpnqt"]
+atlas = ExtResource("2_lef23")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0df3b"]
+atlas = ExtResource("2_lef23")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2i4n"]
+atlas = ExtResource("2_lef23")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0tjw"]
+atlas = ExtResource("2_lef23")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gh7c"]
+atlas = ExtResource("3_glu86")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oi8d0"]
+atlas = ExtResource("3_glu86")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3n51f"]
+atlas = ExtResource("3_glu86")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnffe"]
+atlas = ExtResource("3_glu86")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikr2h"]
+atlas = ExtResource("3_glu86")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wml77"]
+atlas = ExtResource("3_glu86")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_544d6"]
+atlas = ExtResource("3_glu86")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hcben"]
+atlas = ExtResource("3_glu86")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1hl08"]
+atlas = ExtResource("4_jxijx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejbbv"]
+atlas = ExtResource("4_jxijx")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0q1ia"]
+atlas = ExtResource("4_jxijx")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sh12y"]
+atlas = ExtResource("4_jxijx")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sapc3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i45s3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hpfk2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6f3rg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ocgmb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hpnqt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0df3b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o2i4n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0tjw")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gh7c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oi8d0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3n51f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnffe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ikr2h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wml77")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_544d6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hcben")
+}],
+"loop": true,
+"name": &"attack2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1hl08")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejbbv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0q1ia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sh12y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_m7go8"]
+resource_local_to_scene = true
+script = ExtResource("5_yycl5")
+max_HP = 180
+base_damage = 40
+evasion = 0.208
+
+[node name="Unit" instance=ExtResource("1_ujqeo")]
+unit_name = "Doppelganger"
+unit_type = 0
+faction = 4
+unit_class = 3
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_sapc3")
+animation = &"attack"
+autoplay = "default"
+frames_to_emit = Array[int]([3])
+
+[node name="UnitParameters" parent="." index="1"]
+level = 3
+base_paramaters = SubResource("Resource_m7go8")

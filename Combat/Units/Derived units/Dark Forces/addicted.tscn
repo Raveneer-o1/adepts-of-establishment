@@ -1,0 +1,133 @@
+[gd_scene load_steps=20 format=3 uid="uid://rng3tlbmtp2e"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_ckuvr"]
+[ext_resource type="Texture2D" uid="uid://drqmg3mtl1xnk" path="res://Arts/Dark units/d01 Addicted attack.png" id="2_dj4ik"]
+[ext_resource type="Texture2D" uid="uid://nopaed8ymuu0" path="res://Arts/Dark units/d01 Addicted idle.png" id="3_4752y"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_e2ujq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2bglk"]
+atlas = ExtResource("2_dj4ik")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gd6ev"]
+atlas = ExtResource("2_dj4ik")
+region = Rect2(0, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tlrvl"]
+atlas = ExtResource("2_dj4ik")
+region = Rect2(0, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5huc"]
+atlas = ExtResource("2_dj4ik")
+region = Rect2(0, 96, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqnfy"]
+atlas = ExtResource("2_dj4ik")
+region = Rect2(0, 128, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xb475"]
+atlas = ExtResource("2_dj4ik")
+region = Rect2(0, 160, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qbkk8"]
+atlas = ExtResource("2_dj4ik")
+region = Rect2(0, 192, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_scs27"]
+atlas = ExtResource("2_dj4ik")
+region = Rect2(0, 224, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsmqv"]
+atlas = ExtResource("2_dj4ik")
+region = Rect2(0, 256, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lugry"]
+atlas = ExtResource("3_4752y")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_of5or"]
+atlas = ExtResource("3_4752y")
+region = Rect2(0, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hq1hb"]
+atlas = ExtResource("3_4752y")
+region = Rect2(0, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qwcpe"]
+atlas = ExtResource("3_4752y")
+region = Rect2(0, 96, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iyupq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2bglk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gd6ev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tlrvl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5huc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqnfy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xb475")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qbkk8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_scs27")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsmqv")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lugry")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_of5or")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hq1hb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qwcpe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_1r3i1"]
+resource_local_to_scene = true
+script = ExtResource("4_e2ujq")
+max_HP = 90
+base_damage = 35
+shielding_chance = 0.55
+
+[node name="Unit" instance=ExtResource("1_ckuvr")]
+unit_name = "Addicted"
+unit_type = 0
+faction = 4
+needed_xp = 150
+unit_class = 3
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_iyupq")
+autoplay = "default"
+offset = Vector2(6, 0)
+frames_to_emit = Array[int]([2, 5])
+
+[node name="UnitParameters" parent="." index="1"]
+base_paramaters = SubResource("Resource_1r3i1")

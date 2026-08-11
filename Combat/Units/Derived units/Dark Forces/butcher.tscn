@@ -1,0 +1,163 @@
+[gd_scene load_steps=24 format=3 uid="uid://bo3if10vcr0g0"]
+
+[ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_e6cie"]
+[ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="2_edtdx"]
+[ext_resource type="Texture2D" uid="uid://cxgqiudj2e0y6" path="res://Arts/Dark units/d11 butcher attack .png" id="2_xgy6p"]
+[ext_resource type="Texture2D" uid="uid://yloqre4788p2" path="res://Arts/Dark units/d11 butcher idle.png" id="3_i4uby"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5gs6"]
+atlas = ExtResource("2_xgy6p")
+region = Rect2(0, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dfwn"]
+atlas = ExtResource("2_xgy6p")
+region = Rect2(0, 64, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03urj"]
+atlas = ExtResource("2_xgy6p")
+region = Rect2(0, 128, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfo5r"]
+atlas = ExtResource("2_xgy6p")
+region = Rect2(0, 192, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_508hf"]
+atlas = ExtResource("2_xgy6p")
+region = Rect2(0, 256, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dlfe6"]
+atlas = ExtResource("2_xgy6p")
+region = Rect2(0, 320, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q43h7"]
+atlas = ExtResource("2_xgy6p")
+region = Rect2(0, 384, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjuat"]
+atlas = ExtResource("2_xgy6p")
+region = Rect2(0, 448, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gpwdr"]
+atlas = ExtResource("2_xgy6p")
+region = Rect2(0, 512, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gin42"]
+atlas = ExtResource("2_xgy6p")
+region = Rect2(0, 576, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gawfv"]
+atlas = ExtResource("2_xgy6p")
+region = Rect2(0, 640, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxhny"]
+atlas = ExtResource("2_xgy6p")
+region = Rect2(0, 704, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpx5d"]
+atlas = ExtResource("3_i4uby")
+region = Rect2(0, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4h3h6"]
+atlas = ExtResource("3_i4uby")
+region = Rect2(0, 64, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfya4"]
+atlas = ExtResource("3_i4uby")
+region = Rect2(0, 128, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3lcy"]
+atlas = ExtResource("3_i4uby")
+region = Rect2(0, 192, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3k32b"]
+atlas = ExtResource("3_i4uby")
+region = Rect2(0, 256, 96, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ixhb6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n5gs6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dfwn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_03urj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfo5r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_508hf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dlfe6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q43h7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pjuat")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gpwdr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gin42")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gawfv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxhny")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hpx5d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4h3h6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfya4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g3lcy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3k32b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_xgy6p"]
+resource_local_to_scene = true
+script = ExtResource("2_edtdx")
+max_HP = 275
+base_damage = 80
+armor = 35
+
+[node name="Unit" instance=ExtResource("1_e6cie")]
+unit_name = "Butcher"
+unit_type = 0
+faction = 4
+needed_xp = 1600
+unit_class = 1
+
+[node name="AnimationHandle" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_ixhb6")
+animation = &"attack"
+autoplay = "default"
+offset = Vector2(24, -16)
+frames_to_emit = Array[int]([8, 9])
+
+[node name="UnitParameters" parent="." index="1"]
+level = 4
+base_paramaters = SubResource("Resource_xgy6p")
