@@ -1736,6 +1736,195 @@ const database = {
 }, &"cost": {
  &"gold": 0, &"stone": 0, &"mana": 0 
 } 
+},&"Corrupted Saint" : {
+ &"scene_path": "res://Combat/Units/Derived units//Dark Forces/corrupted_saint.tscn", &"level": 4, &"large_unit": false, &"immunities": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 2, &"unit_class": 4, &"needed_xp": 1600, &"attacks": []
+, &"effects": []
+, &"base_damage": 80, &"max_hp": 175, &"armor": 0, &"evasion": 0.296, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
+ &"gold": 0, &"stone": 0, &"mana": 0 
+} 
+},&"Doppelganger" : {
+ &"scene_path": "res://Combat/Units/Derived units//Dark Forces/doppelganger.tscn", &"level": 3, &"large_unit": false, &"immunities": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 1, &"attacks": []
+, &"effects": []
+, &"base_damage": 40, &"max_hp": 180, &"armor": 0, &"evasion": 0.208, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
+ &"gold": 0, &"stone": 0, &"mana": 0 
+} 
+},&"Demon" : {
+ &"scene_path": "res://Combat/Units/Derived units//Dark Forces/demon.tscn", &"level": 1, &"large_unit": true, &"immunities": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 250, &"attacks": []
+, &"effects": []
+, &"base_damage": 70, &"max_hp": 300, &"armor": 15, &"evasion": 0.01, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
+ &"gold": 0, &"stone": 0, &"mana": 0 
+} 
+},&"Twisted prophet" : {
+ &"scene_path": "res://Combat/Units/Derived units//Dark Forces/twisted_prophet.tscn", &"level": 3, &"large_unit": false, &"immunities": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 900, &"attacks": []
+, &"effects": []
+, &"base_damage": 60, &"max_hp": 200, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
+ &"gold": 0, &"stone": 0, &"mana": 0 
+} 
+},&"Chaos seer" : {
+ &"scene_path": "res://Combat/Units/Derived units//Dark Forces/chaos_seer.tscn", &"level": 3, &"large_unit": false, &"immunities": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 2, &"unit_class": 5, &"needed_xp": 1600, &"attacks": []
+, &"effects": []
+, &"base_damage": 60, &"max_hp": 100, &"armor": 10, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
+ &"gold": 0, &"stone": 0, &"mana": 0 
+} 
+},&"Berserker" : {
+ &"scene_path": "res://Combat/Units/Derived units//Dark Forces/berserker.tscn", &"level": 2, &"large_unit": false, &"immunities": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 400, &"attacks": []
+, &"effects": []
+, &"base_damage": 55, &"max_hp": 150, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.4, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
+ &"gold": 0, &"stone": 0, &"mana": 0 
+} 
+},&"Mad slasher" : {
+ &"scene_path": "res://Combat/Units/Derived units//Dark Forces/mad_slasher.tscn", &"level": 4, &"large_unit": false, &"immunities": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 1600, &"attacks": []
+, &"effects": []
+, &"base_damage": 80, &"max_hp": 275, &"armor": 15, &"evasion": 0.1, &"shielding_chance": 0.0, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
+ &"gold": 0, &"stone": 0, &"mana": 0 
+} 
+},&"Crossbowman" : {
+ &"scene_path": "res://Combat/Units/Derived units//Dark Forces/crossbowman.tscn", &"level": 1, &"large_unit": false, &"immunities": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 1, &"unit_class": 4, &"needed_xp": 150, &"attacks": []
+, &"effects": []
+, &"base_damage": 30, &"max_hp": 50, &"armor": 15, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
+ &"gold": 0, &"stone": 0, &"mana": 0 
+} 
+},&"Cultist" : {
+ &"scene_path": "res://Combat/Units/Derived units//Dark Forces/cultist.tscn", &"level": 1, &"large_unit": false, &"immunities": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 2, &"unit_class": 5, &"needed_xp": 100, &"attacks": []
+, &"effects": []
+, &"base_damage": 0, &"max_hp": 130, &"armor": 0, &"evasion": 0.07, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
+ &"gold": 0, &"stone": 0, &"mana": 0 
+} 
+},&"Shadow bearer" : {
+ &"scene_path": "res://Combat/Units/Derived units//Dark Forces/shadow_bearer.tscn", &"level": 3, &"large_unit": false, &"immunities": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 900, &"attacks": []
+, &"effects": []
+, &"base_damage": 60, &"max_hp": 200, &"armor": 20, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
+ &"gold": 0, &"stone": 0, &"mana": 0 
+} 
+},&"Black hand" : {
+ &"scene_path": "res://Combat/Units/Derived units//Dark Forces/black_hand.tscn", &"level": 1, &"large_unit": false, &"immunities": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 1, &"unit_class": 3, &"needed_xp": 450, &"attacks": []
+, &"effects": []
+, &"base_damage": 0, &"max_hp": 1000, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
+ &"gold": 0, &"stone": 0, &"mana": 0 
+} 
+},&"Demonologist" : {
+ &"scene_path": "res://Combat/Units/Derived units//Dark Forces/demonologist.tscn", &"level": 3, &"large_unit": false, &"immunities": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 2, &"unit_class": 5, &"needed_xp": 900, &"attacks": []
+, &"effects": []
+, &"base_damage": 60, &"max_hp": 100, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
+ &"gold": 0, &"stone": 0, &"mana": 0 
+} 
+},&"Chaotic servant" : {
+ &"scene_path": "res://Combat/Units/Derived units//Dark Forces/chaotic_servant.tscn", &"level": 5, &"large_unit": false, &"immunities": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 2, &"unit_class": 5, &"needed_xp": 2500, &"attacks": []
+, &"effects": []
+, &"base_damage": 100, &"max_hp": 350, &"armor": 10, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
+ &"gold": 0, &"stone": 0, &"mana": 0 
+} 
+},&"Witch" : {
+ &"scene_path": "res://Combat/Units/Derived units//Dark Forces/witch.tscn", &"level": 2, &"large_unit": false, &"immunities": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 3, &"unit_class": 4, &"needed_xp": 450, &"attacks": []
+, &"effects": []
+, &"base_damage": 45, &"max_hp": 100, &"armor": 0, &"evasion": 0.075, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
+ &"gold": 0, &"stone": 0, &"mana": 0 
+} 
+},&"Addicted" : {
+ &"scene_path": "res://Combat/Units/Derived units//Dark Forces/addicted.tscn", &"level": 1, &"large_unit": false, &"immunities": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 150, &"attacks": []
+, &"effects": []
+, &"base_damage": 35, &"max_hp": 90, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.55, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
+ &"gold": 0, &"stone": 0, &"mana": 0 
+} 
+},&"Butcher" : {
+ &"scene_path": "res://Combat/Units/Derived units//Dark Forces/butcher.tscn", &"level": 4, &"large_unit": false, &"immunities": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 1600, &"attacks": []
+, &"effects": []
+, &"base_damage": 80, &"max_hp": 275, &"armor": 35, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
+ &"gold": 0, &"stone": 0, &"mana": 0 
+} 
+},&"Warlock" : {
+ &"scene_path": "res://Combat/Units/Derived units//Dark Forces/warlock.tscn", &"level": 2, &"large_unit": false, &"immunities": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 2, &"unit_class": 5, &"needed_xp": 450, &"attacks": []
+, &"effects": []
+, &"base_damage": 45, &"max_hp": 120, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
+ &"gold": 0, &"stone": 0, &"mana": 0 
+} 
+},&"Blasphomous claw" : {
+ &"scene_path": "res://Combat/Units/Derived units//Dark Forces/blasphomous_claw.tscn", &"level": 3, &"large_unit": false, &"immunities": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 900, &"attacks": []
+, &"effects": []
+, &"base_damage": 45, &"max_hp": 270, &"armor": 20, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
+ &"gold": 0, &"stone": 0, &"mana": 0 
+} 
+},&"Moloch" : {
+ &"scene_path": "res://Combat/Units/Derived units//Dark Forces/moloch.tscn", &"level": 2, &"large_unit": true, &"immunities": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 1200, &"attacks": []
+, &"effects": []
+, &"base_damage": 90, &"max_hp": 450, &"armor": 30, &"evasion": 0.02, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
+ &"gold": 0, &"stone": 0, &"mana": 0 
+} 
+},&"Infernal knight" : {
+ &"scene_path": "res://Combat/Units/Derived units//Dark Forces/infernal_knight.tscn", &"level": 4, &"large_unit": false, &"immunities": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 1600, &"attacks": []
+, &"effects": []
+, &"base_damage": 80, &"max_hp": 275, &"armor": 50, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
+ &"gold": 0, &"stone": 0, &"mana": 0 
+} 
+},&"Anointed" : {
+ &"scene_path": "res://Combat/Units/Derived units//Dark Forces/anointed.tscn", &"level": 4, &"large_unit": false, &"immunities": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 2, &"unit_class": 5, &"needed_xp": 1600, &"attacks": []
+, &"effects": []
+, &"base_damage": 100, &"max_hp": 200, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
+  
+}, &"cost": {
+ &"gold": 0, &"stone": 0, &"mana": 0 
+} 
 },
 # end of database
 }
