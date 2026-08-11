@@ -67,6 +67,12 @@ func _learn_setup() -> void:
 	if not this_unit.hero_levelup: return
 	this_unit.hero_levelup.learn_setup()
 
+## Initializes the unit with database defaults and sets [member UnitData.personal_name]
+## to the provided [param personal] value.
+## Returns [code]true[/code] if initialization succeeded, [code]false[/code] otherwise.
+## After this method completes, the [__UnitData_Initializer__] instance is queued
+## for deletion regardless of outcome — do not retain references to it.
+## This object must be a direct child of the [UnitData] it initializes.
 func initialize(personal: String) -> bool:
 	queue_free()
 	this_unit = get_parent()

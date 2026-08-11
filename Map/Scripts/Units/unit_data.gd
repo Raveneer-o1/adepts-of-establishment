@@ -280,10 +280,11 @@ func get_scene_path() -> String:
 ## resets experience to 0, and reloads all defined attacks and effects.
 ## Should only be called when spawning a new unit into the world.
 func initialize(personal: String = "") -> bool:
-	assert(not _initializer)
+	assert( not is_instance_valid(_initializer) )
 	_initializer = __UnitData_Initializer__.new()
 	add_child(_initializer, false, Node.INTERNAL_MODE_BACK)
 	var res := _initializer.initialize(personal)
+	if _initializer.is_queued_for_deletion(): _initializer = null
 	# this is a safeguard against reinitialization
 	if res: is_to_be_initialized = false
 	return res

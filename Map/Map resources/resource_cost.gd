@@ -24,6 +24,7 @@ func is_valid() -> bool:
 ## Creates a new [ResourceCost] from a dictionary. Expects the following exact keys:
 ## [code]&"gold"[/code], [code]&"stone"[/code], [code]&"mana"[/code].
 ## All other keys are ignored.
+## Defaults to zero if any particular key is not present.
 static func from_dict(d: Dictionary) -> ResourceCost:
 	var _gold: int = d.get(&"gold", 0)
 	var _stone: int = d.get(&"stone", 0)
