@@ -1,9 +1,13 @@
-[gd_scene load_steps=21 format=3 uid="uid://d2p7hjrjh1rkl"]
+[gd_scene load_steps=25 format=3 uid="uid://d2p7hjrjh1rkl"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_p11jy"]
 [ext_resource type="Texture2D" uid="uid://jcsprf8y1bns" path="res://Arts/Dark units/d10 blasphemous claw attack.png" id="2_2i2h8"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="2_08xbg"]
 [ext_resource type="Texture2D" uid="uid://3gfqxb65ln2" path="res://Arts/Dark units/d10 blasphemous claw idle.png" id="3_lysw1"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_jglx7"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="6_bp2bu"]
+[ext_resource type="PackedScene" uid="uid://24d88m5q7ppb" path="res://Combat/Effects/AppliedEffects/Scenes/breakthrough.tscn" id="7_jglx7"]
+[ext_resource type="PackedScene" uid="uid://cg32jqoav0l6m" path="res://Combat/Effects/AppliedEffects/Scenes/overgrowth.tscn" id="8_bp2bu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_otla7"]
 atlas = ExtResource("2_2i2h8")
@@ -140,3 +144,15 @@ frames_to_emit = Array[int]([4])
 [node name="UnitParameters" parent="." index="1"]
 level = 3
 base_paramaters = SubResource("Resource_2i2h8")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("5_jglx7")
+target_validation = ExtResource("6_bp2bu")
+applying_effects = Dictionary[String, Variant]({
+"hemorrhage": [10, 4]
+})
+metadata/_custom_type_script = "uid://c5u15vrtdf7kf"
+
+[node name="Breakthrough" parent="UnitParameters" index="2" instance=ExtResource("7_jglx7")]
+
+[node name="Overgrowth" parent="UnitParameters" index="3" instance=ExtResource("8_bp2bu")]

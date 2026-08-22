@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg32jqoav0l6m"]
+
+[ext_resource type="Script" uid="uid://b6e87rpyia8wv" path="res://Combat/Effects/AppliedEffects/Scripts/overgrowth.gd" id="1_xlg23"]
+
+[node name="Overgrowth" type="Node"]
+script = ExtResource("1_xlg23")
+effect_name = "Overgrowth"
+icon_index = 21
+description = "When defending, heals adjacent allies by the amount equal to damage recieved."

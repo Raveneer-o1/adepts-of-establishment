@@ -5,7 +5,6 @@
 [node name="Breakthrough" type="Node"]
 script = ExtResource("1_t35tu")
 effect_name = "Breakthrough"
-icon_index = -1
+icon_index = 22
 description = "Shielding chance is decreased for all units in the enemy party.
-Whenever an enemy shields, the shielding unit takes double damage.
-When defending, heals adjacent allies by the amount equal to damage recieved."
+Whenever an enemy shields, the shielding unit takes double damage."

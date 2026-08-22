@@ -9,7 +9,6 @@ func _get_description() -> String:
 	)
 	return description % percent
 
-
 func trigger_effect(unit: Unit, attack: Attack) -> void:
 	if unit != target_unit:
 		return
