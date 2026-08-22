@@ -1,9 +1,12 @@
-[gd_scene load_steps=20 format=3 uid="uid://rng3tlbmtp2e"]
+[gd_scene load_steps=23 format=3 uid="uid://rng3tlbmtp2e"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_ckuvr"]
 [ext_resource type="Texture2D" uid="uid://drqmg3mtl1xnk" path="res://Arts/Dark units/d01 Addicted attack.png" id="2_dj4ik"]
 [ext_resource type="Texture2D" uid="uid://nopaed8ymuu0" path="res://Arts/Dark units/d01 Addicted idle.png" id="3_4752y"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_e2ujq"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_e2ujq"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="6_2bglk"]
+[ext_resource type="Resource" uid="uid://d3v4hhqcmpw7w" path="res://Combat/Units/Parameters/Additional targets/Double_attack.tres" id="7_gd6ev"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2bglk"]
 atlas = ExtResource("2_dj4ik")
@@ -131,3 +134,10 @@ frames_to_emit = Array[int]([2, 5])
 
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_1r3i1")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("5_e2ujq")
+target_validation = ExtResource("6_2bglk")
+additional_targets = ExtResource("7_gd6ev")
+description = "Deals damage twice"
+metadata/_custom_type_script = "uid://c5u15vrtdf7kf"
