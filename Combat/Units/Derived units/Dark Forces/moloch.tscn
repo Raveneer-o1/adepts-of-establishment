@@ -1,9 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://mdupaqlmap1x"]
+[gd_scene load_steps=27 format=3 uid="uid://mdupaqlmap1x"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_fkyyc"]
 [ext_resource type="Texture2D" uid="uid://baynym5qbcnel" path="res://Arts/Dark units/d21 moloch attack.png" id="2_lbupe"]
 [ext_resource type="Texture2D" uid="uid://dxa0wddrqagwm" path="res://Arts/Dark units/d21 moloch idle.png" id="3_k13uq"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_qxmfu"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_k13uq"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="6_qxmfu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5v4ry"]
 atlas = ExtResource("2_lbupe")
@@ -169,3 +171,10 @@ offset = Vector2(24, -32)
 level = 2
 base_paramaters = SubResource("Resource_synqf")
 large_unit = true
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("5_k13uq")
+initiative = 40
+target_validation = ExtResource("6_qxmfu")
+description = "Deals damage twice."
+metadata/_custom_type_script = "uid://c5u15vrtdf7kf"

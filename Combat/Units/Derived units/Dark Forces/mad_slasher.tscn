@@ -1,9 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://d4cavea2p0av6"]
+[gd_scene load_steps=27 format=3 uid="uid://d4cavea2p0av6"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_v28nh"]
 [ext_resource type="Texture2D" uid="uid://cnnlbdxnpomt8" path="res://Arts/Dark units/d05 mad slasher attack .png" id="2_l23rd"]
 [ext_resource type="Texture2D" uid="uid://de6l2w5llr7v5" path="res://Arts/Dark units/d05 mad slasher idle.png" id="3_k2jne"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_jvbli"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_k2jne"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="6_jvbli"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8ff23"]
 atlas = ExtResource("2_l23rd")
@@ -170,3 +172,10 @@ frames_to_emit = Array[int]([7, 9, 10])
 [node name="UnitParameters" parent="." index="1"]
 level = 4
 base_paramaters = SubResource("Resource_miyy7")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("5_k2jne")
+initiative = 40
+target_validation = ExtResource("6_jvbli")
+description = "Deals damage twice."
+metadata/_custom_type_script = "uid://c5u15vrtdf7kf"

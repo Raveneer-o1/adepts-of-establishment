@@ -1,9 +1,12 @@
-[gd_scene load_steps=24 format=3 uid="uid://bo3if10vcr0g0"]
+[gd_scene load_steps=27 format=3 uid="uid://bo3if10vcr0g0"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_e6cie"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="2_edtdx"]
 [ext_resource type="Texture2D" uid="uid://cxgqiudj2e0y6" path="res://Arts/Dark units/d11 butcher attack .png" id="2_xgy6p"]
 [ext_resource type="Texture2D" uid="uid://yloqre4788p2" path="res://Arts/Dark units/d11 butcher idle.png" id="3_i4uby"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_3dfwn"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="6_03urj"]
+[ext_resource type="Resource" uid="uid://d3v4hhqcmpw7w" path="res://Combat/Units/Parameters/Additional targets/Double_attack.tres" id="7_kfo5r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n5gs6"]
 atlas = ExtResource("2_xgy6p")
@@ -161,3 +164,11 @@ frames_to_emit = Array[int]([8, 9])
 [node name="UnitParameters" parent="." index="1"]
 level = 4
 base_paramaters = SubResource("Resource_xgy6p")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("5_3dfwn")
+initiative = 40
+target_validation = ExtResource("6_03urj")
+additional_targets = ExtResource("7_kfo5r")
+description = "Deals damage twice."
+metadata/_custom_type_script = "uid://c5u15vrtdf7kf"

@@ -1,10 +1,12 @@
-[gd_scene load_steps=25 format=3 uid="uid://dblse8ofi1qxj"]
+[gd_scene load_steps=27 format=3 uid="uid://dblse8ofi1qxj"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_ulg5r"]
 [ext_resource type="Texture2D" uid="uid://cmndhp5xxv8l1" path="res://Arts/Dark units/d17 demonologist attack.png" id="2_kuqv2"]
 [ext_resource type="Texture2D" uid="uid://d1r1ipg3qfqjg" path="res://Arts/Dark units/d17 demonologist idle.png" id="3_eppym"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_vb1uc"]
 [ext_resource type="PackedScene" uid="uid://ceqgmyaos1qjf" path="res://Combat/Effects/Scenes/demonologist_effect.tscn" id="5_kuqv2"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_vb1uc"]
+[ext_resource type="Resource" uid="uid://bkoge3ibwhgcc" path="res://Combat/Units/Parameters/Validation/standard_mage_validity.tres" id="7_pbwn5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pbwn5"]
 atlas = ExtResource("2_kuqv2")
@@ -161,3 +163,10 @@ offset = Vector2(8, -8)
 level = 3
 base_paramaters = SubResource("Resource_fkt3o")
 attack_effect = ExtResource("5_kuqv2")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("6_vb1uc")
+initiative = 40
+target_validation = ExtResource("7_pbwn5")
+description = "Deals damage twice."
+metadata/_custom_type_script = "uid://c5u15vrtdf7kf"

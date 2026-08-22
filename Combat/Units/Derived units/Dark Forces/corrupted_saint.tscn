@@ -1,10 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://dft71uy5uir3v"]
+[gd_scene load_steps=21 format=3 uid="uid://dft71uy5uir3v"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_i0o04"]
 [ext_resource type="Texture2D" uid="uid://ppsdaxg6a04h" path="res://Arts/Dark units/d12 corrupted god attack.png" id="2_x10j1"]
 [ext_resource type="Texture2D" uid="uid://dc6t76rgybjdy" path="res://Arts/Dark units/d12 corrupted god idle.png" id="3_flmwq"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_eenft"]
 [ext_resource type="PackedScene" uid="uid://07sikhkk0p58" path="res://Combat/Effects/Scenes/corrupted_saint_effect.tscn" id="5_x10j1"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_eenft"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="7_if7hg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_if7hg"]
 atlas = ExtResource("2_x10j1")
@@ -120,3 +122,10 @@ offset = Vector2(0, -8)
 level = 4
 base_paramaters = SubResource("Resource_ykj8g")
 attack_effect = ExtResource("5_x10j1")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("6_eenft")
+initiative = 40
+target_validation = ExtResource("7_if7hg")
+description = "Deals damage twice."
+metadata/_custom_type_script = "uid://c5u15vrtdf7kf"

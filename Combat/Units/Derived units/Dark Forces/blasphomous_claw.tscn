@@ -147,6 +147,7 @@ base_paramaters = SubResource("Resource_2i2h8")
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("5_jglx7")
+initiative = 45
 target_validation = ExtResource("6_bp2bu")
 applying_effects = Dictionary[String, Variant]({
 "hemorrhage": [10, 4]

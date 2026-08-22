@@ -1,10 +1,12 @@
-[gd_scene load_steps=22 format=3 uid="uid://dvk3amfokgui4"]
+[gd_scene load_steps=24 format=3 uid="uid://dvk3amfokgui4"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_j7f4h"]
 [ext_resource type="Texture2D" uid="uid://bq5fyv36nfeps" path="res://Arts/Dark units/d09 chaos seer attack .png" id="2_pxuvi"]
 [ext_resource type="Texture2D" uid="uid://cijnwyijf7tng" path="res://Arts/Dark units/d09 chaos seer idle.png" id="3_toco6"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_iwtkx"]
 [ext_resource type="PackedScene" uid="uid://273yfboecqrj" path="res://Combat/Effects/Scenes/chaos_seer_effect.tscn" id="5_pxuvi"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_iwtkx"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="7_xqrmq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xqrmq"]
 atlas = ExtResource("2_pxuvi")
@@ -141,3 +143,10 @@ offset = Vector2(8, -8)
 level = 3
 base_paramaters = SubResource("Resource_lj1i6")
 attack_effect = ExtResource("5_pxuvi")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("6_iwtkx")
+initiative = 40
+target_validation = ExtResource("7_xqrmq")
+description = "Deals damage twice."
+metadata/_custom_type_script = "uid://c5u15vrtdf7kf"

@@ -1,9 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://lc2pyeubssmk"]
+[gd_scene load_steps=26 format=3 uid="uid://lc2pyeubssmk"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_0ohyn"]
 [ext_resource type="Texture2D" uid="uid://hgtejs0dw461" path="res://Arts/Dark units/d15 warlock attack.png" id="2_c2bcn"]
 [ext_resource type="Texture2D" uid="uid://dy6ktnvjpjy5v" path="res://Arts/Dark units/d15 warlock idle.png" id="3_6b3ly"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_fwmtw"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_6b3ly"]
+[ext_resource type="Resource" uid="uid://bkoge3ibwhgcc" path="res://Combat/Units/Parameters/Validation/standard_mage_validity.tres" id="6_fwmtw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3351k"]
 atlas = ExtResource("2_c2bcn")
@@ -159,3 +161,10 @@ offset = Vector2(8, -8)
 [node name="UnitParameters" parent="." index="1"]
 level = 2
 base_paramaters = SubResource("Resource_mngdy")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("5_6b3ly")
+initiative = 40
+target_validation = ExtResource("6_fwmtw")
+description = "Deals damage twice."
+metadata/_custom_type_script = "uid://c5u15vrtdf7kf"
