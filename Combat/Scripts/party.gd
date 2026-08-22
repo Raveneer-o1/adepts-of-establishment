@@ -66,7 +66,7 @@ func initialize() -> void:
 	other_party = main_system.right_party if is_left else main_system.left_party
 	player = main_system.left_player if is_left else main_system.right_player
 
-## Returns references to units at specified [params positions]. [br]
+## Returns references to units at specified [param positions]. [br]
 ## - Empty spaces and dead units are skipped. [br]
 ## - Out-of-bounds positions return null if [param include_nulls] is [code]true[/code].
 func get_units_at_positions(positions: Array[int], include_nulls: bool = true) -> Array[Unit]:
