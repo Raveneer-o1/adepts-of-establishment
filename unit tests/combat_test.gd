@@ -60,7 +60,7 @@ func add_unit(unit_name: String, pos: int = -1) -> void:
 			pos = i
 			break
 	if pos < 0:
-		push_warning("Unable tp place a unit")
+		push_warning("Unable to place a unit")
 		return
 	data.party_position = pos
 	_combat.load_single_unit(data)
