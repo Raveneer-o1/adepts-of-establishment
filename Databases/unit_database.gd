@@ -1738,7 +1738,13 @@ const database = {
 } 
 },&"Corrupted Saint" : {
  &"scene_path": "res://Combat/Units/Derived units//Dark Forces/corrupted_saint.tscn", &"level": 4, &"large_unit": false, &"immunities": []
-, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 2, &"unit_class": 4, &"needed_xp": 1600, &"attacks": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 2, &"unit_class": 4, &"needed_xp": 1600, &"attacks": [{
+ &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
+, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
+  
+}, &"animation_index": 0, &"description": "Deals damage twice.", &"alternative_actions": []
+ 
+}]
 , &"effects": []
 , &"base_damage": 80, &"max_hp": 175, &"armor": 0, &"evasion": 0.296, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
   
@@ -1747,7 +1753,9 @@ const database = {
 } 
 },&"Doppelganger" : {
  &"scene_path": "res://Combat/Units/Derived units//Dark Forces/doppelganger.tscn", &"level": 3, &"large_unit": false, &"immunities": []
-, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 1, &"attacks": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 1, &"attacks": [{
+  
+}]
 , &"effects": []
 , &"base_damage": 40, &"max_hp": 180, &"armor": 0, &"evasion": 0.208, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
   
@@ -1756,7 +1764,13 @@ const database = {
 } 
 },&"Demon" : {
  &"scene_path": "res://Combat/Units/Derived units//Dark Forces/demon.tscn", &"level": 1, &"large_unit": true, &"immunities": []
-, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 250, &"attacks": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 250, &"attacks": [{
+ &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
+, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
+  
+}, &"animation_index": 0, &"description": "Deals damage twice.", &"alternative_actions": []
+ 
+}]
 , &"effects": []
 , &"base_damage": 70, &"max_hp": 300, &"armor": 15, &"evasion": 0.01, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
   
@@ -1765,7 +1779,13 @@ const database = {
 } 
 },&"Twisted prophet" : {
  &"scene_path": "res://Combat/Units/Derived units//Dark Forces/twisted_prophet.tscn", &"level": 3, &"large_unit": false, &"immunities": []
-, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 900, &"attacks": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 900, &"attacks": [{
+ &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
+, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_mage_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
+  
+}, &"animation_index": 0, &"description": "Deals damage twice.", &"alternative_actions": []
+ 
+}]
 , &"effects": []
 , &"base_damage": 60, &"max_hp": 200, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
   
@@ -1774,7 +1794,13 @@ const database = {
 } 
 },&"Chaos seer" : {
  &"scene_path": "res://Combat/Units/Derived units//Dark Forces/chaos_seer.tscn", &"level": 3, &"large_unit": false, &"immunities": []
-, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 2, &"unit_class": 5, &"needed_xp": 1600, &"attacks": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 2, &"unit_class": 5, &"needed_xp": 1600, &"attacks": [{
+ &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
+, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
+  
+}, &"animation_index": 0, &"description": "Deals damage twice.", &"alternative_actions": []
+ 
+}]
 , &"effects": []
 , &"base_damage": 60, &"max_hp": 100, &"armor": 10, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
   
@@ -1783,7 +1809,13 @@ const database = {
 } 
 },&"Berserker" : {
  &"scene_path": "res://Combat/Units/Derived units//Dark Forces/berserker.tscn", &"level": 2, &"large_unit": false, &"immunities": []
-, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 400, &"attacks": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 400, &"attacks": [{
+ &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 0, &"evadable": true, &"tags": []
+, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "res://Combat/Units/Parameters/Policy/pushback.tres", &"applying_effects": {
+  
+}, &"animation_index": 0, &"description": "Has a chance to push the target back.", &"alternative_actions": []
+ 
+}]
 , &"effects": []
 , &"base_damage": 55, &"max_hp": 150, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.4, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
   
@@ -1792,7 +1824,13 @@ const database = {
 } 
 },&"Mad slasher" : {
  &"scene_path": "res://Combat/Units/Derived units//Dark Forces/mad_slasher.tscn", &"level": 4, &"large_unit": false, &"immunities": []
-, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 1600, &"attacks": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 1600, &"attacks": [{
+ &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
+, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
+  
+}, &"animation_index": 0, &"description": "Deals damage twice.", &"alternative_actions": []
+ 
+}]
 , &"effects": []
 , &"base_damage": 80, &"max_hp": 275, &"armor": 15, &"evasion": 0.1, &"shielding_chance": 0.0, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
   
@@ -1801,7 +1839,13 @@ const database = {
 } 
 },&"Crossbowman" : {
  &"scene_path": "res://Combat/Units/Derived units//Dark Forces/crossbowman.tscn", &"level": 1, &"large_unit": false, &"immunities": []
-, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 1, &"unit_class": 4, &"needed_xp": 150, &"attacks": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 1, &"unit_class": 4, &"needed_xp": 150, &"attacks": [{
+ &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
+, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_mage_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
+  
+}, &"animation_index": 0, &"description": "Deals damage twice.", &"alternative_actions": []
+ 
+}]
 , &"effects": []
 , &"base_damage": 30, &"max_hp": 50, &"armor": 15, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
   
@@ -1810,7 +1854,9 @@ const database = {
 } 
 },&"Cultist" : {
  &"scene_path": "res://Combat/Units/Derived units//Dark Forces/cultist.tscn", &"level": 1, &"large_unit": false, &"immunities": []
-, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 2, &"unit_class": 5, &"needed_xp": 100, &"attacks": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 2, &"unit_class": 5, &"needed_xp": 100, &"attacks": [{
+  
+}]
 , &"effects": []
 , &"base_damage": 0, &"max_hp": 130, &"armor": 0, &"evasion": 0.07, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
   
@@ -1819,7 +1865,13 @@ const database = {
 } 
 },&"Shadow bearer" : {
  &"scene_path": "res://Combat/Units/Derived units//Dark Forces/shadow_bearer.tscn", &"level": 3, &"large_unit": false, &"immunities": []
-, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 900, &"attacks": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 900, &"attacks": [{
+ &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
+, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
+  
+}, &"animation_index": 0, &"description": "Deals damage twice.", &"alternative_actions": []
+ 
+}]
 , &"effects": []
 , &"base_damage": 60, &"max_hp": 200, &"armor": 20, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
   
@@ -1828,8 +1880,17 @@ const database = {
 } 
 },&"Black hand" : {
  &"scene_path": "res://Combat/Units/Derived units//Dark Forces/black_hand.tscn", &"level": 1, &"large_unit": false, &"immunities": []
-, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 1, &"unit_class": 3, &"needed_xp": 450, &"attacks": []
-, &"effects": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 1, &"unit_class": 3, &"needed_xp": 450, &"attacks": [{
+ &"attack_name": "Attack", &"damage_multiplier": 0.3, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 2, &"initiative": 0, &"evadable": true, &"tags": []
+, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_mage_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/two_adjacent.tres", &"damage_policy": "", &"applying_effects": {
+  
+}, &"animation_index": 0, &"description": "Also damages two adjacent units.", &"alternative_actions": []
+ 
+}]
+, &"effects": [{
+ &"effect_name": "Agility", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/agility.tscn", &"args": [2, 0.1]
+ 
+}]
 , &"base_damage": 0, &"max_hp": 1000, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
   
 }, &"cost": {
@@ -1837,7 +1898,13 @@ const database = {
 } 
 },&"Demonologist" : {
  &"scene_path": "res://Combat/Units/Derived units//Dark Forces/demonologist.tscn", &"level": 3, &"large_unit": false, &"immunities": []
-, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 2, &"unit_class": 5, &"needed_xp": 900, &"attacks": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 2, &"unit_class": 5, &"needed_xp": 900, &"attacks": [{
+ &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
+, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_mage_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
+  
+}, &"animation_index": 0, &"description": "Deals damage twice.", &"alternative_actions": []
+ 
+}]
 , &"effects": []
 , &"base_damage": 60, &"max_hp": 100, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
   
@@ -1846,7 +1913,13 @@ const database = {
 } 
 },&"Chaotic servant" : {
  &"scene_path": "res://Combat/Units/Derived units//Dark Forces/chaotic_servant.tscn", &"level": 5, &"large_unit": false, &"immunities": []
-, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 2, &"unit_class": 5, &"needed_xp": 2500, &"attacks": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 2, &"unit_class": 5, &"needed_xp": 2500, &"attacks": [{
+ &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
+, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
+  
+}, &"animation_index": 0, &"description": "Deals damage twice.", &"alternative_actions": []
+ 
+}]
 , &"effects": []
 , &"base_damage": 100, &"max_hp": 350, &"armor": 10, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
   
@@ -1855,7 +1928,13 @@ const database = {
 } 
 },&"Witch" : {
  &"scene_path": "res://Combat/Units/Derived units//Dark Forces/witch.tscn", &"level": 2, &"large_unit": false, &"immunities": []
-, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 3, &"unit_class": 4, &"needed_xp": 450, &"attacks": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 3, &"unit_class": 4, &"needed_xp": 450, &"attacks": [{
+ &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
+, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_mage_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
+  
+}, &"animation_index": 0, &"description": "Deals damage twice.", &"alternative_actions": []
+ 
+}]
 , &"effects": []
 , &"base_damage": 45, &"max_hp": 100, &"armor": 0, &"evasion": 0.075, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
   
@@ -1864,7 +1943,13 @@ const database = {
 } 
 },&"Addicted" : {
  &"scene_path": "res://Combat/Units/Derived units//Dark Forces/addicted.tscn", &"level": 1, &"large_unit": false, &"immunities": []
-, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 150, &"attacks": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 150, &"attacks": [{
+ &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 0, &"evadable": true, &"tags": []
+, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Double_attack.tres", &"damage_policy": "", &"applying_effects": {
+  
+}, &"animation_index": 0, &"description": "Deals damage twice", &"alternative_actions": []
+ 
+}]
 , &"effects": []
 , &"base_damage": 35, &"max_hp": 90, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.55, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
   
@@ -1873,7 +1958,13 @@ const database = {
 } 
 },&"Butcher" : {
  &"scene_path": "res://Combat/Units/Derived units//Dark Forces/butcher.tscn", &"level": 4, &"large_unit": false, &"immunities": []
-, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 1600, &"attacks": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 1600, &"attacks": [{
+ &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
+, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/Double_attack.tres", &"damage_policy": "", &"applying_effects": {
+  
+}, &"animation_index": 0, &"description": "Deals damage twice.", &"alternative_actions": []
+ 
+}]
 , &"effects": []
 , &"base_damage": 80, &"max_hp": 275, &"armor": 35, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
   
@@ -1882,7 +1973,13 @@ const database = {
 } 
 },&"Warlock" : {
  &"scene_path": "res://Combat/Units/Derived units//Dark Forces/warlock.tscn", &"level": 2, &"large_unit": false, &"immunities": []
-, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 2, &"unit_class": 5, &"needed_xp": 450, &"attacks": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 2, &"unit_class": 5, &"needed_xp": 450, &"attacks": [{
+ &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
+, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_mage_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
+  
+}, &"animation_index": 0, &"description": "Deals damage twice.", &"alternative_actions": []
+ 
+}]
 , &"effects": []
 , &"base_damage": 45, &"max_hp": 120, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
   
@@ -1891,8 +1988,19 @@ const database = {
 } 
 },&"Blasphomous claw" : {
  &"scene_path": "res://Combat/Units/Derived units//Dark Forces/blasphomous_claw.tscn", &"level": 3, &"large_unit": false, &"immunities": []
-, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 900, &"attacks": []
-, &"effects": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 900, &"attacks": [{
+ &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 45, &"evadable": true, &"tags": []
+, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
+ "hemorrhage": [10, 4]
+ 
+}, &"animation_index": 0, &"description": "", &"alternative_actions": []
+ 
+}]
+, &"effects": [{
+ &"effect_name": "Breakthrough", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/breakthrough.tscn", &"args": 0.5 
+}, {
+ &"effect_name": "Overgrowth", &"effect_path": "res://Combat/Effects/AppliedEffects/Scenes/overgrowth.tscn", &"args": null 
+}]
 , &"base_damage": 45, &"max_hp": 270, &"armor": 20, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
   
 }, &"cost": {
@@ -1900,7 +2008,13 @@ const database = {
 } 
 },&"Moloch" : {
  &"scene_path": "res://Combat/Units/Derived units//Dark Forces/moloch.tscn", &"level": 2, &"large_unit": true, &"immunities": []
-, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 1200, &"attacks": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 1200, &"attacks": [{
+ &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
+, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
+  
+}, &"animation_index": 0, &"description": "Deals damage twice.", &"alternative_actions": []
+ 
+}]
 , &"effects": []
 , &"base_damage": 90, &"max_hp": 450, &"armor": 30, &"evasion": 0.02, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
   
@@ -1909,7 +2023,13 @@ const database = {
 } 
 },&"Infernal knight" : {
  &"scene_path": "res://Combat/Units/Derived units//Dark Forces/infernal_knight.tscn", &"level": 4, &"large_unit": false, &"immunities": []
-, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 1600, &"attacks": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 4, &"unit_class": 0, &"needed_xp": 1600, &"attacks": [{
+ &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 0, &"accuracy": 0.95, &"targets_needed": 1, &"initiative": 40, &"evadable": true, &"tags": []
+, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "", &"damage_policy": "", &"applying_effects": {
+  
+}, &"animation_index": 0, &"description": "Deals damage twice.", &"alternative_actions": []
+ 
+}]
 , &"effects": []
 , &"base_damage": 80, &"max_hp": 275, &"armor": 50, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
   
@@ -1918,7 +2038,13 @@ const database = {
 } 
 },&"Anointed" : {
  &"scene_path": "res://Combat/Units/Derived units//Dark Forces/anointed.tscn", &"level": 4, &"large_unit": false, &"immunities": []
-, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 2, &"unit_class": 5, &"needed_xp": 1600, &"attacks": []
+, &"description": "", &"brief_description": "", &"faction": 4, &"unit_type": 2, &"unit_class": 5, &"needed_xp": 1600, &"attacks": [{
+ &"attack_name": "Attack", &"damage_multiplier": 1.0, &"damage_override": false, &"is_heal": false, &"type": 1, &"accuracy": 0.95, &"targets_needed": 2, &"initiative": 0, &"evadable": true, &"tags": []
+, &"target_validation": "res://Combat/Units/Parameters/Validation/standard_melee_validity.tres", &"additional_targets": "res://Combat/Units/Parameters/Additional targets/anointed.tres", &"damage_policy": "res://Combat/Units/Parameters/Policy/anointed.tres", &"applying_effects": {
+  
+}, &"animation_index": 0, &"description": "Also damages all targets adjacent to the unit.", &"alternative_actions": []
+ 
+}]
 , &"effects": []
 , &"base_damage": 100, &"max_hp": 200, &"armor": 0, &"evasion": 0.05, &"shielding_chance": 0.7, &"portrait_texture_path": "", &"custom_levelup_path": "", &"hero_abilities": "", &"map_effects": {
   
