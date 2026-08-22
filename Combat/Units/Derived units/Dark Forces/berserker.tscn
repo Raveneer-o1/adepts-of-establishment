@@ -1,9 +1,12 @@
-[gd_scene load_steps=27 format=3 uid="uid://bwrloyblwwewo"]
+[gd_scene load_steps=30 format=3 uid="uid://bwrloyblwwewo"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_pxrs3"]
 [ext_resource type="Texture2D" uid="uid://42edl6cy8asn" path="res://Arts/Dark units/d02 berserker attack.png" id="2_fecvl"]
 [ext_resource type="Texture2D" uid="uid://dvyrwggabjv0k" path="res://Arts/Dark units/d02 berserker idle.png" id="3_23u4k"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_msb3a"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_23u4k"]
+[ext_resource type="Resource" uid="uid://c36d4l074sf2q" path="res://Combat/Units/Parameters/Validation/standard_melee_validity.tres" id="6_msb3a"]
+[ext_resource type="Resource" uid="uid://dmscp7cu6l703" path="res://Combat/Units/Parameters/Policy/pushback.tres" id="7_msb3a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xcj4a"]
 atlas = ExtResource("2_fecvl")
@@ -182,3 +185,10 @@ frames_to_emit = Array[int]([8])
 [node name="UnitParameters" parent="." index="1"]
 level = 2
 base_paramaters = SubResource("Resource_mw7di")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("5_23u4k")
+target_validation = ExtResource("6_msb3a")
+damage_policy = ExtResource("7_msb3a")
+description = "Has a chance to push the target back."
+metadata/_custom_type_script = "uid://c5u15vrtdf7kf"

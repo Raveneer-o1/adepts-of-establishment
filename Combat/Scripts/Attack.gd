@@ -326,6 +326,11 @@ func is_primary_target(target: UnitSpot) -> bool:
 	var pos := target_spots.find(target)
 	return pos >= 0 and pos < targets_chosen
 
+## Returns if [param target] was chosen by a player.
+func is_primary_target_reference(target: UnitSpotReference) -> bool:
+	var pos := target_references.find(target)
+	return pos >= 0 and pos < targets_chosen
+
 func find_first_primary_target() -> UnitSpotReference:
 	if not target_references:
 		return null
