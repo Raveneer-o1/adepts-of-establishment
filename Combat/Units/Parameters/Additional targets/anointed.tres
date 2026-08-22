@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dwfgri8chc7rn"]
+
+[ext_resource type="Script" uid="uid://chujda7dx0cc1" path="res://Combat/Units/Parameters/Additional targets/Scripts/anointed.gd" id="1_14dfs"]
+
+[resource]
+script = ExtResource("1_14dfs")

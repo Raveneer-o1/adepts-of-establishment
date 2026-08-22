@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://ch6j7om6rul8j"]
+
+[ext_resource type="Script" uid="uid://bkkhft71oqi4x" path="res://Combat/Units/Parameters/Policy/Scripts/anointed.gd" id="1_jx6ky"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_jx6ky")
