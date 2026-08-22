@@ -1,9 +1,12 @@
-[gd_scene load_steps=22 format=3 uid="uid://svix0q01q1sm"]
+[gd_scene load_steps=25 format=3 uid="uid://svix0q01q1sm"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_kxd0b"]
 [ext_resource type="Texture2D" uid="uid://cyjuyuujqx76n" path="res://Arts/Dark units/d08 black hand attack.png" id="2_7wyjk"]
 [ext_resource type="Texture2D" uid="uid://ikx5i4adppi8" path="res://Arts/Dark units/d08 black hand idle.png" id="3_0tk0f"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="4_o235w"]
+[ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="5_o235w"]
+[ext_resource type="Resource" uid="uid://bkoge3ibwhgcc" path="res://Combat/Units/Parameters/Validation/standard_mage_validity.tres" id="6_plk1b"]
+[ext_resource type="Resource" uid="uid://wx1axnll3cw6" path="res://Combat/Units/Parameters/Additional targets/two_adjacent.tres" id="7_2fsis"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_plk1b"]
 atlas = ExtResource("2_7wyjk")
@@ -143,3 +146,12 @@ frames_to_emit = Array[int]([5, 8])
 
 [node name="UnitParameters" parent="." index="1"]
 base_paramaters = SubResource("Resource_vv2av")
+
+[node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
+script = ExtResource("5_o235w")
+damage_multiplier = 0.3
+targets_needed = 2
+target_validation = ExtResource("6_plk1b")
+additional_targets = ExtResource("7_2fsis")
+description = "Also damages two adjacent units."
+metadata/_custom_type_script = "uid://c5u15vrtdf7kf"
