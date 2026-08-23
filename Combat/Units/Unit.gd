@@ -168,6 +168,8 @@ var skipping_turn: bool = false
 ## If [code]true[/code], unit doesn't leave corpse after death (the object is comletely deleted).
 var summoned_unit: bool = false
 
+## When [code]false[/code], this unit is excluded from attack queue calculations
+## and will never begin its turn, even if its attack is present in the queue.
 var active: bool = false
 
 ## Reference to the original [UnitData] object used to initialize this unit instance.
@@ -178,6 +180,10 @@ var original_data: UnitData = null
 var current_xp: int:
 	get: return original_data.current_xp if original_data else 0
 
+## Reference to the "three dots" icon used to indicate that a unit has more
+## effects applied than can be displayed. [br]
+## [b]Note:[/b] This object is freed and re‑instantiated each time the effect
+## icons are redrawn to ensure it remains the last icon in the list.
 var etc_icon: TextureRect
 
 const LEVELUP_EFFECT = preload("uid://bdxoklt2vs33j")

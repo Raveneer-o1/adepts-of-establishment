@@ -130,7 +130,9 @@ animations = [{
 [sub_resource type="Resource" id="Resource_vv2av"]
 resource_local_to_scene = true
 script = ExtResource("4_o235w")
-max_HP = 1000
+max_HP = 150
+base_damage = 40
+evasion = 0.1
 
 [node name="Unit" instance=ExtResource("1_kxd0b")]
 unit_name = "Black hand"

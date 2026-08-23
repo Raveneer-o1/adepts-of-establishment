@@ -258,7 +258,7 @@ func standard_resolution(finalize: bool = false) -> void:
 		): continue
 		var damage_to_take: int = damages[target] if damages.has(target) else default_damage
 		target.spot.unit.resolve_attack(self, damage_to_take, i, finalize)
-		if i < targets_chosen:
+		if i <= targets_chosen:
 			i += 1
 
 #func set_parameters(attack: UnitAttack) -> void:

@@ -63,6 +63,7 @@ func set_queue() -> void:
 	
 	attacks_queue = []
 	for unit in units:
+		if not unit.active: continue
 		unit.arrange_attacks()
 		attacks_queue.append_array(unit.attacks_for_this_round)
 	

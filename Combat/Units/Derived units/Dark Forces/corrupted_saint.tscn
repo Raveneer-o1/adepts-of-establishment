@@ -127,5 +127,4 @@ attack_effect = ExtResource("5_x10j1")
 script = ExtResource("6_eenft")
 initiative = 40
 target_validation = ExtResource("7_if7hg")
-description = "Deals damage twice."
 metadata/_custom_type_script = "uid://c5u15vrtdf7kf"
