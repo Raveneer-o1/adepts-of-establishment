@@ -1,3 +1,4 @@
+@tool
 extends Node
 class_name UnitAttack
 
@@ -211,6 +212,11 @@ static func get_accuracy_representation(acc: float) -> float:
 	var chance_to_miss: float = 1.0 - acc
 	if is_zero_approx(chance_to_miss) or acc < 0.0: return INF
 	return 1.0 / chance_to_miss
+
+func _get_configuration_warnings() -> PackedStringArray:
+	if not target_validation:
+		return ["target_validation must be set"]
+	return []
 
 func _to_string() -> String:
 	return "UnitAttack %s" % str(serialized(self))
