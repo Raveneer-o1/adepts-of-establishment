@@ -69,8 +69,12 @@ var unit: Unit
 ## [color=lightgreen]Note: you need to attach a resource, not a script file[/color]
 @export var damage_policy: BasePolicy
 
-## This element is passed to the [member Attack.applying_effects]
-@export var applying_effects : Dictionary[String, Variant]
+## This element is passed to the [member Attack.applying_effects].
+## Instead of manually constructing the [member Attack.applying_effects] dictionary,
+## you can add effects as child nodes to the [UnitAttack] node.
+## During serialization, those child effects
+## will be automatically added to this dictionary with the correct arguments.
+@export var applying_effects: Dictionary[String, Variant]
 
 ## If set, attack will use this effect instead if unit's one
 ## @experimental: currently not tested
@@ -211,8 +215,14 @@ func _to_string() -> String:
 static func serialized(a: UnitAttack) -> Dictionary:
 	#print("constructing attack")
 	var alternative_actions: Array[Dictionary] = []
-	for child: UnitAttack in a.get_children():
-		alternative_actions.append(UnitAttack.serialized(child))
+	for child: Variant in a.get_children():
+		if child is UnitAttack:
+			alternative_actions.append(UnitAttack.serialized(child))
+		elif child is AppliedEffect:
+			# NOW: test this
+			# also, during deserialization this will rerutn wrong data
+			var data: Dictionary = child.get_full_data()
+			a.applying_effects[data["effect_path"]] = data["args"]
 	var res := {
 		"attack_name" = a.attack_name,
 		"damage_multiplier" = a.damage_multiplier,

@@ -541,8 +541,10 @@ func apply_effect(
 		override_stackability: bool = false,
 		silent := false
 	) -> AppliedEffect:
+	var effect_path := effect_name
 	
-	var effect_path := "res://Combat/Effects/AppliedEffects/Scenes/%s.tscn" % effect_name
+	if not FileAccess.file_exists(effect_path):
+		effect_path = "res://Combat/Effects/AppliedEffects/Scenes/%s.tscn" % effect_name
 	return apply_effect_path(
 		effect_path,
 		params,
