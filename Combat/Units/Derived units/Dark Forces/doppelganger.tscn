@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dy1cj13p5u1um"]
+[gd_scene load_steps=31 format=3 uid="uid://dy1cj13p5u1um"]
 
 [ext_resource type="PackedScene" uid="uid://bjlsohg1p6wgl" path="res://Combat/Units/unit.tscn" id="1_ujqeo"]
 [ext_resource type="Texture2D" uid="uid://vr7w70bjl52o" path="res://Arts/Dark units/d16 Doppelganger attack .png" id="2_lef23"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://p1178ps8g4bf" path="res://Arts/Dark units/d16 Doppelganger idle.png" id="4_jxijx"]
 [ext_resource type="Script" uid="uid://cj84ughecgcgx" path="res://Combat/Units/Parameters/unit_base_patameters.gd" id="5_yycl5"]
 [ext_resource type="Script" uid="uid://c5u15vrtdf7kf" path="res://Combat/Units/Parameters/UnitAttack.gd" id="6_lef23"]
+[ext_resource type="Resource" uid="uid://brc057x45ipra" path="res://Combat/Units/Parameters/Validation/any_unit.tres" id="7_glu86"]
+[ext_resource type="Resource" uid="uid://br3yvjd6q8ten" path="res://Combat/Units/Parameters/Policy/doppelganger_policy.tres" id="8_jxijx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i45s3"]
 atlas = ExtResource("2_lef23")
@@ -180,7 +182,7 @@ unit_class = 3
 
 [node name="AnimationHandle" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_sapc3")
-animation = &"attack"
+animation = &"attack2"
 autoplay = "default"
 frames_to_emit = Array[int]([3])
 
@@ -190,6 +192,10 @@ base_paramaters = SubResource("Resource_m7go8")
 
 [node name="UnitAttack" type="Node" parent="UnitParameters" index="1"]
 script = ExtResource("6_lef23")
+attack_name = "Morph"
+type = 4
 initiative = 40
-description = "Deals damage twice."
+target_validation = ExtResource("7_glu86")
+damage_policy = ExtResource("8_jxijx")
+description = "Transforms into another unit."
 metadata/_custom_type_script = "uid://c5u15vrtdf7kf"

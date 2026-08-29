@@ -333,8 +333,10 @@ text = "Active effects:"
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="EffectsContainer" type="VBoxContainer" parent="Panel/MainContainer/MarginContainer/RightContainer/ScrollContainer"]
+[node name="EffectsContainer" type="HFlowContainer" parent="Panel/MainContainer/MarginContainer/RightContainer/ScrollContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("15_6nmij")
 
 [node name="BottomContainer" type="VBoxContainer" parent="Panel/MainContainer/MarginContainer/RightContainer"]

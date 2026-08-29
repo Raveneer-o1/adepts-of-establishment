@@ -24,6 +24,10 @@ offset_right = 93.0
 offset_bottom = 23.0
 script = ExtResource("1_wuwif")
 
+[node name="padding_left" type="Control" parent="."]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2
 texture = SubResource("AtlasTexture_dbepj")
@@ -31,4 +35,8 @@ expand_mode = 2
 stretch_mode = 4
 
 [node name="Label" type="Label" parent="."]
+layout_mode = 2
+
+[node name="padding_right" type="Control" parent="."]
+custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
