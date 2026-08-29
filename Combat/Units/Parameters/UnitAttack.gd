@@ -73,7 +73,11 @@ var unit: Unit
 ## Instead of manually constructing the [member Attack.applying_effects] dictionary,
 ## you can add effects as child nodes to the [UnitAttack] node.
 ## During serialization, those child effects
-## will be automatically added to this dictionary with the correct arguments.
+## will be automatically added to this dictionary with the correct arguments. [br][br]
+## [b]Note:[/b] Effects added this way only preserve data accepted by
+## [method AppliedEffect.read_params]. All other parameters (such as
+## [member AppliedEffect.liftable] or [member AppliedEffect.stackable])
+## are reset to their default values.
 @export var applying_effects: Dictionary[String, Variant]
 
 ## If set, attack will use this effect instead if unit's one
@@ -219,9 +223,8 @@ static func serialized(a: UnitAttack) -> Dictionary:
 		if child is UnitAttack:
 			alternative_actions.append(UnitAttack.serialized(child))
 		elif child is AppliedEffect:
-			# NOW: test this
-			# also, during deserialization this will rerutn wrong data
-			var data: Dictionary = child.get_full_data()
+			var script: AppliedEffect = child.get_script().new()
+			var data: Dictionary = script.get_full_data(child)
 			a.applying_effects[data["effect_path"]] = data["args"]
 	var res := {
 		"attack_name" = a.attack_name,

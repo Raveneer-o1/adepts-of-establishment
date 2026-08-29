@@ -12,10 +12,10 @@ func construct_effect_dict(a: AppliedEffect) -> Dictionary:
 	print("'%s' is constructed\n" % a.effect_name)
 	return data
 
-func read_unit(u: Unit, full_path: String) -> void:
+func read_unit(u: Unit, full_path: String) -> Dictionary:
 	if dict.has(u.unit_name):
 		push_error("Repeating unit name: %s\n\tfile: %s" % [u.unit_name, full_path])
-		return
+		return {}
 	var attacks := []
 	var effects := []
 	var unit_parameters: UnitParameters = u.find_child("UnitParameters")
@@ -60,17 +60,21 @@ func read_unit(u: Unit, full_path: String) -> void:
 		}
 	}
 	
-	write_unit(u.unit_name, params)
-	dict[u.unit_name] = null
+	return params
 
-func handle_file(s: String) -> void:
+func handle_file(s: String, write := true) -> void:
 	print("\nhandling file: %s\n--------------" % s)
 	EditorInterface.open_scene_from_path(s)
 	
 	var root := EditorInterface.get_edited_scene_root()
 	
 	if root is Unit:
-		read_unit(root, s)
+		var params := read_unit(root, s)
+		if write:
+			write_unit(root.unit_name, params)
+			dict[root.unit_name] = null
+		else:
+			print(params)
 	else:
 		EditorInterface.close_scene()
 		return
@@ -108,9 +112,13 @@ func write_unit(name: String, params: Dictionary) -> void:
 
 var dict: Dictionary
 var file : FileAccess
+const temp = "res://Combat/Units/Derived units/Dark Forces/chaotic_servant.tscn"
 
 # Called when the script is executed (using File -> Run in Script Editor).
 func _run() -> void:
+	#handle_file(temp, false)
+	#return
+	
 	file = FileAccess.open("res://Databases/unit_database.gd", FileAccess.WRITE)
 	if not file:
 		print("File not opened")
