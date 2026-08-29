@@ -28,6 +28,7 @@ var attacks: Array[UnitAttack]:
 	get:
 		var res: Array[UnitAttack]
 		for child in get_children():
+			if child.is_queued_for_deletion(): continue
 			if child is UnitAttack:
 				res.append(child)
 		return res

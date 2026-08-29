@@ -155,9 +155,13 @@ func rand_roll(
 	benefits: Party = null,
 	force_statistic_recording: bool = false,
 ) -> bool:
-	match __testing_mode__:
-		TestingMode.Right: return false if benefits and benefits.is_left else true
-		TestingMode.Left: return false if benefits and !benefits.is_left else true
+	if chance > 0.0 and \
+		chance < 1.0 and \
+		not is_zero_approx(chance) and \
+		not is_equal_approx(chance, 1.0):
+			match __testing_mode__:
+				TestingMode.Right: return false if benefits and benefits.is_left else true
+				TestingMode.Left: return false if benefits and !benefits.is_left else true
 	
 	if is_zero_approx(chance):
 		if force_statistic_recording and benefits != null:

@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://br3yvjd6q8ten"]
+
+[ext_resource type="Script" uid="uid://btc4nolgf8xox" path="res://Combat/Units/Parameters/Policy/Scripts/doppelganger_policy.gd" id="1_fnq88"]
+
+[resource]
+script = ExtResource("1_fnq88")

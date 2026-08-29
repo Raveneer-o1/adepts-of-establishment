@@ -215,7 +215,7 @@ static func get_accuracy_representation(acc: float) -> float:
 
 func _get_configuration_warnings() -> PackedStringArray:
 	if not target_validation:
-		return ["target_validation must be set"]
+		return ["Target validation must be set!"]
 	return []
 
 func _to_string() -> String:

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpx0ypkchtg6n"]
+
+[ext_resource type="Script" uid="uid://dhcxgr1x0vpr8" path="res://Combat/Effects/AppliedEffects/Scripts/polymorph.gd" id="1_qu00o"]
+
+[node name="Polymorph" type="Node"]
+script = ExtResource("1_qu00o")
+silencable = false
+effect_name = "Polymorph"
+description = "This unit is transformed"
+stackable = true

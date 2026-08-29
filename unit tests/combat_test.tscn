@@ -6,7 +6,7 @@
 
 [node name="CombatTest" type="CanvasLayer"]
 script = ExtResource("1_rs7f7")
-units = Array[StringName]([&"Blood spawn", &"Blood spawn", &"", &"", &"", &"", &""])
+units = Array[StringName]([&"Blood spawn", &"Doppelganger", &"", &"", &"", &"", &""])
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 top_level = true

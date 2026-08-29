@@ -3,4 +3,6 @@
 [ext_resource type="Script" uid="uid://d1uq2yh3u8oys" path="res://Combat/Units/Parameters/Validation/Scripts/any_unit.gd" id="1_3g16g"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_3g16g")
+only_small_units = true
