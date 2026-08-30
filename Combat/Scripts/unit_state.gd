@@ -1,24 +1,31 @@
 extends Node
 class_name UnitState
 
-@warning_ignore_start("untyped_declaration")
-var level
-var large_unit
-var immunities
-var description
-var brief_description
-var faction
-var unit_type
-var unit_class
-var needed_xp
-var base_damage
-var max_hp
-var hp
-var armor
-var evasion
-var shielding_chance
-var portrait_texture_path
-@warning_ignore_restore("untyped_declaration")
+## Stores a complete snapshot of a unit's parameters and allows restoration
+## to any compatible unit.
+##
+## The initial state is captured when the object is created. You can update
+## the stored state at any time using [method read_unit].
+## To apply the stored state to a unit, use [method change_unit_state].
+## By default, restoring a state updates the unit's appearance as well —
+## this behavior can be controlled via the arguments of [method change_unit_state].
+
+var level: int
+var large_unit: bool
+var immunities: Array[GlobalDefs.AttackType]
+var description: String
+var brief_description: String
+var faction: GlobalDefs.Faction
+var unit_type: GlobalDefs.UnitType = GlobalDefs.UnitType.Undefined
+var unit_class: UnitData.UnitClass = UnitData.UnitClass.Undefined
+var needed_xp: int
+var base_damage: int
+var max_hp: int
+var hp: int
+var armor: int
+var evasion: float
+var shielding_chance: float
+var portrait_texture_path: String
 
 var animation_handle: UnitAnimationsHandle:
 	get: return animation_handle
@@ -79,7 +86,7 @@ func _read_effects(u: Unit) -> void:
 	#var _effects := []
 	for c in u.parameters.get_children():
 		if c is AppliedEffect:
-			effects.append(construct_effect_dict(c))
+			effects.append(_construct_effect_dict(c))
 
 func _read_attacks(u: Unit) -> void:
 	unit_attacks.clear()
@@ -139,6 +146,8 @@ func change_unit_state(
 		&"sound_player",
 	]
 ) -> void:
+	if not u: return
+	if u.parameters.large_unit != large_unit: return
 	var unit_parameters := u.parameters
 	#var base_paramaters := unit_parameters.base_paramaters
 	
@@ -215,6 +224,6 @@ func _set_attacks(u: Unit) -> void:
 		attack.initialize(u, UnitAttackData.from_dict(data))
 	u.arrange_attacks_and_set_next()
 
-func construct_effect_dict(a: AppliedEffect) -> Dictionary:
+func _construct_effect_dict(a: AppliedEffect) -> Dictionary:
 	var data := a.get_full_data()
 	return data
